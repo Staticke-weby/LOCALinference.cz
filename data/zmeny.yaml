@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Kategorie AI box a AI notebook mají vlastní stránku"
+  co_se_zmenilo: "Přibyly stránky /zarizeni/ai-boxy/ a /zarizeni/ai-notebooky/, které vysvětlují, co to je, jak to funguje, co u toho rozhoduje a kdy se vyplatí. Jsou první položkou v menu obou kategorií a pojem se prolinkuje automaticky."
+  dotcene_stranky: [zarizeni/ai-boxy, zarizeni/ai-notebooky, zarizeni/srovnani]
+  zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-spark/
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Další pojmy ve slovníku a MoE pod Modely"
   co_se_zmenilo: "Přibyly stránky Decode, Propustnost paměti, TFLOPS, Unified memory, Kontext, MTP, NVFP4 a Ollama. Stránka Proč MoE se přesunula z Začínáme do menu Model. Všechny nové pojmy se automaticky prolinkují."
   dotcene_stranky: [slovnik/vykon/decode, slovnik/vykon/propustnost-pameti, slovnik/vykon/tflops, slovnik/pamet/unified-memory, slovnik/pamet/kontext, slovnik/software/mtp, slovnik/software/nvfp4, slovnik/software/ollama, modely/proc-moe]

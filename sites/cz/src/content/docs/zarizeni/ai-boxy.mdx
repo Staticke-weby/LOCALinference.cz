@@ -1,0 +1,76 @@
+---
+title: "Co je AI box a kdy se vyplatí pro firmu"
+description: "AI box je hotový stolní počítač s velkou unified pamětí pro lokální model. Vysvětlíme, jak funguje, co u něj rozhoduje a kdy stačí notebook."
+last_verified: 2026-11-04
+sidebar:
+  order: 0
+---
+
+**AI box** je hotový stolní počítač, který je stavěný na provoz
+jazykového modelu. Není to herní PC ani server do racku: je to malá
+krabice na stole, do které zapojíte monitor a síť a na které běží
+model přes celou svou velikost.
+
+## Jak to funguje
+
+U běžného PC je paměť rozdělená: procesor má RAM, grafika má vlastní
+VRAM. Model se musí vejít do VRAM, jinak se odkládá a běží pomalu.
+
+AI box jde jinou cestou — má **unified memory**, tedy jeden velký pool
+pro procesor i grafiku. Model se načte do 128 GB a grafika k němu
+přistupuje přímo. Proto stačí malá krabice na model, který by se na
+běžnou grafiku nevešel.
+
+## Co u AI boxu rozhoduje
+
+- **Paměť 128 GB** — určuje, který model se vejde celý.
+- **[Propustnost paměti](/slovnik/vykon/propustnost-pameti/)** —
+  určuje [decode](/slovnik/vykon/decode/), tedy tok/s.
+- **Chlazení** — rozhoduje o tom, jestli výkon drží i po hodině.
+- **Systém a software** — Windows 11, Linux, DGX OS; podle toho, co
+  na stroji chcete provozovat.
+- **[Power limit](/slovnik/provoz/power-limit/)** — nižší příkon
+  znamená méně hluku, ale i méně tok/s.
+
+## Pro koho je AI box
+
+- Tým **1–4 lidí**, kteří model používají denně.
+- Firma, kde **data nesmí odejít** do cloudu.
+- Provoz, který má být **stálý** — box běží pořád, notebook ne.
+- Někdo, kdo nechce skládat PC ani řešit ovladače.
+
+## AI box vs. AI notebook
+
+Box má **stálý výkon** a za stejnou paměť bývá levnější. Notebook je
+na cesty, ale v tenkém těle dřív narazí na
+[throttling](/slovnik/provoz/throttling/). Pokud stroj nepotřebujete
+přenášet, box je lepší volba. Rozdíly jsou v
+[AI notebooku](/zarizeni/ai-notebooky/).
+
+## Kde je limit
+
+- **Souběžnost.** Jeden box obslouží jednotky uživatelů, ne desítky.
+- **Prefill.** Dlouhý dokument se načítá déle než u velkých GPU.
+- **Upgrady.** Paměť je připájená; co koupíte, to máte.
+
+## Které AI boxy máme v katalogu
+
+- [DGX Spark](/zarizeni/dgx-spark/) — CUDA, DGX OS, 273 GB/s.
+- [Strix Halo](/zarizeni/strix-halo/) — nejlevnější cesta, Windows nebo Linux.
+- [RTX Spark mini](/zarizeni/rtx-spark-mini/) — Windows 11 a CUDA.
+- [Mac Studio](/zarizeni/mac-studio/) — macOS, MLX, 546 GB/s.
+
+## Kudy dál
+
+- [Srovnání zařízení](/zarizeni/srovnani/) — všechny 128GB stroje.
+- [Co je AI notebook](/zarizeni/ai-notebooky/) — přenosná varianta.
+- [Co je unified memory](/slovnik/pamet/unified-memory/) — proč to funguje.
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — kapacita.
+
+## Zdroje
+
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [AMD — Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html)
+- [Metodika](/o-webu/metodika/) — jak čteme data.
+
+*Naposledy ověřeno: 4. 11. 2026.*

@@ -57,6 +57,8 @@ function rehypeSlovnik() {
     { re: /\bGGUF\b/g, url: '/slovnik/software/gguf/', slug: 'software/gguf' },
     { re: /Hugging Face/g, url: '/slovnik/software/huggingface/', slug: 'software/huggingface' },
     { re: /Windows 11/g, url: '/temata/lokalni-ai-na-windows-11/', slug: 'lokalni-ai-na-windows-11' },
+    { re: /\bAI box\w*/gi, url: '/zarizeni/ai-boxy/', slug: 'ai-boxy' },
+    { re: /\bAI notebook\w*/gi, url: '/zarizeni/ai-notebooky/', slug: 'ai-notebooky' },
     { re: /\bkvantizac\w*/gi, url: '/slovnik/software/kvantizace/', slug: 'software/kvantizace' },
     { re: /\bTTFT\b/g, url: '/slovnik/vykon/ttft/', slug: 'vykon/ttft' },
     { re: /\bprefill\w*/gi, url: '/slovnik/vykon/prefill/', slug: 'vykon/prefill' },
@@ -240,6 +242,7 @@ export default defineConfig({
         {
           label: 'AI boxy',
           items: [
+            { label: 'Co je AI box', link: '/zarizeni/ai-boxy/' },
             { label: 'Srovnání', link: '/zarizeni/srovnani/' },
             { label: 'DGX Spark', link: '/zarizeni/dgx-spark/' },
             { label: 'Strix Halo', link: '/zarizeni/strix-halo/' },
@@ -250,6 +253,7 @@ export default defineConfig({
         {
           label: 'AI notebooky',
           items: [
+            { label: 'Co je AI notebook', link: '/zarizeni/ai-notebooky/' },
             { label: 'RTX Spark notebook', link: '/zarizeni/rtx-spark-notebook/' },
             { label: 'MacBook Pro', link: '/zarizeni/macbook-pro/' },
           ],
