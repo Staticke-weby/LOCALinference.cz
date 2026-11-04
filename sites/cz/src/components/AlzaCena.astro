@@ -1,6 +1,7 @@
 ---
 // Odkaz na aktuální ceny v kategorii Alza.cz. Vždy affiliate,
 // vždy na kategorii — konkrétní produkt se mění a vyprodává.
+// Vykresluje se jako tlačítko, protože je to akce, ne poznámka.
 import { relOdkazu } from '../lib/data';
 
 interface Props {
@@ -20,15 +21,37 @@ const href = URLS[kategorie];
 ---
 
 <p class="li-alza">
-  <a href={href} target="_blank" rel={relOdkazu(href)}>{text}</a>
+  <a href={href} target="_blank" rel={relOdkazu(href)}>
+    {text}
+    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17 17 7M9 7h8v8"></path>
+    </svg>
+  </a>
 </p>
 
 <style>
   .li-alza {
-    margin: 0.85rem 0 1.1rem;
-    font-size: var(--sl-text-sm);
+    margin: 0.9rem 0 1.2rem;
   }
   .li-alza a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.05rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--sl-color-accent);
+    color: var(--li-btn-text);
+    font-size: var(--sl-text-sm);
     font-weight: 600;
+    text-decoration: none;
+    transition: background 150ms ease, transform 150ms ease;
+  }
+  .li-alza a:hover {
+    background: var(--sl-color-accent-high);
+    transform: translateY(-1px);
+  }
+  .li-alza svg {
+    flex: none;
   }
 </style>
