@@ -21,10 +21,7 @@ zařízení a chuť měřit, tady je přesně vidět, co by pomohlo.
 | Oblast | Co chybí | Proč to vadí | Priorita |
 |---|---|---|---|
 | **DGX Spark** | TTFT a prefill pro Qwen3.8 Flash Next | bez nich nelze hodnotit interaktivní kvalitu | vysoká |
-| **DGX Station** | TTFT, prefill a chování na 128k+ | throughput stroj se hodnotí jinak než krabice | vysoká |
-| **Mac Studio 96** | 128k+ kontext a souběžnost | model se vejde, ale KV cache je těsná | vysoká |
 | **Strix Halo** | TTFT na jednotném promptu | prefill se v reportech měří různě | vysoká |
-| **Gorgon Halo 192** | reálná měření Qwen3.8 FN | nové zařízení, málo dat | vysoká |
 | **RTX Spark mini/notebook** | nezávislá měření | výrobcem udávaná čísla nestačí | střední |
 | **Souběžnost 4+** | agregát a tok/s na stream | většina reportů je single-stream | vysoká |
 | **Dlouhý kontext** | 128k, 256k, 1M | maximum v datasheetu nic neříká o praxi | vysoká |

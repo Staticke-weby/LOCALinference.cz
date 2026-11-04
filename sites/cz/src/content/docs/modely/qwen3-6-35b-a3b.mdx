@@ -1,0 +1,88 @@
+---
+title: "Qwen3.6 35B-A3B: rychlý malý model, ne náhrada Qwen3.8"
+description: "35B / 3B aktivních, 262k kontext, vision a Apache-2.0. Rychlý model pro jednoduché úlohy, ale kvalitou pod Qwen3.8 Flash Next."
+last_verified: 2026-11-04
+sidebar:
+  order: 2
+---
+
+import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+
+# Qwen3.6 35B-A3B
+
+**Verdikt:** Rychlý a malý MoE model z července 2026. Na 128GB zařízení
+běží velmi efektivně, ale kvalitou je pod Qwen3.8 Flash Next. Hodí se jako
+rychlý pomocník, ne jako hlavní model na náročnou práci.
+
+<aside class="tip">
+**Role:** rychlý malý model, pod hranicí kvality.
+**Celkem / aktivních:** 35B / 3B.
+**Kontext:** 262k nativně, ~1M s YaRN.
+**Minimální zařízení:** 128 GB unified paměti (s velkou rezervou).
+</aside>
+
+> **Toto jsou převzatá data, ne naše měření.** Specifikace jsou z model
+> cardu, rychlost z komunitního měření. Kde měření chybí, je `[DOPLNIT]`.
+> Podrobnosti v [metodice](/o-webu/metodika/).
+
+## Specifikace
+
+| Parametr | Hodnota | Zdroj |
+|---|---|---|
+| Architektura | MoE, 256 expertů, 8 routed + 1 shared | [NGC](https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b) |
+| Celkové parametry | 35B | NGC |
+| Aktivní parametry | 3B na token | NGC |
+| Nativní maximum kontextu | 262 144 | NGC |
+| Rozšíření | 1 010 000 s YaRN | NGC |
+| Vision | ano (text, obrázky, video) | NGC |
+| Licence | Apache-2.0 | NGC |
+| Výstup | až 81 920 tokenů | NGC |
+
+## Co umí
+
+- **Agentní kódování** a repository-level reasoning.
+- **Multimodální vstupy:** text, obrázky, video.
+- **201 jazyků a dialektů.**
+- **Thinking režim** s možností vypnout.
+- **Tool calling** a multi-step agentní pipeline.
+- **MTP** (multi-token prediction).
+
+## Kolik potřebuje paměti
+
+Model má 35B parametrů celkem a 3B aktivních. To znamená, že se na 128GB
+zařízení vejde s velkou rezervou i s dlouhým kontextem. Přesné velikosti
+kvantizací jsou `[DOPLNIT: model card / GGUF]`.
+
+## Jak rychle
+
+<TabulkaMereni model="qwen3-6-35b-a3b" />
+
+**Co z toho plyne:** na Strix Halu dá 73,4 tok/s při prefillu 1 094 tok/s
+v komunitním měření. Je to rychlejší než Qwen3.8, ale kvalita je níž.
+
+## Kde dává smysl
+
+- **Rychlý pomocník** na klasifikaci, extrakci a jednoduché úkoly.
+- **Vysoce vytížený agent**, kde rozhoduje throughput.
+- **Zařízení s menší pamětí**, kde Qwen3.8 nemá dost místa na kontext.
+
+## Kde ne
+
+- **Náročná práce**, kde je minimum Qwen3.8 Flash Next.
+- **Dlouhé dokumenty s vysokou přesností** — kvalita je pod Qwen3.8.
+- **Jako hlavní model** pro náročného uživatele.
+
+## Kudy dál
+
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — minimum pro denní práci.
+- [Srovnání modelů](/modely/srovnani/) — přehled.
+- [Strix Halo](/zarizeni/strix-halo/) — kde bylo měření.
+- [Metodika](/o-webu/metodika/) — jak čteme data.
+
+## Zdroje
+
+- [Qwen3.6-35B-A3B — model card](https://huggingface.co/Qwen/Qwen3.6-35B-A3B)
+- [NVIDIA NGC — Qwen3.6-35B-A3B](https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b)
+- [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+
+*Naposledy ověřeno: 4. 11. 2026.*

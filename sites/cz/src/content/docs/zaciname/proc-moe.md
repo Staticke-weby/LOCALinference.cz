@@ -61,8 +61,7 @@ běhu. Podrobnosti jsou v [metodice](/o-webu/metodika/).
 
 - **128 GB** je minimum pro Qwen3.8 Flash Next.
 - **192 GB** dá víc prostoru pro KV cache a souběžnost.
-- **Dense modely** na těchto zařízeních nejsou rozumná volba, pokud
-  neběží na Macu s vysokou bandwidth.
+- **Dense modely** na těchto zařízeních nejsou rozumná volba.
 - **Počet aktivních parametrů** je první číslo, které se u modelu díváte.
 
 ## Kudy dál

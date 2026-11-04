@@ -1,0 +1,59 @@
+---
+title: "Kolik uživatelů zvládne jeden 128GB box"
+description: "Jeden malý AI box obslouží zhruba 1–4 souběžné uživatele. Pro víc lidí se škáluje počtem boxů, ne dražším strojem."
+last_verified: 2026-11-04
+sidebar:
+  order: 2
+---
+
+# Kolik uživatelů zvládne jeden box
+
+Cíl projektu jsou **malé 128GB boxy za dosažitelnou cenu**. Pro víc
+uživatelů se škáluje **počtem boxů**, ne nákupem dražšího stroje.
+
+## Kolik toho jeden box unese
+
+- **1–4 souběžní uživatelé** na jeden 128GB box.
+- **4+ uživatelů** = další box, ne větší model.
+- **Fronta a priority** patří do gatewaye, ne do jednotlivých boxů.
+
+Veřejné měření na DGX Sparku ukazuje čtyři smíšené requesty s agregátem
+~100 tok/s
+([madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)).
+To je single-stream měření, ne produkční záruka; v provozu počítejte
+s rezervou.
+
+## Orientační škálování
+
+| Uživatelé | Boxy | Poznámka |
+|---|---|---|
+| 1–4 | 1 | jeden 128GB box |
+| 5–8 | 2 | + rezerva na výpadek |
+| 9–12 | 3 | fronta v gatewayi |
+| 13–16 | 4 | long-context lane zvlášť |
+| 17–20 | 5 | + jeden spare |
+
+**Pravidlo:** přidejte box, když je vytížení slotů dlouhodobě nad 80 %.
+Nekupujte dražší stroj jen proto, že má víc paměti — pokud se do něj
+nevejde výrazně větší model, nepřinese to víc uživatelů.
+
+## Co nefunguje
+
+- **Jeden velký stroj pro 20 lidí** — drahé a zbytečné.
+- **Větší model jako náhrada kapacity** — kvalita není kapacita.
+- **Fronta v model serveru** — vzniká prioritní inverze napříč boxy.
+
+## Kudy dál
+
+- [Výběr podle rozpočtu](/vyber/rozpocet/) — co za co dostanete.
+- [Srovnání zařízení](/zarizeni/srovnani/) — 128GB boxy.
+- [Jak čteme data](/zaciname/jak-cteme-data/) — souběžnost a TTFT.
+- [Metodika](/o-webu/metodika/) — proč neodhadujeme.
+
+## Zdroje
+
+- [madeye — DGX Spark, 4 mixed requests](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)
+- [vLLM documentation](https://docs.vllm.ai/)
+- [NVIDIA DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

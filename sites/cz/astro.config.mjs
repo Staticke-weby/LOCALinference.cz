@@ -58,6 +58,14 @@ export default defineConfig({
           items: [{ autogenerate: { directory: 'modely' } }],
         },
         {
+          label: 'Rychlost',
+          items: [{ autogenerate: { directory: 'rychlost' } }],
+        },
+        {
+          label: 'Výběr',
+          items: [{ autogenerate: { directory: 'vyber' } }],
+        },
+        {
           label: 'Data',
           items: [{ autogenerate: { directory: 'data' } }],
         },

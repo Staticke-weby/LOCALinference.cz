@@ -58,7 +58,7 @@
   nazev: vLLM Recipes
   url: https://recipes.vllm.ai/
   typ: html
-  co_sledujeme: [konfigurace, kvantizace, DGX Spark, DGX Station]
+  co_sledujeme: [konfigurace, kvantizace, DGX Spark]
   frekvence: tydne
   priorita: vysoka
   posledni_kontrola: 2026-11-04
@@ -221,16 +221,6 @@
   stav: ok
   poznamka: "Oficiální vLLM Windows nativně nepodporuje; port je komunita."
 
-- id: nvidia-dgx-station
-  nazev: NVIDIA DGX Station
-  url: https://www.nvidia.com/en-us/products/workstations/dgx-station/
-  typ: html
-  co_sledujeme: [cena, parametry, dostupnost]
-  frekvence: tydne
-  priorita: stredni
-  posledni_kontrola: 2026-11-04
-  stav: ok
-
 - id: amd-ryzen-ai-max
   nazev: AMD Ryzen AI Max+
   url: https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html
@@ -238,16 +228,6 @@
   co_sledujeme: [parametry, bandwidth, ROCm]
   frekvence: tydne
   priorita: stredni
-  posledni_kontrola: 2026-11-04
-  stav: ok
-
-- id: apple-mac-studio
-  nazev: Apple Mac Studio
-  url: https://www.apple.com/mac-studio/
-  typ: html
-  co_sledujeme: [cena, pamet, bandwidth, MLX]
-  frekvence: tydne
-  priorita: vysoka
   posledni_kontrola: 2026-11-04
   stav: ok
 
@@ -304,3 +284,63 @@
   posledni_kontrola: 2026-11-04
   stav: ok
   poznamka: Konkrétní laboratorní setup, dobrý pro reprodukci.
+
+- id: smf-dgx-spark
+  nazev: SMF - Qwen3.8 Flash Next na DGX Spark
+  url: https://www.smfclearinghouse.com/blog/2026-09-19-qwen38-flash-next-24-7-kit
+  typ: html
+  co_sledujeme: [mereni, dgx-spark, ttft]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: sparklab-bench
+  nazev: SparkLab - Qwen3.8 Flash Next benchmarky
+  url: https://github.com/sixteen-miles-labs/sparklab/blob/main/benchmarks/frameworks/QWEN38_FLASH_NEXT.md
+  typ: github
+  co_sledujeme: [mereni, dgx-spark, enginy]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: llamacpp-rtx-n1x
+  nazev: llama.cpp - RTX Spark N1X benchmark
+  url: https://github.com/ggml-org/llama.cpp/discussions/31494
+  typ: github
+  co_sledujeme: [mereni, rtx-spark, windows-arm64]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: mindstudio-rtx-spark
+  nazev: MindStudio - 120B+ modely na RTX Spark
+  url: https://www.mindstudio.ai/blog/run-local-llms-rtx-spark-laptop
+  typ: html
+  co_sledujeme: [mereni, rtx-spark, notebook]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: qwen36-hf
+  nazev: Qwen3.6-35B-A3B - model card
+  url: https://huggingface.co/Qwen/Qwen3.6-35B-A3B
+  typ: hf
+  co_sledujeme: [parametry, kontext, licence, vision]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: qwen36-ngc
+  nazev: NVIDIA NGC - Qwen3.6-35B-A3B
+  url: https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b
+  typ: html
+  co_sledujeme: [parametry, kontext, licence, vision]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok

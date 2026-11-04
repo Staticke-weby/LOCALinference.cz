@@ -35,6 +35,7 @@
   nazev: NVIDIA RTX Spark mini 128 GB
   vyrobce: NVIDIA
   kategorie: mini-pc
+  stranka: /zarizeni/rtx-spark-mini/
   pamet_gb: 128
   pamet_typ: unified
   bandwidth_gbs: 300
@@ -96,6 +97,7 @@
   nazev: Strix Halo 128 GB (OEM)
   vyrobce: AMD / OEM
   kategorie: mini-pc
+  stranka: /zarizeni/strix-halo/
   pamet_gb: 128
   pamet_typ: unified
   bandwidth_gbs: 256
@@ -120,85 +122,3 @@
     - https://llamaperf.com/gpu/strix-halo-128gb
   overeno: 2026-11-04
 
-- id: gorgon-halo
-  nazev: Gorgon Halo 192 GB (OEM)
-  vyrobce: AMD / OEM
-  kategorie: mini-pc
-  pamet_gb: 192
-  pamet_typ: unified
-  bandwidth_gbs: 273
-  cena:
-    od_usd: 7099
-    do_usd: 7299
-    overeno: 2026-09-30
-    zdroj: https://www.amd.com/
-    poznamka: "Jen PRO SKU s enterprise managementem; bez DPH a dopravy."
-  cpu: Ryzen AI Max+ PRO 495
-  gpu: Radeon
-  os: [Linux, Windows]
-  software: [ROCm, Vulkan, llama.cpp]
-  prikon_w: null
-  hmotnost_kg: null
-  prodejce: [HP, Lenovo, ASUS]
-  silne: [192 GB pro 200B modely, long context, enterprise management]
-  slabe: [nové, méně otestované, cena]
-  zdroje:
-    - https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html
-  overeno: 2026-11-04
-
-- id: mac-studio
-  nazev: Apple Mac Studio M5 Ultra
-  vyrobce: Apple
-  kategorie: desktop
-  pamet_gb: 96
-  pamet_typ: unified
-  bandwidth_gbs: 1200
-  konfigurace:
-    - {pamet_gb: 96, cena_usd: 5499}
-    - {pamet_gb: 256, cena_usd: 10799}
-    - {pamet_gb: 512, cena_usd: 22299}
-  cena:
-    od_usd: 5499
-    do_usd: 22299
-    overeno: 2026-10-01
-    zdroj: https://www.apple.com/mac-studio/
-    poznamka: "Konfigurace 96/256/512 GB; bez DPH a dopravy."
-  cpu: M5 Ultra
-  gpu: M5 Ultra
-  os: [macOS]
-  software: [MLX, llama.cpp]
-  prikon_w: null
-  hmotnost_kg: null
-  prodejce: [Apple]
-  silne: ["1,2 TB/s", nejrychlejší single-stream, 512 GB varianta]
-  slabe: [MLX místo vLLM, cena paměti, ops]
-  zdroje:
-    - https://www.apple.com/mac-studio/
-  overeno: 2026-11-04
-
-- id: dgx-station
-  nazev: NVIDIA DGX Station GB300
-  vyrobce: NVIDIA
-  kategorie: station
-  pamet_gb: 748
-  pamet_typ: hbm+lpddr
-  bandwidth_gbs: 7100
-  bandwidth_pozn: "252 GB HBM3e @ 7,1 TB/s + 496 GB LPDDR5X @ 396 GB/s"
-  cena:
-    od_usd: 91000
-    do_usd: 125000
-    overeno: 2026-03-01
-    zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-station/
-    poznamka: "Podle OEM; bez DPH a dopravy."
-  cpu: Grace 72 jader
-  gpu: Blackwell Ultra
-  os: [Ubuntu]
-  software: [CUDA, vLLM, NIM, SGLang]
-  prikon_w: 1600
-  hmotnost_kg: null
-  prodejce: [Dell, ASUS, Supermicro, MSI]
-  silne: [20+ uživatelů, 252 GB HBM, MIG izolace]
-  slabe: [cena, "1,6 kW", "200 V", "nad 252 GB padá bandwidth"]
-  zdroje:
-    - https://www.nvidia.com/en-us/products/workstations/dgx-station/
-  overeno: 2026-11-04

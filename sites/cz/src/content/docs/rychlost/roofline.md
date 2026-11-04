@@ -25,7 +25,7 @@ bajty na token ≈ aktivní parametry × bajty na parametr
 ```
 
 - **propustnost paměti** je v GB/s (DGX Spark 273, Strix Halo 256,
-  RTX Spark notebook 300, Mac Studio 1 200).
+  RTX Spark notebook 300).
 - **efektivita** je zlomek stropu, který engine reálně dosáhne.
   U dobré konfigurace 0,7–0,9; u slabší 0,3–0,5.
 - **bajty na token** určuje počet aktivních parametrů a kvantizace.

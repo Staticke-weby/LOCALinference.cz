@@ -9,6 +9,27 @@
   zdroj: https://localinference.cz/zdroje/novinky/
 
 - datum: 2026-11-04
+  typ: obsah
+  titulek: "Katalog jen malé 128GB boxy"
+  co_se_zmenilo: "Mac Studio, Gorgon Halo a DGX Station vyřazeny. Web se drží malých boxů za dosažitelnou cenu; víc uživatelů se řeší počtem boxů."
+  dotcene_stranky: [vyber/rozpocet, zarizeni/srovnani]
+  zdroj: https://localinference.cz/zarizeni/srovnani/
+
+- datum: 2026-11-04
+  typ: model
+  titulek: "Qwen3.5 397B nezařazen"
+  co_se_zmenilo: "Starší obří model se na malé 128GB boxy nehodí. Katalog drží jen modely z poslední doby, které běží efektivně."
+  dotcene_stranky: [modely/srovnani]
+  zdroj: https://huggingface.co/Qwen/Qwen3.5-397B-A17B
+
+- datum: 2026-11-04
+  typ: obsah
+  titulek: "DGX Station vyřazen z katalogu"
+  co_se_zmenilo: "Web se drží zařízení v rozumných nákladech. DGX Station za 91–125 tis. USD do katalogu nepatří."
+  dotcene_stranky: [vyber/rozpocet, zarizeni/dgx-spark]
+  zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-station/
+
+- datum: 2026-11-04
   typ: cena
   titulek: "RTX Spark notebook: ověřená cena 128GB konfigurací"
   co_se_zmenilo: "Cena změněna z nepodloženého rozsahu na 5 899–6 499 USD; 2 599 USD je 24GB konfigurace."

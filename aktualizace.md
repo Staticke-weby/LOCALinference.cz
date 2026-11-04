@@ -149,8 +149,7 @@ bez nich se nedá mluvit o „použitelnosti“.
 Kromě hlídače jednou týdně projít:
 
 - Qwen blog a Hugging Face novinky,
-- NVIDIA a AMD oznámení (DGX, RTX Spark, Strix/Gorgon Halo),
-- Apple Mac Studio / MLX,
+- NVIDIA a AMD oznámení (DGX, RTX Spark, Strix Halo),
 - vLLM, SGLang a llama.cpp releases,
 - llamaperf a InferenceX nová měření,
 - české a evropské zdroje o lokální AI (okrajově).
@@ -159,8 +158,6 @@ Používat konkrétní dotazy, ne obecné „AI news“:
 
 - „Qwen3.8 Flash Next DGX Spark tok/s“
 - „Strix Halo 128GB llama.cpp Qwen3.8“
-- „Mac Studio M5 Ultra MLX local LLM“
-- „DGX Station GB300 inference benchmark“
 - „llama.cpp release MTP“
 
 Výsledek vždy ověřit u primárního zdroje. Novinový titulek není fakt.

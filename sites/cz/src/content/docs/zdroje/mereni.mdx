@@ -1,0 +1,50 @@
+---
+title: "Všechna měření: tabulka s konfigurací"
+description: "Přehled všech převzatých měření Qwen3.8 Flash Next a Qwen3.6 na jednotlivých zařízeních. Konfigurace, TTFT, prefill, decode a zdroj."
+last_verified: 2026-11-04
+sidebar:
+  order: 0
+---
+
+import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+
+# Všechna měření
+
+Tohle je jeden přehled všech měření, která na webu používáme. Každý řádek
+má zařízení, model, kvantizaci, engine, kontext, TTFT, prefill, decode,
+typ údaje, důvěryhodnost a zdroj.
+
+> **Toto nejsou naše měření.** Čísla přebíráme z veřejných zdrojů. Kde
+> chybí, je `[DOPLNIT]`; nic nedopočítáváme jako měření. Podrobnosti v
+> [metodice](/o-webu/metodika/).
+
+<TabulkaMereni />
+
+## Co v tabulce je
+
+- **DGX Spark** — několik recipes od 16 do 65 tok/s.
+- **Strix Halo** — 10 komunitních reportů, 36–79 tok/s.
+- **RTX Spark notebook** — nativní vLLM a llama.cpp.
+
+## Co v tabulce není
+
+- **Dražší a větší stroje** — vyřazeny, web se drží malých 128GB boxů.
+- **RTX Spark mini** — zatím nemá veřejné měření Qwen3.8 FN.
+- **Dlouhý kontext u většiny zařízení** — chybí 128k+ měření.
+
+Celý seznam mezer je v [Co nevíme](/zdroje/co-nevime/).
+
+## Kudy dál
+
+- [Zdroje](/zdroje/zdroje/) — odkud data bereme.
+- [Metodika](/o-webu/metodika/) — jak data čteme.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
+- [Srovnání zařízení](/zarizeni/srovnani/) — co si vybrat.
+
+## Zdroje
+
+- [madeye — DGX Spark](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)
+- [llamaperf — Strix Halo](https://llamaperf.com/gpu/strix-halo-128gb)
+- [NVIDIA forum — vLLM na RTX Spark](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530)
+
+*Naposledy ověřeno: 4. 11. 2026.*

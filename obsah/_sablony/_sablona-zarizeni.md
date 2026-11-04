@@ -103,7 +103,7 @@ na kratším kontextu a dlouhý kontext bere paměť ostatním.
 | 1–4 lidé, citlivá data, CUDA | **Ano** |
 | Chcete nejnižší cenu za 128 GB | Spíš Strix Halo |
 | Chcete 200B+ model | Ne, potřebujete 192–256 GB |
-| 20+ uživatelů | Ne, DGX Station |
+| 20+ uživatelů | Ne, jiná třída nebo pool |
 
 ## Zdroje
 

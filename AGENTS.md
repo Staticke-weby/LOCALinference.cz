@@ -15,8 +15,8 @@ a co od nich čtenář může čekat.
 
 ### Patří
 
-- **Hotová zařízení (turnkey):** DGX Spark, RTX Spark mini/notebook, OEM boxy
-  se Strix Halo / Gorgon Halo, Mac Studio, DGX Station. Nic, co si člověk
+- **Hotová zařízení (turnkey):** DGX Spark, RTX Spark mini/notebook,
+  OEM boxy se Strix Halo. Nic, co si člověk
   skládá z komponent.
 - **Současné modely**, které dávají smysl pro denní práci. Spodní hranice
   kvality je **Qwen3.8 Flash Next**. Starší a slabší modely nejsou v katalogu
@@ -49,7 +49,7 @@ a co od nich čtenář může čekat.
 - Piš **česky, jasně a konkrétně**. Čtenář má být technicky zvídavý, ale
   nemusí být strojař. Každý odborný pojem při prvním výskytu vysvětli jednou větou.
 - Krátké věty, činný rod, oslovování čtenáře („zjistíte“, „vyberte“).
-- Technické názvy nech v originále: DGX Spark, Strix Halo, Mac Studio, vLLM,
+- Technické názvy nech v originále: DGX Spark, RTX Spark, Strix Halo, vLLM,
   llama.cpp, MoE, TTFT, prefill, tok/s. Vysvětli je, ale nepřekládej.
 - Čísla piš po česku: desetinná čárka, tisíce s mezerou (6 950 USD, 70 tok/s).
 - Nepoužívej „suverenita“, „revoluce“, „unikátní řešení“, „game-changer“.
@@ -141,8 +141,7 @@ Toto je nejdůležitější pravidlo projektu.
 | NVIDIA DGX Spark / Station | `nvidia.com`, dokumentace, GTC |
 | NVIDIA RTX Spark | `nvidia.com`, Windows on Arm porting guide, OEM nabídky |
 | vLLM na Windows ARM64 | GitHub `devjeonghwan/vllm-for-rtx-spark`, NVIDIA forum |
-| AMD Strix Halo / Gorgon Halo | `amd.com`, OEM stránky (GMKtec, Minisforum, HP…) |
-| Apple Mac Studio / MLX | `apple.com`, `ml-explore/mlx` |
+| AMD Strix Halo | `amd.com`, OEM stránky (GMKtec, Minisforum, HP…) |
 | Ceny a dostupnost | oficiální obchody výrobců a OEM, s datem |
 | Kurzy pro přepočet | ČNB (CZK), ECB (EUR), s datem |
 
@@ -275,7 +274,7 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
 - Každá stránka: výstižný `title` s hledaným termínem, `description`,
   jeden H1, klíčová slova v podnadpisech.
 - Hledané termíny: „lokální AI“, „lokální modely“, „AI na vlastním počítači“,
-  „DGX Spark“, „Strix Halo“, „Mac Studio lokální AI“, „kolik stojí lokální AI“,
+  „DGX Spark“, „Strix Halo“, „RTX Spark“, „kolik stojí lokální AI“,
   „Qwen3.8 Flash Next“, „jak rychle běží lokální model“.
 - Interní prolinkování mezi zařízením, modelem a vysvětlením rychlosti.
 - Žádné přeplňování klíčovými slovy na úkor čitelnosti.

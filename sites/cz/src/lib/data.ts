@@ -64,6 +64,7 @@ export type Model = {
   kvantizace: { nazev: string; vahy_gb: number | null; engine: string | null }[];
   role: 'minimum' | 'vyssi' | 'special';
   stav: 'doporuceny' | 'pod-hranici' | 'jen-pro-velke' | 'referencni';
+  stranka?: string;
   zdroje: string[];
   overeno: string | Date;
 };

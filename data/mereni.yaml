@@ -478,3 +478,90 @@
   normalizace: "256k kontext, NPU + iGPU prefill"
   interpretace: "Na 256k je decode ~36 tok/s; maximum se blíží."
   zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-09-19-dgx-spark-qwen38-smf
+  datum: 2026-09-19
+  zarizeni: dgx-spark
+  model: qwen3-8-flash-next
+  kvantizace: NVFP4
+  engine: vLLM
+  engine_verze: "MiaAI 24/7 kit"
+  kontext: 400
+  kontext_strop: 262144
+  ttft_ms: 255
+  prefill_toks: null
+  decode_toks: 65.3
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: 3
+    kv_cache: fp8
+    flash_attention: null
+    chunked_prefill: null
+    teplota: 0
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: stredni
+  normalizace: "structured decode, 400 tokenů, thinking off"
+  interpretace: "65,3 tok/s C1, TTFT 255 ms; jiná recipe než madeye."
+  zdroj: https://www.smfclearinghouse.com/blog/2026-09-19-qwen38-flash-next-24-7-kit
+
+- id: 2026-09-09-dgx-spark-qwen38-sparklab
+  datum: 2026-09-09
+  zarizeni: dgx-spark
+  model: qwen3-8-flash-next
+  kvantizace: FTW NVFP4
+  engine: SparkLab
+  engine_verze: "0.1.0"
+  kontext: 32768
+  kontext_strop: 32768
+  ttft_ms: 386
+  prefill_toks: null
+  decode_toks: 16.42
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: false
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: 0
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "batch-one, 32k cap, bez MTP"
+  interpretace: "Starší engine bez MTP; ukazuje spodní hranici rozptylu."
+  zdroj: https://github.com/sixteen-miles-labs/sparklab/blob/main/benchmarks/frameworks/QWEN38_FLASH_NEXT.md
+
+- id: 2026-10-13-strix-halo-qwen36-llamacpp
+  datum: 2026-10-13
+  zarizeni: strix-halo
+  model: qwen3-6-35b-a3b
+  kvantizace: Q4_K_M
+  engine: llama.cpp
+  engine_verze: "b9747"
+  kontext: null
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: 1094.5
+  decode_toks: 73.4
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: null
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "Strix Halo 128GB, Q4_K_M, kontext neuveden"
+  interpretace: "Malý a rychlý model; 73,4 tok/s, ale kvalita je pod Qwen3.8."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb

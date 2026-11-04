@@ -125,23 +125,11 @@
     "checkedAt": "2026-11-04T10:15:43.598Z",
     "status": "ok"
   },
-  "nvidia-dgx-station": {
-    "url": "https://www.nvidia.com/en-us/products/workstations/dgx-station/",
-    "signature": "text:19c56a83b8447291",
-    "checkedAt": "2026-11-04T10:15:43.976Z",
-    "status": "ok"
-  },
   "amd-ryzen-ai-max": {
     "url": "https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html",
     "signature": "text:5f7d656e0f2f7a0d",
     "checkedAt": "2026-11-04T10:15:44.291Z",
     "status": "changed"
-  },
-  "apple-mac-studio": {
-    "url": "https://www.apple.com/mac-studio/",
-    "signature": "text:090adaae5e301dac",
-    "checkedAt": "2026-11-04T10:15:44.601Z",
-    "status": "ok"
   },
   "framework-desktop": {
     "url": "https://frame.work/desktop",

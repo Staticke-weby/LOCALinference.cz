@@ -32,7 +32,7 @@ na denní práci — a referenční bod pro všechna ostatní srovnání.“
 | Modality | text + vision (výchozí) |
 | Licence | Apache-2.0 |
 | Váhy 4bit | ~101 GB (NVFP4) |
-| Doporučené zařízení | DGX Spark, RTX Spark, Strix Halo, Mac Studio |
+| Doporučené zařízení | DGX Spark, RTX Spark, Strix Halo |
 
 ## Co umí
 
@@ -53,7 +53,7 @@ na denní práci — a referenční bod pro všechna ostatní srovnání.“
 |---|---|---|---|
 | NVFP4 | ~101 GB | 128 GB | 27 GB na KV cache |
 | FP8 | ~176 GB | 192 GB+ | rychlejší převod, více paměti |
-| MLX 4bit | ~88 GB | 96 GB Mac | málo KV cache, krátký kontext |
+| MLX 4bit | ~88 GB | mimo katalog | málo KV cache, krátký kontext |
 | GGUF Q4 | ~90 GB | 128 GB | llama.cpp, nižší rychlost |
 
 ## Jak rychle na zařízeních
@@ -62,15 +62,9 @@ na denní práci — a referenční bod pro všechna ostatní srovnání.“
 |---|---|---|---|---|---|---|
 | DGX Spark 128 | NVFP4 | vLLM, MTP 3, KV FP8 | 70 tok/s | 40 tok/s | naměřeno | [data](/data/…) |
 | Strix Halo 128 | GGUF Q4 | llama.cpp, MTP, kontext 96k | 40–79 tok/s | ~32 tok/s | naměřeno | [llamaperf](https://llamaperf.com/gpu/strix-halo-128gb) |
-| Mac Studio 96 | MLX 4bit | MLX, [DOPLNIT] | 180–280 tok/s | [DOPLNIT] | naměřeno | [zdroj](https://…) |
-| DGX Station GB300 | NVFP4 | vLLM, MTP3 | 354,6 tok/s | [DOPLNIT] | naměřeno | [data](/data/…) |
-| Gorgon Halo 192 | NVFP4 | [DOPLNIT] | [DOPLNIT] | [DOPLNIT] | [DOPLNIT] | [zdroj](https://…) |
 
 **Toto jsou převzatá měření, ne naše.** U každého čísla je zdroj,
 konfigurace a důvěryhodnost. Rozpětí uvádíme tam, kde se zdroje rozcházejí.
-
-**Proč je Mac tak rychlý:** 1,2 TB/s vs. 273 GB/s. Není to lepší model,
-je to jiná třída paměti. Zaplatíte ale více za GB paměti.
 
 **Konfigurace:** u každého čísla musí být kvantizace, engine a verze,
 kontext, souběžnost a zapnuté optimalizace (MTP, KV cache, flash attention).
@@ -95,7 +89,7 @@ tocích je měření a jaká byla souběžnost.
 - **Denní práce jednoho až čtyř lidí:** ano, 128GB stroj.
 - **Agentní úlohy s dlouhým kontextem:** ano, ale počítejte 40 tok/s.
 - **Dávkové zpracování:** ano, agregát roste mírně.
-- **20+ uživatelů:** ne, potřebujete DGX Station nebo pool.
+- **20+ uživatelů:** ne, potřebujete jinou třídu nebo pool.
 - **Nejlepší kvalita bez kompromisů:** ne, sáhněte po větším modelu,
   který se na zařízení vejde, nebo po cloudu.
 

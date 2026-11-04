@@ -85,6 +85,7 @@ export const model = z.object({
     .default([]),
   role: z.enum(['minimum', 'vyssi', 'special']),
   stav: z.enum(['doporuceny', 'pod-hranici', 'jen-pro-velke', 'referencni']),
+  stranka: z.string().optional(),
   zdroje: z.array(url).min(1),
   overeno: datum,
 });

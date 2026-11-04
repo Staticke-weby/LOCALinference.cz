@@ -25,31 +25,11 @@
     - {nazev: GGUF Q4_K_M, vahy_gb: 95, engine: llama.cpp}
   role: minimum
   stav: doporuceny
+  stranka: /modely/qwen3-8-flash-next/
   zdroje:
     - https://huggingface.co/Qwen/Qwen3.8-Flash-Next
     - https://qwen.ai/blog?id=qwen3.8-flash-next
     - https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next
-  overeno: 2026-11-04
-
-- id: qwen3-5-397b
-  nazev: Qwen3.5 397B
-  vyrobce: Qwen
-  architektura: MoE
-  parametry_celkem_b: 397
-  parametry_aktivni_b: 17
-  kontext:
-    max: null
-    max_rozsireni: null
-    doporuceny: null
-    poznamka: "Kontext [DOPLNIT: model card]."
-  vision: true
-  modality: [text, obraz]
-  licence: "[DOPLNIT]"
-  kvantizace: []
-  role: vyssi
-  stav: jen-pro-velke
-  zdroje:
-    - https://qwen.ai/blog?id=qwen3.8-flash-next
   overeno: 2026-11-04
 
 - id: qwen3-6-35b-a3b
@@ -59,16 +39,19 @@
   parametry_celkem_b: 35
   parametry_aktivni_b: 3
   kontext:
-    max: null
-    max_rozsireni: null
+    max: 262144
+    max_rozsireni: 1010000
     doporuceny: null
-    poznamka: "Kontext [DOPLNIT: model card]."
+    poznamka: "262k nativně, ~1M s YaRN; maximum není doporučený provozní bod."
   vision: true
-  modality: [text, obraz]
-  licence: "[DOPLNIT]"
-  kvantizace: []
+  modality: [text, obraz, video]
+  licence: Apache-2.0
+  kvantizace:
+    - {nazev: NVFP4, vahy_gb: null, engine: vLLM}
   role: special
   stav: pod-hranici
+  stranka: /modely/qwen3-6-35b-a3b/
   zdroje:
-    - https://qwen.ai/blog
+    - https://huggingface.co/Qwen/Qwen3.6-35B-A3B
+    - https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b
   overeno: 2026-11-04

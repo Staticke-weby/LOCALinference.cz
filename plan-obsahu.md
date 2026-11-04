@@ -59,7 +59,7 @@ Legenda: ✅ hotovo · 🟡 rozpracováno · ⬜ nezačato · 🔒 čeká na dat
 - ✅ `obsah/_sablona-mereni.md` — šablona záznamu měření.
 - ✅ `data/zdroje.yaml` — registr zdrojů.
 - ✅ `data/kurzy.yaml` — kurzy ČNB/ECB pro přepočet cen.
-- 🟡 `data/zarizeni.yaml` — 7 zařízení včetně RTX Spark notebooku 128 GB.
+- 🟡 `data/zarizeni.yaml` — 4 malá 128GB zařízení (DGX Spark, RTX Spark mini/notebook, Strix Halo).
 - ⬜ `data/modely.yaml`, `data/mereni.yaml`.
 
 ---
@@ -186,9 +186,6 @@ TTFT, unified memory, vLLM, váhy.
 | `zarizeni/rtx-spark-mini` | Stejná paměť, vyšší bandwidth, nižší cena než DGX Spark | ⬜ |
 | `zarizeni/rtx-spark-notebook` | Dedikovaný výkon na cesty, ale throttling a auditujelnost | 🟡 |
 | `zarizeni/strix-halo` | Nejlevnější cesta k 128 GB, ROCm je druhá liga | ⬜ |
-| `zarizeni/gorgon-halo` | 192 GB pro 200B modely a dlouhý kontext | ⬜ |
-| `zarizeni/mac-studio` | 1,2 TB/s a 96–512 GB, ale MLX a cena paměti | ⬜ |
-| `zarizeni/dgx-station` | Throughput stroj pro 20+ uživatelů, ne pro domov | ⬜ |
 | `zarizeni/srovnani` | Velká matice všech parametrů | ⬜ |
 
 **Šablona:** viz `AGENTS.md`, sekce 4. Každá stránka musí mít tabulku
@@ -204,7 +201,6 @@ TTFT, unified memory, vLLM, váhy.
 |---|---|---|
 | `modely/qwen3-8-flash-next` | Minimum pro denní práci; referenční bod | ⬜ |
 | `modely/qwen3-6-35b-a3b` | Malý a rychlý, ale pod hranicí kvality | ⬜ |
-| `modely/qwen3-5-397b` | Velký model pro 256GB+ stroje | ⬜ |
 | `modely/nemotron-3-5-super` | Throughput pro 120B/12B | ⬜ |
 | `modely/srovnani` | Model × zařízení × rychlost | ⬜ |
 

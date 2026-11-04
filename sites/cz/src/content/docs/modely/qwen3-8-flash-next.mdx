@@ -54,7 +54,7 @@ nemáme podložené. Proto `[DOPLNIT]`, ne odhad.
 |---|---|---|---|
 | NVFP4 | ~101 GB | 128 GB | vLLM, DGX Spark |
 | FP8 | ~176 GB | 192 GB+ | více paměti, rychlejší převod |
-| MLX 4bit | ~88 GB | 96 GB Mac | málo místa na KV cache |
+| MLX 4bit | ~88 GB | mimo katalog | málo místa na KV cache |
 | GGUF Q4_K_M | ~95 GB | 128 GB | llama.cpp |
 
 Na 128GB zařízení zbývá po načtení zhruba 27 GB na KV cache a aktivace.
@@ -74,13 +74,12 @@ naměřeného rozsahu, ne marketingové maximum.
 - **Denní práce jednoho až čtyř lidí:** ano, 128GB zařízení.
 - **Agentní úlohy:** ano, ale počítejte s nižší rychlostí na dlouhém kontextu.
 - **Dlouhé dokumenty:** ano, ale prefill a KV cache jsou limit.
-- **20+ uživatelů:** ne, potřebujete DGX Station nebo pool.
+- **20+ uživatelů:** ne, potřebujete jinou třídu nebo pool.
 - **Nejlepší kvalita bez kompromisů:** ne, sáhněte po větším modelu nebo cloudu.
 
 ## Kde nedává smysl
 
 - Na 64GB zařízení se nevejde.
-- Na 96GB Macu se vejde jen s malou rezervou a krátkým kontextem.
 - Na zařízeních bez dostatečného prefillu bude první token trvat dlouho.
 
 ## Kudy dál

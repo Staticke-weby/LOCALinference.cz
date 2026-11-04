@@ -1,0 +1,80 @@
+---
+title: "Strix Halo 128 GB: nejlevnější cesta k lokální AI"
+description: "128 GB unified paměti za 3 649–5 349 USD. Co na Strix Halu reálně běží, jak rychle a kde je limit prefillu."
+last_verified: 2026-11-04
+sidebar:
+  order: 2
+---
+
+import RychlaFakta from '../../../components/RychlaFakta.astro';
+import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+
+# Strix Halo 128 GB
+
+**Verdikt:** Nejlevnější cesta k 128 GB unified paměti. Qwen3.8 Flash Next
+na něm běží, ale prefill je slabší než u CUDA strojů — dlouhé dokumenty
+znamenají delší čekání na první token.
+
+<aside class="tip">
+**Pro koho:** 1–4 lidé, kteří chtějí data u sebe a nepotřebují CUDA.
+**Pro koho ne:** nejrychlejší prefill, nejzralejší software, 20+ uživatelů.
+**Minimum pro denní práci:** Qwen3.8 Flash Next (176B / 6B).
+</aside>
+
+> **Toto jsou převzatá data, ne naše měření.** Specifikace a ceny jsou
+> z oficiálních zdrojů, rychlosti z veřejných komunitních reportů. Kde
+> měření chybí, je `[DOPLNIT]`. Podrobnosti v [metodice](/o-webu/metodika/).
+
+## Rychlá fakta
+
+<RychlaFakta id="strix-halo" />
+
+## Co na něm poběží
+
+<TabulkaMereni zarizeni="strix-halo" model="qwen3-8-flash-next" />
+
+**Co z toho plyne:** decode se v reportech pohybuje zhruba 36–63 tok/s
+podle enginu a kvantizace. Prefill je 0,5–2,4 tis. tok/s a s délkou promptu
+klesá. Na 32k prompt to může být 16–40 s před prvním tokenem.
+
+## Jak rychle
+
+- **Chat:** 40–60 tok/s je pohodlné čtení.
+- **Agent:** na krátkém kontextu použitelné; na 128k+ počítejte s nižší
+  rychlostí a delším TTFT.
+- **Dlouhé dokumenty:** prefill je hlavní limit, ne decode.
+- **Souběžnost:** většina reportů je single-stream; 4+ je `[DOPLNIT]`.
+
+## Na co si dát pozor
+
+- **ROCm** není tak zralý jako CUDA. Některé optimalizace (FP8 KV cache,
+  spekulativní dekódování) nemusí být dostupné.
+- **Prefill** je slabší; u dlouhých promptů se to projeví víc než u decode.
+- **Cena paměti** roste; 128 GB není levné, i když je to nejlevnější
+  cesta v této třídě.
+- **Dostupnost** OEM boxů se mění; ceny jsou k datu u zařízení.
+
+## Pro koho
+
+| Situace | Doporučení |
+|---|---|
+| 1–4 lidé, citlivá data, rozpočet | **Ano** |
+| CUDA a nejzralejší stack | Spíš DGX Spark nebo RTX Spark |
+| Práce na cestě | Spíš RTX Spark notebook |
+| 200B+ model | Ne, potřebujete 192 GB+ |
+
+## Kudy dál
+
+- [DGX Spark](/zarizeni/dgx-spark/) — CUDA varianta.
+- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — mobilní varianta.
+- [Data: Qwen3.8 FN na Strix Halo](/data/qwen3-8-flash-next-strix-halo/) —
+  rozptyl a konfigurace.
+- [Roofline](/rychlost/roofline/) — proč je prefill jiný než decode.
+
+## Zdroje
+
+- [GMKtec — Strix Halo OEM](https://www.gmktec.com/)
+- [AMD Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html)
+- [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+
+*Naposledy ověřeno: 4. 11. 2026.*

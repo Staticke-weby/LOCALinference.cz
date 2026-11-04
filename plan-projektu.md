@@ -103,17 +103,13 @@ být hluboký, ale nesmí být arogantní.
 ├── /zarizeni/                  Katalog hotových zařízení
 │   ├── dgx-spark               128 GB, 273 GB/s, 6 950 USD
 │   ├── rtx-spark-mini          128 GB, 300 GB/s, 5 999 USD
-│   ├── rtx-spark-notebook      128 GB, 300 GB/s, 5 109–6 999 USD
-│   ├── strix-halo              128 GB, 256 GB/s, 3 449–5 349 USD
-│   ├── gorgon-halo             192 GB, 273 GB/s, 7 099 USD
-│   ├── mac-studio              96 / 256 / 512 GB, 1 200 GB/s
-│   ├── dgx-station             252 + 496 GB, 7,1 TB/s, 91–125 tis. USD
+│   ├── rtx-spark-notebook      128 GB, 300 GB/s, 5 899–6 499 USD
+│   ├── strix-halo              128 GB, 256 GB/s, 3 649–5 349 USD
 │   └── srovnani                Velká matice Parametr × Zařízení
 │
 ├── /modely/                    Katalog současných modelů
 │   ├── qwen3-8-flash-next      Minimum pro denní práci (176B / 6B)
 │   ├── qwen3-6-35b-a3b         Malý a rychlý, nižší kvalita
-│   ├── qwen3-5-397b            Velký model pro 256GB+ stroje
 │   ├── nemotron-3-5-super      120B / 12B, throughput
 │   └── srovnani                Model × zařízení × rychlost
 │

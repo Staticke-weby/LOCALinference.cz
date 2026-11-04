@@ -1,0 +1,58 @@
+---
+title: "Srovnání modelů: co dnes dává smysl na jednom zařízení"
+description: "Qwen3.8 Flash Next jako minimum a Qwen3.6 35B-A3B jako rychlý malý model. Proč starší obří modely do katalogu nepatří."
+last_verified: 2026-11-04
+sidebar:
+  order: 3
+---
+
+import TabulkaModelu from '../../../components/TabulkaModelu.astro';
+
+# Srovnání modelů
+
+Katalog drží jen modely z poslední doby, které se celé vejdou na jedno
+zařízení a běží efektivně. Starší obří modely nezařazujeme — na běžných
+krabicích končí u offloadu a jednotek tok/s.
+
+<TabulkaModelu />
+
+## Jak tabulku číst
+
+- **Celkem / aktivní** rozhoduje o paměti a rychlosti. Aktivní parametry
+  jsou důležitější pro tok/s.
+- **Kontext max** je strop, ne doporučený provozní bod.
+- **Vision** je výchozí předpoklad; výjimky označujeme.
+- **Licence** rozhoduje o použití v produktu.
+- **Stav** říká, zda je model doporučený, pod hranicí, nebo jen pro velké
+  stroje.
+
+## Co dnes dává smysl
+
+| Model | Pozice |
+|---|---|
+| [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) | minimum pro denní práci |
+| [Qwen3.6 35B-A3B](/modely/qwen3-6-35b-a3b/) | rychlý malý model, pod hranicí kvality |
+
+## Co nezařazujeme
+
+- **Starší obří modely** jako Qwen3.5 397B — na malé 128GB boxy se
+  nevejdou a pro běžné nasazení nedávají smysl.
+- **GLM-5.3 Flash a GLM-5.3** — nevejdou se na jedno zařízení včetně
+  KV cache, nebo vyžadují offload.
+- **Dense modely** jako doporučení — na těchto krabicích běží kolem
+  5 tok/s.
+
+## Kudy dál
+
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+- [Qwen3.6 35B-A3B](/modely/qwen3-6-35b-a3b/)
+- [Zařízení](/zarizeni/srovnani/)
+- [Metodika](/o-webu/metodika/)
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen3.6-35B-A3B — model card](https://huggingface.co/Qwen/Qwen3.6-35B-A3B)
+- [NVIDIA NGC — Qwen3.6-35B-A3B](https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b)
+
+*Naposledy ověřeno: 4. 11. 2026.*

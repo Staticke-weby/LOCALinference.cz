@@ -34,8 +34,7 @@ použití.
 ## Co ještě chybí
 
 - DGX Spark: TTFT a prefill pro různé engine.
-- Mac Studio 96 GB: 128k+ kontext a souběžnost.
-- Gorgon Halo 192 GB: první reálná měření.
+- RTX Spark mini: první veřejné měření.
 - Všechna zařízení: 4+ souběžných uživatelů.
 
 Celý seznam je v [Co nevíme](/zdroje/co-nevime/).

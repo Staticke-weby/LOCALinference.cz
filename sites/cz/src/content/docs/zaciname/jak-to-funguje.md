@@ -39,7 +39,7 @@ ale může mírně ztratit kvalitu.
 | FP8 | 8 | ~176 GB | NVIDIA, větší stroje |
 | NVFP4 | ~4,25–4,5 | ~101 GB | DGX Spark, vLLM |
 | GGUF Q4 | ~4,5 | ~90–100 GB | llama.cpp, Strix Halo |
-| MLX 4bit | ~4 | ~88 GB | Mac Studio |
+| MLX 4bit | ~4 | ~88 GB | mimo katalog |
 
 Čím nižší přesnost, tím menší paměť a často vyšší rychlost. Zároveň ale
 roste riziko, že model začne dělat chyby v jemných úlohách. U 4bitové
@@ -51,15 +51,15 @@ procentu kvality. 16bitová je pro lokální krabici většinou nesmysl.
 
 ## Proč se model musí vejít celý
 
-Malá zařízení — DGX Spark, Strix Halo, Mac Studio — mají **unified paměť**.
+Malá zařízení — DGX Spark, Strix Halo, RTX Spark — mají **unified paměť**.
 Procesor a GPU sdílejí jeden velký bazén. Když se model do něj nevejde,
 začne se část vah odkládat do pomalejší paměti nebo na disk. Rychlost
 spadne řádově, často na jednotky tokenů za sekundu.
 
 To je důvod, proč je 128 GB magická hranice. Qwen3.8 Flash Next potřebuje
 kolem 101 GB na váhy. Zbývá zhruba 27 GB na KV cache a aktivace. Vejde se.
-Na 64GB stroji se nevejde vůbec. Na 96GB Macu se vejde jen s malou rezervou
-a krátkým kontextem.
+Na 64GB stroji se nevejde vůbec. **128 GB je minimum** pro Qwen3.8 Flash
+Next včetně rozumného kontextu.
 
 ## Dvě úzká hrdla: paměť a výpočet
 

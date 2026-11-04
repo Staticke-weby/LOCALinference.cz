@@ -108,8 +108,8 @@ for (const m of mereniList) {
   if (m.typ === 'namereno' && (!m.zdroj || !m.mereno_kym)) {
     fail(`data/mereni.yaml / ${m.id}: naměřené číslo musí mít zdroj a mereno_kym`);
   }
-  if (m.typ === 'namereno' && m.decode_toks == null && m.prefill_toks == null && m.ttft_ms == null) {
-    warn(`data/mereni.yaml / ${m.id}: naměřený záznam nemá ani decode, prefill ani TTFT`);
+  if (m.typ === 'namereno' && m.decode_toks == null && m.prefill_toks == null && m.ttft_ms == null && m.agregat_toks == null) {
+    warn(`data/mereni.yaml / ${m.id}: naměřený záznam nemá ani decode, prefill, TTFT ani agregát`);
   }
   if (m.typ === 'vypocet' && !m.normalizace) {
     warn(`data/mereni.yaml / ${m.id}: výpočet by měl mít poznámku, z čeho vychází`);

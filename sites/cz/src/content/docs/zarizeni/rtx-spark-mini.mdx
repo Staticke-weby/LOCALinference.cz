@@ -1,0 +1,79 @@
+---
+title: "RTX Spark mini 128 GB: stolní CUDA za 5 999 USD"
+description: "128 GB unified paměti, 300 GB/s a CUDA. Co víme o RTX Spark mini, jak se liší od notebooku a proč zatím chybí měření."
+last_verified: 2026-11-04
+sidebar:
+  order: 3
+---
+
+import RychlaFakta from '../../../components/RychlaFakta.astro';
+import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
+
+# RTX Spark mini 128 GB
+
+**Verdikt:** Stejná paměť a bandwidth jako notebook, ale stolní chlazení
+a stálý provoz. Za 5 999 USD je to nejlevnější CUDA cesta k 128 GB, pokud
+nepotřebujete přenosnost.
+
+<aside class="tip">
+**Pro koho:** malý pool, 1–4 lidé, CUDA, stálý provoz.
+**Pro koho ne:** práce na cestě, 20+ uživatelů, nejzralejší Linux stack.
+**Minimum pro denní práci:** Qwen3.8 Flash Next (176B / 6B).
+</aside>
+
+> **Toto jsou převzatá data, ne naše měření.** Specifikace a cena jsou
+> z oficiálních zdrojů. Pro mini zatím nemáme veřejné měření Qwen3.8 FN;
+> neuvádíme odhad. Podrobnosti v [metodice](/o-webu/metodika/).
+
+## Rychlá fakta
+
+<RychlaFakta id="rtx-spark-mini" />
+
+## Co na něm poběží
+
+Zatím nemáme veřejné měření Qwen3.8 Flash Next specificky pro mini.
+N1X čip je stejný jako v notebooku, ale chlazení a power limit jsou jiné.
+Konkrétní čísla proto `[DOPLNIT: měření]`.
+
+**Co víme:** 128 GB se vejde na Qwen3.8 Flash Next v 4bitové kvantizaci
+(cca 95–110 GB). Zbytek paměti je na kontext a systém.
+
+## Jak rychle
+
+| Režim | Krátký kontext | Dlouhý kontext (>128k) |
+|---|---|---|
+| Single-stream | [DOPLNIT] | [DOPLNIT] |
+| TTFT | [DOPLNIT] | [DOPLNIT] |
+| Prefill | [DOPLNIT] | [DOPLNIT] |
+| Pohodlná souběžnost | [DOPLNIT] | [DOPLNIT] |
+
+## Srovnání s notebookem
+
+<TabulkaZarizeni filtr={["rtx-spark-mini", "rtx-spark-notebook"]} />
+
+Stejná paměť i bandwidth. Mini vyhraje na stálém provozu a chlazení,
+notebook na cestách. Nepřetržitý výkon mini by měl být vyšší, ale bez
+měření to neuvádíme.
+
+## Na co si dát pozor
+
+- **Windows/Arm:** runtime je jiný než Linux; nativní vLLM port existuje,
+  ale je komunitní.
+- **Chlazení:** 140 W je víc než notebook, ale stále ne server.
+- **Měření:** chybí; první číslo berte jako `[DOPLNIT]`, dokud se neobjeví.
+- **Cena:** 5 999 USD je blízko DGX Sparku; rozhoduje CUDA stack a forma.
+
+## Kudy dál
+
+- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — mobilní varianta.
+- [DGX Spark](/zarizeni/dgx-spark/) — dražší, ale integrovanější.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
+- [Co nevíme](/zdroje/co-nevime/) — chybějící měření.
+
+## Zdroje
+
+- [NVIDIA RTX Spark](https://www.nvidia.com/en-us/products/rtx-spark/)
+- [NVIDIA RTX Spark porting guide](https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html)
+- [BetterClaw — RTX Spark vs DGX Spark](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark)
+
+*Naposledy ověřeno: 4. 11. 2026.*
