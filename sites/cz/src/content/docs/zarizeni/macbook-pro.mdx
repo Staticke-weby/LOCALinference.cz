@@ -1,0 +1,67 @@
+---
+title: "MacBook Pro 128 GB: lokální AI na cestách s MLX"
+description: "MacBook Pro s M4 Max a 128 GB paměti. Jak na něm běží Qwen3.8 Flash Next, co zvládne na baterii a kde ho brzdí throttling."
+last_verified: 2026-11-04
+sidebar:
+  label: MacBook Pro
+  order: 2
+---
+
+import RychlaFakta from '../../../components/RychlaFakta.astro';
+
+**Verdikt:** Nejtenčí způsob, jak mít 128 GB paměti na cestách. Model
+na něm běží přes Metal a MLX, ale dlouhý běh narazí na teplo a baterii.
+Pro práci u klienta dobré; jako stálý server drahé.
+
+## Rychlá fakta
+
+<RychlaFakta id="macbook-pro" />
+
+## Technologie na MacBooku
+
+- **Unified memory 128 GB.** Stejný princip jako u Mac Studia: model
+  se nemusí vejít do samostatné VRAM.
+- **M4 Max a 546 GB/s.** Propustnost paměti je vyšší než u DGX Sparku,
+  takže [decode](/slovnik/vykon/decode/) může být překvapivě rychlý.
+- **Metal + MLX.** Dvě cesty: llama.cpp přes Metal (přenosné, GGUF),
+  nebo MLX (rychlejší, ale užší výběr modelů).
+- **Neural Engine** se u velkých modelů neuplatní.
+- **Baterie jako UPS.** Při výpadku proudu model nespadne — pro práci
+  v terénu praktická výhoda.
+
+## Co na něm poběží
+
+Qwen3.8 Flash Next v GGUF kvantizaci nebo v MLX podobě. Ollama a
+LM Studio fungují nativně. CUDA ani NVFP4 ne — ty patří NVIDIA.
+
+Naměřená čísla pro Qwen3.8 Flash Next na MacBooku
+`[DOPLNIT: veřejné měření]`.
+
+## Kde je limit
+
+- **[Throttling](/slovnik/provoz/throttling/).** Tenké tělo a 128 GB
+  provozu znamenají, že po minutách výkon klesne.
+- **Baterie.** Dlouhý běh na baterii ji vybije rychle; počítejte
+  s napájením.
+- **Cena.** 128GB konfigurace je nejdražší varianta řady.
+- **Opravitelnost.** Paměť je připájená.
+
+## Cena
+
+Českou cenu konkrétní konfigurace sledujeme `[DOPLNIT: cena v ČR]`.
+MacBook Pro s 128 GB je až vyšší konfigurace M4 Max.
+
+## Kudy dál
+
+- [Mac Studio](/zarizeni/mac-studio/) — stejný čip na stůl.
+- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — Windows varianta.
+- [Co je unified memory](/slovnik/pamet/unified-memory/) — proč to na Macu funguje.
+- [Srovnání zařízení](/zarizeni/srovnani/) — všechny 128GB stroje.
+
+## Zdroje
+
+- [Apple — MacBook Pro specifikace](https://www.apple.com/macbook-pro/specs/)
+- [MLX — dokumentace](https://ml-explore.github.io/mlx/)
+- [llama.cpp — build pro Metal](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+
+*Naposledy ověřeno: 4. 11. 2026.*

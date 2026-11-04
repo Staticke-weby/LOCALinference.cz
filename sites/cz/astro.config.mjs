@@ -152,6 +152,11 @@ function rehypeSlovnik() {
 
 export default defineConfig({
   site: 'https://www.localinference.cz',
+  redirects: {
+    '/zarizeni/dgx-spark-oem/': '/zarizeni/dgx-spark/',
+    '/zarizeni/strix-halo-oem/': '/zarizeni/strix-halo/',
+    '/zarizeni/rtx-spark-notebook-oem/': '/zarizeni/rtx-spark-notebook/',
+  },
   markdown: {
     processor: unified({
       rehypePlugins: [
@@ -233,8 +238,21 @@ export default defineConfig({
           items: [{ autogenerate: { directory: 'zaciname' } }],
         },
         {
-          label: 'Zařízení',
-          items: [{ autogenerate: { directory: 'zarizeni' } }],
+          label: 'AI boxy',
+          items: [
+            { label: 'Srovnání', link: '/zarizeni/srovnani/' },
+            { label: 'DGX Spark', link: '/zarizeni/dgx-spark/' },
+            { label: 'Strix Halo', link: '/zarizeni/strix-halo/' },
+            { label: 'RTX Spark mini', link: '/zarizeni/rtx-spark-mini/' },
+            { label: 'Mac Studio', link: '/zarizeni/mac-studio/' },
+          ],
+        },
+        {
+          label: 'AI notebooky',
+          items: [
+            { label: 'RTX Spark notebook', link: '/zarizeni/rtx-spark-notebook/' },
+            { label: 'MacBook Pro', link: '/zarizeni/macbook-pro/' },
+          ],
         },
         {
           label: 'Výběr',

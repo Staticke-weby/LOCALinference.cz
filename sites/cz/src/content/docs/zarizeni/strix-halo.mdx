@@ -9,6 +9,7 @@ sidebar:
 
 import AlzaCena from '../../../components/AlzaCena.astro';
 
+import TabulkaStrixHaloOem from '../../../components/TabulkaStrixHaloOem.astro';
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
 
@@ -43,8 +44,6 @@ Windows nebo Linuxu po první chat s modelem.
 
 <RychlaFakta id="strix-halo" />
 
-<AlzaCena kategorie="boxy" text="Kolik stojí dnes na Alze" />
-
 ## Konfigurace
 
 Katalog řeší **jen 128GB verzi**. Paměť je připájená a GPU vidí zhruba
@@ -53,7 +52,19 @@ protože na nich Qwen3.8 Flash Next neběží.
 
 **České ceny:** Acemagic A10A a Acer Veriton RA110 s 128 GB a 2TB
 jsou za **119 990 Kč vč. DPH**. Přehled je v
-[Strix Halo OEM](/zarizeni/strix-halo-oem/).
+[Strix Halo OEM](/zarizeni/strix-halo/).
+
+## Ceny a varianty
+
+Česká nabídka k 4. 11. 2026, včetně DPH. Acemagic A10A a Acer Veriton RA110
+mají stejný čip Ryzen AI Max+ 395 a 128 GB; liší se tělem a zárukou.
+
+<TabulkaStrixHaloOem />
+
+<AlzaCena kategorie="boxy" text="Aktuální ceny na Alza.cz" />
+
+- **119 990 Kč** za 128GB/2TB je nejnižší cena v katalogu.
+- **Proti GB10** je to o 43 000 Kč méně; rozdíl je v ekosystému (ROCm, Vulkan).
 
 ## Co na Strix Halu poběží: Qwen3.8 Flash Next
 
@@ -92,7 +103,7 @@ klesá. Na 32k prompt to může být 16–40 s před prvním tokenem.
 ## Kudy dál
 
 - [DGX Spark](/zarizeni/dgx-spark/) — CUDA varianta.
-- [Strix Halo OEM a české ceny](/zarizeni/strix-halo-oem/) — 128GB boxy.
+- [Strix Halo OEM a české ceny](/zarizeni/strix-halo/) — 128GB boxy.
 - [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — mobilní varianta.
 - [Data: Qwen3.8 FN na Strix Halo](/data/qwen3-8-flash-next-strix-halo/) —
   rozptyl a konfigurace.

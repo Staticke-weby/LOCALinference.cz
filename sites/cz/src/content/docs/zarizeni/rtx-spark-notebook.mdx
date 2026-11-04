@@ -11,6 +11,7 @@ sidebar:
 
 import AlzaCena from '../../../components/AlzaCena.astro';
 
+import TabulkaRtxNotebookOem from '../../../components/TabulkaRtxNotebookOem.astro';
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
@@ -47,19 +48,29 @@ Windows po první chat s modelem.
 
 <RychlaFakta id="rtx-spark-notebook" />
 
-<AlzaCena kategorie="notebooky" text="Aktuální nabídka na Alza.cz" />
-
 **Cena:** česká maloobchodní cena začíná na **125 990 Kč vč. DPH**
 (ASUS ProArt P14 128GB/1TB); Lenovo Yoga Pro 9 129 989 Kč; Surface
 Laptop Ultra 165 653 Kč. V USA je cena 5 899,99–6 999 USD (128–152 tis. Kč, odhad). Ceny jsou bez
 dopravy, k 4. 11. 2026. Přehled variant je v
-[RTX Spark notebook OEM](/zarizeni/rtx-spark-notebook-oem/).
+[RTX Spark notebook OEM](/zarizeni/rtx-spark-notebook/).
 
 ## Konfigurace
 
 Katalog řeší **jen 128GB verzi**. Menší konfigurace do katalogu
 nezařazujeme, protože na nich Qwen3.8 Flash Next neběží. U notebooku
 navíc rozhoduje throttling: dlouhý 128k běh není totéž co krátký chat.
+
+## Ceny a varianty: 7 notebooků
+
+Česká nabídka k 4. 11. 2026, včetně DPH. Všechny mají 128 GB a liší se
+displejem, úložištěm, zárukou a tím, jestli je adaptér v balení.
+
+<TabulkaRtxNotebookOem />
+
+<AlzaCena kategorie="notebooky" text="Ceny notebooků na Alze" />
+
+- **Nejlevnější:** ASUS ProArt P14 za 125 990 Kč.
+- **Surface Laptop Ultra** je nejdražší, ale má nejlepší displej.
 
 ## Co na RTX Spark notebooku poběží: Qwen3.8 Flash Next
 
@@ -153,7 +164,7 @@ mini na stálém provozu. Nepřetržitý výkon notebooku je nižší, ale konkr
 
 ## Kudy dál
 
-- [RTX Spark notebook OEM](/zarizeni/rtx-spark-notebook-oem/) — české ceny variant.
+- [RTX Spark notebook OEM](/zarizeni/rtx-spark-notebook/) — české ceny variant.
 - [RTX Spark mini](/zarizeni/rtx-spark-mini/) — stolní varianta.
 - [Návod pro RTX Spark](/navody/rtx-spark/) — první spuštění.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.

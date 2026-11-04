@@ -35,7 +35,7 @@ export const zarizeni = z.object({
   pamet_typ: z.string().min(1),
   bandwidth_gbs: z.number().positive(),
   bandwidth_pozn: z.string().optional(),
-  cena,
+  cena: cena.optional(),
   cena_czk: z
     .object({
       od: z.number().positive(),

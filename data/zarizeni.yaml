@@ -143,3 +143,48 @@
     - https://llamaperf.com/gpu/strix-halo-128gb
   overeno: 2026-11-04
 
+- id: mac-studio
+  nazev: Apple Mac Studio 128 GB
+  vyrobce: Apple
+  kategorie: mini-pc
+  pamet_gb: 128
+  pamet_typ: unified
+  bandwidth_gbs: 546
+  bandwidth_pozn: "M3 Ultra 819 GB/s"
+  stranka: /zarizeni/mac-studio/
+  cpu: Apple M4 Max
+  gpu: Apple M4 Max (40 jader)
+  os: [macOS]
+  software: [MLX, llama.cpp, Ollama, LM Studio]
+  prikon_w: null
+  hmotnost_kg: null
+  prodejce: [Apple, Alza]
+  silne: [unified pamet, tichy provoz, MLX, nizka spotreba]
+  slabe: [zadna CUDA, macOS only, cena]
+  zdroje:
+    - https://www.apple.com/mac-studio/specs/
+    - https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md
+  overeno: 2026-11-04
+
+- id: macbook-pro
+  nazev: Apple MacBook Pro 16" 128 GB
+  vyrobce: Apple
+  kategorie: notebook
+  pamet_gb: 128
+  pamet_typ: unified
+  bandwidth_gbs: 546
+  bandwidth_pozn: "M4 Max"
+  stranka: /zarizeni/macbook-pro/
+  cpu: Apple M4 Max
+  gpu: Apple M4 Max (40 jader)
+  os: [macOS]
+  software: [MLX, llama.cpp, Ollama, LM Studio]
+  prikon_w: null
+  hmotnost_kg: 2.14
+  prodejce: [Apple]
+  silne: [128 GB v notebooku, MLX, tichy chod, vydrz]
+  slabe: [throttling, zadna CUDA, macOS only, cena]
+  zdroje:
+    - https://www.apple.com/macbook-pro/specs/
+    - https://ml-explore.github.io/mlx/
+  overeno: 2026-11-04

@@ -488,3 +488,43 @@
   priorita: stredni
   posledni_kontrola: 2026-11-04
   stav: ok
+
+- id: apple-mac-studio
+  nazev: Apple - Mac Studio specifikace
+  url: https://www.apple.com/mac-studio/specs/
+  typ: html
+  co_sledujeme: [konfigurace, cena, dostupnost]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: apple-macbook-pro
+  nazev: Apple - MacBook Pro specifikace
+  url: https://www.apple.com/macbook-pro/specs/
+  typ: html
+  co_sledujeme: [konfigurace, cena, dostupnost]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: apple-mlx
+  nazev: Apple - MLX dokumentace
+  url: https://ml-explore.github.io/mlx/
+  typ: html
+  co_sledujeme: [software, kvantizace]
+  frekvence: mesicne
+  priorita: nizka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: llama-cpp-build
+  nazev: llama.cpp - build dokumentace
+  url: https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md
+  typ: github
+  co_sledujeme: [software, backendy]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok

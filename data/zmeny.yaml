@@ -102,7 +102,7 @@
 - datum: 2026-11-04
   typ: cena
   titulek: "České ceny RTX Spark notebooků"
-  co_se_zmenilo: "Přidáno 7 variant ASUS ProArt P14/P16, Lenovo Yoga Pro 9, MSI Prestige a Surface Laptop Ultra s 128GB. Ceny od 125 990 Kč vč. DPH; nová stránka /zarizeni/rtx-spark-notebook-oem/."
+  co_se_zmenilo: "Přidáno 7 variant ASUS ProArt P14/P16, Lenovo Yoga Pro 9, MSI Prestige a Surface Laptop Ultra s 128GB. Ceny od 125 990 Kč vč. DPH; nová stránka /zarizeni/rtx-spark-notebook/."
   dotcene_stranky: [zarizeni/rtx-spark-notebook-oem, zarizeni/rtx-spark-notebook, vyber/rozpocet]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
 
@@ -144,14 +144,14 @@
 - datum: 2026-11-04
   typ: cena
   titulek: "České ceny Strix Halo: 128 GB za 119 990 Kč"
-  co_se_zmenilo: "Acemagic A10A a Acer Veriton RA110 s Ryzen AI Max+ 395, 128GB a 2TB za 119 990 Kč vč. DPH. Nová stránka /zarizeni/strix-halo-oem/ a doplnění rozpočtu."
+  co_se_zmenilo: "Acemagic A10A a Acer Veriton RA110 s Ryzen AI Max+ 395, 128GB a 2TB za 119 990 Kč vč. DPH. Nová stránka /zarizeni/strix-halo/ a doplnění rozpočtu."
   dotcene_stranky: [zarizeni/strix-halo-oem, zarizeni/strix-halo, vyber/rozpocet]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
 
 - datum: 2026-11-04
   typ: cena
   titulek: "České ceny 15 GB10 OEM strojů"
-  co_se_zmenilo: "Nová stránka /zarizeni/dgx-spark-oem/ přináší ceny ASUS, Lenovo, HP, Dell, GIGABYTE, Acer, PNY a NVIDIA z Alza.cz k 4. 11. 2026, včetně a bez DPH."
+  co_se_zmenilo: "Nová stránka /zarizeni/dgx-spark/ přináší ceny ASUS, Lenovo, HP, Dell, GIGABYTE, Acer, PNY a NVIDIA z Alza.cz k 4. 11. 2026, včetně a bez DPH."
   dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/dgx-spark]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
 

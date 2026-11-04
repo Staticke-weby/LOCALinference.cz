@@ -24,8 +24,8 @@
   stranky:
     - /vyber/rozpocet/
     - /zarizeni/srovnani/
-    - /zarizeni/dgx-spark-oem/
-    - /zarizeni/strix-halo-oem/
+    - /zarizeni/dgx-spark/
+    - /zarizeni/strix-halo/
   chybi: "Chybí české ceny RTX Spark mini a provozní náklady (elektřina, správa)."
   overeno: 2026-11-04
 
@@ -37,7 +37,7 @@
   stav: hotovo
   stranky:
     - /zarizeni/dgx-spark/
-    - /zarizeni/dgx-spark-oem/
+    - /zarizeni/dgx-spark/
     - /navody/dgx-spark/
     - /modely/qwen3-8-flash-next/
   chybi: "Chybí nezávislé TTFT a souběžnost 4+."
@@ -51,7 +51,7 @@
   stav: hotovo
   stranky:
     - /zarizeni/strix-halo/
-    - /zarizeni/strix-halo-oem/
+    - /zarizeni/strix-halo/
     - /navody/strix-halo/
     - /modely/qwen3-8-flash-next/
   chybi: "Chybí TTFT na jednotném promptu a souběžnost 4+."
@@ -66,7 +66,7 @@
   stranky:
     - /zarizeni/rtx-spark-mini/
     - /zarizeni/rtx-spark-notebook/
-    - /zarizeni/rtx-spark-notebook-oem/
+    - /zarizeni/rtx-spark-notebook/
     - /navody/rtx-spark/
   chybi: "Chybí první veřejné měření RTX Spark mini."
   overeno: 2026-11-04

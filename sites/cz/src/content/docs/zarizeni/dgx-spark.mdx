@@ -9,6 +9,7 @@ sidebar:
 
 import AlzaCena from '../../../components/AlzaCena.astro';
 
+import TabulkaDgxSparkOem from '../../../components/TabulkaDgxSparkOem.astro';
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
 
@@ -45,8 +46,6 @@ vybalení po první chat s modelem.
 
 <RychlaFakta id="dgx-spark" />
 
-<AlzaCena kategorie="boxy" text="Ověřit aktuální cenu na Alza.cz" />
-
 **Cena:** česká maloobchodní cena začíná na **162 990 Kč vč. DPH**
 (ASUS Ascent GX10 1TB); NVIDIA DGX Spark 4TB stojí 218 990 Kč. Cena v USA
 je 6 950 USD (151 tis. Kč, odhad). Ceny jsou bez dopravy, k 4. 11. 2026.
@@ -59,7 +58,21 @@ zařízení do katalogu nezařazujeme.
 
 **České ceny OEM variant:** 15 strojů od ASUS, Lenovo, HP, Dell,
 GIGABYTE, Acer, PNY a NVIDIA najdete v
-[přehledu DGX Spark OEM](/zarizeni/dgx-spark-oem/).
+[přehledu DGX Spark OEM](/zarizeni/dgx-spark/).
+
+## Ceny a varianty: 15 OEM strojů
+
+Česká maloobchodní nabídka k 4. 11. 2026, včetně DPH. Všechny varianty
+mají stejný čip GB10, 128 GB paměti a DGX OS. Liší se výrobce,
+úložiště, chlazení, záruka a dostupnost — výkon modelu je srovnatelný.
+
+<TabulkaDgxSparkOem />
+
+<AlzaCena kategorie="boxy" text="Ceny a dostupnost na Alze" />
+
+- **Nejlevnější:** ASUS Ascent GX10 1TB za 162 990 Kč.
+- **4TB verze** začínají na 179 990 Kč (HP ZGX Nano, GIGABYTE).
+- **Rozdíly** jsou v úložišti, chlazení a záruce, ne ve výkonu.
 
 ## Co na DGX Sparku poběží: Qwen3.8 Flash Next
 
@@ -115,7 +128,7 @@ z KV cache. Konkrétní chování při 4 souběžných je `[DOPLNIT: měření]`
 
 ## Kudy dál
 
-- [DGX Spark OEM a české ceny](/zarizeni/dgx-spark-oem/) — 15 variant.
+- [DGX Spark OEM a české ceny](/zarizeni/dgx-spark/) — 15 variant.
 - [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — mobilní alternativa.
 - [Srovnání zařízení](/zarizeni/srovnani/) — co se vejde na 128 GB.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.

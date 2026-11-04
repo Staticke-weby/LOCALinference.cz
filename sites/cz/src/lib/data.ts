@@ -29,7 +29,7 @@ export type Zarizeni = {
   pamet_typ: string;
   bandwidth_gbs: number;
   bandwidth_pozn?: string;
-  cena: Cena;
+  cena?: Cena;
   cena_czk?: {
     od: number;
     do?: number;
@@ -212,8 +212,8 @@ export function formatCislo(value: number): string {
 
 export function getZarizeni(): Zarizeni[] {
   return (load<Zarizeni[]>('zarizeni.yaml') ?? []).sort((a, b) => {
-    const ca = a.cena.usd ?? a.cena.od_usd ?? 0;
-    const cb = b.cena.usd ?? b.cena.od_usd ?? 0;
+    const ca = a.cena?.usd ?? a.cena?.od_usd ?? 0;
+    const cb = b.cena?.usd ?? b.cena?.od_usd ?? 0;
     return ca - cb;
   });
 }
@@ -292,9 +292,19 @@ export function cenaText(z: Zarizeni): {
   sDph: boolean;
 } {
   const kurz = getKurz();
-  const usdOd = z.cena.usd ?? z.cena.od_usd ?? 0;
-  const usdDo = z.cena.usd ?? z.cena.do_usd ?? usdOd;
-  const usd = usdOd === usdDo ? `${formatCislo(usdOd)} USD` : `${formatCislo(usdOd)}–${formatCislo(usdDo)} USD`;
+
+  // Cena nemusí být známá (např. nové zařízení bez české nabídky).
+  if (!z.cena && !z.cena_czk) {
+    return { czk: '—', usd: '', datum: '', zdroj: '', poznamka: '', jeOdhad: false, sDph: false };
+  }
+
+  const usdOd = z.cena?.usd ?? z.cena?.od_usd ?? 0;
+  const usdDo = z.cena?.usd ?? z.cena?.do_usd ?? usdOd;
+  const usd = z.cena
+    ? usdOd === usdDo
+      ? `${formatCislo(usdOd)} USD`
+      : `${formatCislo(usdOd)}–${formatCislo(usdDo)} USD`
+    : '';
 
   if (z.cena_czk) {
     const od = z.cena_czk.od;
@@ -323,9 +333,9 @@ export function cenaText(z: Zarizeni): {
   return {
     czk,
     usd,
-    datum: formatDatum(z.cena.overeno),
-    zdroj: z.cena.zdroj,
-    poznamka: z.cena.poznamka ?? '',
+    datum: formatDatum(z.cena!.overeno),
+    zdroj: z.cena!.zdroj,
+    poznamka: z.cena!.poznamka ?? '',
     jeOdhad: true,
     sDph: false,
   };
