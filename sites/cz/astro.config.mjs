@@ -43,6 +43,103 @@ function rehypeAffiliate() {
   };
 }
 
+/**
+ * Slovník: první výskyt pojmu na stránce se automaticky prolinkuje.
+ * Drží to princip wikipedie — každý pojem je dostupný z místa, kde
+ * se poprvé objeví, a články se propojují navzájem.
+ */
+function rehypeSlovnik() {
+  const TERMS = [
+    { re: /\bCUDA\b/g, url: '/slovnik/software/cuda/', slug: 'software/cuda' },
+    { re: /\bROCm\b/g, url: '/slovnik/software/rocm/', slug: 'software/rocm' },
+    { re: /\bvLLM\b/g, url: '/slovnik/software/vllm/', slug: 'software/vllm' },
+    { re: /llama\.cpp/g, url: '/slovnik/software/llamacpp/', slug: 'software/llamacpp' },
+    { re: /\bGGUF\b/g, url: '/slovnik/software/gguf/', slug: 'software/gguf' },
+    { re: /\bkvantizac\w*/gi, url: '/slovnik/software/kvantizace/', slug: 'software/kvantizace' },
+    { re: /\bTTFT\b/g, url: '/slovnik/vykon/ttft/', slug: 'vykon/ttft' },
+    { re: /\bprefill\w*/gi, url: '/slovnik/vykon/prefill/', slug: 'vykon/prefill' },
+    { re: /\bsouběžnost\w*/gi, url: '/slovnik/vykon/soubeznost/', slug: 'vykon/soubeznost' },
+    { re: /\bparalelizac\w*/gi, url: '/slovnik/vykon/paralelizace/', slug: 'vykon/paralelizace' },
+    { re: /\btok\/s\b/gi, url: '/slovnik/vykon/tok-s/', slug: 'vykon/tok-s' },
+    { re: /\bKV cache\b/gi, url: '/slovnik/pamet/kv-cache/', slug: 'pamet/kv-cache' },
+    { re: /\bpower limit\w*/gi, url: '/slovnik/provoz/power-limit/', slug: 'provoz/power-limit' },
+    { re: /\bthrottling\w*/gi, url: '/slovnik/provoz/throttling/', slug: 'provoz/throttling' },
+    { re: /\bMoE\b/g, url: '/zaciname/proc-moe/', slug: 'proc-moe' },
+    { re: /\broofline\b/gi, url: '/rychlost/roofline/', slug: 'rychlost/roofline' },
+  ];
+
+  const SKIP_PARENTS = new Set(['a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
+  const MAX_LINKS = 10;
+
+  return (tree, file) => {
+    const cesta = String(file?.path ?? '').replaceAll('\\', '/');
+    const pouzite = new Set();
+    let pocet = 0;
+
+    // Co je na stránce odkazované ručně, nech být.
+    const posbirat = (node) => {
+      if (node.type === 'element' && node.tagName === 'a') {
+        const href = node.properties?.href;
+        if (typeof href === 'string' && href.startsWith('/slovnik/')) {
+          pouzite.add(href);
+        }
+      }
+      (node.children ?? []).forEach(posbirat);
+    };
+    posbirat(tree);
+
+    const projdi = (parent) => {
+      if (!parent.children) return;
+      for (let i = 0; i < parent.children.length; i++) {
+        const node = parent.children[i];
+
+        if (node.type === 'element') {
+          if (SKIP_PARENTS.has(node.tagName)) continue;
+          projdi(node);
+          continue;
+        }
+
+        if (node.type !== 'text' || pocet >= MAX_LINKS) continue;
+
+        for (const term of TERMS) {
+          if (pouzite.has(term.url)) continue;
+          if (cesta.includes(`slovnik/${term.slug}`)) continue;
+
+          term.re.lastIndex = 0;
+          const m = term.re.exec(node.value);
+          if (!m) continue;
+
+          const before = node.value.slice(0, m.index);
+          const after = node.value.slice(m.index + m[0].length);
+
+          const link = {
+            type: 'element',
+            tagName: 'a',
+            properties: { href: term.url },
+            children: [{ type: 'text', value: m[0] }],
+          };
+
+          const nahrada = [];
+          if (before) nahrada.push({ type: 'text', value: before });
+          nahrada.push(link);
+          if (after) nahrada.push({ type: 'text', value: after });
+
+          parent.children.splice(i, 1, ...nahrada);
+
+          pouzite.add(term.url);
+          pocet++;
+
+          // přeskočit nově vložený odkaz a pokračovat za ním
+          i += nahrada.length - 1;
+          break;
+        }
+      }
+    };
+
+    projdi(tree);
+  };
+}
+
 export default defineConfig({
   site: 'https://www.localinference.cz',
   markdown: {
@@ -50,6 +147,7 @@ export default defineConfig({
       rehypePlugins: [
         [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
         rehypeAffiliate,
+        rehypeSlovnik,
       ],
     }),
   },
@@ -121,6 +219,28 @@ export default defineConfig({
         {
           label: 'Začínáme',
           items: [{ autogenerate: { directory: 'zaciname' } }],
+        },
+        {
+          label: 'Slovník',
+          items: [
+            { label: 'Přehled', link: '/slovnik/' },
+            {
+              label: 'Výkon a měření',
+              items: [{ autogenerate: { directory: 'slovnik/vykon' } }],
+            },
+            {
+              label: 'Software a runtime',
+              items: [{ autogenerate: { directory: 'slovnik/software' } }],
+            },
+            {
+              label: 'Paměť a model',
+              items: [{ autogenerate: { directory: 'slovnik/pamet' } }],
+            },
+            {
+              label: 'Provoz a hardware',
+              items: [{ autogenerate: { directory: 'slovnik/provoz' } }],
+            },
+          ],
         },
         {
           label: 'Zařízení',

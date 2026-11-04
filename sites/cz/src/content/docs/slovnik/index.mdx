@@ -1,0 +1,131 @@
+---
+title: "Slovník lokální AI: pojmy a zkratky bez balastu"
+description: "CUDA, ROCm, vLLM, llama.cpp, TTFT, prefill, KV cache, kvantizace a další. Slovník pojmů s vysvětlením a odkazy na souvislosti."
+last_verified: 2026-11-04
+sidebar:
+  label: Přehled slóvníku
+  order: 0
+---
+
+Pojmy, které se u lokální AI opakují a často nikdo nevysvětlí. Každý
+odkaz vede na samostatnou stránku — dá se číst samostatně, bez
+předchozích znalostí.
+
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+## Výkon a měření
+
+Jak rychle to běží a co ta čísla znamenají.
+
+<CardGrid>
+  <LinkCard
+    title="TTFT"
+    href="/slovnik/vykon/ttft/"
+    description="Čas do prvního tokenu. Rozhoduje o pocitu z rychlosti."
+  />
+  <LinkCard
+    title="Prefill"
+    href="/slovnik/vykon/prefill/"
+    description="Zpracování zadání. Proč dlouhý dokument zdržuje."
+  />
+  <LinkCard
+    title="Tok/s"
+    href="/slovnik/vykon/tok-s/"
+    description="Tokeny za sekundu. Co měří a kdy je číslo vypovídající."
+  />
+  <LinkCard
+    title="Souběžnost"
+    href="/slovnik/vykon/soubeznost/"
+    description="Kolik dotazů běží najednou a proč to omezuje paměť."
+  />
+  <LinkCard
+    title="Paralelizace"
+    href="/slovnik/vykon/paralelizace/"
+    description="Rozdělení modelu mezi čipy. Proč to u 128 GB neřešíme."
+  />
+</CardGrid>
+
+## Software a runtime
+
+Na čem model běží a v jakém formátu je uložený.
+
+<CardGrid>
+  <LinkCard
+    title="CUDA"
+    href="/slovnik/software/cuda/"
+    description="Platforma NVIDIA. Proč na ní záleží a co neznamená."
+  />
+  <LinkCard
+    title="ROCm"
+    href="/slovnik/software/rocm/"
+    description="Platforma AMD. Kde je na Strix Halu limit."
+  />
+  <LinkCard
+    title="vLLM"
+    href="/slovnik/software/vllm/"
+    description="Server pro víc uživatelů. Kdy se vyplatí."
+  />
+  <LinkCard
+    title="llama.cpp"
+    href="/slovnik/software/llamacpp/"
+    description="Nejjednodušší cesta k modelu pro jednoho uživatele."
+  />
+  <LinkCard
+    title="Kvantizace"
+    href="/slovnik/software/kvantizace/"
+    description="Zmenšení vah na 4 nebo 8 bitů. Co se ztrácí."
+  />
+  <LinkCard
+    title="GGUF"
+    href="/slovnik/software/gguf/"
+    description="Formát souboru s modelem pro llama.cpp."
+  />
+</CardGrid>
+
+## Paměť a model
+
+Co se musí vejít do 128 GB a proč.
+
+<CardGrid>
+  <LinkCard
+    title="KV cache"
+    href="/slovnik/pamet/kv-cache/"
+    description="Paměť pro kontext. Roste s délkou dotazu i počtem lidí."
+  />
+</CardGrid>
+
+## Provoz a hardware
+
+Proč stroj po hodině zpomalí a co s tím.
+
+<CardGrid>
+  <LinkCard
+    title="Power limit"
+    href="/slovnik/provoz/power-limit/"
+    description="Strop příkonu. Mění tok/s, hluk i teplotu."
+  />
+  <LinkCard
+    title="Throttling"
+    href="/slovnik/provoz/throttling/"
+    description="Snížení výkonu kvůli teplotě. Proč benchmarky lžou."
+  />
+</CardGrid>
+
+## Související výklady
+
+Pojmy, které mají vlastní delší stránku mimo slovník.
+
+- [Jak to funguje](/zaciname/jak-to-funguje/) — váhy, kvantizace, KV cache.
+- [Jak čteme data](/zaciname/jak-cteme-data/) — TTFT, prefill, rozpětí.
+- [Proč MoE](/zaciname/proc-moe/) — aktivní parametry a rychlost.
+- [Roofline](/rychlost/roofline/) — teoretický strop v tok/s.
+- [128 GB unified memory](/temata/128gb-unified-memory/) — proč je to minimum.
+
+## Zdroje
+
+- [Metodika](/o-webu/metodika/) — jak čteme data a proč neodhadujeme.
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [llama.cpp](https://github.com/ggml-org/llama.cpp) — backendy a formáty.
+- [vLLM](https://docs.vllm.ai/) — dokumentace serveru.
+
+*Naposledy ověřeno: 4. 11. 2026.*

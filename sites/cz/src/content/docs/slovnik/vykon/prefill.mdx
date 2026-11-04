@@ -3,8 +3,8 @@ title: "Co je prefill a proč dlouhý dokument zdržuje"
 description: "Prefill je zpracování vstupu před generováním odpovědi. Vysvětlíme, proč se měří v tok/s, proč je na 128 GB úzkým hrdlem a co ho zrychlí."
 last_verified: 2026-11-04
 sidebar:
-  label: Co je prefill
-  order: 11
+  label: Prefill
+  order: 2
 ---
 
 **Prefill** je fáze, kdy model přečte celé zadání. Probíhá před
@@ -26,7 +26,7 @@ a pomalý ve čtení dokumentu.
 ## Konkrétní čísla
 
 Na Strix Halu 128 GB se prefill pohybuje mezi **0,8 a 2,4 tis. tok/s**
-podle enginu a kvantizace. Z toho vychází [TTFT](/zaciname/co-je-ttft/):
+podle enginu a kvantizace. Z toho vychází [TTFT](/slovnik/vykon/ttft/):
 
 - 32k dokument: zhruba **16–40 s**,
 - 128k dokument: zhruba **67–166 s**.
@@ -37,7 +37,7 @@ v [datové kartě](/data/qwen3-8-flash-next-strix-halo/).
 ## Proč je prefill slabý na Strix Halu
 
 CUDA stroje mají prefill rychlejší, protože je pro ně optimalizovaný
-software. Na AMD se používá [ROCm](/zaciname/co-je-rocm/) nebo Vulkan
+software. Na AMD se používá [ROCm](/slovnik/software/rocm/) nebo Vulkan
 a část optimalizací chybí. Není to chyba modelu — je to rozdíl
 v ekosystému.
 
@@ -51,10 +51,10 @@ v ekosystému.
 
 ## Kudy dál
 
-- [Co je TTFT](/zaciname/co-je-ttft/) — jak prefill ovlivní čekání.
+- [Co je TTFT](/slovnik/vykon/ttft/) — jak prefill ovlivní čekání.
 - [Roofline](/rychlost/roofline/) — proč je decode jiné hrdlo.
-- [Co je ROCm](/zaciname/co-je-rocm/) — proč je na AMD slabší.
-- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+- [Co je ROCm](/slovnik/software/rocm/) — proč je na AMD slabší.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
 
 ## Zdroje
 

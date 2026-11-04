@@ -306,6 +306,13 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
   nebo skutečný screenshot, pokud je nezbytný.
 - Odkazy mimo web vždy `target="_blank"` + `rel="noopener noreferrer"`
   (v Markdownu řeší `rehype-external-links`).
+- **Slovník je samostatná kategorie** `/slovnik/` se skupinami (výkon,
+  software, paměť, provoz). Každý pojem má vlastní stránku. Pojmy se
+  prolinkují automaticky: první výskyt na stránce dostane odkaz
+  (plugin `rehypeSlovnik` v `astro.config.mjs`). Nikdo nesmí muset
+  hádat, co zkratka znamená.
+- **Menu má nejvýš 3–4 úrovně.** Slovník → skupina → pojem. Hlubší
+  členění se řeší obsahem stránky, ne další úrovní menu.
 - Každá stránka s proměnlivými údaji má frontmatter `last_verified`;
   šablona ho zobrazuje pod nadpisem (override `PageTitle`).
 - Přístupnost: kontrast WCAG AA, ovladatelné klávesnicí, sémantické HTML.

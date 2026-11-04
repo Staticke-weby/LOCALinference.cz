@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Slovník jako samostatná kategorie s automatickým prolinkováním"
+  co_se_zmenilo: "Pojmy se přesunuly z /zaciname/ do /slovnik/ a jsou rozdělené do skupin Výkon a měření, Software a runtime, Paměť a model a Provoz a hardware. Přibyly pojmy Tok/s, KV cache, Kvantizace a GGUF. Plugin rehypeSlovnik prolinkuje první výskyt každého pojmu na stránce, takže se články propojují jako wikipedie."
+  dotcene_stranky: [slovnik, index, zarizeni, modely, zaciname]
+  zdroj: https://docs.vllm.ai/
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Vysvětlivky: TTFT, prefill, souběžnost, paralelizace, power limit, throttling"
   co_se_zmenilo: "Šest nových stránek vysvětluje pojmy, které se na webu používaly bez výkladu. Slovník má 25 pojmů, odkazy vedou z Jak čteme data, Kolik uživatelů a stránky RTX Spark notebooku."
   dotcene_stranky: [zaciname/co-je-ttft, zaciname/co-je-prefill, zaciname/co-je-soubeznost, zaciname/co-je-paralelizace, zaciname/co-je-power-limit, zaciname/co-je-throttling, zaciname/slovnik]

@@ -1,0 +1,59 @@
+---
+title: "Co je tok/s a kdy je číslo vypovídající"
+description: "Tokeny za sekundu jsou nejčastější číslo u lokální AI. Vysvětlíme, co přesně měří, proč se čísla rozcházejí a kdy je použít pro plánování."
+last_verified: 2026-11-04
+sidebar:
+  label: Tok/s
+  order: 5
+---
+
+**tok/s** (tokeny za sekundu) je tempo, kterým model generuje odpověď.
+Je to nejužitečnější číslo pro pocit z rychlosti — ale jen když víte,
+co přesně bylo měřeno.
+
+## Co je token
+
+Token není slovo. Je to kousek textu, který model zpracovává najednou:
+často slabika nebo dvě, u češtiny víc než u angličtiny. Proto se
+„tok/s“ nedá převést na „slova za sekundu“ jedním koeficientem.
+
+## Dvě čísla, které se pletou
+
+- **Decode** — generování odpovědi. Tomu se obvykle říká tok/s.
+- [**Prefill**](/slovnik/vykon/prefill/) — čtení zadání. Měří se
+  zvlášť, v tok/s vstupu.
+
+Když někdo řekne „běží to 60 tok/s“, většinou mluví o decode. Pokud
+u toho není délka kontextu, kvantizace a engine, je to číslo bez
+výpovědní hodnoty.
+
+## Co číslo mění
+
+- **Kvantizace** — menší váhy znamenají méně čtení, tedy víc tok/s.
+- **Engine** — [vLLM](/slovnik/software/vllm/) a
+  [llama.cpp](/slovnik/software/llamacpp/) se liší.
+- **Kontext** — delší kontext znamená víc práce a pomalejší běh.
+- **Souběžnost** — víc dotazů najednou snižuje tok/s pro jednotlivce.
+- **Teplota a [throttling](/slovnik/provoz/throttling/)** — po minutách
+  provozu číslo klesne.
+
+## Jak číslo používat
+
+- **Pro chat** je 15–20 tok/s pohodlné čtení.
+- **Pro agenty** stačí 5–10 tok/s, protože rozhoduje latence.
+- **Pro dávkové zpracování** je důležitý agregát, ne jedno vlákno.
+- **Pro plánování** berte spodní hranici naměřeného rozpětí, ne maximum.
+
+## Kudy dál
+
+- [Co je TTFT](/slovnik/vykon/ttft/) — čekání před prvním tokenem.
+- [Roofline](/rychlost/roofline/) — teoretický strop.
+- [Jak čteme data](/zaciname/jak-cteme-data/) — rozpětí a konfigurace.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [vLLM — metrics](https://docs.vllm.ai/en/latest/design/metrics.html)
+- [Datová karta: Qwen3.8 Flash Next na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

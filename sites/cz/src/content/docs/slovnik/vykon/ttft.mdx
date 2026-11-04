@@ -3,8 +3,8 @@ title: "Co je TTFT a proč rozhoduje o pocitu z rychlosti"
 description: "TTFT je čas do prvního tokenu. Vysvětlíme, proč u dlouhého dokumentu čekáte desítky sekund a co s tím udělá kontext a fronta."
 last_verified: 2026-11-04
 sidebar:
-  label: Co je TTFT
-  order: 10
+  label: TTFT
+  order: 1
 ---
 
 **TTFT** (time to first token) je doba od odeslání dotazu po první
@@ -22,7 +22,7 @@ ale na první token čekáte 40 sekund.
 
 ## Co TTFT prodlužuje
 
-- **Délka vstupu.** Čím delší prompt, tím delší [prefill](/zaciname/co-je-prefill/).
+- **Délka vstupu.** Čím delší prompt, tím delší [prefill](/slovnik/vykon/prefill/).
 - **Fronta.** Když box obsluhuje víc lidí, dotaz čeká, než na něj přijde řada.
 - **Načtení modelu.** První dotaz po startu je vždy pomalejší.
 - **Přepnutí kontextu.** Nový dlouhý dokument se musí zpracovat celý.
@@ -48,10 +48,10 @@ v [datové kartě](/data/qwen3-8-flash-next-strix-halo/).
 
 ## Kudy dál
 
-- [Co je prefill](/zaciname/co-je-prefill/) — co se děje před prvním tokenem.
-- [Co je souběžnost](/zaciname/co-je-soubeznost/) — proč fronta roste.
+- [Co je prefill](/slovnik/vykon/prefill/) — co se děje před prvním tokenem.
+- [Co je souběžnost](/slovnik/vykon/soubeznost/) — proč fronta roste.
 - [Jak čteme data](/zaciname/jak-cteme-data/) — TTFT, decode a rozpětí.
-- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
 
 ## Zdroje
 

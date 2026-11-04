@@ -18,7 +18,7 @@ si je ověřit.
 
 ## TTFT: čas do prvního tokenu u lokální AI
 
-**[TTFT](/zaciname/co-je-ttft/)** (time to first token) je doba od odeslání zadání po první znak
+**[TTFT](/slovnik/vykon/ttft/)** (time to first token) je doba od odeslání zadání po první znak
 odpovědi. Je to nejdůležitější číslo pro pocit z interaktivní práce.
 
 TTFT ovlivňuje:

@@ -1,0 +1,50 @@
+---
+title: "Co je GGUF a proč ho používá llama.cpp"
+description: "GGUF je formát souboru s kvantizovaným modelem. Vysvětlíme, co obsahuje, jak se liší od NVFP4 a proč je nejčastější volbou pro Strix Halo."
+last_verified: 2026-11-04
+sidebar:
+  label: GGUF
+  order: 6
+---
+
+**GGUF** je formát souboru, ve kterém se distribuují modely pro
+[llama.cpp](/slovnik/software/llamacpp/). Je to jeden soubor s vahami,
+metadaty a informací o [kvantizaci](/slovnik/software/kvantizace/).
+
+## Co v souboru je
+
+- **Váhy modelu** ve zvolené kvantizaci (Q4_K_M, Q5_K_M, Q8_0…).
+- **Metadata** — architektura, počet vrstev, kontext, tokenizer.
+- **Tokenizační slovník**, aby model rozuměl textu.
+
+Když si stáhnete „model.gguf“, máte všechno, co llama.cpp potřebuje.
+Žádná instalace, žádná konfigurace.
+
+## Jak se liší od NVFP4
+
+- **GGUF** je přenosný mezi platformami: CPU, Vulkan, CUDA, ROCm, Metal.
+- **NVFP4** je vázaný na NVIDIA a používá ho vLLM na DGX Sparku.
+- **Kvalita** závisí na zvolené kvantizaci, ne na formátu samotném.
+
+Pro Strix Halo je GGUF prakticky jediná cesta. Pro DGX Spark je
+NVFP4 nativní a rychlejší.
+
+## Kde ho potkáte
+
+- **Strix Halo** — llama.cpp + GGUF Q4_K_M.
+- **RTX Spark** — llama.cpp na CUDA, také GGUF.
+- **DGX Spark** — funguje, ale produkční cesta je vLLM a NVFP4.
+
+## Kudy dál
+
+- [Co je llama.cpp](/slovnik/software/llamacpp/) — engine, který ho čte.
+- [Co je kvantizace](/slovnik/software/kvantizace/) — co znamená Q4_K_M.
+- [Kolik paměti potřebuje model](/modely/qwen3-8-flash-next/) — velikosti.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [llama.cpp — GGUF dokumentace](https://github.com/ggml-org/llama.cpp/blob/master/docs/gguf.md)
+- [Hugging Face — GGUF formát](https://huggingface.co/docs/hub/gguf)
+
+*Naposledy ověřeno: 4. 11. 2026.*

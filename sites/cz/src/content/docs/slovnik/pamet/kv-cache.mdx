@@ -1,0 +1,50 @@
+---
+title: "Co je KV cache a proč bere paměť kontextu"
+description: "KV cache je paměť, kterou si model drží pro kontext. Vysvětlíme, proč roste s délkou dotazu a proč kvůli ní ubývá souběžnost."
+last_verified: 2026-11-04
+sidebar:
+  label: KV cache
+  order: 1
+---
+
+**KV cache** je pomocná paměť, do které si model ukládá mezivýsledky
+pro už přečtený text. Bez ní by musel celý kontext počítat znovu při
+každém tokenu — s ní stačí dopočítat jen nový kus.
+
+## Proč to existuje
+
+Když model generuje odpověď, potřebuje vědět, co bylo v zadání.
+U transformeru to znamená držet si klíče a hodnoty pozornosti
+(odtud „KV“) pro každý token kontextu. Čím delší kontext, tím víc
+těchto hodnot.
+
+## Kolik to bere
+
+Paměť pro KV cache roste **lineárně s délkou kontextu** a s počtem
+souběžných dotazů. Na 128GB boxu je to druhý největší nárok po
+samotných vahách modelu.
+
+Praktický důsledek: model se sám vejde, ale při 128k kontextu a čtyřech
+lidech už paměť dojde. Proto se [souběžnost](/slovnik/vykon/soubeznost/)
+řeší počtem boxů, ne delším kontextem.
+
+## Co s tím
+
+- **Kratší kontext** uvolní paměť pro další dotazy.
+- **Kvantizace KV cache** (např. FP8) zmenší nároky, ale může mírně
+  změnit kvalitu.
+- **Restart** po dlouhém běhu pomůže, když se paměť neuklidila.
+
+## Kudy dál
+
+- [Co je souběžnost](/slovnik/vykon/soubeznost/) — proč paměť omezuje počet lidí.
+- [Jak to funguje](/zaciname/jak-to-funguje/) — kontext a paměť v souvislostech.
+- [128 GB unified memory](/temata/128gb-unified-memory/) — proč je to minimum.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [vLLM — PagedAttention](https://docs.vllm.ai/en/latest/design/kernel/paged_attention.html)
+- [Jak to funguje](/zaciname/jak-to-funguje/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

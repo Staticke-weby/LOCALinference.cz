@@ -184,27 +184,30 @@ TTFT, unified memory, vLLM, váhy.
 
 ## Vlna 1.5 — vysvětlivky pojmů ✅
 
-Pojmy, o kterých se na webu mluví, ale neměly vlastní stránku. Jeden
-pojem na stránku, hledaný termín v H1, odkaz z místa, kde se pojem
-poprvé objeví.
+Pojmy, o kterých se na webu mluví, ale neměly vlastní stránku.
+Jsou v samostatné kategorii `/slovnik/` a rozdělené do skupin.
+Jeden pojem na stránku, hledaný termín v H1.
 
 | Stránka | Hledaný výraz | Stav |
 |---|---|---|
-| `zaciname/co-je-cuda` | co je CUDA | ✅ |
-| `zaciname/co-je-rocm` | co je ROCm | ✅ |
-| `zaciname/co-je-vllm` | co je vLLM | ✅ |
-| `zaciname/co-je-llamacpp` | co je llama.cpp | ✅ |
-| `zaciname/co-je-ttft` | co je TTFT | ✅ |
-| `zaciname/co-je-prefill` | co je prefill | ✅ |
-| `zaciname/co-je-soubeznost` | co je souběžnost | ✅ |
-| `zaciname/co-je-paralelizace` | co je paralelizace | ✅ |
-| `zaciname/co-je-power-limit` | co je power limit | ✅ |
-| `zaciname/co-je-throttling` | co je throttling | ✅ |
-| `zaciname/slovnik` | slovník lokální AI | ✅ |
+| `slovnik/software/cuda` | co je CUDA | ✅ |
+| `slovnik/software/rocm` | co je ROCm | ✅ |
+| `slovnik/software/vllm` | co je vLLM | ✅ |
+| `slovnik/software/llamacpp` | co je llama.cpp | ✅ |
+| `slovnik/software/kvantizace` | co je kvantizace | ✅ |
+| `slovnik/software/gguf` | co je GGUF | ✅ |
+| `slovnik/vykon/ttft` | co je TTFT | ✅ |
+| `slovnik/vykon/prefill` | co je prefill | ✅ |
+| `slovnik/vykon/soubeznost` | co je souběžnost | ✅ |
+| `slovnik/vykon/paralelizace` | co je paralelizace | ✅ |
+| `slovnik/vykon/tok-s` | co je tok/s | ✅ |
+| `slovnik/pamet/kv-cache` | co je KV cache | ✅ |
+| `slovnik/provoz/power-limit` | co je power limit | ✅ |
+| `slovnik/provoz/throttling` | co je throttling | ✅ |
+| `slovnik/` | slovník lokální AI | ✅ |
 
-Ze stránek zařízení, modelu a návodů na ně vedou odkazy; patička má
-odkaz na slovník. Další pojmy (GGUF, NVFP4, KV cache) jsou vysvětlené
-v `jak-to-funguje` a `jak-cteme-data`, slovník na ně odkazuje.
+Menu má tři úrovně: Slovník → skupina → pojem. Pojmy se prolinkují
+automaticky při prvním výskytu na stránce.
 
 ---
 

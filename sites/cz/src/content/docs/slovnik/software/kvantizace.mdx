@@ -1,0 +1,52 @@
+---
+title: "Co je kvantizace a co ztratíte zmenšením vah"
+description: "Kvantizace zmenšuje model z 16 bitů na 8 nebo 4. Vysvětlíme, proč je potřeba na 128 GB, co se ztrácí a jaké formáty se používají."
+last_verified: 2026-11-04
+sidebar:
+  label: Kvantizace
+  order: 5
+---
+
+**Kvantizace** je zmenšení čísel, kterými je model uložený. Místo
+16 bitů na hodnotu se použije 8 nebo 4. Model tím zabere míň paměti
+a rychleji se čte — za cenu určité ztráty přesnosti.
+
+## Proč je na 128 GB nutná
+
+Qwen3.8 Flash Next má 176 miliard parametrů. V plné přesnosti by
+potřeboval stovky gigabajtů. Ve 4bitové kvantizaci se vejde zhruba
+do **95–101 GB**, takže na 128GB boxu zbyde místo na
+[KV cache](/slovnik/pamet/kv-cache/) a kontext.
+
+## Jaké formáty se používají
+
+- **NVFP4** — 4bitový formát NVIDIA pro [CUDA](/slovnik/software/cuda/)
+  stroje. Používá ho [vLLM](/slovnik/software/vllm/) na DGX Sparku.
+- [**GGUF**](/slovnik/software/gguf/) — formát pro
+  [llama.cpp](/slovnik/software/llamacpp/), nejčastěji Q4_K_M.
+- **FP8** — 8bitová kvantizace, větší a přesnější, vhodná pro servery.
+
+## Co se ztrácí
+
+- **Kvalita** klesá nejvíc u drobných rozdílů: čísla, jména, přesné
+  citace. U běžného textu je rozdíl malý.
+- **Čeština** je na tom citlivější než angličtina, protože model má
+  méně tréninkových dat.
+- **Kód** bývá robustní, ale u složitých knihoven se chyby projeví.
+
+Pravidlo: 4bitová kvantizace je dnes standard pro 128GB boxy. Kdo
+potřebuje maximální kvalitu, volí 8bitovou a počítá s větší pamětí.
+
+## Kudy dál
+
+- [Co je GGUF](/slovnik/software/gguf/) — formát pro llama.cpp.
+- [Co je KV cache](/slovnik/pamet/kv-cache/) — co ještě bere paměť.
+- [Kolik paměti potřebuje model](/modely/qwen3-8-flash-next/) — tabulka.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Jak to funguje](/zaciname/jak-to-funguje/) — kvantizace v souvislostech.
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 4. 11. 2026.*
