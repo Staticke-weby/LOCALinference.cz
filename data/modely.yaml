@@ -1,0 +1,96 @@
+# Katalog modelů. Jen současné modely; minimum je Qwen3.8 Flash Next.
+# `kontext.doporuceny` je null, dokud pro něj nemáme podložené doporučení.
+# `vision: true` je výchozí předpoklad; výjimky označ.
+
+- id: qwen3-8-flash-next
+  nazev: Qwen3.8 Flash Next
+  vyrobce: Qwen
+  architektura: MoE
+  parametry_celkem_b: 176
+  parametry_aktivni_b: 6
+  kontext:
+    max: 262144
+    max_rozsireni: 1000000
+    doporuceny: null
+    poznamka: "Maximum není doporučený provozní bod; doporučení [DOPLNIT]."
+  vision: true
+  modality: [text, obraz]
+  licence: Apache-2.0
+  kvantizace:
+    - {nazev: NVFP4, vahy_gb: 101, engine: vLLM}
+    - {nazev: FP8, vahy_gb: 176, engine: vLLM}
+    - {nazev: MLX 4bit, vahy_gb: 88, engine: MLX}
+    - {nazev: GGUF Q4_K_M, vahy_gb: 95, engine: llama.cpp}
+  role: minimum
+  stav: doporuceny
+  zdroje:
+    - https://huggingface.co/Qwen/Qwen3.8-Flash-Next
+    - https://qwen.ai/blog?id=qwen3.8-flash-next
+    - https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next
+  overeno: 2026-11-04
+
+- id: glm-5-3-flash
+  nazev: GLM-5.3 Flash
+  vyrobce: Z.ai
+  architektura: MoE
+  parametry_celkem_b: 320
+  parametry_aktivni_b: 18
+  kontext:
+    max: 1000000
+    max_rozsireni: null
+    doporuceny: null
+    poznamka: "1M kontext, 128k max output; maximum není doporučený provozní bod."
+  vision: true
+  modality: [text, obraz]
+  licence: MIT
+  kvantizace:
+    - {nazev: NVFP4, vahy_gb: null, engine: vLLM}
+  role: vyssi
+  stav: jen-pro-velke
+  zdroje:
+    - https://z.ai/blog/glm-5.3-flash
+    - https://huggingface.co/zai-org/GLM-5.3-Flash
+    - https://docs.z.ai/guides/vlm/glm-5.3-flash
+  overeno: 2026-11-04
+
+- id: qwen3-5-397b
+  nazev: Qwen3.5 397B
+  vyrobce: Qwen
+  architektura: MoE
+  parametry_celkem_b: 397
+  parametry_aktivni_b: 17
+  kontext:
+    max: null
+    max_rozsireni: null
+    doporuceny: null
+    poznamka: "Kontext [DOPLNIT: model card]."
+  vision: true
+  modality: [text, obraz]
+  licence: "[DOPLNIT]"
+  kvantizace: []
+  role: vyssi
+  stav: jen-pro-velke
+  zdroje:
+    - https://qwen.ai/blog?id=qwen3.8-flash-next
+  overeno: 2026-11-04
+
+- id: qwen3-6-35b-a3b
+  nazev: Qwen3.6 35B-A3B
+  vyrobce: Qwen
+  architektura: MoE
+  parametry_celkem_b: 35
+  parametry_aktivni_b: 3
+  kontext:
+    max: null
+    max_rozsireni: null
+    doporuceny: null
+    poznamka: "Kontext [DOPLNIT: model card]."
+  vision: true
+  modality: [text, obraz]
+  licence: "[DOPLNIT]"
+  kvantizace: []
+  role: special
+  stav: pod-hranici
+  zdroje:
+    - https://qwen.ai/blog
+  overeno: 2026-11-04

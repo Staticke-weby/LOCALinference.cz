@@ -1,0 +1,198 @@
+# Katalog hotových zařízení. Ceny jsou bez DPH a dopravy, k uvedenému datu.
+# `kategorie`: mini-pc | notebook | desktop | station
+# `cena`: buď `usd`, nebo `od_usd` + `do_usd`.
+# `overeno`: datum poslední kontroly záznamu.
+
+- id: dgx-spark
+  nazev: NVIDIA DGX Spark
+  vyrobce: NVIDIA
+  kategorie: mini-pc
+  pamet_gb: 128
+  pamet_typ: unified
+  bandwidth_gbs: 273
+  cena:
+    usd: 6950
+    overeno: 2026-10-02
+    zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-spark/
+    poznamka: "Zdroj: ceník NVIDIA 10/2026; bez DPH a dopravy."
+  cpu: GB10 Grace Blackwell
+  gpu: Blackwell
+  os: [DGX OS, Ubuntu]
+  software: [CUDA, vLLM, SGLang, llama.cpp]
+  prikon_w: null
+  hmotnost_kg: null
+  prodejce: [NVIDIA, Acer, ASUS, Dell, HP, MSI]
+  silne: [CUDA, enterprise management, clustering 200 Gb/s]
+  slabe: [cena po zdražení, uzavřený stack]
+  zdroje:
+    - https://www.nvidia.com/en-us/products/workstations/dgx-spark/
+    - https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next
+  overeno: 2026-11-04
+
+- id: rtx-spark-mini
+  nazev: NVIDIA RTX Spark mini 128 GB
+  vyrobce: NVIDIA
+  kategorie: mini-pc
+  pamet_gb: 128
+  pamet_typ: unified
+  bandwidth_gbs: 300
+  cena:
+    usd: 5999
+    overeno: 2026-10-01
+    zdroj: https://www.nvidia.com/en-us/geforce/rtx-spark/
+    poznamka: "Bez DPH a dopravy."
+  cpu: NVIDIA Arm SoC
+  gpu: Blackwell
+  os: [Windows]
+  software: [CUDA, llama.cpp, Ollama, LM Studio]
+  prikon_w: 140
+  hmotnost_kg: null
+  prodejce: [NVIDIA, OEM]
+  silne: [stejná paměť jako DGX Spark, vyšší bandwidth, nižší cena]
+  slabe: [Windows, nové, méně otestované]
+  zdroje:
+    - https://www.nvidia.com/en-us/products/rtx-spark/
+    - https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models
+  overeno: 2026-11-04
+
+- id: rtx-spark-notebook
+  nazev: NVIDIA RTX Spark notebook 128 GB
+  vyrobce: NVIDIA
+  kategorie: notebook
+  pamet_gb: 128
+  pamet_typ: unified
+  bandwidth_gbs: 300
+  cena:
+    od_usd: 5899
+    do_usd: 6499
+    overeno: 2026-10-16
+    zdroj: https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark
+    poznamka: "128GB konfigurace: Surface Laptop Ultra 5 899 USD, ASUS ProArt P14 6 499 USD; bez DPH a dopravy. Nižší ceny jsou 24GB modely."
+  cpu: NVIDIA Grace 20 jader
+  gpu: Blackwell RTX
+  os: [Windows 11]
+  software: [CUDA, "vLLM (Windows ARM64 port)", llama.cpp, Ollama, LM Studio]
+  prikon_w: 80
+  hmotnost_kg: null
+  prodejce: [NVIDIA, ASUS, Dell, HP, Lenovo, Microsoft, MSI]
+  silne: [dedikovaný výkon na cesty, baterie jako UPS, data u sebe, nativní vLLM port]
+  slabe: [throttling, spánek, hluk, bez auditu, Windows/Arm runtime]
+  zdroje:
+    - https://www.nvidia.com/en-us/products/rtx-spark/
+    - https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html
+    - https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark
+    - https://news.qq.com/rain/a/20261008A04Z5W00
+    - https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530
+    - https://github.com/devjeonghwan/vllm-for-rtx-spark
+    - https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models
+  overeno: 2026-11-04
+
+- id: strix-halo
+  nazev: Strix Halo 128 GB (OEM)
+  vyrobce: AMD / OEM
+  kategorie: mini-pc
+  pamet_gb: 128
+  pamet_typ: unified
+  bandwidth_gbs: 256
+  cena:
+    od_usd: 3449
+    do_usd: 5349
+    overeno: 2026-09-01
+    zdroj: https://frame.work/desktop
+    poznamka: "Framework, GMKtec, Minisforum, HP a další; bez DPH a dopravy."
+  cpu: Ryzen AI Max+ 395
+  gpu: Radeon 8060S
+  os: [Linux, Windows]
+  software: [ROCm, Vulkan, llama.cpp, vLLM-ROCm]
+  prikon_w: null
+  hmotnost_kg: null
+  prodejce: [Framework, GMKtec, Minisforum, Beelink, HP]
+  silne: [nejlevnější cesta k 128 GB, x86, otevřenost]
+  slabe: [slabší prefill, ROCm druhá liga, dostupnost]
+  zdroje:
+    - https://frame.work/desktop
+    - https://llamaperf.com/gpu/strix-halo-128gb
+  overeno: 2026-11-04
+
+- id: gorgon-halo
+  nazev: Gorgon Halo 192 GB (OEM)
+  vyrobce: AMD / OEM
+  kategorie: mini-pc
+  pamet_gb: 192
+  pamet_typ: unified
+  bandwidth_gbs: 273
+  cena:
+    od_usd: 7099
+    do_usd: 7299
+    overeno: 2026-09-30
+    zdroj: https://www.amd.com/
+    poznamka: "Jen PRO SKU s enterprise managementem; bez DPH a dopravy."
+  cpu: Ryzen AI Max+ PRO 495
+  gpu: Radeon
+  os: [Linux, Windows]
+  software: [ROCm, Vulkan, llama.cpp]
+  prikon_w: null
+  hmotnost_kg: null
+  prodejce: [HP, Lenovo, ASUS]
+  silne: [192 GB pro 200B modely, long context, enterprise management]
+  slabe: [nové, méně otestované, cena]
+  zdroje:
+    - https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html
+  overeno: 2026-11-04
+
+- id: mac-studio
+  nazev: Apple Mac Studio M5 Ultra
+  vyrobce: Apple
+  kategorie: desktop
+  pamet_gb: 96
+  pamet_typ: unified
+  bandwidth_gbs: 1200
+  konfigurace:
+    - {pamet_gb: 96, cena_usd: 5499}
+    - {pamet_gb: 256, cena_usd: 10799}
+    - {pamet_gb: 512, cena_usd: 22299}
+  cena:
+    od_usd: 5499
+    do_usd: 22299
+    overeno: 2026-10-01
+    zdroj: https://www.apple.com/mac-studio/
+    poznamka: "Konfigurace 96/256/512 GB; bez DPH a dopravy."
+  cpu: M5 Ultra
+  gpu: M5 Ultra
+  os: [macOS]
+  software: [MLX, llama.cpp]
+  prikon_w: null
+  hmotnost_kg: null
+  prodejce: [Apple]
+  silne: ["1,2 TB/s", nejrychlejší single-stream, 512 GB varianta]
+  slabe: [MLX místo vLLM, cena paměti, ops]
+  zdroje:
+    - https://www.apple.com/mac-studio/
+  overeno: 2026-11-04
+
+- id: dgx-station
+  nazev: NVIDIA DGX Station GB300
+  vyrobce: NVIDIA
+  kategorie: station
+  pamet_gb: 748
+  pamet_typ: hbm+lpddr
+  bandwidth_gbs: 7100
+  bandwidth_pozn: "252 GB HBM3e @ 7,1 TB/s + 496 GB LPDDR5X @ 396 GB/s"
+  cena:
+    od_usd: 91000
+    do_usd: 125000
+    overeno: 2026-03-01
+    zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-station/
+    poznamka: "Podle OEM; bez DPH a dopravy."
+  cpu: Grace 72 jader
+  gpu: Blackwell Ultra
+  os: [Ubuntu]
+  software: [CUDA, vLLM, NIM, SGLang]
+  prikon_w: 1600
+  hmotnost_kg: null
+  prodejce: [Dell, ASUS, Supermicro, MSI]
+  silne: [20+ uživatelů, 252 GB HBM, MIG izolace]
+  slabe: [cena, "1,6 kW", "200 V", "nad 252 GB padá bandwidth"]
+  zdroje:
+    - https://www.nvidia.com/en-us/products/workstations/dgx-station/
+  overeno: 2026-11-04

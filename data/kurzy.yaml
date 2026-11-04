@@ -1,0 +1,12 @@
+# Kurzy pro přepočet cen. Aktualizuje hlídač nebo ruční kontrola.
+# CZ mutace používá USD→CZK (ČNB), EN mutace USD→EUR (ECB).
+# Přepočet je orientační, bez DPH a dopravy.
+
+- datum: 2026-11-03
+  usd_czk: 21.762
+  eur_czk: 24.340
+  usd_eur: 1.1179
+  zdroje:
+    - https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt
+    - https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
+  poznamka: "ČNB: 1 USD = 21,762 Kč; ECB: 1 EUR = 1,1179 USD."

@@ -1,0 +1,79 @@
+---
+title: Local Inference
+description: Nezávislý průvodce lokální AI na hotových zařízeních. Které modely poběží, jak rychle a co od nich čekat.
+template: splash
+last_verified: 2026-11-04
+hero:
+  title: Lokální AI na hotových zařízeních
+  tagline: Které modely na tom poběží, jak rychle a co od nich čekat. Bez odhadů, s datem a zdrojem u každého čísla.
+  actions:
+    - text: Začít od nuly
+      link: /zaciname/co-je-lokalni-ai/
+      icon: right-arrow
+    - text: Jak čteme data
+      link: /o-webu/metodika/
+      icon: document
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
+
+## Co tu najdete
+
+<CardGrid>
+  <LinkCard
+    title="Zařízení"
+    href="/zarizeni/rtx-spark-notebook/"
+    description="Hotové stroje, které zvládnou Qwen3.8 Flash Next. Co na nich poběží a kde je limit."
+  />
+  <LinkCard
+    title="Modely"
+    href="/modely/qwen3-8-flash-next/"
+    description="Současné MoE modely od Qwen3.8 Flash Next výš. Kontext, vision, paměť a rychlost."
+  />
+  <LinkCard
+    title="Data a metodika"
+    href="/o-webu/metodika/"
+    description="Nemáme laboratoř. Jak přebíráme měření, kontrolujeme roofline a proč neodhadujeme."
+  />
+  <LinkCard
+    title="Co nevíme"
+    href="/zdroje/co-nevime/"
+    description="Veřejný seznam mezer. Co chybí, co by změnilo závěr a jak přispět měřením."
+  />
+</CardGrid>
+
+## Proč tomuto webu věřit
+
+<CardGrid>
+  <Card title="Zdroj u každého čísla">
+    Cena, rychlost i kontext mají odkaz, datum a typ údaje. Když zdroj chybí,
+    je v textu `[DOPLNIT]` — ne vymyšlené číslo.
+  </Card>
+  <Card title="Rozpory nezakrýváme">
+    Když se dvě měření rozcházejí, ukážeme obě a vysvětlíme, čím to je.
+    Nevybíráme nejlepší číslo.
+  </Card>
+  <Card title="Žádná laboratoř">
+    Většinu zařízení fyzicky netestujeme. Sbíráme veřejná měření, srovnáváme
+    je a kontrolujeme, jestli jsou fyzikálně možná.
+  </Card>
+  <Card title="Pro denní práci">
+    Zajímá nás TTFT, prefill, dlouhý kontext a souběžnost — ne jen jedno
+    reklamní číslo v tok/s.
+  </Card>
+</CardGrid>
+
+## Kde začít
+
+<Aside type="tip" title="Minimum pro denní práci">
+  Dnes je to **Qwen3.8 Flash Next** na zařízení se **128 GB unified paměti**.
+  Modely pod ním nejsou v katalogu jako doporučení. Podrobnosti a zdroje
+  najdete v [metodice](/o-webu/metodika/).
+</Aside>
+
+<Aside type="note" title="Web se vyvíjí">
+  Nejste na hotovém produktu. Stránky postupně doplňujeme a u každé vidíte
+  datum poslední kontroly. Co ještě chybí, je veřejně v
+  [seznamu mezer](/zdroje/co-nevime/).
+</Aside>

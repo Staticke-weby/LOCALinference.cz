@@ -1,0 +1,121 @@
+---
+title: "DGX Spark 128 GB: CUDA krabice, která po zdražení není nejlevnější"
+description: "128 GB unified paměti, 273 GB/s a CUDA. Co na DGX Sparku reálně běží, jak rychle a pro koho se po zdražení ještě vyplatí."
+last_verified: 2026-11-04
+sidebar:
+  order: 1
+---
+
+# DGX Spark 128 GB
+
+**Verdikt:** Nejintegrovanější 128GB krabice s CUDA a enterprise
+managementem. Po zdražení na 6 950 USD už není nejlevnější — ale pokud
+chcete NVIDIA stack, clustering a správu flotily, je to nejjednodušší
+cesta.
+
+<aside class="tip">
+**Pro koho:** 1–4 lidé, CUDA, citlivá data, potřeba NVIDIA stacku.
+**Pro koho ne:** nejnižší cena za 128 GB, 20+ uživatelů, model nad 200B.
+**Minimum pro denní práci:** Qwen3.8 Flash Next (176B / 6B).
+</aside>
+
+> **Toto jsou převzatá data, ne naše měření.** Specifikace a ceny pocházejí
+> z oficiálních zdrojů, rychlosti z veřejných měření. Kde měření chybí,
+> je `[DOPLNIT]`. Podrobnosti v [metodice](/o-webu/metodika/).
+
+## Rychlá fakta
+
+| Parametr | Hodnota | Zdroj |
+|---|---|---|
+| Paměť | 128 GB unified | [NVIDIA](https://www.nvidia.com/en-us/products/workstations/dgx-spark/) |
+| Propustnost paměti | 273 GB/s | NVIDIA |
+| Cena | 6 950 USD (2. 10. 2026) | [BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark) |
+| Cena orientačně | ≈ 151 200 Kč (ČNB 21,762 k 3. 11. 2026) | ČNB |
+| Příkon | 140 W čip, 240 W napájení | BetterClaw |
+| Software | CUDA, vLLM, SGLang, llama.cpp | NVIDIA, vLLM |
+| Prodejci | NVIDIA, Acer, ASUS, Dell, HP, MSI | NVIDIA |
+
+**Cena:** bez DPH a dopravy. DGX Spark zdražil z 3 999 USD (10/2025) na
+6 950 USD (10/2026); důvodem jsou ceny pamětí.
+
+## Co na něm poběží
+
+| Model | Kvantizace | Engine + nastavení | Kontext | Rychlost | Typ | Zdroj |
+|---|---|---|---|---|---|---|
+| Qwen3.8 Flash Next | NVFP4 | vLLM, MTP 3, FP8 KV | 32k | 36,8 tok/s (próza), 45,8 (kód) | naměřeno | [madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/) |
+| Qwen3.8 Flash Next | UD-IQ4_XS | llama.cpp b11429 | krátký | ~27,8 tok/s | naměřeno | [CORSAIR](https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/) |
+| Qwen3.8 Flash Next | NVFP4 | vLLM, MTP | 262k | ~70 tok/s (uvádí Qwen/NVIDIA) | naměřeno (výrobce) | [vLLM recipe](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next) |
+
+**Konflikt, který je potřeba číst:** Qwen/NVIDIA uvádí kolem 70 tok/s,
+nezávislé měření 36,8–45,8 tok/s. Rozdíl je engine, MTP, workload a délka
+běhu. Pro plánování berte **spodní hranici 36,8 tok/s**, ne 70.
+
+## Jak rychle
+
+| Režim | Krátký kontext | Dlouhý kontext (>128k) |
+|---|---|---|
+| Single-stream (vLLM, próza) | 36,8 tok/s | [DOPLNIT] |
+| Single-stream (vLLM, kód) | 45,8 tok/s | [DOPLNIT] |
+| 4 smíšené requesty | 100,2 tok/s agregát | [DOPLNIT] |
+| TTFT (32k prompt) | 236 ms (próza), 201 ms (kód) | [DOPLNIT] |
+| Prefill (32k prompt) | 1 825 tok/s | [DOPLNIT] |
+| Pohodlná souběžnost | 4 requesty | [DOPLNIT] |
+
+**Konfigurace madeye:** vLLM nightly 8a728663, NVFP4, MTP3, FP8 KV,
+262 144 tokenů, 4 096tokené prefill chunky, 6 slotů. Nejsou to univerzální
+čísla; jsou to čísla pro tento setup.
+
+## Kontext, který zařízení reálně udrží
+
+| Kontext | Co se stane | Souběžnost |
+|---|---|---|
+| 32k | bezpečný provoz, nejlepší rychlost | [DOPLNIT] |
+| 128k | dlouhé dokumenty, KV cache roste | [DOPLNIT] |
+| 262k | maximum modelu, KV cache na hraně | [DOPLNIT] |
+| 1M | s YaRN, na tomto zařízení nepraktické | 0–1 |
+
+Maximum není doporučení. Jeden 200k request může vytlačit ostatní
+z KV cache. Konkrétní chování při 4 souběžných je `[DOPLNIT: měření]`.
+
+## Co od toho čekat
+
+- **Zvládne:** chat, psaní, kód, práci s dokumenty, RAG, agentní úlohy.
+- **Nezvládne:** 20+ souběžných uživatelů, modely nad ~200B bez offloadu.
+- **Nejlepší využití:** 1–4 lidé, kteří chtějí CUDA a data u sebe.
+- **Kde narazí:** 128 GB je těsné pro dlouhý kontext a víc streamů.
+
+## Na co si dát pozor
+
+- **Cena:** za stejnou paměť a vyšší bandwidth existuje RTX Spark mini
+  za 5 999 USD; za cestovní variantu RTX Spark notebook.
+- **Uzavřený stack:** CUDA a NVIDIA playbooky jsou výhoda pro start,
+  ale horší pro vyměnitelnost.
+- **Souběžnost:** 16 slotů v KV cache není 16 spokojených uživatelů.
+- **Napájení a hluk:** `[DOPLNIT: měření]`.
+
+## Pro koho
+
+| Situace | Doporučení |
+|---|---|
+| 1–4 lidé, CUDA, citlivá data | **Ano** |
+| Nejnižší cena za 128 GB | Spíš Strix Halo |
+| Práce na cestě | Spíš RTX Spark notebook |
+| 200B+ model | Ne, potřebujete 192–256 GB |
+| 20+ uživatelů | Ne, DGX Station |
+
+## Kudy dál
+
+- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — mobilní alternativa.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
+- [Roofline](/rychlost/roofline/) — proč je 70 tok/s strop, ne cíl.
+- [Co nevíme](/zdroje/co-nevime/) — chybějící TTFT a souběžnost.
+
+## Zdroje
+
+- [NVIDIA DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [vLLM recipe — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+- [madeye — DGX Spark measurement](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)
+- [CORSAIR — DGX Spark llama.cpp](https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/)
+- [BetterClaw — RTX Spark vs DGX Spark](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark)
+
+*Naposledy ověřeno: 4. 11. 2026.*

@@ -1,0 +1,160 @@
+---
+title: "Metodika: jak čteme data o lokální AI"
+description: "Nemáme vlastní laboratoř. Sbíráme veřejná měření, normalizujeme podmínky, kontrolujeme roofline a vysvětlujeme, co z nich plyne."
+last_verified: 2026-11-04
+sidebar:
+  order: 1
+---
+
+# Metodika: jak čteme data o lokální AI
+
+**Nemáme vlastní laboratoř.** Většinu zařízení fyzicky netestujeme. Přesto
+chceme odpovídat na otázku „jak rychle to poběží a co od toho čekat“.
+Řešíme to jinak: sbíráme veřejná měření, srovnáváme je za stejných podmínek
+a vysvětlujeme, kde a proč se rozcházejí.
+
+Tato stránka popisuje, jak to děláme. Je to zároveň slib: co najdete
+v tabulkách, není naše měření, pokud to výslovně neřekneme.
+
+## Co tedy děláme
+
+1. **Sbíráme primární data.** Model cards, dokumentace výrobců, nezávislé
+   benchmarky, komunitní měření. Každý zdroj má v registru svou váhu.
+2. **Normalizujeme podmínky.** Porovnáváme jen to, co jde porovnat:
+   stejná kvantizace, engine, kontext, souběžnost, MTP a KV cache.
+3. **Kontrolujeme fyziku.** Převzaté číslo porovnáme s roofline. Pokud je
+   vyšší než teoretický strop, je něco špatně — nebo to má vysvětlení.
+4. **Hledáme rozpory.** Když se zdroje rozcházejí, ukážeme rozpětí a důvod,
+   ne jen nejlepší číslo.
+5. **Interpretujeme.** Z čísel děláme závěr pro denní použití: chat, agent,
+   dávka, dlouhý kontext.
+6. **Přiznáváme mezery.** Když data chybí, **hledáme zdroj**. Když ho
+   nenajdeme, napíšeme `[DOPLNIT]` nebo spočítáme hodnotu z podložených
+   vstupů a označíme ji jako `vypocet`.
+
+## Zdroje a jejich váha
+
+| Typ zdroje | Co od něj bereme | Omezení |
+|---|---|---|
+| **Výrobce** (NVIDIA, AMD, Apple, Qwen) | specifikace, ceny, oficiální benchmarky | měří na nejlepší konfiguraci; výkonové tvrzení je marketing |
+| **Nezávislý test** (InferenceX, laboratoře) | výkon za známých podmínek | drahé, často datacentrové GPU, ne krabice |
+| **Komunita** (llamaperf, fóra) | reálné konfigurace na konkrétních krabicích | různá kvalita, chybí metodika, ochota sdílet setup |
+| **Výpočet** (roofline) | výpočet tam, kde měření chybí | nepostihuje kvalitu jader, teplotu, režii |
+
+**Pravidlo pro důvěryhodnost:**
+
+- **vysoká** — 2+ nezávislé zdroje se shodou za podobných podmínek,
+- **střední** — 1 nezávislý zdroj nebo více komunitních,
+- **nízká** — jediný komunitní nebo výrobcem udávaný údaj.
+
+U klíčových čísel tuto informaci uvidíte. Není to formalita: čtenář má
+vědět, jak moc se na číslo může spolehnout.
+
+## Jak normalizujeme
+
+Stejný model dá na stejném zařízení různá čísla podle toho, co je zapnuté.
+Proto u každého měření evidujeme:
+
+- **kvantizaci** (NVFP4, FP8, GGUF Q4_K_M, MLX 4bit…),
+- **engine a verzi** (vLLM, SGLang, llama.cpp, MLX),
+- **kontext** (délku promptu a strop),
+- **souběžnost** (kolik streamů),
+- **MTP** a počet draft tokenů,
+- **KV cache** (FP8, Q8_0, F16…),
+- **flash attention / chunked prefill**,
+- **teplotu a power limit**, pokud je známe.
+
+Když něco chybí, řekneme to. Bez těchto údajů není „70 tok/s“ číslo,
+ale reklama.
+
+## Roofline jako kontrola
+
+Pro decode platí přibližně:
+
+```
+tok/s ≈ (propustnost paměti × efektivita) / (bajty na token)
+bajty na token ≈ aktivní parametry × bajty na parametr
+```
+
+Příklad pro Qwen3.8 Flash Next na DGX Spark:
+
+- 6 miliard aktivních parametrů, NVFP4 ≈ 4,25 bitů na parametr,
+- 6 × 4,25 / 8 = 3,19 GB na token,
+- 273 GB/s / 3,19 GB = **85,6 tok/s teoreticky**,
+- naměřeno 70 tok/s = **82 % roofline**.
+
+To je fyzikálně konzistentní. Pokud by někdo tvrdil 150 tok/s se stejnou
+kvantizací a stejným zařízením, je to podezřelé — ledaže vysvětlí, co
+zrychlilo (MTP, NPU, jiná kvantizace, jiný model).
+
+Roofline používáme i tam, kde měření chybí. Výsledek je pak `vypocet`,
+ne `namereno`, a vždy ukážeme vstupy.
+
+## Typy čísel
+
+| Typ | Co to znamená | Příklad |
+|---|---|---|
+| `namereno` | převzato od zdroje, ne od nás | 70 tok/s na DGX Spark, NVFP4 |
+| `vypocet` | odvozeno z roofline nebo kapacity | očekávaných 60–80 tok/s |
+| `vlastni` | naměřili bychom my | dnes se nepoužívá |
+
+**Vlastní odhad nepoužíváme.** Když zdroj chybí, je v textu `[DOPLNIT]`,
+ne vymyšlené číslo.
+
+## Rozpory nezakrýváme
+
+Když dva zdroje tvrdí něco jiného, ukážeme oba. Typický případ:
+Qwen3.8 Flash Next na Strix Halo 128 GB.
+
+| Zdroj | Kvantizace | Kontext | Decode | Co to znamená |
+|---|---|---|---|---|
+| llamaperf, jeden setup | UD-IQ4_XS | 95,6k | 41 tok/s | konzervativní, dlouhý kontext |
+| llamaperf, jiný setup | UD-Q4_K_XL | 262k | 54–79 tok/s | MTP acceptance, kratší běh |
+| vLLM fork | AWQ W4A16 | 5,6k | 43 tok/s | jiný engine, jiná kvantizace |
+
+**Interpretace:** pro plánování použij **spodní hranici naměřeného rozsahu
+(41 tok/s)**, ne 79 a ne vlastní odhad. Rozptyl není chyba webu; je to
+realita různých konfigurací. Kdo tvrdí jedno číslo bez podmínek, ten něco
+zamlčuje.
+
+U Strix Hala je důležitější než decode **prefill**: reporty se pohybují
+mezi 0,8 a 2,4 tis. tok/s a s délkou promptu klesají. 32k prompt tak
+znamená 16–40 s před prvním tokenem, 128k prompt 67–166 s (výpočet
+z prefillu, ne měření). Proto u této platformy vždy uvádíme TTFT, ne jen
+tok/s.
+
+## Plánovací číslo vs. špička
+
+- **Špička** je nejlepší naměřené single-stream číslo. Hodí se na demo.
+- **Plánovací číslo** je konzervativní hodnota s rezervou 10–25 % na frontu,
+  logování, teplotu a souběžnost. Hodí se na rozhodování.
+
+V tabulkách uvádíme obojí, jasně oddělené. Pro „kolik lidí to obslouží“
+používáme plánovací číslo, ne špičku.
+
+## Co si můžete ověřit
+
+- U každého čísla je odkaz na zdroj a datum.
+- U každého měření je konfigurace.
+- U každé datové karty je i „co by změnilo závěr“.
+- Když najdete chybu, pošlete issue nebo e-mail; opravu zapíšeme do
+  changelogu.
+
+## Co tato metodika neumí
+
+- **Nenahradí vlastní test.** Pokud potřebujete jistotu pro konkrétní úlohu,
+  změřte si ji na svém zařízení.
+- **Nepostihne kvalitu.** Tok/s není totéž co kvalita odpovědi.
+- **Nezachytí všechny konfigurace.** Data jsou jen tak dobrá, jak dobré
+  jsou zdroje.
+- **Nebude aktuální věčně.** Každý údaj má datum a pravidelnou kontrolu.
+
+## Kudy dál
+
+- [Jak čteme data a měření](/zaciname/jak-cteme-data/) — TTFT, prefill,
+  kontext a souběžnost v praxi.
+- [Roofline](/rychlost/roofline/) — vzorec a příklady.
+- [Zdroje](/zdroje/zdroje/) — co sledujeme a proč.
+- [Jak píšeme](/o-webu/jak-piseme/) — redakční pravidla.
+
+*Naposledy ověřeno: 4. 11. 2026.*

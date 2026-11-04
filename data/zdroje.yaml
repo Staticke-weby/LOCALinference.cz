@@ -1,0 +1,336 @@
+# Registr zdrojů, ze kterých web čerpá a které pravidelně kontroluje.
+# Nový zdroj přidávej jen tehdy, když je jasné, co z něj na web teče.
+# `stav`: ok | novinka | chyba
+
+- id: qwen-blog
+  nazev: Qwen blog
+  url: https://qwen.ai/blog
+  typ: html
+  co_sledujeme: [nove-modely, benchmarky, architektura]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Primární zdroj pro Qwen modely a jejich vydání.
+
+- id: qwen38-flash-next-hf
+  nazev: Qwen3.8 Flash Next — model card
+  url: https://huggingface.co/Qwen/Qwen3.8-Flash-Next
+  typ: hf
+  co_sledujeme: [parametry, kontext, benchmarky, licence, vision]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Kanonický zdroj pro specifikace referenčního modelu.
+
+- id: qwen38-blog
+  nazev: Qwen blog — Qwen3.8-Flash-Next
+  url: https://qwen.ai/blog?id=qwen3.8-flash-next
+  typ: html
+  co_sledujeme: [architektura, benchmarky, vydani]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: vllm-qwen38-recipe
+  nazev: vLLM recipe — Qwen3.8 Flash Next
+  url: https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next
+  typ: html
+  co_sledujeme: [konfigurace, kvantizace, dgx-spark]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: zai-blog
+  nazev: Z.ai blog — GLM-5.3-Flash
+  url: https://z.ai/blog/glm-5.3-flash
+  typ: html
+  co_sledujeme: [glm-modely, vydani, benchmarky]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: zai-glm53-hf
+  nazev: GLM-5.3-Flash — model card
+  url: https://huggingface.co/zai-org/GLM-5.3-Flash
+  typ: hf
+  co_sledujeme: [parametry, kontext, licence, vision]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: zai-glm53-docs
+  nazev: Z.ai docs — GLM-5.3-Flash
+  url: https://docs.z.ai/guides/vlm/glm-5.3-flash
+  typ: html
+  co_sledujeme: [kontext, modality, parametry]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: news-qq-rtx-prices
+  nazev: První ceny RTX Spark notebooků
+  url: https://news.qq.com/rain/a/20261008A04Z5W00
+  typ: html
+  co_sledujeme: [cena, konfigurace, dostupnost]
+  frekvence: mesicne
+  priorita: nizka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: vllm-recipes
+  nazev: vLLM Recipes
+  url: https://recipes.vllm.ai/
+  typ: html
+  co_sledujeme: [konfigurace, kvantizace, DGX Spark, DGX Station]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Ověřené konfigurace pro konkrétní hardware.
+
+- id: sglang-cookbook
+  nazev: SGLang Cookbook
+  url: https://docs.sglang.io/cookbook/
+  typ: html
+  co_sledujeme: [konfigurace, MTP, dlouhý kontext]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Alternativa k vLLM, hlavně pro NVIDIA a AMD.
+
+- id: llamaperf-strix-halo
+  nazev: llamaperf — Strix Halo 128GB
+  url: https://llamaperf.com/gpu/strix-halo-128gb
+  typ: html
+  co_sledujeme: [komunitni-mereni, kvantizace, prefill, decode]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Uživatelská měření; vždy uvést konkrétní setup.
+
+- id: inferencex
+  nazev: SemiAnalysis InferenceX
+  url: https://inferencex.semianalysis.com/
+  typ: html
+  co_sledujeme: [nezavisle-benchmarky, throughput, interactivity]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Nezávislé měření inference na datacentrovém hardware.
+
+- id: nvidia-dgx-spark
+  nazev: NVIDIA DGX Spark
+  url: https://www.nvidia.com/en-us/products/workstations/dgx-spark/
+  typ: html
+  co_sledujeme: [cena, parametry, dostupnost, software]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: nvidia-rtx-spark
+  nazev: NVIDIA RTX Spark
+  url: https://www.nvidia.com/en-us/products/rtx-spark/
+  typ: html
+  co_sledujeme: [parametry, cena, dostupnost, notebook]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: nvidia-rtx-spark-porting
+  nazev: NVIDIA Windows on Arm Porting Guide — RTX Spark
+  url: https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html
+  typ: html
+  co_sledujeme: [specifikace, bandwidth, tdp, windows-arm]
+  frekvence: mesicne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: madeye-dgx-spark
+  nazev: madeye — Qwen3.8 Flash Next on DGX Spark
+  url: https://madeye.github.io/qwen38-flash-next-on-dgx-spark/
+  typ: html
+  co_sledujeme: [mereni, ttft, prefill, konfigurace]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: corsair-dgx-spark
+  nazev: CORSAIR — Qwen3.8 Flash Next na DGX Spark
+  url: https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/
+  typ: html
+  co_sledujeme: [llama.cpp, mereni, navod]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: presenc-rtx-spark
+  nazev: Presenc AI — RTX Spark local LLM benchmarks
+  url: https://presenc.ai/research/nvidia-rtx-spark-local-llm-benchmarks-2026
+  typ: html
+  co_sledujeme: [mereni, cena, dostupnost, mezery]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: betterclaw-rtx-spark
+  nazev: BetterClaw — RTX Spark vs DGX Spark
+  url: https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark
+  typ: html
+  co_sledujeme: [cena, konfigurace, srovnani]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: tomshardware-rtx-spark
+  nazev: Tom's Hardware — RTX Spark on sale
+  url: https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models
+  typ: html
+  co_sledujeme: [cena, dostupnost, konfigurace]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: ctol-rtx-spark
+  nazev: CTOL — RTX Spark laptop vs DGX Spark
+  url: https://www.ctol.digital/news/nvidia-rtx-spark-laptop-within-8-percent-of-dgx-spark-speed
+  typ: html
+  co_sledujeme: [mereni, artificial-analysis, srovnani]
+  frekvence: tydne
+  priorita: nizka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: vllm-rtx-spark-github
+  nazev: vllm-for-rtx-spark — nativní Windows ARM64 port
+  url: https://github.com/devjeonghwan/vllm-for-rtx-spark
+  typ: github
+  co_sledujeme: [vydani, benchmarky, podpora-modelu, windows-arm64]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Komunitní port vLLM pro RTX Spark; není oficiální Windows podpora."
+
+- id: vllm-rtx-spark-forum
+  nazev: NVIDIA forum — Native vLLM on RTX Spark
+  url: https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530
+  typ: html
+  co_sledujeme: [mereni, konfigurace, vydani]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "70,44 tok/s SPEED-Bench coding vs. 35,37 s llama.cpp; 31. 10. 2026."
+
+- id: vllm-windows-docs
+  nazev: vLLM — GPU installation
+  url: https://docs.vllm.ai/en/latest/getting_started/installation/gpu/
+  typ: html
+  co_sledujeme: [oficialni-podpora, windows, wsl]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Oficiální vLLM Windows nativně nepodporuje; port je komunita."
+
+- id: nvidia-dgx-station
+  nazev: NVIDIA DGX Station
+  url: https://www.nvidia.com/en-us/products/workstations/dgx-station/
+  typ: html
+  co_sledujeme: [cena, parametry, dostupnost]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: amd-ryzen-ai-max
+  nazev: AMD Ryzen AI Max+
+  url: https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html
+  typ: html
+  co_sledujeme: [parametry, bandwidth, ROCm]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: apple-mac-studio
+  nazev: Apple Mac Studio
+  url: https://www.apple.com/mac-studio/
+  typ: html
+  co_sledujeme: [cena, pamet, bandwidth, MLX]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: framework-desktop
+  nazev: Framework Desktop
+  url: https://frame.work/desktop
+  typ: html
+  co_sledujeme: [cena, konfigurace, dostupnost]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: cnb-kurzy
+  nazev: ČNB — denní kurzovní lístek
+  url: https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt
+  typ: api
+  co_sledujeme: [kurz-usd-czk, kurz-eur-czk]
+  frekvence: denne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Pro přepočet cen na české mutaci.
+
+- id: ecb-kurzy
+  nazev: ECB — reference rates
+  url: https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
+  typ: api
+  co_sledujeme: [kurz-usd-eur]
+  frekvence: denne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Pro přepočet cen na anglické mutaci.
+
+- id: unsloth-gguf
+  nazev: Unsloth — Qwen3.8 Flash Next GGUF
+  url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF
+  typ: hf
+  co_sledujeme: [gguf-kvantizace, velikosti, vydani]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Pro llama.cpp a Strix Halo.
+
+- id: llm-kube-qwen38
+  nazev: llm-kube — Qwen3.8 Flash Next na Strix Halo
+  url: https://llmkube.com/docs/labs/qwen38-flash-next-gufo-on-strix-halo
+  typ: html
+  co_sledujeme: [mereni, konfigurace, gufo]
+  frekvence: tydne
+  priorita: nizka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: Konkrétní laboratorní setup, dobrý pro reprodukci.

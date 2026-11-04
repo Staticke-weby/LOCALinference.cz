@@ -1,0 +1,196 @@
+---
+title: "Co je lokální AI a kdy se vyplatí"
+description: "Lokální AI běží přímo na vašem zařízení, bez cloudu a bez poplatků za token. Vysvětlíme, co dnes zvládne, co stojí a pro koho má smysl."
+last_verified: 2026-11-04
+sidebar:
+  order: 1
+---
+
+# Co je lokální AI a kdy se vyplatí
+
+Lokální AI znamená, že model běží přímo na vašem počítači nebo na malém
+serveru pod vaším stolem. Neodesíláte zadání do cizího cloudu a neplatíte
+za každý token. Zaplatíte jednou za hardware — a pak už jen za elektřinu,
+hluk a čas, který strávíte správou.
+
+To zní lákavě. Ale není to náhrada cloudu za každou cenu. Lokální AI má
+své místo a své hranice. Tato stránka vám pomůže zjistit, zda je to místo
+právě u vás.
+
+> **Odkud jsou čísla:** Nemáme vlastní laboratoř. Čísla v tomto textu
+> přebíráme z veřejných měření a model cardů; u každého důležitého údaje
+> je zdroj. Naše je interpretace a zařazení, ne měření.
+
+## Co znamená „lokální“
+
+Když dnes použijete ChatGPT, Claude nebo Gemini, váš text opustí počítač
+a zpracuje se na serveru provozovatele. U lokální AI zůstává vše na zařízení,
+které máte pod kontrolou:
+
+- **Data zůstávají u vás.** Dokument, e-mail nebo kód neopustí stroj.
+- **Funguje to i offline.** Výpadek internetu nebo cloudové služby vás nezastaví.
+- **Neplatíte za token.** Náklady jsou hlavně v hardware a elektřině.
+- **Verzi modelu si řídíte sami.** Nikdo vám ji v noci nevymění.
+
+To jsou věcné výhody, ne ideologie. Pro někoho jsou rozhodující, pro jiného
+naprosto nepodstatné.
+
+## Co dnes lokální AI zvládne
+
+Zařízení za 3 500 až 7 000 USD dnes utáhne model, který zvládne běžnou
+kancelářskou a vývojářskou práci:
+
+- psaní a úpravu textů, shrnutí, překlady,
+- práci s dokumenty a tabulkami,
+- programování a vysvětlování kódu,
+- analýzu obrázků a screenshotů,
+- agentní úlohy, kdy model volá nástroje a pracuje delší dobu.
+
+Referenční bod je **Qwen3.8 Flash Next**. Má 176 miliard parametrů celkem,
+ale na každý token aktivuje jen 6 miliard. To je klíčové: díky řídké
+architektuře MoE se vejde do 128 GB paměti a na DGX Spark s kvantizací
+NVFP4 a zapnutým MTP běží kolem **70 tokenů za sekundu** na začátku
+kontextu. Nad 128 tisíci tokeny klesá na zhruba **40 tokenů za sekundu**
+([Qwen blog](https://qwen.ai/blog?id=qwen3.8-flash-next),
+[vLLM recipe](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)).
+Jsou to hodnoty pro konkrétní konfiguraci (NVFP4, MTP); nezávislé reporty
+se liší podle enginu a nastavení. To je stále rychlost, kterou člověk
+pohodlně čte.
+
+Pro srovnání: klasický dense model se 70 miliardami parametrů se na stejný
+stroj sice vejde, ale v 4bitové kvantizaci běží kolem **5 tokenů za sekundu**
+([llamaperf](https://llamaperf.com/gpu/strix-halo-128gb)). To není použitelné
+pro denní práci. Rozhoduje počet aktivních parametrů, ne celkových.
+
+## Co to stojí
+
+Lokální AI není levná, pokud ji srovnáváte s občasným použitím cloudu.
+Pořizovací ceny hotových zařízení s 128 GB paměti se na podzim 2026
+pohybovaly zhruba takto:
+
+| Zařízení | Paměť | Cena USD (k datu) | Orientačně Kč |
+|---|---|---|---|
+| Strix Halo 128 GB (OEM) | 128 GB | 3 449–5 349 (9/2026) | 75 100–116 400 |
+| RTX Spark notebook 128 GB | 128 GB | 5 899–6 499 (10/2026) | 128 400–141 400 |
+| RTX Spark mini 128 GB | 128 GB | 5 999 (10/2026) | 130 600 |
+| DGX Spark 128 GB | 128 GB | 6 950 (2. 10. 2026) | 151 200 |
+| Mac Studio M5 Ultra | 96 GB | 5 499 (10/2026) | 119 700 |
+| Gorgon Halo 192 GB | 192 GB | 7 099 (Q3 2026) | 154 500 |
+
+**Přepočet:** orientační, kurz [ČNB](https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt)
+21,762 Kč/USD k 3. 11. 2026, bez DPH a dopravy. Ceny jsou k datu uvedenému
+v tabulce; hardware v tomto segmentu zdražuje a zlevňuje po kvartálech.
+Zdroje: [NVIDIA](https://www.nvidia.com/en-us/products/workstations/dgx-spark/),
+[Apple](https://www.apple.com/mac-studio/), [AMD](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html),
+[BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark),
+[Tom's Hardware](https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models),
+[llamaperf](https://llamaperf.com/gpu/strix-halo-128gb).
+
+K tomu je potřeba připočítat elektřinu, chlazení, případně UPS a čas na
+správu. U notebooku se přidá hluk a throttling, u stolního stroje místo
+a příkon. Ceny se navíc hýbou: DGX Spark zdražil z 3 999 USD na 6 950 USD
+během jednoho roku
+([BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark)).
+
+**Nevyplatí se to na „pár dotazů denně“.** Pokud AI použijete několikrát
+týdně, je cloud levnější a lepší. Lokální stroj dává smysl ve chvíli, kdy
+ho používají lidé denně, na citlivá data, nebo když potřebujete stabilní
+a předvídatelný provoz.
+
+## Kdy se vyplatí
+
+Lokální AI má smysl, když platí alespoň dvě z těchto věcí:
+
+1. **Data nesmí opustit firmu nebo domácnost.** Právní dokumenty, zdravotní
+   záznamy, interní kód, osobní poznámky. Tady je lokální provoz nejlepší
+   argument, silnější než cokoli jiného.
+2. **Potřebujete stabilní verzi modelu.** Cloud vám model mění bez varování.
+   Pokud na něm stojí proces, který musí být reprodukovatelný, chcete
+   zmrazenou verzi a vlastní evidenci.
+3. **Používáte AI denně a hodně.** Při vysokém objemu se hardware zaplatí
+   a odpadá čekání na síť. Zároveň máte jistotu, že vám nikdo nezmění cenu
+   ani limity.
+4. **Potřebujete provoz bez internetu.** Terén, výjezd, izolovaná síť,
+   nebo jen neochota posílat data přes hranice.
+
+## Kdy se nevyplatí
+
+Poctivě: pro většinu lidí je dnes cloud lepší volba. Lokální AI nedává smysl,
+když:
+
+- AI používáte jen občas a na běžné věci,
+- potřebujete absolutně nejlepší kvalitu a největší modely,
+- nemáte nikoho, kdo by stroj spravoval,
+- data nejsou citlivá a jde vám hlavně o pohodlí,
+- chcete řešit všechno jedním zařízením pro 20 lidí.
+
+Lokální model za 7 000 USD není náhrada špičkového cloudového modelu.
+Je to jiný nástroj: pomalejší, menší, ale pod vaší kontrolou.
+
+## Minimum pro denní práci
+
+Za rozumné minimum dnes považujeme **Qwen3.8 Flash Next** na zařízení
+se **128 GB unified paměti**. Proč?
+
+- 176B parametrů celkem dá dostatečnou kapacitu na běžné úkoly
+  ([model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)).
+- 6B aktivních parametrů drží rychlost kolem 70 tokenů za sekundu
+  ([Qwen blog](https://qwen.ai/blog?id=qwen3.8-flash-next)).
+- 262 tisíc tokenů nativního kontextu zvládne delší dokumenty; doporučený
+  provozní režim je ale níž, kolem 128 tisíc, kde je kvalita i rychlost lepší.
+- Vejde se do 128 GB včetně KV cache; na dlouhý kontext zbývá jen část
+  paměti, takže souběžnost klesá.
+
+Na 96GB Macu se model také vejde, ale zbývá málo paměti na kontext
+a souběžnost. Na 64GB stroji už ne. **128 GB je dnes rozumná vstupní
+hranice**, 192 GB vám dá víc prostoru pro dlouhý kontext a víc uživatelů.
+
+## Co od toho nečekat
+
+- **Špičkovou kvalitu frontier modelů.** Na nejsložitější reasoning
+  a nejnáročnější kód je cloud stále jinde.
+- **Rychlost cloudu.** 70 tokenů za sekundu je dobré, ale cloudové modely
+  mohou být rychlejší a hlavně běží na mnohem výkonnějším hardware.
+- **Mnoho uživatelů najednou.** Jeden 128GB stroj zvládne řádově čtyři
+  souběžné requesty; veřejné měření na DGX Spark ukazuje čtyři smíšené
+  requesty s agregátem ~100 tok/s
+  ([madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)).
+  Na dvacet lidí potřebujete jinou třídu.
+- **Nulovou správu.** Aktualizace, kvantizace, monitoring a zálohy
+  jsou práce. U notebooků se přesouvá na každé zařízení.
+
+## Jak začít
+
+1. **Pojmenujte úlohu.** Ne „chci AI“, ale „chci shrnovat smlouvy“ nebo
+   „chci psát kód bez posílání repozitáře do cloudu“.
+2. **Vyberte podle paměti, ne podle marketingu.** Model se musí vejít
+   celý. 128 GB je minimum pro Qwen3.8 Flash Next.
+3. **Otestujte na svých datech.** Veřejné benchmarky neřeknou, jak model
+   zvládne vaši češtinu, vaše dokumenty a vaše nástroje.
+
+## Kudy dál
+
+- [Jak lokální AI funguje](/zaciname/jak-to-funguje/) — váhy, kvantizace,
+  paměť a tokeny bez magie.
+- [Proč jsou dnes zajímavé jen MoE modely](/zaciname/proc-moe/) — aktivní
+  parametry a konec dense modelů na malých krabicích.
+- [Jak čteme data a měření](/zaciname/jak-cteme-data/) — TTFT, prefill a proč
+  nestačí jedno číslo v tok/s.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model
+  a co od něj čekat.
+- [Výběr podle rozpočtu](/vyber/rozpocet/) — co dostanete za 4, 7 a 10 tisíc
+  dolarů.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next) —
+  parametry, kontext, benchmarky.
+- [Qwen blog: Qwen3.8-Flash-Next](https://qwen.ai/blog?id=qwen3.8-flash-next) —
+  architektura a naměřené hodnoty.
+- [vLLM recipe: Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next) —
+  konfigurace pro DGX Spark a další zařízení.
+- [NVIDIA DGX Spark](https://www.nvidia.com/) — parametry a ceny.
+- [llamaperf: Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb) —
+  komunitní měření na 128GB APU, včetně Qwen3.8 Flash Next.
+
+*Naposledy ověřeno: 4. 11. 2026.*

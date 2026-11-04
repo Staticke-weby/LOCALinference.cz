@@ -1,0 +1,302 @@
+# Měření a datové body. Každý záznam má zdroj, konfiguraci a důvěryhodnost.
+# `typ`: namereno (převzato od zdroje) | vypocet (z podložených vstupů) | vlastni (dnes nepoužíváme)
+# `mereno_kym`: vyrobce | nezavisle | komunita | my
+
+- id: 2026-09-10-dgx-spark-qwen38-prose
+  datum: 2026-09-10
+  zarizeni: dgx-spark
+  model: qwen3-8-flash-next
+  kvantizace: NVFP4
+  engine: vLLM
+  engine_verze: "nightly 8a728663"
+  kontext: 32768
+  kontext_strop: 262144
+  ttft_ms: 236
+  prefill_toks: 1824.95
+  decode_toks: 36.83
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: 3
+    kv_cache: fp8
+    flash_attention: null
+    chunked_prefill: true
+    teplota: 0
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: stredni
+  normalizace: "single-stream, 32k prompt, thinking off"
+  interpretace: "Konzervativní číslo pro prózu; kód byl rychlejší."
+  zdroj: https://madeye.github.io/qwen38-flash-next-on-dgx-spark/
+  poznamka: "Prose, one request; medians of three 384-token samples."
+
+- id: 2026-09-10-dgx-spark-qwen38-code
+  datum: 2026-09-10
+  zarizeni: dgx-spark
+  model: qwen3-8-flash-next
+  kvantizace: NVFP4
+  engine: vLLM
+  engine_verze: "nightly 8a728663"
+  kontext: 32768
+  kontext_strop: 262144
+  ttft_ms: 201
+  prefill_toks: 1824.95
+  decode_toks: 45.75
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: 3
+    kv_cache: fp8
+    flash_attention: null
+    chunked_prefill: true
+    teplota: 0
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: stredni
+  normalizace: "single-stream, 32k prompt, thinking off"
+  interpretace: "Kód je na této konfiguraci rychlejší než próza."
+  zdroj: https://madeye.github.io/qwen38-flash-next-on-dgx-spark/
+  poznamka: "Code, one request; medians of three 384-token samples."
+
+- id: 2026-09-10-dgx-spark-qwen38-4mix
+  datum: 2026-09-10
+  zarizeni: dgx-spark
+  model: qwen3-8-flash-next
+  kvantizace: NVFP4
+  engine: vLLM
+  engine_verze: "nightly 8a728663"
+  kontext: 32768
+  kontext_strop: 262144
+  ttft_ms: 1017
+  prefill_toks: 1824.95
+  decode_toks: null
+  agregat_toks: 100.18
+  soubeznost: 4
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: 3
+    kv_cache: fp8
+    flash_attention: null
+    chunked_prefill: true
+    teplota: 0
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: stredni
+  normalizace: "4 mixed requests, 256-token outputs, includes prefill"
+  interpretace: "Agregát roste, ale TTFT na 4 requesty je ~1 s."
+  zdroj: https://madeye.github.io/qwen38-flash-next-on-dgx-spark/
+  poznamka: "One batch of four mixed requests."
+
+- id: 2026-10-06-dgx-spark-qwen38-llamacpp
+  datum: 2026-10-06
+  zarizeni: dgx-spark
+  model: qwen3-8-flash-next
+  kvantizace: UD-IQ4_XS
+  engine: llama.cpp
+  engine_verze: "b11429"
+  kontext: null
+  kontext_strop: null
+  ttft_ms: null
+  prefill_toks: null
+  decode_toks: 27.8
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: null
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "single-stream, krátký prompt"
+  interpretace: "llama.cpp je na DGX Spark výrazně pomalejší než vLLM; není to univerzální číslo."
+  zdroj: https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/
+  poznamka: "Server log 25,6–25,8 tok/s; counting response 27,8 tok/s."
+
+- id: 2026-10-31-rtx-spark-notebook-qwen38-vllm
+  datum: 2026-10-31
+  zarizeni: rtx-spark-notebook
+  model: qwen3-8-flash-next
+  kvantizace: NVFP4
+  engine: vLLM
+  engine_verze: "0.32.0 + Windows ARM64 port"
+  kontext: null
+  kontext_strop: null
+  ttft_ms: null
+  prefill_toks: null
+  decode_toks: 70.44
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "SPEED-Bench coding, 80 konverzací, jeden notebook"
+  interpretace: "Nativní Windows ARM64 port; není to próza ani dlouhý kontext."
+  zdroj: https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530
+  poznamka: "Port podporuje až 16 souběžných requestů; toto číslo je coding benchmark."
+
+- id: 2026-10-31-rtx-spark-notebook-qwen38-llamacpp
+  datum: 2026-10-31
+  zarizeni: rtx-spark-notebook
+  model: qwen3-8-flash-next
+  kvantizace: NVFP4
+  engine: llama.cpp
+  engine_verze: "NVIDIA recipe"
+  kontext: null
+  kontext_strop: null
+  ttft_ms: null
+  prefill_toks: null
+  decode_toks: 35.37
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: null
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "stejný SPEED-Bench coding test jako vLLM"
+  interpretace: "Stejný test, jiný engine; vLLM port je zhruba 2× rychlejší."
+  zdroj: https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530
+
+- id: 2026-09-21-strix-halo-qwen38-llamacpp
+  datum: 2026-09-21
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: UD-IQ4_XS
+  engine: llama.cpp HIP
+  engine_verze: "patched HIP"
+  kontext: 95600
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: 1183
+  decode_toks: 41.0
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: 3
+    kv_cache: Q8_0
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: stredni
+  normalizace: "96GB GPU carve, 95,6k prompt, single-stream"
+  interpretace: "Konzervativní Strix Halo číslo; na 86k kontextu klesá na 32,6 tok/s."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-10-30-strix-halo-qwen38-gufo
+  datum: 2026-10-30
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: UD-Q4_K_XL
+  engine: Gufo / Halowin
+  engine_verze: "Windows 11"
+  kontext: 262144
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: 1556
+  decode_toks: null
+  agregat_toks: null
+  rozptyl:
+    min: 54
+    max: 79
+    jine_zdroje: []
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "96GB GPU carve, MTP acceptance 53–80 %"
+  interpretace: "Horní hranice rozptylu je špička, ne plánovací číslo."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-10-16-strix-halo-qwen38-hipfire-8k
+  datum: 2026-10-16
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: "[DOPLNIT]"
+  engine: hipfire
+  engine_verze: "0.4.2.1"
+  kontext: 8192
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: 2372
+  decode_toks: 51.3
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "8k kontext, NPU + iGPU prefill"
+  interpretace: "Prefill 2 372 tok/s je nejlepší případ s NPU; na 128k klesá."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-10-16-strix-halo-qwen38-hipfire-128k
+  datum: 2026-10-16
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: "[DOPLNIT]"
+  engine: hipfire
+  engine_verze: "0.4.2.1"
+  kontext: 131072
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: 1865
+  decode_toks: 42.1
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "128k kontext, NPU + iGPU prefill"
+  interpretace: "Na 128k je decode ~42 tok/s; prefill 1 865 tok/s."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb

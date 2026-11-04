@@ -1,0 +1,30 @@
+name: Hlídač zdrojů
+
+on:
+  schedule:
+    - cron: '0 6 * * 1' # každé pondělí 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  hlidac:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run hlidac
+      - name: Uložit stav a report
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "hlídač: aktualizace stavu zdrojů"
+          file_pattern: data/stav-zdroju.json vystup/hlidac-report.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hlidac-report
+          path: vystup/hlidac-report.md

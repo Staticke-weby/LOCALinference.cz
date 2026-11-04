@@ -1,0 +1,33 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+---
+
+<Default {...Astro.props}><slot /></Default>
+
+<div class="li-nezavislost">
+  <p>
+    Local Inference je nezávislý průvodce. Nejsme spojeni s výrobci ani
+    prodejci. Čísla přebíráme z veřejných zdrojů a vždy je označujeme.
+    <span class="li-oddelovac">·</span>
+    <a href="/o-webu/metodika/">Metodika</a>
+    <span class="li-oddelovac">·</span>
+    <a href="/zdroje/co-nevime/">Co nevíme</a>
+  </p>
+</div>
+
+<style>
+  .li-nezavislost {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--sl-color-gray-5);
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-3);
+  }
+  .li-nezavislost a {
+    color: var(--sl-color-accent);
+  }
+  .li-oddelovac {
+    margin: 0 0.35em;
+    color: var(--sl-color-gray-4);
+  }
+</style>

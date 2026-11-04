@@ -1,0 +1,135 @@
+/* Vlastní identita Local Inference nad Starlightem.
+   Barvy jen přes proměnné, žádné webfonty. */
+
+:root {
+  /* Indigo + měď. Akcent má kontrast min. 4,5:1 na bílé. */
+  --sl-color-accent-low: #e0e7ff;
+  --sl-color-accent: #3b4cca;
+  --sl-color-accent-high: #1e2a78;
+
+  --li-copper-low: #fef3c7;
+  --li-copper: #b45309;
+  --li-copper-high: #78350f;
+
+  --sl-font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --sl-font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+    Consolas, 'DejaVu Sans Mono', monospace;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #1e1b4b;
+  --sl-color-accent: #818cf8;
+  --sl-color-accent-high: #c7d2fe;
+
+  --li-copper-low: #3b2a12;
+  --li-copper: #f59e0b;
+  --li-copper-high: #fde68a;
+}
+
+/* Asides v paletě značky. */
+.starlight-aside--tip {
+  --sl-color-asides-text-accent: var(--sl-color-accent-high);
+  --sl-color-asides-border: var(--sl-color-accent);
+  background-color: var(--sl-color-accent-low);
+}
+.starlight-aside--note {
+  --sl-color-asides-text-accent: var(--li-copper-high);
+  --sl-color-asides-border: var(--li-copper);
+  background-color: var(--li-copper-low);
+}
+
+/* Tabulky z dat. */
+.li-tabulka {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--sl-text-sm);
+}
+.li-tabulka th,
+.li-tabulka td {
+  border: 1px solid var(--sl-color-gray-5);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+.li-tabulka thead th {
+  background: var(--sl-color-gray-6);
+  font-weight: 600;
+}
+.li-tabulka tbody tr:nth-child(even) td {
+  background: var(--sl-color-gray-7, transparent);
+}
+.li-tabulka td.li-cislo {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Štítky typu údaje. */
+.li-stitky {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0 1rem;
+}
+.li-stitek {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 999px;
+  font-size: var(--sl-text-xs);
+  color: var(--sl-color-gray-2);
+  background: var(--sl-color-gray-6);
+}
+.li-stitek--mereno {
+  border-color: var(--sl-color-accent);
+  color: var(--sl-color-accent-high);
+  background: var(--sl-color-accent-low);
+}
+.li-stitek--vypocet {
+  border-color: var(--li-copper);
+  color: var(--li-copper-high);
+  background: var(--li-copper-low);
+}
+
+/* Datová karta / upozornění. */
+.li-data {
+  border: 1px solid var(--sl-color-gray-5);
+  border-left: 3px solid var(--sl-color-accent);
+  border-radius: 0.4rem;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  font-size: var(--sl-text-sm);
+}
+.li-data h3 {
+  margin-top: 0;
+}
+.li-data--vypocet {
+  border-left-color: var(--li-copper);
+}
+
+/* Rychlé odkazy na úvodní stránce. */
+.li-mrizka {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.li-mrizka a {
+  display: block;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+.li-mrizka a:hover {
+  border-color: var(--sl-color-accent);
+  background: var(--sl-color-accent-low);
+}
+.li-mrizka strong {
+  display: block;
+  color: var(--sl-color-white);
+}
+.li-mrizka span {
+  color: var(--sl-color-gray-3);
+  font-size: var(--sl-text-sm);
+}

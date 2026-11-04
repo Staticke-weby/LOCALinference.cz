@@ -1,0 +1,21 @@
+{
+  "name": "localinference",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Inference — průvodce lokální AI na hotových zařízeních",
+  "scripts": {
+    "check": "npm run check:data && npm run check:obsah",
+    "check:data": "node scripts/kontrola-dat.mjs",
+    "check:obsah": "node scripts/kontrola-obsahu.mjs",
+    "check:zdroje": "node scripts/kontrola-zdroju.mjs",
+    "hlidac": "node scripts/hlidac.mjs",
+    "dev": "npm --prefix sites/cz run dev",
+    "build": "npm run check && npm --prefix sites/cz run build"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "zod": "^3.23.8"
+  }
+}

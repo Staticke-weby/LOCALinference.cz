@@ -1,0 +1,39 @@
+---
+// Nadpis stránky + datum poslední kontroly (frontmatter `last_verified`).
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+
+const data = Astro.locals.starlightRoute.entry.data as {
+  last_verified?: Date;
+};
+const lastVerified = data.last_verified;
+const datumFormat = new Intl.DateTimeFormat('cs-CZ', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Default><slot /></Default>
+{
+  lastVerified instanceof Date && !Number.isNaN(lastVerified.getTime()) ? (
+    <div class="li-pod-nadpisem">
+      <span class="li-overeno">
+        Naposledy ověřeno: {datumFormat.format(lastVerified)}
+      </span>
+    </div>
+  ) : null
+}
+
+<style>
+  .li-pod-nadpisem {
+    margin-top: 0.45rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.6rem;
+    font-size: var(--sl-text-sm);
+  }
+  .li-overeno {
+    color: var(--sl-color-gray-3);
+  }
+</style>

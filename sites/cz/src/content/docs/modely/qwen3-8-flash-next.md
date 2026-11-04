@@ -1,0 +1,110 @@
+---
+title: "Qwen3.8 Flash Next: minimum pro denní práci"
+description: "Referenční MoE model s 176B / 6B aktivních parametrů, 262k kontextem a vision. Co umí, kolik potřebuje paměti a jak rychle běží."
+last_verified: 2026-11-04
+sidebar:
+  order: 1
+---
+
+# Qwen3.8 Flash Next
+
+**Verdikt:** Spodní hranice, která dnes stačí na denní práci — a referenční
+bod pro všechna ostatní srovnání. Není to nejlepší model na světě, ale je
+to první model, u kterého se na 128GB zařízení dá mluvit o použitelném
+kompromisu.
+
+> **Toto jsou převzatá data, ne naše měření.** Specifikace pocházejí
+> z model cardu a Qwen blogu, rychlosti z veřejných měření. Kde měření
+> chybí, je `[DOPLNIT]`. Podrobnosti v [metodice](/o-webu/metodika/).
+
+## Specifikace
+
+| Parametr | Hodnota | Zdroj |
+|---|---|---|
+| Architektura | MoE, 512 expertů, 10 routed + 1 shared | [model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next) |
+| Celkové parametry | 176B (125B hlavní + 51B N-gram + 4B MTP) | model card |
+| Aktivní parametry | 6B na token | model card |
+| Nativní maximum kontextu | 262 144 | model card |
+| Rozšíření | 1 000 000 s YaRN | model card |
+| Doporučený provozní kontext | `[DOPLNIT: podložené doporučení]` | — |
+| Vision | ano (text + obrázky) | model card |
+| Licence | Apache-2.0 | model card |
+
+**Kontext:** maximum není doporučený provozní bod. Kvalita i rychlost jsou
+lepší na kratším kontextu; kde přesně je optimum pro tento model, zatím
+nemáme podložené. Proto `[DOPLNIT]`, ne odhad.
+
+## Co umí
+
+- **Obecné úkoly:** MMLU 90,36 na base modelu
+  ([Qwen blog](https://qwen.ai/blog?id=qwen3.8-flash-next)).
+- **Kód:** SWE-bench Pro 62,5, DeepSWE 1.1 58,7, SWE-bench Multilingual 81,0
+  ([model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)).
+- **Multilingvní:** MGSM 89,33, MMMLU 84,86 (base).
+- **Nástroje:** tool calling, reasoning parser, agentní smyčky.
+- **Vision:** text + obrázky; dokumenty, screenshoty, tabulky.
+- **Čeština:** `[DOPLNIT: vlastní nebo komunitní test]`. Model je
+  multilingvní, ale to není totéž jako dobrá čeština na vašich úkolech.
+
+## Kolik potřebuje paměti
+
+| Kvantizace | Váhy | Minimální zařízení | Poznámka |
+|---|---|---|---|
+| NVFP4 | ~101 GB | 128 GB | vLLM, DGX Spark |
+| FP8 | ~176 GB | 192 GB+ | více paměti, rychlejší převod |
+| MLX 4bit | ~88 GB | 96 GB Mac | málo místa na KV cache |
+| GGUF Q4_K_M | ~95 GB | 128 GB | llama.cpp |
+
+Na 128GB zařízení zbývá po načtení zhruba 27 GB na KV cache a aktivace.
+To stačí na krátký a střední kontext, ne na mnoho dlouhých streamů najednou.
+
+## Jak rychle
+
+| Zařízení | Kvantizace | Engine | Kontext | Rychlost | Typ | Zdroj |
+|---|---|---|---|---|---|---|
+| DGX Spark | NVFP4 | vLLM, MTP 3, FP8 KV | 32k | 36,8 tok/s (próza), 45,8 (kód) | naměřeno | [madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/) |
+| DGX Spark | UD-IQ4_XS | llama.cpp | krátký | ~27,8 tok/s | naměřeno | [CORSAIR](https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/) |
+| RTX Spark notebook | NVFP4 | vLLM Windows ARM64 | coding | 70,44 tok/s | naměřeno | [forum](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530) |
+| RTX Spark notebook | NVFP4 | llama.cpp | coding | 35,37 tok/s | naměřeno | forum |
+| Strix Halo 128 | UD-IQ4_XS | llama.cpp HIP | 95,6k | 41,0 tok/s | naměřeno | [llamaperf](https://llamaperf.com/gpu/strix-halo-128gb) |
+| Strix Halo 128 | UD-Q4_K_XL | Gufo | 262k | 54–79 tok/s | naměřeno | llamaperf |
+
+**Pozor na konflikt:** Qwen/NVIDIA uvádí kolem 70 tok/s na DGX Spark
+(NVFP4 + MTP), nezávislé měření hlásí 36,8–45,8 tok/s. Rozdíl je konfigurace,
+workload a délka běhu — ne fyzika. Pro plánování berte spodní hranici
+naměřeného rozsahu, ne marketingové maximum.
+
+## Kde dává smysl
+
+- **Denní práce jednoho až čtyř lidí:** ano, 128GB zařízení.
+- **Agentní úlohy:** ano, ale počítejte s nižší rychlostí na dlouhém kontextu.
+- **Dlouhé dokumenty:** ano, ale prefill a KV cache jsou limit.
+- **20+ uživatelů:** ne, potřebujete DGX Station nebo pool.
+- **Nejlepší kvalita bez kompromisů:** ne, sáhněte po větším modelu nebo cloudu.
+
+## Kde nedává smysl
+
+- Na 64GB zařízení se nevejde.
+- Na 96GB Macu se vejde jen s malou rezervou a krátkým kontextem.
+- Na zařízeních bez dostatečného prefillu bude první token trvat dlouho.
+
+## Kudy dál
+
+- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — první zařízení
+  s reálnými měřeními tohoto modelu.
+- [Data: Qwen3.8 FN na Strix Halo](/data/qwen3-8-flash-next-strix-halo/) —
+  rozptyl 41–79 tok/s a proč.
+- [Jak čteme data](/zaciname/jak-cteme-data/) — TTFT, prefill a rozpětí.
+- [Metodika](/o-webu/metodika/) — proč neodhadujeme.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [vLLM recipe](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+- [madeye — DGX Spark measurement](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)
+- [CORSAIR — DGX Spark llama.cpp](https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/)
+- [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+- [NVIDIA forum — native vLLM on RTX Spark](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530)
+
+*Naposledy ověřeno: 4. 11. 2026.*

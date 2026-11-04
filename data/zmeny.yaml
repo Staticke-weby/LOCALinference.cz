@@ -1,0 +1,44 @@
+# Changelog dat a obsahu. Každá změna má datum, typ, dotčené stránky a zdroj.
+# `typ`: cena | model | mereni | zdroj | obsah
+
+- datum: 2026-11-04
+  typ: cena
+  titulek: "RTX Spark notebook: ověřená cena 128GB konfigurací"
+  co_se_zmenilo: "Cena změněna z nepodloženého rozsahu na 5 899–6 499 USD; 2 599 USD je 24GB konfigurace."
+  dotcene_stranky: [zarizeni/rtx-spark-notebook, zaciname/co-je-lokalni-ai]
+  zdroj: https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark
+
+- datum: 2026-11-04
+  typ: cena
+  titulek: "DGX Spark: cena 6 950 USD k 2. 10. 2026"
+  co_se_zmenilo: "Doplněna cena a historie zdražení z 3 999 USD; zdroj BetterClaw/Tom's Hardware."
+  dotcene_stranky: [zarizeni/dgx-spark, zaciname/co-je-lokalni-ai]
+  zdroj: https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark
+
+- datum: 2026-11-04
+  typ: mereni
+  titulek: "DGX Spark: konflikt 70 vs. 36,8–45,8 tok/s"
+  co_se_zmenilo: "Doplněno nezávislé měření Qwen3.8 Flash Next na DGX Spark a vysvětlení rozdílu konfigurací."
+  dotcene_stranky: [zaciname/jak-to-funguje, data/qwen3-8-flash-next-strix-halo]
+  zdroj: https://madeye.github.io/qwen38-flash-next-on-dgx-spark/
+
+- datum: 2026-11-04
+  typ: mereni
+  titulek: "RTX Spark notebook: nativní vLLM pod Windows ARM64"
+  co_se_zmenilo: "Přidán komunitní port vLLM bez WSL; 70,44 tok/s vs. 35,37 tok/s v SPEED-Bench coding."
+  dotcene_stranky: [zarizeni/rtx-spark-notebook]
+  zdroj: https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530
+
+- datum: 2026-11-04
+  typ: model
+  titulek: "Qwen3.8 Flash Next: referenční minimum"
+  co_se_zmenilo: "Doplněny specifikace, kontext, vision a kvantizace z model cardu."
+  dotcene_stranky: [modely/qwen3-8-flash-next]
+  zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next
+
+- datum: 2026-11-04
+  typ: obsah
+  titulek: "Zrušeny vlastní odhady"
+  co_se_zmenilo: "Typ `odhad` nahrazen `[DOPLNIT]`; přidána pravidla triangulace, rozpětí a důvěryhodnosti."
+  dotcene_stranky: [o-webu/metodika, zdroje/co-nevime]
+  zdroj: https://localinference.cz/o-webu/metodika/
