@@ -30,13 +30,13 @@ Legenda: **P0** blokuje provoz nebo důvěryhodnost · **P1** zlepší web ·
       a výstupu; bez JS musí fungovat jako tabulka.
 - [ ] **Vysvětlivky, které na webu chybí:** Vulkan, RAG, agentní úlohy,
       vision, WSL2. Všechny se na webu používají, ale nemají stránku.
-- [ ] **Mac Studio** jako zařízení — odkaz na kategorii je připravený
+- [x] **Mac Studio a MacBook Pro** jako zařízení — odkaz na kategorii je připravený
       v `poznámkách`, chybí ceny, konfigurace a měření.
 - [ ] **EN mutace** (`sites/eu`) — zdroj, build, doména, obsah.
 
 ## 3. Úpravy existujícího obsahu
 
-- [ ] **`[DOPLNIT]` v tabulkách** nahradit pomlčkou „—“ (např. hmotnost
+- [x] **`[DOPLNIT]` v tabulkách** nahradit pomlčkou „—“ (např. hmotnost
       u DGX Sparku). Je to interní značka, na veřejné stránce působí divně.
 - [ ] **Sekce „Co chybí“ v tématech** — zvážit, zda ji nechat veřejně.
       U homepage už jsme se shodli, že mezery nejsou prodejní argument.
