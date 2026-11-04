@@ -1,0 +1,52 @@
+---
+title: "DGX Spark cena a výkon pro lokální AI"
+description: "DGX Spark 128 GB: česká cena od 162 990 Kč, výkon s Qwen3.8 Flash Next, OEM varianty a kdy se vyplatí."
+last_verified: 2026-11-04
+sidebar:
+  label: DGX Spark cena
+  order: 3
+---
+
+DGX Spark je nejintegrovanější 128GB box s CUDA a DGX OS. Česká cena
+začíná na **162 990 Kč vč. DPH** (ASUS Ascent GX10 1TB); referenční
+NVIDIA DGX Spark 4TB stojí 218 990 Kč. US list je 6 950 USD.
+
+## Co za to dostanete
+
+- **128 GB unified paměti** a 273 GB/s.
+- **Qwen3.8 Flash Next** v NVFP4, oficiální vLLM recept.
+- CUDA, DGX OS, clustering přes ConnectX-7.
+- 15 českých OEM variant od ASUS, Lenovo, HP, Dell, GIGABYTE, Acer,
+  PNY a NVIDIA.
+
+## Jak rychle běží Qwen3.8 Flash Next
+
+Veřejná měření ukazují **36–65 tok/s** podle enginu a konfigurace.
+Nezávislé měření je 36,8–45,8 tok/s; NVIDIA udává kolem 70. Pro
+plánování berte spodní hranici.
+
+## Kdy zvolit DGX Spark
+
+- Potřebujete **CUDA** a NVIDIA software stack.
+- Chcete clustering a správu flotily.
+- Data nesmí opustit firmu.
+
+## Kdy ne
+
+- Chcete nejnižší cenu za 128 GB — Strix Halo je levnější.
+- Potřebujete notebook — berte RTX Spark notebook.
+- Chcete 20+ uživatelů — přidejte boxy, ne dražší stroj.
+
+## Co chybí
+
+- Nezávislé TTFT a prefill na jednotném promptu.
+- Souběžnost 4+ uživatelů.
+
+## Zdroje
+
+- [DGX Spark](/zarizeni/dgx-spark/)
+- [DGX Spark OEM](/zarizeni/dgx-spark-oem/)
+- [Návod pro DGX Spark](/navody/dgx-spark/)
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

@@ -6,8 +6,6 @@ sidebar:
   order: 2
 ---
 
-# Co nevíme
-
 Nemáme laboratoř, a tak je poctivé říct i to, co nevíme. Tato stránka je
 veřejný seznam mezer. Zároveň je zadání pro komunitu: pokud máte některé
 zařízení a chuť měřit, tady je přesně vidět, co by pomohlo.
@@ -16,7 +14,7 @@ zařízení a chuť měřit, tady je přesně vidět, co by pomohlo.
 > web, který má na všechno jedno číslo. A čtenář vidí, kde je závěr pevný
 > a kde stojí na výpočtu.
 
-## Hlavní mezery
+## Hlavní mezery v datech o lokální AI
 
 | Oblast | Co chybí | Proč to vadí | Priorita |
 |---|---|---|---|
@@ -31,7 +29,7 @@ zařízení a chuť měřit, tady je přesně vidět, co by pomohlo.
 | **Hluk a příkon** | měření v zátěži | rozhoduje o použití v kanceláři/domácnosti | střední |
 | **Ceny v ČR/EU** | dostupnost, DPH, doprava | americká cena není česká cena | střední |
 
-## Co by změnilo závěr
+## Co by změnilo závěr o lokální AI
 
 U každé datové karty je sekce „Co by změnilo závěr“. Obecně platí:
 
@@ -41,7 +39,7 @@ U každé datové karty je sekce „Co by změnilo závěr“. Obecně platí:
 - **128k+ kontext** se stejnou kvantizací.
 - **České úlohy** — shrnutí, extrakce, e-mail, kód, screenshot.
 
-## Jak pomoct
+## Jak pomoct s daty o lokální AI
 
 Pokud máte zařízení a chcete přispět měřením, pošlete:
 

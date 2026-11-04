@@ -3,10 +3,9 @@ title: "Jak funguje lokální AI: váhy, kvantizace a tokeny"
 description: "Proč lokální model potřebuje 128 GB paměti, co dělá kvantizace a proč rychlost nezávisí na počtu parametrů. Vysvětlení bez magie."
 last_verified: 2026-11-04
 sidebar:
+  label: Jak to funguje
   order: 2
 ---
-
-# Jak funguje lokální AI: váhy, kvantizace a tokeny
 
 Lokální AI není aplikace, kterou nainstalujete a ona „nějak funguje“.
 Je to soubor vah, program, který je načítá, a paměť, která je musí udržet.
@@ -24,7 +23,7 @@ Když pochopíte tyto tři věci, přestanou být čísla v tabulkách záhadou.
 - **Rychlost určuje propustnost paměti**, ne jen počet parametrů.
 - **128 GB je minimum** pro Qwen3.8 Flash Next včetně rozumného kontextu.
 
-## Model jsou váhy
+## Model a váhy: jak funguje lokální AI
 
 Když se řekne „model má 176 miliard parametrů“, znamená to, že v souboru
 je 176 miliard čísel. Ta čísla se nazývají **váhy**. Určují, jak model
@@ -56,7 +55,7 @@ kvantizace se kvalita obvykle pozná až na vašich datech, ne na marketingu.
 provoz. 8bitová dává smysl tam, kde je paměti dost a záleží na každém
 procentu kvality. 16bitová je pro lokální krabici většinou nesmysl.
 
-## Proč se model musí vejít celý
+## Proč se model musí vejít celý do 128 GB
 
 Malá zařízení — DGX Spark, Strix Halo, RTX Spark — mají **unified paměť**.
 Procesor a GPU sdílejí jeden velký bazén. Když se model do něj nevejde,
@@ -69,7 +68,7 @@ Na menších strojích se nevejde vůbec. **128 GB je minimum** pro Qwen3.8
 Flash Next včetně rozumného kontextu. Menší zařízení do katalogu
 nezařazujeme.
 
-## Dvě úzká hrdla: paměť a výpočet
+## Paměť a výpočet: dvě úzká hrdla lokální AI
 
 Lokální inference má dva odlišné režimy:
 
@@ -122,7 +121,7 @@ Model se do paměti vejde, ale každý token vyžaduje přečtení celých 35 GB
 To je fyzikální limit, ne špatné nastavení. Proto jsou dnes na těchto
 zařízeních zajímavé jen řídké MoE modely.
 
-## Kontext: paměť navíc, která roste
+## Kontext a KV cache: kolik paměti zabere
 
 **Kontext** je historie konverzace, kterou si model pamatuje. Ukládá se
 do **KV cache**. Čím delší kontext, tím větší cache — a tím méně paměti
@@ -142,7 +141,7 @@ pásmo 128k a výš, zatímco pod 128k se většinou bavíme o chatu a běžnýc
 úlohách. Vždy proto uváděj, na kolika tocích bylo měření a jaká byla
 souběžnost.
 
-## Thinking: proč model „přemýšlí“ a co to dělá s rychlostí
+## Thinking režim: proč model přemýšlí a co to dělá s rychlostí
 
 Některé modely generují nejdřív skryté **reasoning tokeny** a teprve pak
 viditelnou odpověď. Uživatel vidí „70 tok/s“, ale čeká třeba 20 sekund,
@@ -153,7 +152,7 @@ maximální tok/s. Agentní úloha, která potřebuje 5 000 reasoning tokenů,
 je na 40 tok/s hotová za dvě minuty. Stejná úloha na 70 tok/s za minutu
 a čtvrt. Rozdíl je znát, ale obojí je použitelné.
 
-## Co z toho plyne pro výběr
+## Co z toho plyne pro výběr 128GB AI boxu
 
 - **128 GB** je dnes minimum pro Qwen3.8 Flash Next a denní práci.
 - **MoE s malým počtem aktivních parametrů** je jediná cesta, jak na

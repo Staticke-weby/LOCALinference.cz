@@ -6,8 +6,6 @@ sidebar:
   order: 3
 ---
 
-# Právní informace
-
 ## Provozovatel
 
 **ESHOpino s.r.o.**

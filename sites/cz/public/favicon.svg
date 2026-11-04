@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#1e2a78"/>
-  <path d="M16 18h8v28h-8zM28 18h8v18h12v10H28z" fill="#e0e7ff"/>
-  <circle cx="48" cy="18" r="6" fill="#f59e0b"/>
+  <rect width="64" height="64" rx="14" fill="#0e1626"/>
+  <rect x="3" y="3" width="58" height="58" rx="11" fill="none" stroke="#c47a3d" stroke-width="2"/>
+  <text x="32" y="42" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="24" font-weight="700" fill="#f3e7d3">[Li]</text>
 </svg>

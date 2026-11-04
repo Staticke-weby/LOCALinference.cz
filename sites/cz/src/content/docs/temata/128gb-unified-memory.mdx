@@ -1,0 +1,40 @@
+---
+title: "128 GB unified memory: proč je minimum pro lokální AI"
+description: "Proč 128 GB unified paměti stačí na Qwen3.8 Flash Next, jak souvisí s kontextem a proč menší zařízení do katalogu nepatří."
+last_verified: 2026-11-04
+sidebar:
+  label: 128 GB paměti
+  order: 7
+---
+
+**128 GB unified paměti** je minimum pro Qwen3.8 Flash Next. Model má
+přes 100 GB vah a potřebuje místo na KV cache. Menší zařízení se do
+katalogu nezařazují, protože model na nich neběží v použitelné kvalitě.
+
+## Proč 128 GB
+
+- **Váhy:** Qwen3.8 Flash Next v NVFP4 má ~101 GB.
+- **KV cache:** roste s kontextem; na 128k je potřeba několik GB.
+- **Režie:** systém, ovladače a runtime.
+- **Rezerva:** na krátké a střední kontexty, ne na mnoho streamů.
+
+## Co to znamená pro kontext
+
+128k kontext se vejde, ale je to strop pro pohodlný provoz. 262k je
+maximum modelu, ne doporučený bod. Čím delší kontext, tím méně místa
+zbývá na souběžnost.
+
+## Kde je limit
+
+- **Souběžnost 4+** — `[DOPLNIT]`, chybí měření.
+- **Dlouhý kontext** — kvalita a rychlost klesají.
+- **Větší model** — na 128 GB se nevejde.
+
+## Zdroje
+
+- [Srovnání zařízení](/zarizeni/srovnani/)
+- [Jak funguje lokální AI](/zaciname/jak-to-funguje/)
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+- [Roofline](/rychlost/roofline/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

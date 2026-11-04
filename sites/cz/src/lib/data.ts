@@ -167,6 +167,18 @@ export type Kurz = {
   poznamka?: string;
 };
 
+export type Tema = {
+  id: string;
+  nazev: string;
+  hledany_vyraz: string;
+  popis: string;
+  priorita: 'vysoka' | 'stredni' | 'nizka';
+  stav: 'hotovo' | 'rozpracovano' | 'ceka-na-data';
+  stranky: string[];
+  chybi?: string;
+  overeno: string | Date;
+};
+
 export type Zmena = {
   datum: string | Date;
   typ: string;
@@ -256,6 +268,13 @@ export function getZdroje(): Zdroj[] {
 
 export function getZmeny(): Zmena[] {
   return (load<Zmena[]>('zmeny.yaml') ?? []).sort((a, b) => isoDate(b.datum).localeCompare(isoDate(a.datum)));
+}
+
+export function getTemata(): Tema[] {
+  const poradi = { vysoka: 0, stredni: 1, nizka: 2 } as const;
+  return (load<Tema[]>('temata.yaml') ?? []).sort(
+    (a, b) => poradi[a.priorita] - poradi[b.priorita] || a.nazev.localeCompare(b.nazev, 'cs'),
+  );
 }
 
 export function getKurz(): Kurz {

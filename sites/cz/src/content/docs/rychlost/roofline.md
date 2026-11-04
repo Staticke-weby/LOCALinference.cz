@@ -1,12 +1,11 @@
 ---
-title: "Roofline: proč má krabice strop v tok/s"
+title: "Roofline: proč má lokální AI strop v tok/s"
 description: "Jediný vzorec, který vysvětlí, proč Qwen3.8 Flash Next dá 40–70 tok/s a dense 70B jen 5. Včetně příkladů a mezí výpočtu."
 last_verified: 2026-11-04
 sidebar:
+  label: Roofline
   order: 1
 ---
-
-# Roofline: proč má krabice strop v tok/s
 
 Rychlost generování není náhoda ani marketing. Je to hlavně fyzika paměti.
 Model při každém tokenu přečte aktivní váhy. Čím víc jich je a čím pomalejší
@@ -16,7 +15,7 @@ paměť, tím méně tokenů za sekundu.
 > a model cardů. Výsledek je strop, který vám řekne, jestli je naměřené
 > číslo vůbec možné. Podrobnosti v [metodice](/o-webu/metodika/).
 
-## Vzorec
+## Roofline vzorec pro lokální AI
 
 ```
 tok/s ≈ (propustnost paměti × efektivita) / (bajty přečtené na token)
@@ -60,7 +59,7 @@ Rozdíl není fyzika. Je to konfigurace. Roofline říká, co je možné; měře
 Model se do 128 GB vejde. Provozovat se nedá. To je celý důvod, proč se
 u těchto zařízení bavíme o MoE.
 
-## Jak roofline používat
+## Jak roofline používat při výběru AI boxu
 
 1. **Kontrola zdroje:** je naměřené číslo pod stropem? Pokud ne, je
    podezřelé, nebo běží jiná kvantizace či přídavné zrychlení.
@@ -70,7 +69,7 @@ u těchto zařízení bavíme o MoE.
 4. **Vysvětlení rozdílů:** když se zdroje rozcházejí, roofline pomůže
    určit, co je ještě možné a co už ne.
 
-## Kde roofline nestačí
+## Kde roofline u lokální AI nestačí
 
 - **Prefill** je jiný režim — závisí na výpočtu, ne jen na bandwidth.
 - **Kvalita** se z roofline nepozná.

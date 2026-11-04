@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.localinference.cz/sitemap-index.xml
+Sitemap: https://www.localinference.cz/sitemap.xml

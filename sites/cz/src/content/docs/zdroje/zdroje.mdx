@@ -8,13 +8,11 @@ sidebar:
 
 import TabulkaZdroju from '../../../components/TabulkaZdroju.astro';
 
-# Zdroje
-
 Web stojí na veřejných datech. Tato stránka ukazuje, odkud je bereme, jakou
 mají váhu a co z nich na web teče. Úplný registr je v `data/zdroje.yaml`
 a v interním hlídači.
 
-## Klíčové zdroje
+## Klíčové zdroje o lokální AI
 
 <TabulkaZdroju limit={12} />
 
@@ -22,7 +20,7 @@ Vybíráme primárně oficiální specifikace, model cards a nezávislá měřen
 Komunitní reporty bereme tam, kde oficiální data chybí, a vždy u nich
 uvádíme konfiguraci.
 
-## Jak zdroje hodnotíme
+## Jak hodnotíme zdroje o lokální AI
 
 - **oficiální** — výrobce, model card, dokumentace. Dobré na specifikace
   a ceny, opatrně u výkonnostních tvrzení.
@@ -31,7 +29,7 @@ uvádíme konfiguraci.
 - **komunita** — uživatelské měření. Reálné konfigurace, ale různá kvalita.
 - **výpočet** — roofline z podložených vstupů. Není to měření.
 
-## Co sledujeme
+## Co u zdrojů sledujeme
 
 - nové modely a model cards,
 - ceny a dostupnost zařízení,
@@ -42,7 +40,7 @@ uvádíme konfiguraci.
 Hlídač běží týdně a nikdy nemění obsah sám. Navrhne změnu, člověk ji
 schválí a zapíše do [changelogu](/zdroje/novinky/).
 
-## Co ještě chybí
+## Které zdroje o lokální AI chybí
 
 - Přímé odkazy na konkrétní vlákna u některých komunitních měření.
 - Více nezávislých zdrojů pro RTX Spark notebook.

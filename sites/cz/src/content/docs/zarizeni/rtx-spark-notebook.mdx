@@ -1,18 +1,17 @@
 ---
-title: "RTX Spark notebook 128 GB: lokální AI na cesty"
+title: "RTX Spark notebook 128 GB: cena, výkon a Qwen3.8 Flash Next"
 description: "Notebook se 128 GB unified paměti a 300 GB/s. Co o něm víme, včetně nativního vLLM pod Windows ARM64 a prvních měření."
 last_verified: 2026-11-04
 typ: zarizeni
 id: rtx-spark-notebook
 sidebar:
+  label: RTX Spark notebook
   order: 7
 ---
 
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
-
-# RTX Spark notebook 128 GB
 
 **Verdikt:** Notebook se 128 GB unified paměti a CUDA, který si vezmete
 na cesty — ale jen pro jednoho člověka, který ho opravdu využije.
@@ -58,7 +57,7 @@ Katalog řeší **jen 128GB verzi**. Menší konfigurace do katalogu
 nezařazujeme, protože na nich Qwen3.8 Flash Next neběží. U notebooku
 navíc rozhoduje throttling: dlouhý 128k běh není totéž co krátký chat.
 
-## Co na něm poběží
+## Co na RTX Spark notebooku poběží: Qwen3.8 Flash Next
 
 <TabulkaMereni zarizeni="rtx-spark-notebook" />
 
@@ -79,7 +78,7 @@ Nejsou to nezávislé laboratorní testy a nejsou to próza ani dlouhý kontext.
 a [BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark),
 ne z měření.
 
-## Jak rychle
+## Jak rychle běží Qwen3.8 Flash Next na RTX Spark notebooku
 
 **Co víme z veřejných zdrojů:** [CTOL](https://www.ctol.digital/news/nvidia-rtx-spark-laptop-within-8-percent-of-dgx-spark-speed)
 cituje Artificial Analysis, podle kterého je 128GB notebook do 8 % od DGX
@@ -90,7 +89,7 @@ bereme to jako signál, ne jako číslo do tabulky.
 4+ souběžných. Port sám uvádí až 16 requestů, ale bez veřejného měření
 na dlouhém kontextu to nebereme jako potvrzené.
 
-## Kontext, který zařízení reálně udrží
+## Kontext a souběžnost na RTX Spark notebooku
 
 | Kontext | Co se stane | Souběžnost |
 |---|---|---|
@@ -103,7 +102,7 @@ Maximum není doporučení. Na notebooku je navíc limitem baterie a teplota:
 dlouhý kontext a dlouhé generování znamenají trvalou zátěž. Konkrétní
 chování je `[DOPLNIT: měření]`.
 
-## Co od toho čekat
+## Co od RTX Spark notebooku čekat pro firmu
 
 - **Zvládne:** chat, psaní, kód, práci s dokumenty, offline režim.
 - **Nezvládne:** sdílený pool, batch přes noc, 4+ souběžných uživatelů,
@@ -130,7 +129,7 @@ chování je `[DOPLNIT: měření]`.
 - **Cena:** 128GB konfigurace začíná kolem 5 900 USD, ne na 2 599 USD.
   Nižší ceny jsou 24GB modely, které Qwen3.8 Flash Next neunesou.
 
-## Pro koho
+## Pro koho je RTX Spark notebook 128 GB
 
 | Situace | Doporučení |
 |---|---|

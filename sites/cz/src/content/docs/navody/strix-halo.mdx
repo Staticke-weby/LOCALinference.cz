@@ -1,12 +1,11 @@
 ---
-title: "Strix Halo: první spuštění na Windows a Linuxu"
+title: "Strix Halo: jak spustit lokální AI (Windows a Linux)"
 description: "Od vybalení po první chat s Qwen3.8 Flash Next na 128GB Strix Halu. Ovladače a llama.cpp na Windows i Linuxu."
 last_verified: 2026-11-04
 sidebar:
+  label: Strix Halo
   order: 3
 ---
-
-# Strix Halo: první spuštění
 
 Tento návod platí pro 128GB boxy s **AMD Ryzen AI Max+ 395** (Strix Halo),
 například Acemagic A10A, Acer Veriton RA110, GMKtec EVO-X2 nebo Framework
@@ -16,7 +15,7 @@ volitelná cesta pro ty, kdo chtějí ROCm a serverový provoz.
 > **Co budete potřebovat:** 128 GB RAM, Windows 11 Pro nebo Ubuntu 24.04,
 > aktuální AMD ovladače, internet a přibližně 100 GB místa pro plný model.
 
-## Windows 11: rychlý start
+## Windows 11: Qwen3.8 Flash Next na Strix Halu
 
 ### Krok 1: Aktualizujte systém a ovladače
 
@@ -50,7 +49,7 @@ z Hugging Face a spusťte ho přes `-m cesta\\k\\souboru.gguf`.
 
 *Zdroj: [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb), [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases).*
 
-## Linux (Ubuntu 24.04): serverová cesta
+## Linux (Ubuntu 24.04): Qwen3.8 Flash Next přes ROCm
 
 Linux dává smysl, pokud chcete Strix Halo provozovat jako službu bez
 Windows. Postup je složitější a vyžaduje ROCm.

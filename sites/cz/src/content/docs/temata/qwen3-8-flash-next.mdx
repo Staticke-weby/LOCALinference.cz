@@ -1,0 +1,49 @@
+---
+title: "Qwen3.8 Flash Next na 128 GB: výkon a provoz"
+description: "Jak běží Qwen3.8 Flash Next na 128GB boxech, kolik potřebuje paměti, jaké má kvantizace a jaký software ho provozuje."
+last_verified: 2026-11-04
+sidebar:
+  label: Qwen3.8 na 128 GB
+  order: 6
+---
+
+Qwen3.8 Flash Next je **jediný model katalogu**. Má 176B parametrů
+celkem a 6B aktivních, takže se vejde do 128 GB a běží rychlostí,
+kterou člověk pohodlně čte.
+
+## Kolik potřebuje paměti
+
+| Kvantizace | Váhy | Zařízení |
+|---|---|---|
+| NVFP4 | ~101 GB | DGX Spark, vLLM |
+| GGUF Q4_K_M | ~95 GB | llama.cpp, Strix Halo |
+
+Na 128 GB zbývá zhruba 27 GB na KV cache a aktivace. To stačí na
+128k kontext, ne na mnoho dlouhých streamů najednou.
+
+## Jak rychle běží
+
+Veřejná měření: **36–65 tok/s** na DGX Sparku, **36–79 tok/s** na
+Strix Halu a **35–70 tok/s** na RTX Spark notebooku. Čísla závisí
+na kvantizaci, enginu a kontextu.
+
+## Software
+
+- **vLLM** — produkční server, NVFP4, MTP.
+- **llama.cpp** — GGUF, Vulkan/CUDA, vision přes mmproj.
+- **Ollama** — experimentální tag `qwen3.8-flash-next`.
+
+## Co chybí
+
+- Podložené doporučení provozního kontextu.
+- České testy a vision testy.
+- Souběžnost 4+.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+- [Návod pro DGX Spark](/navody/dgx-spark/)
+- [Data: Qwen3.8 na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+- [Všechna měření](/zdroje/mereni/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

@@ -8,8 +8,6 @@ sidebar:
 
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
 
-# Všechna měření
-
 Tohle je jeden přehled všech měření, která na webu používáme. Každý řádek
 má zařízení, model, kvantizaci, engine, kontext, TTFT, prefill, decode,
 typ údaje, důvěryhodnost a zdroj.
@@ -20,13 +18,13 @@ typ údaje, důvěryhodnost a zdroj.
 
 <TabulkaMereni />
 
-## Co v tabulce je
+## Co je v tabulce měření
 
 - **DGX Spark** — Qwen3.8 Flash Next od 16 do 65 tok/s.
 - **Strix Halo** — Qwen3.8 Flash Next 36–79 tok/s.
 - **RTX Spark notebook** — nativní vLLM a llama.cpp.
 
-## Co v tabulce není
+## Co v tabulce měření není
 
 - **Dražší a větší stroje** — vyřazeny, web se drží malých 128GB boxů.
 - **Zařízení pod 128 GB** — vyřazena, nevejde se na ně Qwen3.8.

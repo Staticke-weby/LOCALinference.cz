@@ -3,10 +3,9 @@ title: "Jak čteme data a měření"
 description: "TTFT, prefill, decode, kontext a souběžnost. Jak čteme cizí měření, proč se rozcházejí a co znamenají pro denní použití."
 last_verified: 2026-11-04
 sidebar:
+  label: Jak čteme data
   order: 3
 ---
-
-# Jak čteme data a měření
 
 Čísla o lokální AI nejsou srovnatelná, dokud neznáte podmínky. Stejný model
 dá na stejném zařízení 27, 45 nebo 70 tok/s podle kvantizace, enginu, MTP
@@ -17,7 +16,7 @@ si je ověřit.
 > interpretace, kontrola roofline a vysvětlení rozporů. Podrobnosti v
 > [metodice](/o-webu/metodika/).
 
-## TTFT: čas do prvního tokenu
+## TTFT: čas do prvního tokenu u lokální AI
 
 **TTFT** (time to first token) je doba od odeslání zadání po první znak
 odpovědi. Je to nejdůležitější číslo pro pocit z interaktivní práce.
@@ -31,7 +30,7 @@ TTFT ovlivňuje:
 U krátkého promptu může být TTFT pod sekundu. U 32k dokumentu klidně
 desítky sekund. Proto nikdy neporovnávejte TTFT bez délky promptu.
 
-## Prefill: zpracování vstupu
+## Prefill: jak dlouho trvá zpracování promptu
 
 **Prefill** je rychlost, kterou model přečte a zpracuje váš prompt.
 Měří se v tok/s vstupu. Je to jiná veličina než rychlost generování.
@@ -56,7 +55,7 @@ bajty na token ≈ aktivní parametry × bajty na parametr
 
 Více v [roofline](/rychlost/roofline/).
 
-## Kontext: max, doporučený, reálný
+## Kontext u lokální AI: maximum, doporučení a realita
 
 U každého modelu rozlišujeme tři čísla:
 
@@ -99,7 +98,7 @@ Když dva zdroje tvrdí něco jiného, obvykle nejde o chybu. Rozdíl dělá:
 Proto u každého čísla uvádíme konfiguraci. Když chybí, je to `[DOPLNIT]`,
 ne odhad.
 
-## Důvěryhodnost
+## Důvěryhodnost měření lokální AI
 
 - **vysoká** — 2+ nezávislé zdroje se shodou,
 - **střední** — jeden nezávislý nebo více komunitních,

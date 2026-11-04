@@ -4,7 +4,26 @@
 
 ---
 
-## 2026-11-04 — jediný model
+## 2026-11-04 - SEO, témata a discovery
+
+- **Nadpisy:** `title`, H1 a podnadpisy nesou hledané fráze („DGX Spark cena“,
+  „kolik stojí lokální AI“, „Qwen3.8 Flash Next na 128 GB“).
+- **Dva H1 na stránce:** Starlight renderuje H1 z frontmatteru `title`,
+  Markdown měl navíc vlastní `#` nadpis. H1 z těla všech stránek odstraněn.
+- **`/temata/`** je rozcestník podle hledaných výrazů. Data v
+  `data/temata.yaml` (7 témat) a každé téma má `chybi` jako veřejný backlog.
+  Nová témata se zakládají z dotazů v Google Search Console.
+- **`/sitemap.xml`** je vlastní route s `lastmod` z `last_verified`.
+  Starlight dál generuje `sitemap-index.xml`; robots odkazuje na
+  `/sitemap.xml`.
+- **Navigace:** dlouhé SEO titulky by lámaly levý sloupec, proto mají
+  stránky krátký `sidebar.label`. `title` zůstává dlouhý kvůli SERP.
+- **OG obrázky** `og-cz.png` / `og-en.png` (1200×630) se generují ze SVG
+  přes `sharp`; při změně claimu je potřeba přegenerovat PNG.
+
+---
+
+## 2026-11-04 - jediný model
 
 - Katalog, měření, návody i watchlist řeší **jen Qwen3.8 Flash Next**.
 - Z veřejného obsahu, plánů a šablon byly odstraněny zmínky o jiných

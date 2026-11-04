@@ -1,15 +1,14 @@
 ---
-title: "DGX Spark 128 GB: CUDA krabice, která po zdražení není nejlevnější"
+title: "DGX Spark 128 GB: cena, výkon a Qwen3.8 Flash Next"
 description: "128 GB unified paměti, 273 GB/s a CUDA. Co na DGX Sparku reálně běží, jak rychle a pro koho se po zdražení ještě vyplatí."
 last_verified: 2026-11-04
 sidebar:
+  label: DGX Spark
   order: 1
 ---
 
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
-
-# DGX Spark 128 GB
 
 **Verdikt:** Nejintegrovanější 128GB krabice s CUDA a enterprise
 managementem. Po zdražení na 6 950 USD už není nejlevnější — ale pokud
@@ -58,7 +57,7 @@ zařízení do katalogu nezařazujeme.
 GIGABYTE, Acer, PNY a NVIDIA najdete v
 [přehledu DGX Spark OEM](/zarizeni/dgx-spark-oem/).
 
-## Co na něm poběží
+## Co na DGX Sparku poběží: Qwen3.8 Flash Next
 
 <TabulkaMereni zarizeni="dgx-spark" />
 
@@ -66,13 +65,13 @@ GIGABYTE, Acer, PNY a NVIDIA najdete v
 nezávislé měření 36,8–45,8 tok/s. Rozdíl je engine, MTP, workload a délka
 běhu. Pro plánování berte **spodní hranici 36,8 tok/s**, ne 70.
 
-## Jak rychle
+## Jak rychle běží Qwen3.8 Flash Next na DGX Sparku
 
 **Konfigurace madeye:** vLLM nightly 8a728663, NVFP4, MTP3, FP8 KV,
 262 144 tokenů, 4 096tokené prefill chunky, 6 slotů. Nejsou to univerzální
 čísla; jsou to čísla pro tento setup.
 
-## Kontext, který zařízení reálně udrží
+## Kontext a souběžnost na DGX Sparku
 
 | Kontext | Co se stane | Souběžnost |
 |---|---|---|
@@ -84,7 +83,7 @@ běhu. Pro plánování berte **spodní hranici 36,8 tok/s**, ne 70.
 Maximum není doporučení. Jeden 200k request může vytlačit ostatní
 z KV cache. Konkrétní chování při 4 souběžných je `[DOPLNIT: měření]`.
 
-## Co od toho čekat
+## Co od DGX Sparku čekat pro firmu
 
 - **Zvládne:** chat, psaní, kód, práci s dokumenty, RAG, agentní úlohy.
 - **Nezvládne:** 20+ souběžných uživatelů, modely nad ~200B bez offloadu.
@@ -100,7 +99,7 @@ z KV cache. Konkrétní chování při 4 souběžných je `[DOPLNIT: měření]`
 - **Souběžnost:** 16 slotů v KV cache není 16 spokojených uživatelů.
 - **Napájení a hluk:** `[DOPLNIT: měření]`.
 
-## Pro koho
+## Pro koho je DGX Spark 128 GB
 
 | Situace | Doporučení |
 |---|---|

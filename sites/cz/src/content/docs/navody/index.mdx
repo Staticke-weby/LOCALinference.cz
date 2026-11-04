@@ -3,10 +3,9 @@ title: "Návody: zprovoznění lokální AI na 128GB boxu"
 description: "Krok za krokem od vybalení po první chat. Návody pro DGX Spark, RTX Spark mini/notebook a Strix Halo na Windows i Linuxu."
 last_verified: 2026-11-04
 sidebar:
+  label: Přehled návodů
   order: 0
 ---
-
-# Návody: první spuštění
 
 Výrobci obvykle řeknou, jak stroj zapnout, ale ne jak na něm rozjet
 model. Tady jsou návody pro každou platformu v katalogu. Cíl je stejný:
@@ -18,7 +17,7 @@ model. Tady jsou návody pro každou platformu v katalogu. Cíl je stejný:
 | [RTX Spark mini/notebook](/navody/rtx-spark/) | Windows 11 Arm64 | Qwen3.8 Flash Next | llama.cpp CUDA |
 | [Strix Halo](/navody/strix-halo/) | Windows 11 / Ubuntu | Qwen3.8 Flash Next | llama.cpp Vulkan/ROCm |
 
-## Co je stejné
+## Co mají návody pro lokální AI společné
 
 - **Všechny návody končí u Qwen3.8 Flash Next.** Jiný model v katalogu
   není; web řeší jen tento model a jak ho na daném stroji provozovat.
@@ -28,7 +27,7 @@ model. Tady jsou návody pro každou platformu v katalogu. Cíl je stejný:
   LM Studio, curl) se připojí na `/v1`.
 - **Nevystavujte API do internetu.** Lokální server nemá autentizaci.
 
-## Co se liší
+## Co se u DGX, RTX a Strix Halu liší
 
 - **DGX Spark** má CUDA a DGX OS; nejjednodušší je oficiální vLLM recept.
 - **RTX Spark** je Windows Arm64; potřebujete ARM64 build llama.cpp
@@ -36,7 +35,7 @@ model. Tady jsou návody pro každou platformu v katalogu. Cíl je stejný:
 - **Strix Halo** je x86 s ROCm/Vulkan; na Windows je nejjednodušší
   Vulkan, na Linuxu ROCm nebo Lemonade build.
 
-## Když si nejste jistí
+## Kde začít s lokální AI
 
 - **Nemáte ještě stroj?** Začněte [výběrem podle rozpočtu](/vyber/rozpocet/).
 - **Nevíte, co model zvládne?** Přečtěte si

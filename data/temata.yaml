@@ -1,0 +1,98 @@
+# Témata a hledané výrazy. Slouží jako SEO rozcestník i backlog pro GSC.
+# `stav`: hotovo | rozpracovano | ceka-na-data
+# `stranky`: interní cesty, na které téma odkazuje.
+
+- id: lokalni-ai-pro-firmy
+  nazev: Lokální AI pro firmy
+  hledany_vyraz: "lokální AI pro firmy"
+  popis: "Kdy se lokální AI vyplatí firmě, jaká je návratnost a co potřebujete umět."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /zaciname/co-je-lokalni-ai/
+    - /zarizeni/srovnani/
+    - /vyber/rozpocet/
+  chybi: "Chybí případové studie českých firem a měření přínosu."
+  overeno: 2026-11-04
+
+- id: cena-lokalni-ai
+  nazev: Kolik stojí lokální AI
+  hledany_vyraz: "kolik stojí lokální AI"
+  popis: "Ceny 128GB boxů v Kč i USD, celkové náklady a kdy se vyplatí oproti cloudu."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /vyber/rozpocet/
+    - /zarizeni/srovnani/
+    - /zarizeni/dgx-spark-oem/
+    - /zarizeni/strix-halo-oem/
+  chybi: "Chybí české ceny RTX Spark mini a provozní náklady (elektřina, správa)."
+  overeno: 2026-11-04
+
+- id: dgx-spark
+  nazev: DGX Spark cena a výkon
+  hledany_vyraz: "DGX Spark cena"
+  popis: "DGX Spark 128 GB: cena v Kč, výkon, Qwen3.8 Flash Next a české OEM varianty."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /zarizeni/dgx-spark/
+    - /zarizeni/dgx-spark-oem/
+    - /navody/dgx-spark/
+    - /modely/qwen3-8-flash-next/
+  chybi: "Chybí nezávislé TTFT a souběžnost 4+."
+  overeno: 2026-11-04
+
+- id: strix-halo
+  nazev: Strix Halo cena a výkon
+  hledany_vyraz: "Strix Halo cena"
+  popis: "Strix Halo 128 GB: nejlevnější cesta k Qwen3.8 Flash Next, české ceny a limity ROCm."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /zarizeni/strix-halo/
+    - /zarizeni/strix-halo-oem/
+    - /navody/strix-halo/
+    - /modely/qwen3-8-flash-next/
+  chybi: "Chybí TTFT na jednotném promptu a souběžnost 4+."
+  overeno: 2026-11-04
+
+- id: rtx-spark
+  nazev: RTX Spark cena a výkon
+  hledany_vyraz: "RTX Spark cena"
+  popis: "RTX Spark mini a notebook 128 GB: české ceny, výkon a návod na Qwen3.8 Flash Next."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /zarizeni/rtx-spark-mini/
+    - /zarizeni/rtx-spark-notebook/
+    - /zarizeni/rtx-spark-notebook-oem/
+    - /navody/rtx-spark/
+  chybi: "Chybí první veřejné měření RTX Spark mini."
+  overeno: 2026-11-04
+
+- id: qwen3-8-flash-next
+  nazev: Qwen3.8 Flash Next na 128 GB
+  hledany_vyraz: "Qwen3.8 Flash Next"
+  popis: "Jediný model katalogu: jak běží na 128GB boxech, kolik potřebuje paměti a jak ho provozovat."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /modely/qwen3-8-flash-next/
+    - /data/qwen3-8-flash-next-strix-halo/
+    - /navody/dgx-spark/
+  chybi: "Chybí podložené doporučení provozního kontextu a české testy."
+  overeno: 2026-11-04
+
+- id: 128gb-unified-memory
+  nazev: 128 GB unified memory
+  hledany_vyraz: "128 GB unified memory"
+  popis: "Proč je 128 GB minimum pro Qwen3.8 Flash Next a co to znamená pro kontext a souběžnost."
+  priorita: stredni
+  stav: hotovo
+  stranky:
+    - /zarizeni/srovnani/
+    - /zaciname/jak-to-funguje/
+    - /zaciname/co-je-lokalni-ai/
+  chybi: "Chybí měření reálného kontextu při souběžnosti."
+  overeno: 2026-11-04

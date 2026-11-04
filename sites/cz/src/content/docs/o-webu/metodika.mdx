@@ -3,12 +3,11 @@ title: "Metodika: jak čteme data o lokální AI"
 description: "Vlastní měření neprovádíme. Pracujeme jen s veřejnými daty, ke kterým dohledáme zdroj, a vysvětlujeme, co z nich plyne."
 last_verified: 2026-11-04
 sidebar:
+  label: Metodika
   order: 1
 ---
 
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
-
-# Metodika: jak čteme data o lokální AI
 
 **Vlastní měření neprovádíme.** Žádné zařízení fyzicky netestujeme a
 nemáme laboratoř. Pracujeme jen s daty, ke kterým dohledáme zdroj.
@@ -24,7 +23,7 @@ Tato stránka popisuje, jak to děláme. Je to zároveň slib: **žádné čísl
 v tabulkách není z našeho testu.** Buď je převzaté (`namereno`), nebo
 vypočtené z podložených vstupů (`vypocet`).
 
-## Co tedy děláme
+## Jak ověřujeme data o lokální AI
 
 1. **Sbíráme primární data.** Model cards, dokumentace výrobců, nezávislé
    benchmarky, komunitní měření. Každý zdroj má v registru svou váhu.
@@ -40,7 +39,7 @@ vypočtené z podložených vstupů (`vypocet`).
    nenajdeme, napíšeme `[DOPLNIT]` nebo spočítáme hodnotu z podložených
    vstupů a označíme ji jako `vypocet`.
 
-## Zdroje a jejich váha
+## Zdroje dat o lokální AI a jejich váha
 
 | Typ zdroje | Co od něj bereme | Omezení |
 |---|---|---|
@@ -58,7 +57,7 @@ vypočtené z podložených vstupů (`vypocet`).
 U klíčových čísel tuto informaci uvidíte. Není to formalita: čtenář má
 vědět, jak moc se na číslo může spolehnout.
 
-## Jak normalizujeme
+## Normalizace měření lokální AI
 
 Stejný model dá na stejném zařízení různá čísla podle toho, co je zapnuté.
 Proto u každého měření evidujeme:
@@ -75,7 +74,7 @@ Proto u každého měření evidujeme:
 Když něco chybí, řekneme to. Bez těchto údajů není „70 tok/s“ číslo,
 ale reklama.
 
-## Roofline jako kontrola
+## Roofline jako kontrola měření
 
 Pro decode platí přibližně:
 
@@ -98,7 +97,7 @@ zrychlilo (MTP, NPU, jiná kvantizace, jiný model).
 Roofline používáme i tam, kde měření chybí. Výsledek je pak `vypocet`,
 ne `namereno`, a vždy ukážeme vstupy.
 
-## Typy čísel
+## Typy čísel v datových kartách
 
 | Typ | Co to znamená | Příklad |
 |---|---|---|
@@ -109,7 +108,7 @@ ne `namereno`, a vždy ukážeme vstupy.
 **Vlastní měření ani odhad nepoužíváme.** Když zdroj chybí, je v textu
 `[DOPLNIT]`, ne vymyšlené číslo.
 
-## Rozpory nezakrýváme
+## Rozpory v měření lokální AI
 
 Když dva zdroje tvrdí něco jiného, ukážeme oba. Typický případ:
 Qwen3.8 Flash Next na Strix Halo 128 GB.
@@ -127,7 +126,7 @@ znamená 16–40 s před prvním tokenem, 128k prompt 67–166 s (výpočet
 z prefillu, ne měření). Proto u této platformy vždy uvádíme TTFT, ne jen
 tok/s.
 
-## Plánovací číslo vs. špička
+## Plánovací číslo vs. špička u lokální AI
 
 - **Špička** je nejlepší naměřené single-stream číslo. Hodí se na demo.
 - **Plánovací číslo** je konzervativní hodnota s rezervou 10–25 % na frontu,
@@ -136,7 +135,7 @@ tok/s.
 V tabulkách uvádíme obojí, jasně oddělené. Pro „kolik lidí to obslouží“
 používáme plánovací číslo, ne špičku.
 
-## Co si můžete ověřit
+## Co si u našich dat můžete ověřit
 
 - U každého čísla je odkaz na zdroj a datum.
 - U každého měření je konfigurace.
@@ -144,7 +143,7 @@ používáme plánovací číslo, ne špičku.
 - Když najdete chybu, pošlete issue nebo e-mail; opravu zapíšeme do
   changelogu.
 
-## Co tato metodika neumí
+## Co metodika lokální AI neumí
 
 - **Nenahradí vlastní test.** Pokud potřebujete jistotu pro konkrétní úlohu,
   změřte si ji na svém zařízení.

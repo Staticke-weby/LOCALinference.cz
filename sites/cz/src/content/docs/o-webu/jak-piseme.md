@@ -6,8 +6,6 @@ sidebar:
   order: 2
 ---
 
-# Jak píšeme
-
 Local Inference je nezávislý průvodce. Neprodáváme hardware, nemáme
 affiláty a nedostáváme peníze za doporučení. Píšeme pro člověka, který
 zvažuje konkrétní nákup nebo už stroj má a chce vědět, co na něm rozumně

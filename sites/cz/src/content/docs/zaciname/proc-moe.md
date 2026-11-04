@@ -1,12 +1,11 @@
 ---
-title: "Proč jsou dnes zajímavé jen MoE modely"
+title: "Proč jsou MoE modely rychlejší na 128 GB"
 description: "Dense model se 70B na malé krabici běží ~5 tok/s. MoE se 6B aktivních dá 40–70 tok/s. Vysvětlení, proč rozhodují aktivní parametry."
 last_verified: 2026-11-04
 sidebar:
+  label: Proč MoE
   order: 4
 ---
-
-# Proč jsou dnes zajímavé jen MoE modely
 
 Na hotovém zařízení s 128 GB paměti se vejde i dense model se 70 miliardami
 parametrů. Jenže se vejde a **běží kolem 5 tok/s** — což není denní práce.
@@ -15,7 +14,7 @@ Rozhoduje počet **aktivních** parametrů, ne celkových.
 > **Toto jsou převzatá data, ne naše měření.** Čísla pocházejí z veřejných
 > měření; konfigurace je u zdrojů. Podrobnosti v [metodice](/o-webu/metodika/).
 
-## Dense model: každý token projde vším
+## Dense model: proč je na 128 GB pomalý
 
 **Dense model** používá při každém tokenu všechny parametry. Když má
 70 miliard parametrů v 4bitové kvantizaci, znamená to zhruba 35 GB
@@ -25,7 +24,7 @@ Na zařízení s propustností 273 GB/s je teoretický strop
 `273 / 35 = 7,8 tok/s`. Reálně se dostanete na ~5 tok/s. Model se do
 paměti vejde, ale provozovat se nedá.
 
-## MoE: router vybere několik expertů
+## MoE model: proč je na 128 GB rychlejší
 
 **MoE** (Mixture of Experts) má mnoho expertů, ale na každý token aktivuje
 jen několik z nich. Celkové parametry určují kapacitu a paměť; aktivní
@@ -36,7 +35,7 @@ aktivních** na token. Na DGX Spark to je kolem 70 tok/s podle Qwen/NVIDIA
 a 36,8–45,8 tok/s v nezávislém měření
 ([madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)).
 
-## Srovnání
+## Srovnání MoE a dense modelů
 
 - **Qwen3.8 Flash Next na DGX Spark:** 36,8–45,8 tok/s v nezávislém měření
   ([madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)).
@@ -49,7 +48,7 @@ a 36,8–45,8 tok/s v nezávislém měření
 Čísla nejsou srovnatelná bez konfigurace: jiný engine, kvantizace a délka
 běhu. Podrobnosti jsou v [metodice](/o-webu/metodika/).
 
-## Kde MoE zaostává
+## Kde MoE modely zaostávají
 
 - **Unie expertů při batchi** — čím víc tokenů současně, tím víc expertů
   se aktivuje a agregát roste méně, než by člověk čekal.
@@ -57,7 +56,7 @@ běhu. Podrobnosti jsou v [metodice](/o-webu/metodika/).
 - **Paměť navíc** — celkové parametry se musí vejít, i když se nečtou.
 - **Kvalita** — MoE není automaticky lepší; záleží na tréninku a datech.
 
-## Co z toho plyne pro nákup
+## Co z toho plyne pro nákup AI boxu
 
 - **128 GB** je minimum pro Qwen3.8 Flash Next.
 - **Menší zařízení** do katalogu nezařazujeme.

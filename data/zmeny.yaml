@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: obsah
+  titulek: "SEO: témata, sitemap.xml, OG obrázky a logo"
+  co_se_zmenilo: "Nadpisy a titulky přepsané na hledané fráze. Přibyl rozcestník /temata/ se 7 tématy (data/temata.yaml), vlastní /sitemap.xml, OG obrázky og-cz.png a og-en.png, favicon [Li] a logo v hlavičce. Robots odkazuje na /sitemap.xml."
+  dotcene_stranky: [temata, index, zarizeni/dgx-spark, modely/qwen3-8-flash-next]
+  zdroj: https://www.localinference.cz/temata/
+
+- datum: 2026-11-04
   typ: model
   titulek: "Jediný model katalogu: Qwen3.8 Flash Next"
   co_se_zmenilo: "Web se zužuje na Qwen3.8 Flash Next. Ostatní modely a jejich zmínky byly odstraněny; návody, měření i software se týkají jen tohoto modelu."

@@ -1,0 +1,35 @@
+---
+import { getTemata } from '../lib/data';
+
+const temata = getTemata();
+const stavLabel = (s: string) => (s === 'hotovo' ? 'hotovo' : s === 'rozpracovano' ? 'rozpracováno' : 'čeká na data');
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Téma</th>
+        <th>Hledaný výraz</th>
+        <th>Co chybí</th>
+        <th>Stav</th>
+      </tr>
+    </thead>
+    <tbody>
+      {temata.map((t) => (
+        <tr>
+          <td><a href={`/temata/${t.id}/`}>{t.nazev}</a></td>
+          <td>{t.hledany_vyraz}</td>
+          <td>{t.chybi ?? '—'}</td>
+          <td>{stavLabel(t.stav)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+</style>

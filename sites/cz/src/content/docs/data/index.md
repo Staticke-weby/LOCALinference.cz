@@ -6,8 +6,6 @@ sidebar:
   order: 1
 ---
 
-# Datové karty
-
 Datová karta není naše měření. Je to záznam o tom, **co tvrdí zdroj**,
 za jakých podmínek, jak je to důvěryhodné a co z toho plyne pro denní
 použití.
@@ -16,7 +14,7 @@ použití.
 > netestujeme. Naše hodnota je v tom, že data srovnáme, zkontrolujeme
 > roofline a vysvětlíme rozpory. Podrobnosti v [metodice](/o-webu/metodika/).
 
-## Co karta obsahuje
+## Co obsahuje datová karta měření
 
 - **Co tvrdí zdroj** — konkrétní čísla a konfiguraci.
 - **Kdo měřil** — výrobce, nezávislý test, komunita.
@@ -26,12 +24,12 @@ použití.
 - **Interpretaci** — co z toho plyne pro chat, agenta a dlouhý kontext.
 - **Co by změnilo závěr** — jaká data chybí.
 
-## Hotové karty
+## Hotové datové karty lokální AI
 
 - [Qwen3.8 Flash Next na Strix Halo 128 GB](/data/qwen3-8-flash-next-strix-halo/) —
   příklad rozptylu 41–79 tok/s a vlivu prefillu.
 
-## Co ještě chybí
+## Co u lokální AI ještě chybí
 
 - DGX Spark: TTFT a prefill pro různé engine.
 - RTX Spark mini: první veřejné měření.

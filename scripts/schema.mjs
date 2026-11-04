@@ -214,6 +214,18 @@ export const kurz = z.object({
   poznamka: z.string().optional(),
 });
 
+export const tema = z.object({
+  id,
+  nazev: z.string().min(2),
+  hledany_vyraz: z.string().min(2),
+  popis: z.string().min(10),
+  priorita: z.enum(['vysoka', 'stredni', 'nizka']),
+  stav: z.enum(['hotovo', 'rozpracovano', 'ceka-na-data']),
+  stranky: z.array(z.string().min(1)).default([]),
+  chybi: z.string().optional(),
+  overeno: datum,
+});
+
 export const zmena = z.object({
   datum,
   typ: z.enum(['cena', 'model', 'mereni', 'zdroj', 'obsah']),

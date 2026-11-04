@@ -76,8 +76,8 @@ Tón a hloubka webu. Tyto stránky musí být hotové dřív než katalog.
 |---|---|---|---|---|
 | 1 | `zaciname/co-je-lokalni-ai` | Co lokální AI je, co umí, co ne, pro koho má smysl | lokální AI, AI na vlastním počítači | ✅ |
 | 2 | `zaciname/jak-to-funguje` | Váhy, kvantizace, paměť, tok/s — bez magie | jak funguje lokální AI, kvantizace modelu | ✅ |
-| 3 | `zaciname/proc-moe` | Rozhodují aktivní parametry, ne celkové | MoE model, aktivní parametry | ⬜ |
-| 4 | `zaciname/jak-cteme-data` | Jak čteme cizí měření, roofline, rozpětí a důvěryhodnost | jak číst tok/s, TTFT, benchmark | ⬜ |
+| 3 | `zaciname/proc-moe` | Rozhodují aktivní parametry, ne celkové | MoE model, aktivní parametry | ✅ |
+| 4 | `zaciname/jak-cteme-data` | Jak čteme cizí měření, roofline, rozpětí a důvěryhodnost | jak číst tok/s, TTFT, benchmark | ✅ |
 | 5 | `zaciname/slovnik` | Pojmy bez balastu, abecedně | slovník lokální AI | ⬜ |
 | 6 | `zaciname/prostredi` | Co nainstalovat: Node, Python, Git, runtime | Python pro AI skripty, vLLM, llama.cpp | ⬜ |
 
@@ -238,9 +238,9 @@ Nikdy netvrdíme, že jsme postup testovali.
 
 | Stránka | Účel | Stav |
 |---|---|---|
-| `vyber/rozpocet` | Do 4 000 / 4–8 tis. / 10 tis.+ USD | ⬜ |
+| `vyber/rozpocet` | Ceny 128GB boxů v Kč a výběr podle rozpočtu | ✅ |
 | `vyber/stolni-vs-notebook` | Kde má GPU běžet a proč | ⬜ |
-| `vyber/kolik-uzivatelu` | Kolik lidí jeden stroj obslouží | ⬜ |
+| `vyber/kolik-uzivatelu` | Kolik lidí jeden stroj obslouží | ✅ |
 | `vyber/bezpecna-volba` | Minimum, které nezklame; co je zbytečné | ⬜ |
 | `rychlost/kalkulacka` | Odhad doby odpovědi podle kontextu a výstupu | ⬜ |
 
@@ -254,13 +254,13 @@ výstupu a thinking; spočítá TTFT, decode a celkový čas.
 
 | Stránka | Účel | Stav |
 |---|---|---|
-| `zdroje/mereni` | Tabulka všech měření s datem, konfigurací, zdrojem | ⬜ |
+| `zdroje/mereni` | Tabulka všech měření s datem, konfigurací, zdrojem | ✅ |
 | `data/<id>` | Datová karta: zdroj, podmínky, rozpětí, interpretace | ✅ (vzor: Qwen3.8 FN na Strix Halo) |
-| `zdroje/zdroje` | Co sledujeme, proč, jak často | ⬜ |
+| `zdroje/zdroje` | Co sledujeme, proč, jak často | ✅ |
 | `zdroje/co-nevime` | Veřejný seznam mezer: chybí TTFT, 128k+, souběžnost | ✅ |
 | `zdroje/novinky` | Changelog: nové modely, ceny, verze | ✅ |
 | `o-webu/metodika` | Nemáme laboratoř; jak čteme, srovnáváme a interpretujeme data | ✅ |
-| `scripts/hlidac.mjs` | Kontrola zdrojů proti uloženému stavu | ⬜ |
+| `scripts/hlidac.mjs` | Kontrola zdrojů proti uloženému stavu | ✅ |
 
 **Hlídač:** kontroluje model cards, ceníky, vydání vLLM/SGLang/llama.cpp
 a stránky výrobců. Výstup: report „co je nového“ + návrh na aktualizaci.
@@ -336,6 +336,37 @@ Teprve po schválení obsahu.
 6. Kontrolní skript (`npm run check`).
 7. GitHub Actions + publikace do `localinference.cz`.
 8. EN build do `localinference.eu`.
+
+---
+
+## Vlna 8 — SEO, témata a discovery ✅
+
+Cíl: každý nadpis nese hledaný výraz, obsah je rozcestník podle témat
+a technické SEO je hotové.
+
+- ✅ **Nadpisy a titulky** přepsané na hledané fráze („DGX Spark cena“,
+  „kolik stojí lokální AI“, „Qwen3.8 Flash Next na 128 GB“). H1 zůstává
+  jeden, výraz se opakuje v `title`, `description` a jednom podnadpisu.
+- ✅ **`data/temata.yaml`** — 7 témat s `hledany_vyraz`, `popis`,
+  `priorita`, `stav`, `stranky`, `chybi`, `overeno`. Validuje
+  `scripts/kontrola-dat.mjs`.
+- ✅ **`/temata/`** — rozcestník s tabulkou (`TabulkaTemat.astro`)
+  a stavem „co chybí“.
+- ✅ **7 stránek témat:** lokální AI pro firmy, cena, DGX Spark,
+  Strix Halo, RTX Spark, Qwen3.8 Flash Next, 128 GB unified memory.
+- ✅ **`/sitemap.xml`** — vlastní route (`src/pages/sitemap.xml.ts`)
+  s čistými URL bez `sitemap-index` posloupnosti. Starlight dál generuje
+  `sitemap-index.xml`; robots odkazuje na `/sitemap.xml`.
+- ✅ **OG obrázky** `og-cz.png` a `og-en.png` (1200×630) + meta tagy.
+- ✅ **Favicon `[Li]`** a **logo `[Li] LOCAL inference`** v hlavičce.
+- ✅ **Sidebar skupina „Témata“** a odkaz v patičce.
+
+**Jak téma vzniká:** dotaz z Google Search Console → záznam v
+`data/temata.yaml` (`stav: ceka-na-data`) → stránka v
+`sites/cz/src/content/docs/temata/` → doplnění `stranky` a `stav`.
+
+**Pravidlo:** téma bez hledaného výrazu nemá smysl. Téma bez stránky
+zůstává v backlogu, ne v navigaci.
 
 ---
 

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 import { z } from 'zod';
-import { dgxSparkOem, kurz, mereni, model, rtxNotebookOem, strixHaloOem, zdroj, zarizeni, zmena } from './schema.mjs';
+import { dgxSparkOem, kurz, mereni, model, rtxNotebookOem, strixHaloOem, tema, zdroj, zarizeni, zmena } from './schema.mjs';
 
 const root = process.cwd();
 const dataDir = path.join(root, 'data');
@@ -83,6 +83,7 @@ const zarizeniData = readYaml('zarizeni.yaml');
 const dgxSparkOemData = readYaml('dgx-spark-oem.yaml');
 const rtxNotebookOemData = readYaml('rtx-spark-notebook-oem.yaml');
 const strixHaloOemData = readYaml('strix-halo-oem.yaml');
+const temataData = readYaml('temata.yaml');
 const modelyData = readYaml('modely.yaml');
 const mereniData = readYaml('mereni.yaml');
 const zdrojeData = readYaml('zdroje.yaml');
@@ -93,6 +94,7 @@ const zarizeniList = validate('data/zarizeni.yaml', zarizeni, zarizeniData);
 const dgxSparkOemList = validate('data/dgx-spark-oem.yaml', dgxSparkOem, dgxSparkOemData);
 const rtxNotebookOemList = validate('data/rtx-spark-notebook-oem.yaml', rtxNotebookOem, rtxNotebookOemData);
 const strixHaloOemList = validate('data/strix-halo-oem.yaml', strixHaloOem, strixHaloOemData);
+const temataList = validate('data/temata.yaml', tema, temataData);
 const modelyList = validate('data/modely.yaml', model, modelyData);
 const mereniList = validate('data/mereni.yaml', mereni, mereniData);
 const zdrojeList = validate('data/zdroje.yaml', zdroj, zdrojeData);
@@ -103,6 +105,7 @@ checkDuplicates('data/zarizeni.yaml', zarizeniList);
 checkDuplicates('data/dgx-spark-oem.yaml', dgxSparkOemList);
 checkDuplicates('data/rtx-spark-notebook-oem.yaml', rtxNotebookOemList);
 checkDuplicates('data/strix-halo-oem.yaml', strixHaloOemList);
+checkDuplicates('data/temata.yaml', temataList);
 checkDuplicates('data/modely.yaml', modelyList);
 checkDuplicates('data/mereni.yaml', mereniList);
 checkDuplicates('data/zdroje.yaml', zdrojeList);
@@ -152,6 +155,7 @@ for (const [name, items] of [
   ['data/dgx-spark-oem.yaml', dgxSparkOemList],
   ['data/rtx-spark-notebook-oem.yaml', rtxNotebookOemList],
   ['data/strix-halo-oem.yaml', strixHaloOemList],
+  ['data/temata.yaml', temataList],
   ['data/modely.yaml', modelyList],
   ['data/mereni.yaml', mereniList],
   ['data/zdroje.yaml', zdrojeList],
@@ -195,7 +199,7 @@ for (const u of referenced) {
 }
 
 console.log('');
-console.log(`Data: ${zarizeniList.length} zařízení, ${dgxSparkOemList.length} GB10 OEM SKU, ${rtxNotebookOemList.length} RTX notebook OEM SKU, ${strixHaloOemList.length} Strix Halo OEM SKU, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${zmenyList.length} změn.`);
+console.log(`Data: ${zarizeniList.length} zařízení, ${dgxSparkOemList.length} GB10 OEM SKU, ${rtxNotebookOemList.length} RTX notebook OEM SKU, ${strixHaloOemList.length} Strix Halo OEM SKU, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${temataList.length} témat, ${zmenyList.length} změn.`);
 if (errors === 0) console.log(`✓ Data jsou v pořádku (${warnings} varování).`);
 else console.error(`✗ ${errors} chyb, ${warnings} varování.`);
 

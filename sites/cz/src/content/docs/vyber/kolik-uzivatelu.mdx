@@ -3,15 +3,14 @@ title: "Kolik uživatelů zvládne jeden 128GB box"
 description: "Jeden malý AI box obslouží zhruba 1–4 souběžné uživatele. Pro víc lidí se škáluje počtem boxů, ne dražším strojem."
 last_verified: 2026-11-04
 sidebar:
+  label: Kolik uživatelů
   order: 2
 ---
-
-# Kolik uživatelů zvládne jeden box
 
 Cíl projektu jsou **malé 128GB boxy za dosažitelnou cenu**. Pro víc
 uživatelů se škáluje **počtem boxů**, ne nákupem dražšího stroje.
 
-## Kolik toho jeden box unese
+## Kolik uživatelů zvládne 128GB AI box
 
 - **1–4 souběžní uživatelé** na jeden 128GB box.
 - **4+ uživatelů** = další box, ne větší model.
@@ -23,7 +22,7 @@ Veřejné měření na DGX Sparku ukazuje čtyři smíšené requesty s agregát
 To je single-stream měření, ne produkční záruka; v provozu počítejte
 s rezervou.
 
-## Orientační škálování
+## Škálování lokální AI počtem boxů
 
 | Uživatelé | Boxy | Poznámka |
 |---|---|---|
@@ -37,7 +36,7 @@ s rezervou.
 Nekupujte dražší stroj jen proto, že má víc paměti — pokud se do něj
 nevejde výrazně větší model, nepřinese to víc uživatelů.
 
-## Co nefunguje
+## Co u škálování lokální AI nefunguje
 
 - **Jeden velký stroj pro 20 lidí** — drahé a zbytečné.
 - **Větší model jako náhrada kapacity** — kvalita není kapacita.

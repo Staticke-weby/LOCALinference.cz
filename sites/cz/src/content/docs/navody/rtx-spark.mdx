@@ -1,12 +1,11 @@
 ---
-title: "RTX Spark mini a notebook: první spuštění krok za krokem"
+title: "RTX Spark: jak spustit lokální AI (návod krok za krokem)"
 description: "Od Windows 11 po první chat s Qwen3.8 Flash Next na RTX Sparku. Ovladače a oficiální llama.cpp recept."
 last_verified: 2026-11-04
 sidebar:
+  label: RTX Spark
   order: 2
 ---
-
-# RTX Spark mini a notebook: první spuštění
 
 Tento návod platí pro **RTX Spark mini i notebook** — mají stejný
 Windows 11 Arm64, stejný CUDA stack a stejný postup. Rozdíl je jen
@@ -16,7 +15,7 @@ v chlazení a batterii: notebook nechte při prvním nastavení na nabíječce.
 > internet a přibližně 80 GB volného místa pro plný model. Pro rychlý
 > test stačí 20 GB.
 
-## Krok 1: Aktualizujte Windows a ovladače
+## Krok 1: Windows 11, ovladače a CUDA pro RTX Spark
 
 1. **Settings → Windows Update** a nainstalujte všechny aktualizace.
 2. Nainstalujte nejnovější **NVIDIA driver pro RTX Spark** z
@@ -32,7 +31,7 @@ a zkontrolujte, že máte ARM64 driver, ne x64.
 
 *Zdroj: [NVIDIA RTX Spark — Getting Started](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976).*
 
-## Krok 2: Qwen3.8 Flash Next přes llama.cpp
+## Krok 2: Qwen3.8 Flash Next přes llama.cpp na RTX Sparku
 
 Tohle je oficiální cesta NVIDIA pro 128GB RTX Spark. Je delší, ale
 dostanete 176B model s 262k kontextem a MTP.
@@ -82,7 +81,7 @@ Odpověď musí obsahovat text od modelu.
 
 *Zdroj: [NVIDIA Local AI Inference Recipes — RTX Spark](https://nvidia.github.io/local-ai-inference-recipes/hardware/rtx-spark/index.html).*
 
-## Krok 3: Připojte další zařízení
+## Krok 3: Připojení k RTX Sparku z dalšího zařízení
 
 Server ve výchozím nastavení poslouchá jen na `127.0.0.1`. Pokud ho
 chcete sdílet v kancelářské síti, změňte `--host 127.0.0.1` na
@@ -92,7 +91,7 @@ v otevřené síti bez autentizace.**
 V klientovi použijte `http://adresa-stroje:9931/v1` a model
 `unsloth/Qwen3.8-Flash-Next-GGUF`.
 
-## Krok 4: Co dál
+## Krok 4: Co dál s lokální AI na RTX Sparku
 
 - **Open WebUI** nebo **LM Studio Bionic** jako chat rozhraní.
 - **OpenCode / OpenClaw** pro agentní práci s kódem.
