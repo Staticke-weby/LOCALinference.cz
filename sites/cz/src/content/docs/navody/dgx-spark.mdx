@@ -7,6 +7,8 @@ sidebar:
   order: 1
 ---
 
+import AlzaCena from '../../../components/AlzaCena.astro';
+
 Tohle je návod pro člověka, který právě vybalil DGX Spark a chce co
 nejdřív chatovat s modelem. Nepotřebujete ML tým ani vlastní cluster.
 Postup je **podle oficiální dokumentace NVIDIA**; kde je potřeba
@@ -143,6 +145,8 @@ autentizace a patří jen do důvěryhodné sítě.
 | vLLM padá na paměť | snižte `--gpu-memory-utilization` nebo `--max-model-len` |
 | Model se dlouho načítá | normální u 100+ GB; sledujte `docker logs` |
 | Z laptopu to nejde | firewall, stejná síť, SSH tunel |
+
+<AlzaCena kategorie="boxy" text="Kde DGX Spark koupit" />
 
 ## Zdroje
 

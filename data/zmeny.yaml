@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Odkazy na aktuální ceny na Alza.cz"
+  co_se_zmenilo: "Na 22 stránek přibyl odkaz na aktuální ceny v kategorii Alza.cz s různou textací (Ověřit cenu, Ceny a dostupnost, Kolik stojí dnes…). Odkaz je vždy affiliate a označený štítkem. Patička místo „Co nevíme“ odkazuje na Zdroje."
+  dotcene_stranky: [index, zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook, zarizeni/rtx-spark-mini, vyber/rozpocet, temata]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Affiliate odkazy na Alza.cz míří na kategorii"
   co_se_zmenilo: "Všechny odkazy na Alza.cz vedou na kategorii (AI počítače, RTX Spark), ne na konkrétní produkt, a nesou affiliate parametry. Mají rel=sponsored a na stránkách je věta o affiliate. Registr zdrojů má místo produktových položek dvě kategorie."
   dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/strix-halo-oem, zarizeni/rtx-spark-notebook-oem, vyber/rozpocet, o-webu/pravni]

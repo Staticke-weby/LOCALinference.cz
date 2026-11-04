@@ -7,6 +7,8 @@ sidebar:
   order: 1
 ---
 
+import AlzaCena from '../../../components/AlzaCena.astro';
+
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 
 Ceny uvádíme **primárně v Kč**. U českých maloobchodních cen je
@@ -16,6 +18,8 @@ cenu neznáme, je přepočet z USD označený jako **odhad** (kurz ČNB
 stroje na Qwen3.8 Flash Next nestačí.
 
 <TabulkaZarizeni />
+
+<AlzaCena kategorie="boxy" text="Aktuální ceny na Alza.cz" />
 
 :::note[Affiliate odkazy]
 Odkazy na Alza.cz míří na kategorii, ne na konkrétní produkt — ten se

@@ -16,6 +16,8 @@ hero:
       variant: minimal
 ---
 
+import AlzaCena from '../../components/AlzaCena.astro';
+
 import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import gb10 from '../../assets/gb10.jpg';
@@ -130,3 +132,5 @@ tým ML inženýrů.
   datum poslední kontroly. Co se změnilo, najdete v
   [novinkách](/zdroje/novinky/).
 </Aside>
+
+<AlzaCena kategorie="boxy" text="Aktuální ceny na Alza.cz" />
