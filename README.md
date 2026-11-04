@@ -82,5 +82,6 @@ npm run check:zdroje   # ověří, že URL odpovídají
 
 ## Technika
 
-Astro 7 + Starlight, statický výstup, GitHub Pages. Jeden zdrojový repo,
-dva publikační repozitáře. CZ je výchozí; EN vznikne po stabilizaci obsahu.
+Astro 7 + Starlight, statický výstup, GitHub Pages. Repozitář obsahuje
+celý zdrojový web, na Pages jde jen výstup ze `sites/cz/dist`. EN mutace
+bude mít vlastní repo se stejným principem.

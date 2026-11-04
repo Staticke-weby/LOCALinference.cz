@@ -1,5 +1,9 @@
 name: Nasazení CZ na GitHub Pages
 
+# Repozitář obsahuje celý zdrojový web. Na GitHub Pages jde jen
+# statický výstup ze `sites/cz/dist` — zdrojový kód se na web nepublikuje.
+# Viz AGENTS.md, sekce 5.1.
+
 on:
   push:
     branches: [main]
@@ -11,7 +15,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-cz
   cancel-in-progress: false
 
 jobs:
@@ -25,7 +29,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - name: Build
+      - name: Build CZ
         working-directory: sites/cz
         run: |
           npm ci

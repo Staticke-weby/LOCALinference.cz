@@ -299,14 +299,18 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
   šablona ho zobrazuje pod nadpisem (override `PageTitle`).
 - Přístupnost: kontrast WCAG AA, ovladatelné klávesnicí, sémantické HTML.
 
-### 5.1 Repozitáře
+### 5.1 Repozitáře a publikace
 
-- **Jeden zdrojový repo** `localinference` — společná data, téma a obsah
-  obou mutací.
-- **Dva publikační repy** `localinference.cz` a `localinference.eu` —
-  pouze hotový statický výstup a `CNAME`, každý vlastní GitHub Pages.
+- **Zdrojový repo `Staticke-weby/LOCALinference.cz`** — celý web: data,
+  obsah, Astro projekt i workflow. Repo není skryté, zdroj je veřejný.
+- **GitHub Pages publikuje jen výstup.** Workflow `nasazeni-cz.yml`
+  postaví `sites/cz/dist` a pošle ho jako Pages artifact. Do publikační
+  větve se nikdy necommituje zdrojový kód ani `node_modules`.
+- **`Staticke-weby/LOCALinference.eu`** — EN mutace se stejným
+  principem: zdroj v repu, na Pages jen výstup. Vznikne po stabilizaci CZ.
+- **Vlastní domény:** `www.localinference.cz` (v
+  `sites/cz/public/CNAME`), `www.localinference.eu` později.
 - CZ je výchozí a vzniká první. EN se přidá po stabilizaci obsahu.
-- [DOPLNIT: GitHub organizace a způsob publikace — deploy klíč vs. PAT]
 
 ---
 
@@ -339,7 +343,9 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
 ## 8. Otevřené otázky
 
 - [DOPLNIT: značka a titulek webu — „Local Inference“ vs. český název]
-- [DOPLNIT: GitHub organizace pro oba repozitáře]
+- [x] GitHub organizace: **Staticke-weby** —
+      `LOCALinference.cz` (zdroj + build) a `LOCALinference.eu` (EN, později).
+      Publikace přes GitHub Actions artifact, ne přes commit do výstupní větve.
 - [x] Provozovatel: **ESHOpino s.r.o.**, Roháčova 145/14, 130 00 Praha 3,
       IČO 03223485, DIČ CZ03223485 — viz `/o-webu/pravni/`.
 - [DOPLNIT: kontaktní e-mail pro veřejnost]
