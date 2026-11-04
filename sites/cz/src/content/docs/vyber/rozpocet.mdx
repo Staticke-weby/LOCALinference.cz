@@ -10,14 +10,13 @@ import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 
 # Výběr podle rozpočtu
 
-Ceny jsou bez DPH a dopravy, k uvedenému datu. Přepočet na Kč je orientační
-kurzem ČNB 21,762 k 3. 11. 2026. Katalog řeší jen **128GB zařízení**;
-menší stroje na Qwen3.8 Flash Next nestačí.
+Ceny uvádíme **primárně v Kč**. U českých maloobchodních cen je
+uvedeno, zda jsou s DPH; US listy jsou bez DPH a dopravy. Kde českou
+cenu neznáme, je přepočet z USD označený jako **odhad** (kurz ČNB
+21,762 k 3. 11. 2026). Katalog řeší jen **128GB zařízení**; menší
+stroje na Qwen3.8 Flash Next nestačí.
 
 <TabulkaZarizeni />
-
-**Ceny:** bez DPH a dopravy, k datu uvedenému u zařízení. Zdroje jsou
-u každé ceny; další odkazy najdete v [registru zdrojů](/zdroje/zdroje/).
 
 ## Česky: 128 GB za 119 990 Kč
 
@@ -26,22 +25,25 @@ a 2TB za **119 990 Kč vč. DPH** (99 165 Kč bez DPH). To je nejlevnější
 128GB box v katalogu a o **43 000 Kč méně** než nejlevnější GB10 OEM.
 Podrobnosti v [Strix Halo OEM](/zarizeni/strix-halo-oem/).
 
-## Kolem 3 500 USD: Strix Halo 128 GB
+## Kolem 120 000 Kč: Strix Halo 128 GB
 
-Nejlevnější cesta k 128 GB. Framework Desktop začíná na 3 449 USD,
-GMKtec EVO-X2 na 3 499 USD. Vejde se na Qwen3.8 Flash Next, ale prefill
-je slabší a ROCm není tak zralý jako CUDA.
+Nejlevnější cesta k 128 GB. Acemagic A10A a Acer Veriton RA110 stojí
+**119 990 Kč vč. DPH**; US list začíná na 3 449 USD. Vejde se na
+Qwen3.8 Flash Next, ale prefill je slabší a ROCm není tak zralý jako CUDA.
 
-## Kolem 6 000 USD: RTX Spark mini 128 GB
+## Kolem 130 000 Kč (odhad): RTX Spark mini 128 GB
 
-Stolní CUDA za 5 999 USD. Stejná paměť a bandwidth jako notebook, ale
-stálé chlazení. Konkrétní měření Qwen3.8 FN na mini chybí.
+Stolní CUDA za 5 999 USD. Českou cenu neznáme, orientační přepočet je
+**≈ 130 550 Kč**. Stejná paměť a bandwidth jako notebook, ale stálé
+chlazení. Konkrétní měření Qwen3.8 FN na mini chybí.
 
-## Kolem 7 000 USD: DGX Spark 128 GB
+## Kolem 160 000–220 000 Kč: DGX Spark 128 GB
 
-Nejintegrovanější 128GB krabice s CUDA a enterprise managementem. Po
-zdražení už není nejlevnější. Dává smysl tam, kde potřebujete NVIDIA stack,
-clustering nebo správu flotily — ne jako „levný node“.
+Nejintegrovanější 128GB krabice s CUDA a enterprise managementem. Česká
+cena začíná na **162 990 Kč vč. DPH** (ASUS GX10 1TB); NVIDIA DGX Spark
+4TB stojí 218 990 Kč. US list je 6 950 USD. Dává smysl tam, kde
+potřebujete NVIDIA stack, clustering nebo správu flotily — ne jako
+„levný node“.
 
 ## Dražší zařízení nezařazujeme
 

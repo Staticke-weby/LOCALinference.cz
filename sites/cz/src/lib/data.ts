@@ -30,6 +30,14 @@ export type Zarizeni = {
   bandwidth_gbs: number;
   bandwidth_pozn?: string;
   cena: Cena;
+  cena_czk?: {
+    od: number;
+    do?: number;
+    s_dph: boolean;
+    overeno: string | Date;
+    zdroj: string;
+    poznamka?: string;
+  };
   cpu: string;
   gpu: string;
   os: string[];
@@ -245,23 +253,52 @@ export function getKurz(): Kurz {
   return kurzy.sort((a, b) => isoDate(b.datum).localeCompare(isoDate(a.datum)))[0];
 }
 
-export function cenaText(z: Zarizeni): { usd: string; czk: string; datum: string; zdroj: string; poznamka: string } {
+export function cenaText(z: Zarizeni): {
+  czk: string;
+  usd: string;
+  datum: string;
+  zdroj: string;
+  poznamka: string;
+  jeOdhad: boolean;
+  sDph: boolean;
+} {
   const kurz = getKurz();
-  const od = z.cena.usd ?? z.cena.od_usd ?? 0;
-  const doCeny = z.cena.usd ?? z.cena.do_usd ?? od;
-  const usd = od === doCeny ? `${formatCislo(od)} USD` : `${formatCislo(od)}–${formatCislo(doCeny)} USD`;
-  const czkOd = Math.round(od * kurz.usd_czk);
-  const czkDo = Math.round(doCeny * kurz.usd_czk);
+  const usdOd = z.cena.usd ?? z.cena.od_usd ?? 0;
+  const usdDo = z.cena.usd ?? z.cena.do_usd ?? usdOd;
+  const usd = usdOd === usdDo ? `${formatCislo(usdOd)} USD` : `${formatCislo(usdOd)}–${formatCislo(usdDo)} USD`;
+
+  if (z.cena_czk) {
+    const od = z.cena_czk.od;
+    const doCeny = z.cena_czk.do ?? od;
+    const czk =
+      od === doCeny
+        ? `${formatKc(od)} Kč`
+        : `${formatKc(od)}–${formatKc(doCeny)} Kč`;
+    return {
+      czk,
+      usd,
+      datum: formatDatum(z.cena_czk.overeno),
+      zdroj: z.cena_czk.zdroj,
+      poznamka: z.cena_czk.poznamka ?? '',
+      jeOdhad: false,
+      sDph: z.cena_czk.s_dph,
+    };
+  }
+
+  const czkOd = Math.round(usdOd * kurz.usd_czk);
+  const czkDo = Math.round(usdDo * kurz.usd_czk);
   const czk =
     czkOd === czkDo
-      ? `≈ ${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(czkOd)} Kč`
-      : `≈ ${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(czkOd)}–${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(czkDo)} Kč`;
+      ? `≈ ${formatKc(czkOd)} Kč`
+      : `≈ ${formatKc(czkOd)}–${formatKc(czkDo)} Kč`;
   return {
-    usd,
     czk,
+    usd,
     datum: formatDatum(z.cena.overeno),
     zdroj: z.cena.zdroj,
     poznamka: z.cena.poznamka ?? '',
+    jeOdhad: true,
+    sDph: false,
   };
 }
 

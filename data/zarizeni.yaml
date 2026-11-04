@@ -16,6 +16,13 @@
     overeno: 2026-10-02
     zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-spark/
     poznamka: "128GB 6 950 USD; bez DPH a dopravy."
+  cena_czk:
+    od: 162990
+    do: 249990
+    s_dph: true
+    overeno: 2026-11-04
+    zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+    poznamka: "Nejlevnější GB10 OEM 162 990 Kč (ASUS GX10 1TB); NVIDIA DGX Spark 218 990 Kč; Lenovo 249 990 Kč; vč. DPH."
   cpu: GB10 Grace Blackwell
   gpu: Blackwell
   os: [DGX OS, Ubuntu]
@@ -107,6 +114,13 @@
     overeno: 2026-09-22
     zdroj: https://www.compute-market.com/blog/strix-halo-mini-pc-local-ai-2026
     poznamka: "128GB od 3 449 USD; HP až 5 349 USD; bez DPH a dopravy."
+  cena_czk:
+    od: 119990
+    do: 119990
+    s_dph: true
+    overeno: 2026-11-04
+    zdroj: https://www.alza.cz/acemagic-a10a-ryzen-ai-max-395-128gb-2tb-d13499997.htm
+    poznamka: "Acemagic A10A a Acer Veriton RA110, 128GB/2TB, vč. DPH."
   cpu: Ryzen AI Max+ 395
   gpu: Radeon 8060S
   os: [Linux, Windows]

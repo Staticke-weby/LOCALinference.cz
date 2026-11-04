@@ -36,6 +36,17 @@ export const zarizeni = z.object({
   bandwidth_gbs: z.number().positive(),
   bandwidth_pozn: z.string().optional(),
   cena,
+  cena_czk: z
+    .object({
+      od: z.number().positive(),
+      do: z.number().positive().optional(),
+      s_dph: z.boolean().default(true),
+      overeno: datum,
+      zdroj: url,
+      poznamka: z.string().optional(),
+    })
+    .refine((v) => v.do == null || v.od <= v.do, { message: 'od musí být <= do' })
+    .optional(),
   cpu: z.string().min(1),
   gpu: z.string().min(1),
   os: z.array(z.string().min(1)).min(1),

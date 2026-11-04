@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: cena
+  titulek: "České ceny primárně v Kč"
+  co_se_zmenilo: "Cenové tabulky a stránky zařízení uvádějí první českou cenu v Kč. Kde ji známe, je s DPH; kde ne, je přepočet z USD označený jako odhad. USD zůstává jako původní/listová cena."
+  dotcene_stranky: [zarizeni/srovnani, zarizeni/dgx-spark, zarizeni/strix-halo, vyber/rozpocet]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-04
   typ: obsah
   titulek: "Návody na první spuštění"
   co_se_zmenilo: "Nová sekce /navody/ s postupy pro DGX Spark, RTX Spark mini/notebook a Strix Halo na Windows i Linuxu. Od vybalení po první chat s modelem."

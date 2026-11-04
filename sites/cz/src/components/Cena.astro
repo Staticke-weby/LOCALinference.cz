@@ -11,8 +11,10 @@ const c = cenaText(zarizeni);
 ---
 
 <span class="li-cena">
-  <strong>{c.usd}</strong>
-  <span class="li-cena__czk">{c.czk}</span>
+  <strong>{c.czk}</strong>
+  {c.sDph && <span class="li-cena__dph">vč. DPH</span>}
+  {c.jeOdhad && <span class="li-cena__odhad">odhad</span>}
+  <span class="li-cena__usd">{c.usd}</span>
   {showDate && <span class="li-cena__datum">k {c.datum}</span>}
   <a href={c.zdroj} target="_blank" rel="noopener noreferrer">zdroj</a>
 </span>
@@ -25,8 +27,18 @@ const c = cenaText(zarizeni);
     gap: 0.25rem 0.45rem;
     font-variant-numeric: tabular-nums;
   }
-  .li-cena__czk {
+  .li-cena__usd {
     color: var(--sl-color-gray-2);
+  }
+  .li-cena__dph,
+  .li-cena__odhad {
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-3);
+  }
+  .li-cena__odhad {
+    padding: 0.02rem 0.4rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
   }
   .li-cena__datum {
     color: var(--sl-color-gray-3);

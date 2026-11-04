@@ -4,6 +4,18 @@
 
 ---
 
+## 2026-11-04 — české ceny primárně
+
+- Na české mutaci se ceny uvádějí **primárně v Kč**. Pokud je česká
+  maloobchodní cena známá, je první a je u ní, zda je s DPH. USD
+  následuje jako původní/listová cena.
+- Kde českou cenu neznáme, přepočítáme z USD kurzem ČNB a výslovně
+  označíme **odhad**.
+- Týká se tabulek zařízení, stránek zařízení, rozpočtu i OEM přehledů.
+  OEM české ceny USD nedostávají — jde o jiný trh.
+
+---
+
 ## 2026-11-04 — katalog jen 128 GB
 
 Rozhodnutí provozovatele: **zařízení pod 128 GB se na webu neřeší.**

@@ -133,11 +133,13 @@ Toto je nejdůležitější pravidlo projektu.
 - **Nikdy nevymýšlej fakta.** Když údaj chybí, napiš `[DOPLNIT: co]` a pokračuj.
 - **Ceny:**
   - vždy s datem a zdrojem,
-  - v původní měně (většinou USD),
-  - na české mutaci s orientačním přepočtem na **CZK** kurzem **ČNB**
-    k uvedenému datu,
-  - na anglické mutaci s přepočtem na **EUR** kurzem **ECB** k uvedenému datu,
-  - s poznámkou „bez DPH a dopravy, přepočet je orientační“.
+  - na české mutaci **primárně v CZK**. Pokud je známá česká cena, uveď ji
+    první a za ní USD jako původní/listovou cenu. Pokud českou cenu neznáme,
+    přepočítej z USD kurzem **ČNB** a výslovně označ **odhad**.
+  - u české maloobchodní ceny uveď, zda je **s DPH** nebo bez DPH,
+  - na anglické mutaci primárně v původní měně (většinou USD) a přepočet
+    na **EUR** kurzem **ECB** k uvedenému datu,
+  - s poznámkou „bez dopravy, přepočet je orientační“.
   - Kurzy drž v `data/kurzy.yaml`; nepřepočítávej ručně v textu.
 - **Kontext:** maximální kontext není doporučený provozní bod. U každého
   modelu uváděj tři čísla: **nativní maximum**, **doporučený provozní kontext**
