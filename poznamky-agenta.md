@@ -4,6 +4,20 @@
 
 ---
 
+## 2026-11-04 - Ceny: místní měna první
+
+- **CZ mutace:** všude primárně **Kč**, USD jen v závorce. Týká se tabulek,
+  rychlých fakt i prózy — i tam, kde jde o US listovku („od 75 tis. Kč
+  (3 449 USD, odhad)“).
+- **EN mutace:** stejné pravidlo s **EUR** první a USD v závorce. Zatím
+  není postavená; pravidlo je v `AGENTS.md`, sekce 3.
+- Přepočet z USD se vždy označí **odhad** (CZ) / **estimate** (EN) a
+  vychází z `data/kurzy.yaml` (ČNB/ECB), ne z ručního výpočtu.
+- Komponenta `Cena.astro` tiskne USD do závorky; známá česká cena má
+  přednost před přepočtem.
+
+---
+
 ## 2026-11-04 - Umami pro CZ a EN
 
 - Analytika je **Umami** na `navstevnost.pikapod.net`, bez cookies.

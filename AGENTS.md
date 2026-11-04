@@ -132,12 +132,14 @@ Toto je nejdůležitější pravidlo projektu.
 - **Nikdy nevymýšlej fakta.** Když údaj chybí, napiš `[DOPLNIT: co]` a pokračuj.
 - **Ceny:**
   - vždy s datem a zdrojem,
-  - na české mutaci **primárně v CZK**. Pokud je známá česká cena, uveď ji
-    první a za ní USD jako původní/listovou cenu. Pokud českou cenu neznáme,
-    přepočítej z USD kurzem **ČNB** a výslovně označ **odhad**.
+  - na české mutaci **vždy primárně CZK**. Známou českou cenu uveď první;
+    když českou cenu neznáme, přepočítej z USD kurzem **ČNB** a výslovně
+    označ **odhad**. USD patří do závorky: `162 990 Kč vč. DPH (6 950 USD)`.
   - u české maloobchodní ceny uveď, zda je **s DPH** nebo bez DPH,
-  - na anglické mutaci primárně v původní měně (většinou USD) a přepočet
-    na **EUR** kurzem **ECB** k uvedenému datu,
+  - na anglické mutaci **vždy primárně EUR**. Známou evropskou cenu uveď
+    první; když ji neznáme, přepočítej z USD kurzem **ECB** a označ
+    **estimate**. USD patří do závorky: `€6 200 (6 950 USD)`.
+  - pořadí je vždy **místní měna → původní měna v závorce**, nikdy naopak.
   - s poznámkou „bez dopravy, přepočet je orientační“.
   - Kurzy drž v `data/kurzy.yaml`; nepřepočítávej ručně v textu.
 - **Kontext:** maximální kontext není doporučený provozní bod. U každého
@@ -204,7 +206,7 @@ Povinné části:
 0. Krátká věta „Toto jsou převzatá měření, ne naše“ (nebo odkaz na
    metodiku), pokud stránka obsahuje čísla od zdrojů.
 1. H1 + jednořádkový verdikt („Nejlevnější cesta k 128 GB paměti“).
-2. Rychlá fakta: paměť, propustnost, cena (USD + CZK k datu), forma, OS,
+2. Rychlá fakta: paměť, propustnost, cena (CZK k datu, USD v závorce), forma, OS,
    software, příkon.
 3. **Co na něm poběží** — tabulka modelů s kvantizací, kontextem, rychlostí,
    typem údaje (naměřeno / výpočet) a důvěryhodností.

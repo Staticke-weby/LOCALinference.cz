@@ -104,7 +104,8 @@ Umami, bez cookies, skript v `head` souboru `astro.config.mjs`:
   `výpočet`), a **důvěryhodnost**. Když zdroj chybí, `[DOPLNIT]`.
 - **Neodhadujeme.** Vlastní odhad není číslo.
 - Kde se zdroje rozcházejí, ukazujeme **rozpětí** a důvod, ne jen nejlepší číslo.
-- Ceny v USD + přepočet na **CZK** (ČNB) nebo **EUR** (ECB).
+- Ceny: na CZ mutaci primárně **CZK** (ČNB), na EN primárně **EUR** (ECB);
+  USD vždy v závorce za místní cenou.
 - Měření vždy s **kvantizací, enginem, kontextem a nastavením**.
 - **Maximum kontextu není doporučení**; sledujeme i reálný provozní kontext.
 - U modelů předpokládáme **vision**, pokud model card neříká jinak.
