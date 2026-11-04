@@ -1,0 +1,174 @@
+---
+title: "DGX Spark: první spuštění a lokální AI krok za krokem"
+description: "Od vybalení po první chat s modelem na DGX Sparku. Aktualizace, ověření GPU, rychlý test s Ollama a oficiální recept pro Qwen3.8 Flash Next."
+last_verified: 2026-11-04
+sidebar:
+  order: 1
+---
+
+# DGX Spark: první spuštění
+
+Tohle je návod pro člověka, který právě vybalil DGX Spark a chce co
+nejdřív chatovat s modelem. Nepotřebujete ML tým ani vlastní cluster.
+Postup je **podle oficiální dokumentace NVIDIA**; kde je potřeba
+komunitní krok, je to označené. Menší model stáhnete během chvíle,
+plný 176B model může trvat hodiny podle rychlosti připojení.
+
+> **Co budete potřebovat:** monitor a klávesnici (nebo síť a druhý počítač),
+> napájení, internet a přibližně 100 GB volného místa na model. Pro plný
+> Qwen3.8 Flash Next se hodí účet na Hugging Face a token.
+
+## Krok 1: První boot
+
+1. Připojte napájení, monitor a klávesnici. Pokud chcete headless provoz,
+   připojte síťový kabel a postupujte podle obrazovky.
+2. Zapněte stroj. Naběhne **DGX OS** (Ubuntu 24.04 s NVIDIA stackem).
+3. Projděte průvodcem: jazyk, časové pásmo, podmínky, uživatel a síť.
+4. Nechte stroj dokončit aktualizace. Může to trvat až 10 minut;
+   **nevypínejte ho** během aktualizace.
+
+*Zdroj: [NVIDIA DGX Spark — First Boot](https://docs.nvidia.com/dgx/dgx-spark/first-boot.html).*
+
+## Krok 2: Aktualizujte systém a ověřte GPU
+
+Otevřete terminál a spusťte:
+
+```bash
+sudo apt update && sudo apt full-upgrade -y
+nvidia-smi
+```
+
+`nvidia-smi` musí ukázat **GB10** a verzi driveru. Tím je ověřené, že
+CUDA stack je v pořádku. Pokud ne, nepokračujte a zkontrolujte
+aktualizace a napájení.
+
+*Zdroj: [komunitní setup guide](https://gpuwerk.com/dgx-spark/guides/setup-guide) — krok s aktualizací; `nvidia-smi` je standardní NVIDIA nástroj.*
+
+## Krok 3: Rychlý test s Ollama
+
+Ollama je nejjednodušší cesta, jak zjistit, že stroj opravdu počítá.
+Nainstalujte ji a stáhněte model Qwen3.8 27B (menší než referenční
+176B model, ale na první test stačí):
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+ollama run qwen3.8:27b
+```
+
+Napište dotaz. Pokud dostanete odpověď, stroj je v pořádku.
+**Pozor:** `qwen3.8:27b` není totéž jako Qwen3.8 Flash Next 176B.
+Je to menší model pro rychlý start.
+
+*Zdroj: [Ollama — Qwen3.8](https://ollama.com/library/qwen3.8), [Ollama Linux install](https://ollama.com/download/linux).*
+
+## Krok 4: Plný Qwen3.8 Flash Next (128 GB)
+
+Referenční model webu je **Qwen3.8 Flash Next** s 176B parametry. Na
+DGX Sparku 128 GB běží přes vLLM s NVFP4. NVIDIA k tomu nabízí hotový
+recept; je delší, ale je to nejspolehlivější cesta.
+
+Nejdřív si nastavte token a připravte cache:
+
+```bash
+export HF_TOKEN="váš_token"
+mkdir -p $HOME/.cache/huggingface $HOME/.cache/vllm $HOME/.cache/flashinfer $HOME/.triton $HOME/.cache/b12x
+```
+
+Spusťte oficiální kontejner:
+
+```bash
+docker run --rm -it \
+  --gpus all \
+  --ipc host \
+  --network host \
+  --shm-size=16g \
+  --ulimit memlock=-1 \
+  --ulimit stack=67108864 \
+  --security-opt seccomp=unconfined \
+  --security-opt apparmor=unconfined \
+  -e HF_TOKEN=$HF_TOKEN \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  -v $HOME/.cache/vllm:/root/.cache/vllm \
+  -v $HOME/.cache/flashinfer:/root/.cache/flashinfer \
+  -v $HOME/.triton:/root/.triton \
+  -v $HOME/.cache/b12x:/root/.cache/b12x \
+  --entrypoint /bin/bash \
+  eugr/spark-vllm-b12x:nightly-20261015
+```
+
+V kontejneru spusťte server:
+
+```bash
+vllm serve nvidia/Qwen3.8-Flash-Next-FP4-Local \
+  --host 0.0.0.0 --port 8000 \
+  --tensor-parallel-size 1 --pipeline-parallel-size 1 \
+  --mamba-cache-mode align \
+  --enable-prefix-caching --enable-chunked-prefill \
+  --dtype bfloat16 --kv-cache-dtype fp8 \
+  --quantization modelopt_mixed --block-size 16 \
+  --load-format b12x \
+  --max-model-len 262144 --max-num-seqs 8 \
+  --max-num-batched-tokens 4096 \
+  --speculative-config '{"method":"mtp","num_speculative_tokens":4}' \
+  --gdn-decode-kernel b12x --linear-backend b12x --moe-backend b12x \
+  --no-enable-flashinfer-autotune \
+  --mm-encoder-tp-mode data \
+  --reasoning-parser qwen3 --tool-call-parser qwen3_xml \
+  --enable-auto-tool-choice \
+  --compilation-config '{"pass_config":{"fuse_act_quant":true}}' \
+  --gpu-memory-utilization 0.8
+```
+
+První načtení může trvat 10–15 minut a stahuje desítky GB. Když server
+napíše, že poslouchá na portu 8000, ověřte ho:
+
+```bash
+curl http://localhost:8000/v1/models
+```
+
+*Zdroj: [NVIDIA Local AI Inference Recipes — DGX Spark](https://nvidia.github.io/local-ai-inference-recipes/hardware/dgx-spark/index.html).*
+
+## Krok 5: Připojte se z laptopu
+
+Server běží na `0.0.0.0:8000`. Z laptopu ve stejné síti otevřete
+`http://adresa-sparku:8000/v1/models`, nebo si port přetáhněte přes SSH:
+
+```bash
+ssh -N -L 8000:127.0.0.1:8000 uživatel@adresa-sparku
+```
+
+Pak v klientovi (Open WebUI, OpenCode, curl) použijte
+`http://localhost:8000/v1` a model
+`nvidia/Qwen3.8-Flash-Next-FP4-Local`.
+
+**Bezpečnost:** nevystavujte port 8000 do internetu. API je bez
+autentizace a patří jen do důvěryhodné sítě.
+
+*Zdroj: [NVIDIA playbook — vLLM](https://build.nvidia.com/playbooks/vllm/advanced.md).*
+
+## Krok 6: Co dál
+
+- **Open WebUI** — webové chat rozhraní nad Ollamou nebo vLLM.
+- **OpenCode / OpenClaw** — agentní klienti, kteří používají OpenAI API.
+- **Systemd nebo Docker restart policy** — aby server naběhl po restartu.
+- **Monitoring** — `nvidia-smi`, `docker stats`, teploty a příkon.
+
+## Když to nefunguje
+
+| Příznak | Co zkontrolovat |
+|---|---|
+| `nvidia-smi` nic neukáže | aktualizace DGX OS, napájení, `dmesg` |
+| Ollama nejede | `systemctl status ollama`, port 11434 |
+| vLLM padá na paměť | snižte `--gpu-memory-utilization` nebo `--max-model-len` |
+| Model se dlouho načítá | normální u 100+ GB; sledujte `docker logs` |
+| Z laptopu to nejde | firewall, stejná síť, SSH tunel |
+
+## Zdroje
+
+- [NVIDIA DGX Spark — First Boot](https://docs.nvidia.com/dgx/dgx-spark/first-boot.html)
+- [NVIDIA Local AI Inference Recipes — DGX Spark](https://nvidia.github.io/local-ai-inference-recipes/hardware/dgx-spark/index.html)
+- [NVIDIA playbook — Serve LLMs with vLLM](https://build.nvidia.com/playbooks/vllm/advanced.md)
+- [Ollama — Qwen3.8](https://ollama.com/library/qwen3.8)
+- [komunitní DGX Spark setup guide](https://gpuwerk.com/dgx-spark/guides/setup-guide)
+
+*Naposledy ověřeno: 4. 11. 2026.*

@@ -1,0 +1,146 @@
+---
+title: "Strix Halo: první spuštění na Windows a Linuxu"
+description: "Od vybalení po první chat na 128GB Strix Halu. Ovladače, Ollama pro rychlý test a llama.cpp pro plný Qwen3.8 Flash Next."
+last_verified: 2026-11-04
+sidebar:
+  order: 3
+---
+
+# Strix Halo: první spuštění
+
+Tento návod platí pro 128GB boxy s **AMD Ryzen AI Max+ 395** (Strix Halo),
+například Acemagic A10A, Acer Veriton RA110, GMKtec EVO-X2 nebo Framework
+Desktop. Většina OEM boxů dnes přichází s **Windows 11 Pro**; Linux je
+volitelná cesta pro ty, kdo chtějí ROCm a serverový provoz.
+
+> **Co budete potřebovat:** 128 GB RAM, Windows 11 Pro nebo Ubuntu 24.04,
+> aktuální AMD ovladače, internet a přibližně 100 GB místa pro plný model.
+
+## Windows 11: rychlý start
+
+### Krok 1: Aktualizujte systém a ovladače
+
+1. **Settings → Windows Update** a nainstalujte vše.
+2. Nainstalujte nejnovější **AMD Adrenalin** z
+   [amd.com/support](https://www.amd.com/en/support).
+3. Restartujte. Ověřte, že Windows vidí Radeon 8060S v
+   **Task Manager → Performance → GPU**.
+
+### Krok 2: Ollama a první model
+
+V PowerShellu:
+
+```powershell
+irm https://ollama.com/install.ps1 | iex
+ollama run qwen3.8:27b
+```
+
+Napište dotaz. Ollama na Windows použije Vulkan; pokud odpovídá, GPU
+je funkční. **Pozor:** 27B je menší model, ne 176B Qwen3.8 Flash Next.
+Kdyby Ollama na Windows s tímto APU nefungovala, použijte níže
+llama.cpp s Vulkanem — je to podporovanější cesta.
+
+*Zdroj: [Ollama — Windows](https://ollama.com/download/windows), [Strix Halo Guide](https://hogeheer499-commits.github.io/strix-halo-guide/).*
+
+### Krok 3: Plný Qwen3.8 Flash Next (volitelné)
+
+Plný 176B model je na 128GB Strix Halu těsný a komunitně podporovaný.
+Nejjednodušší cesta je **llama.cpp s Vulkanem**:
+
+1. Stáhněte [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases)
+   a vyberte **Windows x64 Vulkan** build.
+2. Rozbalte do `C:\llama.cpp`.
+3. V PowerShellu v této složce spusťte:
+
+```powershell
+.\llama-server.exe -hf unsloth/Qwen3.8-Flash-Next-GGUF:UD-Q4_K_XL `
+  -c 131072 -ngl 99 --host 127.0.0.1 --port 8080
+```
+
+4. Otevřete `http://127.0.0.1:8080` a napište dotaz.
+
+Model má přibližně 95 GB; před spuštěním zavřete ostatní aplikace.
+První načtení trvá dlouho. Pokud dojde paměť, snižte `-c` na `65536`.
+Kdyby llama.cpp tag `UD-Q4_K_XL` nenašel, stáhněte GGUF soubor ručně
+z Hugging Face a spusťte ho přes `-m cesta\\k\\souboru.gguf`.
+
+*Zdroj: [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb), [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases).*
+
+## Linux (Ubuntu 24.04): serverová cesta
+
+Linux dává smysl, pokud chcete Strix Halo provozovat jako službu bez
+Windows. Postup je složitější a vyžaduje ROCm.
+
+### Krok 1: Ubuntu a ROCm
+
+1. Nainstalujte **Ubuntu 24.04 LTS** (HWE kernel).
+2. Nainstalujte **ROCm 7.x** podle oficiální AMD dokumentace.
+3. Přidejte se do skupin a restartujte:
+
+```bash
+sudo usermod -a -G render,video $USER
+sudo reboot
+```
+
+4. Ověřte GPU:
+
+```bash
+rocminfo | grep gfx
+```
+
+Měli byste vidět `gfx1151`.
+
+*Zdroj: [AMD ROCm — AI Inference on Ryzen AI Max](https://rocm.blogs.amd.com/artificial-intelligence/ryzen-uma-llm/README.html).*
+
+### Krok 2: Ollama
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+ollama run qwen3.8:27b
+```
+
+### Krok 3: Plný model přes llama.cpp ROCm
+
+AMD doporučuje předpřipravené **Lemonade SDK** buildy pro `gfx1151`:
+
+1. Stáhněte `llama-bxxxx-ubuntu-rocm-gfx1151-x64.zip` z
+   [lemonade-sdk/llamacpp-rocm releases](https://github.com/lemonade-sdk/llamacpp-rocm/releases/latest/).
+2. Rozbalte a spusťte:
+
+```bash
+./llama-server -hf unsloth/Qwen3.8-Flash-Next-GGUF:UD-Q4_K_XL \
+  -c 131072 -ngl 99 --host 127.0.0.1 --port 8080
+```
+
+*Zdroj: [AMD AI Playbooks — Ryzen AI Halo](https://developer.amd.com/playbooks/clustering-rpc-server), [AMD ROCm blog](https://rocm.blogs.amd.com/artificial-intelligence/ryzen-uma-llm/README.html).*
+
+## BIOS a paměť
+
+U Strix Halu je „VRAM“ vyhrazená část systémové paměti. Na Windows
+obvykle stačí nechat **Auto** nebo nastavit vyšší UMA carveout v BIOSu.
+Na Linuxu je doporučený **malý carveout** a využití GTT; konkrétní
+hodnoty se liší podle OEM. Podrobnosti hledejte v dokumentaci výrobce
+boxu.
+
+**Pozor:** paměť je připájená. Z 128 GB se nedá udělat 192 GB.
+
+## Když to nefunguje
+
+| Příznak | Co zkontrolovat |
+|---|---|
+| Ollama nejede | `ollama ps`, port 11434, Vulkan/ROCm |
+| GPU není vidět | Adrenalin/ROCm, `rocminfo`, BIOS carveout |
+| Model padá na paměť | zavřete aplikace, snižte `-c`, použijte menší kvantizaci |
+| Pomalé | zkontrolujte power limit, teploty a Vulkan vs. ROCm |
+| Windows nevidí 128 GB | 32bit omezení nehrozí; zkontrolujte BIOS a verzi Windows |
+
+## Zdroje
+
+- [AMD ROCm — AI Inference on Ryzen AI Max](https://rocm.blogs.amd.com/artificial-intelligence/ryzen-uma-llm/README.html)
+- [AMD AI Playbooks — Ryzen AI Halo](https://developer.amd.com/playbooks/clustering-rpc-server)
+- [Strix Halo Guide](https://hogeheer499-commits.github.io/strix-halo-guide/)
+- [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases)
+- [Ollama — Qwen3.8](https://ollama.com/library/qwen3.8)
+- [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+
+*Naposledy ověřeno: 4. 11. 2026.*

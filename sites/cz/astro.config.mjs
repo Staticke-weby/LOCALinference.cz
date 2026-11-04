@@ -72,6 +72,10 @@ export default defineConfig({
           items: [{ autogenerate: { directory: 'zarizeni' } }],
         },
         {
+          label: 'Návody',
+          items: [{ autogenerate: { directory: 'navody' } }],
+        },
+        {
           label: 'Modely',
           items: [{ autogenerate: { directory: 'modely' } }],
         },

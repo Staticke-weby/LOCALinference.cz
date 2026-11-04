@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Návody na první spuštění"
+  co_se_zmenilo: "Nová sekce /navody/ s postupy pro DGX Spark, RTX Spark mini/notebook a Strix Halo na Windows i Linuxu. Od vybalení po první chat s modelem."
+  dotcene_stranky: [navody, zarizeni/dgx-spark, zarizeni/rtx-spark-mini, zarizeni/strix-halo]
+  zdroj: https://docs.nvidia.com/dgx/dgx-spark/first-boot.html
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Web píšeme pro majitele firem a CTO"
   co_se_zmenilo: "Přidána pravidla cílové skupiny a tónu. Homepage, úvodní stránky a stránky zařízení mají shrnutí pro vedení před technickými detaily."
   dotcene_stranky: [index, zaciname/co-je-lokalni-ai, o-webu/jak-piseme, o-webu/metodika]

@@ -1,0 +1,136 @@
+---
+title: "RTX Spark mini a notebook: první spuštění krok za krokem"
+description: "Od Windows 11 po první chat s modelem na RTX Sparku. Ovladače, Ollama pro rychlý test a oficiální llama.cpp recept pro Qwen3.8 Flash Next."
+last_verified: 2026-11-04
+sidebar:
+  order: 2
+---
+
+# RTX Spark mini a notebook: první spuštění
+
+Tento návod platí pro **RTX Spark mini i notebook** — mají stejný
+Windows 11 Arm64, stejný CUDA stack a stejný postup. Rozdíl je jen
+v chlazení a batterii: notebook nechte při prvním nastavení na nabíječce.
+
+> **Co budete potřebovat:** Windows 11 Arm64, nejnovější NVIDIA driver,
+> internet a přibližně 80 GB volného místa pro plný model. Pro rychlý
+> test stačí 20 GB.
+
+## Krok 1: Aktualizujte Windows a ovladače
+
+1. **Settings → Windows Update** a nainstalujte všechny aktualizace.
+2. Nainstalujte nejnovější **NVIDIA driver pro RTX Spark** z
+   [nvidia.com/drivers](https://www.nvidia.com/en-us/drivers/).
+3. Restartujte a ověřte, že Windows vidí GPU:
+
+```powershell
+nvidia-smi
+```
+
+Musí se objevit **RTX Spark N1X** a verze driveru. Pokud ne, nepokračujte
+a zkontrolujte, že máte ARM64 driver, ne x64.
+
+*Zdroj: [NVIDIA RTX Spark — Getting Started](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976).*
+
+## Krok 2: Rychlý test s Ollama
+
+Ollama je nejrychlejší cesta k první odpovědi. V PowerShellu spusťte:
+
+```powershell
+irm https://ollama.com/install.ps1 | iex
+ollama pull qwen3.8:27b
+ollama run qwen3.8:27b
+```
+
+Napište dotaz. Pokud dostanete odpověď, model běží. **Pozor:**
+`qwen3.8:27b` je menší model, ne 176B Qwen3.8 Flash Next. Na první
+ověření stroje je to ideální.
+
+*Zdroj: [NVIDIA playbook — Run LLMs on RTX Spark](https://build.nvidia.com/rtx-spark/running-llamacpp/overview.md), [Ollama — Qwen3.8](https://ollama.com/library/qwen3.8).*
+
+## Krok 3: Plný Qwen3.8 Flash Next přes llama.cpp
+
+Tohle je oficiální cesta NVIDIA pro 128GB RTX Spark. Je delší, ale
+dostanete 176B model s 262k kontextem a MTP.
+
+### 3.1 Stáhněte llama.cpp
+
+1. Otevřete [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases).
+2. Stáhněte **Windows arm64 (CUDA 13)** build a **CUDA 13.4 DLLs**.
+3. Vytvořte `C:\llama.cpp` a rozbalte oba archivy do stejné složky.
+   Nevytvářejte vnořenou složku; potvrďte sloučení.
+4. Zkontrolujte, že v `C:\llama.cpp` jsou přímo `llama-server.exe`,
+   `llama-cli.exe` a `cudart64_*.dll`.
+
+### 3.2 Spusťte server
+
+V Průzkumníku otevřete `C:\llama.cpp`, klikněte do adresního řádku,
+napište `powershell` a Enter. Spusťte:
+
+```powershell
+.\llama-server.exe -hf "unsloth/Qwen3.8-Flash-Next-GGUF" `
+  -hff "UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf" `
+  --mmproj-url "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF/resolve/38bb39ee97821de2c9009abb7e93950eec396e66/mmproj-BF16.gguf" `
+  --host 127.0.0.1 --port 9931 `
+  --batch-size 2048 --ubatch-size 512 `
+  --ctx-size 262144 --parallel 1 `
+  -fa on -lzm on `
+  --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 `
+  --presence-penalty 0.0 --repeat-penalty 1.0 `
+  --spec-type draft-mtp --spec-draft-n-max 3 `
+  -hfrd "ggml-org/Qwen3.8-Flash-Next-GGUF" `
+  --spec-draft-model "mtp-Qwen3.8-Flash-Next-Q8_0.gguf"
+```
+
+První spuštění stahuje model (desítky GB). Nechte PowerShell otevřený.
+Až server napíše, že poslouchá na `http://127.0.0.1:9931`, otevřete
+tuto adresu v prohlížeči a napište dotaz.
+
+### 3.3 Ověřte API
+
+V druhém PowerShellu:
+
+```powershell
+'{"model":"unsloth/Qwen3.8-Flash-Next-GGUF","messages":[{"role":"user","content":"Hello"}]}' | curl.exe 'http://127.0.0.1:9931/v1/chat/completions' -H 'Content-Type: application/json' --data-binary '@-'
+```
+
+Odpověď musí obsahovat text od modelu.
+
+*Zdroj: [NVIDIA Local AI Inference Recipes — RTX Spark](https://nvidia.github.io/local-ai-inference-recipes/hardware/rtx-spark/index.html).*
+
+## Krok 4: Připojte další zařízení
+
+Server ve výchozím nastavení poslouchá jen na `127.0.0.1`. Pokud ho
+chcete sdílet v kancelářské síti, změňte `--host 127.0.0.1` na
+`--host 0.0.0.0` a povolte port 9931 ve firewallu. **Nedělejte to
+v otevřené síti bez autentizace.**
+
+V klientovi použijte `http://adresa-stroje:9931/v1` a model
+`unsloth/Qwen3.8-Flash-Next-GGUF`.
+
+## Krok 5: Co dál
+
+- **Open WebUI** nebo **LM Studio Bionic** jako chat rozhraní.
+- **OpenCode / OpenClaw** pro agentní práci s kódem.
+- **Automatické spuštění** přes Task Scheduler nebo službu.
+- **Monitoring** — `nvidia-smi`, Task Manager, teploty a příkon.
+
+## Když to nefunguje
+
+| Příznak | Co zkontrolovat |
+|---|---|
+| `nvidia-smi` nic neukáže | ARM64 driver, Windows Update, restart |
+| `llama-server.exe` se nespustí | CUDA DLLs ve stejné složce, ARM64 build |
+| Model se dlouho načítá | normální u 80 GB; sledujte PowerShell |
+| Web na 9931 nejde | server ještě nabíhá, port, firewall |
+| Pomalé na notebooku | připojte nabíječku, zkontrolujte throttling |
+
+## Zdroje
+
+- [NVIDIA playbook — Run LLMs on RTX Spark](https://build.nvidia.com/rtx-spark/running-llamacpp/overview.md)
+- [NVIDIA Local AI Inference Recipes — RTX Spark](https://nvidia.github.io/local-ai-inference-recipes/hardware/rtx-spark/index.html)
+- [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases)
+- [Ollama — Qwen3.8](https://ollama.com/library/qwen3.8)
+- [NVIDIA RTX Spark — Getting Started](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976)
+
+*Naposledy ověřeno: 4. 11. 2026.*

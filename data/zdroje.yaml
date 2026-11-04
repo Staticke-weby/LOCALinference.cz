@@ -415,6 +415,116 @@
   stav: ok
   poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
 
+- id: nvidia-dgx-spark-first-boot
+  nazev: NVIDIA DGX Spark - First Boot
+  url: https://docs.nvidia.com/dgx/dgx-spark/first-boot.html
+  typ: html
+  co_sledujeme: [prvni-spusteni, aktualizace, sit]
+  frekvence: mesicne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: nvidia-dgx-spark-recipes
+  nazev: NVIDIA Local AI Inference Recipes - DGX Spark
+  url: https://nvidia.github.io/local-ai-inference-recipes/hardware/dgx-spark/index.html
+  typ: html
+  co_sledujeme: [vllm-recept, kvantizace, kontext, vykon]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: nvidia-rtx-spark-llamacpp
+  nazev: NVIDIA playbook - Run LLMs on RTX Spark
+  url: https://build.nvidia.com/rtx-spark/running-llamacpp/overview.md
+  typ: html
+  co_sledujeme: [llamacpp, ollama, lm-studio, windows-arm64]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: nvidia-rtx-spark-recipes
+  nazev: NVIDIA Local AI Inference Recipes - RTX Spark
+  url: https://nvidia.github.io/local-ai-inference-recipes/hardware/rtx-spark/index.html
+  typ: html
+  co_sledujeme: [llamacpp-recept, kvantizace, kontext, vykon]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: ollama-qwen38
+  nazev: Ollama - Qwen3.8
+  url: https://ollama.com/library/qwen3.8
+  typ: html
+  co_sledujeme: [model, kvantizace, kontext, vydani]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: ollama-windows
+  nazev: Ollama - Windows
+  url: https://ollama.com/download/windows
+  typ: html
+  co_sledujeme: [instalace, windows, gpu]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: llamacpp-releases
+  nazev: llama.cpp - releases
+  url: https://github.com/ggml-org/llama.cpp/releases
+  typ: github
+  co_sledujeme: [vydani, windows-arm64, vulkan, cuda]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: amd-rocm-ryzen-uma
+  nazev: AMD ROCm - AI Inference on Ryzen AI Max
+  url: https://rocm.blogs.amd.com/artificial-intelligence/ryzen-uma-llm/README.html
+  typ: html
+  co_sledujeme: [rocm, uma, ollama, vykon]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: amd-playbooks-halo
+  nazev: AMD AI Playbooks - Ryzen AI Halo
+  url: https://developer.amd.com/playbooks/clustering-rpc-server
+  typ: html
+  co_sledujeme: [llamacpp, rocm, lemonade, setup]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: strix-halo-guide
+  nazev: Strix Halo Guide
+  url: https://hogeheer499-commits.github.io/strix-halo-guide/
+  typ: html
+  co_sledujeme: [setup, windows, linux, vykon]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: gpuwerk-dgx-spark
+  nazev: GPUWerk - DGX Spark setup guide
+  url: https://gpuwerk.com/dgx-spark/guides/setup-guide
+  typ: html
+  co_sledujeme: [setup, aktualizace, ollama]
+  frekvence: mesicne
+  priorita: nizka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
 - id: alza-ai-pc
   nazev: Alza.cz - AI počítače
   url: https://www.alza.cz/ai-pc/18907789.htm

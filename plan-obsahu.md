@@ -220,6 +220,20 @@ kontext na zařízení. Každé rychlostní číslo má kvantizaci, engine a nas
 
 ---
 
+## Vlna 3.5 — návody k zařízením
+
+| Stránka | Účel | Stav |
+|---|---|---|
+| `navody` | Rozcestník: co je stejné a co se liší | ✅ |
+| `navody/dgx-spark` | První boot, Ollama, oficiální vLLM recept | ✅ |
+| `navody/rtx-spark` | Windows Arm64, Ollama, llama.cpp CUDA | ✅ |
+| `navody/strix-halo` | Windows Vulkan a Linux ROCm | ✅ |
+
+**Pravidlo:** každý příkaz má zdroj; komunitní krok je označený.
+Nikdy netvrdíme, že jsme postup testovali.
+
+---
+
 ## Vlna 4 — výběr a kalkulačka
 
 | Stránka | Účel | Stav |

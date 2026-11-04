@@ -230,6 +230,25 @@ Povinné části:
 7. **Kde dává smysl a kde ne.**
 8. Zdroje + `last_verified`.
 
+### Stránka návodu
+
+Pro každou platformu jeden návod „první spuštění“:
+
+1. **Co budete potřebovat** — OS, ovladače, místo na disku, účet.
+2. **Krok 1: první boot / aktualizace** — přesné příkazy nebo odkazy.
+3. **Krok 2: ověření GPU** — `nvidia-smi`, `rocminfo` nebo ekvivalent.
+4. **Krok 3: rychlý test** — menší model, ať uživatel do 30 minut vidí
+   odpověď.
+5. **Krok 4: plný Qwen3.8 Flash Next** — oficiální recept, varování
+   na velikost a dobu načtení.
+6. **Krok 5: připojení z jiného zařízení** — API, port, bezpečnost.
+7. **Když to nefunguje** — tabulka příznaků a kontrol.
+8. Zdroje + `last_verified`.
+
+**Pravidla:** každý příkaz má zdroj (oficiální dokumentace především);
+když je krok komunitní, označ to. Nikdy netvrď, že jsme postup testovali.
+U více zařízení se stejným OS použij jeden návod a jen na něj odkaž.
+
 ### Datový list měření
 
 Každý záznam musí mít:

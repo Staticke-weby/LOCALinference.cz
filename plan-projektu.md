@@ -109,6 +109,11 @@ být hluboký, ale nesmí být arogantní.
 │   ├── strix-halo-oem          3 české 128GB konfigurace, od 119 990 Kč
 │   └── srovnani                Velká matice Parametr × Zařízení
 │
+├── /navody/                    První spuštění krok za krokem
+│   ├── dgx-spark               DGX OS, Ollama, vLLM recept
+│   ├── rtx-spark               Windows Arm64, Ollama, llama.cpp
+│   └── strix-halo              Windows Vulkan, Linux ROCm
+│
 ├── /modely/                    Katalog současných modelů
 │   └── qwen3-8-flash-next      Minimum pro denní práci na 128 GB (176B / 6B)
 │
