@@ -1,0 +1,56 @@
+---
+title: "Co je RAG a proč ho firmy potřebují"
+description: "RAG nechá model odpovídat z vašich dokumentů. Vysvětlíme, jak funguje, co k němu potřebujete a kde jsou limity na 128GB boxu."
+last_verified: 2026-11-04
+sidebar:
+  label: RAG
+  order: 13
+---
+
+**RAG** (retrieval-augmented generation) znamená, že model odpovídá
+z vašich dokumentů, ne jen z toho, co se naučil. Před odpovědí se
+najdou relevantní pasáže a vloží se do kontextu.
+
+## Jak to funguje
+
+1. **Rozdělení** — dokumenty se rozdělí na úryvky.
+2. **Indexace** — z úryvků se udělají vektory (embeddingy) a uloží
+   se do databáze.
+3. **Dotaz** — uživatel se zeptá; systém najde nejpodobnější úryvky.
+4. **Odpověď** — model dostane dotaz a úryvky jako kontext.
+
+Model tedy nemusí znát celou firmu — stačí, když umí pracovat
+s předloženým textem.
+
+## Co k tomu potřebujete
+
+- **Model pro embeddingy** (malý, běží i na CPU).
+- **Vektorovou databázi** — stačí lokální soubor nebo SQLite rozšíření.
+- **Kousek aplikace**, který celý postup spojí.
+- **Dost kontextu** — čím víc úryvků, tím větší
+  [KV cache](/slovnik/pamet/kv-cache/) a pomalejší
+  [prefill](/slovnik/vykon/prefill/).
+
+## Kde je limit
+
+- **Kvalita hledání** rozhoduje víc než model. Špatné úryvky = špatná
+  odpověď.
+- **Dlouhý kontext** je drahý; méně a přesnějších úryvků je lepší.
+- **Aktuálnost** — index je potřeba přestavět, když se dokumenty změní.
+- **Bezpečnost** — data zůstávají lokálně, ale přístup se musí řešit.
+
+Pro firmu je RAG nejčastější důvod, proč lokální model vůbec nasadit.
+
+## Kudy dál
+
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model pro RAG.
+- [Co je kontext](/slovnik/pamet/kontext/) — kolik úryvků se vejde.
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — kapacita.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

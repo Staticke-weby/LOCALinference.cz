@@ -1,0 +1,57 @@
+---
+title: "Kalkulačka: jak dlouho počkáte na odpověď"
+description: "Kolik sekund trvá přečtení dokumentu a generování odpovědi na 128GB boxu. Tabulka scénářů vychází z veřejných měření, ne z odhadu."
+last_verified: 2026-11-04
+sidebar:
+  label: Kalkulačka
+  order: 2
+---
+
+Kolik budete čekat, závisí na dvou věcech: jak dlouhé je zadání
+([prefill](/slovnik/vykon/prefill/)) a jak dlouhá je odpověď
+([decode](/slovnik/vykon/decode/)). Následující tabulka je **výpočet**
+z veřejně naměřených rozsahů na Strix Halu 128 GB, ne naše měření.
+
+## Jak číst tabulku
+
+- **TTFT** je čekání na první token.
+- **Celkem** je TTFT plus generování odpovědi o 300 tokenech.
+- Počítáno s prefill 0,8–2,4 tis. tok/s a decode 32–42 tok/s
+  (dlouhý kontext).
+
+## Scénáře
+
+| Zadání | Odpověď | TTFT | Celkem |
+|---|---|---|---|
+| 1 000 tokenů (e-mail) | 300 tokenů | 0,4–1,3 s | 8–11 s |
+| 8 000 tokenů (článek) | 300 tokenů | 3–10 s | 11–18 s |
+| 32 000 tokenů (smlouva) | 300 tokenů | 13–40 s | 21–48 s |
+| 128 000 tokenů (kniha) | 300 tokenů | 53–160 s | 61–168 s |
+
+Čísla jsou orientační. Skutečnost ovlivní kvantizace, engine,
+[MTP](/slovnik/software/mtp/) a to, jestli model zrovna něco nepočítá
+pro někoho jiného.
+
+## Co z tabulky plyne
+
+- **Do 8k kontextu** je práce plynulá.
+- **32k** už znamená půl minuty čekání — načíst jednou, ne opakovaně.
+- **128k** je dávková úloha, ne interaktivní chat.
+- **Delší odpověď** prodlužuje hlavně decode, ne TTFT.
+
+Pro jiná zařízení veřejná měření nemáme — bez nich by tabulka
+byla odhad, a ten na web nepatří.
+
+## Kudy dál
+
+- [Co je TTFT](/slovnik/vykon/ttft/) — co čekání znamená.
+- [Co je prefill](/slovnik/vykon/prefill/) — proč roste s délkou.
+- [Co je kontext](/slovnik/pamet/kontext/) — maximum není cíl.
+- [Datová karta](/data/qwen3-8-flash-next-strix-halo/) — zdroj čísel.
+
+## Zdroje
+
+- [Datová karta: Qwen3.8 Flash Next na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+- [Roofline](/rychlost/roofline/) — výpočet stropu.
+
+*Naposledy ověřeno: 4. 11. 2026.*

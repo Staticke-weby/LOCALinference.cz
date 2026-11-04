@@ -1,0 +1,51 @@
+---
+title: "Co je Vulkan a proč ho potkáte na Windows"
+description: "Vulkan je grafické API, přes které běží llama.cpp na Windows bez CUDA. Vysvětlíme, kdy ho použít a jak se liší od CUDA a ROCm."
+last_verified: 2026-11-04
+sidebar:
+  label: Vulkan
+  order: 11
+---
+
+**Vulkan** je otevřené grafické API, které funguje napříč výrobci.
+Na Windows je to nejčastější cesta, jak spustit
+[llama.cpp](/slovnik/software/llamacpp/) na AMD nebo Intel grafice —
+bez CUDA a bez ROCm.
+
+## Kdy ho použijete
+
+- **Strix Halo na Windows** — Vulkan je nejjednodušší cesta.
+- **Starší nebo neznámé GPU** — CUDA nemá, Vulkan často ano.
+- **Ověření, že to vůbec běží** — než začnete řešit ROCm.
+
+## Jak se liší od CUDA a ROCm
+
+- **[CUDA](/slovnik/software/cuda/)** — nejvyspělejší, ale jen NVIDIA.
+- **[ROCm](/slovnik/software/rocm/)** — AMD, hlavně Linux.
+- **Vulkan** — nejnižší společný jmenovatel; funguje skoro všude,
+  ale nemá specifické optimalizace pro AI.
+
+V praxi to znamená: Vulkan je pomalejší než CUDA, ale často jediná
+cesta, jak na Windows rozjet model na AMD.
+
+## Kde je limit
+
+- **Výkon** — bez optimalizací pro konkrétní čip.
+- **Kvantizace** — jen to, co llama.cpp umí.
+- **[Prefill](/slovnik/vykon/prefill/)** bývá slabší než na CUDA.
+
+Pro produkční provoz na Strix Halu se vyplatí zvážit Linux a ROCm.
+
+## Kudy dál
+
+- [Co je llama.cpp](/slovnik/software/llamacpp/) — engine, který Vulkan používá.
+- [Co je ROCm](/slovnik/software/rocm/) — varianta pro Linux.
+- [Návod pro Strix Halo](/navody/strix-halo/) — první spuštění.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Vulkan — Khronos](https://www.vulkan.org/)
+- [llama.cpp — build](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+
+*Naposledy ověřeno: 4. 11. 2026.*

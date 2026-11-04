@@ -1,0 +1,56 @@
+---
+title: "Bezpečná volba: jaký 128GB stroj nekoupit zbytečně drahý"
+description: "Kdy stačí nejlevnější 128GB box, co připlácíte u DGX Sparku a proč se vyplatí koupit míň stroje, než si myslíte."
+last_verified: 2026-11-04
+sidebar:
+  label: Bezpečná volba
+  order: 4
+---
+
+Nejdražší stroj není automaticky nejlepší volba. U lokální AI platí
+skoro vždy: **stejný model běží na všech 128GB zařízeních srovnatelně**
+a rozdíl je v ekosystému, ne ve výkonu.
+
+## Co je bezpečné minimum
+
+- **128 GB unified paměti** — bez toho se Qwen3.8 Flash Next nevejde.
+- **Propustnost aspoň 250 GB/s** — pod tím už je decode nepříjemný.
+- **Funkční runtime** — llama.cpp nebo vLLM, ne „nějak to půjde“.
+- **Záruka a servis** — u stroje za statisíce není detail.
+
+## Kde se připlácí zbytečně
+
+- **Vyšší třída čipu** — u stejné paměti přinese jednotky procent.
+- **Víc úložiště**, než potřebujete — model má ~100 GB, zbytek je
+  na data.
+- **Notebook, který nikdy neopustí kancelář** — platíte za mobilitu,
+  kterou nepoužijete.
+- **Serverové funkce** (clustering, správa flotily) u jednoho boxu.
+
+## Kde se naopak nevyplácí šetřit
+
+- **Paměť** — 128 GB je minimum, ne cíl.
+- **Chlazení** — tichý stroj, který drží výkon, je pro práci důležitější
+  než papírové tok/s.
+- **Podpora** — když stroj spadne, chcete vědět, komu zavolat.
+
+## Rozhodovací zkratka
+
+1. Data musí zůstat u vás? Pokud ne, cloud může být levnější.
+2. Kolik lidí to použije? Do čtyř jeden box; víc se řeší počtem boxů.
+3. Potřebujete přenášet? Ano → notebook. Ne → box.
+4. Potřebujete CUDA? Ano → DGX nebo RTX. Ne → Strix Halo.
+
+## Kudy dál
+
+- [Ceny a rozpočet](/vyber/rozpocet/) — kolik co stojí.
+- [Box vs. notebook](/vyber/stolni-vs-notebook/) — forma podle použití.
+- [Srovnání zařízení](/zarizeni/srovnani/) — konkrétní modely.
+- [Kolik uživatelů](/vyber/kolik-uzivatelu/) — kapacita týmu.
+
+## Zdroje
+
+- [Metodika](/o-webu/metodika/) — jak čteme data.
+- [Srovnání zařízení](/zarizeni/srovnani/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

@@ -1,0 +1,59 @@
+---
+title: "Co jsou agentní úlohy a proč u nich záleží latence"
+description: "Agentní úlohy znamenají, že model volá nástroje a rozhoduje se v krocích. Vysvětlíme, co potřebuje a proč u nich tok/s není hlavní číslo."
+last_verified: 2026-11-04
+sidebar:
+  label: Agentní úlohy
+  order: 15
+---
+
+**Agentní úloha** je práce, kterou model nedělá jedním dotazem, ale
+v krocích: přečte zadání, zavolá nástroj, podívá se na výsledek
+a rozhodne se, co dál.
+
+## Jak to vypadá
+
+Typický běh:
+
+1. Model dostane cíl („najdi faktury za Q3 a spočítej součet“).
+2. Zavolá nástroj — souborový systém, databázi, vyhledávání.
+3. Přečte výsledek a rozhodne, jestli pokračovat.
+4. Opakuje, dokud není hotovo.
+
+Tomu se říká **tool calling** nebo **function calling**. Model
+nepotřebuje umět všechno; potřebuje umět zavolat správnou věc.
+
+## Co u agentů rozhoduje
+
+- **Latence jednoho kroku** — čekání se sčítá přes mnoho kroků.
+- **Spolehlivost formátu** — když model vrátí neplatný vstup, běh
+  se zastaví.
+- **[Kontext](/slovnik/pamet/kontext/)** — historie kroků roste.
+- **Souběžnost** — agenti často běží na pozadí a berou kapacitu.
+
+Proto je u agentů 5–10 tok/s často dost — důležitější je, aby první
+token přišel rychle a model se nezasekl.
+
+## Kde je limit na 128 GB
+
+- **Dlouhé běhy** narazí na kontext i na trpělivost uživatele.
+- **Chyby se hromadí** — čím víc kroků, tím větší šance, že se něco
+  rozbije.
+- **Bezpečnost** — agent s přístupem k souborům potřebuje hranice.
+
+Pro firmu jsou agentní úlohy zajímavé tam, kde jde o opakovanou práci
+s dokumenty, ne o kreativitu.
+
+## Kudy dál
+
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co model umí.
+- [Co je RAG](/slovnik/software/rag/) — hledání v dokumentech.
+- [Co je kontext](/slovnik/pamet/kontext/) — proč historie roste.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

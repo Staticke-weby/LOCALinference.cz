@@ -1,0 +1,56 @@
+---
+title: "Co je vision u modelu a co od ní čekat"
+description: "Vision znamená, že model čte obrázky a dokumenty. Vysvětlíme, jak se používá na 128 GB, kde je přesnost a co potřebuje navíc."
+last_verified: 2026-11-04
+sidebar:
+  label: Vision
+  order: 14
+---
+
+**Vision** je schopnost modelu přečíst obrázek — sken smlouvy,
+screenshot, tabulku nebo fotografii. Model dostane obrázek místo
+textu a odpovídá na otázky k němu.
+
+## Jak se to používá
+
+- **Skeny dokumentů** — přepis do textu a shrnutí.
+- **Screenshoty** — „co je na této obrazovce špatně“.
+- **Tabulky a faktury** — vytěžení čísel.
+- **Fotky** — popis, kontrola kvality, štítky.
+
+## Co k tomu potřebujete
+
+- **Model s vision** — Qwen3.8 Flash Next vision má.
+- **Projektor** (mmproj) — soubor, který převádí obrázek na tokeny.
+  U [llama.cpp](/slovnik/software/llamacpp/) se načítá zvlášť.
+- **Paměť** — obrázek se mění na stovky až tisíce tokenů, takže
+  zabírá [kontext](/slovnik/pamet/kontext/) jako text.
+
+## Kde je limit
+
+- **Přesnost** — drobné písmo, razítka a rukopis jsou problém.
+- **Čeština** — model je trénovaný víc na angličtině; české dokumenty
+  potřebují kontrolu.
+- **Velké skeny** — vysoké rozlišení znamená víc tokenů a delší
+  [prefill](/slovnik/vykon/prefill/).
+- **Bez měření** — kvalitu na konkrétních dokumentech je potřeba
+  vyzkoušet, ne odhadnout.
+
+## Praktické pravidlo
+
+Vision je dnes použitelná na běžné dokumenty a screenshoty. Na právní
+nebo účetní texty počítejte s kontrolou člověkem — stejně jako u textu.
+
+## Kudy dál
+
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co model umí.
+- [Co je llama.cpp](/slovnik/software/llamacpp/) — mmproj a vision.
+- [Co je kontext](/slovnik/pamet/kontext/) — kolik obrázek zabere.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [llama.cpp — multimodal](https://github.com/ggml-org/llama.cpp/blob/master/docs/multimodal.md)
+
+*Naposledy ověřeno: 4. 11. 2026.*

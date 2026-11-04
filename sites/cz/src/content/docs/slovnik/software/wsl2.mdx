@@ -1,0 +1,54 @@
+---
+title: "Co je WSL2 a kdy ho na Windows potřebujete"
+description: "WSL2 pouští Linux uvnitř Windows. Vysvětlíme, kdy se hodí pro lokální AI, co umí s GPU a kde má režii."
+last_verified: 2026-11-04
+sidebar:
+  label: WSL2
+  order: 12
+---
+
+**WSL2** (Windows Subsystem for Linux) je virtuální Linux, který běží
+uvnitř Windows. Nepotřebujete druhý počítač ani dual boot — otevřete
+terminál a máte Ubuntu.
+
+## Kdy se hodí
+
+- **vLLM na Windows** — oficiálně počítá s Linuxem; WSL2 je cesta.
+- **ROCm nástroje** — některé fungují jen v Linuxu.
+- **Skripty a návody**, které předpokládají bash.
+- **Buildy** — kompilace llama.cpp pro Linux.
+
+Pro [llama.cpp](/slovnik/software/llamacpp/) na Windows WSL2
+nepotřebujete — existuje nativní build.
+
+## Co umí s GPU
+
+WSL2 umí předat GPU do Linuxu, takže CUDA i ROCm v něm fungují. Není
+to ale bez režie: část výkonu spolkne virtualizace a správa paměti.
+
+## Kde je limit
+
+- **Režie** — ne pořád, ale u dlouhých běhů měřitelná.
+- **Paměť** — WSL2 si bere část RAM; u 128GB stroje to řešte vědomě.
+- **Ovladače** — aktualizace ve Windows může rozbít běžící prostředí.
+- **Soubory** — práce napříč Windows a Linux filesystémem je pomalá.
+
+## Praktické pravidlo
+
+- **Chcete jednoduchost** → nativní Windows build.
+- **Chcete vLLM nebo Linux nástroje** → WSL2.
+- **Chcete produkci** → Linux na stroji, ne WSL2.
+
+## Kudy dál
+
+- [Co je vLLM](/slovnik/software/vllm/) — server, který WSL2 často hostí.
+- [Lokální AI na Windows 11](/temata/lokalni-ai-na-windows-11/) — co funguje nativně.
+- [Návod pro RTX Spark](/navody/rtx-spark/) — první spuštění.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Microsoft — WSL dokumentace](https://learn.microsoft.com/en-us/windows/wsl/)
+- [NVIDIA — CUDA on WSL](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
+
+*Naposledy ověřeno: 4. 11. 2026.*

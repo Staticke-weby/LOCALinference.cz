@@ -1,0 +1,62 @@
+---
+title: "Co nainstalovat pro lokální AI: prostředí krok za krokem"
+description: "Node, Python, Git a runtime pro lokální model. Co potřebujete na počítači, než stáhnete první model, a co naopak nepotřebujete."
+last_verified: 2026-11-04
+sidebar:
+  label: Prostředí
+  order: 4
+---
+
+Než stáhnete model, potřebujete na stroji pár věcí. Není to mnoho —
+a většina z nich už tam je.
+
+## Co potřebujete
+
+- **Node 22+** — jen pro build tohoto webu, ne pro běh modelu.
+- **Python 3.12+** — pro nástroje kolem modelů: konvertory, skripty,
+  `huggingface-cli`, vLLM.
+- **Git** — verze konfigurací a měřicích skriptů.
+- **Runtime podle zařízení:**
+
+| Zařízení | Runtime |
+|---|---|
+| DGX Spark | vLLM (oficiální recept), llama.cpp |
+| RTX Spark | llama.cpp CUDA, komunitní vLLM port |
+| Strix Halo | llama.cpp Vulkan (Windows), ROCm (Linux) |
+| Mac | llama.cpp Metal, MLX |
+
+## Jak začít bezpečně
+
+1. Nainstalujte Python a vytvořte virtuální prostředí:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+2. Nainstalujte `huggingface_hub` pro stahování modelů.
+3. Ověřte, že nástroj vidí vaše zařízení (`nvidia-smi`, `rocm-smi`,
+   nebo `system_profiler`).
+4. Stáhněte menší model na test, než půjdete na Qwen3.8 Flash Next.
+
+## Co nepotřebujete
+
+- **Docker** — užitečný, ale není podmínka. vLLM ho používá, llama.cpp ne.
+- **CUDA toolkit** — ovladač většinou stačí; toolkit jen pro buildy.
+- **Různé „one-click“ instalátory** z neznámých zdrojů. Modely a skripty
+  stahujte z oficiálních míst a ověřujte hash.
+
+## Kudy dál
+
+- [Co je Hugging Face](/slovnik/software/huggingface/) — odkud modely.
+- [Návody](/navody/) — první spuštění podle zařízení.
+- [Co je vLLM](/slovnik/software/vllm/) — server pro tým.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Python — dokumentace](https://docs.python.org/3/)
+- [huggingface_hub](https://huggingface.co/docs/huggingface_hub/)
+- [llama.cpp — build](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+
+*Naposledy ověřeno: 4. 11. 2026.*

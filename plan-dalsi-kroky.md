@@ -22,13 +22,13 @@ Legenda: **P0** blokuje provoz nebo důvěryhodnost · **P1** zlepší web ·
 
 ## 2. Chybějící stránky
 
-- [ ] **`zaciname/prostredi`** — co nainstalovat (Node, Python, Git,
+- [x] **`zaciname/prostredi`** — co nainstalovat (Node, Python, Git,
       runtime). Plánováno ve vlně 1, dosud není.
-- [ ] **`vyber/stolni-vs-notebook`** — kde má GPU běžet a proč.
-- [ ] **`vyber/bezpecna-volba`** — minimum, které nezklame; co je zbytečné.
-- [ ] **`rychlost/kalkulacka`** — odhad doby odpovědi podle kontextu
+- [x] **`vyber/stolni-vs-notebook`** — kde má GPU běžet a proč.
+- [x] **`vyber/bezpecna-volba`** — minimum, které nezklame; co je zbytečné.
+- [x] **`rychlost/kalkulacka`** — odhad doby odpovědi podle kontextu
       a výstupu; bez JS musí fungovat jako tabulka.
-- [ ] **Vysvětlivky, které na webu chybí:** Vulkan, RAG, agentní úlohy,
+- [x] **Vysvětlivky, které na webu chybí:** Vulkan, RAG, agentní úlohy,
       vision, WSL2. Všechny se na webu používají, ale nemají stránku.
 - [x] **Mac Studio a MacBook Pro** jako zařízení — odkaz na kategorii je připravený
       v `poznámkách`, chybí ceny, konfigurace a měření.
