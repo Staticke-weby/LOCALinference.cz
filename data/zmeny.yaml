@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Další pojmy ve slovníku a MoE pod Modely"
+  co_se_zmenilo: "Přibyly stránky Decode, Propustnost paměti, TFLOPS, Unified memory, Kontext, MTP, NVFP4 a Ollama. Stránka Proč MoE se přesunula z Začínáme do menu Model. Všechny nové pojmy se automaticky prolinkují."
+  dotcene_stranky: [slovnik/vykon/decode, slovnik/vykon/propustnost-pameti, slovnik/vykon/tflops, slovnik/pamet/unified-memory, slovnik/pamet/kontext, slovnik/software/mtp, slovnik/software/nvfp4, slovnik/software/ollama, modely/proc-moe]
+  zdroj: https://docs.vllm.ai/
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Windows 11 jako rozhodovací kritérium"
   co_se_zmenilo: "Srovnání má sloupec Systém, na stránkách zařízení je OS vidět v rychlých faktech. Nové téma /temata/lokalni-ai-na-windows-11/ říká, která tři zařízení Windows 11 mají, co na nich funguje a kde jsou limity. Pojem Windows 11 se prolinkuje automaticky."
   dotcene_stranky: [temata/lokalni-ai-na-windows-11, zarizeni/srovnani, zarizeni/rtx-spark-notebook, zarizeni/strix-halo]

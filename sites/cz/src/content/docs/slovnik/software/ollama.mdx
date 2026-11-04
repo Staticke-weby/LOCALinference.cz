@@ -1,0 +1,55 @@
+---
+title: "Co je Ollama a kdy je lepší sáhnout po llama.cpp"
+description: "Ollama je nejjednodušší cesta k lokálnímu modelu. Vysvětlíme, co dělá, kde má strop a kdy přejít na llama.cpp nebo vLLM."
+last_verified: 2026-11-04
+sidebar:
+  label: Ollama
+  order: 10
+---
+
+**Ollama** je nástroj, který stáhne model a spustí ho jedním příkazem.
+Pod kapotou používá [llama.cpp](/slovnik/software/llamacpp/), ale
+schovává konfiguraci — což je jeho výhoda i limit.
+
+## K čemu to je
+
+Typický začátek:
+
+```bash
+ollama run qwen3.8-flash-next
+```
+
+Ollama se postará o stažení, uložení a spuštění. Otevře chat nebo
+rozhraní API na localhostu. Pro první seznámení je to nejrychlejší
+cesta.
+
+## Kde má strop
+
+- **Méně kontroly** nad kvantizací, kontextem a parametry enginu.
+- **Optimalizace pro víc uživatelů** není tak dobrá jako u
+  [vLLM](/slovnik/software/vllm/).
+- **Měření** se hůř reprodukuje — nevidíte přesně, co se nastavilo.
+- **Verze a tagy** se mohou chovat jinak, než čekáte.
+
+## Kdy přejít jinam
+
+- **Chcete měřit**: llama.cpp s explicitními parametry.
+- **Chcete obsloužit tým**: vLLM.
+- **Chcete maximální kontrolu**: llama.cpp nebo vLLM podle platformy.
+
+Ollama není „horší“ — je to jiný nástroj pro jinou fázi. Pro prvních
+pár dní je ideální; pro produkci se hodí vědět, co je pod kapotou.
+
+## Kudy dál
+
+- [Co je llama.cpp](/slovnik/software/llamacpp/) — co Ollama používá.
+- [Co je vLLM](/slovnik/software/vllm/) — server pro víc lidí.
+- [Návod pro Strix Halo](/navody/strix-halo/) — první spuštění.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Ollama — dokumentace](https://docs.ollama.com/)
+- [llama.cpp](https://github.com/ggml-org/llama.cpp)
+
+*Naposledy ověřeno: 4. 11. 2026.*

@@ -180,7 +180,7 @@ a čtvrt. Rozdíl je znát, ale obojí je použitelné.
 
 ## Kudy dál
 
-- [Proč jsou dnes zajímavé jen MoE modely](/zaciname/proc-moe/) — aktivní
+- [Proč jsou dnes zajímavé jen MoE modely](/modely/proc-moe/) — aktivní
   parametry a konec dense modelů na malých krabicích.
 - [Jak čteme data a měření](/zaciname/jak-cteme-data/) — TTFT, prefill a souběžnost
   v praxi.

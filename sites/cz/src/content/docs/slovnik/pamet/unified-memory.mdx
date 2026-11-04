@@ -1,0 +1,57 @@
+---
+title: "Co je unified memory a proč na 128 GB běží velký model"
+description: "Unified memory je paměť společná pro procesor a grafiku. Vysvětlíme, proč díky ní běží Qwen3.8 Flash Next na malém boxu a kde je limit."
+last_verified: 2026-11-04
+sidebar:
+  label: Unified memory
+  order: 2
+---
+
+**Unified memory** je paměť, kterou používá procesor i grafický čip
+společně. Není rozdělená na „systémovou“ a „VRAM“ — je jeden pool,
+ze kterého si oba berou podle potřeby.
+
+## Proč to existuje
+
+Klasické PC má 32 GB RAM pro systém a 24 GB VRAM na grafice. Model
+se musí vejít do VRAM, jinak se část odkládá do systémové paměti a běží
+řádově pomaleji.
+
+Unified memory tohle obchází: model se načte do jednoho velkého poolu
+a grafika k němu přistupuje přímo. Proto stačí 128 GB a nemusíte řešit,
+„kolik se vejde do grafické karty“.
+
+## Kde ji potkáte
+
+- **DGX Spark** — 128 GB unified, GB10 Grace Blackwell.
+- **RTX Spark mini a notebook** — 128 GB unified, Blackwell.
+- **Strix Halo** — 128 GB unified, Radeon 8060S.
+- **Apple Silicon** — stejný princip, ale mimo katalog.
+
+## Kde je limit
+
+- **Není to VRAM.** Grafika vidí jen část poolu — na Strix Halu zhruba
+  96 GB ze 128. Zbytek drží systém.
+- **Propustnost je nižší** než u dedikované grafické paměti. Proto
+  unified memory boxy nedosahují rychlostí velkých GPU.
+- **Sdílení bolí.** Když si systém vezme paměť, modelu zbyde méně.
+
+## Co z toho plyne
+
+128 GB unified paměti je důvod, proč Qwen3.8 Flash Next běží na
+stolním boxu. Kdyby byla paměť rozdělená, model by se musel krátit
+nebo odkládat — a to je přesně to, co do katalogu nezařazujeme.
+
+## Kudy dál
+
+- [128 GB unified memory](/temata/128gb-unified-memory/) — proč je to minimum.
+- [Co je propustnost paměti](/slovnik/vykon/propustnost-pameti/) — jak rychle se čte.
+- [Co je KV cache](/slovnik/pamet/kv-cache/) — co ještě paměť zabírá.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [AMD — Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html)
+
+*Naposledy ověřeno: 4. 11. 2026.*

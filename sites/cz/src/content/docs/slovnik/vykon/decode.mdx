@@ -1,0 +1,63 @@
+---
+title: "Co je decode a proč je pomalejší než čtení zadání"
+description: "Decode je generování odpovědi token po tokenu. Vysvětlíme, proč ho limituje propustnost paměti, jak se liší od prefillu a co znamená pro tok/s."
+last_verified: 2026-11-04
+sidebar:
+  label: Decode
+  order: 6
+---
+
+**Decode** je fáze, kdy model píše odpověď — jeden token za druhým.
+Je to ta část, kterou vnímáte jako „rychlost modelu“, a zároveň ta,
+která je na 128GB boxu nejvíc omezená pamětí.
+
+## Dvě fáze dotazu
+
+1. [**Prefill**](/slovnik/vykon/prefill/) — model přečte celé zadání.
+   Náročné na výpočet, měří se v tok/s vstupu.
+2. **Decode** — model generuje odpověď. Pro každý token musí přečíst
+   váhy modelu, takže ho limituje [propustnost paměti](/slovnik/vykon/propustnost-pameti/).
+
+Proto se může stát, že model přečte 30stránkový dokument za pár sekund
+a pak odpovídá pomalu. Nebo naopak.
+
+## Proč je decode pomalý
+
+U Qwen3.8 Flash Next se na každý token načte z paměti přibližně
+6 miliard aktivních parametrů v dané kvantizaci. Na stroji s 273 GB/s
+to dává teoretický strop kolem 70 tok/s; reálně se dostanete níž podle
+kontextu a [throttlingu](/slovnik/provoz/throttling/).
+
+Čím menší kvantizace, tím méně dat se čte, tím rychlejší decode.
+To je celý důvod, proč se modely kvantují.
+
+## Co decode ovlivňuje
+
+- **[Kvantizace](/slovnik/software/kvantizace/)** — méně bitů, méně čtení.
+- **[Souběžnost](/slovnik/vykon/soubeznost/)** — víc dotazů najednou
+  znamená méně tok/s pro každého.
+- **Kontext** — delší běh znamená víc práce s pamětí.
+- **Teplota a power limit** — po minutách provozu číslo klesne.
+
+## Jak číslo číst
+
+- **15–20 tok/s** je pohodlné čtení v chatu.
+- **5–10 tok/s** stačí pro agenty a dávkové úlohy.
+- **Nad 40 tok/s** je na 128 GB nadstandard, který závisí na konfiguraci.
+
+Vždy se ptejte, při jaké délce kontextu a jaké kvantizaci bylo číslo
+naměřeno. Jinak je to číslo bez kontextu.
+
+## Kudy dál
+
+- [Co je tok/s](/slovnik/vykon/tok-s/) — stejná věc z pohledu čísla.
+- [Co je propustnost paměti](/slovnik/vykon/propustnost-pameti/) — proč limituje.
+- [Roofline](/rychlost/roofline/) — výpočet stropu.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [vLLM — metrics](https://docs.vllm.ai/en/latest/design/metrics.html)
+- [Datová karta: Qwen3.8 Flash Next na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

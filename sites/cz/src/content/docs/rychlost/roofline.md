@@ -80,7 +80,7 @@ u těchto zařízení bavíme o MoE.
 ## Kudy dál
 
 - [Jak čteme data](/zaciname/jak-cteme-data/) — TTFT, prefill, souběžnost.
-- [Proč MoE](/zaciname/proc-moe/) — aktivní parametry v praxi.
+- [Proč MoE](/modely/proc-moe/) — aktivní parametry v praxi.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — konkrétní čísla.
 - [Co nevíme](/zdroje/co-nevime/) — kde měření chybí.
 

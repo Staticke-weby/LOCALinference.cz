@@ -1,0 +1,60 @@
+---
+title: "Co je NVFP4 a proč se používá na DGX Sparku"
+description: "NVFP4 je 4bitový formát NVIDIA pro běh modelů na Blackwellu. Vysvětlíme, co znamená pro velikost Qwen3.8 Flash Next a kde se liší od GGUF."
+last_verified: 2026-11-04
+sidebar:
+  label: NVFP4
+  order: 8
+---
+
+**NVFP4** je 4bitový číselný formát NVIDIA pro běh modelů v nízké
+přesnosti. Na DGX Sparku je to nativní cesta, jak dostat Qwen3.8 Flash
+Next do 128 GB a přitom neztratit příliš kvality.
+
+## Co to je
+
+Každá váha modelu se uloží do 4 bitů místo 16. Model tím zabere zhruba
+čtvrtinu místa a při [decode](/slovnik/vykon/decode/) se z paměti čte
+míň dat — takže je rychlejší.
+
+NVFP4 navíc používá sdílený exponent pro skupinu hodnot, takže
+zachovává rozsah lépe než naivní 4bitové zkrácení.
+
+## Kde se potká
+
+- **[vLLM](/slovnik/software/vllm/)** na DGX Sparku — oficiální recept
+  pro Qwen3.8 Flash Next.
+- **Blackwell GPU** — formát je vázaný na hardware NVIDIA.
+- **RTX Spark** — CUDA má, ale podpora NVFP4 závisí na verzi enginu.
+
+Na Strix Halu NVFP4 neběží; tam se používá [GGUF](/slovnik/software/gguf/)
+kvantizace.
+
+## Kolik to zabere
+
+Qwen3.8 Flash Next v NVFP4 má zhruba **101 GB**. Na 128GB boxu tak
+zbyde kolem 27 GB na [KV cache](/slovnik/pamet/kv-cache/) a režii —
+což stačí na 128k kontext, ale ne na mnoho dlouhých dotazů najednou.
+
+## Kde je kompromis
+
+- **Kvalita** je nižší než u 8bitové kvantizace, ale u běžného textu
+  je rozdíl malý.
+- **Čeština a přesná čísla** jsou citlivější — u smluv a tabulek
+  počítejte s kontrolou.
+- **Formát není přenosný** mimo NVIDIA; na jiném stroji model
+  nespustíte.
+
+## Kudy dál
+
+- [Co je kvantizace](/slovnik/software/kvantizace/) — obecný princip.
+- [Co je GGUF](/slovnik/software/gguf/) — varianta pro llama.cpp.
+- [Co je vLLM](/slovnik/software/vllm/) — engine, který NVFP4 používá.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [vLLM recipes — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

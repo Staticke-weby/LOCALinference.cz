@@ -66,8 +66,16 @@ function rehypeSlovnik() {
     { re: /\bKV cache\b/gi, url: '/slovnik/pamet/kv-cache/', slug: 'pamet/kv-cache' },
     { re: /\bpower limit\w*/gi, url: '/slovnik/provoz/power-limit/', slug: 'provoz/power-limit' },
     { re: /\bthrottling\w*/gi, url: '/slovnik/provoz/throttling/', slug: 'provoz/throttling' },
-    { re: /\bMoE\b/g, url: '/zaciname/proc-moe/', slug: 'proc-moe' },
+    { re: /\bMoE\b/g, url: '/modely/proc-moe/', slug: 'proc-moe' },
     { re: /\broofline\b/gi, url: '/rychlost/roofline/', slug: 'rychlost/roofline' },
+    { re: /\bdecode\b/gi, url: '/slovnik/vykon/decode/', slug: 'vykon/decode' },
+    { re: /\bTFLOPS\b/g, url: '/slovnik/vykon/tflops/', slug: 'vykon/tflops' },
+    { re: /\bpropustnost pam\u011bti\b/gi, url: '/slovnik/vykon/propustnost-pameti/', slug: 'vykon/propustnost-pameti' },
+    { re: /\bunified memory\b/gi, url: '/slovnik/pamet/unified-memory/', slug: 'pamet/unified-memory' },
+    { re: /\bkontext\w*/gi, url: '/slovnik/pamet/kontext/', slug: 'pamet/kontext' },
+    { re: /\bMTP\b/g, url: '/slovnik/software/mtp/', slug: 'software/mtp' },
+    { re: /\bNVFP4\b/g, url: '/slovnik/software/nvfp4/', slug: 'software/nvfp4' },
+    { re: /\bOllama\b/g, url: '/slovnik/software/ollama/', slug: 'software/ollama' },
   ];
 
   const SKIP_PARENTS = new Set(['a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']);

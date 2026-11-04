@@ -1,0 +1,60 @@
+---
+title: "Co je TFLOPS a proč u lokální AI rozhoduje míň, než se zdá"
+description: "TFLOPS je výpočetní výkon čipu. Vysvětlíme, co znamená, proč se u generování textu neprojeví a kdy naopak záleží."
+last_verified: 2026-11-04
+sidebar:
+  label: TFLOPS
+  order: 8
+---
+
+**TFLOPS** je počet bilionů operací s plovoucí desetinnou čárkou za
+sekundu. Je to klasické číslo výkonu grafických čipů — a u lokální AI
+zároveň nejčastěji zneužívané číslo v marketingu.
+
+## Proč nestačí
+
+Při [decode](/slovnik/vykon/decode/) model nepočítá mnoho, ale hodně
+čte. Úzkým hrdlem je [propustnost paměti](/slovnik/vykon/propustnost-pameti/),
+ne výpočetní výkon. Stroj s vyššími TFLOPS proto nemusí být rychlejší
+v tok/s.
+
+TFLOPS začne záležet ve chvíli, kdy je práce víc:
+
+- **[Prefill](/slovnik/vykon/prefill/)** dlouhého dokumentu — počítá se
+  hodně tokenů najednou.
+- **Souběžnost** — víc dotazů znamená víc výpočtu.
+- **Vision** — zpracování obrázku je výpočetně náročné.
+- **Trénink a fine-tuning** — tam je výpočetní výkon klíčový. To ale
+  není případ tohoto webu.
+
+## Jak se TFLOPS udávají
+
+Výrobci uvádějí **špičkový** výkon pro určitou přesnost:
+
+- **FP32 / TF32** — klasické rozsahy, nižší čísla.
+- **FP16 / BF16** — obvyklý údaj pro AI.
+- **FP8 / FP4** — násobky díky menší přesnosti.
+
+Čísla z různých přesností se nedají srovnávat. „1 PFLOP“ u DGX Sparku
+je údaj pro AI inference v nízké přesnosti, ne pro klasické výpočty.
+
+## Co z toho plyne
+
+- Pro **jeden chat** se dívejte na tok/s a propustnost paměti.
+- Pro **dávky a agenty** začněte řešit i výpočetní výkon.
+- Pro **nákup** je TFLOPS poslední číslo, ne první.
+- Když prodejce uvádí jen TFLOPS a ne tok/s, ptejte se na tok/s.
+
+## Kudy dál
+
+- [Co je propustnost paměti](/slovnik/vykon/propustnost-pameti/) — co rozhoduje.
+- [Co je decode](/slovnik/vykon/decode/) — fáze, kde se to projeví.
+- [Roofline](/rychlost/roofline/) — jak spočítat strop.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [Roofline](/rychlost/roofline/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

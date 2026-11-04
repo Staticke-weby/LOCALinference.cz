@@ -43,6 +43,21 @@ Jak rychle to běží a co ta čísla znamenají.
     href="/slovnik/vykon/paralelizace/"
     description="Rozdělení modelu mezi čipy. Proč to u 128 GB neřešíme."
   />
+  <LinkCard
+    title="Decode"
+    href="/slovnik/vykon/decode/"
+    description="Generování odpovědi token po tokenu. Co ho limituje."
+  />
+  <LinkCard
+    title="Propustnost paměti"
+    href="/slovnik/vykon/propustnost-pameti/"
+    description="GB/s, které určují strop tok/s."
+  />
+  <LinkCard
+    title="TFLOPS"
+    href="/slovnik/vykon/tflops/"
+    description="Výpočetní výkon. Proč u generování textu ne rozhodující."
+  />
 </CardGrid>
 
 ## Software a runtime
@@ -85,6 +100,21 @@ Na čem model běží a v jakém formátu je uložený.
     href="/slovnik/software/huggingface/"
     description="Odkud se modely stahují a jak si vytvořit token."
   />
+  <LinkCard
+    title="NVFP4"
+    href="/slovnik/software/nvfp4/"
+    description="4bitový formát NVIDIA pro DGX Spark."
+  />
+  <LinkCard
+    title="MTP"
+    href="/slovnik/software/mtp/"
+    description="Návrh více tokenů najednou. Kde zrychlí generování."
+  />
+  <LinkCard
+    title="Ollama"
+    href="/slovnik/software/ollama/"
+    description="Nejjednodušší start. Kde má strop."
+  />
 </CardGrid>
 
 ## Paměť a model
@@ -93,9 +123,19 @@ Co se musí vejít do 128 GB a proč.
 
 <CardGrid>
   <LinkCard
+    title="Kontext"
+    href="/slovnik/pamet/kontext/"
+    description="Okno textu, které si model pamatuje. Maximum není cíl."
+  />
+  <LinkCard
     title="KV cache"
     href="/slovnik/pamet/kv-cache/"
     description="Paměť pro kontext. Roste s délkou dotazu i počtem lidí."
+  />
+  <LinkCard
+    title="Unified memory"
+    href="/slovnik/pamet/unified-memory/"
+    description="Společná paměť pro procesor a grafiku. Proč stačí 128 GB."
   />
 </CardGrid>
 
@@ -122,7 +162,7 @@ Pojmy, které mají vlastní delší stránku mimo slovník.
 
 - [Jak to funguje](/zaciname/jak-to-funguje/) — váhy, kvantizace, KV cache.
 - [Jak čteme data](/zaciname/jak-cteme-data/) — TTFT, prefill, rozpětí.
-- [Proč MoE](/zaciname/proc-moe/) — aktivní parametry a rychlost.
+- [Proč MoE](/modely/proc-moe/) — aktivní parametry a rychlost.
 - [Roofline](/rychlost/roofline/) — teoretický strop v tok/s.
 - [128 GB unified memory](/temata/128gb-unified-memory/) — proč je to minimum.
 

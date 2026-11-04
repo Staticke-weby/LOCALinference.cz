@@ -1,0 +1,54 @@
+---
+title: "Co je MTP a proč zrychluje generování"
+description: "MTP (multi-token prediction) umí navrhnout víc tokenů najednou. Vysvětlíme, jak funguje, kdy pomůže a proč se bez něj počítá konzervativně."
+last_verified: 2026-11-04
+sidebar:
+  label: MTP
+  order: 9
+---
+
+**MTP** (multi-token prediction) je technika, kdy model nenavrhuje
+jeden token, ale několik dopředu. Další výpočet je pak rychlejší,
+protože se část práce dělá paralelně.
+
+## Jak to funguje
+
+Model při generování „hádá“ několik dalších tokenů. Návrhy se ověří
+najednou — a když sedí, jsou hotové bez čekání. Když ne, zahodí se
+a pokračuje se klasicky.
+
+Je to stejný princip jako **spekulativní dekódování**: levná část
+navrhne, drahá část potvrdí. Zrychlení závisí na tom, jak často návrhy
+sedí.
+
+## Kde se potká
+
+- **[vLLM](/slovnik/software/vllm/)** — MTP je součástí doporučeného
+  nasazení Qwen3.8 Flash Next na DGX Sparku.
+- **[llama.cpp](/slovnik/software/llamacpp/)** — podporuje MTP u modelů,
+  které ho mají.
+- **Naměřená čísla** se proto rozcházejí: s MTP a bez něj může být
+  rozdíl desítky procent.
+
+## Co to znamená pro vás
+
+- **Bez MTP** je bezpečné číslo pro plánování.
+- **S MTP** je horní hranice, které lze dosáhnout při dobré shodě návrhů.
+- Když se čísla v tabulce liší, hledejte právě tohle nastavení.
+
+MTP nemění kvalitu odpovědi — jen způsob, jak se k ní model dostane.
+Pokud se návrhy neshodují, výhoda mizí.
+
+## Kudy dál
+
+- [Co je vLLM](/slovnik/software/vllm/) — kde se MTP používá.
+- [Co je decode](/slovnik/vykon/decode/) — fáze, kterou MTP zrychluje.
+- [Jak čteme data](/zaciname/jak-cteme-data/) — proč se čísla rozcházejí.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [vLLM recipes — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 4. 11. 2026.*

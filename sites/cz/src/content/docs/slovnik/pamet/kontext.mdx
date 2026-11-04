@@ -1,0 +1,52 @@
+---
+title: "Co je kontext a proč maximum není doporučená hodnota"
+description: "Kontext je okno textu, které si model pamatuje. Vysvětlíme rozdíl mezi nativním maximem, doporučeným provozem a tím, co zařízení reálně udrží."
+last_verified: 2026-11-04
+sidebar:
+  label: Kontext
+  order: 3
+---
+
+**Kontext** je množství textu, které model zpracuje v jednom dotazu —
+zadání i odpověď dohromady. Udává se v tokenech: 32k znamená zhruba
+32 tisíc tokenů, tedy desítky stran textu.
+
+## Tři čísla, která se pletou
+
+- **Nativní maximum** — co model umí papírově. Qwen3.8 Flash Next má
+ 262k.
+- **Doporučený provozní kontext** — kde kvalita a rychlost ještě
+  drží. U 128GB boxu je to 128k.
+- **Reálně udržitelný kontext** — co zařízení zvládne s ohledem na
+  [KV cache](/slovnik/pamet/kv-cache/) a [souběžnost](/slovnik/vykon/soubeznost/).
+
+Maximum není cíl. Čím delší kontext, tím víc paměti a tím pomalejší
+[prefill](/slovnik/vykon/prefill/) i [decode](/slovnik/vykon/decode/).
+
+## Proč delší kontext bolí
+
+- **Paměť** — KV cache roste lineárně s délkou.
+- **Čas** — 128k dokument znamená desítky sekund před prvním tokenem.
+- **Kvalita** — model se v dlouhém textu hůř soustředí; nejlepší
+  výsledky bývají na kratším, dobře strukturovaném zadání.
+- **Souběžnost** — dlouhý kontext sníží počet lidí, které box obslouží.
+
+## Co s tím v praxi
+
+- Posílejte **relevantní část**, ne celý dokument.
+- Shrnutí pište **po částech**, ne jedním dotazem nad vším.
+- U RAG dávejte **méně, ale přesnějších** úryvků.
+
+## Kudy dál
+
+- [Co je KV cache](/slovnik/pamet/kv-cache/) — co kontext fyzicky zabírá.
+- [128 GB unified memory](/temata/128gb-unified-memory/) — proč je to minimum.
+- [Jak to funguje](/zaciname/jak-to-funguje/) — kontext v souvislostech.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Jak čteme data](/zaciname/jak-cteme-data/) — kontext a měření.
+
+*Naposledy ověřeno: 4. 11. 2026.*

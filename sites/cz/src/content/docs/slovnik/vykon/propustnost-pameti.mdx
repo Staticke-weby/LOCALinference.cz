@@ -1,0 +1,64 @@
+---
+title: "Co je propustnost paměti a proč určuje tok/s"
+description: "Propustnost paměti v GB/s je strop rychlosti generování. Vysvětlíme, proč 273 GB/s znamená kolem 70 tok/s a proč výpočetní výkon nestačí."
+last_verified: 2026-11-04
+sidebar:
+  label: Propustnost paměti
+  order: 7
+---
+
+**Propustnost paměti** (bandwidth) je, kolik dat za sekundu dokáže
+čip přečíst z paměti. U lokální AI je to nejdůležitější číslo
+u zařízení — víc než počet jader nebo [TFLOPS](/slovnik/vykon/tflops/).
+
+## Proč zrovna paměť
+
+Při generování odpovědi model pro každý token přečte celé aktivní
+váhy. Nezáleží, jak rychle umí počítat, ale jak rychle se data dostanou
+k výpočtu.
+
+Zjednodušeně:
+
+```
+tok/s ≈ propustnost paměti / bajty na token
+```
+
+Qwen3.8 Flash Next má 6 miliard aktivních parametrů. Ve 4bitové
+kvantizaci je to zhruba 3 GB na token. Na 273 GB/s tedy vychází strop
+kolem 90 tok/s; reálně kolem 70, protože část kapacity spotřebuje
+obsluha a kontext.
+
+## Čísla v katalogu
+
+| Zařízení | Propustnost |
+|---|---|
+| DGX Spark | 273 GB/s |
+| RTX Spark mini a notebook | 300 GB/s |
+| Strix Halo | 256 GB/s |
+
+Rozdíly vypadají malé, ale při dlouhém kontextu a souběžnosti se
+projeví. Víc než tabulkové číslo ale rozhoduje software: optimalizovaný
+engine vytáhne z paměti víc.
+
+## Kde se to plete
+
+- **TFLOPS** je výpočetní výkon, ne paměť. Pro decode je většinou
+  nadbytečný.
+- **Velikost paměti** (128 GB) rozhoduje, co se vejde; propustnost
+  rozhoduje, jak rychle to poběží.
+- **Roofline** je vzorec, který obojí spojuje — viz
+  [Roofline](/rychlost/roofline/).
+
+## Kudy dál
+
+- [Co je decode](/slovnik/vykon/decode/) — kde se propustnost projeví.
+- [Co je TFLOPS](/slovnik/vykon/tflops/) — druhý výkon, který tolik neznamená.
+- [Co je unified memory](/slovnik/pamet/unified-memory/) — proč je paměť společná.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Roofline](/rychlost/roofline/) — vzorec a příklady.
+- [Datová karta: Qwen3.8 Flash Next na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+
+*Naposledy ověřeno: 4. 11. 2026.*
