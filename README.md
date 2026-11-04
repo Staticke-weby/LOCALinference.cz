@@ -66,7 +66,7 @@ npm run check:zdroje   # ověří, že URL odpovídají
 ## Základní pravidla
 
 - Jen **hotová zařízení**, žádné skládání PC.
-- Jen **současné modely**; minimum je **Qwen3.8 Flash Next**.
+- Jen **současné modely**; na 128 GB minimum **Qwen3.8 Flash Next**, na 64 GB **Qwen3.6 35B-A3B** a **Gemma 4 26B A4B** v Q4.
 - Jen modely, které se **celé vejdou na jedno zařízení**; modely vyžadující pool nebo offload nezařazujeme.
 - Jen **MoE** modely jako doporučení; dense jen jako varování.
 - Každé číslo má **zdroj, datum, typ** (`naměřeno` = převzato od zdroje /

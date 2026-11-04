@@ -12,6 +12,7 @@ const typLabel: Record<string, string> = {
 };
 
 function odkazStranky(stranka: string): string {
+  if (stranka === 'index' || stranka === '/' || stranka === '') return '/';
   if (stranka.startsWith('/')) return stranka;
   return `/${stranka.replace(/\/$/, '')}/`;
 }
@@ -24,13 +25,22 @@ function popisStranky(stranka: string): string {
     'zaciname/proc-moe': 'Proč MoE',
     'rychlost/roofline': 'Roofline',
     'vyber/rozpocet': 'Výběr podle rozpočtu',
+    'vyber/kolik-uzivatelu': 'Kolik uživatelů',
     'zarizeni/dgx-spark': 'DGX Spark',
+    'zarizeni/rtx-spark-mini': 'RTX Spark mini',
     'zarizeni/rtx-spark-notebook': 'RTX Spark notebook',
+    'zarizeni/strix-halo': 'Strix Halo',
+    'zarizeni/konfigurace': 'Konfigurace 64GB+',
+    'zarizeni/srovnani': 'Srovnání zařízení',
     'modely/qwen3-8-flash-next': 'Qwen3.8 Flash Next',
+    'modely/qwen3-6-35b-a3b': 'Qwen3.6 35B-A3B',
+    'modely/gemma-4-26b-a4b': 'Gemma 4 26B A4B',
+    'modely/srovnani': 'Srovnání modelů',
     'data/qwen3-8-flash-next-strix-halo': 'Data: Qwen3.8 FN na Strix Halo',
     'o-webu/metodika': 'Metodika',
     'o-webu/jak-piseme': 'Jak píšeme',
     'zdroje/zdroje': 'Zdroje',
+    'zdroje/mereni': 'Všechna měření',
     'zdroje/co-nevime': 'Co nevíme',
     'zdroje/novinky': 'Novinky',
   };

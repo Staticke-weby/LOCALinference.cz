@@ -8,6 +8,8 @@ interface Props {
 const { filtr } = Astro.props;
 const vse = getModely();
 const modely = filtr ? vse.filter((m) => filtr.includes(m.id)) : vse;
+const stavLabel = (s: string) =>
+  s === 'doporuceny' ? 'doporučený' : s === 'pod-hranici' ? 'pod hranicí' : s === 'jen-pro-velke' ? 'jen pro velké' : 'referenční';
 ---
 
 <div class="li-tabulka-obal">
@@ -31,7 +33,7 @@ const modely = filtr ? vse.filter((m) => filtr.includes(m.id)) : vse;
           <td class="li-cislo">{m.kontext.max ? formatCislo(m.kontext.max) : '—'}</td>
           <td>{m.vision ? 'ano' : 'ne'}</td>
           <td>{m.licence}</td>
-          <td>{m.stav}</td>
+          <td>{stavLabel(m.stav)}</td>
           <td><a href={m.zdroje[0]} target="_blank" rel="noopener noreferrer">zdroj</a></td>
         </tr>
       ))}

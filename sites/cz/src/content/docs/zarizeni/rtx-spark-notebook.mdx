@@ -1,27 +1,29 @@
 ---
-title: "RTX Spark notebook 128 GB: lokální AI na cesty"
-description: "Notebook s 128 GB unified paměti a 300 GB/s. Co o něm víme, včetně nativního vLLM pod Windows ARM64 a prvních měření."
+title: "RTX Spark notebook 64 a 128 GB: lokální AI na cesty"
+description: "Notebook s 64 nebo 128 GB unified paměti a 300 GB/s. Co o něm víme, včetně nativního vLLM pod Windows ARM64 a prvních měření."
 last_verified: 2026-11-04
 typ: zarizeni
 id: rtx-spark-notebook
 sidebar:
-  order: 3
+  order: 4
 ---
 
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
+import TabulkaKonfiguraci from '../../../components/TabulkaKonfiguraci.astro';
 
-# RTX Spark notebook 128 GB
+# RTX Spark notebook 64 a 128 GB
 
-**Verdikt:** 128GB notebook s CUDA, který si vezmete na cesty — ale jen
-pro jednoho člověka, který ho opravdu využije. Na sdílený provoz a audit
-je to špatná volba.
+**Verdikt:** Notebook s unified pamětí a CUDA, který si vezmete na cesty —
+ale jen pro jednoho člověka, který ho opravdu využije. **64GB verze**
+stačí na Qwen3.6 a Gemmu 4; **128GB verze** navíc zvládne Qwen3.8 Flash
+Next. Na sdílený provoz a audit je to špatná volba.
 
 <aside class="tip">
 **Pro koho:** jeden náročný uživatel, práce offline, data nesmí opustit stroj.
 **Pro koho ne:** sdílený pool, batch přes noc, tým s požadavkem na audit.
-**Minimum pro denní práci:** Qwen3.8 Flash Next (176B / 6B).
+**Minimum pro denní práci:** Qwen3.8 Flash Next na 128 GB; Qwen3.6 35B-A3B nebo Gemma 4 26B A4B na 64 GB.
 </aside>
 
 > **Toto jsou převzatá data, ne naše měření.** Parametry pocházejí z oficiální
@@ -34,8 +36,17 @@ je to špatná volba.
 <RychlaFakta id="rtx-spark-notebook" />
 
 **Cena:** bez DPH a dopravy. Nižší ceny (od 2 599 USD) jsou konfigurace
-s 24GB pamětí, na Qwen3.8 Flash Next nestačí. Zdroje jsou u ceny
-v tabulce a v [registru zdrojů](/zdroje/zdroje/).
+s 24GB pamětí, na Qwen3.8 Flash Next nestačí. **64GB verze** začíná na
+4 299,99 USD (Surface Laptop Ultra 64GB/1TB), **128GB verze** na
+5 899,99 USD. Zdroje jsou u ceny v tabulce a v [registru zdrojů](/zdroje/zdroje/).
+
+## Konfigurace
+
+<TabulkaKonfiguraci zarizeni="rtx-spark-notebook" />
+
+**Co to znamená:** 64GB notebook zvládne Qwen3.6 35B-A3B a Gemmu 4 26B A4B
+v Q4 s 128k kontextem. Qwen3.8 Flash Next potřebuje 128 GB. U notebooku
+navíc rozhoduje throttling: dlouhý 128k běh není totéž co krátký chat.
 
 ## Co na něm poběží
 
@@ -57,6 +68,9 @@ Nejsou to nezávislé laboratorní testy a nejsou to próza ani dlouhý kontext.
 (cca 95–110 GB). Zbytek paměti je na kontext a systém. To je z model cardu
 a [BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark),
 ne z měření.
+
+**Na 64GB verzi** Qwen3.8 Flash Next neběží. Použijte Qwen3.6 35B-A3B
+nebo Gemmu 4 26B A4B v Q4; oba zvládnou 128k kontext.
 
 ## Jak rychle
 
@@ -127,6 +141,13 @@ Stejná paměť i bandwidth. Rozhoduje forma: notebook vyhraje na cestách,
 mini na stálém provozu. Nepřetržitý výkon notebooku je nižší, ale konkrétní
 číslo `[DOPLNIT: měření]`.
 
+## Kudy dál
+
+- [RTX Spark mini](/zarizeni/rtx-spark-mini/) — stolní varianta.
+- [Konfigurace 64GB+](/zarizeni/konfigurace/) — co se vejde na 64 a 128 GB.
+- [Qwen3.6 35B-A3B](/modely/qwen3-6-35b-a3b/) — model pro 64GB verzi.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model pro 128GB verzi.
+
 ## Zdroje
 
 - [NVIDIA RTX Spark — oficiální stránka](https://www.nvidia.com/en-us/products/rtx-spark/) —
@@ -137,6 +158,8 @@ mini na stálém provozu. Nepřetržitý výkon notebooku je nižší, ale konkr
   dostupnost a specifikace (10/2026).
 - [Tom's Hardware — RTX Spark on sale](https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models) —
   ceny a konfigurace (10/2026).
+- [Microsoft Store — Surface Laptop Ultra](https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8) —
+  ceny 64GB a 128GB konfigurací (10/2026).
 - [BetterClaw — RTX Spark vs DGX Spark](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark) —
   cena 128GB konfigurace, srovnání.
 - [První ceny RTX Spark notebooků](https://news.qq.com/rain/a/20261008A04Z5W00) —

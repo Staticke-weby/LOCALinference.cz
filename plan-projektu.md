@@ -101,16 +101,17 @@ být hluboký, ale nesmí být arogantní.
 │   └── slovnik                 Pojmy bez balastu
 │
 ├── /zarizeni/                  Katalog hotových zařízení
-│   ├── dgx-spark               128 GB, 273 GB/s, 6 950 USD
-│   ├── rtx-spark-mini          128 GB, 300 GB/s, 5 999 USD
-│   ├── rtx-spark-notebook      128 GB, 300 GB/s, 5 899–6 499 USD
-│   ├── strix-halo              128 GB, 256 GB/s, 3 649–5 349 USD
+│   ├── dgx-spark               64/128 GB, 273 GB/s, 4 999–6 950 USD
+│   ├── rtx-spark-mini          64/128 GB, 300 GB/s, 5 999 USD (128)
+│   ├── rtx-spark-notebook      64/128 GB, 300 GB/s, 4 299–6 999 USD
+│   ├── strix-halo              64/128 GB, 256 GB/s, 1 959–5 349 USD
+│   ├── konfigurace             Kompletní seznam 64GB+ konfigurací
 │   └── srovnani                Velká matice Parametr × Zařízení
 │
 ├── /modely/                    Katalog současných modelů
-│   ├── qwen3-8-flash-next      Minimum pro denní práci (176B / 6B)
-│   ├── qwen3-6-35b-a3b         Malý a rychlý, nižší kvalita
-│   ├── nemotron-3-5-super      120B / 12B, throughput
+│   ├── qwen3-8-flash-next      Minimum pro denní práci na 128 GB (176B / 6B)
+│   ├── qwen3-6-35b-a3b         Rychlý model pro 64 GB (35B / 3B)
+│   ├── gemma-4-26b-a4b         Kvalita pro 64 GB (25,2B / 3,8B)
 │   └── srovnani                Model × zařízení × rychlost
 │
 ├── /rychlost/                  Jak rychle to poběží

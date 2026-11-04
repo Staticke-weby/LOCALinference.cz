@@ -185,7 +185,8 @@ TTFT, unified memory, vLLM, váhy.
 | `zarizeni/dgx-spark` | Nejintegrovanější 128GB krabice, po zdražení drahá | ⬜ |
 | `zarizeni/rtx-spark-mini` | Stejná paměť, vyšší bandwidth, nižší cena než DGX Spark | ⬜ |
 | `zarizeni/rtx-spark-notebook` | Dedikovaný výkon na cesty, ale throttling a auditujelnost | 🟡 |
-| `zarizeni/strix-halo` | Nejlevnější cesta k 128 GB, ROCm je druhá liga | ⬜ |
+| `zarizeni/strix-halo` | Nejlevnější cesta k 64/128 GB, ROCm je druhá liga | ⬜ |
+| `zarizeni/konfigurace` | Kompletní seznam 64GB+ konfigurací a modelů pro 128k | 🟡 |
 | `zarizeni/srovnani` | Velká matice všech parametrů | ⬜ |
 
 **Šablona:** viz `AGENTS.md`, sekce 4. Každá stránka musí mít tabulku
@@ -199,14 +200,14 @@ TTFT, unified memory, vLLM, váhy.
 
 | Stránka | Pozice | Stav |
 |---|---|---|
-| `modely/qwen3-8-flash-next` | Minimum pro denní práci; referenční bod | ⬜ |
-| `modely/qwen3-6-35b-a3b` | Malý a rychlý, ale pod hranicí kvality | ⬜ |
-| `modely/nemotron-3-5-super` | Throughput pro 120B/12B | ⬜ |
+| `modely/qwen3-8-flash-next` | Minimum pro denní práci na 128 GB; referenční bod | ⬜ |
+| `modely/qwen3-6-35b-a3b` | Rychlý model pro 64 GB, kvalitou pod Qwen3.8 | ⬜ |
+| `modely/gemma-4-26b-a4b` | Nejlepší kvalita na 64GB boxu, 256k kontext | 🟡 |
 | `modely/srovnani` | Model × zařízení × rychlost | ⬜ |
 
-**Pravidlo:** žádný model pod Qwen3.8 Flash Next jako doporučení.
-Qwen3.6-35B-A3B a gpt-oss-120B mohou být v tabulce jako „pod hranicí“
-nebo „referenční srovnání“, nikdy jako hlavní volba.
+**Pravidlo:** na 128 GB je minimum Qwen3.8 Flash Next. Na 64 GB jsou
+doporučené Qwen3.6-35B-A3B a Gemma 4 26B A4B v Q4; oba musí mít
+doložený 128k kontext.
 
 **Modely, které se nevejdou na jedno zařízení, nezařazujeme.** GLM-5.3
 Flash (320B/18B) a GLM-5.3 (465 GB) proto v katalogu nejsou; vyžadují

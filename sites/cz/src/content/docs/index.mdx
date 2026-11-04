@@ -24,12 +24,17 @@ import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
   <LinkCard
     title="Zařízení"
     href="/zarizeni/rtx-spark-notebook/"
-    description="Hotové stroje, které zvládnou Qwen3.8 Flash Next. Co na nich poběží a kde je limit."
+    description="Hotové stroje s 64 a 128 GB paměti. Co na nich poběží a kde je limit."
+  />
+  <LinkCard
+    title="Konfigurace 64GB+"
+    href="/zarizeni/konfigurace/"
+    description="Kompletní seznam konfigurací a modelů, které na nich dají 128k kontext."
   />
   <LinkCard
     title="Modely"
     href="/modely/qwen3-8-flash-next/"
-    description="Současné MoE modely od Qwen3.8 Flash Next výš. Kontext, vision, paměť a rychlost."
+    description="Současné MoE modely pro 64GB a 128GB boxy. Kontext, vision, paměť a rychlost."
   />
   <LinkCard
     title="Data a metodika"
@@ -67,9 +72,10 @@ import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
 ## Kde začít
 
 <Aside type="tip" title="Minimum pro denní práci">
-  Dnes je to **Qwen3.8 Flash Next** na zařízení se **128 GB unified paměti**.
-  Modely pod ním nejsou v katalogu jako doporučení. Podrobnosti a zdroje
-  najdete v [metodice](/o-webu/metodika/).
+  Na **128 GB** je to **Qwen3.8 Flash Next**. Na **64 GB** vyberte
+  **Qwen3.6 35B-A3B** nebo **Gemmu 4 26B A4B** v Q4 — oba zvládnou
+  128k kontext. Co přesně na kterou konfiguraci stačí, najdete v
+  [přehledu konfigurací](/zarizeni/konfigurace/).
 </Aside>
 
 <Aside type="note" title="Web se vyvíjí">

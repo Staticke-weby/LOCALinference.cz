@@ -4,6 +4,28 @@
 
 ---
 
+## 2026-11-04 — konfigurace 64 GB+
+
+Rozšíření katalogu na **všechny konfigurace s 64 GB a více** unified paměti:
+
+- Nový `data/konfigurace.yaml` (8 konfigurací) a stránka
+  `/zarizeni/konfigurace/`. Každá konfigurace má cenu, datum, zdroj
+  a seznam modelů, které se vejdou včetně KV cache pro 128k.
+- **Gemma 4 26B A4B** přidána jako doporučený model pro 64 GB
+  (25,2B / 3,8B, 256k, Apache-2.0, Q4_K_M ~17 GB vah).
+- **Qwen3.6 35B-A3B** změněn z „pod hranicí“ na doporučený pro 64 GB.
+  Na 128 GB zůstává Qwen3.8 Flash Next minimum.
+- Ceny 64GB variant: DGX Spark od 4 999 USD, RTX Spark notebook od
+  4 299,99 USD, Strix Halo od 1 959 USD. RTX Spark mini 64 GB cena
+  `[DOPLNIT]`.
+- Rychlosti Gemmy 4: 69,9 tok/s na DGX Spark (Q4_K_M, llama.cpp),
+  78 tok/s na Strix Halo (UD-Q4_K_XL), ~53 tok/s při 128k (LM Studio).
+  NVFP4 ve vLLM bez draftu je ~31,5 tok/s — vysvětleno jako rozdíl enginu.
+- **KV cache Qwen3.6** je malá díky lineární attention (30 z 40 vrstev).
+  Odhad ~24–25 GB při 128k je označený jako výpočet, ne měření.
+
+---
+
 ## 2026-11-04 — zpětná vazba k obsahu
 
 Zadání doplněno o redakční pravidla:

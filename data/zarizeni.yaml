@@ -12,10 +12,11 @@
   bandwidth_gbs: 273
   stranka: /zarizeni/dgx-spark/
   cena:
-    usd: 6950
-    overeno: 2026-10-02
-    zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-spark/
-    poznamka: "Zdroj: ceník NVIDIA 10/2026; bez DPH a dopravy."
+    od_usd: 4999
+    do_usd: 6950
+    overeno: 2026-10-23
+    zdroj: https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/
+    poznamka: "64GB od 4 999 USD přes partnery; 128GB 6 950 USD; bez DPH a dopravy."
   cpu: GB10 Grace Blackwell
   gpu: Blackwell
   os: [DGX OS, Ubuntu]
@@ -43,7 +44,7 @@
     usd: 5999
     overeno: 2026-10-01
     zdroj: https://www.nvidia.com/en-us/products/rtx-spark/
-    poznamka: "Bez DPH a dopravy."
+    poznamka: "128GB 5 999 USD; 64GB cena [DOPLNIT]. Bez DPH a dopravy."
   cpu: NVIDIA Arm SoC
   gpu: Blackwell
   os: [Windows]
@@ -68,11 +69,11 @@
   pamet_typ: unified
   bandwidth_gbs: 300
   cena:
-    od_usd: 5899
-    do_usd: 6499
+    od_usd: 4299.99
+    do_usd: 6999
     overeno: 2026-10-16
-    zdroj: https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark
-    poznamka: "128GB konfigurace: Surface Laptop Ultra 5 899 USD, ASUS ProArt P14 6 499 USD; bez DPH a dopravy. Nižší ceny jsou 24GB modely."
+    zdroj: https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8
+    poznamka: "64GB od 4 299,99 USD; 128GB 5 899,99–6 999 USD; bez DPH a dopravy. Nižší ceny jsou 24GB modely."
   cpu: NVIDIA Grace 20 jader
   gpu: Blackwell RTX
   os: [Windows 11]
@@ -102,11 +103,11 @@
   pamet_typ: unified
   bandwidth_gbs: 256
   cena:
-    od_usd: 3649
+    od_usd: 1959
     do_usd: 5349
-    overeno: 2026-09-01
-    zdroj: https://www.gmktec.com/
-    poznamka: "GMKtec EVO-X2 3 649 USD; HP 5 349 USD; bez DPH a dopravy."
+    overeno: 2026-09-22
+    zdroj: https://www.compute-market.com/blog/strix-halo-mini-pc-local-ai-2026
+    poznamka: "64GB od 1 959 USD; 128GB od 3 449 USD; HP až 5 349 USD; bez DPH a dopravy."
   cpu: Ryzen AI Max+ 395
   gpu: Radeon 8060S
   os: [Linux, Windows]

@@ -1,0 +1,66 @@
+---
+import { cenaKonfiguraceText, formatCislo, getKonfigurace, getModelById, getZarizeniById } from '../lib/data';
+
+interface Props {
+  zarizeni?: string;
+  minPamet?: number;
+}
+
+const { zarizeni, minPamet = 64 } = Astro.props;
+const konfigurace = getKonfigurace({ zarizeni, minPamet });
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Konfigurace</th>
+        <th>Paměť</th>
+        <th>Bandwidth</th>
+        <th>Cena</th>
+        <th>MoE modely s ≥128k</th>
+      </tr>
+    </thead>
+    <tbody>
+      {konfigurace.map((k) => {
+        const z = getZarizeniById(k.zarizeni);
+        const cena = cenaKonfiguraceText(k);
+        return (
+          <tr>
+            <td>
+              {z?.stranka ? <a href={z.stranka}>{k.nazev}</a> : k.nazev}
+              {k.uloziste ? <span class="li-pozn"> · {k.uloziste}</span> : null}
+            </td>
+            <td class="li-cislo">{formatCislo(k.pamet_gb)} GB</td>
+            <td class="li-cislo">{formatCislo(k.bandwidth_gbs)} GB/s</td>
+            <td>
+              <span class="li-cislo">{cena.usd}</span>
+              {cena.czk ? <span class="li-pozn"> {cena.czk}</span> : null}
+            </td>
+            <td>
+              {k.modely.map((m, i) => {
+                const model = getModelById(m.model);
+                return (
+                  <>
+                    {i > 0 ? ' · ' : ''}
+                    {model?.stranka ? <a href={model.stranka}>{model.nazev}</a> : m.model}{' '}
+                    <span class="li-pozn">
+                      {m.kvantizace}, {formatCislo(m.kontext / 1024)}k
+                      {m.vahy_gb ? `, ~${formatCislo(m.vahy_gb)} GB vah` : ''}
+                    </span>
+                  </>
+                );
+              })}
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+</style>

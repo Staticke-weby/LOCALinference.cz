@@ -1,6 +1,6 @@
 ---
-title: "Výběr podle rozpočtu: co dostanete za 4, 7 a 10 tisíc dolarů"
-description: "Přehled hotových zařízení podle ceny a toho, co reálně zvládnou. Bez odhadů, s datem a zdrojem u každé ceny."
+title: "Výběr podle rozpočtu: od 2 do 7 tisíc dolarů"
+description: "Přehled hotových zařízení s 64 a 128 GB paměti podle ceny a toho, co reálně zvládnou. Bez odhadů, s datem a zdrojem u každé ceny."
 last_verified: 2026-11-04
 sidebar:
   order: 1
@@ -11,27 +11,35 @@ import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 # Výběr podle rozpočtu
 
 Ceny jsou bez DPH a dopravy, k uvedenému datu. Přepočet na Kč je orientační
-kurzem ČNB 21,762 k 3. 11. 2026.
+kurzem ČNB 21,762 k 3. 11. 2026. Kompletní seznam konfigurací je
+v [přehledu 64GB+](/zarizeni/konfigurace/).
 
 <TabulkaZarizeni />
 
 **Ceny:** bez DPH a dopravy, k datu uvedenému u zařízení. Zdroje jsou
 u každé ceny; další odkazy najdete v [registru zdrojů](/zdroje/zdroje/).
 
-## Do 5 000 USD: Strix Halo
+## Do 2 500 USD: Strix Halo 64 GB
 
-Nejlevnější cesta k 128 GB. Vejde se na Qwen3.8 Flash Next, ale prefill
-je slabší a ROCm není tak zralý jako CUDA. Pro jednoho až čtyři lidi,
-kteří chtějí data u sebe a nepotřebují nejrychlejší první token.
+Nejlevnější vstup do 128k kontextu. Framework Desktop začíná na
+1 959 USD (bez SSD), GMKtec EVO-X2 na 2 199,99 USD. Vejde se na
+Qwen3.6 35B-A3B a Gemmu 4 26B A4B v Q4. Qwen3.8 Flash Next ne.
 
-## Kolem 6 000 USD: RTX Spark
+## Do 5 000 USD: DGX Spark 64, notebook 64, Strix Halo 128
 
-Notebook nebo mini se stejnou pamětí a 300 GB/s. Notebook vyhraje na
-cestách, mini na stálém provozu. Oba mají CUDA a nově i komunitní nativní
-vLLM port pro Windows ARM64. Konkrétní měření jsou zatím jen pro coding
-benchmark, ne pro dlouhý kontext.
+- **DGX Spark 64 GB** — 4 999 USD, CUDA a DGX OS. Na 128k kontext stačí
+  Qwen3.6 a Gemma 4.
+- **RTX Spark notebook 64 GB** — od 4 299,99 USD. Mobilní varianta se
+  stejným modelem.
+- **Strix Halo 128 GB** — od 3 449 USD. Nejlevnější cesta k Qwen3.8
+  Flash Next, ale slabší prefill a ROCm.
 
-## Kolem 7 000 USD: DGX Spark
+## Kolem 6 000 USD: RTX Spark mini 128 GB
+
+Stolní CUDA za 5 999 USD. Stejná paměť a bandwidth jako notebook, ale
+stálé chlazení. Konkrétní měření Qwen3.8 FN na mini chybí.
+
+## Kolem 7 000 USD: DGX Spark 128 GB
 
 Nejintegrovanější 128GB krabice s CUDA a enterprise managementem. Po
 zdražení už není nejlevnější. Dává smysl tam, kde potřebujete NVIDIA stack,
@@ -39,27 +47,33 @@ clustering nebo správu flotily — ne jako „levný node“.
 
 ## Dražší zařízení nezařazujeme
 
-Web se drží **malých 128GB boxů za dosažitelnou cenu**. Dražší a větší
-stroje do katalogu nepatří — pro víc uživatelů se škáluje počtem boxů,
-ne dražším strojem.
+Web se drží **malých boxů za dosažitelnou cenu**. Dražší a větší stroje
+do katalogu nepatří — pro víc uživatelů se škáluje počtem boxů, ne dražším
+strojem.
 
 ## Co je minimum
 
-**128 GB unified paměti** a model Qwen3.8 Flash Next. Cokoli menšího
-nezvládne model v použitelné kvantizaci. Cokoli většího je o kompromisech,
-ne o magii.
+- **64 GB** pro Qwen3.6 35B-A3B nebo Gemmu 4 26B A4B v Q4 s 128k kontextem.
+- **128 GB** pro Qwen3.8 Flash Next.
+
+Cokoli menšího nezvládne model v použitelné kvantizaci. Cokoli většího je
+o kompromisech, ne o magii.
 
 ## Kudy dál
 
-- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — první detail.
-- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
+- [Konfigurace 64GB+](/zarizeni/konfigurace/) — co na co stačí.
+- [Strix Halo](/zarizeni/strix-halo/) — nejlevnější varianta.
+- [Qwen3.6 35B-A3B](/modely/qwen3-6-35b-a3b/) — model pro 64 GB.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model pro 128 GB.
 - [Jak čteme data](/zaciname/jak-cteme-data/) — proč cena není všechno.
-- [Co nevíme](/zdroje/co-nevime/) — kde chybí měření.
 
 ## Zdroje
 
 - [NVIDIA DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [NVIDIA blog — DGX Spark 64 GB](https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/)
 - [NVIDIA RTX Spark](https://www.nvidia.com/en-us/products/rtx-spark/)
+- [Microsoft — Surface Laptop Ultra](https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8)
+- [Compute Market — Strix Halo ceny](https://www.compute-market.com/blog/strix-halo-mini-pc-local-ai-2026)
 - [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
 - [BetterClaw — RTX Spark vs DGX Spark](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark)
 

@@ -344,3 +344,115 @@
   priorita: stredni
   posledni_kontrola: 2026-11-04
   stav: ok
+
+- id: qwen36-unsloth-gguf
+  nazev: Unsloth - Qwen3.6 35B-A3B GGUF
+  url: https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF
+  typ: hf
+  co_sledujeme: [gguf-kvantizace, velikosti, mtp]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: gemma4-hf
+  nazev: Gemma 4 26B A4B - model card
+  url: https://huggingface.co/google/gemma-4-26B-A4B
+  typ: hf
+  co_sledujeme: [parametry, kontext, licence, vision, benchmarky]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: gemma4-ollama
+  nazev: Ollama - Gemma 4 26B
+  url: https://ollama.com/library/gemma4:26b
+  typ: html
+  co_sledujeme: [kvantizace, velikosti, kontext]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Q4_K_M 17 GB vah, Q8_0 26,9 GB."
+
+- id: gemma4-google
+  nazev: Google AI - Gemma 4 model overview
+  url: https://ai.google.dev/gemma/docs/core
+  typ: html
+  co_sledujeme: [parametry, kontext, pametove-naroky, kvantizace]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: nvidia-dgx-spark-64gb
+  nazev: NVIDIA blog - DGX Spark 64 GB
+  url: https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/
+  typ: html
+  co_sledujeme: [cena, konfigurace, dostupnost, clustering]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: microsoft-surface-ultra
+  nazev: Microsoft Store - Surface Laptop Ultra
+  url: https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8
+  typ: html
+  co_sledujeme: [cena, konfigurace, pamet, dostupnost]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: compute-market-strix-halo
+  nazev: Compute Market - Strix Halo ceny a konfigurace
+  url: https://www.compute-market.com/blog/strix-halo-mini-pc-local-ai-2026
+  typ: html
+  co_sledujeme: [cena, konfigurace, dostupnost]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: rtxsparkpc-tracker
+  nazev: RTX Spark PC - přehled zařízení
+  url: https://rtxsparkpc.com/
+  typ: html
+  co_sledujeme: [konfigurace, dostupnost, cena]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: tokenmark-gemma4
+  nazev: TokenMark - Gemma 4 26B A4B měření
+  url: https://tokenmark.app/model/gemma-4-26B-A4B-it
+  typ: html
+  co_sledujeme: [mereni, kvantizace, kontext]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Agregátor komunitních měření; vždy ověřit konkrétní setup."
+
+- id: llamaperf-gemma4
+  nazev: llamaperf - Gemma 4
+  url: https://llamaperf.com/model/gemma-4
+  typ: html
+  co_sledujeme: [mereni, prefill, decode, kontext]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+
+- id: boxwrench-gemma4
+  nazev: boxwrench - Gemma 4 QAT Q4_0 na Strix Halo
+  url: https://github.com/boxwrench/tesla_agent/blob/main/research/gemma-4-qat-q4_0-strix-halo.md
+  typ: github
+  co_sledujeme: [mereni, qat, mtp, strix-halo]
+  frekvence: mesicne
+  priorita: nizka
+  posledni_kontrola: 2026-11-04
+  stav: ok

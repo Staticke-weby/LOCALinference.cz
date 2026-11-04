@@ -1,4 +1,6 @@
-# Katalog modelů. Jen současné modely; minimum je Qwen3.8 Flash Next.
+# Katalog modelů. Jen současné modely.
+# Na 128 GB je minimum Qwen3.8 Flash Next; na 64 GB Qwen3.6 35B-A3B
+# a Gemma 4 26B A4B v Q4.
 # Jen modely, které se celé vejdou na jedno zařízení (včetně KV cache).
 # Modely vyžadující pool nebo offload nezařazujeme.
 # `kontext.doporuceny` je null, dokud pro něj nemáme podložené doporučení.
@@ -48,10 +50,40 @@
   licence: Apache-2.0
   kvantizace:
     - {nazev: NVFP4, vahy_gb: null, engine: vLLM}
+    - {nazev: Q4_K_M, vahy_gb: 21.2, engine: llama.cpp}
+    - {nazev: Q8_0, vahy_gb: 36.9, engine: llama.cpp}
   role: special
-  stav: pod-hranici
+  stav: doporuceny
   stranka: /modely/qwen3-6-35b-a3b/
   zdroje:
     - https://huggingface.co/Qwen/Qwen3.6-35B-A3B
     - https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b
+    - https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF
+  overeno: 2026-11-04
+
+- id: gemma-4-26b-a4b
+  nazev: Gemma 4 26B A4B
+  vyrobce: Google DeepMind
+  architektura: MoE
+  parametry_celkem_b: 25.2
+  parametry_aktivni_b: 3.8
+  kontext:
+    max: 262144
+    max_rozsireni: null
+    doporuceny: null
+    poznamka: "256k nativně; maximum není doporučený provozní bod."
+  vision: true
+  modality: [text, obraz]
+  licence: Apache-2.0
+  kvantizace:
+    - {nazev: Q4_K_M, vahy_gb: 17.0, engine: llama.cpp}
+    - {nazev: Q8_0, vahy_gb: 26.9, engine: llama.cpp}
+    - {nazev: NVFP4, vahy_gb: 14.4, engine: vLLM}
+  role: special
+  stav: doporuceny
+  stranka: /modely/gemma-4-26b-a4b/
+  zdroje:
+    - https://huggingface.co/google/gemma-4-26B-A4B
+    - https://ollama.com/library/gemma4:26b
+    - https://ai.google.dev/gemma/docs/core
   overeno: 2026-11-04

@@ -35,6 +35,7 @@ použití.
 
 - DGX Spark: TTFT a prefill pro různé engine.
 - RTX Spark mini: první veřejné měření.
+- 64GB konfigurace: TTFT a souběžnost pro Qwen3.6 a Gemmu 4.
 - Všechna zařízení: 4+ souběžných uživatelů.
 
 Celý seznam je v [Co nevíme](/zdroje/co-nevime/).

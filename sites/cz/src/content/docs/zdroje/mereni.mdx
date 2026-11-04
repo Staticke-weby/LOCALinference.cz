@@ -1,6 +1,6 @@
 ---
 title: "Všechna měření: tabulka s konfigurací"
-description: "Přehled všech převzatých měření Qwen3.8 Flash Next a Qwen3.6 na jednotlivých zařízeních. Konfigurace, TTFT, prefill, decode a zdroj."
+description: "Přehled všech převzatých měření Qwen3.8 Flash Next, Qwen3.6 a Gemmy 4 na jednotlivých zařízeních. Konfigurace, TTFT, prefill, decode a zdroj."
 last_verified: 2026-11-04
 sidebar:
   order: 0
@@ -22,15 +22,18 @@ typ údaje, důvěryhodnost a zdroj.
 
 ## Co v tabulce je
 
-- **DGX Spark** — několik recipes od 16 do 65 tok/s.
-- **Strix Halo** — 10 komunitních reportů, 36–79 tok/s.
+- **DGX Spark** — Qwen3.8 Flash Next od 16 do 65 tok/s, Gemma 4 26B A4B
+  kolem 70 tok/s.
+- **Strix Halo** — Qwen3.8 Flash Next 36–79 tok/s, Qwen3.6 73 tok/s,
+  Gemma 4 26B A4B 53–78 tok/s.
 - **RTX Spark notebook** — nativní vLLM a llama.cpp.
 
 ## Co v tabulce není
 
-- **Dražší a větší stroje** — vyřazeny, web se drží malých 128GB boxů.
+- **Dražší a větší stroje** — vyřazeny, web se drží malých boxů.
 - **RTX Spark mini** — zatím nemá veřejné měření Qwen3.8 FN.
-- **Dlouhý kontext u většiny zařízení** — chybí 128k+ měření.
+- **Dlouhý kontext u většiny zařízení** — chybí 128k+ měření; výjimkou
+  je Gemma 4 na Strix Halu a několik reportů Qwen3.8.
 
 Celý seznam mezer je v [Co nevíme](/zdroje/co-nevime/).
 
@@ -39,12 +42,15 @@ Celý seznam mezer je v [Co nevíme](/zdroje/co-nevime/).
 - [Zdroje](/zdroje/zdroje/) — odkud data bereme.
 - [Metodika](/o-webu/metodika/) — jak data čteme.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
+- [Gemma 4 26B A4B](/modely/gemma-4-26b-a4b/) — model pro 64 GB.
 - [Srovnání zařízení](/zarizeni/srovnani/) — co si vybrat.
 
 ## Zdroje
 
 - [madeye — DGX Spark](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)
 - [llamaperf — Strix Halo](https://llamaperf.com/gpu/strix-halo-128gb)
+- [llamaperf — Gemma 4](https://llamaperf.com/model/gemma-4)
+- [TokenMark — Gemma 4 26B A4B](https://tokenmark.app/model/gemma-4-26B-A4B-it)
 - [NVIDIA forum — vLLM na RTX Spark](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530)
 
 *Naposledy ověřeno: 4. 11. 2026.*

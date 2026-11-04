@@ -1,0 +1,145 @@
+---
+title: "Gemma 4 26B A4B: malý MoE pro 64GB boxy"
+description: "25,2B celkem, 3,8B aktivních, 256k kontext, vision a Apache-2.0. V Q4 se vejde i s 128k kontextem do 64GB zařízení."
+last_verified: 2026-11-04
+sidebar:
+  order: 3
+---
+
+import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+
+# Gemma 4 26B A4B
+
+**Verdikt:** Nejlepší volba pro zařízení s **64 GB unified paměti**.
+Model má 25,2B parametrů celkem, ale na token aktivuje jen 3,8B, takže
+je rychlý jako malý model a přitom zvládne 128k kontext i s rezervou.
+Kvalitou zaostává za Qwen3.8 Flash Next; na 64GB boxu je to ale rozumný
+kompromis.
+
+<aside class="tip">
+**Role:** doporučený model pro 64GB konfigurace.
+**Celkem / aktivních:** 25,2B / 3,8B.
+**Kontext:** 256k nativně; 128k je reálný provozní bod na 64GB.
+**Minimální zařízení:** 32 GB pro krátký kontext, 64 GB pro 128k.
+</aside>
+
+> **Toto jsou převzatá data, ne naše měření.** Specifikace jsou z model
+> cardu, rychlosti z veřejných měření. Kde měření chybí, je `[DOPLNIT]`.
+> Podrobnosti v [metodice](/o-webu/metodika/).
+
+## Specifikace
+
+| Parametr | Hodnota | Zdroj |
+|---|---|---|
+| Architektura | MoE, 8 aktivních ze 128 expertů + 1 shared | [model card](https://huggingface.co/google/gemma-4-26B-A4B) |
+| Celkové parametry | 25,2B | model card |
+| Aktivní parametry | 3,8B na token | model card |
+| Vrstvy | 30 | model card |
+| Sliding window | 1 024 tokenů | model card |
+| Nativní maximum kontextu | 262 144 | model card |
+| Vision | ano (text, obrázky, video po framech) | model card |
+| Licence | Apache-2.0 | model card |
+| Thinking režim | ano, vypínatelný | model card |
+
+## Co umí
+
+- **Reasoning a agentní úlohy.** Model má zapínatelný thinking režim
+  a nativní function calling.
+- **Vision.** Dokumenty, screenshoty, grafy a OCR; vision encoder má
+  přibližně 550M parametrů.
+- **Dlouhý kontext.** 256k nativně, bez YaRN.
+- **Multilingvní provoz.** Model card uvádí 35+ jazyků out of the box
+  a předtrénink na 140+ jazycích.
+- **MTP.** Součástí je draft head pro spekulativní dekódování.
+
+### Benchmarky
+
+| Test | Gemma 4 26B A4B | Gemma 4 31B (dense) |
+|---|---|---|
+| MMLU Pro | 82,6 % | 85,2 % |
+| AIME 2026 bez nástrojů | 88,3 % | 89,2 % |
+| LiveCodeBench v6 | 77,1 % | 80,0 % |
+| GPQA Diamond | 82,3 % | 84,3 % |
+| MMMU Pro (vision) | 73,8 % | 76,9 % |
+| MRCR v2, 128k, 8 needle | 44,1 % | 66,4 % |
+
+**Co z toho plyne:** na běžné reasoning a kód je 26B A4B blízko
+dense 31B, ale **na dlouhém kontextu ztrácí výrazně víc**. Pokud je
+128k kontext hlavní důvod nákupu, počítejte s tím, že model na konci
+dokumentu nemusí najít to, co by našel 31B.
+
+## Kolik potřebuje paměti
+
+| Kvantizace | Váhy | Celkem při 128k | Minimální zařízení |
+|---|---|---|---|
+| Q4_K_M | ~17 GB + 1,2 GB vision | ~21–22 GB | 32 GB krátký kontext, 64 GB pro 128k |
+| Q8_0 | ~27 GB | ~31 GB | 48 GB pro 128k |
+| NVFP4 | ~14,4 GB | ~18 GB | 32 GB pro 128k |
+| BF16 | ~50,5 GB | ~55 GB | 64 GB pro 128k |
+
+Čísla pro Q4_K_M a Q8_0 jsou z reálných GGUF souborů a výpočtu KV cache
+([model card](https://huggingface.co/google/gemma-4-26B-A4B),
+[Ollama](https://ollama.com/library/gemma4:26b),
+[VramGlass](https://vramglass.com/model/gemma)). NVFP4 je orientační
+velikost z NVIDIA model opt; přesná spotřeba závisí na enginu.
+
+**Pro 64GB box:** Q4_K_M s 128k kontextem spotřebuje přibližně 21–22 GB
+včetně vision projektoru. Zbývá zhruba 40 GB na systém, další streamy
+a rezervu. To je pohodlné.
+
+## Jak rychle
+
+<TabulkaMereni model="gemma-4-26b-a4b" />
+
+**Co z toho plyne:** na DGX Sparku a Strix Halu se Q4 dostane na
+**70–78 tok/s** v single-streamu. Při plném 128k kontextu klesá
+na ~53 tok/s, což je stále použitelné pro chat i dokumenty. Jiné enginy
+(NVFP4 ve vLLM) mají jiná čísla; nesrovnáváme je, dokud nemají stejnou
+kvantizaci, kontext a zapnuté spekulativní dekódování.
+
+Měření jsou z **128GB verzí**; 64GB verze mají stejný čip, ale menší
+paměťový pool. Čísla proto berte jako orientační, ne jako záruku pro
+konkrétní 64GB SKU.
+
+## Kontext: maximum není doporučení
+
+| Kontext | Co se stane | Poznámka |
+|---|---|---|
+| 32k | nejlepší kvalita i rychlost | bezpečný výchozí bod |
+| 128k | reálný provozní strop na 64GB | ~21 GB paměti, ~53 tok/s |
+| 256k | maximum modelu | na 64GB se nevejde s rezervou |
+
+Model má 256k nativně, ale **na 64GB konfiguraci je 128k rozumný strop**.
+Delší kontext znamená větší KV cache a menší prostor pro souběžnost.
+Doporučený provozní kontext je `[DOPLNIT: měření kvality na 64GB]`.
+
+## Kde dává smysl
+
+- **64GB mini PC a notebooky**, kde Qwen3.8 Flash Next nemá místo.
+- **Dlouhé dokumenty do 128k** s vědomím, že retrieval není nejlepší.
+- **Vision úlohy** na zařízeních bez velké GPU.
+- **Rychlý agent** s function callingem a thinking režimem.
+
+## Kde ne
+
+- **Náročná práce s dlouhým kontextem**, kde je potřeba vysoká přesnost.
+- **Jako náhrada Qwen3.8 Flash Next** na 128GB zařízení — kvalitou je níž.
+- **Souběžnost mnoha uživatelů** na 64GB boxu; na to přidejte box.
+
+## Kudy dál
+
+- [Qwen3.6 35B-A3B](/modely/qwen3-6-35b-a3b/) — druhý model pro 64GB.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — minimum pro 128 GB.
+- [Konfigurace 64GB+](/zarizeni/konfigurace/) — co na co stačí.
+- [Srovnání modelů](/modely/srovnani/) — přehled.
+
+## Zdroje
+
+- [Gemma 4 26B A4B — model card](https://huggingface.co/google/gemma-4-26B-A4B)
+- [Ollama — Gemma 4 26B](https://ollama.com/library/gemma4:26b)
+- [Google AI — Gemma 4 model overview](https://ai.google.dev/gemma/docs/core)
+- [TokenMark — Gemma 4 26B měření](https://tokenmark.app/model/gemma-4-26B-A4B-it)
+- [llamaperf — Gemma 4](https://llamaperf.com/model/gemma-4)
+- [boxwrench — Gemma 4 QAT na Strix Halo](https://github.com/boxwrench/tesla_agent/blob/main/research/gemma-4-qat-q4_0-strix-halo.md)
+
+*Naposledy ověřeno: 4. 11. 2026.*

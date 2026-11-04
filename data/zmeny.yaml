@@ -2,6 +2,27 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: model
+  titulek: "Gemma 4 26B A4B pro 64GB boxy"
+  co_se_zmenilo: "Do katalogu přidána Gemma 4 26B A4B (25,2B / 3,8B, 256k, Apache-2.0) jako doporučený model pro 64GB konfigurace. Qwen3.6 35B-A3B je nově také doporučený pro 64 GB."
+  dotcene_stranky: [modely/gemma-4-26b-a4b, modely/qwen3-6-35b-a3b, modely/srovnani]
+  zdroj: https://huggingface.co/google/gemma-4-26B-A4B
+
+- datum: 2026-11-04
+  typ: obsah
+  titulek: "Přehled konfigurací 64GB+"
+  co_se_zmenilo: "Nová stránka /zarizeni/konfigurace/ vypisuje všech 8 konfigurací s 64GB+ unified pamětí a modely, které na nich dají 128k kontext."
+  dotcene_stranky: [zarizeni/konfigurace, zarizeni/srovnani, index]
+  zdroj: https://localinference.cz/zarizeni/konfigurace/
+
+- datum: 2026-11-04
+  typ: cena
+  titulek: "Ceny 64GB konfigurací"
+  co_se_zmenilo: "DGX Spark 64GB od 4 999 USD, RTX Spark notebook 64GB od 4 299,99 USD, Strix Halo 64GB od 1 959 USD. Ceny 128GB variant doplněny."
+  dotcene_stranky: [zarizeni/dgx-spark, zarizeni/rtx-spark-notebook, zarizeni/strix-halo, zarizeni/srovnani]
+  zdroj: https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/
+
+- datum: 2026-11-04
   typ: obsah
   titulek: "Přidán changelog"
   co_se_zmenilo: "Nová stránka /zdroje/novinky/ načítá změny z data/zmeny.yaml."

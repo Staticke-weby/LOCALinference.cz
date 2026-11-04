@@ -58,6 +58,37 @@ export const zarizeni = z.object({
   overeno: datum,
 });
 
+export const konfigurace = z
+  .object({
+    id,
+    zarizeni: id,
+    nazev: z.string().min(2),
+    pamet_gb: z.number().positive(),
+    bandwidth_gbs: z.number().positive(),
+    cena_od_usd: z.number().positive().nullable(),
+    cena_do_usd: z.number().positive().nullable(),
+    cena_pozn: z.string().optional(),
+    uloziste: z.string().optional(),
+    dostupnost: z.string().optional(),
+    zdroj: url,
+    overeno: datum,
+    poznamka: z.string().optional(),
+    modely: z
+      .array(
+        z.object({
+          model: id,
+          kvantizace: z.string().min(1),
+          kontext: z.number().positive(),
+          vahy_gb: z.number().positive().nullable(),
+          poznamka: z.string().optional(),
+        }),
+      )
+      .default([]),
+  })
+  .refine((v) => v.cena_od_usd == null || v.cena_do_usd == null || v.cena_od_usd <= v.cena_do_usd, {
+    message: 'cena_od_usd musí být <= cena_do_usd',
+  });
+
 export const model = z.object({
   id,
   nazev: z.string().min(2),

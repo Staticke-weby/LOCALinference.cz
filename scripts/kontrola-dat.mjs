@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 import { z } from 'zod';
-import { kurz, mereni, model, zdroj, zarizeni, zmena } from './schema.mjs';
+import { konfigurace, kurz, mereni, model, zdroj, zarizeni, zmena } from './schema.mjs';
 
 const root = process.cwd();
 const dataDir = path.join(root, 'data');
@@ -80,6 +80,7 @@ function daysOld(date) {
 }
 
 const zarizeniData = readYaml('zarizeni.yaml');
+const konfiguraceData = readYaml('konfigurace.yaml');
 const modelyData = readYaml('modely.yaml');
 const mereniData = readYaml('mereni.yaml');
 const zdrojeData = readYaml('zdroje.yaml');
@@ -87,6 +88,7 @@ const kurzyData = readYaml('kurzy.yaml');
 const zmenyData = readYaml('zmeny.yaml');
 
 const zarizeniList = validate('data/zarizeni.yaml', zarizeni, zarizeniData);
+const konfiguraceList = validate('data/konfigurace.yaml', konfigurace, konfiguraceData);
 const modelyList = validate('data/modely.yaml', model, modelyData);
 const mereniList = validate('data/mereni.yaml', mereni, mereniData);
 const zdrojeList = validate('data/zdroje.yaml', zdroj, zdrojeData);
@@ -94,6 +96,7 @@ const kurzyList = validate('data/kurzy.yaml', kurz, kurzyData);
 const zmenyList = validate('data/zmeny.yaml', zmena, zmenyData);
 
 checkDuplicates('data/zarizeni.yaml', zarizeniList);
+checkDuplicates('data/konfigurace.yaml', konfiguraceList);
 checkDuplicates('data/modely.yaml', modelyList);
 checkDuplicates('data/mereni.yaml', mereniList);
 checkDuplicates('data/zdroje.yaml', zdrojeList);
@@ -101,6 +104,17 @@ checkDuplicates('data/zmeny.yaml', zmenyList);
 
 const zarizeniIds = new Set(zarizeniList.map((x) => x.id));
 const modelIds = new Set(modelyList.map((x) => x.id));
+
+for (const k of konfiguraceList) {
+  if (!zarizeniIds.has(k.zarizeni)) fail(`data/konfigurace.yaml / ${k.id}: neznámé zařízení ${k.zarizeni}`);
+  for (const m of k.modely) {
+    if (!modelIds.has(m.model)) fail(`data/konfigurace.yaml / ${k.id}: neznámý model ${m.model}`);
+  }
+  if (k.pamet_gb < 64) warn(`data/konfigurace.yaml / ${k.id}: konfigurace má méně než 64 GB`);
+  if (k.cena_od_usd == null && !k.cena_pozn) {
+    warn(`data/konfigurace.yaml / ${k.id}: chybí cena i poznámka o ceně`);
+  }
+}
 
 for (const m of mereniList) {
   if (!zarizeniIds.has(m.zarizeni)) fail(`data/mereni.yaml / ${m.id}: neznámé zařízení ${m.zarizeni}`);
@@ -118,6 +132,7 @@ for (const m of mereniList) {
 
 for (const [name, items] of [
   ['data/zarizeni.yaml', zarizeniList],
+  ['data/konfigurace.yaml', konfiguraceList],
   ['data/modely.yaml', modelyList],
   ['data/mereni.yaml', mereniList],
   ['data/zdroje.yaml', zdrojeList],
@@ -150,6 +165,7 @@ else if (daysOld(latestKurz.datum) > 14) warn(`data/kurzy.yaml: nejnovější ku
 const registered = new Set(zdrojeList.map((z) => z.url));
 const referenced = new Set();
 for (const z of zarizeniList) for (const u of z.zdroje) referenced.add(u);
+for (const k of konfiguraceList) referenced.add(k.zdroj);
 for (const m of modelyList) for (const u of m.zdroje) referenced.add(u);
 for (const m of mereniList) referenced.add(m.zdroj);
 for (const u of referenced) {
@@ -158,7 +174,7 @@ for (const u of referenced) {
 }
 
 console.log('');
-console.log(`Data: ${zarizeniList.length} zařízení, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${zmenyList.length} změn.`);
+console.log(`Data: ${zarizeniList.length} zařízení, ${konfiguraceList.length} konfigurací, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${zmenyList.length} změn.`);
 if (errors === 0) console.log(`✓ Data jsou v pořádku (${warnings} varování).`);
 else console.error(`✗ ${errors} chyb, ${warnings} varování.`);
 

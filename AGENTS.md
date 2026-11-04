@@ -18,8 +18,10 @@ a co od nich čtenář může čekat.
 - **Hotová zařízení (turnkey):** DGX Spark, RTX Spark mini/notebook,
   OEM boxy se Strix Halo. Nic, co si člověk
   skládá z komponent.
-- **Současné modely**, které dávají smysl pro denní práci. Spodní hranice
-  kvality je **Qwen3.8 Flash Next**. Starší a slabší modely nejsou v katalogu
+- **Současné modely**, které dávají smysl pro denní práci. Na **128 GB**
+  je spodní hranice kvality **Qwen3.8 Flash Next**. Na **64 GB** jsou
+  doporučené **Qwen3.6 35B-A3B** a **Gemma 4 26B A4B** v Q4; oba musí
+  mít doložený 128k kontext. Starší a slabší modely nejsou v katalogu
   jako doporučení; mohou se objevit jen jako vysvětlující srovnání.
 - **MoE modely** s malým počtem aktivních parametrů. Dense modely zmiňujeme
   jen jako varování („na této krabici to poběží 5 tok/s, to není použitelné“).
@@ -275,7 +277,8 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
   jeden H1, klíčová slova v podnadpisech.
 - Hledané termíny: „lokální AI“, „lokální modely“, „AI na vlastním počítači“,
   „DGX Spark“, „Strix Halo“, „RTX Spark“, „kolik stojí lokální AI“,
-  „Qwen3.8 Flash Next“, „jak rychle běží lokální model“.
+  „Qwen3.8 Flash Next“, „Qwen3.6 35B-A3B“, „Gemma 4 26B A4B“,
+  „128 GB unified paměť“, „jak rychle běží lokální model“.
 - Interní prolinkování mezi zařízením, modelem a vysvětlením rychlosti.
 - Žádné přeplňování klíčovými slovy na úkor čitelnosti.
 
