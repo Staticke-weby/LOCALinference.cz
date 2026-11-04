@@ -4,6 +4,23 @@
 
 ---
 
+## 2026-11-04 - Logo, paleta a fotka v hero
+
+- **Logo** je textové, ne obrázek: `[Li] LOCALinference` (komponenta
+  `SiteTitle.astro`). Závorky v akcentu, `Li` ve zlaté, `LOCAL` bíle,
+  `inference` v šedé. Drží kontrast v obou motivech a nemění se při zoomu.
+- **Paleta** stejná rodina jako OpenWork.cz: zelený akcent
+  (`#187a63` světlý, `#35b48f` tmavý) a zlatá (`#c79a2e` / `#d9b44a`).
+  Proměnná `--li-copper` se přejmenovala na `--li-gold`.
+- **Hero fotka** `sites/cz/src/assets/gb10.jpg` (GB10 boxy od ASUS, NVIDIA
+  a Lenovo) je pod tlačítky na úvodní stránce, přes `astro:assets` jako
+  responzivní WebP s popiskem „Ilustrační foto výrobce“.
+- **OG obrázky** přebarvené do stejné palety a přegenerované přes `sharp`.
+- Pozor: světlý gradient za hero je na `body`, ne na `.hero`. Na samotném
+  hero končil na jeho okraji a byl vidět jako obdélník.
+
+---
+
 ## 2026-11-04 - Ceny: místní měna první
 
 - **CZ mutace:** všude primárně **Kč**, USD jen v závorce. Týká se tabulek,

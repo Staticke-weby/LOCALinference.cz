@@ -19,11 +19,6 @@ export default defineConfig({
       description:
         'Lokální AI pro firmy na 128GB boxech. Ceny v Kč, Qwen3.8 Flash Next a návody krok za krokem.',
       favicon: '/favicon.svg',
-      logo: {
-        src: './src/assets/logo.svg',
-        alt: 'Local Inference',
-        replacesTitle: true,
-      },
       defaultLocale: 'root',
       locales: {
         root: { label: 'Čeština', lang: 'cs' },
@@ -33,6 +28,7 @@ export default defineConfig({
       components: {
         PageTitle: './src/components/PageTitle.astro',
         Footer: './src/components/Footer.astro',
+        SiteTitle: './src/components/SiteTitle.astro',
       },
       head: [
         { tag: 'meta', attrs: { property: 'og:site_name', content: 'Local Inference' } },

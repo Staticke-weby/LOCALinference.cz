@@ -17,6 +17,22 @@ hero:
 ---
 
 import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import gb10 from '../../assets/gb10.jpg';
+
+<figure class="li-hero-foto">
+  <Image
+    src={gb10}
+    alt="Řada kompaktních GB10 strojů: dva ASUS Ascent, dva NVIDIA DGX Spark, dva Lenovo ThinkStation a další"
+    widths={[640, 960, 1199]}
+    sizes="(max-width: 50rem) 100vw, 48rem"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <figcaption>
+    GB10 v podání ASUS, NVIDIA a Lenovo. Ilustrační foto výrobce.
+  </figcaption>
+</figure>
 
 ## Lokální AI pro firmy: pro koho je web
 
