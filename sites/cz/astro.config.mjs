@@ -222,6 +222,22 @@ export default defineConfig({
           items: [{ autogenerate: { directory: 'zaciname' } }],
         },
         {
+          label: 'Zařízení',
+          items: [{ autogenerate: { directory: 'zarizeni' } }],
+        },
+        {
+          label: 'Výběr',
+          items: [{ autogenerate: { directory: 'vyber' } }],
+        },
+        {
+          label: 'Model',
+          items: [{ autogenerate: { directory: 'modely' } }],
+        },
+        {
+          label: 'Návody',
+          items: [{ autogenerate: { directory: 'navody' } }],
+        },
+        {
           label: 'Slovník',
           items: [
             { label: 'Přehled', link: '/slovnik/' },
@@ -244,32 +260,21 @@ export default defineConfig({
           ],
         },
         {
-          label: 'Zařízení',
-          items: [{ autogenerate: { directory: 'zarizeni' } }],
-        },
-        {
-          label: 'Návody',
-          items: [{ autogenerate: { directory: 'navody' } }],
+          label: 'Rychlost a měření',
+          items: [
+            { autogenerate: { directory: 'rychlost' } },
+            {
+              label: 'Datové karty',
+              items: [
+                { label: 'Přehled', link: '/data/' },
+                { label: 'Qwen3.8 na Strix Halo', link: '/data/qwen3-8-flash-next-strix-halo/' },
+              ],
+            },
+          ],
         },
         {
           label: 'Témata',
           items: [{ autogenerate: { directory: 'temata' } }],
-        },
-        {
-          label: 'Modely',
-          items: [{ autogenerate: { directory: 'modely' } }],
-        },
-        {
-          label: 'Rychlost',
-          items: [{ autogenerate: { directory: 'rychlost' } }],
-        },
-        {
-          label: 'Výběr',
-          items: [{ autogenerate: { directory: 'vyber' } }],
-        },
-        {
-          label: 'Data',
-          items: [{ autogenerate: { directory: 'data' } }],
         },
         {
           label: 'Zdroje',

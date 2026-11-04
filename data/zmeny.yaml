@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Nové pořadí menu a sloučené skupiny"
+  co_se_zmenilo: "Menu jde v pořadí čtenáře: Začínáme, Zařízení (Srovnání první), Výběr, Model, Návody, Slovník, Rychlost a měření, Témata, Zdroje, O webu. Datové karty se přesunuly pod Rychlost a měření, čímž zmizela samostatná skupina Data."
+  dotcene_stranky: [index, zarizeni/srovnani]
+  zdroj: https://www.localinference.cz/
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Hugging Face: co to je a jak si vytvořit token"
   co_se_zmenilo: "Nová stránka ve slovníku vysvětluje, jak Hugging Face funguje, k čemu je HF token, jak ho vytvořit a jak ho bezpečně použít. Odkazuje na ní návod pro DGX Spark."
   dotcene_stranky: [slovnik/software/huggingface, navody/dgx-spark]
