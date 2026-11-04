@@ -23,12 +23,6 @@
     "checkedAt": "2026-11-04T10:15:34.077Z",
     "status": "ok"
   },
-  "zai-blog": {
-    "url": "https://z.ai/blog/glm-5.3-flash",
-    "signature": "text:e3b0c44298fc1c14",
-    "checkedAt": "2026-11-04T10:15:35.956Z",
-    "status": "changed"
-  },
   "news-qq-rtx-prices": {
     "url": "https://news.qq.com/rain/a/20261008A04Z5W00",
     "signature": "text:7a4b141816e2eccc",
@@ -178,18 +172,6 @@
     "signature": "text:cd65ac6dcaef9eff",
     "checkedAt": "2026-11-04T10:15:46.106Z",
     "status": "ok"
-  },
-  "zai-glm53-hf": {
-    "url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
-    "signature": "hf:46a050bec13002ad29ee795c16e61cf4fa3c4a9c:2026-10-15T06:32:52.000Z",
-    "checkedAt": "2026-11-04T10:15:36.115Z",
-    "status": "new"
-  },
-  "zai-glm53-docs": {
-    "url": "https://docs.z.ai/guides/vlm/glm-5.3-flash",
-    "signature": "text:582133d896655d6d",
-    "checkedAt": "2026-11-04T10:15:36.354Z",
-    "status": "new"
   },
   "gmktec-strix-halo": {
     "url": "https://www.gmktec.com/",
