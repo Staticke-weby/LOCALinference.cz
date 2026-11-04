@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: cena
+  titulek: "Ověření cen na Alza.cz a jen aktuální ceny"
+  co_se_zmenilo: "Ceny ověřeny proti nabídce Alza.cz k 4. 11. 2026. Lenovo ThinkStation PGX 1TB má aktuálně 179 990 Kč. Z dat i tabulek zmizely původní ceny, slevy a historie zdražování — web uvádí jen jednu aktuální cenu k datu ověření."
+  dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/dgx-spark, zaciname/co-je-lokalni-ai]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-04
   typ: obsah
   titulek: "Cenové tabulky jen s koncovou cenou včetně DPH"
   co_se_zmenilo: "Z OEM tabulek zmizel sloupec Dostupnost a Cena bez DPH; zůstává jen cena včetně DPH. Odstraněny poznámky o affiliate odkazech a štítek u odkazů na ceny — vysvětlení zůstává v právních informacích. U Strix Halo a DGX Spark OEM doplněny texty bez uvádění cen bez DPH."
@@ -123,7 +130,7 @@
 - datum: 2026-11-04
   typ: cena
   titulek: "DGX Spark: cena 6 950 USD k 2. 10. 2026"
-  co_se_zmenilo: "Doplněna cena a historie zdražení z 3 999 USD; zdroj BetterClaw/Tom's Hardware."
+  co_se_zmenilo: "Doplněna cena a její zdroj."
   dotcene_stranky: [zarizeni/dgx-spark, zaciname/co-je-lokalni-ai]
   zdroj: https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark
 

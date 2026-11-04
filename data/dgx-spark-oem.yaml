@@ -22,16 +22,15 @@
   vyrobce: Lenovo
   pamet_gb: 128
   uloziste_gb: 1024
-  cena_czk_s_dph: 176603
-  cena_czk_bez_dph: 145953
-  puvodni_cena_czk: 179990
+  cena_czk_s_dph: 179990
+  cena_czk_bez_dph: 148752
   sleva_procent: 1
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: TI100c5d0z05
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
-  poznamka: "Akční cena -1 %; on-site servis."
+  poznamka: "On-site servis."
 
 - id: hp-zgx-nano-g1n-4tb
   nazev: HP ZGX Nano G1n AI 4TB
@@ -92,14 +91,13 @@
   uloziste_gb: 2048
   cena_czk_s_dph: 196050
   cena_czk_bez_dph: 162025
-  puvodni_cena_czk: 199990
   sleva_procent: 1
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: TI100c5d0z07
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
-  poznamka: "Akční cena -1 %; on-site servis."
+  poznamka: "On-site servis."
 
 - id: hp-zgx-nano-g1n-1tb
   nazev: HP ZGX Nano G1n AI 1TB
@@ -135,7 +133,6 @@
   uloziste_gb: 2048
   cena_czk_s_dph: 219990
   cena_czk_bez_dph: 181810
-  puvodni_cena_czk: 234990
   sleva_procent: 6
   dostupnost: "Na cestě 5 ks, očekáváme 12. 11. 2026"
   prodejce: Alza.cz
@@ -151,7 +148,6 @@
   uloziste_gb: 4096
   cena_czk_s_dph: 225847
   cena_czk_bez_dph: 186650
-  puvodni_cena_czk: 229990
   sleva_procent: 1
   dostupnost: "Na objednávku – termín upřesníme"
   prodejce: Alza.cz
@@ -193,7 +189,6 @@
   uloziste_gb: 4096
   cena_czk_s_dph: 229990
   cena_czk_bez_dph: 190074
-  puvodni_cena_czk: 239990
   sleva_procent: 4
   dostupnost: "Skladem 4 ks"
   prodejce: Alza.cz

@@ -20,6 +20,35 @@ změna je dohledatelná.*
 **Pravidlo:** nikdy neměň číslo bez data a zdroje. Když zdroj chybí, použij
 `[DOPLNIT]` a zapiš to do `poznamky-agenta.md`.
 
+**Ceny jen aktuální.** Žádné „původně“, přeškrtnuté ceny, slevy ani historie
+zdražování. Stará cena se nahradí novou, ne doplní.
+
+---
+
+## 1.1 Obnova cen z Alza.cz
+
+Alza blokuje roboty, takže ceny se ověřují ručně v prohlížeči
+(OpenChamber panel). Odkazy jsou v datech, není potřeba je hledat:
+
+| Kategorie | URL pro kontrolu | Data |
+|---|---|---|
+| Boxy (DGX, Strix Halo) | `https://www.alza.cz/ai-pc/18907789.htm` | `data/dgx-spark-oem.yaml`, `data/strix-halo-oem.yaml` |
+| Notebooky | `https://www.alza.cz/rtx-spark/18924563.htm` | `data/rtx-spark-notebook-oem.yaml` |
+| Mac Studio | `https://www.alza.cz/mac-studio/18894763.htm` | zatím není v katalogu |
+
+Postup:
+
+1. Otevři kategorii v panelu prohlížeče a seřaď podle ceny, aby se do
+   výpisu vešly všechny položky.
+2. U každé 128GB položky přepiš `cena_czk_s_dph`, `cena_czk_bez_dph`,
+   `objednaci_kod` a `dostupnost`.
+3. Nastav `overeno` na datum kontroly, u stránek pak `last_verified`.
+4. Zapiš změnu do `data/zmeny.yaml`.
+5. `npm run build` a kontrola.
+
+Do odkazů na webu se **nepřidávají produkty** — vždy jen kategorie
+s affiliate parametry (viz `AGENTS.md`).
+
 ---
 
 ## 2. Týdenní rutina

@@ -26,9 +26,6 @@ const stroje = getDgxSparkOem();
           <td class="li-cislo">{formatCislo(s.uloziste_gb / 1024)} TB</td>
           <td class="li-cislo">
             {formatKc(s.cena_czk_s_dph)} Kč
-            {s.puvodni_cena_czk ? (
-              <span class="li-pozn"> (původně {formatKc(s.puvodni_cena_czk)} Kč)</span>
-            ) : null}
           </td>
         </tr>
       ))}

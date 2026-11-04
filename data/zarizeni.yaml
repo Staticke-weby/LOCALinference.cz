@@ -32,7 +32,7 @@
   hmotnost_kg: null
   prodejce: [NVIDIA, Acer, ASUS, Dell, HP, MSI]
   silne: [CUDA, enterprise management, clustering 200 Gb/s]
-  slabe: [cena po zdražení, uzavřený stack]
+  slabe: [vysoká cena, uzavřený stack]
   zdroje:
     - https://www.nvidia.com/en-us/products/workstations/dgx-spark/
     - https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next

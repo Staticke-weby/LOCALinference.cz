@@ -149,6 +149,8 @@ Toto je nejdůležitější pravidlo projektu.
   pořadí zařízení.
 - **Ceny v tabulkách:** jen **koncová cena včetně DPH**. Sloupce „bez DPH“
   a „dostupnost“ neuváděj — čtenáře zajímá, co zaplatí.
+- **Jen aktuální ceny.** Žádné „původně“, přeškrtnuté ceny, slevy ani
+  historie zdražování. Vždy jedna cena k datu ověření; stará se nahradí.
 - **Kontext:** maximální kontext není doporučený provozní bod. U každého
   modelu uváděj tři čísla: **nativní maximum**, **doporučený provozní kontext**
   a **reálně udržitelný kontext na daném zařízení**. Kvalita a rychlost jsou
