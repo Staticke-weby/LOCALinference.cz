@@ -168,7 +168,7 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: 'Local Inference',
+      title: 'LOCALinference',
       description:
         'Lokální AI pro firmy na 128GB boxech. Ceny v Kč, Qwen3.8 Flash Next a návody krok za krokem.',
       favicon: '/favicon.svg',
@@ -186,12 +186,12 @@ export default defineConfig({
       head: [
         { tag: 'link', attrs: { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' } },
         { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' } },
-        { tag: 'meta', attrs: { property: 'og:site_name', content: 'Local Inference' } },
+        { tag: 'meta', attrs: { property: 'og:site_name', content: 'LOCALinference' } },
         { tag: 'meta', attrs: { property: 'og:type', content: 'website' } },
         { tag: 'meta', attrs: { property: 'og:image', content: 'https://www.localinference.cz/og-cz.png' } },
         { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
         { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
-        { tag: 'meta', attrs: { property: 'og:image:alt', content: 'Local Inference — lokální AI pro firmy' } },
+        { tag: 'meta', attrs: { property: 'og:image:alt', content: 'LOCALinference — lokální AI pro firmy' } },
         { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
         { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://www.localinference.cz/og-cz.png' } },
         {
@@ -208,7 +208,7 @@ export default defineConfig({
           content: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            name: 'Local Inference',
+            name: 'LOCALinference',
             url: 'https://www.localinference.cz/',
             inLanguage: 'cs',
           }),

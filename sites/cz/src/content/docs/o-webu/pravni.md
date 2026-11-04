@@ -1,6 +1,6 @@
 ---
 title: "Právní informace"
-description: "Provozovatel webu Local Inference, odpovědnost za obsah a autorská práva."
+description: "Provozovatel webu LOCALinference, odpovědnost za obsah a autorská práva."
 last_verified: 2026-11-04
 sidebar:
   order: 3
@@ -15,14 +15,14 @@ Roháčova 145/14
 IČO: 03223485 · DIČ: CZ03223485
 
 :::note
-Local Inference je **informační web**, ne zákaznická podpora. Neprodáváme
+LOCALinference je **informační web**, ne zákaznická podpora. Neprodáváme
 hardware ani modely a nejsme spojeni s NVIDIA, AMD, výrobci boxů ani
 s prodejci. S dotazy k nákupu se obracejte na konkrétního prodejce.
 :::
 
 ## Odpovědnost za obsah
 
-Web Local Inference je **nezávislý informační průvodce** lokální AI na
+Web LOCALinference je **nezávislý informační průvodce** lokální AI na
 hotových zařízeních. Obsah připravujeme z veřejných zdrojů a podle
 [metodiky](/o-webu/metodika/). Přesto:
 

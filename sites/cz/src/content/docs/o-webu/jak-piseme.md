@@ -1,12 +1,12 @@
 ---
 title: "Jak píšeme"
-description: "Redakční pravidla Local Inference: zdroj u každého čísla, žádné odhady, rozpory na světlo a čeština pro technicky zvídavé čtenáře."
+description: "Redakční pravidla LOCALinference: zdroj u každého čísla, žádné odhady, rozpory na světlo a čeština pro technicky zvídavé čtenáře."
 last_verified: 2026-11-04
 sidebar:
   order: 2
 ---
 
-Local Inference je nezávislý průvodce. Neprodáváme hardware, nemáme
+LOCALinference je nezávislý průvodce. Neprodáváme hardware, nemáme
 affiláty a nedostáváme peníze za doporučení. Píšeme pro člověka, který
 zvažuje konkrétní nákup nebo už stroj má a chce vědět, co na něm rozumně
 provozovat.
@@ -55,7 +55,7 @@ Roháčova 145/14
 
 IČO: 03223485 · DIČ: CZ03223485
 
-Local Inference je **informační web**, ne zákaznická podpora. Neprodáváme
+LOCALinference je **informační web**, ne zákaznická podpora. Neprodáváme
 hardware ani modely a nejsme spojeni s jejich výrobci. Podrobnosti v
 [právních informacích](/o-webu/pravni/).
 
