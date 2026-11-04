@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: obsah
+  titulek: "Přidán changelog"
+  co_se_zmenilo: "Nová stránka /zdroje/novinky/ načítá změny z data/zmeny.yaml."
+  dotcene_stranky: [zdroje/novinky]
+  zdroj: https://localinference.cz/zdroje/novinky/
+
+- datum: 2026-11-04
   typ: cena
   titulek: "RTX Spark notebook: ověřená cena 128GB konfigurací"
   co_se_zmenilo: "Cena změněna z nepodloženého rozsahu na 5 899–6 499 USD; 2 599 USD je 24GB konfigurace."
@@ -47,5 +54,5 @@
   typ: model
   titulek: "GLM-5.3 Flash vyřazen z katalogu"
   co_se_zmenilo: "Model se nevejde na jedno zařízení včetně KV cache; katalog obsahuje jen modely, které se vejdou celé."
-  dotcene_stranky: [modely, o-webu/metodika]
+  dotcene_stranky: [modely/qwen3-8-flash-next, o-webu/metodika]
   zdroj: https://z.ai/blog/glm-5.3-flash

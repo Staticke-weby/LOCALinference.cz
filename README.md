@@ -60,6 +60,7 @@ npm run check:zdroje   # ověří, že URL odpovídají
 - [`sites/cz/src/content/docs/o-webu/metodika.mdx`](sites/cz/src/content/docs/o-webu/metodika.mdx)
 - [`sites/cz/src/content/docs/o-webu/jak-piseme.md`](sites/cz/src/content/docs/o-webu/jak-piseme.md)
 - [`sites/cz/src/content/docs/zdroje/zdroje.mdx`](sites/cz/src/content/docs/zdroje/zdroje.mdx)
+- [`sites/cz/src/content/docs/zdroje/novinky.mdx`](sites/cz/src/content/docs/zdroje/novinky.mdx)
 - [`sites/cz/src/content/docs/zdroje/co-nevime.md`](sites/cz/src/content/docs/zdroje/co-nevime.md)
 
 ## Základní pravidla

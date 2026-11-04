@@ -1,0 +1,129 @@
+---
+import { formatDatum, getZmeny } from '../lib/data';
+
+const zmeny = getZmeny();
+
+const typLabel: Record<string, string> = {
+  cena: 'cena',
+  model: 'model',
+  mereni: 'měření',
+  zdroj: 'zdroj',
+  obsah: 'obsah',
+};
+
+function odkazStranky(stranka: string): string {
+  if (stranka.startsWith('/')) return stranka;
+  return `/${stranka.replace(/\/$/, '')}/`;
+}
+
+function popisStranky(stranka: string): string {
+  const nazvy: Record<string, string> = {
+    'zaciname/co-je-lokalni-ai': 'Co je lokální AI',
+    'zaciname/jak-to-funguje': 'Jak to funguje',
+    'zaciname/jak-cteme-data': 'Jak čteme data',
+    'zaciname/proc-moe': 'Proč MoE',
+    'rychlost/roofline': 'Roofline',
+    'vyber/rozpocet': 'Výběr podle rozpočtu',
+    'zarizeni/dgx-spark': 'DGX Spark',
+    'zarizeni/rtx-spark-notebook': 'RTX Spark notebook',
+    'modely/qwen3-8-flash-next': 'Qwen3.8 Flash Next',
+    'data/qwen3-8-flash-next-strix-halo': 'Data: Qwen3.8 FN na Strix Halo',
+    'o-webu/metodika': 'Metodika',
+    'o-webu/jak-piseme': 'Jak píšeme',
+    'zdroje/zdroje': 'Zdroje',
+    'zdroje/co-nevime': 'Co nevíme',
+    'zdroje/novinky': 'Novinky',
+  };
+  if (nazvy[stranka]) return nazvy[stranka];
+  const casti = stranka.split('/');
+  return casti[casti.length - 1].replace(/-/g, ' ');
+}
+---
+
+<ol class="li-zmeny">
+  {zmeny.map((z) => (
+    <li class="li-zmena">
+      <div class="li-zmena__hlava">
+        <time datetime={z.datum instanceof Date ? z.datum.toISOString().slice(0, 10) : String(z.datum)}>
+          {formatDatum(z.datum)}
+        </time>
+        <span class={`li-zmena__typ li-zmena__typ--${z.typ}`}>{typLabel[z.typ] ?? z.typ}</span>
+      </div>
+      <h3>{z.titulek}</h3>
+      <p>{z.co_se_zmenilo}</p>
+      <div class="li-zmena__patka">
+        {z.dotcene_stranky.length > 0 && (
+          <span class="li-zmena__stranky">
+            Dotčeno:{' '}
+            {z.dotcene_stranky.map((s, i) => (
+              <span>
+                <a href={odkazStranky(s)}>{popisStranky(s)}</a>
+                {i < z.dotcene_stranky.length - 1 ? ', ' : ''}
+              </span>
+            ))}
+          </span>
+        )}
+        <a href={z.zdroj} target="_blank" rel="noopener noreferrer">zdroj</a>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .li-zmeny {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 0.8rem;
+  }
+  .li-zmena {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    padding: 0.85rem 1rem;
+  }
+  .li-zmena__hlava {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+  .li-zmena__typ {
+    display: inline-block;
+    padding: 0.02rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid var(--sl-color-gray-5);
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-2);
+  }
+  .li-zmena__typ--cena {
+    border-color: var(--li-copper);
+    color: var(--li-copper-high);
+    background: var(--li-copper-low);
+  }
+  .li-zmena__typ--model,
+  .li-zmena__typ--mereni {
+    border-color: var(--sl-color-accent);
+    color: var(--sl-color-accent-high);
+    background: var(--sl-color-accent-low);
+  }
+  .li-zmena h3 {
+    margin: 0.35rem 0 0.25rem;
+    font-size: var(--sl-text-lg);
+  }
+  .li-zmena p {
+    margin: 0 0 0.5rem;
+    color: var(--sl-color-gray-2);
+  }
+  .li-zmena__patka {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-3);
+  }
+  .li-zmena__stranky a {
+    color: var(--sl-color-accent);
+  }
+</style>

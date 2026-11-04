@@ -246,7 +246,7 @@ výstupu a thinking; spočítá TTFT, decode a celkový čas.
 | `data/<id>` | Datová karta: zdroj, podmínky, rozpětí, interpretace | ✅ (vzor: Qwen3.8 FN na Strix Halo) |
 | `zdroje/zdroje` | Co sledujeme, proč, jak často | ⬜ |
 | `zdroje/co-nevime` | Veřejný seznam mezer: chybí TTFT, 128k+, souběžnost | ✅ |
-| `zdroje/novinky` | Changelog: nové modely, ceny, verze | ⬜ |
+| `zdroje/novinky` | Changelog: nové modely, ceny, verze | ✅ |
 | `o-webu/metodika` | Nemáme laboratoř; jak čteme, srovnáváme a interpretujeme data | ✅ |
 | `scripts/hlidac.mjs` | Kontrola zdrojů proti uloženému stavu | ⬜ |
 
