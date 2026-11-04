@@ -171,6 +171,8 @@ export default defineConfig({
         SiteTitle: './src/components/SiteTitle.astro',
       },
       head: [
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' } },
+        { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' } },
         { tag: 'meta', attrs: { property: 'og:site_name', content: 'Local Inference' } },
         { tag: 'meta', attrs: { property: 'og:type', content: 'website' } },
         { tag: 'meta', attrs: { property: 'og:image', content: 'https://www.localinference.cz/og-cz.png' } },
