@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Web píšeme pro majitele firem a CTO"
+  co_se_zmenilo: "Přidána pravidla cílové skupiny a tónu. Homepage, úvodní stránky a stránky zařízení mají shrnutí pro vedení před technickými detaily."
+  dotcene_stranky: [index, zaciname/co-je-lokalni-ai, o-webu/jak-piseme, o-webu/metodika]
+  zdroj: https://localinference.cz/o-webu/jak-piseme/
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Katalog se zužuje na 128 GB"
   co_se_zmenilo: "Zařízení pod 128 GB vyřazena. Web řeší jen smysluplnou lokální AI na 128GB+ strojích; minimum je Qwen3.8 Flash Next. Odstraněny stránky Qwen3.6, Gemma 4 a přehled konfigurací."
   dotcene_stranky: [index, zarizeni/srovnani, modely/qwen3-8-flash-next]

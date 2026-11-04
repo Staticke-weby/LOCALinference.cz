@@ -47,6 +47,25 @@ a co od nich čtenář může čekat.
 
 ## 2. Jazyk
 
+### 2.1 Cílová skupina a tón
+
+Píšeme pro **majitele firem, CTO, podnikatele a vedoucí IT**. Mají
+rozpočet na zařízení a chtějí vědět, co od něj čekat — nejsou to
+ML inženýři ani nadšenci do benchmarků.
+
+- **Každá stránka začíná lidsky:** co to je, pro koho to je, co to
+  stojí a co od toho čekat. Teprve potom tabulky a technické detaily.
+- **Byznys před technikou:** piš o úlohách, času, penězích, rizicích,
+  podpoře, prostoru a elektřině. Tok/s je důkaz, ne cíl.
+- **Každý pojem vysvětli při prvním výskytu jednou větou.** Klidně
+  přirovnáním. Čtenář nemá vědět, co je KV cache, dokud mu to neřekneme.
+- **Odděluj vrstvy:** krátké shrnutí pro vedení, detaily pro technické
+  čtenáře. Nikoho nepodceňuj, ale nikoho nenutí číst všechny tabulky.
+- **Žádný marketing ani strašení.** Žádné „revoluce“, „game-changer“,
+  „suverenita“. Konkrétní čísla, konkrétní limity.
+- **Test:** majitel firmy, který nikdy nespustil model, má po prvním
+  odstavci vědět, jestli ho to zajímá a co ho bude stát.
+
 - Piš **česky, jasně a konkrétně**. Čtenář má být technicky zvídavý, ale
   nemusí být strojař. Každý odborný pojem při prvním výskytu vysvětli jednou větou.
 - Krátké věty, činný rod, oslovování čtenáře („zjistíte“, „vyberte“).

@@ -13,6 +13,17 @@ affiláty a nedostáváme peníze za doporučení. Píšeme pro člověka, kter�
 zvažuje konkrétní nákup nebo už stroj má a chce vědět, co na něm rozumně
 provozovat.
 
+## Pro koho píšeme
+
+Pro **majitele firem, CTO, podnikatele a vedoucí IT**. Mají rozpočet na
+zařízení a chtějí vědět, co od něj čekat. Nejsou to ML inženýři a nemají
+čas číst všechny tabulky.
+
+Proto každá stránka začíná lidsky: co to je, pro koho to je, co to stojí
+a co od toho čekat. Technické detaily jsou níž — pro toho, kdo je chce.
+Nikoho nepodceňujeme, ale nikoho nenutíme číst benchmarky, aby zjistil,
+jestli se mu to vyplatí.
+
 ## Pravidla
 
 1. **Zdroj u každého čísla.** Cena, rychlost, paměť i kontext mají odkaz

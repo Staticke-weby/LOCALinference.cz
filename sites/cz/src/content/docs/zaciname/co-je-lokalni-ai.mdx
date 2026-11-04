@@ -19,6 +19,22 @@ To zní lákavě. Ale není to náhrada cloudu za každou cenu. Lokální AI má
 své místo a své hranice. Tato stránka vám pomůže zjistit, zda je to místo
 právě u vás.
 
+## Pro koho se to hodí
+
+| Situace | Lokální AI |
+|---|---|
+| Data nesmí opustit firmu nebo domácnost | **ano** |
+| Chcete předvídatelné náklady místo účtů za tokeny | **ano** |
+| Máte 1–4 lidi s nárazovou prací a dokumenty | **ano** |
+| Potřebujete špičkový model na nejtěžší reasoning | spíš cloud |
+| Nemáte nikoho, kdo by stroj spravoval | zvažte managed službu |
+| Chcete obsloužit 20 lidí jedním strojem | ne, potřebujete víc boxů |
+
+**Co to znamená pro firmu:** jeden 128GB box za zhruba 120–220 tisíc Kč
+včetně DPH obslouží jednoho až čtyři uživatele. Nahradí část práce
+s dokumenty, e-maily, kódem a interními znalostmi. Neuhradí celý tým,
+nenahradí cloudovou špičku a neobejde se bez správy.
+
 > **Odkud jsou čísla:** Nemáme vlastní laboratoř. Čísla v tomto textu
 > přebíráme z veřejných měření a model cardů; u každého důležitého údaje
 > je zdroj. Naše je interpretace a zařazení, ne měření.
@@ -48,16 +64,22 @@ kancelářskou a vývojářskou práci:
 - analýzu obrázků a screenshotů,
 - agentní úlohy, kdy model volá nástroje a pracuje delší dobu.
 
-Referenční bod je **Qwen3.8 Flash Next**. Má 176 miliard parametrů celkem,
-ale na každý token aktivuje jen 6 miliard. To je klíčové: díky řídké
-architektuře MoE se vejde do 128 GB paměti a na DGX Spark s kvantizací
-NVFP4 a zapnutým MTP běží kolem **70 tokenů za sekundu** na začátku
-kontextu. Nad 128 tisíci tokeny klesá na zhruba **40 tokenů za sekundu**
-([Qwen blog](https://qwen.ai/blog?id=qwen3.8-flash-next),
-[vLLM recipe](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)).
-Jsou to hodnoty pro konkrétní konfiguraci (NVFP4, MTP); nezávislé reporty
-se liší podle enginu a nastavení. To je stále rychlost, kterou člověk
-pohodlně čte.
+Referenční bod je **Qwen3.8 Flash Next**. Zvládne běžnou kancelářskou
+i vývojářskou práci a na 128GB boxu odpovídá rychlostí, kterou člověk
+pohodlně čte — zhruba **70 tokenů za sekundu** na začátku konverzace.
+Na dlouhém kontextu (128 tisíc tokenů) klesá na přibližně **40 tokenů
+za sekundu**. Jsou to hodnoty pro konkrétní konfiguraci; nezávislé
+reporty se liší podle enginu a nastavení.
+
+<details>
+<summary>Pro technické čtenáře: proč to běží na 128 GB</summary>
+
+Model má 176 miliard parametrů celkem, ale na každý token aktivuje jen
+6 miliard. Díky tomu se vejde do 128 GB paměti. Čísla pocházejí z Qwen
+blogu a vLLM recipe; jde o konkrétní konfiguraci NVFP4 s MTP, ne
+o univerzální benchmark.
+
+</details>
 
 Pro srovnání: klasický dense model se 70 miliardami parametrů se na stejný
 stroj sice vejde, ale v 4bitové kvantizaci běží kolem **5 tokenů za sekundu**

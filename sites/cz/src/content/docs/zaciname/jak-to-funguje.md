@@ -16,6 +16,14 @@ Když pochopíte tyto tři věci, přestanou být čísla v tabulkách záhadou.
 > z veřejných měření, model cardů a dokumentace. U každého důležitého údaje
 > je zdroj; naše je interpretace a výpočet, ne měření.
 
+## Co si odnést
+
+- **Model je soubor vah.** Celý se musí vejít do paměti, jinak se část
+  odkládá a rychlost spadne.
+- **Kvantizace ho zmenší.** 4 bity jsou dnes standard pro lokální provoz.
+- **Rychlost určuje propustnost paměti**, ne jen počet parametrů.
+- **128 GB je minimum** pro Qwen3.8 Flash Next včetně rozumného kontextu.
+
 ## Model jsou váhy
 
 Když se řekne „model má 176 miliard parametrů“, znamená to, že v souboru
@@ -156,6 +164,21 @@ a čtvrt. Rozdíl je znát, ale obojí je použitelné.
   než pomalé generování.
 - **Kontext a souběžnost** se navzájem vytlačují. Jeden dlouhý request
   není totéž jako mnoho krátkých.
+
+## Slovník pojmů
+
+| Pojem | Jednoduše |
+|---|---|
+| **Váhy** | Naučená čísla modelu. Celý soubor se musí vejít do paměti. |
+| **Kvantizace** | Zmenšení vah za cenu mírné ztráty kvality. |
+| **Token** | Kus textu, zhruba slovo nebo jeho část. |
+| **Kontext** | Kolik textu si model pamatuje najednou. |
+| **Tok/s** | Kolik tokenů model vygeneruje za sekundu. |
+| **TTFT** | Jak dlouho čekáte na první token. |
+| **Prefill** | Zpracování vstupu před generováním odpovědi. |
+| **KV cache** | Paměť pro kontext; roste s délkou a bere místo vedle vah. |
+| **MoE** | Model, který na každý token aktivuje jen část expertů. |
+| **Unified memory** | Paměť společná pro procesor a GPU. |
 
 ## Kudy dál
 

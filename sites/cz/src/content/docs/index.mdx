@@ -1,45 +1,72 @@
 ---
 title: Local Inference
-description: Nezávislý průvodce lokální AI na hotových zařízeních. Které modely poběží, jak rychle a co od nich čekat.
+description: "Lokální AI pro firmy a podnikatele: hotové 128GB boxy, na kterých poběží Qwen3.8 Flash Next. Kolik stojí, co zvládnou a kdy se vyplatí."
 template: splash
 last_verified: 2026-11-04
 hero:
-  title: Lokální AI na hotových zařízeních
-  tagline: Které modely na tom poběží, jak rychle a co od nich čekat. Bez odhadů, s datem a zdrojem u každého čísla.
+  title: Lokální AI pro firmy, které chtějí data pod kontrolou
+  tagline: Hotové 128GB boxy, na kterých poběží Qwen3.8 Flash Next. Kolik stojí, co zvládnou a kdy se vyplatí — bez laboratorních čísel.
   actions:
-    - text: Začít od nuly
+    - text: Kdy se to vyplatí
       link: /zaciname/co-je-lokalni-ai/
       icon: right-arrow
-    - text: Jak čteme data
-      link: /o-webu/metodika/
+    - text: Kolik to stojí
+      link: /vyber/rozpocet/
       icon: document
       variant: minimal
 ---
 
 import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
 
+## Pro koho je tento web
+
+Pro **majitele firem, CTO, podnikatele a vedoucí IT**, kteří zvažují
+vlastní AI. Máte rozpočet na zařízení a chcete vědět, jestli se to
+vyplatí, co to zvládne a kde narazíte. Nepotřebujete GPU cluster ani
+tým ML inženýrů.
+
+<CardGrid>
+  <Card title="Máte citlivá data">
+    Smlouvy, zdravotní záznamy, klientské údaje nebo interní kód.
+    Lokální model zůstane na vašem stole, ne v cizím cloudu.
+  </Card>
+  <Card title="Chcete předvídatelné náklady">
+    Zaplatíte jednou za stroj a pak za elektřinu. Žádné měsíční
+    účty za tokeny, které rostou s každým dotazem.
+  </Card>
+  <Card title="Nejste ML tým">
+    Web vysvětluje, co který model umí, jak je rychlý a co obslouží.
+    Detaily jsou v tabulkách, shrnutí hned na začátku.
+  </Card>
+</CardGrid>
+
 ## Co tu najdete
 
 <CardGrid>
   <LinkCard
-    title="Zařízení"
-    href="/zarizeni/rtx-spark-notebook/"
-    description="Hotové stroje se 128 GB unified paměti. Co na nich poběží a kde je limit."
+    title="Kdy se to vyplatí"
+    href="/zaciname/co-je-lokalni-ai/"
+    description="Pro jaké firmy a úlohy má lokální AI smysl. A kdy je lepší zůstat v cloudu."
   />
   <LinkCard
-    title="Modely"
+    title="Zařízení a ceny"
+    href="/zarizeni/srovnani/"
+    description="Čtyři hotové 128GB boxy, jejich ceny v USD i Kč a co na nich poběží."
+  />
+  <LinkCard
+    title="Co na tom poběží"
     href="/modely/qwen3-8-flash-next/"
-    description="Qwen3.8 Flash Next jako referenční model pro 128 GB. Kontext, vision, paměť a rychlost."
+    description="Qwen3.8 Flash Next: co zvládne, jak rychle a kde je jeho limit."
   />
   <LinkCard
-    title="Data a metodika"
-    href="/o-webu/metodika/"
-    description="Vlastní měření neprovádíme. Jak přebíráme data, kontrolujeme roofline a proč neodhadujeme."
+    title="Kolik unese tým"
+    href="/vyber/kolik-uzivatelu/"
+    description="Jeden box pro jednoho až čtyři lidi. Pro víc se přidává další box, ne dražší stroj."
   />
   <LinkCard
     title="Co nevíme"
     href="/zdroje/co-nevime/"
-    description="Veřejný seznam mezer. Co chybí, co by změnilo závěr a jak přispět měřením."
+    description="Veřejný seznam mezer. Co chybí a co by změnilo závěr."
   />
 </CardGrid>
 
@@ -47,8 +74,8 @@ import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
 
 <CardGrid>
   <Card title="Zdroj u každého čísla">
-    Cena, rychlost i kontext mají odkaz, datum a typ údaje. Když zdroj chybí,
-    je v textu `[DOPLNIT]` — ne vymyšlené číslo.
+    Cena, rychlost i kontext mají odkaz, datum a typ údaje. Když zdroj
+    chybí, je v textu `[DOPLNIT]` — ne vymyšlené číslo.
   </Card>
   <Card title="Rozpory nezakrýváme">
     Když se dvě měření rozcházejí, ukážeme obě a vysvětlíme, čím to je.
@@ -58,9 +85,9 @@ import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
     Vlastní měření neprovádíme. Sbíráme veřejná měření, srovnáváme je
     a kontrolujeme, jestli jsou fyzikálně možná.
   </Card>
-  <Card title="Pro denní práci">
-    Zajímá nás TTFT, prefill, dlouhý kontext a souběžnost — ne jen jedno
-    reklamní číslo v tok/s.
+  <Card title="Pro rozhodnutí, ne pro benchmark">
+    Zajímá nás, co to udělá s vaší prací: kolik lidí to obslouží,
+    jak dlouho počkáte na odpověď a co to stojí.
   </Card>
 </CardGrid>
 

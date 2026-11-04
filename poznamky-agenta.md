@@ -22,6 +22,18 @@ vztahuje, a všechna zařízení mají technické limity.
 
 ---
 
+## 2026-11-04 — tón pro byznys
+
+- **Cílová skupina:** majitelé firem, CTO, podnikatelé a vedoucí IT.
+  Mají rozpočet, ale nejsou ML inženýři.
+- **Každá stránka začíná lidsky:** co to je, pro koho, co to stojí,
+  co od toho čekat. Tabulky a technické detaily jsou níž.
+- Upravena homepage, `co-je-lokalni-ai`, stránky zařízení, model,
+  srovnání, rozpočet, `jak-to-funguje` (slovník) a metodika.
+- Pravidlo je v `AGENTS.md`, sekce 2.1, a v `o-webu/jak-piseme`.
+
+---
+
 ## 2026-11-04 — provozovatel a měření
 
 - **Provozovatel:** ESHOpino s.r.o., Roháčova 145/14, 130 00 Praha 3,
