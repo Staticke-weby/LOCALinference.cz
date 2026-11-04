@@ -55,6 +55,7 @@ function rehypeSlovnik() {
     { re: /\bvLLM\b/g, url: '/slovnik/software/vllm/', slug: 'software/vllm' },
     { re: /llama\.cpp/g, url: '/slovnik/software/llamacpp/', slug: 'software/llamacpp' },
     { re: /\bGGUF\b/g, url: '/slovnik/software/gguf/', slug: 'software/gguf' },
+    { re: /Hugging Face/g, url: '/slovnik/software/huggingface/', slug: 'software/huggingface' },
     { re: /\bkvantizac\w*/gi, url: '/slovnik/software/kvantizace/', slug: 'software/kvantizace' },
     { re: /\bTTFT\b/g, url: '/slovnik/vykon/ttft/', slug: 'vykon/ttft' },
     { re: /\bprefill\w*/gi, url: '/slovnik/vykon/prefill/', slug: 'vykon/prefill' },

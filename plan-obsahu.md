@@ -196,6 +196,7 @@ Jeden pojem na stránku, hledaný termín v H1.
 | `slovnik/software/llamacpp` | co je llama.cpp | ✅ |
 | `slovnik/software/kvantizace` | co je kvantizace | ✅ |
 | `slovnik/software/gguf` | co je GGUF | ✅ |
+| `slovnik/software/huggingface` | co je Hugging Face | ✅ |
 | `slovnik/vykon/ttft` | co je TTFT | ✅ |
 | `slovnik/vykon/prefill` | co je prefill | ✅ |
 | `slovnik/vykon/soubeznost` | co je souběžnost | ✅ |

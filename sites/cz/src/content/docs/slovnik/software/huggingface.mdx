@@ -1,0 +1,93 @@
+---
+title: "Co je Hugging Face a jak si vytvořit token"
+description: "Hugging Face je místo, odkud se stahují modely. Vysvětlíme, jak funguje, k čemu je HF token, jak ho vytvořit a jak ho bezpečně použít."
+last_verified: 2026-11-04
+sidebar:
+  label: Hugging Face
+  order: 7
+---
+
+**Hugging Face** (často jen „HF“) je největší veřejné úložiště modelů
+pro lokální AI. Když návod říká „stáhněte model“, většinou to znamená
+„stáhněte ho z Hugging Face“.
+
+## Jak to funguje
+
+Hugging Face funguje jako GitHub pro modely:
+
+- **Repozitář** obsahuje váhy modelu, konfiguraci a tokenizer.
+- **Model card** je popis: co model umí, jaká má omezení a licenci.
+- **Velké soubory** jsou uložené přes Git LFS, takže se stahují po
+  částech a dají se obnovit při přerušení.
+- **Organizace** (např. `Qwen`, `unsloth`, `meta-llama`) vydávají
+  modely pod svým jménem.
+
+Pro vás je podstatné, že model je **jeden repozitář**, ne sbírka
+souborů z různých míst. Odkaz na model card je zároveň zdroj, který
+můžete ověřit.
+
+## K čemu je token
+
+Bez přihlášení se dá stáhnout většina veřejných modelů. Token
+(`HF_TOKEN`) se hodí, když:
+
+- model vyžaduje **souhlas s licencí** (gated model),
+- chcete **vyšší limity** stahování,
+- stahujete z **privátního** repozitáře,
+- nástroj token vyžaduje kvůli jednotnému nastavení.
+
+Token je vaše heslo pro strojový přístup. Nikdy ho nedávejte do
+veřejného repozitáře ani do screenshotu.
+
+## Jak token vytvořit
+
+1. Přihlaste se na [huggingface.co](https://huggingface.co/).
+2. Otevřete **Settings → Access tokens**.
+3. Klikněte na **Create new token**.
+4. Zvolte **Read** (pro stahování modelů stačí; zápis nepotřebujete).
+5. Token zkopírujte — zobrazí se jen jednou.
+
+## Kde token použít
+
+V terminálu jako proměnnou prostředí:
+
+```bash
+export HF_TOKEN="hf_váš_token"
+```
+
+Nebo přihlášením v Python nástroji:
+
+```bash
+huggingface-cli login
+```
+
+V Dockeru se předává jako proměnná:
+
+```bash
+docker run -e HF_TOKEN=$HF_TOKEN ...
+```
+
+`llama.cpp` a `vLLM` token čtou z `HF_TOKEN`, takže ho nemusíte
+vkládat do příkazů ručně.
+
+## Bezpečnost
+
+- Vytvořte token s právem **Read**, ne Write.
+- Když unikne, **okamžitě ho zrušte** v nastavení a vytvořte nový.
+- Nedávejte ho do Markdownu, do gitu ani do sdíleného skriptu.
+- Pro tým použijte organizační token s omezeným rozsahem, ne osobní.
+
+## Kudy dál
+
+- [Návod pro DGX Spark](/navody/dgx-spark/) — kde se token používá.
+- [Co je GGUF](/slovnik/software/gguf/) — formát pro llama.cpp.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model card a licence.
+- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [Hugging Face — dokumentace](https://huggingface.co/docs)
+- [Hugging Face — správa tokenů](https://huggingface.co/docs/hub/security-tokens)
+- [Hugging Face — model cards](https://huggingface.co/docs/hub/model-cards)
+
+*Naposledy ověřeno: 4. 11. 2026.*
