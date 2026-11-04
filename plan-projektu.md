@@ -105,6 +105,7 @@ být hluboký, ale nesmí být arogantní.
 │   ├── dgx-spark-oem           15 GB10 OEM variant, české ceny
 │   ├── rtx-spark-mini          128 GB, 300 GB/s, 5 999 USD
 │   ├── rtx-spark-notebook      128 GB, 300 GB/s, 5 899–6 999 USD
+│   ├── rtx-spark-notebook-oem  7 českých 128GB variant, od 125 990 Kč
 │   ├── strix-halo              128 GB, 256 GB/s, 3 449–5 349 USD
 │   ├── strix-halo-oem          3 české 128GB konfigurace, od 119 990 Kč
 │   └── srovnani                Velká matice Parametr × Zařízení

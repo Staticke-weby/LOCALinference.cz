@@ -106,6 +106,8 @@ export const strixHaloOem = z
     { message: 'ceny musí být obě, nebo žádná; cena bez DPH musí být nižší než s DPH' },
   );
 
+export const rtxNotebookOem = strixHaloOem;
+
 export const model = z.object({
   id,
   nazev: z.string().min(2),

@@ -116,6 +116,8 @@ export type StrixHaloOem = {
   poznamka?: string;
 };
 
+export type RtxNotebookOem = StrixHaloOem;
+
 export type Mereni = {
   id: string;
   datum: string | Date;
@@ -216,6 +218,14 @@ export function getDgxSparkOem(): DgxSparkOem[] {
 
 export function getStrixHaloOem(): StrixHaloOem[] {
   return (load<StrixHaloOem[]>('strix-halo-oem.yaml') ?? []).sort(
+    (a, b) =>
+      (a.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) - (b.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) ||
+      b.uloziste_gb - a.uloziste_gb,
+  );
+}
+
+export function getRtxNotebookOem(): RtxNotebookOem[] {
+  return (load<RtxNotebookOem[]>('rtx-spark-notebook-oem.yaml') ?? []).sort(
     (a, b) =>
       (a.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) - (b.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) ||
       b.uloziste_gb - a.uloziste_gb,

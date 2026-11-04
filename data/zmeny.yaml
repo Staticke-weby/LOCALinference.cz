@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: cena
+  titulek: "České ceny RTX Spark notebooků"
+  co_se_zmenilo: "Přidáno 7 variant ASUS ProArt P14/P16, Lenovo Yoga Pro 9, MSI Prestige a Surface Laptop Ultra s 128GB. Ceny od 125 990 Kč vč. DPH; nová stránka /zarizeni/rtx-spark-notebook-oem/."
+  dotcene_stranky: [zarizeni/rtx-spark-notebook-oem, zarizeni/rtx-spark-notebook, vyber/rozpocet]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-04
+  typ: cena
   titulek: "České ceny primárně v Kč"
   co_se_zmenilo: "Cenové tabulky a stránky zařízení uvádějí první českou cenu v Kč. Kde ji známe, je s DPH; kde ne, je přepočet z USD označený jako odhad. USD zůstává jako původní/listová cena."
   dotcene_stranky: [zarizeni/srovnani, zarizeni/dgx-spark, zarizeni/strix-halo, vyber/rozpocet]

@@ -80,6 +80,13 @@
     overeno: 2026-10-16
     zdroj: https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8
     poznamka: "128GB 5 899,99–6 999 USD; bez DPH a dopravy. Nižší ceny jsou 24GB modely."
+  cena_czk:
+    od: 125990
+    do: 167767
+    s_dph: true
+    overeno: 2026-11-04
+    zdroj: https://www.alza.cz/ai-pc/18907789.htm
+    poznamka: "ASUS ProArt P14 128GB/1TB 125 990 Kč; Lenovo Yoga Pro 9 129 989 Kč; Surface Laptop Ultra až 167 767 Kč; vč. DPH."
   cpu: NVIDIA Grace 20 jader
   gpu: Blackwell RTX
   os: [Windows 11]

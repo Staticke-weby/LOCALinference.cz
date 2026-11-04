@@ -190,6 +190,7 @@ TTFT, unified memory, vLLM, váhy.
 | `zarizeni/dgx-spark-oem` | 15 OEM variant GB10 s českými cenami | ✅ |
 | `zarizeni/rtx-spark-mini` | Stejná paměť, vyšší bandwidth, nižší cena než DGX Spark | ✅ |
 | `zarizeni/rtx-spark-notebook` | Dedikovaný výkon na cesty, ale throttling a auditujelnost | ✅ |
+| `zarizeni/rtx-spark-notebook-oem` | 7 českých 128GB variant s cenami | ✅ |
 | `zarizeni/strix-halo` | Nejlevnější cesta k 128 GB, ROCm je druhá liga | ✅ |
 | `zarizeni/strix-halo-oem` | 3 české 128GB Strix Halo konfigurace | ✅ |
 | `zarizeni/srovnani` | Velká matice všech parametrů | ✅ |

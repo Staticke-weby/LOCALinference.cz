@@ -1,0 +1,101 @@
+# České maloobchodní ceny notebooků s NVIDIA RTX Spark N1X, 128 GB.
+# Ceny jsou z nabídky Alza.cz ze 4. 11. 2026, včetně a bez DPH.
+# Nejde o US listové ceny; ty jsou v data/zarizeni.yaml.
+# Ceny kolísají. Před nákupem ověřte aktuální stav.
+
+- id: asus-proart-p14-128-1tb
+  nazev: ASUS ProArt P14 H7407 (128GB/1TB)
+  vyrobce: ASUS
+  pamet_gb: 128
+  uloziste_gb: 1024
+  cena_czk_s_dph: 125990
+  cena_czk_bez_dph: 104124
+  dostupnost: "Skladem > 5 ks"
+  prodejce: Alza.cz
+  objednaci_kod: NA563z10a06
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+  overeno: 2026-11-04
+  poznamka: "14\" OLED 2880×1800 120Hz; Windows 11 Pro; 1 rok ochrany proti poškození po registraci. Tři varianty, jedna bez adaptéru."
+
+- id: lenovo-yoga-pro-9-128-2tb
+  nazev: Lenovo Yoga Pro 9 (128GB/2TB)
+  vyrobce: Lenovo
+  pamet_gb: 128
+  uloziste_gb: 2048
+  cena_czk_s_dph: 129989
+  cena_czk_bez_dph: 107429
+  dostupnost: "Skladem 4 ks"
+  prodejce: Alza.cz
+  objednaci_kod: NT330p9y
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+  overeno: 2026-11-04
+  poznamka: "15,3\" OLED 2560×1600 165Hz; 2TB; 3 roky Premium Care On-Site; bez adaptéru."
+
+- id: asus-proart-p16-128-1tb
+  nazev: ASUS ProArt P16 H7607 (128GB/1TB)
+  vyrobce: ASUS
+  pamet_gb: 128
+  uloziste_gb: 1024
+  cena_czk_s_dph: 130990
+  cena_czk_bez_dph: 108256
+  dostupnost: "Očekáváme 17. 10. 2026; část variant nedostupná"
+  prodejce: Alza.cz
+  objednaci_kod: NA563z10b07
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+  overeno: 2026-11-04
+  poznamka: "16\" OLED 3840×2400 120Hz; bez adaptéru; 1 rok ochrany proti poškození po registraci."
+
+- id: msi-prestige-n16-flip-128-2tb
+  nazev: MSI Prestige N16 Flip (128GB/2TB)
+  vyrobce: MSI
+  pamet_gb: 128
+  uloziste_gb: 2048
+  cena_czk_s_dph: 149874
+  cena_czk_bez_dph: 123863
+  dostupnost: "Skladem 1 ks"
+  prodejce: Alza.cz
+  objednaci_kod: NB123c3s1
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+  overeno: 2026-11-04
+  poznamka: "16\" OLED 3840×2400 120Hz; 2TB; 1 rok ochrany proti náhodnému poškození po registraci."
+
+- id: asus-proart-p16-128-1tb-153
+  nazev: ASUS ProArt P16 H7607 (128GB/1TB, vyšší varianta)
+  vyrobce: ASUS
+  pamet_gb: 128
+  uloziste_gb: 1024
+  cena_czk_s_dph: 153990
+  cena_czk_bez_dph: 127264
+  dostupnost: "Předobjednávka, očekáváme prosinec 2026"
+  prodejce: Alza.cz
+  objednaci_kod: NA563z10b06
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+  overeno: 2026-11-04
+  poznamka: "16\" OLED; bez adaptéru; vyšší cena než základní P16."
+
+- id: surface-laptop-ultra-128-1tb
+  nazev: Microsoft Surface Laptop Ultra (128GB/1TB)
+  vyrobce: Microsoft
+  pamet_gb: 128
+  uloziste_gb: 1024
+  cena_czk_s_dph: 165653
+  cena_czk_bez_dph: 136903
+  dostupnost: "Předobjednávka, očekáváme prosinec 2026"
+  prodejce: Alza.cz
+  objednaci_kod: MCS266a26
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+  overeno: 2026-11-04
+  poznamka: "15\" 3270×2180 120Hz; 2 kg; bez adaptéru. Druhá varianta za 167 767 Kč."
+
+- id: surface-laptop-ultra-128-1tb-167
+  nazev: Microsoft Surface Laptop Ultra (128GB/1TB, druhá varianta)
+  vyrobce: Microsoft
+  pamet_gb: 128
+  uloziste_gb: 1024
+  cena_czk_s_dph: 167767
+  cena_czk_bez_dph: 138651
+  dostupnost: "Předobjednávka, očekáváme prosinec 2026"
+  prodejce: Alza.cz
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+  overeno: 2026-11-04
+  poznamka: "Druhá Surface varianta; stejná paměť a úložiště, jiná cena."
