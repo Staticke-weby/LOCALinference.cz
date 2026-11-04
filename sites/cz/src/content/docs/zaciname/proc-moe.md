@@ -59,9 +59,8 @@ běhu. Podrobnosti jsou v [metodice](/o-webu/metodika/).
 
 ## Co z toho plyne pro nákup
 
-- **64 GB** stačí na Qwen3.6 35B-A3B nebo Gemmu 4 26B A4B v Q4
-  s 128k kontextem.
 - **128 GB** je minimum pro Qwen3.8 Flash Next.
+- **Menší zařízení** do katalogu nezařazujeme.
 - **Víc uživatelů** se řeší počtem boxů, ne 192GB strojem.
 - **Dense modely** na těchto zařízeních nejsou rozumná volba.
 - **Počet aktivních parametrů** je první číslo, které se u modelu díváte.
@@ -69,15 +68,12 @@ běhu. Podrobnosti jsou v [metodice](/o-webu/metodika/).
 ## Kudy dál
 
 - [Jak to funguje](/zaciname/jak-to-funguje/) — váhy, kvantizace, roofline.
-- [Konfigurace 64GB+](/zarizeni/konfigurace/) — co na co stačí.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
-- [Gemma 4 26B A4B](/modely/gemma-4-26b-a4b/) — model pro 64 GB.
 - [Roofline](/rychlost/roofline/) — vzorec a příklady.
 
 ## Zdroje
 
 - [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
-- [Gemma 4 26B A4B — model card](https://huggingface.co/google/gemma-4-26B-A4B)
 - [madeye — DGX Spark measurement](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)
 - [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
 - [NVIDIA forum — native vLLM on RTX Spark](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530)

@@ -1,6 +1,6 @@
 ---
-title: "RTX Spark mini 64 a 128 GB: stolní CUDA od 5 999 USD"
-description: "64 nebo 128 GB unified paměti, 300 GB/s a CUDA. Co víme o RTX Spark mini, jak se liší od notebooku a proč u 64GB verze chybí cena."
+title: "RTX Spark mini 128 GB: stolní CUDA za 5 999 USD"
+description: "128 GB unified paměti, 300 GB/s a CUDA. Co víme o RTX Spark mini, jak se liší od notebooku a proč zatím chybí měření."
 last_verified: 2026-11-04
 sidebar:
   order: 5
@@ -8,19 +8,17 @@ sidebar:
 
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
-import TabulkaKonfiguraci from '../../../components/TabulkaKonfiguraci.astro';
 
-# RTX Spark mini 64 a 128 GB
+# RTX Spark mini 128 GB
 
 **Verdikt:** Stejná paměť a bandwidth jako notebook, ale stolní chlazení
-a stálý provoz. **128GB verze** za 5 999 USD je nejlevnější CUDA cesta
-k 128 GB, pokud nepotřebujete přenosnost. **64GB verze** je potvrzená,
-ale její cena chybí; na Qwen3.8 Flash Next nestačí.
+a stálý provoz. Za 5 999 USD je to nejlevnější CUDA cesta k 128 GB, pokud
+nepotřebujete přenosnost.
 
 <aside class="tip">
 **Pro koho:** malý pool, 1–4 lidé, CUDA, stálý provoz.
 **Pro koho ne:** práce na cestě, 20+ uživatelů, nejzralejší Linux stack.
-**Minimum pro denní práci:** Qwen3.8 Flash Next na 128 GB; Qwen3.6 35B-A3B nebo Gemma 4 26B A4B na 64 GB.
+**Minimum pro denní práci:** Qwen3.8 Flash Next na 128 GB.
 </aside>
 
 > **Toto jsou převzatá data, ne naše měření.** Specifikace a cena jsou
@@ -33,15 +31,8 @@ ale její cena chybí; na Qwen3.8 Flash Next nestačí.
 
 ## Konfigurace
 
-RTX Spark mini se nabízí se **64 GB** a **128 GB** unified paměti.
-128GB verze stojí 5 999 USD. U 64GB verze je cena `[DOPLNIT: cena
-a dostupnost]`; kompaktní desktopy s 64GB se objevují u OEM, například
-ASUS ProArt GR1X. Menší 5 120jádrová varianta je omezená na 64 GB.
-
-<TabulkaKonfiguraci zarizeni="rtx-spark-mini" />
-
-**Co to znamená:** 64GB verze zvládne Qwen3.6 35B-A3B a Gemmu 4 26B A4B
-v Q4 s 128k kontextem. Qwen3.8 Flash Next potřebuje 128 GB.
+Katalog řeší **jen 128GB verzi** za 5 999 USD. Menší konfigurace
+do katalogu nezařazujeme, protože na nich Qwen3.8 Flash Next neběží.
 
 ## Co na něm poběží
 
@@ -51,9 +42,6 @@ Konkrétní čísla proto `[DOPLNIT: měření]`.
 
 **Co víme:** 128 GB se vejde na Qwen3.8 Flash Next v 4bitové kvantizaci
 (cca 95–110 GB). Zbytek paměti je na kontext a systém.
-
-**Na 64GB verzi** Qwen3.8 Flash Next neběží. Použijte Qwen3.6 35B-A3B
-nebo Gemmu 4 26B A4B v Q4; oba zvládnou 128k kontext.
 
 ## Jak rychle
 
@@ -83,7 +71,6 @@ měření to neuvádíme.
 ## Kudy dál
 
 - [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — mobilní varianta.
-- [Konfigurace 64GB+](/zarizeni/konfigurace/) — co se vejde na 64 a 128 GB.
 - [DGX Spark](/zarizeni/dgx-spark/) — dražší, ale integrovanější.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
 - [Co nevíme](/zdroje/co-nevime/) — chybějící měření.

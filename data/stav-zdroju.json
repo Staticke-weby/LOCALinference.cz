@@ -185,54 +185,6 @@
     "checkedAt": "2026-11-04T12:25:29.947Z",
     "status": "new"
   },
-  "qwen36-hf": {
-    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-    "signature": "hf:995ad96eacd98c81ed38be0c5b274b04031597b0:2026-04-24T02:53:42.000Z",
-    "checkedAt": "2026-11-04T12:25:30.108Z",
-    "status": "new"
-  },
-  "qwen36-ngc": {
-    "url": "https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b",
-    "signature": "text:e5d4ad5c9c544eba",
-    "checkedAt": "2026-11-04T12:25:31.938Z",
-    "status": "new"
-  },
-  "qwen36-unsloth-gguf": {
-    "url": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
-    "signature": "hf:a483e9e6cbd595906af30beda3187c2663a1118c:2026-04-20T12:42:25.000Z",
-    "checkedAt": "2026-11-04T12:25:32.127Z",
-    "status": "new"
-  },
-  "qwen36-batiai-gguf": {
-    "url": "https://huggingface.co/batiai/Qwen3.6-35B-A3B-GGUF",
-    "signature": "hf:c54b78c9063eeb1c51614830d674d4aa1df99780:2026-05-04T17:00:40.000Z",
-    "checkedAt": "2026-11-04T12:25:32.282Z",
-    "status": "new"
-  },
-  "gemma4-hf": {
-    "url": "https://huggingface.co/google/gemma-4-26B-A4B",
-    "signature": "hf:24548b62aa021d562695c04aaf7758a1ea47990b:2026-07-15T16:41:43.000Z",
-    "checkedAt": "2026-11-04T12:25:32.435Z",
-    "status": "new"
-  },
-  "gemma4-ollama": {
-    "url": "https://ollama.com/library/gemma4:26b",
-    "signature": "text:62c881b2d122b67f",
-    "checkedAt": "2026-11-04T12:25:32.924Z",
-    "status": "new"
-  },
-  "gemma4-google": {
-    "url": "https://ai.google.dev/gemma/docs/core",
-    "signature": "text:6bf579cd3aedb0bf",
-    "checkedAt": "2026-11-04T12:25:35.358Z",
-    "status": "new"
-  },
-  "nvidia-dgx-spark-64gb": {
-    "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/",
-    "signature": "text:93449243a464b3bb",
-    "checkedAt": "2026-11-04T12:25:35.794Z",
-    "status": "new"
-  },
   "microsoft-surface-ultra": {
     "url": "https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8",
     "signature": "text:2c50bc5a01724e8b",
@@ -249,24 +201,6 @@
     "url": "https://rtxsparkpc.com/",
     "signature": "text:7ba1cbfe77bf705f",
     "checkedAt": "2026-11-04T12:25:37.354Z",
-    "status": "new"
-  },
-  "tokenmark-gemma4": {
-    "url": "https://tokenmark.app/model/gemma-4-26B-A4B-it",
-    "signature": "text:493e4cad02977e86",
-    "checkedAt": "2026-11-04T12:25:37.911Z",
-    "status": "new"
-  },
-  "llamaperf-gemma4": {
-    "url": "https://llamaperf.com/model/gemma-4",
-    "signature": "text:5ad7eae2ab60239a",
-    "checkedAt": "2026-11-04T12:25:38.922Z",
-    "status": "new"
-  },
-  "boxwrench-gemma4": {
-    "url": "https://github.com/boxwrench/tesla_agent/blob/main/research/gemma-4-qat-q4_0-strix-halo.md",
-    "signature": "commit:81ccd601f10b2223cbca6edcc8f9b89440f96321",
-    "checkedAt": "2026-11-04T12:25:39.863Z",
     "status": "new"
   },
   "alza-ai-nvidia": {

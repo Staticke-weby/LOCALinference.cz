@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Katalog se zužuje na 128 GB"
+  co_se_zmenilo: "Zařízení pod 128 GB vyřazena. Web řeší jen smysluplnou lokální AI na 128GB+ strojích; minimum je Qwen3.8 Flash Next. Odstraněny stránky Qwen3.6, Gemma 4 a přehled konfigurací."
+  dotcene_stranky: [index, zarizeni/srovnani, modely/qwen3-8-flash-next]
+  zdroj: https://localinference.cz/
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Provozovatel ESHOpino s.r.o. a žádná vlastní měření"
   co_se_zmenilo: "Doplněny právní informace a provozovatel shodný s OpenWork.cz. Metodika a redakční pravidla nově výslovně říkají, že vlastní měření neprovádíme a pracujeme jen se zdroji."
   dotcene_stranky: [o-webu/pravni, o-webu/jak-piseme, o-webu/metodika]
@@ -16,39 +23,11 @@
   zdroj: https://www.alza.cz/ai-pc/18907789.htm
 
 - datum: 2026-11-04
-  typ: model
-  titulek: "Qwen3.6 vision vyžaduje mmproj"
-  co_se_zmenilo: "Doplněno, že Qwen3.6 35B-A3B má vision jen se samostatným mmproj souborem (~579 MB Q6_K, ~861 MB BF16). Bez něj je model text-only; paměťový rozpočet se zvyšuje na ~24,5–25,5 GB při 128k."
-  dotcene_stranky: [modely/qwen3-6-35b-a3b, modely/srovnani, zarizeni/konfigurace]
-  zdroj: https://huggingface.co/batiai/Qwen3.6-35B-A3B-GGUF
-
-- datum: 2026-11-04
   typ: cena
   titulek: "České ceny 15 GB10 OEM strojů"
   co_se_zmenilo: "Nová stránka /zarizeni/dgx-spark-oem/ přináší ceny ASUS, Lenovo, HP, Dell, GIGABYTE, Acer, PNY a NVIDIA z Alza.cz k 4. 11. 2026, včetně a bez DPH."
   dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/dgx-spark]
   zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
-
-- datum: 2026-11-04
-  typ: model
-  titulek: "Gemma 4 26B A4B pro 64GB boxy"
-  co_se_zmenilo: "Do katalogu přidána Gemma 4 26B A4B (25,2B / 3,8B, 256k, Apache-2.0) jako doporučený model pro 64GB konfigurace. Qwen3.6 35B-A3B je nově také doporučený pro 64 GB."
-  dotcene_stranky: [modely/gemma-4-26b-a4b, modely/qwen3-6-35b-a3b, modely/srovnani]
-  zdroj: https://huggingface.co/google/gemma-4-26B-A4B
-
-- datum: 2026-11-04
-  typ: obsah
-  titulek: "Přehled konfigurací 64GB+"
-  co_se_zmenilo: "Nová stránka /zarizeni/konfigurace/ vypisuje všech 8 konfigurací s 64GB+ unified pamětí a modely, které na nich dají 128k kontext."
-  dotcene_stranky: [zarizeni/konfigurace, zarizeni/srovnani, index]
-  zdroj: https://localinference.cz/zarizeni/konfigurace/
-
-- datum: 2026-11-04
-  typ: cena
-  titulek: "Ceny 64GB konfigurací"
-  co_se_zmenilo: "DGX Spark 64GB od 4 999 USD, RTX Spark notebook 64GB od 4 299,99 USD, Strix Halo 64GB od 1 959 USD. Ceny 128GB variant doplněny."
-  dotcene_stranky: [zarizeni/dgx-spark, zarizeni/rtx-spark-notebook, zarizeni/strix-halo, zarizeni/srovnani]
-  zdroj: https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/
 
 - datum: 2026-11-04
   typ: obsah
@@ -68,7 +47,7 @@
   typ: model
   titulek: "Qwen3.5 397B nezařazen"
   co_se_zmenilo: "Starší obří model se na malé 128GB boxy nehodí. Katalog drží jen modely z poslední doby, které běží efektivně."
-  dotcene_stranky: [modely/srovnani]
+  dotcene_stranky: [modely/qwen3-8-flash-next]
   zdroj: https://huggingface.co/Qwen/Qwen3.5-397B-A17B
 
 - datum: 2026-11-04

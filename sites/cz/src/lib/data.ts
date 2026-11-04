@@ -30,7 +30,6 @@ export type Zarizeni = {
   bandwidth_gbs: number;
   bandwidth_pozn?: string;
   cena: Cena;
-  konfigurace?: { pamet_gb: number; cena_usd: number }[];
   cpu: string;
   gpu: string;
   os: string[];
@@ -109,29 +108,6 @@ export type StrixHaloOem = {
   poznamka?: string;
 };
 
-export type Konfigurace = {
-  id: string;
-  zarizeni: string;
-  nazev: string;
-  pamet_gb: number;
-  bandwidth_gbs: number;
-  cena_od_usd: number | null;
-  cena_do_usd: number | null;
-  cena_pozn?: string;
-  uloziste?: string;
-  dostupnost?: string;
-  zdroj: string;
-  overeno: string | Date;
-  poznamka?: string;
-  modely: {
-    model: string;
-    kvantizace: string;
-    kontext: number;
-    vahy_gb: number | null;
-    poznamka?: string;
-  }[];
-};
-
 export type Mereni = {
   id: string;
   datum: string | Date;
@@ -149,8 +125,8 @@ export type Mereni = {
   soubeznost: number;
   rozptyl?: { min: number; max: number; jine_zdroje: string[] };
   nastaveni: Record<string, unknown>;
-  typ: 'namereno' | 'vypocet' | 'vlastni';
-  mereno_kym: 'vyrobce' | 'nezavisle' | 'komunita' | 'my';
+  typ: 'namereno' | 'vypocet';
+  mereno_kym: 'vyrobce' | 'nezavisle' | 'komunita';
   duveryhodnost: 'vysoka' | 'stredni' | 'nizka';
   normalizace?: string;
   interpretace?: string;
@@ -222,33 +198,6 @@ export function getZarizeni(): Zarizeni[] {
 
 export function getZarizeniById(id: string): Zarizeni | undefined {
   return getZarizeni().find((z) => z.id === id);
-}
-
-export function getKonfigurace(filter: { zarizeni?: string; minPamet?: number } = {}): Konfigurace[] {
-  return (load<Konfigurace[]>('konfigurace.yaml') ?? [])
-    .filter((k) => (!filter.zarizeni || k.zarizeni === filter.zarizeni) && (!filter.minPamet || k.pamet_gb >= filter.minPamet))
-    .sort((a, b) => {
-      const ca = a.cena_od_usd ?? Number.POSITIVE_INFINITY;
-      const cb = b.cena_od_usd ?? Number.POSITIVE_INFINITY;
-      return ca - cb || b.pamet_gb - a.pamet_gb;
-    });
-}
-
-export function cenaKonfiguraceText(k: Konfigurace): { usd: string; czk: string; zdroj: string; poznamka: string } {
-  const kurz = getKurz();
-  if (k.cena_od_usd == null) {
-    return { usd: '[DOPLNIT]', czk: '', zdroj: k.zdroj, poznamka: k.cena_pozn ?? '' };
-  }
-  const od = k.cena_od_usd;
-  const doCeny = k.cena_do_usd ?? od;
-  const usd = od === doCeny ? `${formatCislo(od)} USD` : `${formatCislo(od)}–${formatCislo(doCeny)} USD`;
-  const czkOd = Math.round(od * kurz.usd_czk);
-  const czkDo = Math.round(doCeny * kurz.usd_czk);
-  const czk =
-    czkOd === czkDo
-      ? `≈ ${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(czkOd)} Kč`
-      : `≈ ${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(czkOd)}–${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(czkDo)} Kč`;
-  return { usd, czk, zdroj: k.zdroj, poznamka: k.cena_pozn ?? '' };
 }
 
 export function getDgxSparkOem(): DgxSparkOem[] {
@@ -332,7 +281,7 @@ export function mereniRychlost(m: Mereni): string {
 }
 
 export function typLabel(typ: Mereni['typ']): string {
-  return typ === 'namereno' ? 'naměřeno' : typ === 'vypocet' ? 'výpočet' : 'vlastní';
+  return typ === 'namereno' ? 'naměřeno' : 'výpočet';
 }
 
 export function duveryhodnostLabel(d: Mereni['duveryhodnost']): string {
@@ -340,5 +289,5 @@ export function duveryhodnostLabel(d: Mereni['duveryhodnost']): string {
 }
 
 export function merenoKymLabel(k: Mereni['mereno_kym']): string {
-  return k === 'vyrobce' ? 'výrobce' : k === 'nezavisle' ? 'nezávislý' : k === 'komunita' ? 'komunita' : 'my';
+  return k === 'vyrobce' ? 'výrobce' : k === 'nezavisle' ? 'nezávislý' : 'komunita';
 }

@@ -22,13 +22,10 @@ zařízení a chuť měřit, tady je přesně vidět, co by pomohlo.
 |---|---|---|---|
 | **DGX Spark** | TTFT a prefill pro Qwen3.8 Flash Next | bez nich nelze hodnotit interaktivní kvalitu | vysoká |
 | **Strix Halo** | TTFT na jednotném promptu | prefill se v reportech měří různě | vysoká |
-| **Strix Halo 64 GB** | souběžnost při 128k | GPU vidí jen ~48 GB, papírová rezerva je menší | střední |
-| **RTX Spark mini 64 GB** | cena a dostupnost | konfigurace je potvrzená, cena chybí | vysoká |
 | **RTX Spark mini/notebook** | nezávislá měření | výrobcem udávaná čísla nestačí | střední |
-| **Gemma 4 26B A4B** | TTFT a souběžnost na 64GB boxech | máme jen single-stream decode | vysoká |
 | **Souběžnost 4+** | agregát a tok/s na stream | většina reportů je single-stream | vysoká |
-| **Dlouhý kontext** | 128k, 256k, 1M | maximum v datasheetu nic neříká o praxi | vysoká |
-| **Kvalita na 128k** | české a retrieval testy pro Gemmu 4 a Qwen3.6 | benchmarky jsou anglické a značně závisí na úloze | vysoká |
+| **Dlouhý kontext** | 128k, 262k | maximum v datasheetu nic neříká o praxi | vysoká |
+| **Kvalita na 128k** | české a retrieval testy pro Qwen3.8 | benchmarky jsou anglické a značně závisí na úloze | vysoká |
 | **Čeština** | srovnávací testy na českých úlohách | benchmarky v angličtině neřeknou vše | vysoká |
 | **Vision** | reálné testy dokumentů a screenshotů | vision je výchozí, ale kvalita se liší | střední |
 | **Hluk a příkon** | měření v zátěži | rozhoduje o použití v kanceláři/domácnosti | střední |

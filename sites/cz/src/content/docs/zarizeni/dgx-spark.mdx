@@ -8,7 +8,6 @@ sidebar:
 
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
-import TabulkaKonfiguraci from '../../../components/TabulkaKonfiguraci.astro';
 
 # DGX Spark 128 GB
 
@@ -20,7 +19,7 @@ cesta.
 <aside class="tip">
 **Pro koho:** 1–4 lidé, CUDA, citlivá data, potřeba NVIDIA stacku.
 **Pro koho ne:** nejnižší cena za 128 GB, 20+ uživatelů, model nad 200B.
-**Minimum pro denní práci:** Qwen3.8 Flash Next na 128 GB; Qwen3.6 35B-A3B nebo Gemma 4 26B A4B na 64 GB.
+**Minimum pro denní práci:** Qwen3.8 Flash Next na 128 GB.
 </aside>
 
 > **Toto jsou převzatá data, ne naše měření.** Specifikace a ceny pocházejí
@@ -31,20 +30,14 @@ cesta.
 
 <RychlaFakta id="dgx-spark" />
 
-**Cena:** bez DPH a dopravy. **128GB verze** zdražila z 3 999 USD
+**Cena:** bez DPH a dopravy. DGX Spark zdražil z 3 999 USD
 (10/2025) na 6 950 USD (10/2026); důvodem jsou ceny pamětí.
 
 ## Konfigurace
 
-DGX Spark existuje ve dvou velikostech paměti. **64GB verze** je od
-23. 10. 2026 pouze přes partnery (Acer, ASUS, Dell, Gigabyte, HP, MSI)
-a začíná na 4 999 USD. Má stejný GB10, DGX OS i software stack; dva kusy
-lze spojit na 128 GB. **128GB verze** stojí 6 950 USD.
-
-<TabulkaKonfiguraci zarizeni="dgx-spark" />
-
-**Co to znamená:** na 64GB verzi poběží Qwen3.6 35B-A3B a Gemma 4 26B A4B
-v Q4 s 128k kontextem. Qwen3.8 Flash Next potřebuje 128 GB.
+Katalog řeší **jen 128GB verzi**. DGX Spark se sice prodává i se 64 GB
+přes partnery, ale na 64 GB se Qwen3.8 Flash Next nevejde — a menší
+zařízení do katalogu nezařazujeme.
 
 **České ceny OEM variant:** 15 strojů od ASUS, Lenovo, HP, Dell,
 GIGABYTE, Acer, PNY a NVIDIA najdete v
@@ -57,10 +50,6 @@ GIGABYTE, Acer, PNY a NVIDIA najdete v
 **Konflikt, který je potřeba číst:** Qwen/NVIDIA uvádí kolem 70 tok/s,
 nezávislé měření 36,8–45,8 tok/s. Rozdíl je engine, MTP, workload a délka
 běhu. Pro plánování berte **spodní hranici 36,8 tok/s**, ne 70.
-
-**Na 64GB verzi** Qwen3.8 Flash Next neběží. Použijte Qwen3.6 35B-A3B
-nebo Gemmu 4 26B A4B; Gemma 4 dává na DGX Sparku ~70 tok/s
-([model page](/modely/gemma-4-26b-a4b/)).
 
 ## Jak rychle
 
@@ -110,7 +99,7 @@ z KV cache. Konkrétní chování při 4 souběžných je `[DOPLNIT: měření]`
 
 - [DGX Spark OEM a české ceny](/zarizeni/dgx-spark-oem/) — 15 variant.
 - [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — mobilní alternativa.
-- [Konfigurace 64GB+](/zarizeni/konfigurace/) — co se vejde na 64 a 128 GB.
+- [Srovnání zařízení](/zarizeni/srovnani/) — co se vejde na 128 GB.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
 - [Roofline](/rychlost/roofline/) — proč je 70 tok/s strop, ne cíl.
 - [Co nevíme](/zdroje/co-nevime/) — chybějící TTFT a souběžnost.
@@ -118,7 +107,6 @@ z KV cache. Konkrétní chování při 4 souběžných je `[DOPLNIT: měření]`
 ## Zdroje
 
 - [NVIDIA DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
-- [NVIDIA blog — DGX Spark 64 GB](https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/)
 - [vLLM recipe — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
 - [madeye — DGX Spark measurement](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)
 - [CORSAIR — DGX Spark llama.cpp](https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/)

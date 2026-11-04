@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 import { z } from 'zod';
-import { dgxSparkOem, konfigurace, kurz, mereni, model, strixHaloOem, zdroj, zarizeni, zmena } from './schema.mjs';
+import { dgxSparkOem, kurz, mereni, model, strixHaloOem, zdroj, zarizeni, zmena } from './schema.mjs';
 
 const root = process.cwd();
 const dataDir = path.join(root, 'data');
@@ -80,7 +80,6 @@ function daysOld(date) {
 }
 
 const zarizeniData = readYaml('zarizeni.yaml');
-const konfiguraceData = readYaml('konfigurace.yaml');
 const dgxSparkOemData = readYaml('dgx-spark-oem.yaml');
 const strixHaloOemData = readYaml('strix-halo-oem.yaml');
 const modelyData = readYaml('modely.yaml');
@@ -90,7 +89,6 @@ const kurzyData = readYaml('kurzy.yaml');
 const zmenyData = readYaml('zmeny.yaml');
 
 const zarizeniList = validate('data/zarizeni.yaml', zarizeni, zarizeniData);
-const konfiguraceList = validate('data/konfigurace.yaml', konfigurace, konfiguraceData);
 const dgxSparkOemList = validate('data/dgx-spark-oem.yaml', dgxSparkOem, dgxSparkOemData);
 const strixHaloOemList = validate('data/strix-halo-oem.yaml', strixHaloOem, strixHaloOemData);
 const modelyList = validate('data/modely.yaml', model, modelyData);
@@ -100,7 +98,6 @@ const kurzyList = validate('data/kurzy.yaml', kurz, kurzyData);
 const zmenyList = validate('data/zmeny.yaml', zmena, zmenyData);
 
 checkDuplicates('data/zarizeni.yaml', zarizeniList);
-checkDuplicates('data/konfigurace.yaml', konfiguraceList);
 checkDuplicates('data/dgx-spark-oem.yaml', dgxSparkOemList);
 checkDuplicates('data/strix-halo-oem.yaml', strixHaloOemList);
 checkDuplicates('data/modely.yaml', modelyList);
@@ -110,17 +107,6 @@ checkDuplicates('data/zmeny.yaml', zmenyList);
 
 const zarizeniIds = new Set(zarizeniList.map((x) => x.id));
 const modelIds = new Set(modelyList.map((x) => x.id));
-
-for (const k of konfiguraceList) {
-  if (!zarizeniIds.has(k.zarizeni)) fail(`data/konfigurace.yaml / ${k.id}: neznámé zařízení ${k.zarizeni}`);
-  for (const m of k.modely) {
-    if (!modelIds.has(m.model)) fail(`data/konfigurace.yaml / ${k.id}: neznámý model ${m.model}`);
-  }
-  if (k.pamet_gb < 64) warn(`data/konfigurace.yaml / ${k.id}: konfigurace má méně než 64 GB`);
-  if (k.cena_od_usd == null && !k.cena_pozn) {
-    warn(`data/konfigurace.yaml / ${k.id}: chybí cena i poznámka o ceně`);
-  }
-}
 
 for (const o of dgxSparkOemList) {
   if (o.pamet_gb !== 128) warn(`data/dgx-spark-oem.yaml / ${o.id}: GB10 stroj má obvykle 128 GB`);
@@ -139,9 +125,6 @@ for (const o of strixHaloOemList) {
 for (const m of mereniList) {
   if (!zarizeniIds.has(m.zarizeni)) fail(`data/mereni.yaml / ${m.id}: neznámé zařízení ${m.zarizeni}`);
   if (!modelIds.has(m.model)) fail(`data/mereni.yaml / ${m.id}: neznámý model ${m.model}`);
-  if (m.typ === 'vlastni' || m.mereno_kym === 'my') {
-    fail(`data/mereni.yaml / ${m.id}: vlastní měření neprovádíme; použij převzatý zdroj`);
-  }
   if (m.typ === 'namereno' && (!m.zdroj || !m.mereno_kym)) {
     fail(`data/mereni.yaml / ${m.id}: naměřené číslo musí mít zdroj a mereno_kym`);
   }
@@ -155,7 +138,6 @@ for (const m of mereniList) {
 
 for (const [name, items] of [
   ['data/zarizeni.yaml', zarizeniList],
-  ['data/konfigurace.yaml', konfiguraceList],
   ['data/dgx-spark-oem.yaml', dgxSparkOemList],
   ['data/strix-halo-oem.yaml', strixHaloOemList],
   ['data/modely.yaml', modelyList],
@@ -190,7 +172,6 @@ else if (daysOld(latestKurz.datum) > 14) warn(`data/kurzy.yaml: nejnovější ku
 const registered = new Set(zdrojeList.map((z) => z.url));
 const referenced = new Set();
 for (const z of zarizeniList) for (const u of z.zdroje) referenced.add(u);
-for (const k of konfiguraceList) referenced.add(k.zdroj);
 for (const o of dgxSparkOemList) referenced.add(o.zdroj);
 for (const o of strixHaloOemList) referenced.add(o.zdroj);
 for (const m of modelyList) for (const u of m.zdroje) referenced.add(u);
@@ -201,7 +182,7 @@ for (const u of referenced) {
 }
 
 console.log('');
-console.log(`Data: ${zarizeniList.length} zařízení, ${konfiguraceList.length} konfigurací, ${dgxSparkOemList.length} GB10 OEM SKU, ${strixHaloOemList.length} Strix Halo OEM SKU, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${zmenyList.length} změn.`);
+console.log(`Data: ${zarizeniList.length} zařízení, ${dgxSparkOemList.length} GB10 OEM SKU, ${strixHaloOemList.length} Strix Halo OEM SKU, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${zmenyList.length} změn.`);
 if (errors === 0) console.log(`✓ Data jsou v pořádku (${warnings} varování).`);
 else console.error(`✗ ${errors} chyb, ${warnings} varování.`);
 

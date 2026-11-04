@@ -1,6 +1,6 @@
 # Katalog modelů. Jen současné modely.
-# Na 128 GB je minimum Qwen3.8 Flash Next; na 64 GB Qwen3.6 35B-A3B
-# a Gemma 4 26B A4B v Q4.
+# Minimum je Qwen3.8 Flash Next na 128 GB. Zařízení pod 128 GB
+# a modely pod Qwen3.8 do katalogu nezařazujeme.
 # Jen modely, které se celé vejdou na jedno zařízení (včetně KV cache).
 # Modely vyžadující pool nebo offload nezařazujeme.
 # `kontext.doporuceny` je null, dokud pro něj nemáme podložené doporučení.
@@ -34,66 +34,3 @@
     - https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next
   overeno: 2026-11-04
 
-- id: qwen3-6-35b-a3b
-  nazev: Qwen3.6 35B-A3B
-  vyrobce: Qwen
-  architektura: MoE
-  parametry_celkem_b: 35
-  parametry_aktivni_b: 3
-  kontext:
-    max: 262144
-    max_rozsireni: 1010000
-    doporuceny: null
-    poznamka: "262k nativně, ~1M s YaRN; maximum není doporučený provozní bod."
-  vision: true
-  vision_projektor:
-    nazev: mmproj-Q6_K
-    velikost_gb: 0.579
-    engine: llama.cpp
-    poznamka: "Vision je opt-in: bez mmproj je model text-only. BF16 varianta má 0,861 GB."
-  modality: [text, obraz, video]
-  licence: Apache-2.0
-  kvantizace:
-    - {nazev: NVFP4, vahy_gb: null, engine: vLLM}
-    - {nazev: Q4_K_M, vahy_gb: 21.2, engine: llama.cpp}
-    - {nazev: Q8_0, vahy_gb: 36.9, engine: llama.cpp}
-  role: special
-  stav: doporuceny
-  stranka: /modely/qwen3-6-35b-a3b/
-  zdroje:
-    - https://huggingface.co/Qwen/Qwen3.6-35B-A3B
-    - https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b
-    - https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF
-  overeno: 2026-11-04
-
-- id: gemma-4-26b-a4b
-  nazev: Gemma 4 26B A4B
-  vyrobce: Google DeepMind
-  architektura: MoE
-  parametry_celkem_b: 25.2
-  parametry_aktivni_b: 3.8
-  kontext:
-    max: 262144
-    max_rozsireni: null
-    doporuceny: null
-    poznamka: "256k nativně; maximum není doporučený provozní bod."
-  vision: true
-  vision_projektor:
-    nazev: mmproj (vision encoder)
-    velikost_gb: 1.2
-    engine: llama.cpp / Ollama
-    poznamka: "Ollama stahuje projektor zvlášť; v Q4 modelu je součástí přibližně 19GB downloadu."
-  modality: [text, obraz]
-  licence: Apache-2.0
-  kvantizace:
-    - {nazev: Q4_K_M, vahy_gb: 17.0, engine: llama.cpp}
-    - {nazev: Q8_0, vahy_gb: 26.9, engine: llama.cpp}
-    - {nazev: NVFP4, vahy_gb: 14.4, engine: vLLM}
-  role: special
-  stav: doporuceny
-  stranka: /modely/gemma-4-26b-a4b/
-  zdroje:
-    - https://huggingface.co/google/gemma-4-26B-A4B
-    - https://ollama.com/library/gemma4:26b
-    - https://ai.google.dev/gemma/docs/core
-  overeno: 2026-11-04

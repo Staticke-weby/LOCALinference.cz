@@ -58,12 +58,9 @@ spadne řádově, často na jednotky tokenů za sekundu.
 
 To je důvod, proč je 128 GB magická hranice. Qwen3.8 Flash Next potřebuje
 kolem 101 GB na váhy. Zbývá zhruba 27 GB na KV cache a aktivace. Vejde se.
-Na 64GB stroji se nevejde vůbec. **128 GB je minimum** pro Qwen3.8 Flash
-Next včetně rozumného kontextu.
-
-Na 64 GB se ale vejdou menší MoE modely: Qwen3.6 35B-A3B (~21 GB vah)
-a Gemma 4 26B A4B (~17 GB vah). Oba zvládnou 128k kontext a jsou
-[doporučené pro 64GB konfigurace](/zarizeni/konfigurace/).
+Na menších strojích se nevejde vůbec. **128 GB je minimum** pro Qwen3.8
+Flash Next včetně rozumného kontextu. Menší zařízení do katalogu
+nezařazujeme.
 
 ## Dvě úzká hrdla: paměť a výpočet
 

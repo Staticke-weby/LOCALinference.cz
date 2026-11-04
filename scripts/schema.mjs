@@ -36,14 +36,6 @@ export const zarizeni = z.object({
   bandwidth_gbs: z.number().positive(),
   bandwidth_pozn: z.string().optional(),
   cena,
-  konfigurace: z
-    .array(
-      z.object({
-        pamet_gb: z.number().positive(),
-        cena_usd: z.number().positive(),
-      }),
-    )
-    .optional(),
   cpu: z.string().min(1),
   gpu: z.string().min(1),
   os: z.array(z.string().min(1)).min(1),
@@ -57,37 +49,6 @@ export const zarizeni = z.object({
   zdroje: z.array(url).min(1),
   overeno: datum,
 });
-
-export const konfigurace = z
-  .object({
-    id,
-    zarizeni: id,
-    nazev: z.string().min(2),
-    pamet_gb: z.number().positive(),
-    bandwidth_gbs: z.number().positive(),
-    cena_od_usd: z.number().positive().nullable(),
-    cena_do_usd: z.number().positive().nullable(),
-    cena_pozn: z.string().optional(),
-    uloziste: z.string().optional(),
-    dostupnost: z.string().optional(),
-    zdroj: url,
-    overeno: datum,
-    poznamka: z.string().optional(),
-    modely: z
-      .array(
-        z.object({
-          model: id,
-          kvantizace: z.string().min(1),
-          kontext: z.number().positive(),
-          vahy_gb: z.number().positive().nullable(),
-          poznamka: z.string().optional(),
-        }),
-      )
-      .default([]),
-  })
-  .refine((v) => v.cena_od_usd == null || v.cena_do_usd == null || v.cena_od_usd <= v.cena_do_usd, {
-    message: 'cena_od_usd musí být <= cena_do_usd',
-  });
 
 export const dgxSparkOem = z
   .object({
@@ -207,8 +168,8 @@ export const mereni = z.object({
       power_limit_w: z.number().nullable().optional(),
     })
     .default({}),
-  typ: z.enum(['namereno', 'vypocet', 'vlastni']),
-  mereno_kym: z.enum(['vyrobce', 'nezavisle', 'komunita', 'my']),
+  typ: z.enum(['namereno', 'vypocet']),
+  mereno_kym: z.enum(['vyrobce', 'nezavisle', 'komunita']),
   duveryhodnost: z.enum(['vysoka', 'stredni', 'nizka']),
   normalizace: z.string().optional(),
   interpretace: z.string().optional(),

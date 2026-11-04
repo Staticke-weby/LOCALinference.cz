@@ -4,6 +4,24 @@
 
 ---
 
+## 2026-11-04 — katalog jen 128 GB
+
+Rozhodnutí provozovatele: **zařízení pod 128 GB se na webu neřeší.**
+Důvod: obsah by rostl exponenciálně, nebylo by jasné, co se k čemu
+vztahuje, a všechna zařízení mají technické limity.
+
+- Z katalogu zmizely 64GB konfigurace, stránka `/zarizeni/konfigurace/`,
+  modely Qwen3.6 35B-A3B a Gemma 4 26B A4B i jejich měření.
+- Zůstává **4 zařízení ve 128 GB**, 15 DGX Spark OEM SKU, 3 Strix Halo
+  OEM SKU a **Qwen3.8 Flash Next** jako jediný referenční model.
+- `data/konfigurace.yaml`, `TabulkaKonfiguraci.astro`, schema
+  `konfigurace` a související validace byly odstraněny.
+- Pravidlo je v `AGENTS.md`: jen 128GB+ zařízení, minimum Qwen3.8.
+- Starší changelog a poznámky o 64 GB zůstávají jako historie; odkazy
+  na smazané stránky byly přesměrovány na existující přehledy.
+
+---
+
 ## 2026-11-04 — provozovatel a měření
 
 - **Provozovatel:** ESHOpino s.r.o., Roháčova 145/14, 130 00 Praha 3,

@@ -1,6 +1,6 @@
 # České maloobchodní ceny strojů s AMD Ryzen AI Max+ 395 (Strix Halo).
 # Ceny jsou z nabídky Alza.cz ze 4. 11. 2026, včetně a bez DPH.
-# Nejde o US listové ceny; ty jsou v data/zarizeni.yaml a data/konfigurace.yaml.
+# Nejde o US listové ceny; ty jsou v data/zarizeni.yaml.
 # Ceny kolísají. Před nákupem ověřte aktuální stav.
 
 - id: acemagic-a10a-128-2tb

@@ -1,49 +1,62 @@
 ---
-title: "Srovnání zařízení: paměť, bandwidth a cena"
-description: "Přehled malých 128GB boxů podle paměti, propustnosti a ceny. Bez drahých strojů za stovky tisíc."
+title: "Srovnání zařízení: 128 GB jako minimum"
+description: "Přehled hotových 128GB boxů podle paměti, propustnosti a ceny. Menší zařízení do katalogu nepatří."
 last_verified: 2026-11-04
 sidebar:
-  order: 8
+  order: 7
 ---
 
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 
 # Srovnání zařízení
 
-Web se drží malých 128GB boxů za dosažitelnou cenu. Dražší a větší
-stroje do katalogu nepatří — nejsou pro běžné nasazení.
+Katalog drží **jen hotové stroje se 128 GB unified paměti**. Menší
+zařízení nezařazujeme: Qwen3.8 Flash Next se na ně nevejde v použitelné
+kvalitě i s rozumným kontextem. Větší a dražší stroje také ne — pro víc
+uživatelů se škáluje počtem boxů.
 
 <TabulkaZarizeni />
 
-**Ceny v tabulce** jsou rozsah napříč konfiguracemi: u Strix Halu 64GB od
-1 959 USD, u notebooku 64GB od 4 299,99 USD. Přesné varianty a co na nich
-poběží najdete v [přehledu konfigurací](/zarizeni/konfigurace/).
+**Ceny v tabulce** jsou bez DPH a dopravy, k datu u zařízení. České
+maloobchodní ceny OEM variant jsou v samostatných přehledech:
+[DGX Spark OEM](/zarizeni/dgx-spark-oem/) a
+[Strix Halo OEM](/zarizeni/strix-halo-oem/).
 
 ## Jak tabulku číst
 
 - **Paměť** rozhoduje, který model se vejde celý. Pro Qwen3.8 Flash Next
-  potřebujete 128 GB; na 64 GB běží Qwen3.6 a Gemma 4 v Q4.
+  potřebujete 128 GB.
 - **Bandwidth** rozhoduje o decode. PC boxy mají 256–300 GB/s.
 - **Cena** je bez DPH a dopravy, k datu u zařízení.
 - **Forma** rozhoduje o provozu: notebook na cesty, mini PC na stůl.
+
+## Co na 128 GB poběží
+
+| Model | Kvantizace | Váhy | Celkem při 128k | Vejde se? |
+|---|---|---|---|---|
+| Qwen3.8 Flash Next | NVFP4 | ~101 GB | ~125 GB | ano, těsně |
+
+**128k je strop, ne cíl.** Qwen3.8 má nativně 262k, ale na 128GB boxu
+je 128k kontext těsný a 262k je maximum modelu, ne doporučený provozní
+bod. Konkrétní chování při souběžnosti je `[DOPLNIT: měření]`.
 
 ## Rychlé rozdělení
 
 | Potřeba | Volba |
 |---|---|
-| Nejnižší cena za 128k kontext | Strix Halo 64 GB |
 | Nejnižší cena za Qwen3.8 FN | Strix Halo 128 GB |
 | CUDA a stálý provoz | RTX Spark mini nebo DGX Spark |
 | Práce na cestě | RTX Spark notebook |
-| Víc uživatelů | přidat další box, ne dražší stroj |
+| Víc uživatelů | přidat další 128GB box, ne dražší stroj |
 
 ## Kudy dál
 
-- [Konfigurace 64GB+](/zarizeni/konfigurace/)
 - [Strix Halo](/zarizeni/strix-halo/)
 - [RTX Spark mini](/zarizeni/rtx-spark-mini/)
 - [RTX Spark notebook](/zarizeni/rtx-spark-notebook/)
 - [DGX Spark](/zarizeni/dgx-spark/)
+- [DGX Spark OEM](/zarizeni/dgx-spark-oem/)
+- [Strix Halo OEM](/zarizeni/strix-halo-oem/)
 
 ## Zdroje
 

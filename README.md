@@ -26,7 +26,7 @@ Data, kontrola a build jsou hotové. Obsah se doplňuje po stránkách.
 | Rozhodnutí a otevřené otázky | [`poznamky-agenta.md`](poznamky-agenta.md) |
 | Plán hledání dat a podkladů | [`plan-dat.md`](plan-dat.md) |
 | Obsahové šablony | [`obsah/_sablony/`](obsah/_sablony/) |
-| Data (zařízení, konfigurace, GB10 OEM ceny, modely, měření, zdroje, kurzy) | [`data/`](data/) |
+| Data (zařízení, GB10 OEM ceny, modely, měření, zdroje, kurzy) | [`data/`](data/) |
 | Web (Astro + Starlight) | [`sites/cz/`](sites/cz/) |
 | Kontrolní a hlídač skripty | [`scripts/`](scripts/) |
 
@@ -67,7 +67,7 @@ npm run check:zdroje   # ověří, že URL odpovídají
 ## Základní pravidla
 
 - Jen **hotová zařízení**, žádné skládání PC.
-- Jen **současné modely**; na 128 GB minimum **Qwen3.8 Flash Next**, na 64 GB **Qwen3.6 35B-A3B** a **Gemma 4 26B A4B** v Q4.
+- Jen **současné modely**; minimum je **Qwen3.8 Flash Next** na 128 GB. Zařízení pod 128 GB nezařazujeme.
 - Jen modely, které se **celé vejdou na jedno zařízení**; modely vyžadující pool nebo offload nezařazujeme.
 - Jen **MoE** modely jako doporučení; dense jen jako varování.
 - Každé číslo má **zdroj, datum, typ** (`naměřeno` = převzato od zdroje /

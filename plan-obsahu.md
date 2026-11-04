@@ -24,8 +24,8 @@ Legenda: ✅ hotovo · 🟡 rozpracováno · ⬜ nezačato · 🔒 čeká na dat
 - **Zdroj u tvrzení, ne jen na konci stránky.** U čísel a konkrétních tvrzení
   odkaz přímo v textu nebo pod tabulkou.
 - **Každá stránka:** 2–4 interní odkazy, `last_verified`, zdroje na konci.
-- **Žádné historické modely jako doporučení.** Na 128 GB je minimum
-  Qwen3.8 Flash Next; na 64 GB Qwen3.6 35B-A3B a Gemma 4 26B A4B.
+- **Žádné historické modely jako doporučení.** Minimum je Qwen3.8 Flash Next
+  na 128 GB. Zařízení pod 128 GB nezařazujeme.
 - **Žádné dense modely jako doporučení.** Jen jako varování s čísly.
 - **Čísla v kontextu:** nikdy „70 tok/s“ bez délky kontextu, kvantizace,
   enginu a nastavení. Nikdy „cena“ bez data.
@@ -182,7 +182,7 @@ TTFT, unified memory, vLLM, váhy.
 
 ---
 
-## Vlna 2 — zařízení (katalog + 7 detailů + srovnání)
+## Vlna 2 — zařízení (4 detaily + 2 OEM + srovnání)
 
 | Stránka | Verdikt | Stav |
 |---|---|---|
@@ -190,9 +190,8 @@ TTFT, unified memory, vLLM, váhy.
 | `zarizeni/dgx-spark-oem` | 15 OEM variant GB10 s českými cenami | ✅ |
 | `zarizeni/rtx-spark-mini` | Stejná paměť, vyšší bandwidth, nižší cena než DGX Spark | ✅ |
 | `zarizeni/rtx-spark-notebook` | Dedikovaný výkon na cesty, ale throttling a auditujelnost | ✅ |
-| `zarizeni/strix-halo` | Nejlevnější cesta k 64/128 GB, ROCm je druhá liga | ✅ |
+| `zarizeni/strix-halo` | Nejlevnější cesta k 128 GB, ROCm je druhá liga | ✅ |
 | `zarizeni/strix-halo-oem` | 3 české 128GB Strix Halo konfigurace | ✅ |
-| `zarizeni/konfigurace` | Kompletní seznam 64GB+ konfigurací a modelů pro 128k | ✅ |
 | `zarizeni/srovnani` | Velká matice všech parametrů | ✅ |
 
 **Šablona:** viz `AGENTS.md`, sekce 4. Každá stránka musí mít tabulku
@@ -202,18 +201,14 @@ TTFT, unified memory, vLLM, váhy.
 
 ---
 
-## Vlna 3 — modely (katalog + 5–6 detailů + srovnání)
+## Vlna 3 — model (jeden referenční)
 
 | Stránka | Pozice | Stav |
 |---|---|---|
 | `modely/qwen3-8-flash-next` | Minimum pro denní práci na 128 GB; referenční bod | ✅ |
-| `modely/qwen3-6-35b-a3b` | Rychlý model pro 64 GB, kvalitou pod Qwen3.8 | ✅ |
-| `modely/gemma-4-26b-a4b` | Nejlepší kvalita na 64GB boxu, 256k kontext | ✅ |
-| `modely/srovnani` | Model × zařízení × rychlost | ✅ |
 
-**Pravidlo:** na 128 GB je minimum Qwen3.8 Flash Next. Na 64 GB jsou
-doporučené Qwen3.6-35B-A3B a Gemma 4 26B A4B v Q4; oba musí mít
-doložený 128k kontext.
+**Pravidlo:** na 128 GB je minimum Qwen3.8 Flash Next. Zařízení pod
+128 GB ani modely pod ním do katalogu nezařazujeme.
 
 **Modely, které se nevejdou na jedno zařízení, nezařazujeme.** GLM-5.3
 Flash (320B/18B) a GLM-5.3 (465 GB) proto v katalogu nejsou; vyžadují
