@@ -6,26 +6,17 @@ sidebar:
   order: 1
 ---
 
+import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
+
 # Výběr podle rozpočtu
 
 Ceny jsou bez DPH a dopravy, k uvedenému datu. Přepočet na Kč je orientační
 kurzem ČNB 21,762 k 3. 11. 2026.
 
-| Zařízení | Paměť | Cena USD | Orientačně Kč | Pro koho |
-|---|---|---|---|---|
-| Strix Halo 128 GB (OEM) | 128 GB | 3 649–5 349 | 79 400–116 400 | nejlevnější cesta k 128 GB |
-| RTX Spark notebook 128 GB | 128 GB | 5 899–6 499 | 128 400–141 400 | práce na cestě, jeden člověk |
-| RTX Spark mini 128 GB | 128 GB | 5 999 | 130 600 | malý pool, CUDA |
-| DGX Spark 128 GB | 128 GB | 6 950 | 151 200 | CUDA, enterprise management |
-| Mac Studio M5 Ultra | 96–512 GB | 5 499–22 299 | 119 700–485 300 | vysoká bandwidth, MLX |
-| Gorgon Halo 192 GB | 192 GB | 7 099–7 299 | 154 500–158 800 | 200B modely, long context |
-| DGX Station GB300 | 748 GB | 91 000–125 000 | 1 980 000–2 720 000 | 20+ uživatelů |
+<TabulkaZarizeni />
 
-**Ceny:** bez DPH a dopravy, k datu uvedenému u zařízení. Zdroje:
-[NVIDIA](https://www.nvidia.com/en-us/products/workstations/dgx-spark/),
-[Apple](https://www.apple.com/mac-studio/),
-[BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark),
-[Tom's Hardware](https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models).
+**Ceny:** bez DPH a dopravy, k datu uvedenému u zařízení. Zdroje jsou
+u každé ceny; další odkazy najdete v [registru zdrojů](/zdroje/zdroje/).
 
 ## Do 5 000 USD: Strix Halo
 

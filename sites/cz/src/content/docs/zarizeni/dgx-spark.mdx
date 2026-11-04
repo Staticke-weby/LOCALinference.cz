@@ -6,6 +6,9 @@ sidebar:
   order: 1
 ---
 
+import RychlaFakta from '../../../components/RychlaFakta.astro';
+import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+
 # DGX Spark 128 GB
 
 **Verdikt:** Nejintegrovanější 128GB krabice s CUDA a enterprise
@@ -25,41 +28,20 @@ cesta.
 
 ## Rychlá fakta
 
-| Parametr | Hodnota | Zdroj |
-|---|---|---|
-| Paměť | 128 GB unified | [NVIDIA](https://www.nvidia.com/en-us/products/workstations/dgx-spark/) |
-| Propustnost paměti | 273 GB/s | NVIDIA |
-| Cena | 6 950 USD (2. 10. 2026) | [BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark) |
-| Cena orientačně | ≈ 151 200 Kč (ČNB 21,762 k 3. 11. 2026) | ČNB |
-| Příkon | 140 W čip, 240 W napájení | BetterClaw |
-| Software | CUDA, vLLM, SGLang, llama.cpp | NVIDIA, vLLM |
-| Prodejci | NVIDIA, Acer, ASUS, Dell, HP, MSI | NVIDIA |
+<RychlaFakta id="dgx-spark" />
 
 **Cena:** bez DPH a dopravy. DGX Spark zdražil z 3 999 USD (10/2025) na
 6 950 USD (10/2026); důvodem jsou ceny pamětí.
 
 ## Co na něm poběží
 
-| Model | Kvantizace | Engine + nastavení | Kontext | Rychlost | Typ | Zdroj |
-|---|---|---|---|---|---|---|
-| Qwen3.8 Flash Next | NVFP4 | vLLM, MTP 3, FP8 KV | 32k | 36,8 tok/s (próza), 45,8 (kód) | naměřeno | [madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/) |
-| Qwen3.8 Flash Next | UD-IQ4_XS | llama.cpp b11429 | krátký | ~27,8 tok/s | naměřeno | [CORSAIR](https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/) |
-| Qwen3.8 Flash Next | NVFP4 | vLLM, MTP | 262k | ~70 tok/s (uvádí Qwen/NVIDIA) | naměřeno (výrobce) | [vLLM recipe](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next) |
+<TabulkaMereni zarizeni="dgx-spark" />
 
 **Konflikt, který je potřeba číst:** Qwen/NVIDIA uvádí kolem 70 tok/s,
 nezávislé měření 36,8–45,8 tok/s. Rozdíl je engine, MTP, workload a délka
 běhu. Pro plánování berte **spodní hranici 36,8 tok/s**, ne 70.
 
 ## Jak rychle
-
-| Režim | Krátký kontext | Dlouhý kontext (>128k) |
-|---|---|---|
-| Single-stream (vLLM, próza) | 36,8 tok/s | [DOPLNIT] |
-| Single-stream (vLLM, kód) | 45,8 tok/s | [DOPLNIT] |
-| 4 smíšené requesty | 100,2 tok/s agregát | [DOPLNIT] |
-| TTFT (32k prompt) | 236 ms (próza), 201 ms (kód) | [DOPLNIT] |
-| Prefill (32k prompt) | 1 825 tok/s | [DOPLNIT] |
-| Pohodlná souběžnost | 4 requesty | [DOPLNIT] |
 
 **Konfigurace madeye:** vLLM nightly 8a728663, NVFP4, MTP3, FP8 KV,
 262 144 tokenů, 4 096tokené prefill chunky, 6 slotů. Nejsou to univerzální

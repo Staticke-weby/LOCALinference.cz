@@ -23,6 +23,9 @@ a co od nich čtenář může čekat.
   jako doporučení; mohou se objevit jen jako vysvětlující srovnání.
 - **MoE modely** s malým počtem aktivních parametrů. Dense modely zmiňujeme
   jen jako varování („na této krabici to poběží 5 tok/s, to není použitelné“).
+- **Jen modely, které se celé vejdou na jedno zařízení** — včetně KV cache
+  a rozumného kontextu. Modely, které vyžadují pool, tensor parallel mezi
+  boxy nebo offload do pomalejší paměti, do katalogu nezařazujeme.
 - **Rychlost v praxi:** decode tok/s, TTFT, prefill, chování na dlouhém
   kontextu, souběžnost, spotřeba, hluk, cena.
 - **Co od modelu čekat:** kvalita, čeština, práce s nástroji, vidění,
@@ -33,6 +36,7 @@ a co od nich čtenář může čekat.
 ### Nepatří
 
 - Návody na stavbu PC, whitebox servery, racky a datacentrové GPU.
+- Modely, které se na jedno zařízení nevejdou nebo vyžadují offload/pool.
 - Trénink a fine-tuning modelů.
 - Historické modely jako doporučení (Qwen2, Llama 3, staré dense modely…).
 - Obecné AI novinky, které se netýkají lokálního provozu.

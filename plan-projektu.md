@@ -58,6 +58,9 @@ být hluboký, ale nesmí být arogantní.
    Historické modely se neukazují jako doporučení — čtenáře by zklamaly.
 4. **MoE, ne dense.** Na těchto zařízeních rozhoduje počet **aktivních**
    parametrů a propustnost paměti. Dense modely jsou jen varovný příklad.
+5. **Jen to, co se vejde celé.** Model musí na jedno zařízení vejít včetně
+   KV cache a rozumného kontextu. Pool, tensor parallel mezi boxy a offload
+   do pomalejší paměti do katalogu nepatří.
 5. **Rychlost v souvislostech.** Nestačí „70 tok/s“. Záleží na délce kontextu,
    TTFT, prefillu, souběžnosti a na tom, zda model „přemýšlí“.
 6. **Naměřeno vs. vypočteno.** Každý údaj má typ, datum, zdroj
@@ -110,8 +113,6 @@ být hluboký, ale nesmí být arogantní.
 ├── /modely/                    Katalog současných modelů
 │   ├── qwen3-8-flash-next      Minimum pro denní práci (176B / 6B)
 │   ├── qwen3-6-35b-a3b         Malý a rychlý, nižší kvalita
-│   ├── glm-5-3-flash           320B / 18B, vyšší kvalita, větší paměť
-│   ├── glm-5-3                 465 GB, jen pro velké stroje
 │   ├── qwen3-5-397b            Velký model pro 256GB+ stroje
 │   ├── nemotron-3-5-super      120B / 12B, throughput
 │   └── srovnani                Model × zařízení × rychlost

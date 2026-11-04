@@ -204,8 +204,6 @@ TTFT, unified memory, vLLM, váhy.
 |---|---|---|
 | `modely/qwen3-8-flash-next` | Minimum pro denní práci; referenční bod | ⬜ |
 | `modely/qwen3-6-35b-a3b` | Malý a rychlý, ale pod hranicí kvality | ⬜ |
-| `modely/glm-5-3-flash` | Vyšší kvalita, potřebuje 192 GB+ | ⬜ |
-| `modely/glm-5-3` | 465 GB, jen pro DGX Station / Mac 512 | ⬜ |
 | `modely/qwen3-5-397b` | Velký model pro 256GB+ stroje | ⬜ |
 | `modely/nemotron-3-5-super` | Throughput pro 120B/12B | ⬜ |
 | `modely/srovnani` | Model × zařízení × rychlost | ⬜ |
@@ -213,6 +211,10 @@ TTFT, unified memory, vLLM, váhy.
 **Pravidlo:** žádný model pod Qwen3.8 Flash Next jako doporučení.
 Qwen3.6-35B-A3B a gpt-oss-120B mohou být v tabulce jako „pod hranicí“
 nebo „referenční srovnání“, nikdy jako hlavní volba.
+
+**Modely, které se nevejdou na jedno zařízení, nezařazujeme.** GLM-5.3
+Flash (320B/18B) a GLM-5.3 (465 GB) proto v katalogu nejsou; vyžadují
+pool, offload nebo jinou třídu stroje.
 
 **U každého modelu:** vision je výchozí předpoklad (výjimku označ), uváděj
 nativní maximum kontextu, doporučený provozní kontext a reálně udržitelný

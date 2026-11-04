@@ -6,6 +6,8 @@ sidebar:
   order: 1
 ---
 
+import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+
 # Metodika: jak čteme data o lokální AI
 
 **Nemáme vlastní laboratoř.** Většinu zařízení fyzicky netestujeme. Přesto
@@ -106,11 +108,7 @@ ne vymyšlené číslo.
 Když dva zdroje tvrdí něco jiného, ukážeme oba. Typický případ:
 Qwen3.8 Flash Next na Strix Halo 128 GB.
 
-| Zdroj | Kvantizace | Kontext | Decode | Co to znamená |
-|---|---|---|---|---|
-| llamaperf, jeden setup | UD-IQ4_XS | 95,6k | 41 tok/s | konzervativní, dlouhý kontext |
-| llamaperf, jiný setup | UD-Q4_K_XL | 262k | 54–79 tok/s | MTP acceptance, kratší běh |
-| vLLM fork | AWQ W4A16 | 5,6k | 43 tok/s | jiný engine, jiná kvantizace |
+<TabulkaMereni zarizeni="strix-halo" model="qwen3-8-flash-next" />
 
 **Interpretace:** pro plánování použij **spodní hranici naměřeného rozsahu
 (41 tok/s)**, ne 79 a ne vlastní odhad. Rozptyl není chyba webu; je to

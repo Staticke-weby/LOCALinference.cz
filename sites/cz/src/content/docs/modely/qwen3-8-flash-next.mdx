@@ -6,6 +6,8 @@ sidebar:
   order: 1
 ---
 
+import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+
 # Qwen3.8 Flash Next
 
 **Verdikt:** Spodní hranice, která dnes stačí na denní práci — a referenční
@@ -60,14 +62,7 @@ To stačí na krátký a střední kontext, ne na mnoho dlouhých streamů najed
 
 ## Jak rychle
 
-| Zařízení | Kvantizace | Engine | Kontext | Rychlost | Typ | Zdroj |
-|---|---|---|---|---|---|---|
-| DGX Spark | NVFP4 | vLLM, MTP 3, FP8 KV | 32k | 36,8 tok/s (próza), 45,8 (kód) | naměřeno | [madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/) |
-| DGX Spark | UD-IQ4_XS | llama.cpp | krátký | ~27,8 tok/s | naměřeno | [CORSAIR](https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/) |
-| RTX Spark notebook | NVFP4 | vLLM Windows ARM64 | coding | 70,44 tok/s | naměřeno | [forum](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530) |
-| RTX Spark notebook | NVFP4 | llama.cpp | coding | 35,37 tok/s | naměřeno | forum |
-| Strix Halo 128 | UD-IQ4_XS | llama.cpp HIP | 95,6k | 41,0 tok/s | naměřeno | [llamaperf](https://llamaperf.com/gpu/strix-halo-128gb) |
-| Strix Halo 128 | UD-Q4_K_XL | Gufo | 262k | 54–79 tok/s | naměřeno | llamaperf |
+<TabulkaMereni model="qwen3-8-flash-next" />
 
 **Pozor na konflikt:** Qwen/NVIDIA uvádí kolem 70 tok/s na DGX Spark
 (NVFP4 + MTP), nezávislé měření hlásí 36,8–45,8 tok/s. Rozdíl je konfigurace,

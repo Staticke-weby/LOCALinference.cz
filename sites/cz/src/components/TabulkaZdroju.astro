@@ -1,0 +1,43 @@
+---
+import { formatDatum, getZdroje } from '../lib/data';
+
+interface Props {
+  limit?: number;
+  priorita?: 'vysoka' | 'stredni' | 'nizka';
+}
+
+const { limit, priorita } = Astro.props;
+const vse = getZdroje().filter((z) => !priorita || z.priorita === priorita);
+const zdroje = typeof limit === 'number' ? vse.slice(0, limit) : vse;
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Zdroj</th>
+        <th>Co sledujeme</th>
+        <th>Frekvence</th>
+        <th>Poslední kontrola</th>
+        <th>Stav</th>
+      </tr>
+    </thead>
+    <tbody>
+      {zdroje.map((z) => (
+        <tr>
+          <td><a href={z.url} target="_blank" rel="noopener noreferrer">{z.nazev}</a></td>
+          <td>{z.co_sledujeme.join(', ')}</td>
+          <td>{z.frekvence}</td>
+          <td>{formatDatum(z.posledni_kontrola)}</td>
+          <td>{z.stav}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+</style>

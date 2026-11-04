@@ -1,0 +1,37 @@
+---
+import Cena from './Cena.astro';
+import { formatCislo, getZarizeniById } from '../lib/data';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const z = getZarizeniById(id);
+if (!z) throw new Error(`Neznámé zařízení: ${id}`);
+---
+
+<table class="li-tabulka">
+  <tbody>
+    <tr><th>Paměť</th><td>{formatCislo(z.pamet_gb)} GB {z.pamet_typ}</td></tr>
+    <tr><th>Propustnost paměti</th><td>{formatCislo(z.bandwidth_gbs)} GB/s{z.bandwidth_pozn ? ` (${z.bandwidth_pozn})` : ''}</td></tr>
+    <tr><th>Cena</th><td><Cena zarizeni={z} /></td></tr>
+    <tr><th>Forma</th><td>{z.kategorie}</td></tr>
+    <tr><th>OS</th><td>{z.os.join(', ')}</td></tr>
+    <tr><th>Software</th><td>{z.software.join(', ')}</td></tr>
+    <tr><th>Příkon</th><td>{z.prikon_w ? `${formatCislo(z.prikon_w)} W` : '[DOPLNIT]'}</td></tr>
+    <tr><th>Hmotnost</th><td>{z.hmotnost_kg ? `${formatCislo(z.hmotnost_kg)} kg` : '[DOPLNIT]'}</td></tr>
+    <tr><th>Prodejci</th><td>{z.prodejce.join(', ')}</td></tr>
+    <tr>
+      <th>Zdroje</th>
+      <td>
+        {z.zdroje.map((u, i) => (
+          <span>
+            <a href={u} target="_blank" rel="noopener noreferrer">zdroj {i + 1}</a>
+            {i < z.zdroje.length - 1 ? ' · ' : ''}
+          </span>
+        ))}
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -42,3 +42,10 @@
   co_se_zmenilo: "Typ `odhad` nahrazen `[DOPLNIT]`; přidána pravidla triangulace, rozpětí a důvěryhodnosti."
   dotcene_stranky: [o-webu/metodika, zdroje/co-nevime]
   zdroj: https://localinference.cz/o-webu/metodika/
+
+- datum: 2026-11-04
+  typ: model
+  titulek: "GLM-5.3 Flash vyřazen z katalogu"
+  co_se_zmenilo: "Model se nevejde na jedno zařízení včetně KV cache; katalog obsahuje jen modely, které se vejdou celé."
+  dotcene_stranky: [modely, o-webu/metodika]
+  zdroj: https://z.ai/blog/glm-5.3-flash

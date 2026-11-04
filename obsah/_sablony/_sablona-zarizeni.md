@@ -39,7 +39,7 @@ Zdroj ceny: [odkaz].
 |---|---|---|---|---|---|---|
 | Qwen3.8 Flash Next | NVFP4 | MTP 3, KV FP8, vLLM | 32k | 70 tok/s | naměřeno | [data](/data/…) |
 | Qwen3.8 Flash Next | NVFP4 | MTP 3, KV FP8, vLLM | 128k+ | 40 tok/s | naměřeno | [data](/data/…) |
-| GLM-5.3 Flash | NVFP4 | [DOPLNIT] | 32k | [DOPLNIT] | [DOPLNIT] | [zdroj](https://…) |
+| Qwen3.6 35B-A3B | NVFP4 | [DOPLNIT] | 32k | [DOPLNIT] | [DOPLNIT] | [zdroj](https://…) |
 | Dense 70B | 4bit | llama.cpp | 8k | ~5 tok/s | naměřeno | [llamaperf](https://llamaperf.com/gpu/strix-halo-128gb) |
 
 **Toto jsou převzatá měření, ne naše.** U každého řádku je zdroj; kde se

@@ -1,0 +1,78 @@
+---
+import {
+  duveryhodnostLabel,
+  formatCislo,
+  getMereni,
+  mereniRychlost,
+  nazevModelu,
+  nazevZarizeni,
+  typLabel,
+} from '../lib/data';
+
+interface Props {
+  zarizeni?: string;
+  model?: string;
+  limit?: number;
+}
+
+const { zarizeni, model, limit } = Astro.props;
+const vse = getMereni({ zarizeni, model });
+const mereni = typeof limit === 'number' ? vse.slice(0, limit) : vse;
+const showZarizeni = !zarizeni;
+const showModel = !model;
+
+function cislo(v: number | null, jednotka: string): string {
+  return v == null ? '—' : `${formatCislo(v)} ${jednotka}`;
+}
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <caption>Převzatá měření, ne naše. Konfigurace je u každého řádku; zdroj otevírá detail.</caption>
+    <thead>
+      <tr>
+        {showZarizeni && <th>Zařízení</th>}
+        {showModel && <th>Model</th>}
+        <th>Kvantizace</th>
+        <th>Engine</th>
+        <th>Kontext</th>
+        <th>TTFT</th>
+        <th>Prefill</th>
+        <th>Decode</th>
+        <th>Typ</th>
+        <th>Důvěryhodnost</th>
+        <th>Zdroj</th>
+      </tr>
+    </thead>
+    <tbody>
+      {mereni.map((m) => (
+        <tr>
+          {showZarizeni && <td>{nazevZarizeni(m.zarizeni)}</td>}
+          {showModel && <td>{nazevModelu(m.model)}</td>}
+          <td>{m.kvantizace}</td>
+          <td>{m.engine}{m.engine_verze ? ` ${m.engine_verze}` : ''}</td>
+          <td class="li-cislo">{m.kontext ? `${formatCislo(m.kontext)}` : '—'}</td>
+          <td class="li-cislo">{cislo(m.ttft_ms, 'ms')}</td>
+          <td class="li-cislo">{cislo(m.prefill_toks, 'tok/s')}</td>
+          <td class="li-cislo">{mereniRychlost(m)}</td>
+          <td><span class={`li-stitek li-stitek--${m.typ}`}>{typLabel(m.typ)}</span></td>
+          <td>{duveryhodnostLabel(m.duveryhodnost)}</td>
+          <td><a href={m.zdroj} target="_blank" rel="noopener noreferrer">zdroj</a></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+  caption {
+    caption-side: bottom;
+    text-align: left;
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-xs);
+    padding-top: 0.35rem;
+  }
+</style>

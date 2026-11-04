@@ -1,0 +1,38 @@
+---
+import { cenaText, type Zarizeni } from '../lib/data';
+
+interface Props {
+  zarizeni: Zarizeni;
+  showDate?: boolean;
+}
+
+const { zarizeni, showDate = true } = Astro.props;
+const c = cenaText(zarizeni);
+---
+
+<span class="li-cena">
+  <strong>{c.usd}</strong>
+  <span class="li-cena__czk">{c.czk}</span>
+  {showDate && <span class="li-cena__datum">k {c.datum}</span>}
+  <a href={c.zdroj} target="_blank" rel="noopener noreferrer">zdroj</a>
+</span>
+
+<style>
+  .li-cena {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.45rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .li-cena__czk {
+    color: var(--sl-color-gray-2);
+  }
+  .li-cena__datum {
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-xs);
+  }
+  .li-cena a {
+    font-size: var(--sl-text-xs);
+  }
+</style>

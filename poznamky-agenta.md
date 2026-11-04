@@ -138,8 +138,8 @@ Upraveno: `AGENTS.md`, `plan-projektu.md`, `plan-obsahu.md`,
 
 - [ ] Přesné ceny a dostupnost všech zařízení k 11/2026 (DGX Spark, RTX Spark
       mini/notebook, Strix Halo OEM, Gorgon Halo, Mac Studio, DGX Station).
-- [ ] Model cards a benchmarky: Qwen3.8 Flash Next, GLM-5.3 Flash, GLM-5.3,
-      Qwen3.5-397B, Nemotron 3.5 Super, Qwen3.6-35B-A3B.
+- [ ] Model cards a benchmarky: Qwen3.8 Flash Next, Qwen3.5 397B,
+      Qwen3.6 35B-A3B, Nemotron 3.5 Super.
 - [ ] Česká kvalita jednotlivých modelů — vlastní test nebo důvěryhodný zdroj.
 - [ ] TTFT a prefill pro konkrétní zařízení (v podkladu jsou hlavně decode tok/s).
 - [ ] U každého modelu nativní maximum, doporučený provozní kontext a reálný

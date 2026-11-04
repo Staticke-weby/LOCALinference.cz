@@ -161,7 +161,7 @@ Používat konkrétní dotazy, ne obecné „AI news“:
 - „Strix Halo 128GB llama.cpp Qwen3.8“
 - „Mac Studio M5 Ultra MLX local LLM“
 - „DGX Station GB300 inference benchmark“
-- „GLM-5.3 Flash local inference“
+- „GLM-5.3 Flash local inference“ — jen pokud se vejde na jedno zařízení
 - „llama.cpp release MTP“
 
 Výsledek vždy ověřit u primárního zdroje. Novinový titulek není fakt.

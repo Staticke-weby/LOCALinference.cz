@@ -10,6 +10,7 @@
   pamet_gb: 128
   pamet_typ: unified
   bandwidth_gbs: 273
+  stranka: /zarizeni/dgx-spark/
   cena:
     usd: 6950
     overeno: 2026-10-02
@@ -39,7 +40,7 @@
   cena:
     usd: 5999
     overeno: 2026-10-01
-    zdroj: https://www.nvidia.com/en-us/geforce/rtx-spark/
+    zdroj: https://www.nvidia.com/en-us/products/rtx-spark/
     poznamka: "Bez DPH a dopravy."
   cpu: NVIDIA Arm SoC
   gpu: Blackwell
@@ -59,6 +60,7 @@
   nazev: NVIDIA RTX Spark notebook 128 GB
   vyrobce: NVIDIA
   kategorie: notebook
+  stranka: /zarizeni/rtx-spark-notebook/
   pamet_gb: 128
   pamet_typ: unified
   bandwidth_gbs: 300

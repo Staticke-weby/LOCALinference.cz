@@ -8,6 +8,8 @@ sidebar:
   order: 1
 ---
 
+import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+
 # Qwen3.8 Flash Next na Strix Halo 128 GB
 
 **Souhrn:** Na krátkém kontextu se veřejná měření pohybují mezi **41 a 79
@@ -22,15 +24,7 @@ decode klesá na **~32–42 tok/s**.
 
 ## Co tvrdí zdroje
 
-| Zdroj | Kvantizace | Engine | Kontext | Decode | Prefill | Poznámka |
-|---|---|---|---|---|---|---|
-| llamaperf (report A) | UD-IQ4_XS, 93,7 GB | llama.cpp HIP, MTP 3 | 95,6k | 41,0 tok/s | 1 183 tok/s | Q8_0 KV, 96GB carve |
-| llamaperf (report B) | UD-Q4_K_XL, 108,6 GB | Gufo / Halowin, MTP | 262k | 54–79 tok/s | 1 556 tok/s | Windows 11, 96GB carve |
-| llamaperf (report C) | AWQ W4A16 | vLLM fork, MTP 2 | 5,6k | 43,0 tok/s | 1 539 tok/s | n-gram streamován z disku |
-| llamaperf (report D) | UD-IQ4_XS | Strata | 128k | 46–53 tok/s | 770 tok/s | mini PC |
-| llamaperf (report E) | UD-Q4_K_XL | Gufo, 7 draft tokenů | 262k | ~60 tok/s | [DOPLNIT] | ASUS ProArt PX13 |
-| llamaperf (report F) | UD-Q4_K_XL | Gufo, 2 sessions | 262k | ~40 tok/s | [DOPLNIT] | 2× 262k, 98,5 GB KV |
-| llamaperf (report G) | [DOPLNIT] | hipfire | 8k / 32k / 128k / 256k | 51,3 / 41,8 / 42,1 / 35,6 | 2 372 (16k) | NPU + iGPU prefill |
+<TabulkaMereni zarizeni="strix-halo" model="qwen3-8-flash-next" />
 
 **Pozor:** všechny reporty jsou od uživatelů na stejné platformě
 (llamaperf), ale s jiným softwarem, kvantizací a nastavením. Nejsou to
@@ -38,29 +32,22 @@ nezávislé laboratorní testy.
 
 ## Důvěryhodnost
 
-| Co | Hodnota |
-|---|---|
-| Důvěryhodnost | **střední** |
-| Proč | více komunitních reportů, ale chybí jednotná metodika |
-| Rozpětí krátký kontext | 41–79 tok/s |
-| Rozpětí dlouhý kontext | ~32–42 tok/s |
-| Prefill | 0,8–2,4 tis. tok/s; s délkou promptu klesá |
+- **Důvěryhodnost:** střední. Více komunitních reportů, ale chybí jednotná
+  metodika.
+- **Rozpětí krátkého kontextu:** 41–79 tok/s.
+- **Rozpětí dlouhého kontextu:** ~32–42 tok/s.
+- **Prefill:** 0,8–2,4 tis. tok/s; s délkou promptu klesá.
 
 ## Normalizace
 
 Raw čísla se nedají srovnávat přímo: jiná kvantizace, jiný engine, jiný
-kontext. Tabulka proto ukazuje, **co je jinak**, ne naše přepočty.
+kontext. Proto je u každého řádku v tabulce výše vidět konfigurace. Kde
+nemáme stejnou konfiguraci, **neuvádíme přepočet** — jen raw hodnotu
+a podmínky.
 
-| Co | Raw decode | Podmínky | Co z toho plyne |
-|---|---|---|---|
-| Report A | 41 tok/s | IQ4_XS, 95,6k, MTP 3 | konzervativní, dlouhý kontext |
-| Report B | 54–79 tok/s | Q4_K_XL, 262k, MTP | horní hranice je špička |
-| Report C | 43 tok/s | AWQ, 5,6k, MTP 2 | jiný engine, krátký kontext |
-| **Konzervativní volba** | **41 / 32** | spodní hranice reportů | pro plánování, ne odhad |
-
-**Proč:** bez podmínek by se srovnávalo jablko s hruškou. Rozdíl 41 vs. 79
-není jen hardware, ale hlavně nastavení. Kde nemáme stejnou konfiguraci,
-neuvádíme přepočet — jen raw hodnotu a podmínky.
+Pro plánování použij **spodní hranici naměřeného rozsahu**: 41 tok/s na
+krátkém a 32 tok/s na dlouhém kontextu. Není to odhad; je to nejnižší
+doložená hodnota v reportech.
 
 ## Kontrola roofline
 

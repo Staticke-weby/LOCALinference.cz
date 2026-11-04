@@ -8,6 +8,10 @@ sidebar:
   order: 3
 ---
 
+import RychlaFakta from '../../../components/RychlaFakta.astro';
+import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
+
 # RTX Spark notebook 128 GB
 
 **Verdikt:** 128GB notebook s CUDA, který si vezmete na cesty — ale jen
@@ -27,32 +31,15 @@ je to špatná volba.
 
 ## Rychlá fakta
 
-| Parametr | Hodnota |
-|---|---|
-| Paměť | 128 GB LPDDR5X unified |
-| Propustnost paměti | 300 GB/s |
-| Cena | 5 899–6 499 USD za 128GB konfigurace (10/2026) |
-| Cena orientačně | ≈ 128 400–141 400 Kč (kurz ČNB 21,762 k 3. 11. 2026) |
-| Forma | notebook |
-| OS | Windows 11 (Arm) |
-| Software | CUDA, vLLM (nativní Windows ARM64 port), llama.cpp, Ollama, LM Studio |
-| Příkon | 45–80 W |
-| Hmotnost | [DOPLNIT] |
-| Výdrž při zátěži | [DOPLNIT] |
+<RychlaFakta id="rtx-spark-notebook" />
 
-**Cena:** bez DPH a dopravy. Přepočet je orientační, kurz k uvedenému datu.
-128GB konfigurace: Surface Laptop Ultra 5 899 USD, ASUS ProArt P14 6 499 USD.
-Nižší ceny (od 2 599 USD) jsou konfigurace s 24GB pamětí, na Qwen3.8 Flash
-Next nestačí. Zdroje: [NVIDIA](https://www.nvidia.com/en-us/products/rtx-spark/),
-[Tom's Hardware](https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models),
-[BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark).
+**Cena:** bez DPH a dopravy. Nižší ceny (od 2 599 USD) jsou konfigurace
+s 24GB pamětí, na Qwen3.8 Flash Next nestačí. Zdroje jsou u ceny
+v tabulce a v [registru zdrojů](/zdroje/zdroje/).
 
 ## Co na něm poběží
 
-| Model | Kvantizace | Nastavení | Kontext | Rychlost | Typ | Zdroj |
-|---|---|---|---|---|---|---|
-| Qwen3.8 Flash Next FP4 Local | NVFP4 | vLLM 0.32, MTP, CUDA graphs | [DOPLNIT] | 70,44 tok/s (SPEED-Bench coding) | naměřeno (komunita) | [forum](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530) |
-| Qwen3.8 Flash Next FP4 Local | NVFP4 | NVIDIA llama.cpp recipe | [DOPLNIT] | 35,37 tok/s (stejný test) | naměřeno (komunita) | [forum](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530) |
+<TabulkaMereni zarizeni="rtx-spark-notebook" />
 
 **Kontext měření:** SPEED-Bench coding, 80 konverzací, jeden RTX Spark N1X
 128 GB, jeden uživatel. Není to próza ani dlouhý kontext. Raná verze portu
@@ -72,14 +59,6 @@ a [BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark),
 ne z měření.
 
 ## Jak rychle
-
-| Režim | Krátký kontext | Dlouhý kontext (>128k) |
-|---|---|---|
-| vLLM (SPEED-Bench coding) | 70,44 tok/s | [DOPLNIT] |
-| llama.cpp (NVIDIA recipe, stejný test) | 35,37 tok/s | [DOPLNIT] |
-| TTFT | [DOPLNIT] | [DOPLNIT] |
-| Prefill | [DOPLNIT] | [DOPLNIT] |
-| Pohodlná souběžnost | 1 uživatel | 1 uživatel |
 
 **Co víme z veřejných zdrojů:** [CTOL](https://www.ctol.digital/news/nvidia-rtx-spark-laptop-within-8-percent-of-dgx-spark-speed)
 cituje Artificial Analysis, podle kterého je 128GB notebook do 8 % od DGX
@@ -142,14 +121,7 @@ chování je `[DOPLNIT: měření]`.
 
 ## Srovnání s RTX Spark mini
 
-| Parametr | Notebook | Mini |
-|---|---|---|
-| Paměť | 128 GB | 128 GB |
-| Bandwidth | 300 GB/s | 300 GB/s |
-| Cena 128 GB | 5 899–6 499 USD | 5 999 USD |
-| Provoz | na baterii, throttling | stálý, chlazený |
-| Forma | na cesty | na stůl |
-| Vhodné pro | jednoho člověka | malý pool |
+<TabulkaZarizeni filtr={["rtx-spark-notebook", "rtx-spark-mini"]} />
 
 Stejná paměť i bandwidth. Rozhoduje forma: notebook vyhraje na cestách,
 mini na stálém provozu. Nepřetržitý výkon notebooku je nižší, ale konkrétní

@@ -96,7 +96,8 @@ tocích je měření a jaká byla souběžnost.
 - **Agentní úlohy s dlouhým kontextem:** ano, ale počítejte 40 tok/s.
 - **Dávkové zpracování:** ano, agregát roste mírně.
 - **20+ uživatelů:** ne, potřebujete DGX Station nebo pool.
-- **Nejlepší kvalita bez kompromisů:** ne, sáhněte po GLM-5.3 nebo cloudu.
+- **Nejlepší kvalita bez kompromisů:** ne, sáhněte po větším modelu,
+  který se na zařízení vejde, nebo po cloudu.
 
 ## Zdroje
 

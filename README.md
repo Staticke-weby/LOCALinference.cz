@@ -47,24 +47,26 @@ npm run check:zdroje   # ověří, že URL odpovídají
 
 ## Hotové stránky
 
-- [`sites/cz/src/content/docs/zaciname/co-je-lokalni-ai.md`](sites/cz/src/content/docs/zaciname/co-je-lokalni-ai.md)
+- [`sites/cz/src/content/docs/zaciname/co-je-lokalni-ai.mdx`](sites/cz/src/content/docs/zaciname/co-je-lokalni-ai.mdx)
 - [`sites/cz/src/content/docs/zaciname/jak-to-funguje.md`](sites/cz/src/content/docs/zaciname/jak-to-funguje.md)
 - [`sites/cz/src/content/docs/zaciname/jak-cteme-data.md`](sites/cz/src/content/docs/zaciname/jak-cteme-data.md)
 - [`sites/cz/src/content/docs/zaciname/proc-moe.md`](sites/cz/src/content/docs/zaciname/proc-moe.md)
 - [`sites/cz/src/content/docs/rychlost/roofline.md`](sites/cz/src/content/docs/rychlost/roofline.md)
-- [`sites/cz/src/content/docs/zarizeni/dgx-spark.md`](sites/cz/src/content/docs/zarizeni/dgx-spark.md)
-- [`sites/cz/src/content/docs/zarizeni/rtx-spark-notebook.md`](sites/cz/src/content/docs/zarizeni/rtx-spark-notebook.md)
-- [`sites/cz/src/content/docs/modely/qwen3-8-flash-next.md`](sites/cz/src/content/docs/modely/qwen3-8-flash-next.md)
-- [`sites/cz/src/content/docs/data/qwen3-8-flash-next-strix-halo.md`](sites/cz/src/content/docs/data/qwen3-8-flash-next-strix-halo.md)
-- [`sites/cz/src/content/docs/o-webu/metodika.md`](sites/cz/src/content/docs/o-webu/metodika.md)
+- [`sites/cz/src/content/docs/vyber/rozpocet.mdx`](sites/cz/src/content/docs/vyber/rozpocet.mdx)
+- [`sites/cz/src/content/docs/zarizeni/dgx-spark.mdx`](sites/cz/src/content/docs/zarizeni/dgx-spark.mdx)
+- [`sites/cz/src/content/docs/zarizeni/rtx-spark-notebook.mdx`](sites/cz/src/content/docs/zarizeni/rtx-spark-notebook.mdx)
+- [`sites/cz/src/content/docs/modely/qwen3-8-flash-next.mdx`](sites/cz/src/content/docs/modely/qwen3-8-flash-next.mdx)
+- [`sites/cz/src/content/docs/data/qwen3-8-flash-next-strix-halo.mdx`](sites/cz/src/content/docs/data/qwen3-8-flash-next-strix-halo.mdx)
+- [`sites/cz/src/content/docs/o-webu/metodika.mdx`](sites/cz/src/content/docs/o-webu/metodika.mdx)
 - [`sites/cz/src/content/docs/o-webu/jak-piseme.md`](sites/cz/src/content/docs/o-webu/jak-piseme.md)
-- [`sites/cz/src/content/docs/zdroje/zdroje.md`](sites/cz/src/content/docs/zdroje/zdroje.md)
+- [`sites/cz/src/content/docs/zdroje/zdroje.mdx`](sites/cz/src/content/docs/zdroje/zdroje.mdx)
 - [`sites/cz/src/content/docs/zdroje/co-nevime.md`](sites/cz/src/content/docs/zdroje/co-nevime.md)
 
 ## Základní pravidla
 
 - Jen **hotová zařízení**, žádné skládání PC.
 - Jen **současné modely**; minimum je **Qwen3.8 Flash Next**.
+- Jen modely, které se **celé vejdou na jedno zařízení**; modely vyžadující pool nebo offload nezařazujeme.
 - Jen **MoE** modely jako doporučení; dense jen jako varování.
 - Každé číslo má **zdroj, datum, typ** (`naměřeno` = převzato od zdroje /
   `výpočet`), a **důvěryhodnost**. Když zdroj chybí, `[DOPLNIT]`.

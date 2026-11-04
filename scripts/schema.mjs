@@ -30,6 +30,7 @@ export const zarizeni = z.object({
   nazev: z.string().min(2),
   vyrobce: z.string().min(1),
   kategorie: z.enum(['mini-pc', 'notebook', 'desktop', 'station']),
+  stranka: z.string().optional(),
   pamet_gb: z.number().positive(),
   pamet_typ: z.string().min(1),
   bandwidth_gbs: z.number().positive(),

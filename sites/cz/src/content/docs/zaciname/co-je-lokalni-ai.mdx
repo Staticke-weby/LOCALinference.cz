@@ -6,6 +6,8 @@ sidebar:
   order: 1
 ---
 
+import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
+
 # Co je lokální AI a kdy se vyplatí
 
 Lokální AI znamená, že model běží přímo na vašem počítači nebo na malém
@@ -68,23 +70,12 @@ Lokální AI není levná, pokud ji srovnáváte s občasným použitím cloudu.
 Pořizovací ceny hotových zařízení s 128 GB paměti se na podzim 2026
 pohybovaly zhruba takto:
 
-| Zařízení | Paměť | Cena USD (k datu) | Orientačně Kč |
-|---|---|---|---|
-| Strix Halo 128 GB (OEM) | 128 GB | 3 649–5 349 (9/2026) | 79 400–116 400 |
-| RTX Spark notebook 128 GB | 128 GB | 5 899–6 499 (10/2026) | 128 400–141 400 |
-| RTX Spark mini 128 GB | 128 GB | 5 999 (10/2026) | 130 600 |
-| DGX Spark 128 GB | 128 GB | 6 950 (2. 10. 2026) | 151 200 |
-| Mac Studio M5 Ultra | 96 GB | 5 499 (10/2026) | 119 700 |
-| Gorgon Halo 192 GB | 192 GB | 7 099 (Q3 2026) | 154 500 |
+<TabulkaZarizeni filtr={["strix-halo", "rtx-spark-notebook", "rtx-spark-mini", "dgx-spark", "mac-studio", "gorgon-halo"]} />
 
 **Přepočet:** orientační, kurz [ČNB](https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt)
 21,762 Kč/USD k 3. 11. 2026, bez DPH a dopravy. Ceny jsou k datu uvedenému
-v tabulce; hardware v tomto segmentu zdražuje a zlevňuje po kvartálech.
-Zdroje: [NVIDIA](https://www.nvidia.com/en-us/products/workstations/dgx-spark/),
-[Apple](https://www.apple.com/mac-studio/), [AMD](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html),
-[BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark),
-[Tom's Hardware](https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models),
-[llamaperf](https://llamaperf.com/gpu/strix-halo-128gb).
+u každého zařízení; hardware v tomto segmentu zdražuje a zlevňuje po
+kvartálech.
 
 K tomu je potřeba připočítat elektřinu, chlazení, případně UPS a čas na
 správu. U notebooku se přidá hluk a throttling, u stolního stroje místo

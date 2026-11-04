@@ -1,4 +1,6 @@
 # Katalog modelů. Jen současné modely; minimum je Qwen3.8 Flash Next.
+# Jen modely, které se celé vejdou na jedno zařízení (včetně KV cache).
+# Modely vyžadující pool nebo offload nezařazujeme.
 # `kontext.doporuceny` je null, dokud pro něj nemáme podložené doporučení.
 # `vision: true` je výchozí předpoklad; výjimky označ.
 
@@ -27,30 +29,6 @@
     - https://huggingface.co/Qwen/Qwen3.8-Flash-Next
     - https://qwen.ai/blog?id=qwen3.8-flash-next
     - https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next
-  overeno: 2026-11-04
-
-- id: glm-5-3-flash
-  nazev: GLM-5.3 Flash
-  vyrobce: Z.ai
-  architektura: MoE
-  parametry_celkem_b: 320
-  parametry_aktivni_b: 18
-  kontext:
-    max: 1000000
-    max_rozsireni: null
-    doporuceny: null
-    poznamka: "1M kontext, 128k max output; maximum není doporučený provozní bod."
-  vision: true
-  modality: [text, obraz]
-  licence: MIT
-  kvantizace:
-    - {nazev: NVFP4, vahy_gb: null, engine: vLLM}
-  role: vyssi
-  stav: jen-pro-velke
-  zdroje:
-    - https://z.ai/blog/glm-5.3-flash
-    - https://huggingface.co/zai-org/GLM-5.3-Flash
-    - https://docs.z.ai/guides/vlm/glm-5.3-flash
   overeno: 2026-11-04
 
 - id: qwen3-5-397b

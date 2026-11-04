@@ -6,6 +6,8 @@ sidebar:
   order: 1
 ---
 
+import TabulkaZdroju from '../../../components/TabulkaZdroju.astro';
+
 # Zdroje
 
 Web stojí na veřejných datech. Tato stránka ukazuje, odkud je bereme, jakou
@@ -14,19 +16,11 @@ a v interním hlídači.
 
 ## Klíčové zdroje
 
-| Zdroj | Co z něj bereme | Váha |
-|---|---|---|
-| [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next) | parametry, kontext, licence, vision | oficiální |
-| [Qwen blog](https://qwen.ai/blog) | architektura, benchmarky, vydání | oficiální |
-| [vLLM Recipes](https://recipes.vllm.ai/) | konfigurace, kvantizace, DGX Spark | oficiální |
-| [SGLang Cookbook](https://docs.sglang.io/cookbook/) | konfigurace, MTP, long context | oficiální |
-| [madeye — DGX Spark](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/) | nezávislé měření, TTFT, prefill | komunita |
-| [CORSAIR — DGX Spark](https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/) | llama.cpp měření | komunita |
-| [llamaperf — Strix Halo](https://llamaperf.com/gpu/strix-halo-128gb) | komunitní měření, konfigurace | komunita |
-| [NVIDIA forum — vLLM na RTX Spark](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530) | nativní Windows ARM64 port, měření | komunita |
-| [NVIDIA RTX Spark porting guide](https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html) | 128 GB, 300 GB/s, 45–80 W | oficiální |
-| [ČNB — kurzy](https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt) | přepočet na Kč | oficiální |
-| [ECB — kurzy](https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml) | přepočet na EUR | oficiální |
+<TabulkaZdroju limit={12} />
+
+Vybíráme primárně oficiální specifikace, model cards a nezávislá měření.
+Komunitní reporty bereme tam, kde oficiální data chybí, a vždy u nich
+uvádíme konfiguraci.
 
 ## Jak zdroje hodnotíme
 

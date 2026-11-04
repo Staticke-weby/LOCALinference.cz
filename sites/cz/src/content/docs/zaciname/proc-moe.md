@@ -38,15 +38,16 @@ a 36,8–45,8 tok/s v nezávislém měření
 
 ## Srovnání
 
-| Model | Celkem / aktivních | Zařízení | Rychlost | Zdroj |
-|---|---|---|---|---|
-| Qwen3.8 Flash Next | 176B / 6B | DGX Spark | 36,8–45,8 tok/s | [madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/) |
-| Qwen3.8 Flash Next | 176B / 6B | RTX Spark notebook | 70,44 tok/s (coding) | [forum](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530) |
-| gpt-oss-120B | 117B / ~5B | DGX Spark | ~38,6 tok/s | podklad provozovatele |
-| Dense 70B | 70B / 70B | Strix Halo 128 | ~5 tok/s | [llamaperf](https://llamaperf.com/gpu/strix-halo-128gb) |
+- **Qwen3.8 Flash Next na DGX Spark:** 36,8–45,8 tok/s v nezávislém měření
+  ([madeye](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)).
+- **Qwen3.8 Flash Next na RTX Spark notebooku:** 70,44 tok/s v coding
+  benchmarku ([forum](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530)).
+- **Dense 70B na Strix Halo 128:** kolem 5 tok/s
+  ([llamaperf](https://llamaperf.com/gpu/strix-halo-128gb)). To je celý
+  důvod, proč se u těchto zařízení bavíme o MoE.
 
-**Pozor:** gpt-oss-120B je starší model a v katalogu není jako doporučení.
-Je tu jen jako srovnání, proč stejná velikost nestačí.
+Čísla nejsou srovnatelná bez konfigurace: jiný engine, kvantizace a délka
+běhu. Podrobnosti jsou v [metodice](/o-webu/metodika/).
 
 ## Kde MoE zaostává
 

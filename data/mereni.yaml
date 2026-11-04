@@ -300,3 +300,181 @@
   normalizace: "128k kontext, NPU + iGPU prefill"
   interpretace: "Na 128k je decode ~42 tok/s; prefill 1 865 tok/s."
   zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-09-21-strix-halo-qwen38-vllm-awq
+  datum: 2026-09-21
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: AWQ W4A16
+  engine: vLLM fork (libstrix)
+  engine_verze: "fork"
+  kontext: 5600
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: 1539
+  decode_toks: 43.0
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: 2
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: true
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "5,6k prompt, n-gram streamován z disku"
+  interpretace: "Jiný engine a kvantizace; číslo není srovnatelné s llama.cpp."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-09-21-strix-halo-qwen38-strata
+  datum: 2026-09-21
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: UD-IQ4_XS
+  engine: Strata
+  engine_verze: null
+  kontext: 131072
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: 770
+  decode_toks: null
+  agregat_toks: null
+  rozptyl:
+    min: 46
+    max: 53
+    jine_zdroje: []
+  soubeznost: 1
+  nastaveni:
+    mtp: null
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "mini PC, 128k kontext"
+  interpretace: "Rozpětí 46–53 tok/s; prefill 770 tok/s je nízký."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-09-21-strix-halo-qwen38-gufo7
+  datum: 2026-09-21
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: UD-Q4_K_XL
+  engine: Gufo
+  engine_verze: "7 draft tokenů"
+  kontext: 262144
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: null
+  decode_toks: 60.0
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: 7
+    kv_cache: Q8_0
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "ASUS ProArt PX13, 96GB carve, 262k"
+  interpretace: "Vyšší MTP acceptance; jeden setup, ne univerzální číslo."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-09-21-strix-halo-qwen38-gufo2
+  datum: 2026-09-21
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: UD-Q4_K_XL
+  engine: Gufo
+  engine_verze: "2 sessions"
+  kontext: 262144
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: null
+  decode_toks: 40.0
+  agregat_toks: null
+  soubeznost: 2
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: null
+    kv_cache: Q8_0
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "2× 262k kontext, 98,5 GB KV"
+  interpretace: "Dva dlouhé kontexty současně; na stream ~40 tok/s."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-10-16-strix-halo-qwen38-hipfire-32k
+  datum: 2026-10-16
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: "[DOPLNIT]"
+  engine: hipfire
+  engine_verze: "0.4.2.1"
+  kontext: 32768
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: null
+  decode_toks: 41.8
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "32k kontext, NPU + iGPU prefill"
+  interpretace: "Na 32k je decode ~42 tok/s."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+
+- id: 2026-10-16-strix-halo-qwen38-hipfire-256k
+  datum: 2026-10-16
+  zarizeni: strix-halo
+  model: qwen3-8-flash-next
+  kvantizace: "[DOPLNIT]"
+  engine: hipfire
+  engine_verze: "0.4.2.1"
+  kontext: 262144
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: 1589
+  decode_toks: 35.6
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "256k kontext, NPU + iGPU prefill"
+  interpretace: "Na 256k je decode ~36 tok/s; maximum se blíží."
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb

@@ -24,7 +24,7 @@ zařízení a chuť měřit, tady je přesně vidět, co by pomohlo.
 | **DGX Station** | TTFT, prefill a chování na 128k+ | throughput stroj se hodnotí jinak než krabice | vysoká |
 | **Mac Studio 96** | 128k+ kontext a souběžnost | model se vejde, ale KV cache je těsná | vysoká |
 | **Strix Halo** | TTFT na jednotném promptu | prefill se v reportech měří různě | vysoká |
-| **Gorgon Halo 192** | reálná měření Qwen3.8 FN a GLM-5.3 Flash | nové zařízení, málo dat | vysoká |
+| **Gorgon Halo 192** | reálná měření Qwen3.8 FN | nové zařízení, málo dat | vysoká |
 | **RTX Spark mini/notebook** | nezávislá měření | výrobcem udávaná čísla nestačí | střední |
 | **Souběžnost 4+** | agregát a tok/s na stream | většina reportů je single-stream | vysoká |
 | **Dlouhý kontext** | 128k, 256k, 1M | maximum v datasheetu nic neříká o praxi | vysoká |

@@ -1,0 +1,46 @@
+---
+import Cena from './Cena.astro';
+import { formatCislo, getZarizeni } from '../lib/data';
+
+interface Props {
+  filtr?: string[];
+  showKategorie?: boolean;
+}
+
+const { filtr, showKategorie = true } = Astro.props;
+const vse = getZarizeni();
+const zarizeni = filtr ? vse.filter((z) => filtr.includes(z.id)) : vse;
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Zařízení</th>
+        {showKategorie && <th>Forma</th>}
+        <th>Paměť</th>
+        <th>Bandwidth</th>
+        <th>Cena</th>
+      </tr>
+    </thead>
+    <tbody>
+      {zarizeni.map((z) => (
+        <tr>
+          <td>
+            {z.stranka ? <a href={z.stranka}>{z.nazev}</a> : z.nazev}
+          </td>
+          {showKategorie && <td>{z.kategorie}</td>}
+          <td class="li-cislo">{formatCislo(z.pamet_gb)} GB</td>
+          <td class="li-cislo">{formatCislo(z.bandwidth_gbs)} GB/s</td>
+          <td><Cena zarizeni={z} /></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+</style>
