@@ -355,66 +355,6 @@
   posledni_kontrola: 2026-11-04
   stav: ok
 
-- id: alza-ai-nvidia
-  nazev: Alza.cz - AI počítače NVIDIA
-  url: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
-  typ: html
-  co_sledujeme: [cena, dostupnost, konfigurace, oem]
-  frekvence: tydne
-  priorita: vysoka
-  kontrola: manual
-  posledni_kontrola: 2026-11-04
-  stav: ok
-  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
-
-- id: alza-dgx-spark
-  nazev: Alza.cz - NVIDIA DGX Spark 4TB
-  url: https://www.alza.cz/nvidia-dgx-spark-d13165934.htm
-  typ: html
-  co_sledujeme: [cena, dostupnost, konfigurace]
-  frekvence: tydne
-  priorita: vysoka
-  kontrola: manual
-  posledni_kontrola: 2026-11-04
-  stav: ok
-  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
-
-- id: alza-asus-gx10-1tb
-  nazev: Alza.cz - ASUS Ascent GX10 1TB
-  url: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
-  typ: html
-  co_sledujeme: [cena, dostupnost, konfigurace]
-  frekvence: tydne
-  priorita: stredni
-  kontrola: manual
-  posledni_kontrola: 2026-11-04
-  stav: ok
-  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
-
-- id: alza-asus-gx10-4tb
-  nazev: Alza.cz - ASUS Ascent GX10 4TB
-  url: https://www.alza.cz/asus-ascent-gx10-gg0027bn-d13224332.htm
-  typ: html
-  co_sledujeme: [cena, dostupnost, konfigurace]
-  frekvence: tydne
-  priorita: stredni
-  kontrola: manual
-  posledni_kontrola: 2026-11-04
-  stav: ok
-  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
-
-- id: alza-pny-dgx
-  nazev: Alza.cz - PNY NVIDIA DGX Spark 4TB
-  url: https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm
-  typ: html
-  co_sledujeme: [cena, dostupnost, konfigurace]
-  frekvence: tydne
-  priorita: nizka
-  kontrola: manual
-  posledni_kontrola: 2026-11-04
-  stav: ok
-  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
-
 - id: nvidia-dgx-spark-first-boot
   nazev: NVIDIA DGX Spark - First Boot
   url: https://docs.nvidia.com/dgx/dgx-spark/first-boot.html
@@ -517,10 +457,10 @@
   stav: ok
 
 - id: alza-ai-pc
-  nazev: Alza.cz - AI počítače
-  url: https://www.alza.cz/ai-pc/18907789.htm
+  nazev: Alza.cz - AI počítače (kategorie)
+  url: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   typ: html
-  co_sledujeme: [cena, dostupnost, konfigurace, strix-halo]
+  co_sledujeme: [cena, dostupnost, konfigurace, dgx-spark, strix-halo]
   frekvence: tydne
   priorita: vysoka
   kontrola: manual
@@ -528,9 +468,9 @@
   stav: ok
   poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
 
-- id: alza-acemagic-a10a
-  nazev: Alza.cz - Acemagic A10A 128GB+2TB
-  url: https://www.alza.cz/acemagic-a10a-ryzen-ai-max-395-128gb-2tb-d13499997.htm
+- id: alza-rtx-spark
+  nazev: Alza.cz - RTX Spark (kategorie)
+  url: https://www.alza.cz/rtx-spark/18924563.htm?idp=12510&banner_id=41939
   typ: html
   co_sledujeme: [cena, dostupnost, konfigurace]
   frekvence: tydne
@@ -539,7 +479,6 @@
   posledni_kontrola: 2026-11-04
   stav: ok
   poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
-
 - id: acer-veriton-ra110
   nazev: Acer - Veriton RA110 AI Mini Workstation
   url: https://www.acer.com/us-en/desktops-and-all-in-ones/veriton-workstations/veriton-ra110-ai-mini-workstation

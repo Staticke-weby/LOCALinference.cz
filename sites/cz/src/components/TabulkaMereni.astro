@@ -6,6 +6,7 @@ import {
   mereniRychlost,
   nazevModelu,
   nazevZarizeni,
+  relOdkazu,
   typLabel,
 } from '../lib/data';
 
@@ -57,7 +58,7 @@ function cislo(v: number | null, jednotka: string): string {
           <td class="li-cislo">{mereniRychlost(m)}</td>
           <td><span class={`li-stitek li-stitek--${m.typ}`}>{typLabel(m.typ)}</span></td>
           <td>{duveryhodnostLabel(m.duveryhodnost)}</td>
-          <td><a href={m.zdroj} target="_blank" rel="noopener noreferrer">zdroj</a></td>
+          <td><a href={m.zdroj} target="_blank" rel={relOdkazu(m.zdroj)}>zdroj</a></td>
         </tr>
       ))}
     </tbody>

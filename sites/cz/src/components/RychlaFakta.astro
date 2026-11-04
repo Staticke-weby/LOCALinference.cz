@@ -1,6 +1,6 @@
 ---
 import Cena from './Cena.astro';
-import { formatCislo, getZarizeniById } from '../lib/data';
+import { formatCislo, getZarizeniById, relOdkazu } from '../lib/data';
 
 interface Props {
   id: string;
@@ -27,7 +27,7 @@ if (!z) throw new Error(`Neznámé zařízení: ${id}`);
       <td>
         {z.zdroje.map((u, i) => (
           <span>
-            <a href={u} target="_blank" rel="noopener noreferrer">zdroj {i + 1}</a>
+            <a href={u} target="_blank" rel={relOdkazu(u)}>zdroj {i + 1}</a>
             {i < z.zdroje.length - 1 ? ' · ' : ''}
           </span>
         ))}

@@ -1,5 +1,5 @@
 ---
-import { formatCislo, formatKc, getDgxSparkOem } from '../lib/data';
+import { formatCislo, formatKc, getDgxSparkOem, relOdkazu } from '../lib/data';
 
 const stroje = getDgxSparkOem();
 ---
@@ -20,7 +20,7 @@ const stroje = getDgxSparkOem();
       {stroje.map((s, i) => (
         <tr class={i === 0 ? 'li-nejlevnejsi' : undefined}>
           <td>
-            <a href={s.zdroj} target="_blank" rel="noopener noreferrer">{s.nazev}</a>
+            <a href={s.zdroj} target="_blank" rel={relOdkazu(s.zdroj)}>{s.nazev}</a>
             {i === 0 ? <span class="li-stitek">nejlevnější</span> : null}
             {s.objednaci_kod ? <span class="li-pozn"> · {s.objednaci_kod}</span> : null}
           </td>

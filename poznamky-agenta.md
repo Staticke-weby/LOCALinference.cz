@@ -4,6 +4,20 @@
 
 ---
 
+## 2026-11-04 - Alza: kategorie a affiliate
+
+- Na Alzu se neodkazuje na konkrétní produkt — ten se mění a vyprodává.
+  Odkazy vedou na kategorii:
+  `ai-pc/18907789.htm` (boxy), `rtx-spark/18924563.htm` (notebooky),
+  `mac-studio/18894763.htm` (Mac Studio, až bude v katalogu).
+- Všechny alza odkazy mají `?idp=12510&banner_id=41939`.
+- Odkazy jsou označené `rel="sponsored"` (rehype plugin pro Markdown,
+  `relOdkazu()` v komponentách) a na stránkách je věta o affiliate.
+- Registr zdrojů: produktové položky nahradily dvě kategorie
+  (`alza-ai-pc`, `alza-rtx-spark`), aby název nepopisoval jiný odkaz.
+
+---
+
 ## 2026-11-04 - Logo, paleta a fotka v hero
 
 - **Logo** je textové, ne obrázek: `[Li] LOCALinference` (komponenta

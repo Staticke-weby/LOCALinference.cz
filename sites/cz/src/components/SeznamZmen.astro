@@ -1,5 +1,5 @@
 ---
-import { formatDatum, getZmeny } from '../lib/data';
+import { formatDatum, getZmeny, relOdkazu } from '../lib/data';
 
 const zmeny = getZmeny();
 
@@ -71,7 +71,7 @@ function popisStranky(stranka: string): string {
             ))}
           </span>
         )}
-        <a href={z.zdroj} target="_blank" rel="noopener noreferrer">zdroj</a>
+        <a href={z.zdroj} target="_blank" rel={relOdkazu(z.zdroj)}>zdroj</a>
       </div>
     </li>
   ))}

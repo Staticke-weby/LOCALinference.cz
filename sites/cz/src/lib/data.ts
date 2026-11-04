@@ -357,3 +357,16 @@ export function duveryhodnostLabel(d: Mereni['duveryhodnost']): string {
 export function merenoKymLabel(k: Mereni['mereno_kym']): string {
   return k === 'vyrobce' ? 'výrobce' : k === 'nezavisle' ? 'nezávislý' : 'komunita';
 }
+
+/** Affiliate odkazy musí být označené rel="sponsored"; ostatní jen bezpečnostní rel. */
+export function relOdkazu(url: string): string {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    if (host === 'alza.cz' || host.endsWith('.alza.cz')) {
+      return 'sponsored noopener noreferrer';
+    }
+  } catch {
+    // relativní nebo neplatná URL — žádné affiliate
+  }
+  return 'noopener noreferrer';
+}

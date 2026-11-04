@@ -21,7 +21,7 @@
     do: 249990
     s_dph: true
     overeno: 2026-11-04
-    zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+    zdroj: https://www.alza.cz/rtx-spark/18924563.htm?idp=12510&banner_id=41939?idp=12510&banner_id=41939
     poznamka: "Nejlevnější GB10 OEM 162 990 Kč (ASUS GX10 1TB); NVIDIA DGX Spark 218 990 Kč; Lenovo 249 990 Kč; vč. DPH."
   cpu: GB10 Grace Blackwell
   gpu: Blackwell
@@ -85,7 +85,7 @@
     do: 167767
     s_dph: true
     overeno: 2026-11-04
-    zdroj: https://www.alza.cz/ai-pc/18907789.htm
+    zdroj: https://www.alza.cz/rtx-spark/18924563.htm?idp=12510&banner_id=41939
     poznamka: "ASUS ProArt P14 128GB/1TB 125 990 Kč; Lenovo Yoga Pro 9 129 989 Kč; Surface Laptop Ultra až 167 767 Kč; vč. DPH."
   cpu: NVIDIA Grace 20 jader
   gpu: Blackwell RTX
@@ -126,7 +126,7 @@
     do: 119990
     s_dph: true
     overeno: 2026-11-04
-    zdroj: https://www.alza.cz/acemagic-a10a-ryzen-ai-max-395-128gb-2tb-d13499997.htm
+    zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
     poznamka: "Acemagic A10A a Acer Veriton RA110, 128GB/2TB, vč. DPH."
   cpu: Ryzen AI Max+ 395
   gpu: Radeon 8060S

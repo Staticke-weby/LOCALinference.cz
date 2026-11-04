@@ -13,7 +13,7 @@
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: Ace1a4n
-  zdroj: https://www.alza.cz/acemagic-a10a-ryzen-ai-max-395-128gb-2tb-d13499997.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Novinka; Tiny; Windows 11 Pro; HDMI 2.0 a DisplayPort 2.0."
 
@@ -27,7 +27,7 @@
   dostupnost: "Na cestě > 5 ks, očekáváme 29. 01. 2027"
   prodejce: Alza.cz
   objednaci_kod: TC32k2h9pNAD
-  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Windows 11 Pro; Wi-Fi; 2TB SSD."
 
@@ -40,6 +40,6 @@
   cena_czk_bez_dph: null
   dostupnost: "Momentálně nedostupné; cena nebyla vyhlášena"
   prodejce: Alza.cz
-  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Nabídka uvádí SSD 2 GB; téměř jistě jde o překlep, očekáváme 2 TB. Mini ITX, Windows 11 Pro."

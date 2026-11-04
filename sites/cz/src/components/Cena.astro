@@ -1,5 +1,5 @@
 ---
-import { cenaText, type Zarizeni } from '../lib/data';
+import { cenaText, relOdkazu, type Zarizeni } from '../lib/data';
 
 interface Props {
   zarizeni: Zarizeni;
@@ -16,7 +16,7 @@ const c = cenaText(zarizeni);
   {c.jeOdhad && <span class="li-cena__odhad">odhad</span>}
   <span class="li-cena__usd">({c.usd})</span>
   {showDate && <span class="li-cena__datum">k {c.datum}</span>}
-  <a href={c.zdroj} target="_blank" rel="noopener noreferrer">zdroj</a>
+  <a href={c.zdroj} target="_blank" rel={relOdkazu(c.zdroj)}>zdroj</a>
 </span>
 
 <style>

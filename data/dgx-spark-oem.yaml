@@ -13,7 +13,7 @@
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: NRn15002
-  zdroj: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Nejlevnější 128GB GB10 stroj v této nabídce."
 
@@ -29,7 +29,7 @@
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: TI100c5d0z05
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Akční cena -1 %; on-site servis."
 
@@ -43,7 +43,7 @@
   dostupnost: "Na objednávku – termín upřesníme"
   prodejce: Alza.cz
   objednaci_kod: HPBD5024d2
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
 
 - id: gigabyte-ai-top-atom-4tb
@@ -56,7 +56,7 @@
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: SG100x2
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
 
 - id: hp-zgx-nano-g1n-2tb
@@ -69,7 +69,7 @@
   dostupnost: "Na objednávku – termín upřesníme"
   prodejce: Alza.cz
   objednaci_kod: HPBD5024d3
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
 
 - id: dell-pro-max-gb10-2tb
@@ -82,7 +82,7 @@
   dostupnost: "Skladem > 5 ks u dodavatele"
   prodejce: Alza.cz
   objednaci_kod: TD140s01c7
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
 
 - id: lenovo-thinkstation-pgx-2tb
@@ -97,7 +97,7 @@
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: TI100c5d0z07
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Akční cena -1 %; on-site servis."
 
@@ -111,7 +111,7 @@
   dostupnost: "Na objednávku – termín upřesníme"
   prodejce: Alza.cz
   objednaci_kod: HPBD5024d4
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
 
 - id: nvidia-dgx-spark-4tb
@@ -124,7 +124,7 @@
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: NRn2000
-  zdroj: https://www.alza.cz/nvidia-dgx-spark-d13165934.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Referenční DGX Spark; v této nabídce dražší než některé OEM 4TB varianty."
 
@@ -140,7 +140,7 @@
   dostupnost: "Na cestě 5 ks, očekáváme 12. 11. 2026"
   prodejce: Alza.cz
   objednaci_kod: NRn15003
-  zdroj: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Akční cena -6 %."
 
@@ -156,7 +156,7 @@
   dostupnost: "Na objednávku – termín upřesníme"
   prodejce: Alza.cz
   objednaci_kod: TC32k2h9p2
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Akční cena -1 %."
 
@@ -170,7 +170,7 @@
   dostupnost: "Na cestě > 5 ks, očekáváme 10. 11. 2026"
   prodejce: Alza.cz
   objednaci_kod: NRn2001
-  zdroj: https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
 
 - id: dell-pro-max-gb10-4tb
@@ -183,7 +183,7 @@
   dostupnost: "Skladem 2 ks u dodavatele"
   prodejce: Alza.cz
   objednaci_kod: TD140s01c8
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
 
 - id: asus-ascent-gx10-4tb
@@ -198,7 +198,7 @@
   dostupnost: "Skladem 4 ks"
   prodejce: Alza.cz
   objednaci_kod: NRn15004
-  zdroj: https://www.alza.cz/asus-ascent-gx10-gg0027bn-d13224332.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
   poznamka: "Akční cena -4 %."
 
@@ -211,5 +211,5 @@
   cena_czk_bez_dph: 206603
   dostupnost: "Doručení na prodejnu zdarma"
   prodejce: Alza.cz
-  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04

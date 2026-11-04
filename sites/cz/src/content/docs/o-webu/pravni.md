@@ -37,8 +37,18 @@ hotových zařízeních. Obsah připravujeme z veřejných zdrojů a podle
 ## Odkazy třetích stran
 
 Web odkazuje na weby třetích stran (NVIDIA, AMD, výrobci, prodejci,
-Hugging Face, GitHub a další). Za jejich obsah neodpovídáme. Odkazy
-nejsou affiláty, pokud u konkrétního odkazu není výslovně uvedeno jinak.
+Hugging Face, GitHub a další). Za jejich obsah neodpovídáme.
+
+## Affiliate odkazy
+
+Některé odkazy na **Alza.cz** jsou affiliates: pokud přes ně nakoupíte,
+dostaneme provizi. Cena pro vás je stejná, platíte stejně jako při
+přímém nákupu. Odkazy vedou na kategorii, ne na konkrétní produkt,
+protože nabídka se mění a produkty se vyprodávají. Affiliate odkazy
+jsou označené `rel="sponsored"`, aby je poznal prohlížeč i vyhledávač.
+
+Ostatní odkazy affiláty nejsou. Kdyby se to změnilo, bude to u odkazu
+výslovně uvedeno.
 
 ## Autorská práva
 

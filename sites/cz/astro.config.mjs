@@ -4,12 +4,52 @@ import starlight from '@astrojs/starlight';
 import rehypeExternalLinks from 'rehype-external-links';
 import { unified } from '@astrojs/markdown-remark';
 
+/**
+ * Affiliate odkazy (Alza) označí rel="sponsored". Bez toho by web
+ * vydával placený odkaz za redakční.
+ */
+function rehypeAffiliate() {
+  const AFFILIATE = ['alza.cz'];
+
+  return (tree) => {
+    const walk = (node) => {
+      if (node.type === 'element' && node.tagName === 'a') {
+        const href = node.properties?.href;
+        if (typeof href === 'string') {
+          try {
+            const host = new URL(href).hostname.toLowerCase();
+            const jeAffiliate = AFFILIATE.some(
+              (d) => host === d || host.endsWith(`.${d}`),
+            );
+            if (jeAffiliate) {
+              const rel = new Set(
+                String(node.properties.rel ?? '')
+                  .split(/\s+/)
+                  .filter(Boolean),
+              );
+              rel.add('sponsored');
+              rel.add('noopener');
+              rel.add('noreferrer');
+              node.properties.rel = [...rel].join(' ');
+            }
+          } catch {
+            // relativní odkaz
+          }
+        }
+      }
+      (node.children ?? []).forEach(walk);
+    };
+    walk(tree);
+  };
+}
+
 export default defineConfig({
   site: 'https://www.localinference.cz',
   markdown: {
     processor: unified({
       rehypePlugins: [
         [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
+        rehypeAffiliate,
       ],
     }),
   },

@@ -1,5 +1,5 @@
 ---
-import { formatCislo, formatKc, getRtxNotebookOem } from '../lib/data';
+import { formatCislo, formatKc, getRtxNotebookOem, relOdkazu } from '../lib/data';
 
 const stroje = getRtxNotebookOem();
 ---
@@ -21,7 +21,7 @@ const stroje = getRtxNotebookOem();
       {stroje.map((s, i) => (
         <tr class={i === 0 && s.cena_czk_s_dph != null ? 'li-nejlevnejsi' : undefined}>
           <td>
-            <a href={s.zdroj} target="_blank" rel="noopener noreferrer">{s.nazev}</a>
+            <a href={s.zdroj} target="_blank" rel={relOdkazu(s.zdroj)}>{s.nazev}</a>
             {i === 0 && s.cena_czk_s_dph != null ? <span class="li-stitek">nejlevnější</span> : null}
             {s.objednaci_kod ? <span class="li-pozn"> · {s.objednaci_kod}</span> : null}
           </td>
