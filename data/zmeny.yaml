@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: cena
+  titulek: "Ceny Mac Studia a MacBooku Pro z Alza.cz"
+  co_se_zmenilo: "Mac Studio 128 GB (M5 Max, 614 GB/s) stojí 147 990–171 990 Kč vč. DPH; MacBook Pro 128 GB 209 990–434 490 Kč. Specifikace upraveny na M5 Max podle Apple. Ceny se aktualizují přes kategorie Alza uvedené v aktualizace.md."
+  dotcene_stranky: [zarizeni/mac-studio, zarizeni/macbook-pro, temata/cena-lokalni-ai]
+  zdroj: https://www.alza.cz/mac-studio/18894763.htm
+
+- datum: 2026-11-04
   typ: obsah
   titulek: "Kategorie AI box a AI notebook mají vlastní stránku"
   co_se_zmenilo: "Přibyly stránky /zarizeni/ai-boxy/ a /zarizeni/ai-notebooky/, které vysvětlují, co to je, jak to funguje, co u toho rozhoduje a kdy se vyplatí. Jsou první položkou v menu obou kategorií a pojem se prolinkuje automaticky."

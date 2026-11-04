@@ -34,7 +34,8 @@ Alza blokuje roboty, takže ceny se ověřují ručně v prohlížeči
 |---|---|---|
 | Boxy (DGX, Strix Halo) | `https://www.alza.cz/ai-pc/18907789.htm` | `data/dgx-spark-oem.yaml`, `data/strix-halo-oem.yaml` |
 | Notebooky | `https://www.alza.cz/rtx-spark/18924563.htm` | `data/rtx-spark-notebook-oem.yaml` |
-| Mac Studio | `https://www.alza.cz/mac-studio/18894763.htm` | zatím není v katalogu |
+| Mac Studio | `https://www.alza.cz/mac-studio/18894763.htm` | `data/zarizeni.yaml` (mac-studio) |
+| MacBook Pro 128GB | `https://www.alza.cz/search.htm?exps=MacBook%20Pro%20128GB` | `data/zarizeni.yaml` (macbook-pro) |
 
 Postup:
 

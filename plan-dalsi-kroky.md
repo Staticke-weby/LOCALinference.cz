@@ -45,6 +45,7 @@ Legenda: **P0** blokuje provoz nebo důvěryhodnost · **P1** zlepší web ·
 - [ ] **Windows 11 na homepage** — zvážit přepínač nebo kartu „chci to
       jako počítač“; zatím to řeší až srovnání a téma.
 - [ ] **Ceny:** doplnit českou cenu RTX Spark mini (zatím jen odhad).
+- [x] **Ceny Maců:** Mac Studio 147 990–171 990 Kč, MacBook Pro 209 990–434 490 Kč (Alza, 4. 11. 2026).
 
 ## 4. Data a měření (z `plan-dat.md`)
 

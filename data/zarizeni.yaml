@@ -149,18 +149,26 @@
   kategorie: mini-pc
   pamet_gb: 128
   pamet_typ: unified
-  bandwidth_gbs: 546
-  bandwidth_pozn: "M3 Ultra 819 GB/s"
+  bandwidth_gbs: 614
+  bandwidth_pozn: "M5 Ultra 1,2 TB/s"
   stranka: /zarizeni/mac-studio/
-  cpu: Apple M4 Max
-  gpu: Apple M4 Max (40 jader)
+  cpu: Apple M5 Max (18 jader)
+  gpu: Apple M5 Max (40 jader)
   os: [macOS]
   software: [MLX, llama.cpp, Ollama, LM Studio]
   prikon_w: null
-  hmotnost_kg: null
+  prikon_pozn: "max. 480 W"
+  hmotnost_kg: 2.7
   prodejce: [Apple, Alza]
   silne: [unified pamet, tichy provoz, MLX, nizka spotreba]
   slabe: [zadna CUDA, macOS only, cena]
+  cena_czk:
+    od: 147990
+    do: 171990
+    s_dph: true
+    overeno: 2026-11-04
+    zdroj: https://www.alza.cz/mac-studio/18894763.htm?idp=12510&banner_id=41939
+    poznamka: "128GB/512GB 147 990 Kč; 128GB/2TB 171 990 Kč; vč. DPH."
   zdroje:
     - https://www.apple.com/mac-studio/specs/
     - https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md
@@ -172,18 +180,25 @@
   kategorie: notebook
   pamet_gb: 128
   pamet_typ: unified
-  bandwidth_gbs: 546
-  bandwidth_pozn: "M4 Max"
+  bandwidth_gbs: 614
+  bandwidth_pozn: "M5 Max 40jádrová GPU"
   stranka: /zarizeni/macbook-pro/
-  cpu: Apple M4 Max
-  gpu: Apple M4 Max (40 jader)
+  cpu: Apple M5 Max (18 jader)
+  gpu: Apple M5 Max (40 jader)
   os: [macOS]
   software: [MLX, llama.cpp, Ollama, LM Studio]
   prikon_w: null
-  hmotnost_kg: 2.14
-  prodejce: [Apple]
+  hmotnost_kg: 2.15
+  prodejce: [Apple, Alza]
   silne: [128 GB v notebooku, MLX, tichy chod, vydrz]
   slabe: [throttling, zadna CUDA, macOS only, cena]
+  cena_czk:
+    od: 209990
+    do: 434490
+    s_dph: true
+    overeno: 2026-11-04
+    zdroj: https://www.alza.cz/search.htm?exps=MacBook%20Pro%20128GB&idp=12510&banner_id=41939
+    poznamka: "14\" od 209 990 Kč, 16\" od 224 490 Kč; vč. DPH."
   zdroje:
     - https://www.apple.com/macbook-pro/specs/
     - https://ml-explore.github.io/mlx/

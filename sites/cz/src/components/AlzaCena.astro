@@ -5,7 +5,7 @@
 import { relOdkazu } from '../lib/data';
 
 interface Props {
-  kategorie?: 'boxy' | 'notebooky' | 'mac';
+  kategorie?: 'boxy' | 'notebooky' | 'mac' | 'macbooky';
   text?: string;
 }
 
@@ -15,6 +15,7 @@ const URLS = {
   boxy: 'https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939',
   notebooky: 'https://www.alza.cz/rtx-spark/18924563.htm?idp=12510&banner_id=41939',
   mac: 'https://www.alza.cz/mac-studio/18894763.htm?idp=12510&banner_id=41939',
+  macbooky: 'https://www.alza.cz/search.htm?exps=MacBook%20Pro%20128GB&idp=12510&banner_id=41939',
 } as const;
 
 const href = URLS[kategorie];

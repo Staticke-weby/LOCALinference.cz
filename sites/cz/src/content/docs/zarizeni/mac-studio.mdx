@@ -10,8 +10,8 @@ sidebar:
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import AlzaCena from '../../../components/AlzaCena.astro';
 
-**Verdikt:** Tichý stolní stroj s 128 GB unified paměti a velmi rychlou
-pamětí. Qwen3.8 Flash Next na něm poběží, ale přes Apple ekosystém —
+**Verdikt:** Tichý stolní stroj s 128 GB unified paměti a propustností
+614 GB/s. Qwen3.8 Flash Next na něm poběží, ale přes Apple ekosystém —
 žádná CUDA. Kdo chce macOS a ticho, dostane dobrý stroj; kdo chce
 NVIDIA stack, musí jinam.
 
@@ -23,9 +23,9 @@ NVIDIA stack, musí jinam.
 
 - **Unified memory.** Procesor i grafika sdílejí jeden pool. Model se
   nemusí vejít do „VRAM“ — stačí, aby se vešel do 128 GB.
-- **Propustnost 546 GB/s** u M4 Max. Je to víc než u DGX Sparku
-  (273 GB/s), takže [decode](/slovnik/vykon/decode/) může být rychlejší.
-  Verze M3 Ultra má 819 GB/s.
+- **Propustnost 614 GB/s** u M5 Max se 40jádrovou GPU. Je to víc než
+  u DGX Sparku (273 GB/s), takže [decode](/slovnik/vykon/decode/) může
+  být rychlejší. Verze M5 Ultra má 1,2 TB/s, ale 128 GB nabízí jen M5 Max.
 - **Metal.** Grafické API Applu, přes které běží
   [llama.cpp](/slovnik/software/llamacpp/) i další nástroje.
 - **MLX.** Framework Applu pro AI. Bývá nejrychlejší cesta na Macu,
