@@ -40,7 +40,7 @@ async function fetchText(url) {
     redirect: 'follow',
     signal: AbortSignal.timeout(20000),
     headers: {
-      'user-agent': 'LocalInference-hlidac/0.1 (+https://www.localinference.cz)',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
       accept: 'text/html,application/xhtml+xml,application/xml,application/json,text/plain,*/*',
     },
   });

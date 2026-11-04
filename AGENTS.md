@@ -137,7 +137,7 @@ Toto je nejdůležitější pravidlo projektu.
 | NVIDIA DGX Spark / Station | `nvidia.com`, dokumentace, GTC |
 | NVIDIA RTX Spark | `nvidia.com`, Windows on Arm porting guide, OEM nabídky |
 | vLLM na Windows ARM64 | GitHub `devjeonghwan/vllm-for-rtx-spark`, NVIDIA forum |
-| AMD Strix Halo / Gorgon Halo | `amd.com`, OEM stránky (Framework, GMKtec, HP…) |
+| AMD Strix Halo / Gorgon Halo | `amd.com`, OEM stránky (GMKtec, Minisforum, HP…) |
 | Apple Mac Studio / MLX | `apple.com`, `ml-explore/mlx` |
 | Ceny a dostupnost | oficiální obchody výrobců a OEM, s datem |
 | Kurzy pro přepočet | ČNB (CZK), ECB (EUR), s datem |

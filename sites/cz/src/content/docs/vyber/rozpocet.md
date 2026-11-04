@@ -13,7 +13,7 @@ kurzem ČNB 21,762 k 3. 11. 2026.
 
 | Zařízení | Paměť | Cena USD | Orientačně Kč | Pro koho |
 |---|---|---|---|---|
-| Strix Halo 128 GB (OEM) | 128 GB | 3 449–5 349 | 75 100–116 400 | nejlevnější cesta k 128 GB |
+| Strix Halo 128 GB (OEM) | 128 GB | 3 649–5 349 | 79 400–116 400 | nejlevnější cesta k 128 GB |
 | RTX Spark notebook 128 GB | 128 GB | 5 899–6 499 | 128 400–141 400 | práce na cestě, jeden člověk |
 | RTX Spark mini 128 GB | 128 GB | 5 999 | 130 600 | malý pool, CUDA |
 | DGX Spark 128 GB | 128 GB | 6 950 | 151 200 | CUDA, enterprise management |

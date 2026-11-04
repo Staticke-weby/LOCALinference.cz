@@ -281,9 +281,9 @@
   posledni_kontrola: 2026-11-04
   stav: ok
 
-- id: framework-desktop
-  nazev: Framework Desktop
-  url: https://frame.work/desktop
+- id: gmktec-strix-halo
+  nazev: GMKtec — Strix Halo 128 GB
+  url: https://www.gmktec.com/
   typ: html
   co_sledujeme: [cena, konfigurace, dostupnost]
   frekvence: tydne

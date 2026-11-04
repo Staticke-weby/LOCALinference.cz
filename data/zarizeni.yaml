@@ -95,22 +95,23 @@
   pamet_typ: unified
   bandwidth_gbs: 256
   cena:
-    od_usd: 3449
+    od_usd: 3649
     do_usd: 5349
     overeno: 2026-09-01
-    zdroj: https://frame.work/desktop
-    poznamka: "Framework, GMKtec, Minisforum, HP a další; bez DPH a dopravy."
+    zdroj: https://www.gmktec.com/
+    poznamka: "GMKtec EVO-X2 3 649 USD; HP 5 349 USD; bez DPH a dopravy."
   cpu: Ryzen AI Max+ 395
   gpu: Radeon 8060S
   os: [Linux, Windows]
   software: [ROCm, Vulkan, llama.cpp, vLLM-ROCm]
   prikon_w: null
   hmotnost_kg: null
-  prodejce: [Framework, GMKtec, Minisforum, Beelink, HP]
+  prodejce: [GMKtec, Minisforum, Beelink, HP]
   silne: [nejlevnější cesta k 128 GB, x86, otevřenost]
   slabe: [slabší prefill, ROCm druhá liga, dostupnost]
   zdroje:
-    - https://frame.work/desktop
+    - https://www.gmktec.com/
+    - https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html
     - https://llamaperf.com/gpu/strix-halo-128gb
   overeno: 2026-11-04
 

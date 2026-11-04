@@ -14,14 +14,28 @@ function daysOld(date) {
 
 for (const source of sources) {
   try {
-    const res = await fetch(source.url, {
-      redirect: 'follow',
-      signal: AbortSignal.timeout(15000),
-      headers: {
-        'user-agent': 'LocalInference-kontrola/0.1 (+https://www.localinference.cz)',
-        accept: 'text/html,application/xhtml+xml,application/xml,application/json,text/plain,*/*',
-      },
-    });
+    let res;
+    try {
+      res = await fetch(source.url, {
+        method: 'HEAD',
+        redirect: 'follow',
+        signal: AbortSignal.timeout(30000),
+        headers: {
+          'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+          accept: 'text/html,application/xhtml+xml,application/xml,application/json,text/plain,*/*',
+        },
+      });
+      if (res.status === 403 || res.status === 405) throw new Error('HEAD nepodporován');
+    } catch {
+      res = await fetch(source.url, {
+        redirect: 'follow',
+        signal: AbortSignal.timeout(30000),
+        headers: {
+          'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+          accept: 'text/html,application/xhtml+xml,application/xml,application/json,text/plain,*/*',
+        },
+      });
+    }
     if (res.status >= 400) {
       console.error(`✗ ${source.id}: HTTP ${res.status} — ${source.url}`);
       errors++;

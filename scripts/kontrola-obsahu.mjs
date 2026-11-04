@@ -51,7 +51,7 @@ for (const file of files) {
     continue;
   }
   const data = parsed.data ?? {};
-  const isDraft = data.status === 'draft';
+  const isDraft = data.status === 'draft' || data.draft === true;
 
   if (!data.title) fail(`${rel}: chybí title`);
   if (!data.description) fail(`${rel}: chybí description`);

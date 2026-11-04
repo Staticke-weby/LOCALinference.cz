@@ -70,7 +70,7 @@ pohybovaly zhruba takto:
 
 | Zařízení | Paměť | Cena USD (k datu) | Orientačně Kč |
 |---|---|---|---|
-| Strix Halo 128 GB (OEM) | 128 GB | 3 449–5 349 (9/2026) | 75 100–116 400 |
+| Strix Halo 128 GB (OEM) | 128 GB | 3 649–5 349 (9/2026) | 79 400–116 400 |
 | RTX Spark notebook 128 GB | 128 GB | 5 899–6 499 (10/2026) | 128 400–141 400 |
 | RTX Spark mini 128 GB | 128 GB | 5 999 (10/2026) | 130 600 |
 | DGX Spark 128 GB | 128 GB | 6 950 (2. 10. 2026) | 151 200 |
