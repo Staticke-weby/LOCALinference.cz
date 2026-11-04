@@ -4,6 +4,19 @@
 
 ---
 
+## 2026-11-04 - Umami pro CZ a EN
+
+- Analytika je **Umami** na `navstevnost.pikapod.net`, bez cookies.
+- CZ `data-website-id` = `0f31f779-c9bd-4e31-9745-19b8b425be0b` (v
+  `head` konfigurace `sites/cz/astro.config.mjs`).
+- EN `data-website-id` = `94da2420-aa54-4b76-a614-ca06835a2138` — vloží
+  se do `head`, až vznikne `sites/eu`. ID jsou v README i AGENTS, aby se
+  neztratila.
+- Právní stránka má sekci „Měření návštěvnosti“: bez cookies, žádné
+  reklamní sítě, proto bez cookie lišty.
+
+---
+
 ## 2026-11-04 - GitHub: jedno repo, dvě mutace
 
 - Organizace **Staticke-weby**. Zdrojový repo je `LOCALinference.cz`

@@ -45,6 +45,14 @@ nejsou affiláty, pokud u konkrétního odkazu není výslovně uvedeno jinak.
 Obsah webu © ESHOpino s.r.o. Všechna práva vyhrazena. Přebírání celých
 textů bez souhlasu není dovoleno; krátké citace s odkazem na zdroj ano.
 
+## Měření návštěvnosti
+
+Návštěvnost měříme nástrojem **Umami** (navstevnost.pikapod.net). Skript
+nepoužívá cookies a nesleduje vás mezi weby. Zaznamenává zobrazenou
+stránku, odkazující zdroj, typ zařízení a zemi. Nepoužíváme reklamní sítě
+ani profily pro remarketing — a protože se při měření neukládají cookies,
+nepotřebujeme k němu cookie lištu.
+
 ## Kudy dál
 
 - [Metodika](/o-webu/metodika/) — jak čteme data a proč neodhadujeme.

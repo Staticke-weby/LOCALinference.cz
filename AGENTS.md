@@ -356,5 +356,9 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
 - [x] Provozovatel: **ESHOpino s.r.o.**, Roháčova 145/14, 130 00 Praha 3,
       IČO 03223485, DIČ CZ03223485 — viz `/o-webu/pravni/`.
 - [DOPLNIT: kontaktní e-mail pro veřejnost]
-- [DOPLNIT: analytics — zda vůbec, případně Umami]
+- [x] Analytics: **Umami** (`https://navstevnost.pikapod.net/script.js`),
+      bez cookies. CZ `data-website-id` =
+      `0f31f779-c9bd-4e31-9745-19b8b425be0b`, EN =
+      `94da2420-aa54-4b76-a614-ca06835a2138`. Skript je v `head`
+      `astro.config.mjs`; EN ID se vloží při vzniku `sites/eu`.
 - Vlastní měření: **ne** — data přebíráme a interpretujeme (viz `o-webu/metodika`).

@@ -67,6 +67,15 @@ DNS u registrátora (platí pro obě domény):
 Po přepnutí DNS zapnout v **Settings → Pages** volbu *Enforce HTTPS*.
 Dokud DNS míří jinam, web na doméně neběží, i když je build zelený.
 
+### Měření návštěvnosti
+
+Umami, bez cookies, skript v `head` souboru `astro.config.mjs`:
+
+| Mutace | `data-website-id` |
+|---|---|
+| CZ | `0f31f779-c9bd-4e31-9745-19b8b425be0b` |
+| EN | `94da2420-aa54-4b76-a614-ca06835a2138` |
+
 ## Hotové stránky
 
 - [`sites/cz/src/content/docs/zaciname/co-je-lokalni-ai.mdx`](sites/cz/src/content/docs/zaciname/co-je-lokalni-ai.mdx)

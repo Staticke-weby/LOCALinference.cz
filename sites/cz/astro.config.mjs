@@ -45,6 +45,14 @@ export default defineConfig({
         { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://www.localinference.cz/og-cz.png' } },
         {
           tag: 'script',
+          attrs: {
+            defer: true,
+            src: 'https://navstevnost.pikapod.net/script.js',
+            'data-website-id': '0f31f779-c9bd-4e31-9745-19b8b425be0b',
+          },
+        },
+        {
+          tag: 'script',
           attrs: { type: 'application/ld+json' },
           content: JSON.stringify({
             '@context': 'https://schema.org',
