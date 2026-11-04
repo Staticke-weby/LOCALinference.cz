@@ -2,169 +2,319 @@
   "qwen-blog": {
     "url": "https://qwen.ai/blog",
     "signature": "text:28a5651e858aeea9",
-    "checkedAt": "2026-11-04T10:15:33.287Z",
+    "checkedAt": "2026-11-04T12:25:14.590Z",
     "status": "ok"
   },
   "qwen38-flash-next-hf": {
     "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
     "signature": "hf:de4b8e4d43b917e7706784d8bb445c9af86a3540:2026-08-27T05:03:36.000Z",
-    "checkedAt": "2026-11-04T10:15:33.518Z",
+    "checkedAt": "2026-11-04T12:25:14.877Z",
     "status": "ok"
   },
   "qwen38-blog": {
     "url": "https://qwen.ai/blog?id=qwen3.8-flash-next",
     "signature": "text:28a5651e858aeea9",
-    "checkedAt": "2026-11-04T10:15:33.736Z",
+    "checkedAt": "2026-11-04T12:25:15.111Z",
     "status": "ok"
   },
   "vllm-qwen38-recipe": {
     "url": "https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next",
     "signature": "text:f7de0274251f140e",
-    "checkedAt": "2026-11-04T10:15:34.077Z",
+    "checkedAt": "2026-11-04T12:25:15.502Z",
     "status": "ok"
   },
   "news-qq-rtx-prices": {
     "url": "https://news.qq.com/rain/a/20261008A04Z5W00",
     "signature": "text:7a4b141816e2eccc",
-    "checkedAt": "2026-11-04T10:15:37.488Z",
+    "checkedAt": "2026-11-04T12:25:16.774Z",
     "status": "ok"
   },
   "vllm-recipes": {
     "url": "https://recipes.vllm.ai/",
     "signature": "text:b264f16743b1e4bb",
-    "checkedAt": "2026-11-04T10:15:37.745Z",
+    "checkedAt": "2026-11-04T12:25:17.017Z",
     "status": "ok"
   },
   "sglang-cookbook": {
     "url": "https://docs.sglang.io/cookbook/",
-    "signature": "text:dabeedf42d8a7536",
-    "checkedAt": "2026-11-04T10:15:38.493Z",
-    "status": "ok"
+    "signature": "text:95f395d92c2f4e36",
+    "checkedAt": "2026-11-04T12:25:17.745Z",
+    "status": "changed"
   },
   "llamaperf-strix-halo": {
     "url": "https://llamaperf.com/gpu/strix-halo-128gb",
-    "signature": "text:2bf4c5f5b92773ae",
-    "checkedAt": "2026-11-04T10:15:38.678Z",
-    "status": "ok"
+    "signature": "text:39703188c298bd13",
+    "checkedAt": "2026-11-04T12:25:18.822Z",
+    "status": "changed"
   },
   "inferencex": {
     "url": "https://inferencex.semianalysis.com/",
     "signature": "text:72b3cbf88e073cba",
-    "checkedAt": "2026-11-04T10:15:38.853Z",
+    "checkedAt": "2026-11-04T12:25:19.049Z",
     "status": "ok"
   },
   "nvidia-dgx-spark": {
     "url": "https://www.nvidia.com/en-us/products/workstations/dgx-spark/",
     "signature": "text:360e40abffe4cb2f",
-    "checkedAt": "2026-11-04T10:15:39.337Z",
+    "checkedAt": "2026-11-04T12:25:19.802Z",
     "status": "ok"
   },
   "nvidia-rtx-spark": {
     "url": "https://www.nvidia.com/en-us/products/rtx-spark/",
     "signature": "text:df8390328d6a5b42",
-    "checkedAt": "2026-11-04T10:15:39.536Z",
+    "checkedAt": "2026-11-04T12:25:20.002Z",
     "status": "ok"
   },
   "nvidia-rtx-spark-porting": {
     "url": "https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html",
     "signature": "text:df055180ef5749ce",
-    "checkedAt": "2026-11-04T10:15:39.948Z",
+    "checkedAt": "2026-11-04T12:25:20.561Z",
     "status": "ok"
   },
   "madeye-dgx-spark": {
     "url": "https://madeye.github.io/qwen38-flash-next-on-dgx-spark/",
     "signature": "text:1888c27c7c7bcdb1",
-    "checkedAt": "2026-11-04T10:15:40.063Z",
+    "checkedAt": "2026-11-04T12:25:20.728Z",
     "status": "ok"
   },
   "corsair-dgx-spark": {
     "url": "https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/",
     "signature": "text:d2db674b4ce4b35a",
-    "checkedAt": "2026-11-04T10:15:40.708Z",
+    "checkedAt": "2026-11-04T12:25:21.662Z",
     "status": "ok"
   },
   "presenc-rtx-spark": {
     "url": "https://presenc.ai/research/nvidia-rtx-spark-local-llm-benchmarks-2026",
     "signature": "text:892015ad05b8b301",
-    "checkedAt": "2026-11-04T10:15:41.069Z",
+    "checkedAt": "2026-11-04T12:25:22.121Z",
     "status": "ok"
   },
   "betterclaw-rtx-spark": {
     "url": "https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark",
     "signature": "text:03e43375185ce9ba",
-    "checkedAt": "2026-11-04T10:15:41.223Z",
+    "checkedAt": "2026-11-04T12:25:22.369Z",
     "status": "ok"
   },
   "tomshardware-rtx-spark": {
     "url": "https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models",
     "signature": "text:74cc4d0e26f4adcb",
-    "checkedAt": "2026-11-04T10:15:41.515Z",
+    "checkedAt": "2026-11-04T12:25:22.818Z",
     "status": "ok"
   },
   "ctol-rtx-spark": {
     "url": "https://www.ctol.digital/news/nvidia-rtx-spark-laptop-within-8-percent-of-dgx-spark-speed",
     "signature": "text:83daee6052355caa",
-    "checkedAt": "2026-11-04T10:15:41.917Z",
+    "checkedAt": "2026-11-04T12:25:23.356Z",
     "status": "ok"
   },
   "vllm-rtx-spark-github": {
     "url": "https://github.com/devjeonghwan/vllm-for-rtx-spark",
     "signature": "release:v0.1.2:2026-10-30T20:09:39Z",
-    "checkedAt": "2026-11-04T10:15:42.256Z",
+    "checkedAt": "2026-11-04T12:25:23.761Z",
     "status": "ok"
   },
   "vllm-rtx-spark-forum": {
     "url": "https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530",
-    "signature": "text:24857cfced136085",
-    "checkedAt": "2026-11-04T10:15:43.335Z",
+    "signature": "text:fbed7479a5683528",
+    "checkedAt": "2026-11-04T12:25:24.993Z",
     "status": "changed"
   },
   "vllm-windows-docs": {
     "url": "https://docs.vllm.ai/en/latest/getting_started/installation/gpu/",
     "signature": "text:d4d22c9a184a821e",
-    "checkedAt": "2026-11-04T10:15:43.598Z",
+    "checkedAt": "2026-11-04T12:25:25.344Z",
     "status": "ok"
   },
   "amd-ryzen-ai-max": {
     "url": "https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html",
     "signature": "text:5f7d656e0f2f7a0d",
-    "checkedAt": "2026-11-04T10:15:44.291Z",
-    "status": "changed"
+    "checkedAt": "2026-11-04T12:25:25.828Z",
+    "status": "ok"
   },
-  "framework-desktop": {
-    "url": "https://frame.work/desktop",
-    "signature": "text:c54f6017296b81a2",
-    "checkedAt": "2026-11-04T10:04:38.297Z",
-    "status": "new"
+  "gmktec-strix-halo": {
+    "url": "https://www.gmktec.com/",
+    "signature": "text:8c52f336a8b6c6fb",
+    "checkedAt": "2026-11-04T12:25:26.647Z",
+    "status": "changed"
   },
   "cnb-kurzy": {
     "url": "https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt",
     "signature": "text:46c1cc0a9abb782c",
-    "checkedAt": "2026-11-04T10:15:45.375Z",
+    "checkedAt": "2026-11-04T12:25:26.804Z",
     "status": "ok"
   },
   "ecb-kurzy": {
     "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
     "signature": "text:12ce7374150b075e",
-    "checkedAt": "2026-11-04T10:15:45.503Z",
+    "checkedAt": "2026-11-04T12:25:26.960Z",
     "status": "ok"
   },
   "unsloth-gguf": {
     "url": "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF",
     "signature": "hf:766911a6b7369840a91dbcd95f9f997acaab6cd6:2026-10-06T05:31:22.000Z",
-    "checkedAt": "2026-11-04T10:15:45.701Z",
+    "checkedAt": "2026-11-04T12:25:27.316Z",
     "status": "ok"
   },
   "llm-kube-qwen38": {
     "url": "https://llmkube.com/docs/labs/qwen38-flash-next-gufo-on-strix-halo",
     "signature": "text:cd65ac6dcaef9eff",
-    "checkedAt": "2026-11-04T10:15:46.106Z",
+    "checkedAt": "2026-11-04T12:25:28.769Z",
     "status": "ok"
   },
-  "gmktec-strix-halo": {
-    "url": "https://www.gmktec.com/",
-    "signature": "text:93aa4c0769ee1f51",
-    "checkedAt": "2026-11-04T10:15:45.237Z",
+  "smf-dgx-spark": {
+    "url": "https://www.smfclearinghouse.com/blog/2026-09-19-qwen38-flash-next-24-7-kit",
+    "signature": "text:b6de7feb43da95e4",
+    "checkedAt": "2026-11-04T12:25:29.110Z",
+    "status": "new"
+  },
+  "sparklab-bench": {
+    "url": "https://github.com/sixteen-miles-labs/sparklab/blob/main/benchmarks/frameworks/QWEN38_FLASH_NEXT.md",
+    "signature": "release:v0.1.3:2026-09-16T15:43:08Z",
+    "checkedAt": "2026-11-04T12:25:29.469Z",
+    "status": "new"
+  },
+  "llamacpp-rtx-n1x": {
+    "url": "https://github.com/ggml-org/llama.cpp/discussions/31494",
+    "signature": "release:v0.8.0:2026-10-28T12:47:51Z",
+    "checkedAt": "2026-11-04T12:25:29.739Z",
+    "status": "new"
+  },
+  "mindstudio-rtx-spark": {
+    "url": "https://www.mindstudio.ai/blog/run-local-llms-rtx-spark-laptop",
+    "signature": "text:81ae1637798d0069",
+    "checkedAt": "2026-11-04T12:25:29.947Z",
+    "status": "new"
+  },
+  "qwen36-hf": {
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "signature": "hf:995ad96eacd98c81ed38be0c5b274b04031597b0:2026-04-24T02:53:42.000Z",
+    "checkedAt": "2026-11-04T12:25:30.108Z",
+    "status": "new"
+  },
+  "qwen36-ngc": {
+    "url": "https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b",
+    "signature": "text:e5d4ad5c9c544eba",
+    "checkedAt": "2026-11-04T12:25:31.938Z",
+    "status": "new"
+  },
+  "qwen36-unsloth-gguf": {
+    "url": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF",
+    "signature": "hf:a483e9e6cbd595906af30beda3187c2663a1118c:2026-04-20T12:42:25.000Z",
+    "checkedAt": "2026-11-04T12:25:32.127Z",
+    "status": "new"
+  },
+  "qwen36-batiai-gguf": {
+    "url": "https://huggingface.co/batiai/Qwen3.6-35B-A3B-GGUF",
+    "signature": "hf:c54b78c9063eeb1c51614830d674d4aa1df99780:2026-05-04T17:00:40.000Z",
+    "checkedAt": "2026-11-04T12:25:32.282Z",
+    "status": "new"
+  },
+  "gemma4-hf": {
+    "url": "https://huggingface.co/google/gemma-4-26B-A4B",
+    "signature": "hf:24548b62aa021d562695c04aaf7758a1ea47990b:2026-07-15T16:41:43.000Z",
+    "checkedAt": "2026-11-04T12:25:32.435Z",
+    "status": "new"
+  },
+  "gemma4-ollama": {
+    "url": "https://ollama.com/library/gemma4:26b",
+    "signature": "text:62c881b2d122b67f",
+    "checkedAt": "2026-11-04T12:25:32.924Z",
+    "status": "new"
+  },
+  "gemma4-google": {
+    "url": "https://ai.google.dev/gemma/docs/core",
+    "signature": "text:6bf579cd3aedb0bf",
+    "checkedAt": "2026-11-04T12:25:35.358Z",
+    "status": "new"
+  },
+  "nvidia-dgx-spark-64gb": {
+    "url": "https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/",
+    "signature": "text:93449243a464b3bb",
+    "checkedAt": "2026-11-04T12:25:35.794Z",
+    "status": "new"
+  },
+  "microsoft-surface-ultra": {
+    "url": "https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8",
+    "signature": "text:2c50bc5a01724e8b",
+    "checkedAt": "2026-11-04T12:25:36.617Z",
+    "status": "new"
+  },
+  "compute-market-strix-halo": {
+    "url": "https://www.compute-market.com/blog/strix-halo-mini-pc-local-ai-2026",
+    "signature": "text:b7b6e7ff42eeab15",
+    "checkedAt": "2026-11-04T12:25:36.840Z",
+    "status": "new"
+  },
+  "rtxsparkpc-tracker": {
+    "url": "https://rtxsparkpc.com/",
+    "signature": "text:7ba1cbfe77bf705f",
+    "checkedAt": "2026-11-04T12:25:37.354Z",
+    "status": "new"
+  },
+  "tokenmark-gemma4": {
+    "url": "https://tokenmark.app/model/gemma-4-26B-A4B-it",
+    "signature": "text:493e4cad02977e86",
+    "checkedAt": "2026-11-04T12:25:37.911Z",
+    "status": "new"
+  },
+  "llamaperf-gemma4": {
+    "url": "https://llamaperf.com/model/gemma-4",
+    "signature": "text:5ad7eae2ab60239a",
+    "checkedAt": "2026-11-04T12:25:38.922Z",
+    "status": "new"
+  },
+  "boxwrench-gemma4": {
+    "url": "https://github.com/boxwrench/tesla_agent/blob/main/research/gemma-4-qat-q4_0-strix-halo.md",
+    "signature": "commit:81ccd601f10b2223cbca6edcc8f9b89440f96321",
+    "checkedAt": "2026-11-04T12:25:39.863Z",
+    "status": "new"
+  },
+  "alza-ai-nvidia": {
+    "url": "https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm",
+    "signature": null,
+    "checkedAt": "2026-11-04T12:25:39.864Z",
+    "status": "manual"
+  },
+  "alza-dgx-spark": {
+    "url": "https://www.alza.cz/nvidia-dgx-spark-d13165934.htm",
+    "signature": null,
+    "checkedAt": "2026-11-04T12:25:39.864Z",
+    "status": "manual"
+  },
+  "alza-asus-gx10-1tb": {
+    "url": "https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm",
+    "signature": null,
+    "checkedAt": "2026-11-04T12:25:39.864Z",
+    "status": "manual"
+  },
+  "alza-asus-gx10-4tb": {
+    "url": "https://www.alza.cz/asus-ascent-gx10-gg0027bn-d13224332.htm",
+    "signature": null,
+    "checkedAt": "2026-11-04T12:25:39.864Z",
+    "status": "manual"
+  },
+  "alza-pny-dgx": {
+    "url": "https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm",
+    "signature": null,
+    "checkedAt": "2026-11-04T12:25:39.864Z",
+    "status": "manual"
+  },
+  "alza-ai-pc": {
+    "url": "https://www.alza.cz/ai-pc/18907789.htm",
+    "signature": null,
+    "checkedAt": "2026-11-04T12:25:39.864Z",
+    "status": "manual"
+  },
+  "alza-acemagic-a10a": {
+    "url": "https://www.alza.cz/acemagic-a10a-ryzen-ai-max-395-128gb-2tb-d13499997.htm",
+    "signature": null,
+    "checkedAt": "2026-11-04T12:25:39.864Z",
+    "status": "manual"
+  },
+  "acer-veriton-ra110": {
+    "url": "https://www.acer.com/us-en/desktops-and-all-in-ones/veriton-workstations/veriton-ra110-ai-mini-workstation",
+    "signature": "text:006559c4b8e506a4",
+    "checkedAt": "2026-11-04T12:25:41.873Z",
     "status": "new"
   }
 }

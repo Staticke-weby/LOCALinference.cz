@@ -126,8 +126,9 @@ Na **128 GB** je rozumné minimum **Qwen3.8 Flash Next**. Proč?
   ([model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)).
 - 6B aktivních parametrů drží rychlost kolem 70 tokenů za sekundu
   ([Qwen blog](https://qwen.ai/blog?id=qwen3.8-flash-next)).
-- 262 tisíc tokenů nativního kontextu zvládne delší dokumenty; doporučený
-  provozní režim je ale níž, kolem 128 tisíc, kde je kvalita i rychlost lepší.
+- 262 tisíc tokenů nativního kontextu zvládne delší dokumenty; podložené
+  doporučení provozního kontextu nemáme. Pro dlouhé dokumenty a souběžnost
+  se v praxi počítá s 128k jako rozumným stropem, ne s maximem.
 - Vejde se do 128 GB včetně KV cache; na dlouhý kontext zbývá jen část
   paměti, takže souběžnost klesá.
 

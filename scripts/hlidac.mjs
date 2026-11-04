@@ -100,6 +100,17 @@ async function signature(source) {
 
 for (const source of sources) {
   const previous = state[source.id];
+  if (source.kontrola === 'manual') {
+    state[source.id] = {
+      url: source.url,
+      signature: previous?.signature ?? null,
+      checkedAt: new Date().toISOString(),
+      status: 'manual',
+    };
+    report.push({ source, status: 'manual', detail: 'ruční kontrola' });
+    console.log(`- ${source.id}: ruční kontrola`);
+    continue;
+  }
   try {
     const sig = await signature(source);
     const status = !previous ? 'new' : previous.signature !== sig ? 'changed' : 'ok';
@@ -127,7 +138,9 @@ for (const source of sources) {
 }
 
 fs.mkdirSync(outDir, { recursive: true });
-fs.writeFileSync(stateFile, JSON.stringify(state, null, 2) + '\n');
+const currentIds = new Set(sources.map((s) => s.id));
+const nextState = Object.fromEntries(Object.entries(state).filter(([id]) => currentIds.has(id)));
+fs.writeFileSync(stateFile, JSON.stringify(nextState, null, 2) + '\n');
 
 const lines = [
   '# Hlídač zdrojů',
