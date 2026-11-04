@@ -46,6 +46,27 @@ npm run hlidac         # aktualizuje data/stav-zdroju.json a vystup/hlidac-repor
 npm run check:zdroje   # ověří, že URL odpovídají
 ```
 
+## Nasazení
+
+Web se staví na GitHub Actions a publikuje přes GitHub Pages. Do repa
+patří celý zdroj, na web jde jen výstup.
+
+| Co | Kde |
+|---|---|
+| Zdroj: data, obsah, obě mutace | `Staticke-weby/LOCALinference.cz` |
+| CZ build a nasazení | `.github/workflows/nasazeni-cz.yml` → Pages tohoto repa |
+| EN build a nasazení | `.github/workflows/nasazeni-eu.yml` → `Staticke-weby/LOCALinference.eu` (až vznikne `sites/eu`) |
+
+DNS u registrátora (platí pro obě domény):
+
+| Doména | Typ | Hodnota |
+|---|---|---|
+| `www.localinference.cz` | CNAME | `staticke-weby.github.io` |
+| `localinference.cz` | A | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
+
+Po přepnutí DNS zapnout v **Settings → Pages** volbu *Enforce HTTPS*.
+Dokud DNS míří jinam, web na doméně neběží, i když je build zelený.
+
 ## Hotové stránky
 
 - [`sites/cz/src/content/docs/zaciname/co-je-lokalni-ai.mdx`](sites/cz/src/content/docs/zaciname/co-je-lokalni-ai.mdx)

@@ -4,6 +4,20 @@
 
 ---
 
+## 2026-11-04 - GitHub: jedno repo, dvě mutace
+
+- Organizace **Staticke-weby**. Zdrojový repo je `LOCALinference.cz`
+  a obsahuje celý web včetně obou mutací (`sites/cz`, později `sites/eu`).
+- **Na GitHub Pages jde jen výstup**, ne zdroj: CZ přes artifact
+  z `nasazeni-cz.yml`, EN přes push výstupu do `LOCALinference.eu`.
+- Rozhodnutí padlo proto, že data o zařízeních a cenách jsou společná;
+  dvě plná repa by znamenala dva zdroje pravdy.
+- Domény: `www.localinference.cz` a `www.localinference.eu`, obě
+  s CNAME na `staticke-weby.github.io`. Apex domény míří na GitHub IP
+  `185.199.108–111.153`.
+
+---
+
 ## 2026-11-04 - SEO, témata a discovery
 
 - **Nadpisy:** `title`, H1 a podnadpisy nesou hledané fráze („DGX Spark cena“,

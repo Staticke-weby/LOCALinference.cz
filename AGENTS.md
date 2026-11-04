@@ -301,15 +301,22 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
 
 ### 5.1 Repozitáře a publikace
 
-- **Zdrojový repo `Staticke-weby/LOCALinference.cz`** — celý web: data,
-  obsah, Astro projekt i workflow. Repo není skryté, zdroj je veřejný.
-- **GitHub Pages publikuje jen výstup.** Workflow `nasazeni-cz.yml`
-  postaví `sites/cz/dist` a pošle ho jako Pages artifact. Do publikační
-  větve se nikdy necommituje zdrojový kód ani `node_modules`.
-- **`Staticke-weby/LOCALinference.eu`** — EN mutace se stejným
-  principem: zdroj v repu, na Pages jen výstup. Vznikne po stabilizaci CZ.
-- **Vlastní domény:** `www.localinference.cz` (v
-  `sites/cz/public/CNAME`), `www.localinference.eu` později.
+**Jedno zdrojové repo, dvě mutace ve složkách, dvě domény.**
+
+- **Zdrojový repo `Staticke-weby/LOCALinference.cz`** — celý web: společná
+  data, obsah i obě mutace v `sites/cz/` a (později) `sites/eu/`. Repo není
+  skryté, zdroj je veřejný.
+- **CZ:** workflow `nasazeni-cz.yml` postaví `sites/cz/dist` a pošle ho
+  jako Pages artifact. Na web jde jen výstup, nikdy zdroj ani `node_modules`.
+- **EN:** až vznikne `sites/eu`, workflow `nasazeni-eu.yml` postaví
+  `sites/eu/dist` a pošle ho do `Staticke-weby/LOCALinference.eu`, odkud
+  ho servíruje GitHub Pages. Zdroj EN zůstává tady; `.eu` repo je jen
+  výstup. Vyžaduje secret `PUBLIKACE_TOKEN` (fine-grained PAT s právem
+  Contents: Read and write na `.eu` repo).
+- **Proč jedno repo:** data o zařízeních, cenách a měřeních jsou společná.
+  Jeden zdroj pravdy znamená, že si CZ a EN nemohou začít odporovat.
+- **Domény:** `www.localinference.cz` a `www.localinference.eu`, obě
+  v Pages nastavení repa, které je publikuje.
 - CZ je výchozí a vzniká první. EN se přidá po stabilizaci obsahu.
 
 ---
