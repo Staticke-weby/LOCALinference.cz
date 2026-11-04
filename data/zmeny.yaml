@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Cenové tabulky jen s koncovou cenou včetně DPH"
+  co_se_zmenilo: "Z OEM tabulek zmizel sloupec Dostupnost a Cena bez DPH; zůstává jen cena včetně DPH. Odstraněny poznámky o affiliate odkazech a štítek u odkazů na ceny — vysvětlení zůstává v právních informacích. U Strix Halo a DGX Spark OEM doplněny texty bez uvádění cen bez DPH."
+  dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/strix-halo-oem, zarizeni/rtx-spark-notebook-oem, vyber/rozpocet]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Odkazy na aktuální ceny na Alza.cz"
   co_se_zmenilo: "Na 22 stránek přibyl odkaz na aktuální ceny v kategorii Alza.cz s různou textací (Ověřit cenu, Ceny a dostupnost, Kolik stojí dnes…). Odkaz je vždy affiliate a označený štítkem. Patička místo „Co nevíme“ odkazuje na Zdroje."
   dotcene_stranky: [index, zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook, zarizeni/rtx-spark-mini, vyber/rozpocet, temata]

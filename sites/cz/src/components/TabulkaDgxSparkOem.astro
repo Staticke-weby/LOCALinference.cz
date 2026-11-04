@@ -12,8 +12,6 @@ const stroje = getDgxSparkOem();
         <th>Výrobce</th>
         <th>Úložiště</th>
         <th>Cena vč. DPH</th>
-        <th>Cena bez DPH</th>
-        <th>Dostupnost</th>
       </tr>
     </thead>
     <tbody>
@@ -32,8 +30,6 @@ const stroje = getDgxSparkOem();
               <span class="li-pozn"> (původně {formatKc(s.puvodni_cena_czk)} Kč)</span>
             ) : null}
           </td>
-          <td class="li-cislo">{formatKc(s.cena_czk_bez_dph)} Kč</td>
-          <td>{s.dostupnost}</td>
         </tr>
       ))}
     </tbody>

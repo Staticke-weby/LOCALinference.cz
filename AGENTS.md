@@ -143,9 +143,12 @@ Toto je nejdůležitější pravidlo projektu.
   - s poznámkou „bez dopravy, přepočet je orientační“.
   - Kurzy drž v `data/kurzy.yaml`; nepřepočítávej ručně v textu.
 - **Affiliate odkazy:** jen na **kategorii** prodejce, nikdy na konkrétní
-  produkt — ten se mění a vyprodává. V URL jsou affiliate parametry,
-  odkaz má `rel="sponsored"` a na stránce je věta, že jde o affiliate.
-  Provize nesmí ovlivnit hodnocení ani pořadí zařízení.
+  produkt — ten se mění a vyprodává. V URL jsou affiliate parametry a
+  odkaz má `rel="sponsored"`. Vysvětlení je na `/o-webu/pravni/`, štítek
+  u každého odkazu není potřeba. Provize nesmí ovlivnit hodnocení ani
+  pořadí zařízení.
+- **Ceny v tabulkách:** jen **koncová cena včetně DPH**. Sloupce „bez DPH“
+  a „dostupnost“ neuváděj — čtenáře zajímá, co zaplatí.
 - **Kontext:** maximální kontext není doporučený provozní bod. U každého
   modelu uváděj tři čísla: **nativní maximum**, **doporučený provozní kontext**
   a **reálně udržitelný kontext na daném zařízení**. Kvalita a rychlost jsou

@@ -13,8 +13,6 @@ const stroje = getStrixHaloOem();
         <th>Paměť</th>
         <th>Úložiště</th>
         <th>Cena vč. DPH</th>
-        <th>Cena bez DPH</th>
-        <th>Dostupnost</th>
       </tr>
     </thead>
     <tbody>
@@ -31,10 +29,6 @@ const stroje = getStrixHaloOem();
           <td class="li-cislo">
             {s.cena_czk_s_dph != null ? `${formatKc(s.cena_czk_s_dph)} Kč` : '—'}
           </td>
-          <td class="li-cislo">
-            {s.cena_czk_bez_dph != null ? `${formatKc(s.cena_czk_bez_dph)} Kč` : '—'}
-          </td>
-          <td>{s.dostupnost}</td>
         </tr>
       ))}
     </tbody>
