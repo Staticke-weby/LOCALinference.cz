@@ -69,6 +69,24 @@ export type Model = {
   overeno: string | Date;
 };
 
+export type DgxSparkOem = {
+  id: string;
+  nazev: string;
+  vyrobce: string;
+  pamet_gb: number;
+  uloziste_gb: number;
+  cena_czk_s_dph: number;
+  cena_czk_bez_dph: number;
+  puvodni_cena_czk?: number | null;
+  sleva_procent?: number | null;
+  dostupnost: string;
+  prodejce: string;
+  objednaci_kod?: string;
+  zdroj: string;
+  overeno: string | Date;
+  poznamka?: string;
+};
+
 export type Konfigurace = {
   id: string;
   zarizeni: string;
@@ -126,6 +144,7 @@ export type Zdroj = {
   co_sledujeme: string[];
   frekvence: string;
   priorita: string;
+  kontrola?: 'auto' | 'manual';
   posledni_kontrola: string | Date;
   stav: string;
   poznamka?: string;
@@ -208,6 +227,16 @@ export function cenaKonfiguraceText(k: Konfigurace): { usd: string; czk: string;
       ? `≈ ${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(czkOd)} Kč`
       : `≈ ${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(czkOd)}–${new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(czkDo)} Kč`;
   return { usd, czk, zdroj: k.zdroj, poznamka: k.cena_pozn ?? '' };
+}
+
+export function getDgxSparkOem(): DgxSparkOem[] {
+  return (load<DgxSparkOem[]>('dgx-spark-oem.yaml') ?? []).sort(
+    (a, b) => a.cena_czk_s_dph - b.cena_czk_s_dph || b.uloziste_gb - a.uloziste_gb,
+  );
+}
+
+export function formatKc(value: number): string {
+  return new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 0 }).format(value);
 }
 
 export function getModely(): Model[] {

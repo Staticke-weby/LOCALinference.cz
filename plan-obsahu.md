@@ -183,6 +183,7 @@ TTFT, unified memory, vLLM, váhy.
 | Stránka | Verdikt | Stav |
 |---|---|---|
 | `zarizeni/dgx-spark` | Nejintegrovanější 128GB krabice, po zdražení drahá | ⬜ |
+| `zarizeni/dgx-spark-oem` | 15 OEM variant GB10 s českými cenami | 🟡 |
 | `zarizeni/rtx-spark-mini` | Stejná paměť, vyšší bandwidth, nižší cena než DGX Spark | ⬜ |
 | `zarizeni/rtx-spark-notebook` | Dedikovaný výkon na cesty, ale throttling a auditujelnost | 🟡 |
 | `zarizeni/strix-halo` | Nejlevnější cesta k 64/128 GB, ROCm je druhá liga | ⬜ |

@@ -1,0 +1,102 @@
+---
+title: "DGX Spark OEM: české ceny 128GB GB10 strojů"
+description: "Přehled 15 OEM variant DGX Spark / GB10 s českými cenami z Alza.cz k 4. 11. 2026. Ceny včetně a bez DPH, dostupnost a co mají společné."
+last_verified: 2026-11-04
+sidebar:
+  order: 2
+---
+
+import TabulkaDgxSparkOem from '../../../components/TabulkaDgxSparkOem.astro';
+
+# DGX Spark OEM a české ceny
+
+Na českém trhu se prodává **mnoho OEM variant stejné platformy NVIDIA
+GB10** — pod jmény ASUS Ascent GX10, Lenovo ThinkStation PGX, HP ZGX
+Nano, Dell Pro Max, GIGABYTE AI TOP ATOM, Acer Veriton GN100, PNY
+a NVIDIA DGX Spark. Všechny mají **128 GB unified paměti**, GB10 Grace
+Blackwell, DGX OS a stejný software stack.
+
+Následující tabulka je **maloobchodní nabídka Alza.cz ze 4. 11. 2026**.
+Ceny jsou uvedené včetně DPH i bez DPH. Nejsou to US listové ceny
+a v čase se mění.
+
+> **Toto jsou převzaté ceny, ne naše měření.** Ceny jsou z veřejné
+> nabídky prodejce k uvedenému datu. Před nákupem ověřte aktuální cenu
+> a dostupnost. Podrobnosti v [metodice](/o-webu/metodika/).
+
+<TabulkaDgxSparkOem />
+
+## Co z tabulky plyne
+
+- **Nejlevnější je ASUS Ascent GX10 1TB za 162 990 Kč** vč. DPH
+  (134 702 Kč bez DPH).
+- **4TB verze začínají na 179 990 Kč** — HP ZGX Nano a GIGABYTE AI TOP
+  ATOM. Za stejnou cenu dostanete čtyřnásobek úložiště proti 1TB ASUS.
+- **NVIDIA DGX Spark 4TB je za 218 990 Kč** dražší než některé OEM 4TB
+  varianty. Platíte referenční stroj a přímou podporu NVIDIA.
+- **Lenovo ThinkStation PGX** má on-site servis; to může být důvod
+  připlatit si za 1TB/2TB variantu.
+- **Rozdíly mezi stroji jsou hlavně v úložišti, chlazení, záruce
+  a dostupnosti**, ne ve výpočetním výkonu. Model, který se vejde do
+  128 GB, poběží na všech stejně rychle v rámci odchylek měření.
+
+## Cena s DPH a bez DPH
+
+Všechny ceny v tabulce jsou z českého maloobchodu. DPH je 21 %, takže
+cena bez DPH je zhruba 82,6 % ceny s DPH. Pro firmu, která si DPH
+odečte, je rozhodující sloupec **bez DPH**; pro soukromou osobu
+sloupec **s DPH**.
+
+## Proč je česká cena vyšší než US listovka
+
+NVIDIA uvádí 128GB DGX Spark za **6 950 USD** bez DPH. Česká
+maloobchodní cena je vyšší i po odečtení DPH — rozdíl tvoří doprava,
+celní a logistické náklady, marže prodejce a někdy rozšířená záruka.
+**Nepřepočítávejte českou cenu na USD a neporovnávejte ji přímo s US
+listovkou**; nejsou to stejné podmínky.
+
+## Co mají všechny varianty společné
+
+| Parametr | Hodnota |
+|---|---|
+| Paměť | 128 GB unified LPDDR5X |
+| Bandwidth | 273 GB/s |
+| Čip | NVIDIA GB10 Grace Blackwell |
+| AI výkon | až 1 PFLOP FP4 |
+| Modely na jeden stroj | až ~200B parametrů |
+| Cluster | 2 kusy propojené ConnectX-7 |
+| OS | NVIDIA DGX OS |
+| Software | CUDA, PyTorch, TensorFlow, NIM, vLLM, llama.cpp |
+
+**Cluster není náš katalog.** Dva spojené stroje zvládnou větší modely,
+ale vyžadují pool a tensor parallel mezi boxy. Na webu držíme jen modely,
+které se vejdou na **jedno zařízení** včetně KV cache.
+
+## Na co si dát pozor
+
+- **Dostupnost** — část položek je „na objednávku“ nebo „na cestě“.
+  Termín se může posunout.
+- **Úložiště** — 1TB verze je nejlevnější, ale modely a KV cache zabírají
+  místo; 4TB je pohodlnější, pokud budete držet víc kvantizací.
+- **Záruka** — u Lenovo je on-site servis, u ostatních se liší; konkrétní
+  podmínky `[DOPLNIT: ověřit u prodejce]`.
+- **Ceny** — některé jsou akční a mohou se změnit během dne.
+
+## Kudy dál
+
+- [DGX Spark](/zarizeni/dgx-spark/) — platforma, měření a modely.
+- [Konfigurace 64GB+](/zarizeni/konfigurace/) — co se vejde na 128 GB.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model pro 128 GB.
+- [Srovnání zařízení](/zarizeni/srovnani/) — parametry a ceny.
+
+## Zdroje
+
+- [Alza.cz — AI počítače NVIDIA](https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm)
+- [Alza.cz — NVIDIA DGX Spark 4TB](https://www.alza.cz/nvidia-dgx-spark-d13165934.htm)
+- [Alza.cz — ASUS Ascent GX10 1TB](https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm)
+- [Alza.cz — ASUS Ascent GX10 4TB](https://www.alza.cz/asus-ascent-gx10-gg0027bn-d13224332.htm)
+- [Alza.cz — PNY NVIDIA DGX Spark 4TB](https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm)
+- [NVIDIA DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [NVIDIA blog — DGX Spark 64 GB](https://blogs.nvidia.com/blog/local-ai-dgx-spark-64gb-sync/)
+
+*Naposledy ověřeno: 4. 11. 2026. Ceny jsou orientační a mohou se změnit.*

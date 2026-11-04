@@ -456,3 +456,63 @@
   priorita: nizka
   posledni_kontrola: 2026-11-04
   stav: ok
+
+- id: alza-ai-nvidia
+  nazev: Alza.cz - AI počítače NVIDIA
+  url: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  typ: html
+  co_sledujeme: [cena, dostupnost, konfigurace, oem]
+  frekvence: tydne
+  priorita: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
+
+- id: alza-dgx-spark
+  nazev: Alza.cz - NVIDIA DGX Spark 4TB
+  url: https://www.alza.cz/nvidia-dgx-spark-d13165934.htm
+  typ: html
+  co_sledujeme: [cena, dostupnost, konfigurace]
+  frekvence: tydne
+  priorita: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
+
+- id: alza-asus-gx10-1tb
+  nazev: Alza.cz - ASUS Ascent GX10 1TB
+  url: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
+  typ: html
+  co_sledujeme: [cena, dostupnost, konfigurace]
+  frekvence: tydne
+  priorita: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
+
+- id: alza-asus-gx10-4tb
+  nazev: Alza.cz - ASUS Ascent GX10 4TB
+  url: https://www.alza.cz/asus-ascent-gx10-gg0027bn-d13224332.htm
+  typ: html
+  co_sledujeme: [cena, dostupnost, konfigurace]
+  frekvence: tydne
+  priorita: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
+
+- id: alza-pny-dgx
+  nazev: Alza.cz - PNY NVIDIA DGX Spark 4TB
+  url: https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm
+  typ: html
+  co_sledujeme: [cena, dostupnost, konfigurace]
+  frekvence: tydne
+  priorita: nizka
+  kontrola: manual
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."

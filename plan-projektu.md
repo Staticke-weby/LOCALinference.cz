@@ -102,6 +102,7 @@ být hluboký, ale nesmí být arogantní.
 │
 ├── /zarizeni/                  Katalog hotových zařízení
 │   ├── dgx-spark               64/128 GB, 273 GB/s, 4 999–6 950 USD
+│   ├── dgx-spark-oem           15 GB10 OEM variant, české ceny
 │   ├── rtx-spark-mini          64/128 GB, 300 GB/s, 5 999 USD (128)
 │   ├── rtx-spark-notebook      64/128 GB, 300 GB/s, 4 299–6 999 USD
 │   ├── strix-halo              64/128 GB, 256 GB/s, 1 959–5 349 USD

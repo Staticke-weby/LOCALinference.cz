@@ -26,6 +26,26 @@ Rozšíření katalogu na **všechny konfigurace s 64 GB a více** unified pamě
 
 ---
 
+## 2026-11-04 — české ceny GB10 OEM
+
+Uživatel dodal nabídku Alza.cz s **15 GB10 stroji** (ASUS, Lenovo, HP,
+Dell, GIGABYTE, Acer, PNY, NVIDIA). Založen `data/dgx-spark-oem.yaml`
+a stránka `/zarizeni/dgx-spark-oem/`.
+
+- Ceny jsou **včetně i bez DPH**, z nabídky ze 4. 11. 2026. Jsou to
+  maloobchodní ceny, ne US listovky; nepřepočítáváme je na USD.
+- Všechny mají 128 GB, GB10 a DGX OS; liší se úložištěm, chlazením,
+  zárukou a dostupností.
+- Alza blokuje roboty (HTTP 403), proto mají zdroje `kontrola: manual`
+  a `check:zdroje` je přeskočí s poznámkou. Ceny se ověřují ručně.
+- **Pozor na rozpor:** živé Alza stránky mohou mít jiné ceny než tento
+  snapshot (během psaní se lišily u NVIDIA a ASUS). Web uvádí datum
+  snapshotu a čtenář si má cenu ověřit před nákupem.
+- Cluster dvou strojů (až 405B) je mimo katalog: vyžaduje pool, ne
+  jedno zařízení.
+
+---
+
 ## 2026-11-04 — zpětná vazba k obsahu
 
 Zadání doplněno o redakční pravidla:

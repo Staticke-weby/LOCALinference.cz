@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 import { z } from 'zod';
-import { konfigurace, kurz, mereni, model, zdroj, zarizeni, zmena } from './schema.mjs';
+import { dgxSparkOem, konfigurace, kurz, mereni, model, zdroj, zarizeni, zmena } from './schema.mjs';
 
 const root = process.cwd();
 const dataDir = path.join(root, 'data');
@@ -81,6 +81,7 @@ function daysOld(date) {
 
 const zarizeniData = readYaml('zarizeni.yaml');
 const konfiguraceData = readYaml('konfigurace.yaml');
+const dgxSparkOemData = readYaml('dgx-spark-oem.yaml');
 const modelyData = readYaml('modely.yaml');
 const mereniData = readYaml('mereni.yaml');
 const zdrojeData = readYaml('zdroje.yaml');
@@ -89,6 +90,7 @@ const zmenyData = readYaml('zmeny.yaml');
 
 const zarizeniList = validate('data/zarizeni.yaml', zarizeni, zarizeniData);
 const konfiguraceList = validate('data/konfigurace.yaml', konfigurace, konfiguraceData);
+const dgxSparkOemList = validate('data/dgx-spark-oem.yaml', dgxSparkOem, dgxSparkOemData);
 const modelyList = validate('data/modely.yaml', model, modelyData);
 const mereniList = validate('data/mereni.yaml', mereni, mereniData);
 const zdrojeList = validate('data/zdroje.yaml', zdroj, zdrojeData);
@@ -97,6 +99,7 @@ const zmenyList = validate('data/zmeny.yaml', zmena, zmenyData);
 
 checkDuplicates('data/zarizeni.yaml', zarizeniList);
 checkDuplicates('data/konfigurace.yaml', konfiguraceList);
+checkDuplicates('data/dgx-spark-oem.yaml', dgxSparkOemList);
 checkDuplicates('data/modely.yaml', modelyList);
 checkDuplicates('data/mereni.yaml', mereniList);
 checkDuplicates('data/zdroje.yaml', zdrojeList);
@@ -116,6 +119,12 @@ for (const k of konfiguraceList) {
   }
 }
 
+for (const o of dgxSparkOemList) {
+  if (o.pamet_gb !== 128) warn(`data/dgx-spark-oem.yaml / ${o.id}: GB10 stroj má obvykle 128 GB`);
+  const pomer = o.cena_czk_s_dph / o.cena_czk_bez_dph;
+  if (pomer < 1.15 || pomer > 1.25) warn(`data/dgx-spark-oem.yaml / ${o.id}: poměr ceny s/bez DPH je ${pomer.toFixed(3)}`);
+}
+
 for (const m of mereniList) {
   if (!zarizeniIds.has(m.zarizeni)) fail(`data/mereni.yaml / ${m.id}: neznámé zařízení ${m.zarizeni}`);
   if (!modelIds.has(m.model)) fail(`data/mereni.yaml / ${m.id}: neznámý model ${m.model}`);
@@ -133,6 +142,7 @@ for (const m of mereniList) {
 for (const [name, items] of [
   ['data/zarizeni.yaml', zarizeniList],
   ['data/konfigurace.yaml', konfiguraceList],
+  ['data/dgx-spark-oem.yaml', dgxSparkOemList],
   ['data/modely.yaml', modelyList],
   ['data/mereni.yaml', mereniList],
   ['data/zdroje.yaml', zdrojeList],
@@ -166,6 +176,7 @@ const registered = new Set(zdrojeList.map((z) => z.url));
 const referenced = new Set();
 for (const z of zarizeniList) for (const u of z.zdroje) referenced.add(u);
 for (const k of konfiguraceList) referenced.add(k.zdroj);
+for (const o of dgxSparkOemList) referenced.add(o.zdroj);
 for (const m of modelyList) for (const u of m.zdroje) referenced.add(u);
 for (const m of mereniList) referenced.add(m.zdroj);
 for (const u of referenced) {
@@ -174,7 +185,7 @@ for (const u of referenced) {
 }
 
 console.log('');
-console.log(`Data: ${zarizeniList.length} zařízení, ${konfiguraceList.length} konfigurací, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${zmenyList.length} změn.`);
+console.log(`Data: ${zarizeniList.length} zařízení, ${konfiguraceList.length} konfigurací, ${dgxSparkOemList.length} GB10 OEM SKU, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${zmenyList.length} změn.`);
 if (errors === 0) console.log(`✓ Data jsou v pořádku (${warnings} varování).`);
 else console.error(`✗ ${errors} chyb, ${warnings} varování.`);
 

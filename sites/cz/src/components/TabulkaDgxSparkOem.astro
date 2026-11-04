@@ -1,0 +1,60 @@
+---
+import { formatCislo, formatKc, getDgxSparkOem } from '../lib/data';
+
+const stroje = getDgxSparkOem();
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Stroj</th>
+        <th>Výrobce</th>
+        <th>Úložiště</th>
+        <th>Cena vč. DPH</th>
+        <th>Cena bez DPH</th>
+        <th>Dostupnost</th>
+      </tr>
+    </thead>
+    <tbody>
+      {stroje.map((s, i) => (
+        <tr class={i === 0 ? 'li-nejlevnejsi' : undefined}>
+          <td>
+            <a href={s.zdroj} target="_blank" rel="noopener noreferrer">{s.nazev}</a>
+            {i === 0 ? <span class="li-stitek">nejlevnější</span> : null}
+            {s.objednaci_kod ? <span class="li-pozn"> · {s.objednaci_kod}</span> : null}
+          </td>
+          <td>{s.vyrobce}</td>
+          <td class="li-cislo">{formatCislo(s.uloziste_gb / 1024)} TB</td>
+          <td class="li-cislo">
+            {formatKc(s.cena_czk_s_dph)} Kč
+            {s.puvodni_cena_czk ? (
+              <span class="li-pozn"> (původně {formatKc(s.puvodni_cena_czk)} Kč)</span>
+            ) : null}
+          </td>
+          <td class="li-cislo">{formatKc(s.cena_czk_bez_dph)} Kč</td>
+          <td>{s.dostupnost}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+  .li-nejlevnejsi {
+    background: var(--li-copper-low, rgba(205, 127, 50, 0.08));
+  }
+  .li-stitek {
+    display: inline-block;
+    margin-left: 0.4rem;
+    padding: 0.02rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid var(--li-copper);
+    color: var(--li-copper-high);
+    font-size: var(--sl-text-xs);
+    vertical-align: middle;
+  }
+</style>

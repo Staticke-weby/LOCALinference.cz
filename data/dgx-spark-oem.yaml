@@ -1,0 +1,215 @@
+# České maloobchodní ceny strojů s NVIDIA GB10 (DGX Spark platforma).
+# Ceny jsou z nabídky Alza.cz ze 4. 11. 2026, včetně a bez DPH.
+# Nejsou to US listové ceny; ty jsou v data/zarizeni.yaml a data/konfigurace.yaml.
+# Ceny kolísají a některé položky jsou akční. Před nákupem ověřte aktuální stav.
+
+- id: asus-ascent-gx10-1tb
+  nazev: ASUS Ascent GX10-GG0003BN 1TB
+  vyrobce: ASUS
+  pamet_gb: 128
+  uloziste_gb: 1024
+  cena_czk_s_dph: 162990
+  cena_czk_bez_dph: 134702
+  dostupnost: "Skladem > 5 ks"
+  prodejce: Alza.cz
+  objednaci_kod: NRn15002
+  zdroj: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
+  overeno: 2026-11-04
+  poznamka: "Nejlevnější 128GB GB10 stroj v této nabídce."
+
+- id: lenovo-thinkstation-pgx-1tb
+  nazev: Lenovo ThinkStation PGX 1TB
+  vyrobce: Lenovo
+  pamet_gb: 128
+  uloziste_gb: 1024
+  cena_czk_s_dph: 176603
+  cena_czk_bez_dph: 145953
+  puvodni_cena_czk: 179990
+  sleva_procent: 1
+  dostupnost: "Skladem > 5 ks"
+  prodejce: Alza.cz
+  objednaci_kod: TI100c5d0z05
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04
+  poznamka: "Akční cena -1 %; on-site servis."
+
+- id: hp-zgx-nano-g1n-4tb
+  nazev: HP ZGX Nano G1n AI 4TB
+  vyrobce: HP
+  pamet_gb: 128
+  uloziste_gb: 4096
+  cena_czk_s_dph: 179990
+  cena_czk_bez_dph: 148752
+  dostupnost: "Na objednávku – termín upřesníme"
+  prodejce: Alza.cz
+  objednaci_kod: HPBD5024d2
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04
+
+- id: gigabyte-ai-top-atom-4tb
+  nazev: GIGABYTE AI TOP ATOM DGX Spark 4TB
+  vyrobce: GIGABYTE
+  pamet_gb: 128
+  uloziste_gb: 4096
+  cena_czk_s_dph: 179990
+  cena_czk_bez_dph: 148752
+  dostupnost: "Skladem > 5 ks"
+  prodejce: Alza.cz
+  objednaci_kod: SG100x2
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04
+
+- id: hp-zgx-nano-g1n-2tb
+  nazev: HP ZGX Nano G1n AI 2TB
+  vyrobce: HP
+  pamet_gb: 128
+  uloziste_gb: 2048
+  cena_czk_s_dph: 184990
+  cena_czk_bez_dph: 152884
+  dostupnost: "Na objednávku – termín upřesníme"
+  prodejce: Alza.cz
+  objednaci_kod: HPBD5024d3
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04
+
+- id: dell-pro-max-gb10-2tb
+  nazev: Dell Pro Max s GB10 FCM1253 2TB
+  vyrobce: Dell
+  pamet_gb: 128
+  uloziste_gb: 2048
+  cena_czk_s_dph: 188990
+  cena_czk_bez_dph: 156190
+  dostupnost: "Skladem > 5 ks u dodavatele"
+  prodejce: Alza.cz
+  objednaci_kod: TD140s01c7
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04
+
+- id: lenovo-thinkstation-pgx-2tb
+  nazev: Lenovo ThinkStation PGX 2TB
+  vyrobce: Lenovo
+  pamet_gb: 128
+  uloziste_gb: 2048
+  cena_czk_s_dph: 196050
+  cena_czk_bez_dph: 162025
+  puvodni_cena_czk: 199990
+  sleva_procent: 1
+  dostupnost: "Skladem > 5 ks"
+  prodejce: Alza.cz
+  objednaci_kod: TI100c5d0z07
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04
+  poznamka: "Akční cena -1 %; on-site servis."
+
+- id: hp-zgx-nano-g1n-1tb
+  nazev: HP ZGX Nano G1n AI 1TB
+  vyrobce: HP
+  pamet_gb: 128
+  uloziste_gb: 1024
+  cena_czk_s_dph: 201990
+  cena_czk_bez_dph: 166934
+  dostupnost: "Na objednávku – termín upřesníme"
+  prodejce: Alza.cz
+  objednaci_kod: HPBD5024d4
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04
+
+- id: nvidia-dgx-spark-4tb
+  nazev: NVIDIA DGX Spark 4TB
+  vyrobce: NVIDIA
+  pamet_gb: 128
+  uloziste_gb: 4096
+  cena_czk_s_dph: 218990
+  cena_czk_bez_dph: 180983
+  dostupnost: "Skladem > 5 ks"
+  prodejce: Alza.cz
+  objednaci_kod: NRn2000
+  zdroj: https://www.alza.cz/nvidia-dgx-spark-d13165934.htm
+  overeno: 2026-11-04
+  poznamka: "Referenční DGX Spark; v této nabídce dražší než některé OEM 4TB varianty."
+
+- id: asus-ascent-gx10-2tb
+  nazev: ASUS Ascent GX10-GG0026BN 2TB
+  vyrobce: ASUS
+  pamet_gb: 128
+  uloziste_gb: 2048
+  cena_czk_s_dph: 219990
+  cena_czk_bez_dph: 181810
+  puvodni_cena_czk: 234990
+  sleva_procent: 6
+  dostupnost: "Na cestě 5 ks, očekáváme 12. 11. 2026"
+  prodejce: Alza.cz
+  objednaci_kod: NRn15003
+  zdroj: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
+  overeno: 2026-11-04
+  poznamka: "Akční cena -6 %."
+
+- id: acer-veriton-gn100-4tb
+  nazev: Acer Veriton GN100 AI Mini Workstation 4TB
+  vyrobce: Acer
+  pamet_gb: 128
+  uloziste_gb: 4096
+  cena_czk_s_dph: 225847
+  cena_czk_bez_dph: 186650
+  puvodni_cena_czk: 229990
+  sleva_procent: 1
+  dostupnost: "Na objednávku – termín upřesníme"
+  prodejce: Alza.cz
+  objednaci_kod: TC32k2h9p2
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04
+  poznamka: "Akční cena -1 %."
+
+- id: pny-dgx-spark-4tb
+  nazev: PNY NVIDIA DGX Spark 4TB
+  vyrobce: PNY
+  pamet_gb: 128
+  uloziste_gb: 4096
+  cena_czk_s_dph: 229990
+  cena_czk_bez_dph: 190074
+  dostupnost: "Na cestě > 5 ks, očekáváme 10. 11. 2026"
+  prodejce: Alza.cz
+  objednaci_kod: NRn2001
+  zdroj: https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm
+  overeno: 2026-11-04
+
+- id: dell-pro-max-gb10-4tb
+  nazev: Dell Pro Max s GB10 FCM1253 4TB
+  vyrobce: Dell
+  pamet_gb: 128
+  uloziste_gb: 4096
+  cena_czk_s_dph: 229990
+  cena_czk_bez_dph: 190074
+  dostupnost: "Skladem 2 ks u dodavatele"
+  prodejce: Alza.cz
+  objednaci_kod: TD140s01c8
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04
+
+- id: asus-ascent-gx10-4tb
+  nazev: ASUS Ascent GX10-GG0027BN 4TB
+  vyrobce: ASUS
+  pamet_gb: 128
+  uloziste_gb: 4096
+  cena_czk_s_dph: 229990
+  cena_czk_bez_dph: 190074
+  puvodni_cena_czk: 239990
+  sleva_procent: 4
+  dostupnost: "Skladem 4 ks"
+  prodejce: Alza.cz
+  objednaci_kod: NRn15004
+  zdroj: https://www.alza.cz/asus-ascent-gx10-gg0027bn-d13224332.htm
+  overeno: 2026-11-04
+  poznamka: "Akční cena -4 %."
+
+- id: lenovo-thinkstation-pgx-4tb
+  nazev: Lenovo ThinkStation PGX 4TB
+  vyrobce: Lenovo
+  pamet_gb: 128
+  uloziste_gb: 4096
+  cena_czk_s_dph: 249990
+  cena_czk_bez_dph: 206603
+  dostupnost: "Doručení na prodejnu zdarma"
+  prodejce: Alza.cz
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+  overeno: 2026-11-04

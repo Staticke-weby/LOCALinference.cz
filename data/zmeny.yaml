@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: cena
+  titulek: "České ceny 15 GB10 OEM strojů"
+  co_se_zmenilo: "Nová stránka /zarizeni/dgx-spark-oem/ přináší ceny ASUS, Lenovo, HP, Dell, GIGABYTE, Acer, PNY a NVIDIA z Alza.cz k 4. 11. 2026, včetně a bez DPH."
+  dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/dgx-spark]
+  zdroj: https://www.alza.cz/ai-pc/nvidia/18907789-v1555.htm
+
+- datum: 2026-11-04
   typ: model
   titulek: "Gemma 4 26B A4B pro 64GB boxy"
   co_se_zmenilo: "Do katalogu přidána Gemma 4 26B A4B (25,2B / 3,8B, 256k, Apache-2.0) jako doporučený model pro 64GB konfigurace. Qwen3.6 35B-A3B je nově také doporučený pro 64 GB."

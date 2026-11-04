@@ -89,6 +89,28 @@ export const konfigurace = z
     message: 'cena_od_usd musí být <= cena_do_usd',
   });
 
+export const dgxSparkOem = z
+  .object({
+    id,
+    nazev: z.string().min(2),
+    vyrobce: z.string().min(1),
+    pamet_gb: z.number().positive(),
+    uloziste_gb: z.number().positive(),
+    cena_czk_s_dph: z.number().positive(),
+    cena_czk_bez_dph: z.number().positive(),
+    puvodni_cena_czk: z.number().positive().nullable().optional(),
+    sleva_procent: z.number().min(0).max(100).nullable().optional(),
+    dostupnost: z.string().min(1),
+    prodejce: z.string().min(1),
+    objednaci_kod: z.string().optional(),
+    zdroj: url,
+    overeno: datum,
+    poznamka: z.string().optional(),
+  })
+  .refine((v) => v.cena_czk_bez_dph < v.cena_czk_s_dph, {
+    message: 'cena bez DPH musí být nižší než cena s DPH',
+  });
+
 export const model = z.object({
   id,
   nazev: z.string().min(2),
@@ -172,6 +194,7 @@ export const zdroj = z.object({
   frekvence: z.enum(['denne', 'tydne', 'mesicne', 'ctvrtletne']),
   priorita: z.enum(['vysoka', 'stredni', 'nizka']),
   duveryhodnost: z.enum(['vysoka', 'stredni', 'nizka']).optional(),
+  kontrola: z.enum(['auto', 'manual']).default('auto'),
   posledni_kontrola: datum,
   stav: z.enum(['ok', 'novinka', 'chyba']),
   poznamka: z.string().optional(),
