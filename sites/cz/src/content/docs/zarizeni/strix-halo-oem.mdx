@@ -1,0 +1,90 @@
+---
+title: "Strix Halo OEM: české ceny 128GB boxů"
+description: "Acemagic A10A a Acer Veriton RA110 s Ryzen AI Max+ 395, 128GB a 2TB za 119 990 Kč včetně DPH. Přehled českých cen a co na tom poběží."
+last_verified: 2026-11-04
+sidebar:
+  order: 4
+---
+
+import TabulkaStrixHaloOem from '../../../components/TabulkaStrixHaloOem.astro';
+
+# Strix Halo OEM a české ceny
+
+Na českém trhu se objevily **128GB boxy s AMD Ryzen AI Max+ 395**
+(Strix Halo) za výrazně nižší cenu než GB10 stroje. Acemagic A10A
+a Acer Veriton RA110 stojí **119 990 Kč včetně DPH** (99 165 Kč bez DPH)
+a mají 2TB SSD i Windows 11 Pro.
+
+Tabulka je **maloobchodní nabídka Alza.cz ze 4. 11. 2026**. Ceny se mění;
+před nákupem je ověřte.
+
+> **Toto jsou převzaté ceny, ne naše měření.** Ceny jsou z veřejné
+> nabídky prodejce k uvedenému datu. Podrobnosti v
+> [metodice](/o-webu/metodika/).
+
+<TabulkaStrixHaloOem />
+
+## Co z tabulky plyne
+
+- **Acemagic A10A a Acer Veriton RA110 jsou za stejnou cenu** 119 990 Kč
+  vč. DPH. Acemagic je skladem, Acer má termín 29. 1. 2027.
+- **Je to o 43 000 Kč méně** než nejlevnější GB10 OEM v české nabídce
+  (ASUS Ascent GX10 1TB za 162 990 Kč). Za 128 GB a 2TB je to nejnižší
+  česká cena v katalogu.
+- **AMD Ryzen AI Halo** je v nabídce bez ceny a nedostupný; uvedený
+  „SSD 2 GB“ je téměř jistě překlep, očekáváme 2 TB.
+- **Nejde o stejný software stack.** Strix Halo je x86 s ROCm/Vulkan,
+  GB10 je Arm s CUDA a DGX OS. Cena je nižší, ale prefill a zralost
+  ovladačů jsou slabší.
+
+## Srovnání s GB10
+
+| Stroj | Paměť | Úložiště | Cena vč. DPH | Cena bez DPH |
+|---|---|---|---|---|
+| Acemagic A10A | 128 GB | 2 TB | 119 990 Kč | 99 165 Kč |
+| Acer Veriton RA110 | 128 GB | 2 TB | 119 990 Kč | 99 165 Kč |
+| ASUS Ascent GX10 1TB | 128 GB | 1 TB | 162 990 Kč | 134 702 Kč |
+| NVIDIA DGX Spark 4TB | 128 GB | 4 TB | 218 990 Kč | 180 983 Kč |
+
+**Rozdíl je 43 000 Kč** mezi Acemagicem a nejlevnějším GB10. Za to
+dostanete stejnou kapacitu paměti, ale jiný ekosystém. Pokud CUDA
+nepotřebujete, je Strix Halo jasně levnější cesta k 128 GB.
+
+## Co na tom poběží
+
+- **Qwen3.8 Flash Next** — 128 GB je minimum; vejde se v NVFP4 nebo
+  GGUF Q4. Na Strix Halu běží 36–79 tok/s podle enginu.
+- **Qwen3.6 35B-A3B** — Q4 s mmproj a 128k kontextem.
+- **Gemma 4 26B A4B** — Q4 s 128k kontextem.
+
+Přesné kombinace a paměťové rozpočty jsou v
+[přehledu konfigurací](/zarizeni/konfigurace/).
+
+## Na co si dát pozor
+
+- **Paměť je připájená.** Z 128 GB se nedá jít na 192 GB; 128 GB je strop.
+- **GPU pool** — u Strix Halo vidí GPU zhruba 96 GB ze 128 GB. Zbytek
+  je pro systém a CPU.
+- **ROCm** není tak zralý jako CUDA. Některé optimalizace (FP8 KV cache,
+  spekulativní dekódování) nemusí být dostupné.
+- **Prefill** je slabší než u GB10; dlouhé dokumenty znamenají delší
+  čekání na první token.
+- **Windows 11 Pro** je součástí ceny; pro llama.cpp a vLLM se častěji
+  používá Linux. Ověřte, co konkrétní box podporuje.
+
+## Kudy dál
+
+- [Strix Halo](/zarizeni/strix-halo/) — platforma, měření a modely.
+- [DGX Spark OEM](/zarizeni/dgx-spark-oem/) — české ceny GB10 strojů.
+- [Konfigurace 64GB+](/zarizeni/konfigurace/) — co se vejde na 128 GB.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model pro 128 GB.
+
+## Zdroje
+
+- [Alza.cz — AI počítače](https://www.alza.cz/ai-pc/18907789.htm)
+- [Alza.cz — Acemagic A10A 128GB+2TB](https://www.alza.cz/acemagic-a10a-ryzen-ai-max-395-128gb-2tb-d13499997.htm)
+- [Acer — Veriton RA110 AI Mini Workstation](https://www.acer.com/us-en/desktops-and-all-in-ones/veriton-workstations/veriton-ra110-ai-mini-workstation)
+- [AMD — Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html)
+- [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+
+*Naposledy ověřeno: 4. 11. 2026. Ceny jsou orientační a mohou se změnit.*

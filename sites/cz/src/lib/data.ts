@@ -93,6 +93,22 @@ export type DgxSparkOem = {
   poznamka?: string;
 };
 
+export type StrixHaloOem = {
+  id: string;
+  nazev: string;
+  vyrobce: string;
+  pamet_gb: number;
+  uloziste_gb: number;
+  cena_czk_s_dph: number | null;
+  cena_czk_bez_dph: number | null;
+  dostupnost: string;
+  prodejce: string;
+  objednaci_kod?: string;
+  zdroj: string;
+  overeno: string | Date;
+  poznamka?: string;
+};
+
 export type Konfigurace = {
   id: string;
   zarizeni: string;
@@ -238,6 +254,14 @@ export function cenaKonfiguraceText(k: Konfigurace): { usd: string; czk: string;
 export function getDgxSparkOem(): DgxSparkOem[] {
   return (load<DgxSparkOem[]>('dgx-spark-oem.yaml') ?? []).sort(
     (a, b) => a.cena_czk_s_dph - b.cena_czk_s_dph || b.uloziste_gb - a.uloziste_gb,
+  );
+}
+
+export function getStrixHaloOem(): StrixHaloOem[] {
+  return (load<StrixHaloOem[]>('strix-halo-oem.yaml') ?? []).sort(
+    (a, b) =>
+      (a.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) - (b.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) ||
+      b.uloziste_gb - a.uloziste_gb,
   );
 }
 

@@ -527,3 +527,37 @@
   posledni_kontrola: 2026-11-04
   stav: ok
   poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
+
+- id: alza-ai-pc
+  nazev: Alza.cz - AI počítače
+  url: https://www.alza.cz/ai-pc/18907789.htm
+  typ: html
+  co_sledujeme: [cena, dostupnost, konfigurace, strix-halo]
+  frekvence: tydne
+  priorita: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
+
+- id: alza-acemagic-a10a
+  nazev: Alza.cz - Acemagic A10A 128GB+2TB
+  url: https://www.alza.cz/acemagic-a10a-ryzen-ai-max-395-128gb-2tb-d13499997.htm
+  typ: html
+  co_sledujeme: [cena, dostupnost, konfigurace]
+  frekvence: tydne
+  priorita: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
+
+- id: acer-veriton-ra110
+  nazev: Acer - Veriton RA110 AI Mini Workstation
+  url: https://www.acer.com/us-en/desktops-and-all-in-ones/veriton-workstations/veriton-ra110-ai-mini-workstation
+  typ: html
+  co_sledujeme: [parametry, pamet, uloziste, dostupnost]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok

@@ -187,6 +187,7 @@ TTFT, unified memory, vLLM, váhy.
 | `zarizeni/rtx-spark-mini` | Stejná paměť, vyšší bandwidth, nižší cena než DGX Spark | ⬜ |
 | `zarizeni/rtx-spark-notebook` | Dedikovaný výkon na cesty, ale throttling a auditujelnost | 🟡 |
 | `zarizeni/strix-halo` | Nejlevnější cesta k 64/128 GB, ROCm je druhá liga | ⬜ |
+| `zarizeni/strix-halo-oem` | 3 české 128GB Strix Halo konfigurace | 🟡 |
 | `zarizeni/konfigurace` | Kompletní seznam 64GB+ konfigurací a modelů pro 128k | 🟡 |
 | `zarizeni/srovnani` | Velká matice všech parametrů | ⬜ |
 

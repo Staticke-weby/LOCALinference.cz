@@ -111,6 +111,29 @@ export const dgxSparkOem = z
     message: 'cena bez DPH musí být nižší než cena s DPH',
   });
 
+export const strixHaloOem = z
+  .object({
+    id,
+    nazev: z.string().min(2),
+    vyrobce: z.string().min(1),
+    pamet_gb: z.number().positive(),
+    uloziste_gb: z.number().positive(),
+    cena_czk_s_dph: z.number().positive().nullable(),
+    cena_czk_bez_dph: z.number().positive().nullable(),
+    dostupnost: z.string().min(1),
+    prodejce: z.string().min(1),
+    objednaci_kod: z.string().optional(),
+    zdroj: url,
+    overeno: datum,
+    poznamka: z.string().optional(),
+  })
+  .refine(
+    (v) =>
+      (v.cena_czk_s_dph == null && v.cena_czk_bez_dph == null) ||
+      (v.cena_czk_s_dph != null && v.cena_czk_bez_dph != null && v.cena_czk_bez_dph < v.cena_czk_s_dph),
+    { message: 'ceny musí být obě, nebo žádná; cena bez DPH musí být nižší než s DPH' },
+  );
+
 export const model = z.object({
   id,
   nazev: z.string().min(2),

@@ -49,6 +49,23 @@ a stránka `/zarizeni/dgx-spark-oem/`.
 
 ---
 
+## 2026-11-04 — české ceny Strix Halo
+
+Další nabídka Alza.cz: **Acemagic A10A** a **Acer Veriton RA110**,
+Ryzen AI Max+ 395, 128GB, 2TB, Windows 11 Pro, za **119 990 Kč vč. DPH**
+(99 165 Kč bez DPH). Založen `data/strix-halo-oem.yaml` a stránka
+`/zarizeni/strix-halo-oem/`.
+
+- Je to **o 43 000 Kč méně** než nejlevnější GB10 OEM (ASUS GX10 1TB
+  za 162 990 Kč). Pro českého kupce je to nejlevnější 128GB box.
+- Nejde o stejný stack: x86 + ROCm/Vulkan vs. Arm + CUDA/DGX OS.
+  Prefill a zralost ovladačů jsou slabší.
+- AMD Ryzen AI Halo je v nabídce bez ceny a nedostupný; „SSD 2 GB“
+  je téměř jistě překlep, očekáváme 2 TB.
+- Ceny jsou snapshot; Alza blokuje roboty, zdroje mají `kontrola: manual`.
+
+---
+
 ## 2026-11-04 — zpětná vazba k obsahu
 
 Zadání doplněno o redakční pravidla:

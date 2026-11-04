@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: cena
+  titulek: "České ceny Strix Halo: 128 GB za 119 990 Kč"
+  co_se_zmenilo: "Acemagic A10A a Acer Veriton RA110 s Ryzen AI Max+ 395, 128GB a 2TB za 119 990 Kč vč. DPH. Nová stránka /zarizeni/strix-halo-oem/ a doplnění rozpočtu."
+  dotcene_stranky: [zarizeni/strix-halo-oem, zarizeni/strix-halo, vyber/rozpocet]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-04
   typ: model
   titulek: "Qwen3.6 vision vyžaduje mmproj"
   co_se_zmenilo: "Doplněno, že Qwen3.6 35B-A3B má vision jen se samostatným mmproj souborem (~579 MB Q6_K, ~861 MB BF16). Bez něj je model text-only; paměťový rozpočet se zvyšuje na ~24,5–25,5 GB při 128k."

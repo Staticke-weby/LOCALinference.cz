@@ -106,6 +106,7 @@ být hluboký, ale nesmí být arogantní.
 │   ├── rtx-spark-mini          64/128 GB, 300 GB/s, 5 999 USD (128)
 │   ├── rtx-spark-notebook      64/128 GB, 300 GB/s, 4 299–6 999 USD
 │   ├── strix-halo              64/128 GB, 256 GB/s, 1 959–5 349 USD
+│   ├── strix-halo-oem          3 české 128GB konfigurace, od 119 990 Kč
 │   ├── konfigurace             Kompletní seznam 64GB+ konfigurací
 │   └── srovnani                Velká matice Parametr × Zařízení
 │
