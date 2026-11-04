@@ -1,0 +1,57 @@
+---
+title: "Co je paralelizace a proč ji u 128GB boxu neřešíme"
+description: "Paralelizace rozděluje model mezi víc čipů. Vysvětlíme, proč to u hotových 128GB zařízení nedává smysl a jak se liší od souběžnosti."
+last_verified: 2026-11-04
+sidebar:
+  label: Co je paralelizace
+  order: 13
+---
+
+**Paralelizace** znamená rozdělení jednoho modelu mezi víc zařízení.
+Není to totéž co souběžnost: tam jde o víc dotazů na jednom modelu,
+tady o jeden model na víc čipech.
+
+## Dva způsoby, jak model rozdělit
+
+- **Tensor parallel** — každá vrstva se rozdělí mezi čipy. Čipy si musí
+  neustále vyměňovat data, takže potřebují rychlé propojení.
+- **Pipeline parallel** — model se rozdělí po vrstvách; první čip
+  spočítá začátek, druhý pokračuje. Latence roste.
+
+Oba způsoby mají smysl u modelů, které se na jedno zařízení nevejdou.
+Problém je, že propojení mezi boxy je řádově pomalejší než paměť uvnitř
+jednoho čipu. Výsledkem je často model, který se sice vejde, ale běží
+pomaleji než menší model na jednom stroji.
+
+## Proč to v katalogu není
+
+Katalog drží **jen modely, které se celé vejdou na jedno zařízení** —
+včetně KV cache a rozumného kontextu. Důvody:
+
+- **128 GB stačí** na Qwen3.8 Flash Next i s rezervou.
+- **Poolování boxů** přidává latenci a správu, ne rychlost.
+- **Offload do RAM nebo disku** je ještě pomalejší a do katalogu
+  nepatří.
+
+Když model potřebuje víc než 128 GB, není to otázka „jak ho rozdělit“,
+ale „na co ho potřebujete“ — a odpověď většinou zní jiný model.
+
+## Kde se to plete
+
+- „Kolik lidí to zvládne“ je [souběžnost](/zaciname/co-je-soubeznost/).
+- „Jak velký model to zvládne“ je kapacita paměti.
+- „Jak to zrychlit rozdělením“ je paralelizace — a u nás se nepoužívá.
+
+## Kudy dál
+
+- [Co je souběžnost](/zaciname/co-je-soubeznost/) — druhý význam.
+- [Srovnání zařízení](/zarizeni/srovnani/) — co se vejde na 128 GB.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
+- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [vLLM — distributed serving](https://docs.vllm.ai/en/latest/serving/distributed_serving.html)
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

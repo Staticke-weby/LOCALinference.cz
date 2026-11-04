@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Vysvětlivky: TTFT, prefill, souběžnost, paralelizace, power limit, throttling"
+  co_se_zmenilo: "Šest nových stránek vysvětluje pojmy, které se na webu používaly bez výkladu. Slovník má 25 pojmů, odkazy vedou z Jak čteme data, Kolik uživatelů a stránky RTX Spark notebooku."
+  dotcene_stranky: [zaciname/co-je-ttft, zaciname/co-je-prefill, zaciname/co-je-soubeznost, zaciname/co-je-paralelizace, zaciname/co-je-power-limit, zaciname/co-je-throttling, zaciname/slovnik]
+  zdroj: https://docs.vllm.ai/en/latest/design/metrics.html
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Vysvětlivky pojmů: CUDA, ROCm, vLLM, llama.cpp a slovník"
   co_se_zmenilo: "Přibyly čtyři stránky s vysvětlením pojmů, které se na webu používají — CUDA, ROCm, vLLM a llama.cpp — a slovník s 19 pojmy. Ze stránek zařízení a modelu na ně vedou odkazy, patička odkazuje na slovník."
   dotcene_stranky: [zaciname/co-je-cuda, zaciname/co-je-rocm, zaciname/co-je-vllm, zaciname/co-je-llamacpp, zaciname/slovnik]

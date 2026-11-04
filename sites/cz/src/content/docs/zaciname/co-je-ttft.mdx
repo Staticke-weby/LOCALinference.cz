@@ -1,0 +1,62 @@
+---
+title: "Co je TTFT a proč rozhoduje o pocitu z rychlosti"
+description: "TTFT je čas do prvního tokenu. Vysvětlíme, proč u dlouhého dokumentu čekáte desítky sekund a co s tím udělá kontext a fronta."
+last_verified: 2026-11-04
+sidebar:
+  label: Co je TTFT
+  order: 10
+---
+
+**TTFT** (time to first token) je doba od odeslání dotazu po první
+znak odpovědi. Je to číslo, které rozhoduje o tom, jestli model působí
+rychle — víc než tok/s, které se měří až potom.
+
+## Proč to není totéž co tok/s
+
+Představte si, že model píše odpověď. Nejdřív musí přečíst celé zadání
+a „rozhodnout se“, co bude psát. Teprve pak začne sypat tokeny. TTFT je
+to čekání před prvním znakem; tok/s je tempo, kterým text přibývá.
+
+Proto může být model „rychlý“ a přesto nepříjemný: generuje 60 tok/s,
+ale na první token čekáte 40 sekund.
+
+## Co TTFT prodlužuje
+
+- **Délka vstupu.** Čím delší prompt, tím delší [prefill](/zaciname/co-je-prefill/).
+- **Fronta.** Když box obsluhuje víc lidí, dotaz čeká, než na něj přijde řada.
+- **Načtení modelu.** První dotaz po startu je vždy pomalejší.
+- **Přepnutí kontextu.** Nový dlouhý dokument se musí zpracovat celý.
+
+## Konkrétní čísla
+
+Na Strix Halu 128 GB vychází z veřejných měření:
+
+- krátký dotaz: jednotky sekund,
+- 32k dokument: **16–40 s** před prvním tokenem,
+- 128k dokument: **67–166 s**.
+
+Čísla jsou převzatá, ne naše; konfigurace je u zdroje. Podrobnosti
+v [datové kartě](/data/qwen3-8-flash-next-strix-halo/).
+
+## Co s tím
+
+- **Kratší kontext** je nejrychlejší cesta. Neposílejte celý dokument,
+  když stačí odstavec.
+- **Streamování** je nutnost: uživatel vidí, že se něco děje.
+- **Fronta** patří k souběžnosti — víc lidí znamená delší TTFT pro
+  každého.
+
+## Kudy dál
+
+- [Co je prefill](/zaciname/co-je-prefill/) — co se děje před prvním tokenem.
+- [Co je souběžnost](/zaciname/co-je-soubeznost/) — proč fronta roste.
+- [Jak čteme data](/zaciname/jak-cteme-data/) — TTFT, decode a rozpětí.
+- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [vLLM — metrics](https://docs.vllm.ai/en/latest/design/metrics.html)
+- [Datová karta: Qwen3.8 Flash Next na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+- [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+
+*Naposledy ověřeno: 4. 11. 2026.*

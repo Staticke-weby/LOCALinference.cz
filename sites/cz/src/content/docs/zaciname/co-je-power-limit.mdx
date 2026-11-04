@@ -1,0 +1,59 @@
+---
+title: "Co je power limit a jak mění rychlost, hluk a teplotu"
+description: "Power limit je strop příkonu. Vysvětlíme, proč nižší limit znamená méně tok/s i méně hluku a jaký má smysl u 128GB boxu."
+last_verified: 2026-11-04
+sidebar:
+  label: Co je power limit
+  order: 14
+---
+
+**Power limit** je strop, kolik wattů může čip odebrat. Nastavuje ho
+výrobce a často ho lze změnit. Není to jen ekologie — přímo určuje,
+jak rychle model poběží a jak moc bude stroj hlučný.
+
+## Jak to souvisí s rychlostí
+
+Čip, který má víc wattů, může držet vyšší frekvence. Když se limit
+sníží, frekvence klesnou a s nimi i tok/s. U lokální AI to platí
+hlavně u **delších běhů**: krátký dotaz se vejde do rezervy, dlouhý
+generování už narazí na strop.
+
+Zároveň platí, že výkon neroste lineárně. Posledních 20 % wattů
+přinese často jen pár procent rychlosti — a hodně tepla.
+
+## Konkrétní hodnoty
+
+- **DGX Spark** — 140 W pro čip, 240 W napájení.
+- **RTX Spark notebook** — 45–80 W podle režimu.
+- **Strix Halo** — záleží na OEM; od `[DOPLNIT]` výrobce k výrobci.
+
+Čísla jsou od výrobců, ne naše. Kde chybí, je `[DOPLNIT]`.
+
+## Kdy limit snižovat
+
+- **Kancelář.** Nižší limit znamená méně hluku a tepla, což je pro
+  práci u stolu často důležitější než posledních 10 % tok/s.
+- **Notebook na baterii.** Vyšší limit = kratší výdrž.
+- **Letní provoz.** Stroj v teplé místnosti se dřív dostane na
+  [throttling](/zaciname/co-je-throttling/).
+
+## Kdy ho nezvyšovat
+
+Vyšší limit neznamená jen víc výkonu. Znamená víc tepla, hlučnější
+chlazení a u notebooku kratší životnost baterie. Pokud výrobce
+nedovoluje limit měnit, nemá smysl se o to pokoušet.
+
+## Kudy dál
+
+- [Co je throttling](/zaciname/co-je-throttling/) — co se stane, když
+  limit nestačí.
+- [DGX Spark](/zarizeni/dgx-spark/) — příkon a chlazení.
+- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — mobilní limity.
+- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [NVIDIA — nvidia-smi documentation](https://docs.nvidia.com/deploy/nvidia-smi/index.html)
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

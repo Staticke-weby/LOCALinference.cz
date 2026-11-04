@@ -1,0 +1,60 @@
+---
+title: "Co je souběžnost a kolik lidí zvládne 128GB box"
+description: "Souběžnost znamená víc dotazů najednou. Vysvětlíme, jak souvisí s KV cache, proč ubývá paměť a proč jeden box obslouží 1–4 lidi."
+last_verified: 2026-11-04
+sidebar:
+  label: Co je souběžnost
+  order: 12
+---
+
+**Souběžnost** je počet dotazů, které box zpracovává ve stejnou chvíli.
+Není to totéž jako rychlost: model může být rychlý pro jednoho uživatele
+a pomalý pro pět, protože se dělí o paměť a výpočet.
+
+## Proč to není „výkon navíc“
+
+Každý běžící dotaz si drží svůj kontext v paměti — takzvanou
+[KV cache](/zaciname/jak-to-funguje/). Čím delší kontext a čím víc
+dotazů, tím víc paměti je obsazeno. Na 128GB boxu je proto souběžnost
+omezená pamětí, ne procesorem.
+
+Když je paměť plná, model musí čekat nebo část kontextu zahodit. To se
+projeví jako delší [TTFT](/zaciname/co-je-ttft/) a pomalejší odpovědi
+pro všechny.
+
+## Kolik toho box unese
+
+Z praxe a veřejných měření:
+
+- **1 uživatel** — plná rychlost, žádná fronta.
+- **2–4 uživatelé** — reálné pro chat a dokumenty, rychlost klesá.
+- **5 a víc** — fronta, dlouhé čekání, u dlouhého kontextu kolísání.
+
+Proto u katalogu platí: další uživatelé se řeší **dalším boxem**, ne
+dražším strojem. Víc paměti na jednom stroji pomůže, ale ne linearitou.
+
+## Souběžnost vs. paralelizace
+
+Lidé tato slova pletou:
+
+- **Souběžnost** = víc různých dotazů od různých lidí.
+- [**Paralelizace**](/zaciname/co-je-paralelizace/) = rozdělení jednoho
+  modelu mezi víc čipů.
+
+První řeší provoz, druhá velikost modelu. My v katalogu řešíme jen
+první — model se musí vejít na jedno zařízení.
+
+## Kudy dál
+
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — tabulka scénářů.
+- [Co je paralelizace](/zaciname/co-je-paralelizace/) — druhý význam.
+- [Jak to funguje](/zaciname/jak-to-funguje/) — KV cache a paměť.
+- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [vLLM — continuous batching](https://docs.vllm.ai/en/latest/design/inference_serving.html)
+- [Datová karta: Qwen3.8 Flash Next na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+- [Kolik uživatelů zvládne 128GB box](/vyber/kolik-uzivatelu/)
+
+*Naposledy ověřeno: 4. 11. 2026.*

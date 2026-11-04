@@ -1,0 +1,61 @@
+---
+title: "Co je throttling a kdy ho na 128GB boxu potkáte"
+description: "Throttling je snížení výkonu kvůli teplotě nebo příkonu. Vysvětlíme, proč se projeví až po minutách a proč jsou na tom notebooky hůř."
+last_verified: 2026-11-04
+sidebar:
+  label: Co je throttling
+  order: 15
+---
+
+**Throttling** je situace, kdy čip sám sníží frekvenci, protože je
+moc horký nebo překročil [power limit](/zaciname/co-je-power-limit/).
+Není to porucha — je to ochrana. Pro uživatele ale znamená, že stroj
+po pár minutách zpomalí.
+
+## Proč to nevidíte v krátkém testu
+
+Benchmarky často měří 30 sekund. Za tu dobu se chladič nestačí zahřát,
+takže číslo vypadá skvěle. Při reálné práci — dlouhý dokument, dávka
+dotazů, hodina provozu — se výkon ustálí níž.
+
+Rozdíl mezi **burst** a **sustained** výkonem bývá 10–30 %. U notebooků
+víc, u stolních boxů míň.
+
+## Kde je riziko největší
+
+- **Notebook** — tenký chladič, málo místa, okolní teplota hraje roli.
+- **Malé OEM boxy** — záleží na konstrukci, ne jen na čipu.
+- **Prašné a teplé prostředí** — kancelář u topení není datacentrum.
+
+DGX Spark a stolní Strix Halo mají větší rezervu, ale ani tam není
+throttling vyloučený při dlouhém zatížení.
+
+## Jak to poznat
+
+- Rychlost po pár minutách klesne a pak se drží na nižší hodnotě.
+- Ventilátor je slyšet pořád, ne jen na začátku.
+- `nvidia-smi` (NVIDIA) nebo `rocm-smi` (AMD) ukáže teplotu a důvod
+  snížení frekvence.
+
+## Co s tím
+
+- **Počítejte s ustáleným výkonem**, ne s maximem z benchmarku.
+- **Nezakrývejte větrání.** Box v polici bez průvanu se přehřeje.
+- **Nižší power limit** může být lepší než hlučný stroj na hraně.
+
+Naše metodika proto u čísel rozlišuje kontext a délku běhu — viz
+[metodika](/o-webu/metodika/).
+
+## Kudy dál
+
+- [Co je power limit](/zaciname/co-je-power-limit/) — strop příkonu.
+- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — kde je riziko.
+- [Jak čteme data](/zaciname/jak-cteme-data/) — proč záleží na délce běhu.
+- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [NVIDIA — nvidia-smi documentation](https://docs.nvidia.com/deploy/nvidia-smi/index.html)
+- [Metodika](/o-webu/metodika/) — jak čteme měření a rozpětí.
+
+*Naposledy ověřeno: 4. 11. 2026.*

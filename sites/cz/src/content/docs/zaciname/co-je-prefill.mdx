@@ -1,0 +1,65 @@
+---
+title: "Co je prefill a proč dlouhý dokument zdržuje"
+description: "Prefill je zpracování vstupu před generováním odpovědi. Vysvětlíme, proč se měří v tok/s, proč je na 128 GB úzkým hrdlem a co ho zrychlí."
+last_verified: 2026-11-04
+sidebar:
+  label: Co je prefill
+  order: 11
+---
+
+**Prefill** je fáze, kdy model přečte celé zadání. Probíhá před
+generováním odpovědi a je to důvod, proč dlouhý dokument zdržuje.
+
+## Dvě fáze, dva různé výkony
+
+Každý dotaz má dvě části:
+
+1. **Prefill** — model zpracuje všechny tokeny vstupu najednou. Počítá
+   hodně, ale paměť čte postupně; měří se v **tok/s vstupu**.
+2. **Decode** — model generuje odpověď token po tokenu. Čte celé váhy
+   pro každý token; měří se v **tok/s výstupu**.
+
+Jsou to jiná čísla a jiná úzká hrdla. Prefill je náročný na výpočet,
+decode na propustnost paměti. Proto může být stroj rychlý v generování
+a pomalý ve čtení dokumentu.
+
+## Konkrétní čísla
+
+Na Strix Halu 128 GB se prefill pohybuje mezi **0,8 a 2,4 tis. tok/s**
+podle enginu a kvantizace. Z toho vychází [TTFT](/zaciname/co-je-ttft/):
+
+- 32k dokument: zhruba **16–40 s**,
+- 128k dokument: zhruba **67–166 s**.
+
+Čísla jsou převzatá z veřejných měření, ne naše. Konfigurace je
+v [datové kartě](/data/qwen3-8-flash-next-strix-halo/).
+
+## Proč je prefill slabý na Strix Halu
+
+CUDA stroje mají prefill rychlejší, protože je pro ně optimalizovaný
+software. Na AMD se používá [ROCm](/zaciname/co-je-rocm/) nebo Vulkan
+a část optimalizací chybí. Není to chyba modelu — je to rozdíl
+v ekosystému.
+
+## Co s tím
+
+- **Kratší vstup.** Místo celé smlouvy pošlete jen dotčenou část.
+- **Dávkování.** Několik krátkých dotazů je pro pocit rychlosti lepší
+  než jeden obří.
+- **Počítejte s tím v procesu.** Když má model číst 50stránkový
+  dokument, nastavte očekávání i uživatelům.
+
+## Kudy dál
+
+- [Co je TTFT](/zaciname/co-je-ttft/) — jak prefill ovlivní čekání.
+- [Roofline](/rychlost/roofline/) — proč je decode jiné hrdlo.
+- [Co je ROCm](/zaciname/co-je-rocm/) — proč je na AMD slabší.
+- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [vLLM — metrics](https://docs.vllm.ai/en/latest/design/metrics.html)
+- [Datová karta: Qwen3.8 Flash Next na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+- [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+
+*Naposledy ověřeno: 4. 11. 2026.*

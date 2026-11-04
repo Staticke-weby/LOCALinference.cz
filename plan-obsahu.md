@@ -194,6 +194,12 @@ poprvé objeví.
 | `zaciname/co-je-rocm` | co je ROCm | ✅ |
 | `zaciname/co-je-vllm` | co je vLLM | ✅ |
 | `zaciname/co-je-llamacpp` | co je llama.cpp | ✅ |
+| `zaciname/co-je-ttft` | co je TTFT | ✅ |
+| `zaciname/co-je-prefill` | co je prefill | ✅ |
+| `zaciname/co-je-soubeznost` | co je souběžnost | ✅ |
+| `zaciname/co-je-paralelizace` | co je paralelizace | ✅ |
+| `zaciname/co-je-power-limit` | co je power limit | ✅ |
+| `zaciname/co-je-throttling` | co je throttling | ✅ |
 | `zaciname/slovnik` | slovník lokální AI | ✅ |
 
 Ze stránek zařízení, modelu a návodů na ně vedou odkazy; patička má
