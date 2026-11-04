@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: model
+  titulek: "Jediný model katalogu: Qwen3.8 Flash Next"
+  co_se_zmenilo: "Web se zužuje na Qwen3.8 Flash Next. Ostatní modely a jejich zmínky byly odstraněny; návody, měření i software se týkají jen tohoto modelu."
+  dotcene_stranky: [index, modely/qwen3-8-flash-next, navody]
+  zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next
+
+- datum: 2026-11-04
   typ: cena
   titulek: "České ceny RTX Spark notebooků"
   co_se_zmenilo: "Přidáno 7 variant ASUS ProArt P14/P16, Lenovo Yoga Pro 9, MSI Prestige a Surface Laptop Ultra s 128GB. Ceny od 125 990 Kč vč. DPH; nová stránka /zarizeni/rtx-spark-notebook-oem/."
@@ -32,7 +39,7 @@
 - datum: 2026-11-04
   typ: obsah
   titulek: "Katalog se zužuje na 128 GB"
-  co_se_zmenilo: "Zařízení pod 128 GB vyřazena. Web řeší jen smysluplnou lokální AI na 128GB+ strojích; minimum je Qwen3.8 Flash Next. Odstraněny stránky Qwen3.6, Gemma 4 a přehled konfigurací."
+  co_se_zmenilo: "Zařízení pod 128 GB vyřazena. Web řeší jen smysluplnou lokální AI na 128GB+ strojích; minimum je Qwen3.8 Flash Next. Odstraněny stránky dalších modelů a přehled konfigurací."
   dotcene_stranky: [index, zarizeni/srovnani, modely/qwen3-8-flash-next]
   zdroj: https://localinference.cz/
 
@@ -70,13 +77,6 @@
   co_se_zmenilo: "Mac Studio, Gorgon Halo a DGX Station vyřazeny. Web se drží malých boxů za dosažitelnou cenu; víc uživatelů se řeší počtem boxů."
   dotcene_stranky: [vyber/rozpocet, zarizeni/srovnani]
   zdroj: https://localinference.cz/zarizeni/srovnani/
-
-- datum: 2026-11-04
-  typ: model
-  titulek: "Qwen3.5 397B nezařazen"
-  co_se_zmenilo: "Starší obří model se na malé 128GB boxy nehodí. Katalog drží jen modely z poslední doby, které běží efektivně."
-  dotcene_stranky: [modely/qwen3-8-flash-next]
-  zdroj: https://huggingface.co/Qwen/Qwen3.5-397B-A17B
 
 - datum: 2026-11-04
   typ: obsah
@@ -127,9 +127,3 @@
   dotcene_stranky: [o-webu/metodika, zdroje/co-nevime]
   zdroj: https://localinference.cz/o-webu/metodika/
 
-- datum: 2026-11-04
-  typ: model
-  titulek: "GLM-5.3 Flash vyřazen z katalogu"
-  co_se_zmenilo: "Model se nevejde na jedno zařízení včetně KV cache; katalog obsahuje jen modely, které se vejdou celé."
-  dotcene_stranky: [modely/qwen3-8-flash-next, o-webu/metodika]
-  zdroj: https://z.ai/blog/glm-5.3-flash

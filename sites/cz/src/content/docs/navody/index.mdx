@@ -12,16 +12,16 @@ Výrobci obvykle řeknou, jak stroj zapnout, ale ne jak na něm rozjet
 model. Tady jsou návody pro každou platformu v katalogu. Cíl je stejný:
 **co nejdřív chatovat s modelem** a vědět, co dělat, když to nefunguje.
 
-| Zařízení | OS | Rychlý start | Plný Qwen3.8 Flash Next |
+| Zařízení | OS | Model | Backend |
 |---|---|---|---|
-| [DGX Spark](/navody/dgx-spark/) | DGX OS (Ubuntu) | Ollama + 27B | vLLM, oficiální recept NVIDIA |
-| [RTX Spark mini/notebook](/navody/rtx-spark/) | Windows 11 Arm64 | Ollama + 27B | llama.cpp CUDA, oficiální recept |
-| [Strix Halo](/navody/strix-halo/) | Windows 11 / Ubuntu | Ollama + 27B | llama.cpp Vulkan/ROCm |
+| [DGX Spark](/navody/dgx-spark/) | DGX OS (Ubuntu) | Qwen3.8 Flash Next | vLLM, oficiální recept NVIDIA |
+| [RTX Spark mini/notebook](/navody/rtx-spark/) | Windows 11 Arm64 | Qwen3.8 Flash Next | llama.cpp CUDA |
+| [Strix Halo](/navody/strix-halo/) | Windows 11 / Ubuntu | Qwen3.8 Flash Next | llama.cpp Vulkan/ROCm |
 
 ## Co je stejné
 
-- **Začněte menším modelem.** Qwen3.8 27B se stáhne rychle a ověří,
-  že stroj, driver a síť fungují. Teprve pak řešte 176B model.
+- **Všechny návody končí u Qwen3.8 Flash Next.** Jiný model v katalogu
+  není; web řeší jen tento model a jak ho na daném stroji provozovat.
 - **Plný model je velký.** Qwen3.8 Flash Next má přes 100 GB a první
   načtení trvá dlouho. Není to známka poruchy.
 - **API je OpenAI-kompatibilní.** Většina klientů (Open WebUI, OpenCode,
@@ -48,7 +48,7 @@ model. Tady jsou návody pro každou platformu v katalogu. Cíl je stejný:
 
 - [NVIDIA DGX Spark — First Boot](https://docs.nvidia.com/dgx/dgx-spark/first-boot.html)
 - [NVIDIA Local AI Inference Recipes](https://nvidia.github.io/local-ai-inference-recipes/)
-- [Ollama — Qwen3.8](https://ollama.com/library/qwen3.8)
+- [Ollama — Qwen3.8 Flash Next](https://ollama.com/library/qwen3.8-flash-next)
 - [AMD ROCm — Ryzen AI Max](https://rocm.blogs.amd.com/artificial-intelligence/ryzen-uma-llm/README.html)
 
 *Naposledy ověřeno: 4. 11. 2026.*

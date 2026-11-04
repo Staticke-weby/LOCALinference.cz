@@ -1,6 +1,5 @@
-# Katalog modelů. Jen současné modely.
-# Minimum je Qwen3.8 Flash Next na 128 GB. Zařízení pod 128 GB
-# a modely pod Qwen3.8 do katalogu nezařazujeme.
+# Katalog modelů. Jediný model katalogu je Qwen3.8 Flash Next.
+# Web neřeší jiné modely ani zařízení pod 128 GB.
 # Jen modely, které se celé vejdou na jedno zařízení (včetně KV cache).
 # Modely vyžadující pool nebo offload nezařazujeme.
 # `kontext.doporuceny` je null, dokud pro něj nemáme podložené doporučení.

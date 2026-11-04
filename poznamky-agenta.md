@@ -4,6 +4,16 @@
 
 ---
 
+## 2026-11-04 — jediný model
+
+- Katalog, měření, návody i watchlist řeší **jen Qwen3.8 Flash Next**.
+- Z veřejného obsahu, plánů a šablon byly odstraněny zmínky o jiných
+  modelech. Historické poznámky už neplatí.
+- Software a novinky se sledují jen okolo tohoto modelu: kvantizace,
+  vLLM/llama.cpp/SGLang, MTP, QSA, tool parsery a mmproj.
+
+---
+
 ## 2026-11-04 — české ceny primárně
 
 - Na české mutaci se ceny uvádějí **primárně v Kč**. Pokud je česká
@@ -22,8 +32,8 @@ Rozhodnutí provozovatele: **zařízení pod 128 GB se na webu neřeší.**
 Důvod: obsah by rostl exponenciálně, nebylo by jasné, co se k čemu
 vztahuje, a všechna zařízení mají technické limity.
 
-- Z katalogu zmizely 64GB konfigurace, stránka `/zarizeni/konfigurace/`,
-  modely Qwen3.6 35B-A3B a Gemma 4 26B A4B i jejich měření.
+- Z katalogu zmizely 64GB konfigurace, stránka `/zarizeni/konfigurace/`
+  a stránky dalších modelů i jejich měření.
 - Zůstává **4 zařízení ve 128 GB**, 15 DGX Spark OEM SKU, 3 Strix Halo
   OEM SKU a **Qwen3.8 Flash Next** jako jediný referenční model.
 - `data/konfigurace.yaml`, `TabulkaKonfiguraci.astro`, schema
@@ -65,32 +75,17 @@ vztahuje, a všechna zařízení mají technické limity.
   a zařízení, české/vision testy a údržbu zdrojů.
 - Do OpenChamber jsou založené todos pro hlavní oblasti; detail
   a zdroje jsou v `plan-dat.md`.
-- Backlog se doplňuje při každém novém modelu nebo zařízení.
+- Backlog se doplňuje při každé nové verzi modelu nebo zařízení.
 
 ---
 
-## 2026-11-04 — konfigurace 64 GB+
+## 2026-11-04 — jediný model
 
-Rozšíření katalogu na **všechny konfigurace s 64 GB a více** unified paměti:
-
-- Nový `data/konfigurace.yaml` (8 konfigurací) a stránka
-  `/zarizeni/konfigurace/`. Každá konfigurace má cenu, datum, zdroj
-  a seznam modelů, které se vejdou včetně KV cache pro 128k.
-- **Gemma 4 26B A4B** přidána jako doporučený model pro 64 GB
-  (25,2B / 3,8B, 256k, Apache-2.0, Q4_K_M ~17 GB vah).
-- **Qwen3.6 35B-A3B** změněn z „pod hranicí“ na doporučený pro 64 GB.
-  Na 128 GB zůstává Qwen3.8 Flash Next minimum.
-- Ceny 64GB variant: DGX Spark od 4 999 USD, RTX Spark notebook od
-  4 299,99 USD, Strix Halo od 1 959 USD. RTX Spark mini 64 GB cena
-  `[DOPLNIT]`.
-- Rychlosti Gemmy 4: 69,9 tok/s na DGX Spark (Q4_K_M, llama.cpp),
-  78 tok/s na Strix Halo (UD-Q4_K_XL), ~53 tok/s při 128k (LM Studio).
-  NVFP4 ve vLLM bez draftu je ~31,5 tok/s — vysvětleno jako rozdíl enginu.
-- **KV cache Qwen3.6** je malá díky lineární attention (30 z 40 vrstev).
-  Odhad ~24–25 GB při 128k je označený jako výpočet, ne měření.
-- **Qwen3.6 vision** není součástí hlavního GGUF: vyžaduje samostatný
-  mmproj (~579 MB Q6_K, ~861 MB BF16). Bez něj je model text-only;
-  do paměťového rozpočtu se připočítá ~0,6 GB.
+- Katalog se zužuje na **Qwen3.8 Flash Next**. Jiné modely a jejich
+  stránky byly odstraněny; web řeší jen tento model a jeho provoz.
+- Zůstávají 4 zařízení ve 128 GB, 15 DGX Spark OEM SKU, 7 RTX notebook
+  OEM SKU a 3 Strix Halo OEM SKU.
+- Starší poznámky o jiných modelech jsou historie a už neplatí.
 
 ---
 

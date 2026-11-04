@@ -47,7 +47,6 @@ ale může mírně ztratit kvalitu.
 | FP8 | 8 | ~176 GB | NVIDIA, větší stroje |
 | NVFP4 | ~4,25–4,5 | ~101 GB | DGX Spark, vLLM |
 | GGUF Q4 | ~4,5 | ~90–100 GB | llama.cpp, Strix Halo |
-| MLX 4bit | ~4 | ~88 GB | mimo katalog |
 
 Čím nižší přesnost, tím menší paměť a často vyšší rychlost. Zároveň ale
 roste riziko, že model začne dělat chyby v jemných úlohách. U 4bitové

@@ -18,10 +18,9 @@ a co od nich čtenář může čekat.
 - **Jen hotová zařízení se 128 GB a více unified paměti.** DGX Spark,
   RTX Spark mini/notebook, OEM boxy se Strix Halo. Nic, co si člověk
   skládá z komponent, a nic pod 128 GB.
-- **Současné modely**, které dávají smysl pro denní práci. Spodní hranice
-  kvality je **Qwen3.8 Flash Next** na **128 GB**. Zařízení pod 128 GB
-  ani modely pod Qwen3.8 nejsou v katalogu jako doporučení; mohou se
-  objevit jen jako vysvětlující srovnání.
+- **Jediný model katalogu je Qwen3.8 Flash Next** na **128 GB**.
+  Jiné modely nezařazujeme; zmínit je lze jen jako varování nebo
+  vysvětlující srovnání, nikdy jako doporučení.
 - **MoE modely** s malým počtem aktivních parametrů. Dense modely zmiňujeme
   jen jako varování („na této krabici to poběží 5 tok/s, to není použitelné“).
 - **Jen modely, které se celé vejdou na jedno zařízení** — včetně KV cache
@@ -39,7 +38,7 @@ a co od nich čtenář může čekat.
 - Návody na stavbu PC, whitebox servery, racky a datacentrové GPU.
 - Modely, které se na jedno zařízení nevejdou nebo vyžadují offload/pool.
 - Trénink a fine-tuning modelů.
-- Historické modely jako doporučení (Qwen2, Llama 3, staré dense modely…).
+- Historické a jiné modely jako doporučení.
 - Obecné AI novinky, které se netýkají lokálního provozu.
 - Marketingové fráze, affiláty bez označení, „revoluce“ a „game-changer“.
 

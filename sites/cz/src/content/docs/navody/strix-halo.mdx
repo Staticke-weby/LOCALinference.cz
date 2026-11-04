@@ -1,6 +1,6 @@
 ---
 title: "Strix Halo: první spuštění na Windows a Linuxu"
-description: "Od vybalení po první chat na 128GB Strix Halu. Ovladače, Ollama pro rychlý test a llama.cpp pro plný Qwen3.8 Flash Next."
+description: "Od vybalení po první chat s Qwen3.8 Flash Next na 128GB Strix Halu. Ovladače a llama.cpp na Windows i Linuxu."
 last_verified: 2026-11-04
 sidebar:
   order: 3
@@ -26,23 +26,7 @@ volitelná cesta pro ty, kdo chtějí ROCm a serverový provoz.
 3. Restartujte. Ověřte, že Windows vidí Radeon 8060S v
    **Task Manager → Performance → GPU**.
 
-### Krok 2: Ollama a první model
-
-V PowerShellu:
-
-```powershell
-irm https://ollama.com/install.ps1 | iex
-ollama run qwen3.8:27b
-```
-
-Napište dotaz. Ollama na Windows použije Vulkan; pokud odpovídá, GPU
-je funkční. **Pozor:** 27B je menší model, ne 176B Qwen3.8 Flash Next.
-Kdyby Ollama na Windows s tímto APU nefungovala, použijte níže
-llama.cpp s Vulkanem — je to podporovanější cesta.
-
-*Zdroj: [Ollama — Windows](https://ollama.com/download/windows), [Strix Halo Guide](https://hogeheer499-commits.github.io/strix-halo-guide/).*
-
-### Krok 3: Plný Qwen3.8 Flash Next (volitelné)
+### Krok 2: Qwen3.8 Flash Next přes llama.cpp
 
 Plný 176B model je na 128GB Strix Halu těsný a komunitně podporovaný.
 Nejjednodušší cesta je **llama.cpp s Vulkanem**:
@@ -92,14 +76,7 @@ Měli byste vidět `gfx1151`.
 
 *Zdroj: [AMD ROCm — AI Inference on Ryzen AI Max](https://rocm.blogs.amd.com/artificial-intelligence/ryzen-uma-llm/README.html).*
 
-### Krok 2: Ollama
-
-```bash
-curl -fsSL https://ollama.com/install.sh | sh
-ollama run qwen3.8:27b
-```
-
-### Krok 3: Plný model přes llama.cpp ROCm
+### Krok 2: Qwen3.8 Flash Next přes llama.cpp ROCm
 
 AMD doporučuje předpřipravené **Lemonade SDK** buildy pro `gfx1151`:
 
@@ -128,7 +105,6 @@ boxu.
 
 | Příznak | Co zkontrolovat |
 |---|---|
-| Ollama nejede | `ollama ps`, port 11434, Vulkan/ROCm |
 | GPU není vidět | Adrenalin/ROCm, `rocminfo`, BIOS carveout |
 | Model padá na paměť | zavřete aplikace, snižte `-c`, použijte menší kvantizaci |
 | Pomalé | zkontrolujte power limit, teploty a Vulkan vs. ROCm |
@@ -140,7 +116,6 @@ boxu.
 - [AMD AI Playbooks — Ryzen AI Halo](https://developer.amd.com/playbooks/clustering-rpc-server)
 - [Strix Halo Guide](https://hogeheer499-commits.github.io/strix-halo-guide/)
 - [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases)
-- [Ollama — Qwen3.8](https://ollama.com/library/qwen3.8)
 - [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
 
 *Naposledy ověřeno: 4. 11. 2026.*

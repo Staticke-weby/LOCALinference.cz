@@ -58,13 +58,24 @@ nemáme podložené. Proto `[DOPLNIT]`, ne odhad.
 - **Čeština:** `[DOPLNIT: vlastní nebo komunitní test]`. Model je
   multilingvní, ale to není totéž jako dobrá čeština na vašich úkolech.
 
+## Software a provoz
+
+| Engine | K čemu | Poznámka |
+|---|---|---|
+| **vLLM** | produkční server, OpenAI API, MTP | oficiální recept NVIDIA pro DGX Spark, NVFP4 |
+| **llama.cpp** | lokální server, GGUF, Vulkan/CUDA | MTP, vision přes mmproj, dobré pro Strix Halo a RTX Spark |
+| **Ollama** | nejjednodušší spuštění | experimentální tag `qwen3.8-flash-next`, 125b-mlx |
+
+**Co sledovat:** nové kvantizace (NVFP4, GGUF, QAT), podporu MTP a QSA,
+tool parsery (`qwen3_coder`, `qwen3_xml`), reasoning parser `qwen3`
+a opravy v vLLM, llama.cpp a Ollama. Změny se zapisují do
+[changelogu](/zdroje/novinky/).
+
 ## Kolik potřebuje paměti
 
 | Kvantizace | Váhy | Minimální zařízení | Poznámka |
 |---|---|---|---|
 | NVFP4 | ~101 GB | 128 GB | vLLM, DGX Spark |
-| FP8 | ~176 GB | 192 GB+ | více paměti, rychlejší převod |
-| MLX 4bit | ~88 GB | mimo katalog | málo místa na KV cache |
 | GGUF Q4_K_M | ~95 GB | 128 GB | llama.cpp |
 
 Na 128GB zařízení zbývá po načtení zhruba 27 GB na KV cache a aktivace.

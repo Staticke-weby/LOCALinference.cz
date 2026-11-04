@@ -50,12 +50,11 @@ Obor se rychle vyvíjí, takže se seznam průběžně doplňuje.*
 
 | ID | Co hledáme | Proč | Kde hledat | Stav |
 |---|---|---|---|---|
-| N01 | Nové Qwen modely (3.9, 4.x, Flash, MoE) | obor se rychle vyvíjí | qwen.ai/blog, HF Qwen | průběžně |
-| N02 | Nové Gemma modely | konkurence pro 128 GB | Google AI blog, HF google | průběžně |
-| N03 | Nové MoE s malými aktivními parametry | jádro katalogu | HF trending, llamaperf, InferenceX | průběžně |
+| N01 | Nové verze Qwen3.8 Flash Next (model card, blog, licence) | jediný model katalogu | qwen.ai/blog, HF Qwen | průběžně |
+| N02 | Nové kvantizace Qwen3.8 FN (NVFP4, GGUF, MLX, QAT) | mění paměť a rychlost | HF, Unsloth, Ollama | průběžně |
+| N03 | Nová podpora v runtime (vLLM, llama.cpp, SGLang, Ollama) | mění čísla i dostupnost | GitHub releases, docs | průběžně |
 | N04 | Nová zařízení s 128GB+ unified pamětí | rozšiřuje katalog | NVIDIA, AMD, OEM, Alza | průběžně |
-| N05 | Nové runtime a kvantizace (vLLM, llama.cpp, MLX, ROCm) | mění čísla i dostupnost | GitHub releases, docs | průběžně |
-| N06 | Modely vyžadující pool/offload | jen jako varování, ne katalog | HF, vLLM recipes | průběžně |
+| N05 | Software okolo modelu (MTP, QSA, mmproj, tool parsery) | kvalita a rychlost provozu | vLLM recipes, llama.cpp, HF | průběžně |
 
 ## P2 — provoz a zdroje
 

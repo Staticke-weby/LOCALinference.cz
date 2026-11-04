@@ -89,7 +89,7 @@ Konkrétní čísla pro zařízení jsou `[DOPLNIT]`, dokud nejsou veřejná mě
 Když dva zdroje tvrdí něco jiného, obvykle nejde o chybu. Rozdíl dělá:
 
 - kvantizace (NVFP4 vs. GGUF Q4 vs. FP8),
-- engine a jeho verze (vLLM, llama.cpp, SGLang, MLX),
+- engine a jeho verze (vLLM, llama.cpp, SGLang),
 - MTP a počet draft tokenů,
 - KV cache (FP8, Q8_0, F16),
 - délka kontextu a souběžnost,

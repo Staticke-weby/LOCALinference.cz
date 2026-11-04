@@ -125,10 +125,10 @@ Osnova:
 - MoE: router vybere několik expertů; aktivních je jen zlomek.
 - Celkové parametry = kapacita a paměť; aktivní = rychlost.
 - Příklad: Qwen3.8 Flash Next 176B celkem, 6B aktivních → 70 tok/s.
-- Příklad: gpt-oss-120B 117B / 5B → 38,6 tok/s (horší jádra, bez MTP).
 - Dense 70B → ~5 tok/s; do paměti se vejde, provozovat ne.
 - Kde MoE zaostává: unie expertů při batchi, režie routeru, paměť navíc.
-- Co z toho plyne pro nákup: 128 GB je minimum, 192 GB více souběžnosti.
+- Co z toho plyne pro nákup: 128 GB je minimum; víc souběžnosti se řeší
+  dalším boxem, ne dražším strojem.
 - Odkazy: jak-to-funguje, roofline, modely.
 
 ### 4. Jak čteme data a měření
@@ -208,12 +208,11 @@ TTFT, unified memory, vLLM, váhy.
 |---|---|---|
 | `modely/qwen3-8-flash-next` | Minimum pro denní práci na 128 GB; referenční bod | ✅ |
 
-**Pravidlo:** na 128 GB je minimum Qwen3.8 Flash Next. Zařízení pod
-128 GB ani modely pod ním do katalogu nezařazujeme.
+**Pravidlo:** jediný model katalogu je **Qwen3.8 Flash Next** na 128 GB.
+Jiné modely nezařazujeme; web řeší jen tento model a jeho provoz.
 
-**Modely, které se nevejdou na jedno zařízení, nezařazujeme.** GLM-5.3
-Flash (320B/18B) a GLM-5.3 (465 GB) proto v katalogu nejsou; vyžadují
-pool, offload nebo jinou třídu stroje.
+**Modely, které se nevejdou na jedno zařízení, nezařazujeme.** Pokud
+vyžadují pool, offload nebo jinou třídu stroje, do katalogu nepatří.
 
 **U každého modelu:** vision je výchozí předpoklad (výjimku označ), uváděj
 nativní maximum kontextu, doporučený provozní kontext a reálně udržitelný
