@@ -31,7 +31,11 @@ const stavLabel = (s: string) =>
           <td>{m.stranka ? <a href={m.stranka}>{m.nazev}</a> : m.nazev}</td>
           <td class="li-cislo">{formatCislo(m.parametry_celkem_b)} / {formatCislo(m.parametry_aktivni_b)} B</td>
           <td class="li-cislo">{m.kontext.max ? formatCislo(m.kontext.max) : '—'}</td>
-          <td>{m.vision ? 'ano' : 'ne'}</td>
+          <td>
+            {m.vision
+              ? `ano${m.vision_projektor ? ` (+${formatCislo(m.vision_projektor.velikost_gb)} GB mmproj)` : ''}`
+              : 'ne'}
+          </td>
           <td>{m.licence}</td>
           <td>{stavLabel(m.stav)}</td>
           <td><a href={m.zdroje[0]} target="_blank" rel="noopener noreferrer">zdroj</a></td>

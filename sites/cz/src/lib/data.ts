@@ -59,6 +59,12 @@ export type Model = {
     poznamka?: string;
   };
   vision: boolean;
+  vision_projektor?: {
+    nazev: string;
+    velikost_gb: number;
+    engine: string | null;
+    poznamka?: string;
+  };
   modality: string[];
   licence: string;
   kvantizace: { nazev: string; vahy_gb: number | null; engine: string | null }[];

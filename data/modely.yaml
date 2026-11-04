@@ -46,6 +46,11 @@
     doporuceny: null
     poznamka: "262k nativně, ~1M s YaRN; maximum není doporučený provozní bod."
   vision: true
+  vision_projektor:
+    nazev: mmproj-Q6_K
+    velikost_gb: 0.579
+    engine: llama.cpp
+    poznamka: "Vision je opt-in: bez mmproj je model text-only. BF16 varianta má 0,861 GB."
   modality: [text, obraz, video]
   licence: Apache-2.0
   kvantizace:
@@ -73,6 +78,11 @@
     doporuceny: null
     poznamka: "256k nativně; maximum není doporučený provozní bod."
   vision: true
+  vision_projektor:
+    nazev: mmproj (vision encoder)
+    velikost_gb: 1.2
+    engine: llama.cpp / Ollama
+    poznamka: "Ollama stahuje projektor zvlášť; v Q4 modelu je součástí přibližně 19GB downloadu."
   modality: [text, obraz]
   licence: Apache-2.0
   kvantizace:

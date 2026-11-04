@@ -35,7 +35,7 @@ ne jako hlavní model na náročnou práci.
 | Aktivní parametry | 3B na token | NGC |
 | Nativní maximum kontextu | 262 144 | NGC |
 | Rozšíření | 1 010 000 s YaRN | NGC |
-| Vision | ano (text, obrázky, video) | NGC |
+| Vision | ano, s mmproj (text, obrázky, video) | NGC |
 | Licence | Apache-2.0 | NGC |
 | Výstup | až 81 920 tokenů | NGC |
 
@@ -48,20 +48,38 @@ ne jako hlavní model na náročnou práci.
 - **Tool calling** a multi-step agentní pipeline.
 - **MTP** (multi-token prediction).
 
+## Vision a mmproj
+
+Vision není v GGUF souboru automaticky. Model se dodává jako **dva
+soubory**: hlavní GGUF (text) a **mmproj** (vision projektor). Bez mmproj
+je model text-only.
+
+| Soubor | Velikost | Použití |
+|---|---|---|
+| `mmproj-Qwen3.6-35B-A3B-Q6_K.gguf` | ~579 MB | doporučený kompromis |
+| `mmproj-Qwen3.6-35B-A3B-BF16.gguf` | ~861 MB | bez kvantizace vision části |
+
+Používá se přes `llama-server --mmproj ...` nebo `llama-mtmd-cli`.
+Ollama mmproj podporuje, ale integrace je podle autorů kvantizací stále
+nespolehlivá; pro vision je lepší llama.cpp. **Do paměťového rozpočtu
+připočtěte ~0,6 GB** k vahám modelu.
+
 ## Kolik potřebuje paměti
 
 Model má 35B parametrů celkem a 3B aktivních. V Q4_K_M mají váhy
 přibližně 21 GB; KV cache roste jen v 10 z 40 vrstev, takže při 128k
-kontextu přidá zhruba 2,5 GB. Celkem se vejde do **24–25 GB**.
+kontextu přidá zhruba 2,5 GB. S vision projektorem (~0,6 GB) se celkem
+vejde do **24,5–25,5 GB**.
 
 | Kvantizace | Váhy | Celkem při 128k | Minimální zařízení |
 |---|---|---|---|
-| Q4_K_M | ~21 GB | ~24–25 GB | 32 GB krátký kontext, 64 GB pro 128k |
+| Q4_K_M | ~21 GB + 0,6 GB mmproj | ~24,5–25,5 GB | 32 GB krátký kontext, 64 GB pro 128k |
 | Q8_0 | ~37 GB | ~40 GB | 48 GB pro 128k |
 | BF16 | ~69 GB | ~72 GB | 128 GB pro 128k |
 
-Velikosti jsou z reálných GGUF souborů
+Velikosti jsou z reálných GGUF souborů a mmproj souborů
 ([Unsloth](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF),
+[BatiAI](https://huggingface.co/batiai/Qwen3.6-35B-A3B-GGUF),
 [ossmodeldb](https://ossmodeldb.com/models/unsloth-qwen3-6-35b-a3b)).
 Výpočet KV cache je označený jako výpočet, ne měření.
 
@@ -79,7 +97,7 @@ paměťový pool, takže číslo berte jako orientační.
 | Kontext | Co se stane | Poznámka |
 |---|---|---|
 | 32k | nejlepší kvalita i rychlost | bezpečný výchozí bod |
-| 128k | reálný provozní strop na 64GB | ~24–25 GB paměti |
+| 128k | reálný provozní strop na 64GB | ~24,5–25,5 GB paměti včetně mmproj |
 | 262k | maximum modelu | na 64GB se nevejde s rezervou |
 
 Model má 262k nativně a ~1M s YaRN, ale **na 64GB konfiguraci je 128k
@@ -91,6 +109,7 @@ kvality na 64GB]`.
 - **Rychlý pomocník** na klasifikaci, extrakci a jednoduché úkoly.
 - **Vysoce vytížený agent**, kde rozhoduje throughput.
 - **64GB zařízení**, kde Qwen3.8 nemá dost místa; spolu s Gemmou 4 26B.
+- **Vision úlohy** s mmproj: dokumenty, screenshoty a video po framech.
 
 ## Kde ne
 
@@ -110,6 +129,7 @@ kvality na 64GB]`.
 - [Qwen3.6-35B-A3B — model card](https://huggingface.co/Qwen/Qwen3.6-35B-A3B)
 - [NVIDIA NGC — Qwen3.6-35B-A3B](https://catalog.ngc.nvidia.com/orgs/nim/qwen/models/qwen3.6-35b-a3b)
 - [Unsloth — Qwen3.6 35B-A3B GGUF](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF)
+- [BatiAI — Qwen3.6 35B-A3B GGUF a mmproj](https://huggingface.co/batiai/Qwen3.6-35B-A3B-GGUF)
 - [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
 
 *Naposledy ověřeno: 4. 11. 2026.*

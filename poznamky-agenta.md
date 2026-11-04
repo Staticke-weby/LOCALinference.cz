@@ -23,6 +23,9 @@ Rozšíření katalogu na **všechny konfigurace s 64 GB a více** unified pamě
   NVFP4 ve vLLM bez draftu je ~31,5 tok/s — vysvětleno jako rozdíl enginu.
 - **KV cache Qwen3.6** je malá díky lineární attention (30 z 40 vrstev).
   Odhad ~24–25 GB při 128k je označený jako výpočet, ne měření.
+- **Qwen3.6 vision** není součástí hlavního GGUF: vyžaduje samostatný
+  mmproj (~579 MB Q6_K, ~861 MB BF16). Bez něj je model text-only;
+  do paměťového rozpočtu se připočítá ~0,6 GB.
 
 ---
 

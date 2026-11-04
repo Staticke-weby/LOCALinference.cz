@@ -355,6 +355,17 @@
   posledni_kontrola: 2026-11-04
   stav: ok
 
+- id: qwen36-batiai-gguf
+  nazev: BatiAI - Qwen3.6 35B-A3B GGUF a mmproj
+  url: https://huggingface.co/batiai/Qwen3.6-35B-A3B-GGUF
+  typ: hf
+  co_sledujeme: [mmproj, vision, kvantizace, velikosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-04
+  stav: ok
+  poznamka: "mmproj-Q6_K 579 MB, mmproj-BF16 861 MB; vision je opt-in."
+
 - id: gemma4-hf
   nazev: Gemma 4 26B A4B - model card
   url: https://huggingface.co/google/gemma-4-26B-A4B

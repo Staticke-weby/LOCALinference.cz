@@ -21,7 +21,7 @@
       kvantizace: Q4_K_M
       kontext: 131072
       vahy_gb: 21.2
-      poznamka: "Odhad celkové paměti při 128k je 24–25 GB; KV cache je malá díky lineární attention."
+      poznamka: "Odhad celkové paměti při 128k je 24,5–25,5 GB včetně mmproj pro vision; KV cache je malá díky lineární attention."
     - model: gemma-4-26b-a4b
       kvantizace: Q4_K_M
       kontext: 131072
@@ -76,7 +76,7 @@
       kvantizace: Q4_K_M
       kontext: 131072
       vahy_gb: 21.2
-      poznamka: "Odhad celkové paměti při 128k je 24–25 GB."
+      poznamka: "Odhad celkové paměti při 128k je 24,5–25,5 GB včetně mmproj pro vision."
     - model: gemma-4-26b-a4b
       kvantizace: Q4_K_M
       kontext: 131072
@@ -131,7 +131,7 @@
       kvantizace: Q4_K_M
       kontext: 131072
       vahy_gb: 21.2
-      poznamka: "Odhad celkové paměti při 128k je 24–25 GB."
+      poznamka: "Odhad celkové paměti při 128k je 24,5–25,5 GB včetně mmproj pro vision."
     - model: gemma-4-26b-a4b
       kvantizace: Q4_K_M
       kontext: 131072
@@ -186,7 +186,7 @@
       kvantizace: Q4_K_M
       kontext: 131072
       vahy_gb: 21.2
-      poznamka: "Odhad celkové paměti při 128k je 24–25 GB; do 48GB GPU poolu se vejde."
+      poznamka: "Odhad celkové paměti při 128k je 24,5–25,5 GB včetně mmproj pro vision; do 48GB GPU poolu se vejde."
     - model: gemma-4-26b-a4b
       kvantizace: Q4_K_M
       kontext: 131072

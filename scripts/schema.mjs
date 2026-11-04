@@ -125,6 +125,14 @@ export const model = z.object({
     poznamka: z.string().optional(),
   }),
   vision: z.boolean(),
+  vision_projektor: z
+    .object({
+      nazev: z.string().min(1),
+      velikost_gb: z.number().positive(),
+      engine: z.string().min(1).nullable(),
+      poznamka: z.string().optional(),
+    })
+    .optional(),
   modality: z.array(z.string().min(1)).min(1),
   licence: z.string().min(1),
   kvantizace: z

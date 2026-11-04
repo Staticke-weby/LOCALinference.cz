@@ -49,13 +49,14 @@ místo vedle vah. Pro tři modely v katalogu to vychází takto:
 
 | Model | Kvantizace | Váhy | Celkem při 128k | Vejde se do 64 GB? |
 |---|---|---|---|---|
-| Qwen3.6 35B-A3B | Q4_K_M | ~21 GB | ~24–25 GB | ano, s rezervou |
+| Qwen3.6 35B-A3B | Q4_K_M | ~21 GB + 0,6 GB mmproj | ~24,5–25,5 GB | ano, s rezervou |
 | Gemma 4 26B A4B | Q4_K_M | ~17 GB + vision | ~21–22 GB | ano, s rezervou |
 | Qwen3.8 Flash Next | NVFP4 | ~101 GB | ~125 GB | ne, potřebuje 128 GB |
 
 U Qwen3.6 je KV cache malá, protože 30 z 40 vrstev používá lineární
-attention s pevným stavem. U Qwen3.8 je naopak 128k kontext na 128GB
-boxu těsný a 262k je strop, ne provozní bod.
+attention s pevným stavem. Vision ale vyžaduje samostatný **mmproj**
+(~0,6 GB), který se do rozpočtu připočítá. U Qwen3.8 je naopak 128k
+kontext na 128GB boxu těsný a 262k je strop, ne provozní bod.
 
 **Typ údajů:** velikosti vah jsou z GGUF souborů a model cardů. Součty
 pro 128k jsou **výpočet** z vah a KV cache, ne naše měření. U Qwen3.8

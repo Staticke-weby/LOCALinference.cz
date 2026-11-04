@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: model
+  titulek: "Qwen3.6 vision vyžaduje mmproj"
+  co_se_zmenilo: "Doplněno, že Qwen3.6 35B-A3B má vision jen se samostatným mmproj souborem (~579 MB Q6_K, ~861 MB BF16). Bez něj je model text-only; paměťový rozpočet se zvyšuje na ~24,5–25,5 GB při 128k."
+  dotcene_stranky: [modely/qwen3-6-35b-a3b, modely/srovnani, zarizeni/konfigurace]
+  zdroj: https://huggingface.co/batiai/Qwen3.6-35B-A3B-GGUF
+
+- datum: 2026-11-04
   typ: cena
   titulek: "České ceny 15 GB10 OEM strojů"
   co_se_zmenilo: "Nová stránka /zarizeni/dgx-spark-oem/ přináší ceny ASUS, Lenovo, HP, Dell, GIGABYTE, Acer, PNY a NVIDIA z Alza.cz k 4. 11. 2026, včetně a bez DPH."
