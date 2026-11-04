@@ -64,7 +64,8 @@ a co od nich čtenář může čekat.
 
 Toto je nejdůležitější pravidlo projektu.
 
-- **Nemáme laboratoř.** Většinu zařízení fyzicky netestujeme. Web je
+- **Vlastní měření neprovádíme.** Nemáme laboratoř a žádné zařízení
+  fyzicky netestujeme. Web je
   **interpretace veřejných dat**: sbíráme měření od výrobců, nezávislých
   testů a komunity, normalizujeme podmínky, hledáme rozpory a vysvětlujeme,
   co z nich plyne. Nikdy netvrď, že číslo pochází z našeho testu.
@@ -80,7 +81,7 @@ Toto je nejdůležitější pravidlo projektu.
     nastavení, které výsledek ovlivňuje (MTP, KV cache, flash attention).
   - `vypocet` — odvozené z **podložených vstupů** (roofline, kapacita).
     Uveď vzorec a zdroje vstupů. Nikdy to nevydávej za měření.
-  - `vlastni` — pouze pokud bychom skutečně měřili my. Dnes se nepoužívá.
+  - `vlastni` — nepoužíváme a neplánujeme; vlastní měření neprovádíme.
 - **Neodhaduj.** Když pro tvrzení není zdroj, **hledej ho**. Když ho
   nenajdeš, napiš `[DOPLNIT: co]` nebo tvrzení vynech. Číslo „od oka“
   na web nepatří. Výjimka je `vypocet` z podložených vstupů, jasně označený
@@ -224,7 +225,7 @@ Každý záznam musí mít:
 - TTFT, prefill tok/s, decode tok/s, agregát a souběžnost,
 - nastavení, které může výsledek ovlivnit: MTP, KV cache dtype,
   flash attention, chunked prefill, teplota, power limit,
-- typ (`namereno` / `vypocet` / `vlastni`) a zdroj,
+- typ (`namereno` / `vypocet`; `vlastni` nepoužíváme) a zdroj,
 - **rozptyl** nebo jiné zdroje se stejnou konfigurací,
 - **interpretaci**: co z čísla plyne pro denní použití a kde je limit.
 
@@ -301,6 +302,8 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
 
 - [DOPLNIT: značka a titulek webu — „Local Inference“ vs. český název]
 - [DOPLNIT: GitHub organizace pro oba repozitáře]
-- [DOPLNIT: provozovatel, kontakt, právní údaje]
+- [x] Provozovatel: **ESHOpino s.r.o.**, Roháčova 145/14, 130 00 Praha 3,
+      IČO 03223485, DIČ CZ03223485 — viz `/o-webu/pravni/`.
+- [DOPLNIT: kontaktní e-mail pro veřejnost]
 - [DOPLNIT: analytics — zda vůbec, případně Umami]
 - Vlastní měření: **ne** — data přebíráme a interpretujeme (viz `o-webu/metodika`).

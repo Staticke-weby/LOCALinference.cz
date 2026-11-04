@@ -1,6 +1,6 @@
 ---
 title: "Metodika: jak čteme data o lokální AI"
-description: "Nemáme vlastní laboratoř. Sbíráme veřejná měření, normalizujeme podmínky, kontrolujeme roofline a vysvětlujeme, co z nich plyne."
+description: "Vlastní měření neprovádíme. Pracujeme jen s veřejnými daty, ke kterým dohledáme zdroj, a vysvětlujeme, co z nich plyne."
 last_verified: 2026-11-04
 sidebar:
   order: 1
@@ -10,13 +10,15 @@ import TabulkaMereni from '../../../components/TabulkaMereni.astro';
 
 # Metodika: jak čteme data o lokální AI
 
-**Nemáme vlastní laboratoř.** Většinu zařízení fyzicky netestujeme. Přesto
-chceme odpovídat na otázku „jak rychle to poběží a co od toho čekat“.
-Řešíme to jinak: sbíráme veřejná měření, srovnáváme je za stejných podmínek
-a vysvětlujeme, kde a proč se rozcházejí.
+**Vlastní měření neprovádíme.** Žádné zařízení fyzicky netestujeme a
+nemáme laboratoř. Pracujeme jen s daty, ke kterým dohledáme zdroj.
+Přesto chceme odpovídat na otázku „jak rychle to poběží a co od toho
+čekat“. Řešíme to jinak: sbíráme veřejná měření, srovnáváme je za stejných
+podmínek a vysvětlujeme, kde a proč se rozcházejí.
 
-Tato stránka popisuje, jak to děláme. Je to zároveň slib: co najdete
-v tabulkách, není naše měření, pokud to výslovně neřekneme.
+Tato stránka popisuje, jak to děláme. Je to zároveň slib: **žádné číslo
+v tabulkách není z našeho testu.** Buď je převzaté (`namereno`), nebo
+vypočtené z podložených vstupů (`vypocet`).
 
 ## Co tedy děláme
 
@@ -98,10 +100,10 @@ ne `namereno`, a vždy ukážeme vstupy.
 |---|---|---|
 | `namereno` | převzato od zdroje, ne od nás | 70 tok/s na DGX Spark, NVFP4 |
 | `vypocet` | odvozeno z roofline nebo kapacity | očekávaných 60–80 tok/s |
-| `vlastni` | naměřili bychom my | dnes se nepoužívá |
+| `vlastni` | nepoužíváme a neplánujeme | — |
 
-**Vlastní odhad nepoužíváme.** Když zdroj chybí, je v textu `[DOPLNIT]`,
-ne vymyšlené číslo.
+**Vlastní měření ani odhad nepoužíváme.** Když zdroj chybí, je v textu
+`[DOPLNIT]`, ne vymyšlené číslo.
 
 ## Rozpory nezakrýváme
 

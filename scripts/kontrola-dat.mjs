@@ -139,6 +139,9 @@ for (const o of strixHaloOemList) {
 for (const m of mereniList) {
   if (!zarizeniIds.has(m.zarizeni)) fail(`data/mereni.yaml / ${m.id}: neznámé zařízení ${m.zarizeni}`);
   if (!modelIds.has(m.model)) fail(`data/mereni.yaml / ${m.id}: neznámý model ${m.model}`);
+  if (m.typ === 'vlastni' || m.mereno_kym === 'my') {
+    fail(`data/mereni.yaml / ${m.id}: vlastní měření neprovádíme; použij převzatý zdroj`);
+  }
   if (m.typ === 'namereno' && (!m.zdroj || !m.mereno_kym)) {
     fail(`data/mereni.yaml / ${m.id}: naměřené číslo musí mít zdroj a mereno_kym`);
   }

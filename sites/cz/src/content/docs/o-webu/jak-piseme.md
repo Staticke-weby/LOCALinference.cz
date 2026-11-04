@@ -22,7 +22,8 @@ provozovat.
 3. **Rozpory nezakrýváme.** Když se zdroje rozcházejí, ukážeme rozpětí
    a vysvětlíme, čím to je.
 4. **Rozlišujeme typ údaje.** `naměřeno` znamená naměřeno zdrojem, ne
-   námi. `vypocet` je roofline. `vlastni` dnes nepoužíváme.
+   námi. `vypocet` je výpočet z podložených vstupů. `vlastni` nepoužíváme
+   a neplánujeme — vlastní měření neprovádíme.
 5. **Žádný marketing.** Žádné „revoluce“, „game-changer“ ani „unikátní
    řešení“. Píšeme, co zařízení zvládne a kde selže.
 6. **Čeština pro technicky zvídavé.** Odborný pojem vysvětlíme jednou
@@ -39,7 +40,15 @@ provozovat.
 
 ## Kdo za tím stojí
 
-`[DOPLNIT: provozovatel, kontakt, právní údaje]`
+**ESHOpino s.r.o.**
+Roháčova 145/14
+130 00 Praha 3
+
+IČO: 03223485 · DIČ: CZ03223485
+
+Local Inference je **informační web**, ne zákaznická podpora. Neprodáváme
+hardware ani modely a nejsme spojeni s jejich výrobci. Podrobnosti v
+[právních informacích](/o-webu/pravni/).
 
 ## Kudy dál
 

@@ -8,7 +8,7 @@ Nezávislý průvodce lokální AI na hotových zařízeních.
 Web odpovídá na otázku: *„Koupím tenhle stroj. Které modely na něm poběží,
 jak rychle a co od nich mám čekat v denní práci?“*
 
-**Nemáme vlastní laboratoř.** Většinu zařízení fyzicky netestujeme. Web je
+**Vlastní měření neprovádíme.** Nemáme laboratoř a žádné zařízení fyzicky netestujeme. Web je
 interpretace veřejných měření, model cardů a dokumentace: data srovnáváme,
 kontrolujeme roofline, hledáme rozpory a vysvětlujeme, co z nich plyne.
 Nikdy netvrdíme, že číslo je z našeho testu.

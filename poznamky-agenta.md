@@ -4,6 +4,18 @@
 
 ---
 
+## 2026-11-04 — provozovatel a měření
+
+- **Provozovatel:** ESHOpino s.r.o., Roháčova 145/14, 130 00 Praha 3,
+  IČO 03223485, DIČ CZ03223485 — stejný jako OpenWork.cz. Doplňno do
+  `/o-webu/pravni/`, `jak-piseme.md`, footeru a JSON-LD.
+- **Vlastní měření neprovádíme a neplánujeme.** Pracujeme jen s daty,
+  ke kterým dohledáme zdroj. Validace odmítne `typ: vlastni`
+  i `mereno_kym: my`.
+- Kontaktní e-mail pro veřejnost zůstává `[DOPLNIT]`.
+
+---
+
 ## 2026-11-04 — konfigurace 64 GB+
 
 Rozšíření katalogu na **všechny konfigurace s 64 GB a více** unified paměti:

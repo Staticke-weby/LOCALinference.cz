@@ -43,6 +43,24 @@ export default defineConfig({
             inLanguage: 'cs',
           }),
         },
+        {
+          tag: 'script',
+          attrs: { type: 'application/ld+json' },
+          content: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'ESHOpino s.r.o.',
+            url: 'https://www.localinference.cz/',
+            identifier: '03223485',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Roháčova 145/14',
+              postalCode: '130 00',
+              addressLocality: 'Praha 3',
+              addressCountry: 'CZ',
+            },
+          }),
+        },
       ],
       sidebar: [
         {
