@@ -166,3 +166,12 @@ body:has(.hero) {
   );
   background-repeat: no-repeat;
 }
+
+/* Slovnik: prvni a posledni sloupec nedelit. */
+.li-slovnik th:first-child,
+.li-slovnik td:first-child,
+.li-slovnik th:last-child,
+.li-slovnik td:last-child {
+  white-space: nowrap;
+}
+

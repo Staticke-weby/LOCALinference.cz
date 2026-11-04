@@ -1,0 +1,60 @@
+---
+title: "Co je ROCm a proč je na Strix Halu druhá liga"
+description: "ROCm je AMD platforma pro výpočty na GPU. Vysvětlíme, co zvládne na Strix Halo 128 GB, kde narazí a kdy se vyplatí oproti CUDA."
+last_verified: 2026-11-04
+sidebar:
+  label: Co je ROCm
+  order: 6
+---
+
+**ROCm** je obdoba CUDA od AMD: platforma, na které běží výpočty na
+grafických čipech. Je otevřená a zdarma, ale její podpora není tak
+široká jako u CUDA — a to je přesně důvod, proč se u Strix Halu mluví
+o kompromisu.
+
+## K čemu to je
+
+Na Strix Halu (Ryzen AI Max+ 395) běží model přes **llama.cpp** nebo
+**vLLM s ROCm backendem**. ROCm zprostředkuje výpočet na integrovaném
+Radeonu 8060S, který sdílí paměť s procesorem.
+
+V praxi to funguje: Qwen3.8 Flash Next na Strix Halu běží 36–79 tok/s
+podle kvantizace a délky kontextu. Rozdíl proti CUDA je jinde než
+v decode — **prefill je slabší**, takže dlouhý dokument se načítá
+déle.
+
+## Kde ROCm narazí
+
+- **Linux první.** Na Windows je cesta přes Vulkan nebo WSL, ne přes
+  plnohodnotný ROCm.
+- **Méně hotových receptů.** Kde pro CUDA existuje oficiální návod,
+  pro ROCm se často skládá z diskusí a komunitních měření.
+- **Kvantizace.** NVFP4 je záležitost NVIDIA; na AMD se používá GGUF
+  nebo jiné formáty.
+- **Aktualizace.** Nová verze ovladače může změnit chování. Počítejte
+  s tím, že se občas něco rozbije.
+
+## Kdy ROCm dává smysl
+
+- Chcete **nejnižší cenu za 128 GB** a CUDA nepotřebujete.
+- Vadí vám menší ekosystém, ale nechcete platit tisíce navíc.
+- Provozujete jeden model pro 1–4 lidi, ne produkční cluster.
+
+Když potřebujete jistotu, že ráno nastoupí kolega a všechno funguje bez
+zásahu, je CUDA bezpečnější volba. Nejde o výkon, jde o to, kolik času
+strávíte laděním.
+
+## Kudy dál
+
+- [Co je CUDA](/zaciname/co-je-cuda/) — varianta od NVIDIA.
+- [Co je llama.cpp](/zaciname/co-je-llamacpp/) — engine, který ROCm používá.
+- [Strix Halo](/zarizeni/strix-halo/) — zařízení a jeho limity.
+- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [AMD — ROCm documentation](https://rocm.docs.amd.com/)
+- [llama.cpp — build pro ROCm](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+- [AMD — Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html)
+
+*Naposledy ověřeno: 4. 11. 2026.*

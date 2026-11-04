@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Vysvětlivky pojmů: CUDA, ROCm, vLLM, llama.cpp a slovník"
+  co_se_zmenilo: "Přibyly čtyři stránky s vysvětlením pojmů, které se na webu používají — CUDA, ROCm, vLLM a llama.cpp — a slovník s 19 pojmy. Ze stránek zařízení a modelu na ně vedou odkazy, patička odkazuje na slovník."
+  dotcene_stranky: [zaciname/co-je-cuda, zaciname/co-je-rocm, zaciname/co-je-vllm, zaciname/co-je-llamacpp, zaciname/slovnik]
+  zdroj: https://docs.nvidia.com/cuda/
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Čeština: ceny v USA místo „listových cen“"
   co_se_zmenilo: "Pojem „US listová cena“ a „US listovka“ nahradilo „cena v USA“ — v češtině se pro list price používá ceníková nebo doporučená cena, ne doslovný překlad. Upraven i hero text na úvodní stránce."
   dotcene_stranky: [index, zarizeni/dgx-spark-oem, zarizeni/strix-halo-oem, zarizeni/rtx-spark-notebook-oem, vyber/rozpocet, temata]

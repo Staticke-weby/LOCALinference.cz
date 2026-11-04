@@ -1,0 +1,59 @@
+---
+title: "Slovník lokální AI: pojmy, které se na webu potkají"
+description: "CUDA, ROCm, vLLM, llama.cpp, KV cache, kvantizace, MoE a tok/s. Krátký slovník pojmů s odkazy na vysvětlení bez balastu."
+last_verified: 2026-11-04
+sidebar:
+  label: Slovník
+  order: 9
+---
+
+Pojmy, které se u lokální AI opakují a často nikdo nevysvětlí. Každý
+odkaz vede na stránku, kde je pojem rozebraný do hloubky.
+
+<div class="li-slovnik">
+
+| Pojem | Co to je | Vysvětlení |
+|---|---|---|
+| **Aktivní parametry** | Kolik parametrů model použije na jeden token. Určují rychlost. | [Proč MoE](/zaciname/proc-moe/) |
+| **Bandwidth** | Propustnost paměti v GB/s. Určuje strop tok/s. | [Jak to funguje](/zaciname/jak-to-funguje/) |
+| **CUDA** | Platforma NVIDIA pro výpočty na GPU. | [Co je CUDA](/zaciname/co-je-cuda/) |
+| **GGUF** | Formát souboru s kvantizovaným modelem pro llama.cpp. | [Co je llama.cpp](/zaciname/co-je-llamacpp/) |
+| **Kontext** | Kolik textu si model pamatuje při jednom dotazu. | [Jak to funguje](/zaciname/jak-to-funguje/) |
+| **KV cache** | Paměť navíc pro kontext. Roste s délkou a souběžností. | [Jak to funguje](/zaciname/jak-to-funguje/) |
+| **Kvantizace** | Zmenšení vah (16 → 8 → 4 bity), aby se model vešel. | [Jak to funguje](/zaciname/jak-to-funguje/) |
+| **llama.cpp** | Program pro provoz modelu, ideální pro jednoho uživatele. | [Co je llama.cpp](/zaciname/co-je-llamacpp/) |
+| **MoE** | Model s mnoha experty, ale jen část aktivní pro každý token. | [Proč MoE](/zaciname/proc-moe/) |
+| **NVFP4** | 4bitová kvantizace NVIDIA pro CUDA stroje. | [Jak to funguje](/zaciname/jak-to-funguje/) |
+| **Prefill** | Zpracování vstupu před prvním tokenem. | [Jak čteme data](/zaciname/jak-cteme-data/) |
+| **ROCm** | Platforma AMD pro výpočty na GPU. | [Co je ROCm](/zaciname/co-je-rocm/) |
+| **Roofline** | Teoretický strop rychlosti daný pamětí. | [Roofline](/rychlost/roofline/) |
+| **Souběžnost** | Kolik dotazů běží současně. | [Kolik uživatelů](/vyber/kolik-uzivatelu/) |
+| **Tok/s** | Tokeny za sekundu, většinou pro decode. | [Jak čteme data](/zaciname/jak-cteme-data/) |
+| **TTFT** | Čas do prvního tokenu. | [Jak čteme data](/zaciname/jak-cteme-data/) |
+| **Unified memory** | Paměť společná pro CPU a GPU. | [128 GB paměti](/temata/128gb-unified-memory/) |
+| **Váhy** | Čísla, která tvoří model. Velikost určuje, co se vejde. | [Jak to funguje](/zaciname/jak-to-funguje/) |
+| **vLLM** | Server pro provoz modelu pro víc uživatelů. | [Co je vLLM](/zaciname/co-je-vllm/) |
+
+</div>
+
+## Jak slovník číst
+
+Nezáleží na tom, kolik pojmů znáte. U každého zařízení stačí vědět tři
+věci: **kolik má paměti**, **jak je rychlá** a **jaký software na ní
+funguje**. Zbytek je vysvětlení pro toho, kdo chce vědět proč.
+
+## Kudy dál
+
+- [Jak to funguje](/zaciname/jak-to-funguje/) — od vah po tok/s.
+- [Jak čteme data](/zaciname/jak-cteme-data/) — TTFT, prefill, rozpětí.
+- [Témata](/temata/) — obsah podle hledaných výrazů.
+- [Srovnání zařízení](/zarizeni/srovnani/) — kde se pojmy potkají.
+
+## Zdroje
+
+- [Metodika](/o-webu/metodika/) — jak čteme data a proč neodhadujeme.
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next) — parametry, kontext, licence.
+- [llama.cpp](https://github.com/ggml-org/llama.cpp) — backendy a formáty.
+- [vLLM](https://docs.vllm.ai/) — dokumentace serveru.
+
+*Naposledy ověřeno: 4. 11. 2026.*

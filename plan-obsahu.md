@@ -78,7 +78,7 @@ Tón a hloubka webu. Tyto stránky musí být hotové dřív než katalog.
 | 2 | `zaciname/jak-to-funguje` | Váhy, kvantizace, paměť, tok/s — bez magie | jak funguje lokální AI, kvantizace modelu | ✅ |
 | 3 | `zaciname/proc-moe` | Rozhodují aktivní parametry, ne celkové | MoE model, aktivní parametry | ✅ |
 | 4 | `zaciname/jak-cteme-data` | Jak čteme cizí měření, roofline, rozpětí a důvěryhodnost | jak číst tok/s, TTFT, benchmark | ✅ |
-| 5 | `zaciname/slovnik` | Pojmy bez balastu, abecedně | slovník lokální AI | ⬜ |
+| 5 | `zaciname/slovnik` | Pojmy bez balastu, abecedně | slovník lokální AI | ✅ |
 | 6 | `zaciname/prostredi` | Co nainstalovat: Node, Python, Git, runtime | Python pro AI skripty, vLLM, llama.cpp | ⬜ |
 
 ### 1. Co je lokální AI
@@ -179,6 +179,26 @@ TTFT, unified memory, vLLM, váhy.
   llama.cpp a Ollama fungují nativně.
 - **Bezpečnost:** modely a skripty stahovat z oficiálních zdrojů, ověřovat
   hash, nespoléhat na neznámé „one-click“ instalátory.
+
+---
+
+## Vlna 1.5 — vysvětlivky pojmů ✅
+
+Pojmy, o kterých se na webu mluví, ale neměly vlastní stránku. Jeden
+pojem na stránku, hledaný termín v H1, odkaz z místa, kde se pojem
+poprvé objeví.
+
+| Stránka | Hledaný výraz | Stav |
+|---|---|---|
+| `zaciname/co-je-cuda` | co je CUDA | ✅ |
+| `zaciname/co-je-rocm` | co je ROCm | ✅ |
+| `zaciname/co-je-vllm` | co je vLLM | ✅ |
+| `zaciname/co-je-llamacpp` | co je llama.cpp | ✅ |
+| `zaciname/slovnik` | slovník lokální AI | ✅ |
+
+Ze stránek zařízení, modelu a návodů na ně vedou odkazy; patička má
+odkaz na slovník. Další pojmy (GGUF, NVFP4, KV cache) jsou vysvětlené
+v `jak-to-funguje` a `jak-cteme-data`, slovník na ně odkazuje.
 
 ---
 

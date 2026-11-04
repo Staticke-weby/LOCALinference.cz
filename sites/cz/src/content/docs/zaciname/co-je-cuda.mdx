@@ -1,0 +1,63 @@
+---
+title: "Co je CUDA a proč na ní u lokální AI záleží"
+description: "CUDA je NVIDIA platforma pro výpočty na GPU. Vysvětlíme, co znamená pro provoz Qwen3.8 Flash Next na 128GB boxu a kdy ji nepotřebujete."
+last_verified: 2026-11-04
+sidebar:
+  label: Co je CUDA
+  order: 5
+---
+
+**CUDA** je platforma NVIDIA pro výpočty na grafických čipech. Není to
+model ani program — je to vrstva, na které běží software od výrobců
+a open-source projektů. Když se řekne „ten stroj má CUDA“, znamená to,
+že na něm poběží nástroje, které jsou pro CUDA napsané.
+
+## K čemu to je
+
+Grafický čip umí spočítat tisíce operací najednou. CUDA z toho dělá
+použitelnou věc: programátor napíše výpočet jednou a knihovny jako
+cuBLAS nebo FlashAttention ho spustí na GPU.
+
+Pro lokální AI to znamená tři věci:
+
+- **vLLM** a **llama.cpp** mají CUDA backend, takže model běží na GPU,
+  ne na procesoru.
+- **Kvantizace NVFP4** je na CUDA strojích nativní — Qwen3.8 Flash Next
+  se na DGX Spark vejde do 128 GB i s rezervou na kontext.
+- **Nové nástroje** vycházejí nejdřív pro CUDA. Podpora AMD nebo Applu
+  přichází později a bývá méně úplná.
+
+## Kde ji v katalogu potkáte
+
+- **DGX Spark** — GB10 Grace Blackwell, CUDA, DGX OS.
+- **RTX Spark mini a notebook** — Blackwell RTX, CUDA na Windows.
+- **Strix Halo** — CUDA nemá, používá **ROCm** a Vulkan.
+
+Rozdíl není v tom, že by CUDA byla „rychlejší“. Rozdíl je v tom, že na
+CUDA stroji je hotový recept, který funguje, a při problému najdete
+odpověď. Na Strix Halu je potřeba počítat s tím, že některé věci
+půjdou přes Vulkan a některé vůbec.
+
+## Co to neznamená
+
+- **CUDA není záruka rychlosti.** O tok/s rozhoduje propustnost paměti
+  a počet aktivních parametrů, ne logo na krabici.
+- **CUDA není podmínka pro lokální AI.** Qwen3.8 Flash Next běží
+  i na Strix Halu přes llama.cpp.
+- **CUDA neznamená uzamčení navždy.** Model i váhy jsou přenositelné;
+  mění se jen engine, kterým je spustíte.
+
+## Kudy dál
+
+- [Co je ROCm](/zaciname/co-je-rocm/) — alternativa od AMD.
+- [Co je vLLM](/zaciname/co-je-vllm/) — server, který CUDA používá.
+- [DGX Spark](/zarizeni/dgx-spark/) — CUDA stroj v katalogu.
+- [Slovník](/zaciname/slovnik/) — všechny pojmy na jednom místě.
+
+## Zdroje
+
+- [NVIDIA — CUDA Toolkit documentation](https://docs.nvidia.com/cuda/)
+- [vLLM — CUDA installation](https://docs.vllm.ai/en/latest/getting_started/installation/gpu.html)
+- [llama.cpp — CUDA backend](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+
+*Naposledy ověřeno: 4. 11. 2026.*
