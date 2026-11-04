@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: obsah
+  titulek: "Čeština: ceny v USA místo „listových cen“"
+  co_se_zmenilo: "Pojem „US listová cena“ a „US listovka“ nahradilo „cena v USA“ — v češtině se pro list price používá ceníková nebo doporučená cena, ne doslovný překlad. Upraven i hero text na úvodní stránce."
+  dotcene_stranky: [index, zarizeni/dgx-spark-oem, zarizeni/strix-halo-oem, zarizeni/rtx-spark-notebook-oem, vyber/rozpocet, temata]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-04
   typ: cena
   titulek: "Ověření cen na Alza.cz a jen aktuální ceny"
   co_se_zmenilo: "Ceny ověřeny proti nabídce Alza.cz k 4. 11. 2026. Lenovo ThinkStation PGX 1TB má aktuálně 179 990 Kč. Z dat i tabulek zmizely původní ceny, slevy a historie zdražování — web uvádí jen jednu aktuální cenu k datu ověření."

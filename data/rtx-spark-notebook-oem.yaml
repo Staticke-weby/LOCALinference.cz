@@ -1,6 +1,6 @@
 # České maloobchodní ceny notebooků s NVIDIA RTX Spark N1X, 128 GB.
 # Ceny jsou z nabídky Alza.cz ze 4. 11. 2026, včetně a bez DPH.
-# Nejde o US listové ceny; ty jsou v data/zarizeni.yaml.
+# Nejde o ceny z amerického trhu; ty jsou v data/zarizeni.yaml.
 # Ceny kolísají. Před nákupem ověřte aktuální stav.
 
 - id: asus-proart-p14-128-1tb

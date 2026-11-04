@@ -1,6 +1,6 @@
 # České maloobchodní ceny strojů s NVIDIA GB10 (DGX Spark platforma).
 # Ceny jsou z nabídky Alza.cz ze 4. 11. 2026, včetně a bez DPH.
-# Nejsou to US listové ceny; ty jsou v data/zarizeni.yaml.
+# Nejsou to ceny z amerického trhu; ty jsou v data/zarizeni.yaml.
 # Ceny kolísají a některé položky jsou akční. Před nákupem ověřte aktuální stav.
 
 - id: asus-ascent-gx10-1tb
