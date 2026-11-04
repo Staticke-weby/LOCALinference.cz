@@ -19,7 +19,7 @@ if (!z) throw new Error(`Neznámé zařízení: ${id}`);
     <tr><th>Forma</th><td>{z.kategorie}</td></tr>
     <tr><th>OS</th><td>{z.os.join(', ')}</td></tr>
     <tr><th>Software</th><td>{z.software.join(', ')}</td></tr>
-    <tr><th>Příkon</th><td>{z.prikon_w ? `${formatCislo(z.prikon_w)} W` : '[DOPLNIT]'}</td></tr>
+    <tr><th>Příkon</th><td>{z.prikon_pozn ?? (z.prikon_w ? `${formatCislo(z.prikon_w)} W` : '[DOPLNIT]')}</td></tr>
     <tr><th>Hmotnost</th><td>{z.hmotnost_kg ? `${formatCislo(z.hmotnost_kg)} kg` : '[DOPLNIT]'}</td></tr>
     <tr><th>Prodejci</th><td>{z.prodejce.join(', ')}</td></tr>
     <tr>

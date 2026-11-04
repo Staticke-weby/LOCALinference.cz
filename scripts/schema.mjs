@@ -49,6 +49,7 @@ export const zarizeni = z.object({
   os: z.array(z.string().min(1)).min(1),
   software: z.array(z.string().min(1)).min(1),
   prikon_w: z.number().positive().nullable(),
+  prikon_pozn: z.string().optional(),
   hmotnost_kg: z.number().positive().nullable(),
   prodejce: z.array(z.string().min(1)).default([]),
   silne: z.array(z.string().min(1)).default([]),

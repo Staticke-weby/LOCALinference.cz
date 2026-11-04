@@ -36,6 +36,7 @@ export type Zarizeni = {
   os: string[];
   software: string[];
   prikon_w: number | null;
+  prikon_pozn?: string;
   hmotnost_kg: number | null;
   prodejce: string[];
   silne: string[];
@@ -143,7 +144,7 @@ export function formatDatum(value: string | Date): string {
 }
 
 export function formatCislo(value: number): string {
-  return new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 1 }).format(value);
+  return new Intl.NumberFormat('cs-CZ', { maximumFractionDigits: 2 }).format(value);
 }
 
 export function getZarizeni(): Zarizeni[] {
