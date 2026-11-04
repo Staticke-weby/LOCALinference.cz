@@ -40,8 +40,19 @@ NVIDIA stack, musí jinam.
 - **Ollama a LM Studio** — nejjednodušší start.
 - **vLLM ne** — vyžaduje CUDA. Na Macu nemá smysl ho řešit.
 
-Konkrétní naměřená čísla pro Qwen3.8 Flash Next na Mac Studiu
-Veřejné měření pro tento model zatím nemáme..
+## Jak rychle běží Qwen3.8 Flash Next
+
+Komunitní měření na **M5 Max, 128 GB, oQ3 MTP, oMLX 0.6.3rc3**:
+
+| Kontext | Prefill | Decode | TTFT |
+|---|---|---|---|
+| 8k | 1 435 tok/s | 30,6 tok/s | 5,7 s |
+| 32k | 1 050 tok/s | 24,4 tok/s | ~31 s |
+| 64k | 815 tok/s | 25,8 tok/s | ~80 s |
+
+Čísla jsou převzatá, ne naše; jedna konfigurace, jeden stream. TTFT
+u 32k a 64k je dopočten z prefillu. Podrobnosti v
+[měřeních](/zdroje/mereni/).
 
 ## Cena
 
@@ -60,6 +71,7 @@ liší čipem, pamětí a úložištěm; 128 GB je až vyšší konfigurace.
 
 ## Kudy dál
 
+- [Návod pro Mac](/navody/mac/) — MLX a llama.cpp krok za krokem.
 - [MacBook Pro 128 GB](/zarizeni/macbook-pro/) — stejný čip na cesty.
 - [Srovnání zařízení](/zarizeni/srovnani/) — všechny 128GB stroje.
 - [Co je unified memory](/slovnik/pamet/unified-memory/) — proč to funguje.

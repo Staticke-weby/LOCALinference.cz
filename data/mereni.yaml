@@ -537,3 +537,80 @@
   interpretace: "Starší engine bez MTP; ukazuje spodní hranici rozptylu."
   zdroj: https://github.com/sixteen-miles-labs/sparklab/blob/main/benchmarks/frameworks/QWEN38_FLASH_NEXT.md
 
+- id: 2026-08-27-mac-studio-qwen38-oq3-8k
+  datum: 2026-08-27
+  zarizeni: mac-studio
+  model: qwen3-8-flash-next
+  kvantizace: MLX oQ3 (3bit)
+  engine: oMLX
+  engine_verze: "0.6.3rc3"
+  kontext: 8192
+  kontext_strop: null
+  ttft_ms: 5708
+  prefill_toks: 1435
+  decode_toks: 30.6
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: null
+    kv_cache: null
+    teplota: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "M5 Max 40jader, 128 GB; oMLX, oQ3 MTP; 8k kontext; jeden stream"
+  interpretace: "Na Macu se 128 GB je decode kolem 30 tok/s a prefill 1,4 tis. tok/s. TTFT na 8k je 5,7 s."
+  zdroj: https://omlx.ai/benchmarks/performance/7fpjs406
+  poznamka: "Komunitní benchmark, jedna konfigurace; platí i pro MacBook Pro se stejným čipem."
+
+- id: 2026-08-27-mac-studio-qwen38-oq3-32k
+  datum: 2026-08-27
+  zarizeni: mac-studio
+  model: qwen3-8-flash-next
+  kvantizace: MLX oQ3 (3bit)
+  engine: oMLX
+  engine_verze: "0.6.3rc3"
+  kontext: 32768
+  kontext_strop: null
+  ttft_ms: null
+  prefill_toks: 1050
+  decode_toks: 24.4
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: null
+    kv_cache: null
+    teplota: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "M5 Max 40jader, 128 GB; oMLX, oQ3 MTP; 32k kontext; jeden stream"
+  interpretace: "S délkou kontextu decode klesá k 24 tok/s a prefill k 1 tis. tok/s; TTFT je zhruba 31 s."
+  zdroj: https://omlx.ai/benchmarks/performance/7fpjs406
+  poznamka: "TTFT dopočten z prefillu (32768 / 1050), proto není uveden jako měřený."
+
+- id: 2026-08-27-mac-studio-qwen38-oq3-64k
+  datum: 2026-08-27
+  zarizeni: mac-studio
+  model: qwen3-8-flash-next
+  kvantizace: MLX oQ3 (3bit)
+  engine: oMLX
+  engine_verze: "0.6.3rc3"
+  kontext: 65536
+  kontext_strop: null
+  ttft_ms: null
+  prefill_toks: 814.6
+  decode_toks: 25.8
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: null
+    kv_cache: null
+    teplota: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: nizka
+  normalizace: "M5 Max 40jader, 128 GB; oMLX, oQ3 MTP; 64k kontext; jeden stream"
+  interpretace: "Na 64k kontextu drží decode kolem 26 tok/s, prefill klesá na 815 tok/s."
+  zdroj: https://omlx.ai/benchmarks/performance/7fpjs406
+  poznamka: "TTFT dopočten z prefillu (65536 / 814,6), proto není uveden jako měřený."

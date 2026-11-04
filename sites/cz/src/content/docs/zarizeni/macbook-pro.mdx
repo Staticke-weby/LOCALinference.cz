@@ -34,8 +34,13 @@ Pro práci u klienta dobré; jako stálý server drahé.
 Qwen3.8 Flash Next v GGUF kvantizaci nebo v MLX podobě. Ollama a
 LM Studio fungují nativně. CUDA ani NVFP4 ne — ty patří NVIDIA.
 
-Naměřená čísla pro Qwen3.8 Flash Next na MacBooku
-Veřejné měření pro tento model zatím nemáme..
+## Jak rychle běží Qwen3.8 Flash Next
+
+MacBook Pro s M5 Max má stejný čip jako Mac Studio, takže výchozí čísla
+jsou stejná: **30,6 tok/s** na 8k, **24,4 tok/s** na 32k a **25,8 tok/s**
+na 64k kontextu. Rozdíl je v chlazení — v tenkém těle výkon po delším
+běhu klesne, takže počítejte se spodní hranicí. Měření pochází z Mac
+Studia, viz [měření](/zdroje/mereni/).
 
 ## Kde je limit
 
@@ -53,6 +58,7 @@ MacBook Pro s 128 GB je až vyšší konfigurace M4 Max.
 
 ## Kudy dál
 
+- [Návod pro Mac](/navody/mac/) — MLX a llama.cpp krok za krokem.
 - [Mac Studio](/zarizeni/mac-studio/) — stejný čip na stůl.
 - [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — Windows varianta.
 - [Co je unified memory](/slovnik/pamet/unified-memory/) — proč to na Macu funguje.

@@ -1,0 +1,96 @@
+---
+title: "Mac: jak spustit Qwen3.8 Flash Next (MLX a llama.cpp)"
+description: "První spuštění Qwen3.8 Flash Next na Macu s 128 GB. MLX server, oMLX, llama.cpp Metal a připojení z jiného zařízení."
+last_verified: 2026-11-04
+sidebar:
+  label: Mac
+  order: 4
+---
+
+Na Macu s Apple Silicon a 128 GB paměti běží Qwen3.8 Flash Next přes
+**MLX** nebo **llama.cpp s Metalem**. Není potřeba CUDA ani Linux.
+
+## Co budete potřebovat
+
+- Mac s **Apple Silicon** a **128 GB unified paměti** (M5 Max).
+- **macOS** aktuální verze.
+- **~90–100 GB volného disku** na model.
+- Účet na [Hugging Face](/slovnik/software/huggingface/) a token, pokud
+  model vyžaduje souhlas s licencí.
+
+## Krok 1: nainstalujte MLX
+
+Pro příkazovou řádku stačí Python:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -U mlx-lm
+```
+
+Kdo chce grafické rozhraní, použije **oMLX** z [omlx.ai](https://omlx.ai/).
+
+## Krok 2: stáhněte model
+
+```bash
+export HF_TOKEN="hf_váš_token"
+huggingface-cli download mlx-community/Qwen3.8-Flash-Next-4bit
+```
+
+Pro 128 GB se hodí 4bitová nebo 3bitová varianta. Kontrola: model
+musí mít včetně [KV cache](/slovnik/pamet/kv-cache/) rezervu do 128 GB.
+
+## Krok 3: spusťte server
+
+```bash
+mlx_lm.server --model mlx-community/Qwen3.8-Flash-Next-4bit --port 8080
+```
+
+Server nabízí API kompatibilní s OpenAI na `http://localhost:8080/v1`.
+V oMLX se model vybere v aplikaci a server se zapne tlačítkem.
+
+## Alternativa: llama.cpp s Metalem
+
+```bash
+brew install llama.cpp
+llama-server -m Qwen3.8-Flash-Next-Q4_K_M.gguf --port 8080 -c 32768
+```
+
+Metal backend je součástí macOS buildu. Hodí se, když chcete
+[GGUF](/slovnik/software/gguf/) a přenositelnost.
+
+## Krok 4: připojte se z jiného zařízení
+
+- Zjistěte IP Macu (`ipconfig getifaddr en0`).
+- V aplikaci nastavte `http://IP:8080/v1` jako OpenAI endpoint.
+- Mac nesmí uspávat: **Nastavení → Displej → Zabraňte spánku**.
+
+## Když to nefunguje
+
+| Příznak | Co zkontrolovat |
+|---|---|
+| Model se nenačte | máte 128 GB a dost místa na disku |
+| Pomalé | běží jiná aplikace náročná na GPU |
+| Padá po minutě | teplota a throttling, viz [Co je throttling](/slovnik/provoz/throttling/) |
+| Nevidí model | cestu k souboru a název repozitáře |
+
+## Jak rychle to běží
+
+Na M5 Max s 128 GB a oQ3 kvantizací: **30 tok/s** na 8k kontextu,
+**24 tok/s** na 32k a **26 tok/s** na 64k. Prefill 1,4 tis. tok/s.
+Podrobnosti v [měřeních](/zdroje/mereni/).
+
+## Kudy dál
+
+- [Mac Studio](/zarizeni/mac-studio/) — stolní varianta.
+- [MacBook Pro](/zarizeni/macbook-pro/) — přenosná varianta.
+- [Co je llama.cpp](/slovnik/software/llamacpp/) — engine a formáty.
+- [Co je Hugging Face](/slovnik/software/huggingface/) — token a modely.
+
+## Zdroje
+
+- [MLX — dokumentace](https://ml-explore.github.io/mlx/)
+- [oMLX — benchmarky](https://omlx.ai/benchmarks/performance/7fpjs406)
+- [llama.cpp — build](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+
+*Naposledy ověřeno: 4. 11. 2026.*

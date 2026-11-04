@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-04
+  typ: mereni
+  titulek: "Měření Qwen3.8 Flash Next na M5 Max a návod pro Mac"
+  co_se_zmenilo: "Doplněna tři veřejná měření z oMLX (M5 Max 40jader, 128 GB, oQ3, 8k/32k/64k): decode 30,6/24,4/25,8 tok/s, prefill 1435/1050/815 tok/s. Nový návod /navody/mac/ popisuje MLX, oMLX a llama.cpp Metal."
+  dotcene_stranky: [zarizeni/mac-studio, zarizeni/macbook-pro, navody/mac, zdroje/mereni]
+  zdroj: https://omlx.ai/benchmarks/performance/7fpjs406
+
+- datum: 2026-11-04
   typ: cena
   titulek: "Ceny Mac Studia a MacBooku Pro z Alza.cz"
   co_se_zmenilo: "Mac Studio 128 GB (M5 Max, 614 GB/s) stojí 147 990–171 990 Kč vč. DPH; MacBook Pro 128 GB 209 990–434 490 Kč. Specifikace upraveny na M5 Max podle Apple. Ceny se aktualizují přes kategorie Alza uvedené v aktualizace.md."
