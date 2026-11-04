@@ -53,7 +53,7 @@
     poznamka: "128GB 5 999 USD; bez DPH a dopravy."
   cpu: NVIDIA Arm SoC
   gpu: Blackwell
-  os: [Windows]
+  os: [Windows 11]
   software: [CUDA, llama.cpp, Ollama, LM Studio]
   prikon_w: 140
   prikon_pozn: "140 W"
@@ -130,7 +130,7 @@
     poznamka: "Acemagic A10A a Acer Veriton RA110, 128GB/2TB, vč. DPH."
   cpu: Ryzen AI Max+ 395
   gpu: Radeon 8060S
-  os: [Linux, Windows]
+  os: [Windows 11, Linux]
   software: [ROCm, Vulkan, llama.cpp, vLLM-ROCm]
   prikon_w: null
   hmotnost_kg: null

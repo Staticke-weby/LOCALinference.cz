@@ -96,3 +96,18 @@
     - /zaciname/co-je-lokalni-ai/
   chybi: "Chybí měření reálného kontextu při souběžnosti."
   overeno: 2026-11-04
+
+- id: lokalni-ai-na-windows-11
+  nazev: Lokální AI na Windows 11
+  hledany_vyraz: "lokální AI na Windows 11"
+  popis: "Která 128GB zařízení běží na Windows 11, jaký software na nich funguje a kdy je Windows výhoda oproti Linuxu."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /temata/lokalni-ai-na-windows-11/
+    - /zarizeni/srovnani/
+    - /zarizeni/rtx-spark-notebook/
+    - /zarizeni/strix-halo/
+    - /navody/rtx-spark/
+  chybi: "Chybí měření Qwen3.8 Flash Next na Windows ARM64 proti Linuxu."
+  overeno: 2026-11-04

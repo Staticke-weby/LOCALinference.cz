@@ -66,6 +66,9 @@
 .li-tabulka tbody tr:nth-child(even) td {
   background: var(--sl-color-gray-7, transparent);
 }
+.li-os {
+  white-space: nowrap;
+}
 .li-tabulka td.li-cislo {
   text-align: right;
   font-variant-numeric: tabular-nums;

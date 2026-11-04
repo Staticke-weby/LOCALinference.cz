@@ -56,6 +56,7 @@ function rehypeSlovnik() {
     { re: /llama\.cpp/g, url: '/slovnik/software/llamacpp/', slug: 'software/llamacpp' },
     { re: /\bGGUF\b/g, url: '/slovnik/software/gguf/', slug: 'software/gguf' },
     { re: /Hugging Face/g, url: '/slovnik/software/huggingface/', slug: 'software/huggingface' },
+    { re: /Windows 11/g, url: '/temata/lokalni-ai-na-windows-11/', slug: 'lokalni-ai-na-windows-11' },
     { re: /\bkvantizac\w*/gi, url: '/slovnik/software/kvantizace/', slug: 'software/kvantizace' },
     { re: /\bTTFT\b/g, url: '/slovnik/vykon/ttft/', slug: 'vykon/ttft' },
     { re: /\bprefill\w*/gi, url: '/slovnik/vykon/prefill/', slug: 'vykon/prefill' },
@@ -104,7 +105,7 @@ function rehypeSlovnik() {
 
         for (const term of TERMS) {
           if (pouzite.has(term.url)) continue;
-          if (cesta.includes(`slovnik/${term.slug}`)) continue;
+          if (cesta.includes(term.slug)) continue;
 
           term.re.lastIndex = 0;
           const m = term.re.exec(node.value);

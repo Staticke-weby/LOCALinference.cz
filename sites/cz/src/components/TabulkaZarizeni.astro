@@ -20,6 +20,7 @@ const zarizeni = filtr ? vse.filter((z) => filtr.includes(z.id)) : vse;
         {showKategorie && <th>Forma</th>}
         <th>Paměť</th>
         <th>Bandwidth</th>
+        <th>Systém</th>
         <th>Cena v ČR</th>
       </tr>
     </thead>
@@ -32,6 +33,7 @@ const zarizeni = filtr ? vse.filter((z) => filtr.includes(z.id)) : vse;
           {showKategorie && <td>{z.kategorie}</td>}
           <td class="li-cislo">{formatCislo(z.pamet_gb)} GB</td>
           <td class="li-cislo">{formatCislo(z.bandwidth_gbs)} GB/s</td>
+          <td class="li-os">{z.os.join(' / ')}</td>
           <td><Cena zarizeni={z} /></td>
         </tr>
       ))}

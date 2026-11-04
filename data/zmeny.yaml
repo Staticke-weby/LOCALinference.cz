@@ -3,6 +3,13 @@
 
 - datum: 2026-11-04
   typ: obsah
+  titulek: "Windows 11 jako rozhodovací kritérium"
+  co_se_zmenilo: "Srovnání má sloupec Systém, na stránkách zařízení je OS vidět v rychlých faktech. Nové téma /temata/lokalni-ai-na-windows-11/ říká, která tři zařízení Windows 11 mají, co na nich funguje a kde jsou limity. Pojem Windows 11 se prolinkuje automaticky."
+  dotcene_stranky: [temata/lokalni-ai-na-windows-11, zarizeni/srovnani, zarizeni/rtx-spark-notebook, zarizeni/strix-halo]
+  zdroj: https://learn.microsoft.com/en-us/windows/arm/
+
+- datum: 2026-11-04
+  typ: obsah
   titulek: "Nové pořadí menu a sloučené skupiny"
   co_se_zmenilo: "Menu jde v pořadí čtenáře: Začínáme, Zařízení (Srovnání první), Výběr, Model, Návody, Slovník, Rychlost a měření, Témata, Zdroje, O webu. Datové karty se přesunuly pod Rychlost a měření, čímž zmizela samostatná skupina Data."
   dotcene_stranky: [index, zarizeni/srovnani]

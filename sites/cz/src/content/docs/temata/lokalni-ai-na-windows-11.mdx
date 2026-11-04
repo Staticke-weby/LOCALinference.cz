@@ -1,0 +1,74 @@
+---
+title: "Lokální AI na Windows 11: která zařízení to zvládnou"
+description: "Tři ze čtyř 128GB boxů běží na Windows 11 a dají se použít jako běžný počítač. Přehled zařízení, software a limitů Windows pro lokální AI."
+last_verified: 2026-11-04
+sidebar:
+  order: 8
+---
+
+Na **Windows 11** běží tři ze čtyř zařízení v katalogu. To je pro
+mnoho firem rozhodující: stroj nemusí být jen AI server v rohu, ale
+dá se použít jako normální počítač — s monitorem, klávesnicí a všemi
+aplikacemi, které už máte.
+
+## Která zařízení běží na Windows 11
+
+| Zařízení | Systém | Poznámka |
+|---|---|---|
+| **Strix Halo 128 GB** | Windows 11 Pro nebo Linux | Windows je připravený od výrobce |
+| **RTX Spark mini 128 GB** | Windows 11 | Arm64, CUDA |
+| **RTX Spark notebook 128 GB** | Windows 11 | Arm64, CUDA, na cesty |
+| **DGX Spark 128 GB** | DGX OS / Ubuntu | Windows nenabízí |
+
+DGX Spark je linuxový stroj. Pokud Windows potřebujete, není to volba
+pro vás — a naopak, kdo chce DGX OS a CUDA stack, Windows nepotřebuje.
+
+## Co na Windows funguje
+
+- **[llama.cpp](/slovnik/software/llamacpp/)** — nativní build pro CUDA
+  (RTX Spark) i Vulkan (Strix Halo).
+- **Ollama a LM Studio** — nejjednodušší cesta k prvnímu dotazu.
+- **[vLLM](/slovnik/software/vllm/)** — na RTX Spark existuje komunitní
+  port pro Windows ARM64; není to oficiální cesta NVIDIA.
+- **Qwen3.8 Flash Next** — běží ve [GGUF](/slovnik/software/gguf/)
+  kvantizaci, na Strix Halu i na RTX Sparku.
+
+## Kde Windows komplikují
+
+- **Arm64.** RTX Spark není x86, takže ne všechny nástroje mají build.
+  Ověřte si, že váš software existuje pro Arm64.
+- **Výkon baterie a chlazení.** Notebook na Windows se při dlouhém
+  běhu dostane na [throttling](/slovnik/provoz/throttling/) dřív než
+  stolní box.
+- **Aktualizace.** Windows Update může změnit ovladače; u produkčního
+  stroje se vyplatí aktualizace odkládat.
+- **Bezpečnost.** Stroj je v firemní síti jako každý jiný počítač —
+  potřebuje správu, zálohy a pravidla.
+
+## Kdy je Windows výhoda
+
+- Chcete **jeden stroj na AI i na běžnou práci**.
+- Máte **firemní software pro Windows** a nechcete druhé zařízení.
+- Potřebujete **notebook na cesty** s modelem uvnitř.
+
+## Kdy je lepší Linux
+
+- Provozujete model jako **službu pro víc lidí** — DGX OS nebo Ubuntu
+  jsou pro to stavěné.
+- Chcete **oficiální vLLM** a NVIDIA stack bez komunitních portů.
+- Nechcete řešit Arm64 buildy.
+
+## Kudy dál
+
+- [Srovnání zařízení](/zarizeni/srovnani/) — systém u každého stroje.
+- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — Windows na cestách.
+- [Strix Halo](/zarizeni/strix-halo/) — Windows a Linux na jednom boxu.
+- [Návod pro RTX Spark](/navody/rtx-spark/) — první spuštění na Windows.
+
+## Zdroje
+
+- [Microsoft — Windows 11 Arm64](https://learn.microsoft.com/en-us/windows/arm/)
+- [NVIDIA — RTX Spark porting guide](https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html)
+- [llama.cpp — build dokumentace](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+
+*Naposledy ověřeno: 4. 11. 2026.*
