@@ -16,6 +16,17 @@
 
 ---
 
+## 2026-11-04 — backlog hledání dat
+
+- Nový `plan-dat.md`: P0/P1/P2 seznam toho, co chybí, kde to hledat
+  a kdy je položka hotová. Zahrnuje měření, české ceny, nové modely
+  a zařízení, české/vision testy a údržbu zdrojů.
+- Do OpenChamber jsou založené todos pro hlavní oblasti; detail
+  a zdroje jsou v `plan-dat.md`.
+- Backlog se doplňuje při každém novém modelu nebo zařízení.
+
+---
+
 ## 2026-11-04 — konfigurace 64 GB+
 
 Rozšíření katalogu na **všechny konfigurace s 64 GB a více** unified paměti:

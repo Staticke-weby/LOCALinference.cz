@@ -9,6 +9,9 @@ Legenda: ✅ hotovo · 🟡 rozpracováno · ⬜ nezačato · 🔒 čeká na dat
 
 > **Poznámka k cestám:** hotový obsah je v `sites/cz/src/content/docs/`,
 > šablony v `obsah/_sablony/`. `obsah/` už není místo pro hotové stránky.
+>
+> **Chybějící data:** živý seznam toho, co hledat, je v
+> [`plan-dat.md`](plan-dat.md).
 
 ---
 
@@ -21,7 +24,8 @@ Legenda: ✅ hotovo · 🟡 rozpracováno · ⬜ nezačato · 🔒 čeká na dat
 - **Zdroj u tvrzení, ne jen na konci stránky.** U čísel a konkrétních tvrzení
   odkaz přímo v textu nebo pod tabulkou.
 - **Každá stránka:** 2–4 interní odkazy, `last_verified`, zdroje na konci.
-- **Žádné historické modely jako doporučení.** Minimum je Qwen3.8 Flash Next.
+- **Žádné historické modely jako doporučení.** Na 128 GB je minimum
+  Qwen3.8 Flash Next; na 64 GB Qwen3.6 35B-A3B a Gemma 4 26B A4B.
 - **Žádné dense modely jako doporučení.** Jen jako varování s čísly.
 - **Čísla v kontextu:** nikdy „70 tok/s“ bez délky kontextu, kvantizace,
   enginu a nastavení. Nikdy „cena“ bez data.

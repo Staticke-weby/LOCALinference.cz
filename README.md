@@ -24,6 +24,7 @@ Data, kontrola a build jsou hotové. Obsah se doplňuje po stránkách.
 | Obsah po vlnách a zadání stránek | [`plan-obsahu.md`](plan-obsahu.md) |
 | Postup aktualizace dat a zdrojů | [`aktualizace.md`](aktualizace.md) |
 | Rozhodnutí a otevřené otázky | [`poznamky-agenta.md`](poznamky-agenta.md) |
+| Plán hledání dat a podkladů | [`plan-dat.md`](plan-dat.md) |
 | Obsahové šablony | [`obsah/_sablony/`](obsah/_sablony/) |
 | Data (zařízení, konfigurace, GB10 OEM ceny, modely, měření, zdroje, kurzy) | [`data/`](data/) |
 | Web (Astro + Starlight) | [`sites/cz/`](sites/cz/) |
