@@ -563,14 +563,14 @@ polozky:
 
   - id: I02
     oblast: infrastruktura
-    titulek: "EN deploy workflow v .eu"
-    co_chybi: "V repu LOCALinference.eu chybí workflow, který stáhne veřejný .cz, postaví sites/eu a nasadí Pages. Pull model nepotřebuje žádný token."
+    titulek: "EN Pages a workflow v .eu"
+    co_chybi: "Workflow deploy.yml v .eu repu je hotový. Zbývá zapnout Pages (GitHub Actions) a nastavit custom domain www.localinference.eu včetně DNS."
     kde: []
     priorita: P0
     stav: ceka-na-vas
     davka: 6
-    hledat: "GitHub .eu repo → Actions, Pages"
-    poznamka: "Žádný PAT ani deploy key. V .cz se pak odstraní nasazeni-eu.yml."
+    hledat: "GitHub .eu repo → Settings → Pages; DNS u registrátora"
+    poznamka: "Pull model: .eu čte veřejný .cz, žádný PAT ani deploy key. Build je denně a ručně."
     zdroj: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
     overeno: null
 

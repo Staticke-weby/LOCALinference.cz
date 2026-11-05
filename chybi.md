@@ -113,13 +113,13 @@
 | ID | Co chybí | Priorita | Stav | Stránky |
 |---|---|---|---|---|
 | I01 | Přepnout DNS u Vedos | P0 | hotovo | — |
-| I02 | EN deploy workflow v .eu | P0 | ceka-na-vas | — |
+| I02 | EN Pages a workflow v .eu | P0 | ceka-na-vas | — |
 | I06 | Kontaktní e-mail pro veřejnost | P0 | ceka-na-vas | /o-webu/pravni/ |
 | I03 | EN mutace sites/eu | P1 | otevreno | — |
 | I04 | Umami se posílá i z localhostu | P2 | hotovo | — |
 | I05 | Deploy občas visí | P2 | prubezne | — |
 
-- **I02** — V repu LOCALinference.eu chybí workflow, který stáhne veřejný .cz, postaví sites/eu a nasadí Pages. Pull model nepotřebuje žádný token. *Hledat:* GitHub .eu repo → Actions, Pages
+- **I02** — Workflow deploy.yml v .eu repu je hotový. Zbývá zapnout Pages (GitHub Actions) a nastavit custom domain www.localinference.eu včetně DNS. *Hledat:* GitHub .eu repo → Settings → Pages; DNS u registrátora
 - **I06** — V právních informacích chybí kontaktní e-mail. Blokuje dokončení /o-webu/pravni/. *Hledat:* ESHOpino
 - **I03** — Anglická mutace nemá zdroj, build ani doménu. *Hledat:* interní práce
 - **I05** — GitHub Pages deployment občas zůstane viset nebo se zruší. *Hledat:* GitHub Actions

@@ -159,12 +159,12 @@ Konkrétní slugy se překládají podle obsahu:
 
 ### Fáze 0 — infrastruktura
 
-- `sites/eu` scaffold, Starlight, styl, hlavička, footer.
-- Společná datová vrstva a komponenty.
-- Jazykový přepínač, `hreflang`, canonical, sitemap, robots.
-- `npm run parita` a `data/preklady.yaml`.
-- Umami EN ID.
-- Workflow v `.eu` (pull model), Pages, DNS.
+- [x] `sites/eu` scaffold, Starlight, styl, hlavička, footer.
+- [x] Společná datová vrstva a první EN stránky (home, devices, model, about).
+- [ ] Jazykový přepínač, `hreflang`, canonical, sitemap, robots.
+- [ ] `npm run parita` a `data/preklady.yaml`.
+- [x] Umami EN ID.
+- [x] Workflow v `.eu` (pull model). Zbývá Pages a DNS.
 
 ### Fáze 1 — zařízení a model (48 stránek)
 
