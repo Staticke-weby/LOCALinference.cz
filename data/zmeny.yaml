@@ -3,6 +3,13 @@
 
 - datum: 2026-11-05
   typ: obsah
+  titulek: "Anglická homepage rozšířená"
+  co_se_zmenilo: "EN homepage má dvanáct dlaždic s odkazy na obsah (zařízení, model, generování, návody, výběr, slovník, témata, měření, konfigurace, zdroje), sekci Kde začít a odkaz na slovník — stejně jako česká verze."
+  dotcene_stranky: [index]
+  zdroj: https://www.localinference.eu
+
+- datum: 2026-11-05
+  typ: obsah
   titulek: "Homepage: obsahové bloky a obrázek i na EN"
   co_se_zmenilo: "Na české homepage nahradily bloky „Pro koho je web“ a „Proč věřit datům“ jedenáct dlaždic s odkazy na obsah. Anglická homepage dostala stejný hero obrázek GB10 jako česká."
   dotcene_stranky: [index]

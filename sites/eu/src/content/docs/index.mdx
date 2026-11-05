@@ -16,7 +16,7 @@ hero:
       variant: minimal
 ---
 
-import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { Aside, CardGrid, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import gb10 from '../../assets/gb10.jpg';
 
@@ -39,20 +39,83 @@ import gb10 from '../../assets/gb10.jpg';
 <CardGrid>
   <LinkCard
     title="Devices and prices"
-    href="/devices/"
+    href="/devices/compare/"
     description="Six turnkey 128GB machines, US list prices and what runs on them."
   />
   <LinkCard
     title="Qwen3.8 Flash Next"
     href="/models/qwen3-8-flash-next/"
-    description="The model this site is built around: context, memory, speed and limits."
+    description="The only model in the catalogue: what it can do, how much memory it needs and where the limit is."
   />
   <LinkCard
-    title="About this site"
-    href="/about/"
-    description="How we read data, where it comes from and why we publish the gaps."
+    title="Generation"
+    href="/generation/"
+    description="Images, video, audio and 3D. What runs on 128 GB and how long it takes."
+  />
+  <LinkCard
+    title="Step-by-step guides"
+    href="/guides/"
+    description="From unboxing to the first chat. DGX Spark, RTX Spark, Strix Halo and Mac."
+  />
+  <LinkCard
+    title="Choosing and budget"
+    href="/choosing/budget/"
+    description="What to look for in a machine, what it costs and when it pays off."
+  />
+  <LinkCard
+    title="How many users"
+    href="/choosing/how-many-users/"
+    description="One box for one to four people. For more you add another box, not a pricier one."
+  />
+  <LinkCard
+    title="How it works"
+    href="/getting-started/how-it-works/"
+    description="Weights, quantization, KV cache and tok/s without the magic."
+  />
+  <LinkCard
+    title="Dictionary"
+    href="/dictionary/"
+    description="CUDA, TTFT, quantization and throttling — one term per page."
+  />
+  <LinkCard
+    title="Topics"
+    href="/topics/"
+    description="An index by what people actually search for: prices, devices, the model, generation."
+  />
+  <LinkCard
+    title="Speed and measurements"
+    href="/speed/roofline/"
+    description="Roofline, a calculator and measured figures with their configuration."
+  />
+  <LinkCard
+    title="OEM configurations"
+    href="/devices/configurations/"
+    description="25 retail variants: same chip and memory, different storage and vendor."
+  />
+  <LinkCard
+    title="Sources and methodology"
+    href="/about/methodology/"
+    description="Where the numbers come from, why we do not estimate and what we still do not know."
   />
 </CardGrid>
+
+## Where to start with local AI
+
+<Aside type="tip" title="The minimum for daily work">
+  **128 GB of unified memory** and **Qwen3.8 Flash Next**. Smaller
+  machines are not in the catalogue — the model does not fit on them in
+  usable quality with a sensible context. What does run on 128 GB is in
+  the [device comparison](/devices/compare/).
+</Aside>
+
+<Aside type="note" title="The site is still growing">
+  This is not a finished product. Pages are added step by step and each
+  one shows the date it was last checked. What changed recently is in the
+  [changelog](/sources/changelog/).
+</Aside>
+
+Ran into a term you only half know? The [dictionary](/dictionary/)
+explains CUDA, TTFT, quantization and throttling — one term per page.
 
 ## Why 128 GB is the minimum
 
