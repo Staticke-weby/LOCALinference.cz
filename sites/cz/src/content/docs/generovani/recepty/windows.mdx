@@ -1,0 +1,134 @@
+---
+title: "ComfyUI na Windows: recept pro lokální generování"
+description: "Instalace ComfyUI na Windows 11 x64 i Arm: Comfy Desktop, ruční cesta s CUDA, ověření GPU a první obrázek. Co na RTX Sparku funguje a co ne."
+last_verified: 2026-11-05
+sidebar:
+  label: Windows
+  order: 1
+---
+
+Windows je nejrozšířenější cesta k lokálnímu generování. Na běžném
+PC s NVIDIA kartou je instalace otázkou minut. Na **RTX Sparku**
+s Windows on Arm je to jiné: stejný program, ale část balíčků existuje
+jen pro Arm64.
+
+## Co budete potřebovat
+
+- **Windows 10 nebo novější** (pro RTX Spark Windows 11 Arm).
+- **NVIDIA ovladač** a pro ruční cestu i CUDA toolkit.
+- **Comfy Desktop** zabere po instalaci asi 4,85 GB na každou instanci.
+- **Místo na modely** — Z-Image-Turbo s textovým encoderem kolem 20 GB,
+  video modely výrazně víc.
+
+## Krok 1: nainstalujte Comfy Desktop
+
+Nejrychlejší cesta pro většinu lidí. Stáhněte instalátor z
+[comfy.org/download](https://comfy.org/download) a spusťte ho.
+
+1. Při prvním spuštění zvolte **lokální instalaci**, ne cloud.
+2. Na **RTX Sparku** zvolte v nastavení **NVIDIA ARM64**.
+   NVIDIA to výslovně doporučuje pro Windows on Arm.
+3. Po dokončení otevřete rozhraní v prohlížeči.
+
+Comfy Desktop podporuje Windows 10+ na **x64 i ARM64**. Dedikovaná
+GPU je doporučená, ne povinná — bez ní ale generování poběží na
+procesoru.
+
+## Krok 2: ověřte, že GPU opravdu běží
+
+Otevřete PowerShell a spusťte:
+
+```powershell
+nvidia-smi
+```
+
+Musíte vidět název karty a driver. Pokud příkaz neexistuje, není
+nainstalovaný NVIDIA ovladač.
+
+V logu ComfyUI pak hledejte řádek s `Device: cuda`. Když je tam
+`Device: cpu`, PyTorch je bez CUDA a generování bude mnohonásobně
+pomalejší.
+
+## Krok 3: první obrázek
+
+1. Načtěte základní workflow **text to image**.
+2. Model: **Z-Image-Turbo** (Apache-2.0, komerčně použitelný).
+3. Rozlišení 1024×1024, **8 kroků**.
+4. Po prvním obrázku zkuste 4 kroky — u turbo modelů bývá rozdíl
+   malý a čas poloviční.
+
+První běh je vždy pomalejší: načítá se model a kompilují se jádra.
+Měřte až druhý a třetí obrázek.
+
+## Ruční instalace (x64)
+
+Když potřebujete vlastní prostředí, nodes nebo konkrétní verzi
+PyTorche:
+
+```powershell
+conda create -n comfyenv python=3.13
+conda activate comfyenv
+
+git clone https://github.com/Comfy-Org/ComfyUI.git
+cd ComfyUI
+
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu130
+pip install -r requirements.txt
+
+python main.py
+```
+
+Python 3.13 je dnes bezpečná volba; u 3.14 ještě nemusí existovat
+wheely pro všechny balíčky. Po startu je rozhraní na
+`http://127.0.0.1:8188`.
+
+## Co Windows umí a co ne
+
+| Úloha | x64 s NVIDIA | RTX Spark (Arm) |
+|---|---|---|
+| Obrázky | ano | ano |
+| Úpravy obrázků | ano | ano |
+| Video | ano, pomalé | záleží na nodech |
+| 3D | ano | záleží na nodech |
+| Audio | ano | ano přes Python |
+| Vlastní nodes | většina | jen s ARM64 wheel |
+
+Na RTX Sparku chybí část Python balíčků v nativní Arm64 verzi.
+NVIDIA jmenuje **cryptography, grpcio, PyArrow, tiktoken a OpenCV**;
+řešením je build ze zdroje, který ne vždy projde. Projevuje se to
+typicky tak, že ComfyUI-Manager ohlásí chybu při instalaci node a
+workflow se nenačte.
+
+## Rychlost
+
+Naměřená čísla pro Windows x64 ani RTX Spark zatím nemáme
+`[DOPLNIT: měření]`. Pro představu: na DGX Sparku, který používá
+stejnou architekturu GB10, dává Z-Image-Turbo 1024² za 7,5 s při
+8 krocích. Windows verze nemusí být stejně rychlá — záleží na
+ovladači a správě paměti.
+
+## Když to nefunguje
+
+| Příznak | Příčina | Co udělat |
+|---|---|---|
+| `Torch not compiled with CUDA` | nainstaloval se CPU wheel | přeinstalovat torch z CUDA indexu |
+| `no kernel image is available` | torch nesedí na architekturu | aktualizovat ovladač a torch |
+| Node nejde nainstalovat na Arm | chybí ARM64 wheel | hledat Arm64 build, nebo node vynechat |
+| Po pár obrázcích dojde paměť | sdílená paměť a cache | snížit rozlišení, zavřít aplikace |
+| Velmi pomalé generování | běží CPU | zkontrolovat `Device: cuda` v logu |
+
+## Kudy dál
+
+- [macOS](/generovani/recepty/macos/) — jak to vypadá bez CUDA.
+- [Linux](/generovani/recepty/linux/) — NVIDIA i Strix Halo.
+- [DGX OS](/generovani/recepty/dgx-os/) — oficiální cesta NVIDIA.
+- [Obrázky](/generovani/obrazky/) — které modely a licence.
+
+## Zdroje
+
+- [Comfy Desktop pro Windows](https://docs.comfy.org/installation/desktop/windows)
+- [ComfyUI — ruční instalace](https://docs.comfy.org/installation/manual_install)
+- [NVIDIA — RTX Spark: kompatibilita aplikací](https://nvidia.custhelp.com/app/answers/detail/a_id/5931/)
+- [NVIDIA — RTX Spark: začátky vývoje](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976)
+
+*Naposledy ověřeno: 5. 11. 2026.*

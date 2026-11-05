@@ -1,0 +1,159 @@
+---
+title: "ComfyUI na DGX Spark: recept s DGX OS"
+description: "Oficiální cesta NVIDIA pro ComfyUI na DGX Spark: host Python pro obrázky, kontejner pro video, ověření GPU a limity ARM64."
+last_verified: 2026-11-05
+sidebar:
+  label: DGX OS
+  order: 3
+---
+
+DGX Spark neběží na Windows ani na běžné Linux distribuci, ale na
+**DGX OS** — upravené Ubuntu s CUDA a ovladači od NVIDIA. Nemá smysl
+na něm opakovat obecný návod: NVIDIA vydává vlastní playbook, který
+je pro tuhle krabici nejlepší začátek.
+
+## Co budete potřebovat
+
+- **DGX Spark** s DGX OS. Docker a NVIDIA Container Toolkit jsou už
+  součástí systému.
+- **Python 3.8+**, `pip` a `git` pro host cestu.
+- **~30 GB volného disku** pro obrázky; pro video **~70 GB** na první
+  tier modelů a přes 200 GB na všechny.
+- **Hugging Face token** pro gated modely (FLUX, HiDream).
+
+## Dvě cesty, ne jedna
+
+Playbook nabízí dvě varianty a je dobré je neplést:
+
+| Cesta | Co to je | Na co |
+|---|---|---|
+| **Image Gen Quick Start** | Python venv přímo na hostu | první obrázek, Z-Image-Turbo |
+| **Video Gen Workflow** | Docker kontejner nad NGC PyTorch | FLUX, Wan, HunyuanVideo, ControlNet |
+
+Pro první test použijte host cestu. Kontejner řeší závislosti, ale
+zabere víc místa a déle se staví.
+
+## Krok 1: ověřte GPU a Docker
+
+```bash
+nvidia-smi
+```
+
+Docker musí vidět GPU:
+
+```bash
+docker run --rm --gpus all nvcr.io/nvidia/cuda:13.0.1-devel-ubuntu24.04 nvidia-smi
+```
+
+Když se vypíše karta, prostředí je připravené. Když Docker hlásí
+oprávnění, přidejte se do skupiny `docker` a přihlaste se znovu.
+
+## Krok 2: první obrázek přes host Python
+
+Postupujte podle záložky **Image Gen Quick Start** v
+[playbooku](https://build.nvidia.com/spark/comfyui). Playbook vytvoří
+virtuální prostředí, nainstaluje PyTorch a ComfyUI a stáhne
+**Z-Image-Turbo**.
+
+Počty, které playbook uvádí:
+
+- **~30 GB** volného disku,
+- **~24 GB paměti** pro Z-Image-Turbo (12 GB difuzní model
+  a 8 GB textový encoder před aktivacemi).
+
+Rozhraní pak běží na `http://<ip-sparku>:8188`.
+
+## Krok 3: video v kontejneru
+
+Kontejnerová cesta je určená pro větší modely. Postup:
+
+```bash
+git clone https://github.com/NVIDIA/dgx-spark-playbooks
+cd dgx-spark-playbooks/nvidia/playbook-comfyui
+
+docker build -t comfyui -f assets/Dockerfile .
+```
+
+Build trvá přibližně 5–10 minut. Pak stáhněte modely podle tieru:
+
+```bash
+bash assets/scripts/download-models.sh 1
+```
+
+Tier 1 obsahuje FLUX.1 dev a Wan 2.1 T2V 14B, zabere **~70 GB**
+a špičková paměť je kolem **80 GB**. Pro všechny tiery počítejte
+s více než 200 GB disku a až 120 GB paměti.
+
+Spuštění (port 8188, namapované modely a workflows):
+
+```bash
+docker run --gpus all -p 8188:8188 \
+  -v "$(pwd)/input:/opt/ComfyUI/input" \
+  -v "$(pwd)/assets/workflows:/opt/ComfyUI/user/default/workflows" \
+  -v "$HOME/.cache/huggingface:/root/.cache/huggingface" \
+  comfyui
+```
+
+## Krok 4: ověřte, že to opravdu jede na GPU
+
+```bash
+curl -I http://localhost:8188
+docker exec comfyui nvidia-smi
+```
+
+Když je GPU vytížená a v logu ComfyUI je `Device: cuda`, je hotovo.
+Když běží CPU, kontejner nemá přístup ke kartě — zkontrolujte
+`--gpus all` a NVIDIA Container Toolkit.
+
+## Rychlost
+
+Na DGX Sparku 128 GB jsou veřejně naměřené tyto hodnoty (ComfyUI,
+1024×1024, převzato z [LocalAgentBoard](https://localagentboard.com/images)):
+
+| Model | Kroky | Čas | Paměť |
+|---|---|---|---|
+| FLUX.2 klein 4B | 4 | 3,1 s | 18,3 GB |
+| Z-Image-Turbo | 8 | 7,5 s | 24,4 GB |
+| Qwen-Image 2.1 Turbo | 8 | 9,5 s | 31,5 GB |
+
+Jsou to **převzatá měření**, ne náš test. Pro RTX Spark a Strix Halo
+`[DOPLNIT: měření]`.
+
+## Kde je limit
+
+- **ARM64.** DGX Spark je Arm64. `onnxruntime-gpu` nemá aarch64
+  wheel, takže část preprocesorů (např. v ControlNet workflow) běží
+  na procesoru. Je to pomalejší, ale funkční.
+- **Audio v kontejneru.** Oficiální NGC image obsahuje jen zástupný
+  `torchaudio`; zvukové workflows v něm nepojedou. Pro TTS použijte
+  host Python, ne kontejner.
+- **Sdílená paměť.** Když se uvolní málo paměti, pomůže vyprázdnit
+  buffer cache. Playbook to řeší poznámkou u kontejneru.
+- **Port 8188.** ComfyUI nemá autentizaci. Nevystavujte ho do
+  internetu; pro přístup z jiného stroje použijte SSH tunel.
+
+## Když to nefunguje
+
+| Příznak | Příčina | Co udělat |
+|---|---|---|
+| `permission denied` u Dockeru | uživatel není ve skupině | přidat do `docker` a znovu se přihlásit |
+| Kontejner nevidí GPU | chybí `--gpus all` | doplnit parametr |
+| `torchaudio` chyba | NGC stub | nepoužívat audio v kontejneru |
+| Pomalé, GPU se nevyužívá | běží CPU | zkontrolovat CUDA ve venv nebo `nvidia-smi` v kontejneru |
+| Model se nevejde | příliš velký tier | snížit rozlišení nebo počet snímků |
+
+## Kudy dál
+
+- [Linux](/generovani/recepty/linux/) — stejné principy pro běžný stroj.
+- [Windows](/generovani/recepty/windows/) — cesta pro RTX Spark.
+- [Video](/generovani/video/) — které modely a licence.
+- [DGX Spark](/zarizeni/dgx-spark/) — co zařízení zvládne s textem.
+
+## Zdroje
+
+- [NVIDIA — ComfyUI playbook pro DGX Spark](https://build.nvidia.com/spark/comfyui)
+- [NVIDIA — DGX Spark: NGC a kontejnery](https://docs.nvidia.com/dgx/dgx-spark/ngc.html)
+- [NVIDIA dgx-spark-playbooks — Dockerfile](https://github.com/NVIDIA/dgx-spark-playbooks/blob/main/nvidia/playbook-comfyui/assets/Dockerfile)
+- [LocalAgentBoard — měření na DGX Spark](https://localagentboard.com/images)
+
+*Naposledy ověřeno: 5. 11. 2026.*

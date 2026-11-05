@@ -1,0 +1,80 @@
+---
+title: "Lokální AI na každé platformě: recepty pro Windows, macOS, DGX OS a Linux"
+description: "Jak spustit ComfyUI na každé platformě: Windows, macOS, DGX OS a Linux s NVIDIA i AMD Strix Halo. Co je potřeba, co to umí a kde jsou limity."
+last_verified: 2026-11-05
+sidebar:
+  label: Recepty
+  order: 10
+---
+
+Stejný model, stejný workflow, jiná cesta k němu. ComfyUI je jeden
+program, ale na každé platformě se instaluje jinak, používá jiný
+akcelerátor a **neumí totéž**.
+
+Tahle část proto není o modelech, ale o **prostředí**: co nainstalovat,
+čím ověřit, že běží GPU, a co na dané platformě nebude fungovat.
+
+## Platformy přehledně
+
+| Platforma | Cesta | Co funguje | Kde je limit |
+|---|---|---|---|
+| **Windows 11 x64** | Comfy Desktop, CUDA | vše včetně videa a 3D | ovladače |
+| **Windows 11 Arm** (RTX Spark) | Comfy Desktop ARM64 | obrázky a úpravy | chybějící ARM64 balíčky |
+| **macOS** (Apple Silicon) | Comfy Desktop, Metal | obrázky, úpravy, audio | žádné CUDA, video jen přes MLX |
+| **DGX OS** (DGX Spark) | oficiální playbook | vše | ARM64 a kontejnerová omezení |
+| **Linux x86** (NVIDIA) | ručně nebo kontejner | vše | závisí na distribuci |
+| **Linux** (Strix Halo) | ručně nebo kontejner | obrázky, video, 3D | jádro, GTT, FP8 |
+
+Konkrétní postup má každá platforma na vlastní stránce:
+
+- [Windows](/generovani/recepty/windows/) — x64 i Arm, Comfy Desktop a ruční instalace.
+- [macOS](/generovani/recepty/macos/) — Apple Silicon, Metal a MLX.
+- [DGX OS](/generovani/recepty/dgx-os/) — oficiální playbook, host Python i kontejner.
+- [Linux](/generovani/recepty/linux/) — NVIDIA CUDA i AMD Strix Halo s ROCm.
+
+## Proč nestačí jeden návod
+
+1. **Jiný akcelerátor.** CUDA, Metal a ROCm nejsou zaměnitelné.
+   Node, který volá CUDA jádro, na Macu nepojede.
+2. **Jiná architektura.** DGX Spark a RTX Spark jsou Arm64. Část
+   Python balíčků nemá ARM64 wheel a instaluje se ze zdroje — nebo
+   vůbec.
+3. **Jiná paměť.** Apple Silicon a Strix Halo sdílejí paměť mezi CPU
+   a GPU. Velký model se vejde, ale systém může začít swapovat.
+4. **Jiný instalační obal.** Windows a macOS mají Comfy Desktop.
+   DGX OS má oficiální kontejner. Linux je nejvíc „udělej si sám“.
+
+## Naměřené časy, které známe
+
+Toto jsou **převzatá měření**, ne naše. Podmínky se liší, proto je
+neberte jako přímé srovnání.
+
+| Zařízení | Model | Rozlišení | Kroky | Čas | Typ |
+|---|---|---|---|---|---|
+| DGX Spark 128 GB | Z-Image-Turbo | 1024² | 8 | 7,5 s | naměřeno, nezávislé |
+| DGX Spark 128 GB | FLUX.2 klein 4B | 1024² | 4 | 3,1 s | naměřeno, nezávislé |
+| Strix Halo 128 GB | Z-Image-Turbo | 1024² | 8 | ~24 s | naměřeno, výrobce |
+| MacBook Pro M5 Pro 64 GB | Z-Image-Turbo | 1344×768 | 8 | 22 s | naměřeno, komunita |
+| RTX Spark 128 GB | Z-Image-Turbo | 1024² | 8 | `[DOPLNIT: měření]` | — |
+
+Strix Halo a Mac mají jiné rozlišení než DGX Spark, takže se čísla
+nedají odečítat. Rozdíl je i v tom, že první obrázek po startu
+zahrnuje načtení modelu a kompilaci jader.
+
+## Co si odnést
+
+- **Windows x64 s NVIDIA** je nejjednodušší cesta k celé sadě.
+- **Mac** je nejlepší na obrázky a audio, ne na video.
+- **DGX OS** má oficiální recept — použijte ho, ne improvizaci.
+- **Strix Halo** vyžaduje správné jádro a nastavení paměti; jinak
+  ComfyUI spadne do CPU nebo se u FP8 zhroutí.
+
+## Zdroje
+
+- [ComfyUI — ruční instalace](https://docs.comfy.org/installation/manual_install)
+- [Comfy Desktop pro Windows](https://docs.comfy.org/installation/desktop/windows)
+- [Comfy Desktop pro macOS](https://docs.comfy.org/installation/desktop/macos)
+- [NVIDIA — ComfyUI playbook pro DGX Spark](https://build.nvidia.com/spark/comfyui)
+- [LocalAgentBoard — měření na DGX Spark](https://localagentboard.com/images)
+
+*Naposledy ověřeno: 5. 11. 2026.*

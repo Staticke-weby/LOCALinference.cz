@@ -3,6 +3,20 @@
 
 - datum: 2026-11-05
   typ: obsah
+  titulek: "Recepty pro Windows, macOS, DGX OS a Linux"
+  co_se_zmenilo: "Nová část /generovani/recepty/ s pěti stránkami: přehled, Windows (x64 i Arm), macOS, DGX OS a Linux (NVIDIA i Strix Halo). Každá uvádí instalaci, ověření GPU, co platforma umí a kde je limit. Na recepty odkazují stránky obrázků, videa, audia a 3D."
+  dotcene_stranky: [generovani, generovani/recepty]
+  zdroj: https://docs.comfy.org/installation/manual_install
+
+- datum: 2026-11-05
+  typ: mereni
+  titulek: "První časy generování pro Strix Halo a Mac"
+  co_se_zmenilo: "Do receptů přidáno naměřené Z-Image-Turbo: Strix Halo 128 GB ~24 s na 1024²/8 kroků (výrobce GPD) a MacBook Pro M5 Pro 64 GB 22 s na 1344×768 (komunita). U RTX Sparku zůstává [DOPLNIT]."
+  dotcene_stranky: [generovani/recepty]
+  zdroj: https://www.gpd.hk/newsinfo/3222619.html
+
+- datum: 2026-11-05
+  typ: obsah
   titulek: "Nová sekce Generování: obrázky, video, audio, 3D"
   co_se_zmenilo: "Přibylo 10 stránek /generovani/ a databáze 30 generativních modelů s licencí, nároky a rychlostí. Sekce odpovídá, co poběží na 128GB zařízeních; u DGX Sparku jsou naměřené časy u obrázků, ostatní jsou označené k doplnění."
   dotcene_stranky: [generovani]

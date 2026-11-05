@@ -226,6 +226,7 @@ Pro 3D: rozlišení voxelů a formát výstupu.
 - [ ] Video: Wan 2.2 vs HunyuanVideo 1.5 vs LTX — licence, nároky, kvalita.
 - [ ] Audio: TTS + klonování + podcast; upozornit na souhlas s hlasem.
 - [x] Stránky: video, úprava videa, rozhýbání obrázků, audio.
+- [x] Recepty ComfyUI pro Windows, macOS, DGX OS a Linux.
 
 ### Fáze 3 — 3D, hry, překlady
 

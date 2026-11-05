@@ -1,0 +1,134 @@
+---
+title: "ComfyUI na macOS: recept pro generování na Apple Silicon"
+description: "ComfyUI na Macu s Apple Silicon: Comfy Desktop, ruční instalace s Metalem, Draw Things, MLX pro video a reálné časy generování."
+last_verified: 2026-11-05
+sidebar:
+  label: macOS
+  order: 2
+---
+
+Mac je na generování překvapivě dobrý — dokud zůstanete u obrázků
+a zvuku. Místo CUDA používá **Metal** přes PyTorch MPS. To znamená
+jiný výkon, jiné knihovny a některé nody, které na Macu prostě
+nepoběží.
+
+## Co budete potřebovat
+
+- **macOS 13 Ventura nebo novější.**
+- **Apple Silicon M1 a novější** — Intelové Macy Comfy Desktop
+  nepodporuje.
+- Alespoň **4,85 GB** na instalaci, reálně desítky GB na modely.
+- Doporučený **32 GB unified paměti a víc**; 64 GB už je komfort.
+
+## Krok 1: Comfy Desktop
+
+Nejjednodušší cesta. Stáhněte `.dmg` z
+[comfy.org/download](https://comfy.org/download), přetáhněte aplikaci
+do složky Aplikace a spusťte ji.
+
+Při prvním spuštění může macOS zobrazit bezpečnostní varování.
+V **Nastavení systému → Soukromí a zabezpečení** klikněte na
+„Přesto otevřít“.
+
+Comfy Desktop umí spravovat víc instancí a modely sdílet mezi nimi
+v `~/ComfyUI-Shared`.
+
+## Krok 2: ověřte Metal
+
+V terminálu:
+
+```bash
+python3 -c "import torch; print(torch.backends.mps.is_available())"
+```
+
+Musí vyjít `True`. V logu ComfyUI pak hledejte `Device: mps`.
+
+Když je tam `cpu`, PyTorch nemá Metal build — obvykle proto, že je
+nainstalovaný systémový Python místo virtuálního prostředí.
+
+## Krok 3: první obrázek
+
+1. Základní workflow **text to image**.
+2. Model **Z-Image-Turbo**, 1024×1024, 8 kroků.
+3. První běh nechte doběhnout — načítá se model.
+4. Druhý a třetí obrázek změřte; to je provozní číslo.
+
+## Ruční instalace
+
+Pro vlastní nodes a přesnou kontrolu nad verzemi:
+
+```bash
+conda create -n comfyenv python=3.13
+conda activate comfyenv
+
+git clone https://github.com/Comfy-Org/ComfyUI.git
+cd ComfyUI
+
+conda install pytorch-nightly::pytorch torchvision torchaudio -c pytorch-nightly
+pip install -r requirements.txt
+
+python main.py
+```
+
+ComfyUI uvádí pro Mac ARM právě tuhle cestu přes `pytorch-nightly`
+z conda kanálu. Stabilní pip wheel nemusí mít Metal akceleraci.
+
+## Co Mac umí a co ne
+
+| Úloha | Stav | Poznámka |
+|---|---|---|
+| Obrázky | ano | Z-Image, FLUX, Qwen-Image |
+| Úpravy obrázků | ano | inpainting i instrukční úpravy |
+| Video | částečně | přes MLX (`mlx-video`) nebo Draw Things |
+| 3D | neověřeno | `[DOPLNIT: test]` |
+| Audio | ano | Kokoro, Qwen3-TTS běží i na CPU |
+| Vlastní nodes | omezeně | CUDA-specifické nody nefungují |
+
+Na Macu nejsou **SageAttention, FlashAttention ani TensorRT** — jsou
+postavené na CUDA. Workflow, které je vyžaduje, se nespustí nebo
+poběží v pomalejším záložním režimu.
+
+## Rychlost
+
+Jediné veřejné měření, které známe, je z **MacBook Pro M5 Pro
+(20jádrové GPU, 64 GB)** s ComfyUI 0.36.0 a PyTorchem 2.14 na MPS:
+
+| Model | Rozlišení | Kroky | Stabilní čas |
+|---|---|---|---|
+| Z-Image-Turbo | 1344×768 | 8 | 22 s |
+| FLUX.1 Krea | 1344×768 | — | 85 s |
+| Qwen-Image | 1344×768 | 8 | přibližně 33 s |
+
+Je to **jedno zařízení a komunitní měření**, ne náš test. Navíc jiné
+rozlišení než u DGX Sparku, takže čísla nejdou srovnávat přímo.
+Na 64GB stroji se u Qwen-Image špička paměti blížila 61 GB — velké
+modely se vejdou, ale nezůstává rezerva.
+
+Pro RTX Spark a Strix Halo `[DOPLNIT: měření]`.
+
+## Když to nefunguje
+
+| Příznak | Příčina | Co udělat |
+|---|---|---|
+| `mps.is_available()` je `False` | CPU-only torch | přeinstalovat torch z conda nightly |
+| ComfyUI padá při načtení modelu | málo unified paměti | menší kvantizace, zavřít aplikace |
+| Node hlásí `CUDA not available` | node je CUDA-only | použít alternativu nebo jiný stroj |
+| Video se nespustí | chybí CUDA node | `mlx-video` nebo Draw Things |
+| Velmi pomalé | běží CPU | zkontrolovat `Device: mps` |
+
+## Kudy dál
+
+- [Windows](/generovani/recepty/windows/) — cesta s CUDA.
+- [Linux](/generovani/recepty/linux/) — NVIDIA i Strix Halo.
+- [Video](/generovani/video/) — co na Macu jde a co ne.
+- [Audio](/generovani/audio/) — TTS a klonování hlasu.
+
+## Zdroje
+
+- [Comfy Desktop pro macOS](https://docs.comfy.org/installation/desktop/macos)
+- [ComfyUI — ruční instalace](https://docs.comfy.org/installation/manual_install)
+- [Komunitní benchmark ComfyUI na M5 Pro](https://github.com/ian902792/ComfyUI-Mac/blob/main/BENCHMARK.md)
+- [mlx-video](https://github.com/Blaizzy/mlx-video)
+- [Draw Things](https://drawthings.ai/)
+
+*Naposledy ověřeno: 5. 11. 2026.*

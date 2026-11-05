@@ -1,0 +1,169 @@
+---
+title: "ComfyUI na Linuxu: recept pro NVIDIA i Strix Halo"
+description: "Instalace ComfyUI na Linuxu se dvěma backendy: CUDA pro NVIDIA a ROCm pro AMD Strix Halo. Ověření GPU, nastavení paměti a limity."
+last_verified: 2026-11-05
+sidebar:
+  label: Linux
+  order: 4
+---
+
+Linux je nejflexibilnější platforma — a taky nejvíc „udělej si sám“.
+Na rozdíl od Windows a macOS tu neexistuje jedna doporučená cesta.
+Rozhoduje, jestli máte **NVIDIA kartu s CUDA**, nebo **AMD Strix Halo
+s ROCm**.
+
+## Dvě větve, které se nepotkají
+
+| | NVIDIA | AMD Strix Halo |
+|---|---|---|
+| Backend | CUDA | ROCm (gfx1151) |
+| Instalace | pip z CUDA indexu | ROCm + speciální wheels |
+| Náročnost | nízká | vysoká |
+| Riziko | malé | jádro, GTT, FP8 |
+
+Zbytek stránky je rozdělený podle těchto dvou cest.
+
+## NVIDIA: klasická cesta
+
+### Co budete potřebovat
+
+- Linux s nainstalovaným NVIDIA ovladačem a CUDA.
+- Python 3.13 v conda prostředí.
+- `git` a přibližně 30 GB na modely.
+
+### Instalace
+
+```bash
+conda create -n comfyenv python=3.13
+conda activate comfyenv
+
+git clone https://github.com/Comfy-Org/ComfyUI.git
+cd ComfyUI
+
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu130
+pip install -r requirements.txt
+
+python main.py
+```
+
+### Ověření
+
+```bash
+nvidia-smi
+python -c "import torch; print(torch.cuda.is_available())"
+```
+
+Musí vyjít `True`. V logu ComfyUI pak `Device: cuda`.
+
+### Co to umí
+
+Prakticky všechno: obrázky, úpravy, video, 3D i audio. Omezení
+jsou daná jen konkrétními nody a velikostí paměti, ne platformou.
+
+## Strix Halo: ROCm a správná paměť
+
+Strix Halo je APU s jednotnou pamětí. GPU vidí systémovou RAM, ale
+jen když jí to systém dovolí. Bez nastavení se ComfyUI chová, jako
+by měl málo VRAM — nebo spadne.
+
+### Co budete potřebovat
+
+- **Ubuntu 25.10/26.04** nebo **Fedora 43** s jádrem **6.18.4+**.
+  Starší jádro bývá nestabilní.
+- **ROCm** a ověřený `gfx1151`.
+- Trpělivost: tady se toho rozbije víc než u CUDA.
+
+### Krok 1: nastavte paměť
+
+V BIOSu nastavte **dedikovanou grafickou paměť na minimum** a
+grafickému jádru otevřete **GTT** (sdílený paměťový prostor) přes
+parametry jádra. Pro 128GB stroj komunitní návody používají GTT
+kolem **110 GB** a zbytek nechávají systému.
+
+Po rebootu zkontrolujte:
+
+```bash
+rocminfo | grep gfx
+```
+
+Musíte vidět `gfx1151`. Když ne, chybí firmware nebo je moc staré
+jádro.
+
+### Krok 2: nainstalujte PyTorch
+
+Oficiální dokumentace ComfyUI uvádí pro Linux ROCm 7.2:
+
+```bash
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm7.2
+```
+
+Pro gfx1151 se v praxi používají i TheRock buildy s explicitní
+podporou této architektury. Když oficiální wheel GPU nevidí,
+hledejte aktuální index pro `gfx1151` — mění se po měsících.
+
+Ověření:
+
+```bash
+python -c "import torch; print(torch.cuda.is_available(), torch.version.hip)"
+```
+
+### Krok 3: spusťte ComfyUI
+
+Komunitní návody pro Strix Halo doporučují vypnout mmap a cache,
+jinak se model načítá dvakrát nebo padá:
+
+```bash
+python main.py --disable-mmap --cache-none --bf16-vae --gpu-only
+```
+
+Tyto přepínače nejsou univerzální — u jiné konfigurace mohou
+způsobit jiné problémy. Berte je jako startovní bod.
+
+## Co Strix Halo umí
+
+| Úloha | Stav | Poznámka |
+|---|---|---|
+| Obrázky | ano | Z-Image, FLUX, Qwen-Image |
+| Úpravy obrázků | ano | včetně inpaintingu |
+| Video | ano, pomalejší | Wan 2.2, HunyuanVideo |
+| 3D | ano | TRELLIS.2, Hunyuan3D |
+| Audio | ano | TTS běží i na CPU |
+| FP8 modely | problematické | Qwen-Image FP8 padá, použijte GGUF |
+
+## Rychlost
+
+Na **Strix Halo 128 GB** (Ryzen AI Max+ 395, Ubuntu 26.04) výrobce
+uvádí **přibližně 24 s** na obrázek 1024×1024, 8 kroků, model
+Z-Image-Turbo. První obrázek je pomalejší, protože se kompilují
+jádra.
+
+Je to **měření výrobce zařízení**, ne nezávislý test — berte ho jako
+horní orientaci. Komunitní měření na jiných konfiguracích hlásí
+u Qwen-Image 30–36 s na srovnatelné rozlišení podle kvantizace.
+Pro RTX Spark `[DOPLNIT: měření]`.
+
+## Když to nefunguje
+
+| Příznak | Příčina | Co udělat |
+|---|---|---|
+| `rocminfo` nevidí gfx1151 | staré jádro/firmware | aktualizovat jádro a linux-firmware |
+| `torch.cuda.is_available()` je `False` | CPU wheel | přeinstalovat ROCm build |
+| ComfyUI padá při načtení | GTT nebo FP8 | zvýšit GTT, použít GGUF |
+| Druhý obrázek selže | teplo a cache | pauza, `--cache-none` |
+| Velmi pomalé | běží CPU | zkontrolovat HIP v logu |
+
+## Kudy dál
+
+- [DGX OS](/generovani/recepty/dgx-os/) — oficiální cesta NVIDIA.
+- [Windows](/generovani/recepty/windows/) — pokud nechcete Dual Boot.
+- [Strix Halo](/zarizeni/strix-halo/) — co zařízení umí s textem.
+- [Video](/generovani/video/) — modely a licence.
+
+## Zdroje
+
+- [ComfyUI — ruční instalace (ROCm)](https://docs.comfy.org/installation/manual_install)
+- [Strix Halo — nastavení ComfyUI a Z-Image (výrobce GPD)](https://www.gpd.hk/newsinfo/3222619.html)
+- [Xalcon — ComfyUI na Strix Halo](https://github.com/Xalcon/comfyui-strix-halo)
+- [kyuz0 — ComfyUI toolbox pro Strix Halo](https://github.com/kyuz0/amd-strix-halo-comfyui-toolboxes)
+
+*Naposledy ověřeno: 5. 11. 2026.*
