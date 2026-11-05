@@ -127,13 +127,24 @@ function enRouta(cz) {
 
 const czSoubory = projdi(CZ);
 const enSoubory = new Set(projdi(EN).map((f) => routa(EN, f)));
+const maZarizeni = fs.existsSync(path.join(ROOT, 'sites/eu/src/pages/devices/[id].astro'));
+const dynamickaZarizeni = new Set([
+  'dgx-spark',
+  'strix-halo',
+  'rtx-spark-mini',
+  'rtx-spark-notebook',
+  'mac-studio',
+  'macbook-pro',
+]);
 
 const chybi = [];
 const hotovo = [];
 for (const f of czSoubory) {
   const cz = routa(CZ, f);
   const en = enRouta(cz);
-  if (enSoubory.has(en)) hotovo.push({ cz, en });
+  const jeDynamicke =
+    maZarizeni && cz.startsWith('zarizeni/') && dynamickaZarizeni.has(cz.split('/')[1]);
+  if (enSoubory.has(en) || jeDynamicke) hotovo.push({ cz, en });
   else chybi.push({ cz, en });
 }
 

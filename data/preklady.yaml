@@ -11,8 +11,26 @@
 - cz: zarizeni/ai-notebooky
   en: devices/ai-laptops
   stav: hotovo
+- cz: zarizeni/dgx-spark
+  en: devices/dgx-spark
+  stav: hotovo
+- cz: zarizeni/mac-studio
+  en: devices/mac-studio
+  stav: hotovo
+- cz: zarizeni/macbook-pro
+  en: devices/macbook-pro
+  stav: hotovo
+- cz: zarizeni/rtx-spark-mini
+  en: devices/rtx-spark-mini
+  stav: hotovo
+- cz: zarizeni/rtx-spark-notebook
+  en: devices/rtx-spark-notebook
+  stav: hotovo
 - cz: zarizeni/srovnani
   en: devices/compare
+  stav: hotovo
+- cz: zarizeni/strix-halo
+  en: devices/strix-halo
   stav: hotovo
 - cz: '404'
   en: '404'
@@ -280,24 +298,6 @@
   stav: ceka
 - cz: zaciname/prostredi
   en: getting-started/environment
-  stav: ceka
-- cz: zarizeni/dgx-spark
-  en: devices/dgx-spark
-  stav: ceka
-- cz: zarizeni/mac-studio
-  en: devices/mac-studio
-  stav: ceka
-- cz: zarizeni/macbook-pro
-  en: devices/macbook-pro
-  stav: ceka
-- cz: zarizeni/rtx-spark-mini
-  en: devices/rtx-spark-mini
-  stav: ceka
-- cz: zarizeni/rtx-spark-notebook
-  en: devices/rtx-spark-notebook
-  stav: ceka
-- cz: zarizeni/strix-halo
-  en: devices/strix-halo
   stav: ceka
 - cz: zdroje/co-nevime
   en: sources/what-we-dont-know
