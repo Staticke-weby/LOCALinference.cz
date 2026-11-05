@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-05
+  typ: model
+  titulek: "Licence generativních modelů ověřeny, RTX Spark má první časy"
+  co_se_zmenilo: "VoxCPM2 a MADLAD-400 jsou Apache-2.0, Pixal3D MIT — všechny komerčně použitelné. Licence Tencent Hunyuan (Image 3.0, Video 1.5, 3D 2.0) vylučuje EU, UK a Jižní Koreu, proto je v ČR nelze použít a v tabulkách mají „ne“. Doplněno měření RTX Spark: FLUX.2 klein 4B 17,75 s na 1024² při 20 krocích (Principled Technologies)."
+  dotcene_stranky: [generovani, generovani/obrazky, generovani/video, generovani/3d, generovani/audio, generovani/preklady, generovani/recepty]
+  zdroj: https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/
+
+- datum: 2026-11-05
   typ: obsah
   titulek: "Registr mezer a dávkové doplňování"
   co_se_zmenilo: "Vznikl data/chybi.yaml jako jediný seznam toho, co na webu chybí: 43 položek v 7 dávkách, s prioritou, stavem, stránkami a místem hledání. Skript scripts/chybi.mjs kontroluje, že každý [DOPLNIT] má položku v registru, a generuje chybi.md. npm run check teď registr validuje. Veřejná stránka /zdroje/co-nevime/ doplněna o generování."

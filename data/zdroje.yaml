@@ -538,3 +538,29 @@
   priorita: stredni
   posledni_kontrola: 2026-11-05
   stav: ok
+
+- id: principled-rtx-spark
+  nazev: Principled Technologies - RTX Spark vs M5 Pro
+  url: https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/
+  typ: html
+  co_sledujeme: [mereni, comfyui, generovani, llama-bench]
+  frekvence: mesicne
+  priorita: stredni
+  duveryhodnost: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-05
+  stav: ok
+  poznamka: "Nezávislá laboratoř; testuje ComfyUI FLUX.2 klein a LTX-2.3 na RTX Sparku a M5 Pro."
+
+- id: tencent-hunyuan-license
+  nazev: Tencent Hunyuan - licenční podmínky
+  url: https://huggingface.co/tencent/HunyuanVideo-1.5/blob/main/LICENSE
+  typ: hf
+  co_sledujeme: [licence, uzemi, komercni-pouziti]
+  frekvence: mesicne
+  priorita: vysoka
+  duveryhodnost: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-05
+  stav: ok
+  poznamka: "Licence vylučuje EU, UK a Jižní Koreu; v ČR nelze modely použít."

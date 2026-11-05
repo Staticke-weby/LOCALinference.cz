@@ -10,8 +10,8 @@ sidebar:
 import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
 
 Obrázky jsou nejzralejší část generativní AI. Na 128GB stroji dnes
-vznikne **fotorealistická scéna za jednotky sekund** a plakát s textem
-za pár desítek sekund.
+vznikne **fotorealistická scéna za sekundy až desítky sekund**
+a plakát s textem za pár desítek sekund.
 
 ## Modely
 
@@ -21,9 +21,12 @@ za pár desítek sekund.
 
 - **DGX Spark** — Z-Image-Turbo 7,5 s a FLUX.2 klein 3,1 s na
   1024×1024 (ComfyUI, převzato z [LocalAgentBoard](https://localagentboard.com/images)).
-- **Strix Halo a RTX Spark** — běží přes ComfyUI, časy `[DOPLNIT: měření]`.
-- **Mac** — přes Draw Things nebo ComfyUI s Metalem; časy
-  `[DOPLNIT: měření]`.
+- **RTX Spark** — FLUX.2 klein 4B **17,8 s** na 1024×1024 při
+  20 krocích (ComfyUI, Windows on Arm; [Principled Technologies](https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/)).
+  Tři testované notebooky se vešly do 16,4–21,4 s.
+- **Strix Halo** — běží přes ComfyUI, časy `[DOPLNIT: měření]`.
+- **Mac** — Z-Image-Turbo 22 s na 1344×768 (M5 Pro, ComfyUI,
+  komunitní měření); FLUX.2 klein 84,8 s při 20 krocích.
 
 ## Licence je první otázka
 
@@ -32,6 +35,9 @@ za pár desítek sekund.
 - **Qwen-Image 2.1** — Qwen Research License, **nekomerční**.
   Na plakáty a testování dobré, na produkt ne.
 - **FLUX.2 dev** — nekomerční weights, komerční licence se dokupuje.
+- **HunyuanImage 3.0** — komunitní licence Tencentu platí mimo EU,
+  UK a Jižní Koreu. V ČR ji použít nelze; model je navíc mimo dosah
+  jednoho 128GB boxu.
 
 ## Jak začít
 

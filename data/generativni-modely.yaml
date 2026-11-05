@@ -63,8 +63,8 @@
   nazev: HunyuanImage 3.0
   kategorie: obrazky
   vyrobce: Tencent
-  licence: Tencent Hunyuan Community
-  komercni: podminky
+  licence: Tencent Hunyuan Community (mimo EU/UK/KR)
+  komercni: ne
   parametry_b: 80
   naroky: "multi-GPU, desítky GB"
   runtime: [Diffusers]
@@ -119,8 +119,8 @@
   nazev: HunyuanVideo 1.5
   kategorie: video
   vyrobce: Tencent
-  licence: Tencent Hunyuan Community
-  komercni: podminky
+  licence: Tencent Hunyuan Community (mimo EU/UK/KR)
+  komercni: ne
   parametry_b: 8.3
   naroky: "14 GB s offloadem, 720p"
   runtime: [ComfyUI, Diffusers]
@@ -175,8 +175,8 @@
   nazev: HunyuanVideo 1.5 I2V
   kategorie: rozhybani
   vyrobce: Tencent
-  licence: Tencent Hunyuan Community
-  komercni: podminky
+  licence: Tencent Hunyuan Community (mimo EU/UK/KR)
+  komercni: ne
   parametry_b: 8.3
   naroky: "14–24 GB"
   runtime: [ComfyUI]
@@ -245,10 +245,10 @@
   nazev: VoxCPM2
   kategorie: audio
   vyrobce: OpenBMB
-  licence: open weights (ověřit)
-  komercni: podminky
+  licence: Apache-2.0
+  komercni: ano
   parametry_b: 2
-  naroky: "8–16 GB VRAM, MLX na Macu"
+  naroky: "~8 GB VRAM, MLX na Macu"
   runtime: [Python, MLX]
   kvalita: "48 kHz, klonování a návrh hlasu, 30 jazyků"
   rychlost: null
@@ -315,8 +315,8 @@
   nazev: MADLAD-400
   kategorie: preklady
   vyrobce: Google
-  licence: Apache-2.0 (ověřit)
-  komercni: podminky
+  licence: Apache-2.0
+  komercni: ano
   parametry_b: 7.5
   naroky: "16–24 GB"
   runtime: [Python]
@@ -343,8 +343,8 @@
   nazev: Pixal3D
   kategorie: 3d
   vyrobce: Tencent ARC / Tsinghua
-  licence: open (ověřit)
-  komercni: podminky
+  licence: MIT
+  komercni: ano
   parametry_b: null
   naroky: "16–24 GB VRAM"
   runtime: [ComfyUI]
@@ -357,8 +357,8 @@
   nazev: Hunyuan3D 2.x
   kategorie: 3d
   vyrobce: Tencent
-  licence: Tencent Hunyuan Community
-  komercni: podminky
+  licence: Tencent Hunyuan Community (mimo EU/UK/KR)
+  komercni: ne
   parametry_b: null
   naroky: "8–24 GB VRAM"
   runtime: [ComfyUI, Python]

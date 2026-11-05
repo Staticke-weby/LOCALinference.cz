@@ -2,13 +2,13 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**43 položek** · 25 otevreno · 3 ceka-na-vas · 15 prubezne · 44 markerů [DOPLNIT] na 19 stránkách.
+**44 položek** · 24 otevreno · 3 ceka-na-vas · 15 prubezne · 2 hotovo · 42 markerů [DOPLNIT] na 18 stránkách.
 
 ## Souhrn podle dávek
 
 | Dávka | Název | Otevřených |
 |---|---|---|
-| 1 | Generování: rychlosti, licence a slovník | 7 |
+| 1 | Generování: rychlosti, licence a slovník | 6 |
 | 2 | Katalogová data Qwen3.8 | 7 |
 | 3 | Kvalita, čeština a provoz | 4 |
 | 4 | Ceny a dostupnost | 6 |
@@ -22,21 +22,21 @@
 
 | ID | Co chybí | Priorita | Stav | Stránky |
 |---|---|---|---|---|
-| G01 | RTX Spark: naměřené časy generování | P0 | otevreno | /generovani/obrazky/<br>/generovani/video/<br>/generovani/uprava-obrazku/<br>/generovani/recepty/<br>/generovani/recepty/windows/<br>/generovani/recepty/dgx-os/<br>/generovani/recepty/linux/<br>/generovani/recepty/index/ |
-| G04 | Ověřit licence pěti generativních modelů | P0 | otevreno | /generovani/<br>/generovani/licence/ |
+| G01 | RTX Spark: časy generování obrázků | P0 | hotovo | /generovani/obrazky/<br>/generovani/recepty/<br>/generovani/recepty/windows/<br>/generovani/recepty/index/ |
+| G04 | Ověřit licence generativních modelů | P0 | hotovo | /generovani/<br>/generovani/licence/ |
 | G02 | Mac: 3D a video | P1 | otevreno | /generovani/recepty/macos/<br>/generovani/3d/<br>/generovani/video/<br>/generovani/rozhybani-obrazku/<br>/generovani/uprava-obrazku/ |
 | G03 | Strix Halo: video a 3D | P1 | otevreno | /generovani/video/<br>/generovani/uprava-videa/<br>/generovani/3d/<br>/generovani/rozhybani-obrazku/<br>/generovani/uprava-obrazku/<br>/generovani/recepty/dgx-os/ |
 | G05 | Stránka Licence generativních modelů | P1 | otevreno | /generovani/licence/ |
 | G06 | Co na zařízeních poběží z generativních modelů | P1 | otevreno | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-mini/<br>/zarizeni/mac-studio/<br>/zarizeni/macbook-pro/<br>/zarizeni/rtx-spark-notebook/ |
 | G07 | Slovník: difuze, LoRA, PBR, TTS, inpainting | P1 | otevreno | /slovnik/software/<br>/slovnik/ |
+| G08 | RTX Spark: video a 3D | P1 | otevreno | /generovani/video/<br>/generovani/uprava-videa/<br>/generovani/3d/<br>/generovani/recepty/windows/<br>/generovani/recepty/dgx-os/<br>/generovani/recepty/linux/<br>/generovani/recepty/index/ |
 
-- **G01** — Chybí časy pro obrázky, video a 3D na RTX Sparku 128 GB. Zatím je na stránkách jen [DOPLNIT]. *Hledat:* NVIDIA forum, Reddit r/StableDiffusion, YouTube benchmarky, LocalAgentBoard
-- **G04** — U VoxCPM2, Pixal3D a MADLAD-400 je licence označená jako „ověřit“. U HunyuanImage a HunyuanVideo je potřeba ověřit, co přesně znamená „podmínky“ pro českou firmu. *Hledat:* Hugging Face model card, LICENSE, web výrobce
 - **G02** — Na Macu je změřené jen generování obrázků. Video přes MLX a 3D jsou bez čísel a 3D je označené jako neověřené. *Hledat:* mlx-video benchmarky, Reddit r/LocalLLaMA, YouTube, komunitní repozitáře
 - **G03** — U obrázků máme ~24 s na 1024², ale video, úpravy videa a 3D na Strix Halu nemají žádné číslo. *Hledat:* kyuz0 benchmarky, Strix Halo wiki, Reddit, YouTube
 - **G05** — Licence jsou roztroušené v tabulkách. Chybí stránka, která vysvětlí Apache-2.0, MIT, Research licenci a komunitní licence na jednom místě. *Hledat:* interní rešerše z model cards
 - **G06** — Stránky zařízení mluví jen o Qwen3.8. Chybí jim tabulka generativních modelů, které na daném stroji poběží, a odkaz na recept. *Hledat:* interní data + recepty
 - **G07** — Pojmy z generování se používají, ale nemají vlastní heslo. Chybí difuze, LoRA, PBR, TTS, STT, inpainting a upscaling. *Hledat:* interní rešerše, odborné zdroje
+- **G08** — Obrázky už změřené jsou, ale video a 3D na RTX Sparku 128 GB nemají veřejné číslo. Chybí i Z-Image-Turbo při 8 krocích. *Hledat:* Principled Technologies, NVIDIA forum, Reddit, YouTube
 
 ## Dávka 2 — Katalogová data Qwen3.8
 
@@ -164,12 +164,11 @@
 - `zarizeni/dgx-spark` — 6×
 - `zarizeni/rtx-spark-notebook` — 5×
 - `modely/qwen3-8-flash-next` — 4×
-- `generovani/obrazky` — 2×
 - `generovani/recepty/macos` — 2×
 - `slovnik/provoz/power-limit` — 2×
 - `zarizeni/strix-halo` — 2×
 - `generovani/3d` — 1×
-- `generovani/recepty` — 1×
+- `generovani/obrazky` — 1×
 - `generovani/recepty/dgx-os` — 1×
 - `generovani/recepty/linux` — 1×
 - `generovani/recepty/windows` — 1×

@@ -38,24 +38,20 @@ polozky:
   # --- Dávka 1: generování ------------------------------------------------
   - id: G01
     oblast: generovani
-    titulek: "RTX Spark: naměřené časy generování"
-    co_chybi: "Chybí časy pro obrázky, video a 3D na RTX Sparku 128 GB. Zatím je na stránkách jen [DOPLNIT]."
+    titulek: "RTX Spark: časy generování obrázků"
+    co_chybi: "Chyběly časy generování obrázků na RTX Sparku 128 GB. Doplněno: FLUX.2 klein 4B, 1024², 20 kroků, 17,75 s (Principled Technologies)."
     kde:
       - generovani/obrazky
-      - generovani/video
-      - generovani/uprava-obrazku
       - generovani/recepty
       - generovani/recepty/windows
-      - generovani/recepty/dgx-os
-      - generovani/recepty/linux
       - generovani/recepty/index
     priorita: P0
-    stav: otevreno
+    stav: hotovo
     davka: 1
     hledat: "NVIDIA forum, Reddit r/StableDiffusion, YouTube benchmarky, LocalAgentBoard"
-    poznamka: "Stačí jeden model (Z-Image-Turbo, 1024², 8 kroků) se zařízením, rozlišením a verzí ComfyUI."
-    zdroj: null
-    overeno: null
+    poznamka: "Z-Image-Turbo na RTX Sparku zůstává bez veřejného čísla; řeší ho G08."
+    zdroj: https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/
+    overeno: 2026-11-05
 
   - id: G02
     oblast: generovani
@@ -96,18 +92,18 @@ polozky:
 
   - id: G04
     oblast: generovani
-    titulek: "Ověřit licence pěti generativních modelů"
-    co_chybi: "U VoxCPM2, Pixal3D a MADLAD-400 je licence označená jako „ověřit“. U HunyuanImage a HunyuanVideo je potřeba ověřit, co přesně znamená „podmínky“ pro českou firmu."
+    titulek: "Ověřit licence generativních modelů"
+    co_chybi: "Ověřeno: VoxCPM2 a MADLAD-400 jsou Apache-2.0, Pixal3D MIT. Licence Tencent Hunyuan (Image 3.0, Video 1.5, 3D 2.0) vylučuje EU, UK a Jižní Koreu, takže v ČR použít nelze."
     kde:
       - generovani
       - generovani/licence
     priorita: P0
-    stav: otevreno
+    stav: hotovo
     davka: 1
     hledat: "Hugging Face model card, LICENSE, web výrobce"
-    poznamka: "Výsledek zapsat do data/generativni-modely.yaml a do sloupce Komerční."
-    zdroj: null
-    overeno: null
+    poznamka: "Qwen Research License je nekomerční. LTX-2.5 je zdarma do 10 mil. USD obratu."
+    zdroj: https://huggingface.co/tencent/HunyuanVideo-1.5/blob/main/LICENSE
+    overeno: 2026-11-05
 
   - id: G05
     oblast: generovani
@@ -154,6 +150,26 @@ polozky:
     davka: 1
     hledat: "interní rešerše, odborné zdroje"
     poznamka: "Každé heslo musí mít příklad na konkrétním zařízení."
+    zdroj: null
+    overeno: null
+
+  - id: G08
+    oblast: generovani
+    titulek: "RTX Spark: video a 3D"
+    co_chybi: "Obrázky už změřené jsou, ale video a 3D na RTX Sparku 128 GB nemají veřejné číslo. Chybí i Z-Image-Turbo při 8 krocích."
+    kde:
+      - generovani/video
+      - generovani/uprava-videa
+      - generovani/3d
+      - generovani/recepty/windows
+      - generovani/recepty/dgx-os
+      - generovani/recepty/linux
+      - generovani/recepty/index
+    priorita: P1
+    stav: otevreno
+    davka: 1
+    hledat: "Principled Technologies, NVIDIA forum, Reddit, YouTube"
+    poznamka: "U videa uvést délku klipu, rozlišení, fps a kvantizaci."
     zdroj: null
     overeno: null
 
