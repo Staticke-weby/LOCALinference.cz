@@ -5,7 +5,7 @@
   typ: obsah
   titulek: "Odkaz na druhou jazykovou verzi na každé stránce"
   co_se_zmenilo: "Přepínač jazyka je nově pod nadpisem i na konfiguracích, homepage a stránkách bez data ověření, má podobu malého tlačítka a v patičce přibyl odkaz na protějšek. Cílí na stejnou stránku v druhém jazyce, ne na homepage."
-  dotcene_stranky: [index, zarizeni/konfigurace, zdroje/novinky]
+  dotcene_stranky: [index, zarizeni/srovnani, zdroje/novinky]
   zdroj: https://www.localinference.eu
 
 - datum: 2026-11-05
