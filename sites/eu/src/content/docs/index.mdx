@@ -17,6 +17,22 @@ hero:
 ---
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import gb10 from '../../assets/gb10.jpg';
+
+<figure class="li-hero-foto">
+  <Image
+    src={gb10}
+    alt="A row of compact GB10 machines: two ASUS Ascent, two NVIDIA DGX Spark, two Lenovo ThinkStation and others"
+    widths={[640, 960, 1199]}
+    sizes="(max-width: 50rem) 100vw, 48rem"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <figcaption>
+    GB10 from ASUS, NVIDIA and Lenovo. Manufacturer photo.
+  </figcaption>
+</figure>
 
 ## What you will find
 
