@@ -9,11 +9,10 @@ Legenda: **P0** blokuje provoz nebo důvěryhodnost · **P1** zlepší web ·
 
 ## 1. Infrastruktura a provoz
 
-- [ ] **Přepnout DNS u Vedos** — `www` CNAME na `staticke-weby.github.io`,
-      apex A na `185.199.108–111.153`. Pak v Pages zapnout *Enforce HTTPS*.
-      Do té doby web na doméně neběží, i když je build zelený.
-- [ ] **Přidat secret `PUBLIKACE_TOKEN`** do GitHubu (fine-grained PAT,
-      Contents: RW na `LOCALinference.eu`). Bez něj EN workflow nepublikuje.
+- [x] **Přepnout DNS u Vedos** — hotovo 5. 11. 2026, doména servíruje web.
+- [ ] **Přidat secret `PUBLIKACE_DEPLOY_KEY`** do GitHubu — privátní
+      SSH klíč deploy key s právem write na `LOCALinference.eu`.
+      Deploy key nemá expiraci, na rozdíl od ročního PAT.
 - [ ] **Umami:** nevylučovat lokální vývoj — skript se posílá i z
       `localhost`. Zvážit podmínku, aby se nenačítal mimo produkci.
 - [ ] **Deploy občas visí.** Postup: zkontrolovat předchozí deployment,

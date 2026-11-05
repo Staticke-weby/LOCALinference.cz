@@ -4,8 +4,9 @@ name: Nasazení EN na GitHub Pages
 # Staticke-weby/LOCALinference.eu jde jen statický výstup.
 # Dokud složka sites/eu neexistuje, workflow se přeskočí.
 #
-# Vyžaduje secret PUBLIKACE_TOKEN: fine-grained PAT s právem
-# Contents: Read and write na Staticke-weby/LOCALinference.eu.
+# Vyžaduje secret PUBLIKACE_DEPLOY_KEY: privátní SSH klíč deploy key
+# s právem write na Staticke-weby/LOCALinference.eu. Deploy key nemá
+# expiraci, na rozdíl od fine-grained PAT (max 1 rok).
 
 on:
   push:
@@ -58,7 +59,7 @@ jobs:
         if: steps.check.outputs.exists == 'true'
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.PUBLIKACE_TOKEN }}
+          deploy_key: ${{ secrets.PUBLIKACE_DEPLOY_KEY }}
           external_repository: Staticke-weby/LOCALinference.eu
           publish_branch: main
           publish_dir: sites/eu/dist

@@ -136,9 +136,9 @@ Toto je nejdůležitější pravidlo projektu.
     když českou cenu neznáme, přepočítej z USD kurzem **ČNB** a výslovně
     označ **odhad**. USD patří do závorky: `162 990 Kč vč. DPH (6 950 USD)`.
   - u české maloobchodní ceny uveď, zda je **s DPH** nebo bez DPH,
-  - na anglické mutaci **vždy primárně EUR**. Známou evropskou cenu uveď
-    první; když ji neznáme, přepočítej z USD kurzem **ECB** a označ
-    **estimate**. USD patří do závorky: `€6 200 (6 950 USD)`.
+  - na anglické mutaci **vždy primárně USD** jako list price bez DPH
+    a dopravy. EN je mezinárodní edice bez lokálních cen a bez odkazů
+    na prodejce; EUR ani CZK se nepřepočítávají.
   - pořadí je vždy **místní měna → původní měna v závorce**, nikdy naopak.
   - s poznámkou „bez dopravy, přepočet je orientační“.
   - Kurzy drž v `data/kurzy.yaml`; nepřepočítávej ručně v textu.
@@ -146,7 +146,8 @@ Toto je nejdůležitější pravidlo projektu.
   produkt — ten se mění a vyprodává. V URL jsou affiliate parametry a
   odkaz má `rel="sponsored"`. Vysvětlení je na `/o-webu/pravni/`, štítek
   u každého odkazu není potřeba. Provize nesmí ovlivnit hodnocení ani
-  pořadí zařízení.
+  pořadí zařízení. **EN mutace affiliate odkazy nepoužívá a na prodejce
+  neodkazuje.**
 - **Ceny v tabulkách:** jen **koncová cena včetně DPH**. Sloupce „bez DPH“
   a „dostupnost“ neuváděj — čtenáře zajímá, co zaplatí.
 - **Jen aktuální ceny.** Žádné „původně“, přeškrtnuté ceny, slevy ani
@@ -380,8 +381,9 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
 - **EN:** až vznikne `sites/eu`, workflow `nasazeni-eu.yml` postaví
   `sites/eu/dist` a pošle ho do `Staticke-weby/LOCALinference.eu`, odkud
   ho servíruje GitHub Pages. Zdroj EN zůstává tady; `.eu` repo je jen
-  výstup. Vyžaduje secret `PUBLIKACE_TOKEN` (fine-grained PAT s právem
-  Contents: Read and write na `.eu` repo).
+  výstup. Vyžaduje secret `PUBLIKACE_DEPLOY_KEY` — privátní SSH klíč
+  deploy key s právem write na `.eu` repo. Deploy key nemá expiraci;
+  veřejná část je v `.eu` repu, privátní v Actions secretu.
 - **Proč jedno repo:** data o zařízeních, cenách a měřeních jsou společná.
   Jeden zdroj pravdy znamená, že si CZ a EN nemohou začít odporovat.
 - **Domény:** `www.localinference.cz` a `www.localinference.eu`, obě

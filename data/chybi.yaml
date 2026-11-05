@@ -563,15 +563,15 @@ polozky:
 
   - id: I02
     oblast: infrastruktura
-    titulek: "Secret PUBLIKACE_TOKEN"
-    co_chybi: "Bez fine-grained PAT s Contents: RW na LOCALinference.eu EN workflow nepublikuje."
+    titulek: "Secret PUBLIKACE_DEPLOY_KEY"
+    co_chybi: "Bez privátního SSH klíče deploy key s právem write na LOCALinference.eu EN workflow nepublikuje. Deploy key nemá expiraci."
     kde: []
     priorita: P0
     stav: ceka-na-vas
     davka: 6
-    hledat: "GitHub nastavení repozitáře"
-    poznamka: null
-    zdroj: null
+    hledat: "GitHub .eu repo → Settings → Deploy keys; source repo → Actions secrets"
+    poznamka: "Veřejná část do .eu repo, privátní do secretu PUBLIKACE_DEPLOY_KEY. Není to roční PAT."
+    zdroj: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys
     overeno: null
 
   - id: I03

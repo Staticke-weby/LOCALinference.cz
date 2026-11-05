@@ -113,13 +113,13 @@
 | ID | Co chybí | Priorita | Stav | Stránky |
 |---|---|---|---|---|
 | I01 | Přepnout DNS u Vedos | P0 | hotovo | — |
-| I02 | Secret PUBLIKACE_TOKEN | P0 | ceka-na-vas | — |
+| I02 | Secret PUBLIKACE_DEPLOY_KEY | P0 | ceka-na-vas | — |
 | I06 | Kontaktní e-mail pro veřejnost | P0 | ceka-na-vas | /o-webu/pravni/ |
 | I03 | EN mutace sites/eu | P1 | otevreno | — |
 | I04 | Umami se posílá i z localhostu | P2 | hotovo | — |
 | I05 | Deploy občas visí | P2 | prubezne | — |
 
-- **I02** — Bez fine-grained PAT s Contents: RW na LOCALinference.eu EN workflow nepublikuje. *Hledat:* GitHub nastavení repozitáře
+- **I02** — Bez privátního SSH klíče deploy key s právem write na LOCALinference.eu EN workflow nepublikuje. Deploy key nemá expiraci. *Hledat:* GitHub .eu repo → Settings → Deploy keys; source repo → Actions secrets
 - **I06** — V právních informacích chybí kontaktní e-mail. Blokuje dokončení /o-webu/pravni/. *Hledat:* ESHOpino
 - **I03** — Anglická mutace nemá zdroj, build ani doménu. *Hledat:* interní práce
 - **I05** — GitHub Pages deployment občas zůstane viset nebo se zruší. *Hledat:* GitHub Actions
