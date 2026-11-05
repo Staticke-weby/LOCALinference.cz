@@ -1,0 +1,54 @@
+---
+import { getDgxSparkOem, getRtxNotebookOem, getStrixHaloOem } from '../lib/data';
+
+const rodiny = [
+  { nazev: 'DGX Spark', id: 'dgx-spark', polozky: getDgxSparkOem() },
+  { nazev: 'Strix Halo', id: 'strix-halo', polozky: getStrixHaloOem() },
+  { nazev: 'RTX Spark notebook', id: 'rtx-spark-notebook', polozky: getRtxNotebookOem() },
+];
+---
+
+{rodiny.map((r) => (
+  <>
+    <h2>{r.nazev} ({r.polozky.length})</h2>
+    <div class="li-tabulka-obal">
+      <table class="li-tabulka">
+        <thead>
+          <tr>
+            <th>Configuration</th>
+            <th>Vendor</th>
+            <th>Memory</th>
+            <th>Storage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {r.polozky.map((sku) => (
+            <tr>
+              <td>
+                <a href={`/devices/configurations/${sku.id}/`}>{sku.nazev}</a>
+              </td>
+              <td>{sku.vyrobce}</td>
+              <td>{sku.pamet_gb} GB</td>
+              <td>{sku.uloziste_gb / 1024} TB</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </>
+))}
+
+<p class="li-pozn">
+  Prices are not published in USD for individual OEM SKUs. The Czech
+  edition tracks Czech retail prices for each configuration.
+</p>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+  .li-pozn {
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-sm);
+  }
+</style>

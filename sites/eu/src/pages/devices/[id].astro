@@ -1,0 +1,154 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import {
+  getDgxSparkOem,
+  getRtxNotebookOem,
+  getStrixHaloOem,
+  getZarizeni,
+  getZarizeniById,
+  getZarizeniEn,
+} from '../../lib/data';
+
+export function getStaticPaths() {
+  return getZarizeni().map((z) => ({ params: { id: z.id } }));
+}
+
+const { id } = Astro.params;
+const z = getZarizeniById(id!);
+const en = getZarizeniEn(id!);
+
+if (!z || !en) {
+  throw new Error(`Unknown device ${id}`);
+}
+
+const usd = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 0,
+});
+
+let cena = '—';
+if (z.cena) {
+  if (typeof z.cena.usd === 'number') cena = usd.format(z.cena.usd);
+  else if (typeof z.cena.od_usd === 'number') {
+    cena = z.cena.do_usd
+      ? `${usd.format(z.cena.od_usd)}–${usd.format(z.cena.do_usd)}`
+      : `from ${usd.format(z.cena.od_usd)}`;
+  }
+}
+
+const konfigurace =
+  id === 'dgx-spark'
+    ? getDgxSparkOem()
+    : id === 'strix-halo'
+      ? getStrixHaloOem()
+      : id === 'rtx-spark-notebook'
+        ? getRtxNotebookOem()
+        : [];
+
+const datum = new Intl.DateTimeFormat('en-US', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date(z.overeno));
+---
+
+<StarlightPage
+  frontmatter={{
+    title: `${z.nazev}: specs and what runs`,
+    description: `${z.nazev}: ${z.pamet_gb} GB unified memory, ${z.bandwidth_gbs} GB/s and Qwen3.8 Flash Next. What it costs and where the limits are.`,
+  }}
+>
+  <p class="li-verdict">{en.verdict}</p>
+
+  <table class="li-tabulka">
+    <tbody>
+      <tr><th>Memory</th><td>{z.pamet_gb} GB {z.pamet_typ}</td></tr>
+      <tr><th>Bandwidth</th><td>{z.bandwidth_gbs} GB/s</td></tr>
+      <tr><th>US list price</th><td>{cena}</td></tr>
+      <tr><th>Form</th><td>{z.kategorie}</td></tr>
+      <tr><th>OS</th><td>{z.os.join(', ')}</td></tr>
+      <tr><th>Software</th><td>{z.software.join(', ')}</td></tr>
+      <tr><th>Power</th><td>{z.prikon_w ? `${z.prikon_w} W` : '—'}</td></tr>
+    </tbody>
+  </table>
+
+  <p class="li-pozn">
+    US list price from the vendor, excluding tax and shipping. No retailer
+    links. Verified {datum}.
+  </p>
+
+  <h2>What runs on it</h2>
+
+  <p>
+    <strong>Qwen3.8 Flash Next</strong> fits on {z.pamet_gb} GB of unified
+    memory at 4-bit or NVFP4, with 128K tokens as the recommended operating
+    context. Read the <a href="/models/qwen3-8-flash-next/">model page</a>
+    for memory, context and limits.
+  </p>
+
+  <h2>Who it is for</h2>
+
+  <p>{en.for_who}</p>
+  <p><strong>Not for:</strong> {en.not_for}</p>
+
+  <div class="li-dve-sloupce">
+    <div>
+      <h2>Strengths</h2>
+      <ul>{en.strengths.map((s) => <li>{s}</li>)}</ul>
+    </div>
+    <div>
+      <h2>Watch out for</h2>
+      <ul>{en.weaknesses.map((s) => <li>{s}</li>)}</ul>
+    </div>
+  </div>
+
+  {konfigurace.length > 0 && (
+    <>
+      <h2>OEM configurations</h2>
+      <p>
+        {konfigurace.length} variants differ in storage and vendor; the chip,
+        memory and software are the same. See the
+        <a href="/devices/configurations/">configuration list</a>.
+      </p>
+    </>
+  )}
+
+  <h2>More detail</h2>
+
+  <p>
+    The Czech edition has measured speeds per device and per quantization:
+    <a href={`https://www.localinference.cz/zarizeni/${z.id}/`}>
+      Czech device page
+    </a>.
+  </p>
+
+  {z.zdroje?.length > 0 && (
+    <>
+      <h2>Sources</h2>
+      <ul>
+        {z.zdroje.map((s) => (
+          <li><a href={s} target="_blank" rel="noopener noreferrer">{s}</a></li>
+        ))}
+      </ul>
+    </>
+  )}
+
+  <p><em>Last verified: {datum}.</em></p>
+</StarlightPage>
+
+<style>
+  .li-verdict {
+    font-size: var(--sl-text-lg);
+    line-height: 1.55;
+  }
+  .li-pozn {
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-sm);
+  }
+  .li-dve-sloupce {
+    display: grid;
+    gap: 1rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  }
+</style>

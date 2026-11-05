@@ -33,7 +33,9 @@ function cena(z: (typeof zarizeni)[number]): string {
     <tbody>
       {zarizeni.map((z) => (
         <tr>
-          <td>{z.nazev}</td>
+          <td>
+            <a href={`/devices/${z.id}/`}>{z.nazev}</a>
+          </td>
           <td>{z.pamet_gb} GB {z.pamet_typ}</td>
           <td>{z.bandwidth_gbs} GB/s</td>
           <td>{cena(z)}</td>

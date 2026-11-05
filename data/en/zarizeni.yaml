@@ -1,0 +1,42 @@
+# English editorial overlays for device pages. Numbers stay in data/zarizeni.yaml.
+- id: dgx-spark
+  verdict: "The most integrated 128GB box with CUDA. Not the cheapest, but the simplest route to the NVIDIA stack."
+  for_who: "Small teams that want CUDA, clustering and enterprise management."
+  not_for: "Buyers optimising for price per GB or maximum prefill."
+  strengths: ["CUDA and the full NVIDIA stack", "Official vLLM and DGX OS support", "Clustering and fleet management"]
+  weaknesses: ["Highest price in the catalogue", "Closed stack", "ARM64 limits some community tools"]
+
+- id: strix-halo
+  verdict: "The cheapest route to 128GB of unified memory. Qwen3.8 Flash Next runs, but prefill is weaker than on CUDA."
+  for_who: "Small teams that want data on their desk and do not need CUDA."
+  not_for: "Long-document workloads where prefill latency matters, or 20+ users."
+  strengths: ["Lowest price for 128GB", "Windows and Linux", "Good decode for the price"]
+  weaknesses: ["Weaker prefill", "ROCm is less mature than CUDA", "Memory is soldered"]
+
+- id: rtx-spark-mini
+  verdict: "A Windows-on-Arm desktop with CUDA and 128GB unified memory. Public measurements are still missing."
+  for_who: "Buyers who want one Windows machine for AI and everyday work."
+  not_for: "Anyone who needs verified numbers before buying."
+  strengths: ["Windows 11 on Arm", "CUDA and RTX stack", "Compact desktop"]
+  weaknesses: ["No public Qwen3.8 measurements", "Some Python packages lack Arm64 wheels", "Not sold in every market"]
+
+- id: rtx-spark-notebook
+  verdict: "128GB and CUDA in a laptop. The fastest portable option we know, with Windows-on-Arm caveats."
+  for_who: "People who need a model on the road and want CUDA."
+  not_for: "Long sustained runs where a desktop cools better."
+  strengths: ["Portable 128GB", "CUDA", "Measured FLUX and LTX times"]
+  weaknesses: ["Windows on Arm is still a beta path for ComfyUI", "Thermal limits under load", "Higher price than a box"]
+
+- id: mac-studio
+  verdict: "Quiet, efficient and strong for image generation. Metal instead of CUDA, so some tools are unavailable."
+  for_who: "Studios that value silence, power efficiency and macOS."
+  not_for: "Workloads that depend on CUDA-only nodes or TensorRT."
+  strengths: ["Very quiet", "High memory bandwidth", "Good image performance"]
+  weaknesses: ["No CUDA", "Video generation is slow", "Some custom nodes do not run"]
+
+- id: macbook-pro
+  verdict: "128GB of unified memory in a laptop. Good for images and audio, slow for video."
+  for_who: "People who travel and need a capable local machine."
+  not_for: "Video-heavy work or sustained multi-user serving."
+  strengths: ["Portable 128GB", "Silent under light load", "Good image and audio performance"]
+  weaknesses: ["No CUDA", "Video takes minutes per clip", "Thermal throttling under sustained load"]

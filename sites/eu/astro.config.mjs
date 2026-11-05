@@ -81,9 +81,29 @@ export default defineConfig({
           label: 'Start here',
           items: [
             { label: 'Home', link: '/' },
-            { label: 'Devices', link: '/devices/' },
-            { label: 'Qwen3.8 Flash Next', link: '/models/qwen3-8-flash-next/' },
             { label: 'About this site', link: '/about/' },
+          ],
+        },
+        {
+          label: 'Devices',
+          items: [
+            { label: 'Overview', link: '/devices/' },
+            { label: 'Compare devices', link: '/devices/compare/' },
+            { label: 'AI boxes', link: '/devices/ai-boxes/' },
+            { label: 'AI laptops', link: '/devices/ai-laptops/' },
+            { label: 'DGX Spark', link: '/devices/dgx-spark/' },
+            { label: 'Strix Halo', link: '/devices/strix-halo/' },
+            { label: 'RTX Spark mini', link: '/devices/rtx-spark-mini/' },
+            { label: 'RTX Spark notebook', link: '/devices/rtx-spark-notebook/' },
+            { label: 'Mac Studio', link: '/devices/mac-studio/' },
+            { label: 'MacBook Pro', link: '/devices/macbook-pro/' },
+            { label: 'OEM configurations', link: '/devices/configurations/' },
+          ],
+        },
+        {
+          label: 'Model',
+          items: [
+            { label: 'Qwen3.8 Flash Next', link: '/models/qwen3-8-flash-next/' },
           ],
         },
       ],

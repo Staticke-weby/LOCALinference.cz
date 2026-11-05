@@ -1,0 +1,34 @@
+---
+title: "Compare 128GB devices: memory, bandwidth and price"
+description: "Side-by-side comparison of six turnkey 128GB devices: memory, bandwidth, US list price, OS and what runs. No retailer links."
+last_verified: 2026-11-05
+---
+
+import TabulkaZarizeniEn from '../../../components/TabulkaZarizeniEn.astro';
+
+All six devices have **128 GB of unified memory**. The differences are
+bandwidth, software stack, cooling and price — not the amount of memory.
+
+<TabulkaZarizeniEn />
+
+## What matters most
+
+1. **Software stack.** CUDA (DGX Spark, RTX Spark) has the widest tool
+   support. ROCm (Strix Halo) and Metal (Mac) are capable but some tools
+   are missing.
+2. **Bandwidth.** It sets the ceiling for token generation. 273–614 GB/s
+   is the range here.
+3. **Form.** A box stays cool and quiet; a laptop travels but throttles.
+4. **Price.** The cheapest 128GB path is Strix Halo; the most integrated
+   is DGX Spark.
+
+## What runs on all of them
+
+Qwen3.8 Flash Next fits on every device at 4-bit or NVFP4, with 128K
+tokens as the recommended operating context. The
+[model page](/models/qwen3-8-flash-next/) explains the trade-offs.
+
+## Czech edition
+
+Measured speeds per device and per quantization are in the Czech
+edition: [compare devices](https://www.localinference.cz/zarizeni/srovnani/).

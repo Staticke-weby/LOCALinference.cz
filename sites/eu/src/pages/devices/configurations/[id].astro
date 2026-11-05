@@ -1,0 +1,111 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import {
+  getDgxSparkOem,
+  getRtxNotebookOem,
+  getStrixHaloOem,
+} from '../../../lib/data';
+
+export function getStaticPaths() {
+  const rodiny = {
+    dgx: { id: 'dgx-spark', nazev: 'DGX Spark' },
+    strix: { id: 'strix-halo', nazev: 'Strix Halo' },
+    rtxnb: { id: 'rtx-spark-notebook', nazev: 'RTX Spark notebook' },
+  } as const;
+
+  const polozky: Array<{ id: string; sku: any; rodina: (typeof rodiny)[keyof typeof rodiny] }> = [];
+  for (const sku of getDgxSparkOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.dgx });
+  for (const sku of getStrixHaloOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.strix });
+  for (const sku of getRtxNotebookOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.rtxnb });
+  return polozky.map((p) => ({ params: { id: p.id }, props: p }));
+}
+
+const rodiny = {
+  dgx: { id: 'dgx-spark', nazev: 'DGX Spark' },
+  strix: { id: 'strix-halo', nazev: 'Strix Halo' },
+  rtxnb: { id: 'rtx-spark-notebook', nazev: 'RTX Spark notebook' },
+} as const;
+
+const { sku, rodina } = Astro.props as {
+  sku: {
+    id: string;
+    nazev: string;
+    vyrobce: string;
+    pamet_gb: number;
+    uloziste_gb: number;
+    overeno: string | Date;
+  };
+  rodina: (typeof rodiny)[keyof typeof rodiny];
+};
+
+const datum = new Intl.DateTimeFormat('en-US', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date(sku.overeno));
+---
+
+<StarlightPage
+  frontmatter={{
+    title: `${sku.nazev}: OEM configuration`,
+    description: `${sku.nazev} with ${sku.pamet_gb} GB unified memory and ${sku.uloziste_gb / 1024} TB storage. An OEM variant of ${rodina.nazev}.`,
+  }}
+>
+  <p class="li-verdict">
+    <strong>{sku.nazev}</strong> is one OEM configuration of the
+    <a href={`/devices/${rodina.id}/`}>{rodina.nazev}</a>. It differs in
+    storage and vendor; the chip, memory and software are the same as the
+    other variants.
+  </p>
+
+  <table class="li-tabulka">
+    <tbody>
+      <tr><th>Memory</th><td>{sku.pamet_gb} GB unified</td></tr>
+      <tr><th>Storage</th><td>{sku.uloziste_gb / 1024} TB SSD</td></tr>
+      <tr><th>Vendor</th><td>{sku.vyrobce}</td></tr>
+      <tr><th>Family</th><td><a href={`/devices/${rodina.id}/`}>{rodina.nazev}</a></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Price</h2>
+
+  <p>
+    This English edition does not publish a USD price for individual OEM
+    configurations. Vendors publish list prices for the base model, not for
+    every retail SKU, and this edition does not link to retailers.
+  </p>
+  <p>
+    The Czech edition tracks the Czech retail price for this exact
+    configuration:
+    <a href={`https://www.localinference.cz/zarizeni/konfigurace/${sku.id}/`}>
+      Czech price and availability
+    </a>.
+  </p>
+
+  <h2>What runs on it</h2>
+
+  <p>
+    Qwen3.8 Flash Next fits on {sku.pamet_gb} GB of unified memory with a
+    recommended 128K context. Speed and limits are the same as the rest of
+    the {rodina.nazev} family. See the
+    <a href={`/devices/${rodina.id}/`}>family page</a> and the
+    <a href="/models/qwen3-8-flash-next/">model page</a>.
+  </p>
+
+  <h2>More</h2>
+
+  <ul>
+    <li><a href="/devices/configurations/">All OEM configurations</a></li>
+    <li><a href={`/devices/${rodina.id}/`}>Full {rodina.nazev} family</a></li>
+    <li><a href="/devices/compare/">Compare all devices</a></li>
+  </ul>
+
+  <p><em>Variant data verified {datum}.</em></p>
+</StarlightPage>
+
+<style>
+  .li-verdict {
+    font-size: var(--sl-text-lg);
+    line-height: 1.55;
+  }
+</style>

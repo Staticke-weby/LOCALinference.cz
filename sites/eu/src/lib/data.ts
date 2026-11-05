@@ -252,6 +252,20 @@ export function getZarizeniById(id: string): Zarizeni | undefined {
   return getZarizeni().find((z) => z.id === id);
 }
 
+export type ZarizeniEn = {
+  id: string;
+  verdict: string;
+  for_who: string;
+  not_for: string;
+  strengths: string[];
+  weaknesses: string[];
+};
+
+export function getZarizeniEn(id: string): ZarizeniEn | undefined {
+  const vse = load<ZarizeniEn[]>('en/zarizeni.yaml') ?? [];
+  return vse.find((z) => z.id === id);
+}
+
 export function getDgxSparkOem(): DgxSparkOem[] {
   return (load<DgxSparkOem[]>('dgx-spark-oem.yaml') ?? []).sort(
     (a, b) => a.cena_czk_s_dph - b.cena_czk_s_dph || b.uloziste_gb - a.uloziste_gb,
