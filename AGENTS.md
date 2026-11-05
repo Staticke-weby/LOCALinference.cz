@@ -232,6 +232,29 @@ Když se objeví nová mezera, založí se položka **hned**, ne až při
 psaní stránky. Když se položka vyřeší, nezůstane v textu `[DOPLNIT]`
 ani v datech `null`.
 
+### 3.3 Objevování nového obsahu
+
+Registr mezer řeší, co u **zařazených** věcí chybí. Nové věci mají
+vlastní cestu: `data/objevy.yaml` a postup v `postup-objevovani.md`.
+
+- **Kandidát jde nejdřív do objevů**, ne rovnou do katalogu. Má `typ`,
+  `nazev`, `url`, `proc`, `stav` a datum.
+- **Týdně** se projde trending na Hugging Face, Qwen blog, r/LocalLLaMA,
+  GitHub releases a české ceny. **Měsíčně** OEM stránky, nezávislá
+  měření a Search Console.
+- **Filtr:** jen 128 GB+ turnkey zařízení, jen Qwen3.8 Flash Next jako
+  model katalogu, generativní modely zvlášť, vše s veřejným zdrojem.
+- **Triage:** patří to na web? je to nové? dá se to doložit? má to
+  hodnotu pro čtenáře?
+- **Po schválení** vznikne stránka nebo záznam v `data/*.yaml`; chybějící
+  data se zapíšou do `data/chybi.yaml`. Kandidát se přepne na `prevzato`,
+  zamítnutý na `zamitnuto` s důvodem.
+- **Příkaz:** `npm run objevy` vypíše kandidáty podle stavu.
+
+Podrobný postup, zdroje a rozhodovací strom jsou v
+`postup-objevovani.md`. Když kandidát projde jen částí filtru, rozhodne
+provozovatel — agent ho nezamlčí ani nezařadí sám.
+
 ---
 
 ## 4. Šablony stránek

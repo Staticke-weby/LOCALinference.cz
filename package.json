@@ -12,6 +12,7 @@
     "check:zdroje": "node scripts/kontrola-zdroju.mjs",
     "chybi": "node scripts/chybi.mjs",
     "chybi:zapis": "node scripts/chybi.mjs --zapis",
+    "objevy": "node scripts/objevy.mjs",
     "hlidac": "node scripts/hlidac.mjs",
     "dev": "npm --prefix sites/cz run dev",
     "build": "npm run check && npm --prefix sites/cz run build"

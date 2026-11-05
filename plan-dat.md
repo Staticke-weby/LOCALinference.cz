@@ -87,6 +87,7 @@ Když se zdroj nenajde, položka zůstane `hleda-se` a v textu zůstane
 ## Kudy dál
 
 - [Co nevíme](/zdroje/co-nevime/) — veřejný seznam mezer.
+- [Objevování nového](postup-objevovani.md) — jak hledat nová zařízení a témata.
 - [Zdroje](/zdroje/zdroje/) — registr a frekvence kontroly.
 - [Metodika](/o-webu/metodika/) — jak data čteme.
 - [Changelog](/zdroje/novinky/) — co se změnilo.

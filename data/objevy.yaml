@@ -1,0 +1,15 @@
+# Kandidáti na rozšíření webu. Sem patří jen to, co ještě není v katalogu.
+# `typ`: zarizeni | model | tema | zdroj | mereni
+# `stav`: novy | posuzuje-se | prevzato | zamitnuto
+# U `zamitnuto` doplň `duvod`, aby se stejný nápad neřešil dvakrát.
+# Přehled: `npm run objevy`.
+
+polozky:
+  - id: O-001
+    datum: 2026-11-05
+    typ: zarizeni
+    nazev: "Framework Desktop 128 GB"
+    url: https://frame.work/desktop
+    proc: "128GB turnkey Strix Halo, který v katalogu OEM variant chybí."
+    stav: novy
+    poznamka: "Ověřit českou dostupnost a cenu; pokud ano, zařadit mezi OEM varianty."

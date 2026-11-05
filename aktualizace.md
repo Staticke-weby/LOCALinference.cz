@@ -39,6 +39,15 @@ Chybějící údaje se řeší po dávkách, ne nahodile. Zdroj pravdy je
 Když do článku přibude `[DOPLNIT]` bez položky v registru, `npm run check`
 selže. Je to záměr — seznam mezer nemá růst potichu.
 
+### 1.0.1 Nové věci, které ještě nejsou na webu
+
+Když jde o **nové zařízení, model nebo téma**, nepatří to do registru
+mezer. Zapište kandidáta do `data/objevy.yaml` a projděte triage podle
+`postup-objevovani.md`. Teprve po schválení vznikne stránka nebo záznam
+v `data/*.yaml`; chybějící data se pak zapíšou do `data/chybi.yaml`.
+
+`npm run objevy` vypíše kandidáty podle stavu.
+
 ---
 
 ## 1.1 Obnova cen z Alza.cz
