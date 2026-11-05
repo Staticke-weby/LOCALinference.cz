@@ -4,7 +4,7 @@
 - datum: 2026-11-05
   typ: obsah
   titulek: "Nová sekce Generování: obrázky, video, audio, 3D"
-  co_se_zmenilo: "Přibylo 10 stránek /generovani/ a databáze 30 generativních modelů s licencí, nároky a rychlostí. Sekce odpovídá, co poběží na 128GB zařízeních; u DGX Sparku jsou naměřené časya u obrázků, ostatní jsou označené k doplnění."
+  co_se_zmenilo: "Přibylo 10 stránek /generovani/ a databáze 30 generativních modelů s licencí, nároky a rychlostí. Sekce odpovídá, co poběží na 128GB zařízeních; u DGX Sparku jsou naměřené časy u obrázků, ostatní jsou označené k doplnění."
   dotcene_stranky: [generovani]
   zdroj: https://localagentboard.com/images
 
