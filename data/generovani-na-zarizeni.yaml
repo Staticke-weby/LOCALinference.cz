@@ -56,7 +56,7 @@
       odkaz: /generovani/3d/
 
 - zarizeni: rtx-spark-notebook
-  poznamka: "FLUX je nezávislé měření. U videa známe čas na klip, ale ne jeho délku a rozlišení, proto ho neberte jako srovnatelný údaj."
+  poznamka: "FLUX a video jsou nezávislé měření na předprodukčních strojích. Pro 3D zatím veřejné číslo není."
   polozky:
     - uloha: Obrázky
       model: FLUX.2 klein 4B
@@ -70,8 +70,8 @@
       odkaz: /generovani/obrazky/
     - uloha: Video
       model: LTX-2.3 T2V 22B
-      konfigurace: "NVFP4, jeden klip"
-      cas: "97,6 s*"
+      konfigurace: "1280×720, 121 snímků, NVFP4"
+      cas: "97,56 s"
       odkaz: /generovani/video/
     - uloha: 3D
       model: TRELLIS.2

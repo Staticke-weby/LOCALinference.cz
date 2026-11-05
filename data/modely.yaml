@@ -14,8 +14,8 @@
   kontext:
     max: 262144
     max_rozsireni: 1000000
-    doporuceny: null
-    poznamka: "Maximum není doporučený provozní bod; doporučení [DOPLNIT]."
+    doporuceny: 131072
+    poznamka: "128K je běžný provozní bod; 256K pro agentní úlohy. Maximum 262K je strop, ne cíl."
   vision: true
   modality: [text, obraz]
   licence: Apache-2.0

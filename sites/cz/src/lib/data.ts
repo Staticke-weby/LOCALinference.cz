@@ -393,6 +393,10 @@ export function getGenerovaniNaZarizeni(id: string): GenerovaniZarizeni | undefi
   return vse.find((z) => z.zarizeni === id);
 }
 
+export function getVsechnaGenerovaniNaZarizeni(): GenerovaniZarizeni[] {
+  return load<GenerovaniZarizeni[]>('generovani-na-zarizeni.yaml') ?? [];
+}
+
 export function getHistorieCen(id: string): HistorieCen['zaznamy'] {
   const vse = load<HistorieCen[]>('historie-cen.yaml') ?? [];
   const z = vse.find((x) => x.id === id);

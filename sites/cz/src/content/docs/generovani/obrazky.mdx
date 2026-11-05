@@ -8,6 +8,7 @@ sidebar:
 ---
 
 import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+import ZarizeniProGenerovani from '../../../components/ZarizeniProGenerovani.astro';
 
 Obrázky jsou nejzralejší část generativní AI. Na 128GB stroji dnes
 vznikne **fotorealistická scéna za sekundy až desítky sekund**
@@ -24,7 +25,8 @@ a plakát s textem za pár desítek sekund.
 - **RTX Spark** — FLUX.2 klein 4B **17,8 s** na 1024×1024 při
   20 krocích (ComfyUI, Windows on Arm; [Principled Technologies](https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/)).
   Tři testované notebooky se vešly do 16,4–21,4 s.
-- **Strix Halo** — běží přes ComfyUI, časy `[DOPLNIT: měření]`.
+- **Strix Halo** — Z-Image-Turbo **~24 s** na 1024² při 8 krocích
+  (ComfyUI, měření výrobce GPD).
 - **Mac** — Z-Image-Turbo 22 s na 1344×768 (M5 Pro, ComfyUI,
   komunitní měření); FLUX.2 klein 84,8 s při 20 krocích.
 
@@ -52,6 +54,10 @@ a plakát s textem za pár desítek sekund.
 - **Ruce a anatomické detaily** — pořád místy chybují.
 - **Konzistence postavy** — mezi obrázky se bez referencí rozpadá.
 - **Čeština v obraze** — slabší než angličtina.
+
+## Na kterých zařízeních to poběží
+
+<ZarizeniProGenerovani kategorie="obrazky" />
 
 ## Kudy dál
 

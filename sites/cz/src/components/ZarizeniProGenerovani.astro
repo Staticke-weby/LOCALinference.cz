@@ -1,0 +1,75 @@
+---
+import { getVsechnaGenerovaniNaZarizeni, nazevZarizeni } from '../lib/data';
+
+interface Props {
+  kategorie: string;
+}
+
+const MAPA: Record<string, string[]> = {
+  obrazky: ['/generovani/obrazky/'],
+  'uprava-obrazku': ['/generovani/obrazky/'],
+  video: ['/generovani/video/'],
+  'uprava-videa': ['/generovani/video/'],
+  'rozhybani-obrazku': ['/generovani/video/'],
+  '3d': ['/generovani/3d/'],
+  'herni-prvky': ['/generovani/3d/', '/generovani/obrazky/'],
+  audio: [],
+  preklady: [],
+  licence: [],
+};
+
+const cil = MAPA[Astro.props.kategorie] ?? [];
+const vsechna = cil.length === 0;
+const zarizeni = getVsechnaGenerovaniNaZarizeni();
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Zařízení</th>
+        <th>Co z toho poběží</th>
+        <th>Čas</th>
+      </tr>
+    </thead>
+    <tbody>
+      {zarizeni.map((z) => {
+        const relevantni = z.polozky.filter((p) => p.odkaz && cil.includes(p.odkaz));
+        return (
+          <tr>
+            <td>
+              <a href={`/zarizeni/${z.zarizeni}/`}>{nazevZarizeni(z.zarizeni)}</a>
+            </td>
+            <td>
+              {relevantni.length
+                ? relevantni.map((p) => p.model).join(', ')
+                : vsechna
+                  ? 'všechny modely kategorie'
+                  : '—'}
+            </td>
+            <td>
+              {relevantni.length
+                ? relevantni.map((p) => (p.cas === '—' ? 'bez čísla' : p.cas)).join(' · ')
+                : vsechna
+                  ? '—'
+                  : 'bez veřejného čísla'}
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
+
+<p class="li-pozn">
+  Odkazy vedou na stránky zařízení s cenou, parametry a dalšími měřeními.
+  Přehled všech strojů je ve <a href="/zarizeni/srovnani/">srovnání</a>,
+  varianty v <a href="/zarizeni/ai-boxy/">AI boxech</a> a
+  <a href="/zarizeni/ai-notebooky/">notebookách</a>.
+</p>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+</style>

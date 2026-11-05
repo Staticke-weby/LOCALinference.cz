@@ -4,6 +4,21 @@ import starlight from '@astrojs/starlight';
 import rehypeExternalLinks from 'rehype-external-links';
 import { unified } from '@astrojs/markdown-remark';
 
+// Umami jen v produkčním buildu, aby se vývoj nepočítal do návštěvnosti.
+const umami =
+  process.env.NODE_ENV === 'production'
+    ? [
+        {
+          tag: 'script',
+          attrs: {
+            defer: true,
+            src: 'https://navstevnost.pikapod.net/script.js',
+            'data-website-id': '0f31f779-c9bd-4e31-9745-19b8b425be0b',
+          },
+        },
+      ]
+    : [];
+
 /**
  * Affiliate odkazy (Alza) označí rel="sponsored". Bez toho by web
  * vydával placený odkaz za redakční.
@@ -89,6 +104,8 @@ function rehypeSlovnik() {
     { re: /\bTTS\b/g, url: '/slovnik/software/tts/', slug: 'software/tts' },
     { re: /\binpainting\w*/gi, url: '/slovnik/software/inpainting/', slug: 'software/inpainting' },
     { re: /\bupscal\w*/gi, url: '/slovnik/software/upscaling/', slug: 'software/upscaling' },
+    { re: /\bVRAM\b/g, url: '/slovnik/pamet/vram/', slug: 'pamet/vram' },
+    { re: /\bSTT\b/g, url: '/slovnik/software/stt/', slug: 'software/stt' },
   ];
 
   const SKIP_PARENTS = new Set(['a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
@@ -207,14 +224,7 @@ export default defineConfig({
         { tag: 'meta', attrs: { property: 'og:image:alt', content: 'LOCALinference — lokální AI na 128 GB' } },
         { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
         { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://www.localinference.cz/og-cz.png' } },
-        {
-          tag: 'script',
-          attrs: {
-            defer: true,
-            src: 'https://navstevnost.pikapod.net/script.js',
-            'data-website-id': '0f31f779-c9bd-4e31-9745-19b8b425be0b',
-          },
-        },
+        ...umami,
         {
           tag: 'script',
           attrs: { type: 'application/ld+json' },

@@ -39,13 +39,14 @@ kompromisu.
 | Aktivní parametry | 6B na token | model card |
 | Nativní maximum kontextu | 262 144 | model card |
 | Rozšíření | 1 000 000 s YaRN | model card |
-| Doporučený provozní kontext | `[DOPLNIT: podložené doporučení]` | — |
+| Doporučený provozní kontext | 131 072 (128K) | [Unsloth](https://unsloth.ai/docs/models/qwen3.8-next) |
 | Vision | ano (text + obrázky) | model card |
 | Licence | Apache-2.0 | model card |
 
-**Kontext:** maximum není doporučený provozní bod. Kvalita i rychlost jsou
-lepší na kratším kontextu; kde přesně je optimum pro tento model, zatím
-nemáme podložené. Proto `[DOPLNIT]`, ne odhad.
+**Kontext:** maximum není doporučený provozní bod. Ve veřejných
+benchmarcích se používá **128K pro běžné úlohy** a 256K pro agentní
+běhy; 128K bereme jako rozumný provozní bod, 262K je strop. Kvalita
+i rychlost jsou na kratším kontextu lepší.
 
 ## Co umí Qwen3.8 Flash Next
 
@@ -55,6 +56,8 @@ nemáme podložené. Proto `[DOPLNIT]`, ne odhad.
   ([model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)).
 - **Multilingvní:** MGSM 89,33, MMMLU 84,86 (base).
 - **Nástroje:** tool calling, reasoning parser, agentní smyčky.
+  Toolathlon Verified 73,5 a CoWorkBench 73,9
+  ([model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)).
 - **Vision:** text + obrázky; dokumenty, screenshoty, tabulky.
 - **Čeština:** `[DOPLNIT: vlastní nebo komunitní test]`. Model je
   multilingvní, ale to není totéž jako dobrá čeština na vašich úkolech.
@@ -65,7 +68,7 @@ nemáme podložené. Proto `[DOPLNIT]`, ne odhad.
 |---|---|---|
 | **[vLLM](/slovnik/software/vllm/)** | produkční server, OpenAI API, MTP | oficiální recept NVIDIA pro DGX Spark, NVFP4 |
 | **[llama.cpp](/slovnik/software/llamacpp/)** | lokální server, GGUF, Vulkan/CUDA | MTP, vision přes mmproj, dobré pro Strix Halo a RTX Spark |
-| **Ollama** | nejjednodušší spuštění | experimentální tag `qwen3.8-flash-next`, 125b-mlx |
+| **Ollama** | nejjednodušší spuštění | experimentální tag, 6 variant; `125b-mlx` má 105 GB a 256K kontext |
 
 **Co sledovat:** nové kvantizace (NVFP4, GGUF, QAT), podporu MTP a QSA,
 tool parsery (`qwen3_coder`, `qwen3_xml`), reasoning parser `qwen3`

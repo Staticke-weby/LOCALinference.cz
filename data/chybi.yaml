@@ -155,38 +155,52 @@ polozky:
 
   - id: G08
     oblast: generovani
-    titulek: "RTX Spark: video a 3D"
-    co_chybi: "Obrázky už změřené jsou, ale video a 3D na RTX Sparku 128 GB nemají veřejné číslo. Chybí i Z-Image-Turbo při 8 krocích."
+    titulek: "RTX Spark: video"
+    co_chybi: "Doplněno: LTX-2.3 T2V 22B, 1280×720, 121 snímků, 97,56 s na klip (Principled Technologies)."
     kde:
       - generovani/video
       - generovani/uprava-videa
+      - generovani/recepty/windows
+      - generovani/recepty/index
+    priorita: P1
+    stav: hotovo
+    davka: 1
+    hledat: "Principled Technologies, NVIDIA forum, Reddit, YouTube"
+    poznamka: "3D a Z-Image při 8 krocích řeší G10."
+    zdroj: https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/
+    overeno: 2026-11-05
+
+  - id: G10
+    oblast: generovani
+    titulek: "RTX Spark: 3D a Z-Image při 8 krocích"
+    co_chybi: "3D na RTX Sparku nemá veřejné měření. Chybí i Z-Image-Turbo při 8 krocích; FLUX při 20 krocích změřený je."
+    kde:
       - generovani/3d
       - generovani/recepty/windows
       - generovani/recepty/dgx-os
       - generovani/recepty/linux
-      - generovani/recepty/index
     priorita: P1
     stav: otevreno
     davka: 1
-    hledat: "Principled Technologies, NVIDIA forum, Reddit, YouTube"
-    poznamka: "U videa uvést délku klipu, rozlišení, fps a kvantizaci."
+    hledat: "NVIDIA forum, Reddit, YouTube, LocalAgentBoard"
+    poznamka: "U 3D uvést rozlišení pipeline a verzi ComfyUI."
     zdroj: null
     overeno: null
 
   - id: G09
     oblast: generovani
     titulek: "Slovník: VRAM a STT"
-    co_chybi: "VRAM se používá v tabulkách a na stránkách zařízení, ale nemá vlastní heslo. Chybí i STT jako opak TTS."
+    co_chybi: "Přidána hesla VRAM a STT, v indexu slovníku a s automatickým prolinkováním."
     kde:
       - slovnik/software
       - slovnik
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 1
     hledat: "interní rešerše, dokumentace NVIDIA/AMD"
-    poznamka: "VRAM odlišit od unified memory; STT vysvětlit na Whisperu."
-    zdroj: null
-    overeno: null
+    poznamka: "VRAM odlišena od unified memory; STT vysvětleno na Whisperu."
+    zdroj: https://huggingface.co/openai/whisper-large-v3
+    overeno: 2026-11-05
 
   # --- Dávka 2: katalogová data Qwen3.8 ----------------------------------
   - id: D01
@@ -258,17 +272,17 @@ polozky:
   - id: D05
     oblast: data
     titulek: "Podložené doporučení provozního kontextu"
-    co_chybi: "V datech je doporuceny: null. Chybí podložené doporučení, kolik kontextu má smysl provozovat."
+    co_chybi: "Doplněno: 131 072 (128K) jako běžný provozní bod, 256K pro agentní úlohy. Maximum 262K je strop."
     kde:
       - modely/qwen3-8-flash-next
       - zaciname/jak-cteme-data
     priorita: P0
-    stav: otevreno
+    stav: hotovo
     davka: 2
     hledat: "Qwen model card, vLLM recipe, nezávislé testy"
-    poznamka: "Nahradit [DOPLNIT] v data/modely.yaml i v textu."
-    zdroj: null
-    overeno: null
+    poznamka: "Zdroj: Unsloth benchmarky používají 128K pro běžné a 256K pro agentní úlohy."
+    zdroj: https://unsloth.ai/docs/models/qwen3.8-next
+    overeno: 2026-11-05
 
   - id: D06
     oblast: data
@@ -352,17 +366,17 @@ polozky:
   - id: D13
     oblast: kvalita
     titulek: "Tool calling a agentní úlohy"
-    co_chybi: "Agenti jsou hlavní use case, ale chybí veřejné testy tool callingu pro Qwen3.8."
+    co_chybi: "Doplněno: Toolathlon Verified 73,5 a CoWorkBench 73,9 z model cardu. Jsou to benchmarky, ne provozní test."
     kde:
       - modely/qwen3-8-flash-next
       - temata/lokalni-ai-agenti
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 3
     hledat: "model cards, benchmarky, komunitní testy"
-    poznamka: null
-    zdroj: null
-    overeno: null
+    poznamka: "Čísla jsou z model cardu; provozní testy na 128GB boxu stále chybí."
+    zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next
+    overeno: 2026-11-05
 
   # --- Dávka 4: ceny -----------------------------------------------------
   - id: C01
@@ -416,18 +430,18 @@ polozky:
   - id: C04
     oblast: ceny
     titulek: "Česká cena RTX Spark mini"
-    co_chybi: "Na webu je jen přepočet z USD označený jako odhad. Česká cena chybí."
+    co_chybi: "Ověřeno: RTX Spark mini se v českém maloobchodě neprodává. Cena proto zůstává odhadem z USD."
     kde:
       - zarizeni/rtx-spark-mini
       - temata/cena-lokalni-ai
       - vyber/rozpocet
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 4
     hledat: "české e-shopy, OEM zastoupení"
-    poznamka: "Dokud cenu neznáme, zůstává odhad s kurzem ČNB."
-    zdroj: null
-    overeno: null
+    poznamka: "Stránka to už uvádí; cena se nepřepočítává jako česká."
+    zdroj: https://www.alza.cz/ai-pc/18907789.htm
+    overeno: 2026-11-05
 
   - id: C06
     oblast: ceny
@@ -463,16 +477,16 @@ polozky:
   - id: O02
     oblast: obsah
     titulek: "Ověřit Ollama tag pro Qwen3.8"
-    co_chybi: "Model page uvádí Ollama jako experimentální. Chybí potvrzení, že tag existuje a v jaké kvantizaci."
+    co_chybi: "Ověřeno: tag qwen3.8-flash-next existuje, má 6 variant (MLX, NVFP4, Q4/Q8/BF16) a 256K kontext."
     kde:
       - modely/qwen3-8-flash-next
     priorita: P2
-    stav: otevreno
+    stav: hotovo
     davka: 5
     hledat: "ollama.com/library, GitHub Ollama"
-    poznamka: null
-    zdroj: null
-    overeno: null
+    poznamka: "Model page doplněna o 105 GB a 256K u varianty 125b-mlx."
+    zdroj: https://ollama.com/library/qwen3.8-flash-next
+    overeno: 2026-11-05
 
   - id: O03
     oblast: obsah
@@ -576,15 +590,15 @@ polozky:
   - id: I04
     oblast: infrastruktura
     titulek: "Umami se posílá i z localhostu"
-    co_chybi: "Skript se načítá i při vývoji. Chybí podmínka, aby se mimo produkci neposílal."
+    co_chybi: "Hotovo: Umami se vkládá jen při produkčním buildu, ve vývoji se nenačítá."
     kde: []
     priorita: P2
-    stav: otevreno
+    stav: hotovo
     davka: 6
     hledat: "interní práce"
-    poznamka: null
-    zdroj: null
-    overeno: null
+    poznamka: "Podmínka NODE_ENV=production v astro.config.mjs."
+    zdroj: https://github.com/Staticke-weby/LOCALinference.cz
+    overeno: 2026-11-05
 
   - id: I05
     oblast: infrastruktura

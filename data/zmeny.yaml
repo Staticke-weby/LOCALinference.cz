@@ -3,6 +3,13 @@
 
 - datum: 2026-11-05
   typ: obsah
+  titulek: "Generování je propojené se zařízeními a dávka 1 uzavřená"
+  co_se_zmenilo: "Na deset stránek generování přibyla tabulka Na kterých zařízeních to poběží s odkazy na všech šest zařízení, srovnání a kategorie. Zároveň vznikla hesla VRAM a STT, doplněno doporučení 128K kontextu, RTX Spark video 97,56 s, Ollama tag a Umami jen v produkci."
+  dotcene_stranky: [generovani, slovnik, modely/qwen3-8-flash-next, zdroje/co-nevime]
+  zdroj: https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/
+
+- datum: 2026-11-05
+  typ: obsah
   titulek: "Dávka 1 dokončena: časy, licence, slovník a zařízení"
   co_se_zmenilo: "Doplněny časy videa a 3D pro Mac a Strix Halo, vznikla stránka /generovani/licence/, šest hesel ve slovníku (difuze, LoRA, PBR, TTS, inpainting, upscaling) a tabulka generativních modelů na šesti stránkách zařízení. Registr mezer má 7 hotových položek z dávky 1."
   dotcene_stranky: [generovani, generovani/licence, slovnik, zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook, zarizeni/macbook-pro]

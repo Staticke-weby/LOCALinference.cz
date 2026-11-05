@@ -1,0 +1,53 @@
+---
+title: "Co je STT a jak přepsat řeč na text lokálně"
+description: "STT převádí mluvené slovo na text. Vysvětlíme přepis, překlad, časové značky a které modely běží na 128GB stroji nebo na procesoru."
+last_verified: 2026-11-05
+sidebar:
+  label: STT
+  order: 22
+---
+
+**STT** (speech-to-text) je přepis mluveného slova na text. U
+lokálního provozu jde o jednu z nejpraktičtějších úloh: zápis
+porady, titulky k videu, přepis rozhovoru nebo podklad pro dabing.
+
+## Co STT umí
+
+- **Přepis** — řeč na text v původním jazyce.
+- **Překlad** — rovnou do jiného jazyka, typicky do angličtiny.
+- **Časové značky** — kdy která věta začala; potřebné pro titulky.
+- **Rozlišení mluvčích** — kdo mluvil; bývá samostatný krok.
+
+## Jak se to měří
+
+Stejně jako u TTS se používá **RTF** (real-time factor). RTF 0,2
+znamená, že hodina záznamu se přepíše za dvanáct minut. Malé modely
+zvládnou přepis i na procesoru, větší chtějí GPU.
+
+## Modely z katalogu
+
+- **Whisper large-v3** — MIT, široká podpora, český přepis.
+- **Whisper smaller** — rychlejší varianta pro méně náročné záznamy.
+- Pro překlad titulků se kombinuje STT s textovým modelem nebo
+  s modelem pro překlad.
+
+## Kde je limit
+
+- **Přízvuk a šum** — nahrávka z meeting roomu je horší než studio.
+- **Vlastní jména** — často je potřeba ruční korekce.
+- **Hudba a překřikování** — přepis se rozpadá.
+- **Diarizace** — rozlišení mluvčích není totéž jako přepis.
+
+## Kudy dál
+
+- [Audio](/generovani/audio/) — TTS a dabing.
+- [Překlady](/generovani/preklady/) — text a titulky.
+- [TTS](/slovnik/software/tts/) — opačný směr, text na řeč.
+- [Whisper large-v3](https://huggingface.co/openai/whisper-large-v3) — model card.
+
+## Zdroje
+
+- [Whisper large-v3](https://huggingface.co/openai/whisper-large-v3)
+- [OpenAI Whisper — GitHub](https://github.com/openai/whisper)
+
+*Naposledy ověřeno: 5. 11. 2026.*

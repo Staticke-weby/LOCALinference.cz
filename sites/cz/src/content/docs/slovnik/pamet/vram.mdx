@@ -1,0 +1,57 @@
+---
+title: "Co je VRAM a proč se u 128GB boxů chová jinak"
+description: "VRAM je paměť grafického čipu. Vysvětlíme, proč u klasické karty rozhoduje o modelu a proč je u DGX Sparku, Strix Halu a Macu společná s procesorem."
+last_verified: 2026-11-05
+sidebar:
+  label: VRAM
+  order: 4
+---
+
+**VRAM** je paměť grafického čipu. U klasické grafické karty je
+oddělená od systémové RAM: karta má 16 nebo 24 GB a víc nedostane.
+Model se musí vejít tam, jinak se část přesune do pomalejší paměti
+nebo se nespustí.
+
+## Proč na tom záleží
+
+Když model card říká „potřebuje 16 GB VRAM“, znamená to přibližně:
+váhy modelu, textový encoder, aktivace a mezipaměť pro kontext se
+musí vejít do paměti karty. U obrázků je to hlavně velikost modelu,
+u textu roste s délkou kontextu a počtem souběžných uživatelů.
+
+## U 128GB boxů je to jinak
+
+DGX Spark, RTX Spark, Strix Halo i Apple Silicon mají **unified
+memory** — jeden paměťový pool pro procesor i grafiku. Model tedy
+nemusí „projít“ přes 16GB kartu; může využít desítky GB.
+
+To ale není zadarmo:
+
+- **Propustnost se sdílí.** Když model běží, bere paměťovou šířku
+  i zbytek systému.
+- **Systém potřebuje rezervu.** Část paměti zůstává pro OS a aplikace.
+- **Kontext a KV cache** zabírají stejný pool jako váhy.
+
+Proto se u 128GB strojů bavíme o tom, kolik paměti zůstane po
+načtení modelu — ne o tom, jestli se model „vejde do VRAM“.
+
+## Příklad
+
+Z-Image-Turbo má nárok kolem **16 GB**. Na klasické kartě s 16 GB
+je to na hraně. Na DGX Sparku se vejde do 128 GB unified paměti
+a ještě zbyde na delší kontext nebo druhý model. Na Strix Halu je
+pool menší, protože část zabírá systém a BIOS.
+
+## Kudy dál
+
+- [Unified memory](/slovnik/pamet/unified-memory/) — společná paměť.
+- [KV cache](/slovnik/pamet/kv-cache/) — co roste s kontextem.
+- [Kontext](/slovnik/pamet/kontext/) — okno, které model vidí.
+- [Obrázky](/generovani/obrazky/) — jaké nároky mají modely.
+
+## Zdroje
+
+- [NVIDIA DGX Spark — dokumentace](https://docs.nvidia.com/dgx/dgx-spark/)
+- [Z-Image-Turbo — model card](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+
+*Naposledy ověřeno: 5. 11. 2026.*
