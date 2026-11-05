@@ -1,6 +1,13 @@
 # Changelog dat a obsahu. Každá změna má datum, typ, dotčené stránky a zdroj.
 # `typ`: cena | model | mereni | zdroj | obsah
 
+- datum: 2026-11-05
+  typ: obsah
+  titulek: "Samostatné stránky pro každou OEM konfiguraci"
+  co_se_zmenilo: "Z YAML dat se generuje 25 stránek /zarizeni/konfigurace/<id>/ — 15 DGX Spark, 3 Strix Halo a 7 RTX notebooků. Každá má cenu, parametry, dostupnost, odkaz na Alzu a rozcestník. Tabulky variant na ně odkazují. Stránky jsou v sitemapě."
+  dotcene_stranky: [zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
 - datum: 2026-11-04
   typ: mereni
   titulek: "Měření Qwen3.8 Flash Next na M5 Max a návod pro Mac"

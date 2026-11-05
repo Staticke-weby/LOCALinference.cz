@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { getDgxSparkOem, getRtxNotebookOem, getStrixHaloOem } from '../lib/data';
 
 const SITE = 'https://www.localinference.cz';
 
@@ -31,6 +32,13 @@ export const GET: APIRoute = async () => {
   }
 
   if (!lastmod.has('')) lastmod.set('', '');
+
+  // Stránky jednotlivých konfigurací (OEM varianty)
+  const konfigurace = [...getDgxSparkOem(), ...getStrixHaloOem(), ...getRtxNotebookOem()];
+  for (const sku of konfigurace) {
+    const day = isoDay(sku.overeno);
+    lastmod.set(`zarizeni/konfigurace/${sku.id}/`, day ?? '');
+  }
 
   const urls = [...lastmod.entries()]
     .sort(([a], [b]) => a.localeCompare(b))

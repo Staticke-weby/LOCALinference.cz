@@ -1,0 +1,171 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import AlzaCena from '../../../components/AlzaCena.astro';
+import {
+  formatKc,
+  formatDatum,
+  getDgxSparkOem,
+  getRtxNotebookOem,
+  getStrixHaloOem,
+} from '../../../lib/data';
+
+type Rodina = {
+  id: string;
+  nazev: string;
+  stranka: string;
+  navod: string;
+  kategorie: 'boxy' | 'notebooky';
+  kratce: string;
+};
+
+export function getStaticPaths() {
+const rodiny: Record<string, Rodina> = {
+  dgx: {
+    id: 'dgx-spark',
+    nazev: 'DGX Spark',
+    stranka: '/zarizeni/dgx-spark/',
+    navod: '/navody/dgx-spark/',
+    kategorie: 'boxy',
+    kratce: 'stolní GB10 box s CUDA a DGX OS',
+  },
+  strix: {
+    id: 'strix-halo',
+    nazev: 'Strix Halo',
+    stranka: '/zarizeni/strix-halo/',
+    navod: '/navody/strix-halo/',
+    kategorie: 'boxy',
+    kratce: 'stolní box s Ryzen AI Max+ 395',
+  },
+  rtxnb: {
+    id: 'rtx-spark-notebook',
+    nazev: 'RTX Spark notebook',
+    stranka: '/zarizeni/rtx-spark-notebook/',
+    navod: '/navody/rtx-spark/',
+    kategorie: 'notebooky',
+    kratce: 'notebook s NVIDIA N1X a Windows 11',
+  },
+};
+
+
+  const polozky: Array<{ id: string; sku: Record<string, unknown>; rodina: Rodina }> = [];
+
+  for (const sku of getDgxSparkOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.dgx });
+  for (const sku of getStrixHaloOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.strix });
+  for (const sku of getRtxNotebookOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.rtxnb });
+
+  return polozky.map((p) => ({ params: { id: p.id }, props: p }));
+}
+
+const { sku, rodina } = Astro.props as {
+  sku: {
+    id: string;
+    nazev: string;
+    vyrobce: string;
+    pamet_gb: number;
+    uloziste_gb: number;
+    cena_czk_s_dph: number | null;
+    dostupnost: string;
+    objednaci_kod?: string;
+    zdroj: string;
+    overeno: string | Date;
+    poznamka?: string;
+  };
+  rodina: Rodina;
+};
+
+const cena = sku.cena_czk_s_dph != null ? `${formatKc(sku.cena_czk_s_dph)} Kč` : '—';
+const datum = formatDatum(sku.overeno);
+const sklad = /skladem/i.test(sku.dostupnost);
+const title = `${sku.nazev}: cena a kde koupit`;
+---
+
+<StarlightPage
+  frontmatter={{
+    title,
+    description: `${sku.nazev} s ${sku.pamet_gb} GB paměti a ${sku.uloziste_gb / 1024} TB úložiště. Cena ${cena} vč. DPH, dostupnost a co na stroji poběží.`,
+  }}
+>
+  <p class="li-verdict">
+    <strong>{sku.nazev}</strong> je konkrétní varianta {rodina.kratce}. Liší se
+    úložištěm a dodavatelem — čip, paměť a software jsou stejné jako
+    u ostatních variant.
+  </p>
+
+  <div class="li-cena-velka">
+    <span class="li-cena-velka__castka">{cena}</span>
+    <span class="li-cena-velka__pozn">vč. DPH · k {datum}</span>
+  </div>
+
+  <table class="li-tabulka">
+    <tbody>
+      <tr><th>Paměť</th><td>{sku.pamet_gb} GB unified</td></tr>
+      <tr><th>Úložiště</th><td>{sku.uloziste_gb / 1024} TB SSD</td></tr>
+      <tr><th>Výrobce</th><td>{sku.vyrobce}</td></tr>
+      {sku.objednaci_kod && <tr><th>Objednací kód</th><td>{sku.objednaci_kod}</td></tr>}
+      <tr><th>Dostupnost</th><td>{sku.dostupnost}</td></tr>
+      <tr><th>Rodina</th><td><a href={rodina.stranka}>{rodina.nazev}</a></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Kde koupit</h2>
+
+  <p>
+    Cena je z českého maloobchodu k {datum}. {sklad ? 'Varianta byla v době kontroly skladem.' : 'Dostupnost se může změnit; ověřte ji před objednáním.'}
+  </p>
+
+  <AlzaCena kategorie={rodina.kategorie} text="Otevřít kategorii na Alza.cz" />
+
+  <h2>Co na stroji poběží</h2>
+
+  <p>
+    Na {sku.pamet_gb} GB unified paměti běží <strong>Qwen3.8 Flash Next</strong> —
+    jediný model katalogu. Rychlost a limity jsou stejné jako u ostatních
+    variant rodiny, protože čip a paměť jsou shodné. Podrobnosti najdete
+    na stránce <a href={rodina.stranka}>{rodina.nazev}</a>.
+  </p>
+
+  <h2>Další kroky</h2>
+
+  <ul>
+    <li><a href={rodina.stranka}>Celá rodina {rodina.nazev} — specifikace a měření</a></li>
+    <li><a href={rodina.navod}>První spuštění krok za krokem</a></li>
+    <li><a href="/zarizeni/srovnani/">Srovnání všech zařízení</a></li>
+    <li><a href="/zdroje/mereni/">Naměřené hodnoty</a></li>
+    <li><a href="/slovnik/">Slovník pojmů</a></li>
+  </ul>
+
+  <h2>Zdroje</h2>
+
+  <ul>
+    <li><a href={sku.zdroj} target="_blank" rel="sponsored noopener noreferrer">Nabídka prodejce</a></li>
+    <li><a href={rodina.stranka}>Stránka rodiny {rodina.nazev}</a></li>
+  </ul>
+
+  <p><em>Naposledy ověřeno: {datum}.</em></p>
+</StarlightPage>
+
+<style>
+  .li-verdict {
+    font-size: var(--sl-text-lg);
+    line-height: 1.55;
+  }
+  .li-cena-velka {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.9rem;
+    margin: 1rem 0 1.5rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+  }
+  .li-cena-velka__castka {
+    font-size: var(--sl-text-3xl);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .li-cena-velka__pozn {
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-sm);
+  }
+</style>
