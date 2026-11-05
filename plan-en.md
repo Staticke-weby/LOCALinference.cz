@@ -1,12 +1,74 @@
-# EN verze: plná parita s CZ
+# EN verze: plán
 
-*Cíl: `localinference.eu` není výběr ani překlad homepage. Je to stejně
-podrobný web jako CZ — všechny stránky, tabulky, měření, zdroje,
-témata, slovník, návody, changelog i právní informace.*
+*Rozhodnutí: **CZ je zdroj pravdy**, EN je jeho replikovaná mutace.
+Menší textové rozdíly nevadí. Prioritou je **snadné nasazení**.*
 
-## Co to znamená
+## Nasazení: pull model bez cross-repo tokenu
 
-| Sekce | CZ stránek | EN cíl |
+Tohle je nejjednodušší varianta, která nepotřebuje PAT ani deploy key:
+
+- Zdroj EN (`sites/eu`) zůstává v repu `LOCALinference.cz`.
+- Repo `LOCALinference.eu` obsahuje **jen workflow a CNAME**, žádný zdroj.
+- Workflow v `.eu` si při buildu stáhne **veřejný** repo `.cz`, postaví
+  `sites/eu` a nasadí výstup na vlastní GitHub Pages.
+- Spouští se **denně** a ručně. Žádný secret, žádný cross-repo push.
+- Když je potřeba okamžité nasazení, lze přidat `repository_dispatch`
+  z `.cz`; to je volitelné a není podmínkou.
+
+```yaml
+# .github/workflows/deploy.yml v repu LOCALinference.eu
+name: Build EN from CZ source
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: Staticke-weby/LOCALinference.cz
+          path: src
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: src/package-lock.json
+      - run: npm ci
+        working-directory: src
+      - run: npm ci
+        working-directory: src/sites/eu
+      - run: npm run build
+        working-directory: src/sites/eu
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: src/sites/eu/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/deploy-pages@v4
+```
+
+**Proč takhle:** jeden zdroj pravdy, žádný roční token, každý web
+publikuje své vlastní Actions. Cena je zpoždění do 24 hodin a nutnost
+mít repo `.cz` veřejné (což je).
+
+## Co se replikuje
+
+Cílem je **plná parita obsahu**, ne výběr:
+
+| Sekce | CZ | EN |
 |---|---:|---:|
 | Úvod a Start | 7 | 7 |
 | Zařízení | 9 | 9 |
@@ -23,21 +85,20 @@ témata, slovník, návody, changelog i právní informace.*
 | Data | 2 | 2 |
 | **Celkem** | **129** | **129** |
 
-Žádná stránka se nevynechává. Když CZ stránka vznikne, EN protějšek
-se zakládá ve stejné dávce. Parita se kontroluje skriptem, ne očima.
+Menší rozdíly v textu jsou v pořádku. Chybějící stránka nebo jiné
+číslo není rozdíl, ale chyba.
 
 ## Architektura
 
 - `sites/eu/` — samostatný Astro + Starlight web, doména
   `www.localinference.eu`.
 - `data/` zůstává jeden zdroj pravdy pro čísla, ceny, měření a licence.
-- Texty jsou v `sites/eu/src/content/docs/`, ne v datech.
+- Texty jsou v `sites/eu/src/content/docs/`.
 - Prezentační komponenty se přesunou do `shared/components/` a dostanou
   text přes props nebo lokalizační slovník. CZ i EN používají stejný
-  komponent, jen s jinými popisky.
+  komponent.
 - `translationKey` ve frontmatteru spojuje CZ a EN stránku.
-- Jazyk se přepíná v hlavičce; odkaz vede na protějšek, ne na cizí
-  doménu bez vztahu.
+- Jazyk se přepíná v hlavičce; odkaz vede na protějšek.
 
 ## EN slugy
 
@@ -74,7 +135,7 @@ se zakládá ve stejné dávce. Parita se kontroluje skriptem, ne očima.
 | `/o-webu/` | `/about/` |
 | `/data/` | `/data/` |
 
-Konkrétní slugy stránek se překládají podle obsahu, ne mechanicky:
+Konkrétní slugy se překládají podle obsahu:
 `co-je-lokalni-ai` → `what-is-local-ai`,
 `jak-cteme-data` → `how-we-read-data`,
 `lokalni-ai-na-obrazky` → `local-ai-images`.
@@ -102,7 +163,8 @@ Konkrétní slugy stránek se překládají podle obsahu, ne mechanicky:
 - Společná datová vrstva a komponenty.
 - Jazykový přepínač, `hreflang`, canonical, sitemap, robots.
 - `npm run parita` a `data/preklady.yaml`.
-- Umami EN ID, workflow `nasazeni-eu.yml`.
+- Umami EN ID.
+- Workflow v `.eu` (pull model), Pages, DNS.
 
 ### Fáze 1 — zařízení a model (48 stránek)
 
@@ -126,7 +188,6 @@ Konkrétní slugy stránek se překládají podle obsahu, ne mechanicky:
 - Vlastní Search Console, keyword clusters.
 - `llms.txt`, RSS changelogu.
 - Kontrola `hreflang` a překladových párů.
-- Publikace na `.eu`.
 
 ## Parita
 
@@ -140,7 +201,8 @@ Konkrétní slugy stránek se překládají podle obsahu, ne mechanicky:
 ```
 
 `npm run parita` porovná CZ a EN routy. Když CZ stránka nemá EN
-protějšek, vypíše ji a selže. Tím se nic „nezapomene“ přeložit.
+protějšek, vypíše ji. V CI to může být varování, ne blok — mírný
+rozdíl je povolený, chybějící stránka ne.
 
 ## Definition of done
 
@@ -148,15 +210,14 @@ protějšek, vypíše ji a selže. Tím se nic „nezapomene“ přeložit.
 - Všechny tabulky a měření z CZ jsou i v EN.
 - Žádný `[DOPLNIT]` navíc oproti CZ.
 - Interní odkazy a `hreflang` sedí.
-- Build, kontrola odkazů a parita projdou.
+- Build a kontrola odkazů projdou.
 - Ceny jsou USD, žádní prodejci, žádné affiliate.
 
 ## Blokery
 
-- `PUBLIKACE_DEPLOY_KEY` pro publikaci do `LOCALinference.eu` — SSH
-  deploy key bez expirace (ne roční PAT).
 - Kontaktní e-mail pro právní stránky.
 - Vlastní Search Console pro EN.
+- Pages a DNS v `.eu` repu.
 
-*Stav k 5. 11. 2026. Plán se plní po dávkách; žádná stránka se
-nevynechává.*
+*Stav k 5. 11. 2026. Plán se plní po dávkách; CZ zůstává zdrojem
+pravdy a EN se z něj replikuje.*

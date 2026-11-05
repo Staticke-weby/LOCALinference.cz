@@ -10,9 +10,9 @@ Legenda: **P0** blokuje provoz nebo důvěryhodnost · **P1** zlepší web ·
 ## 1. Infrastruktura a provoz
 
 - [x] **Přepnout DNS u Vedos** — hotovo 5. 11. 2026, doména servíruje web.
-- [ ] **Přidat secret `PUBLIKACE_DEPLOY_KEY`** do GitHubu — privátní
-      SSH klíč deploy key s právem write na `LOCALinference.eu`.
-      Deploy key nemá expiraci, na rozdíl od ročního PAT.
+- [ ] **Vytvořit EN deploy workflow v `.eu` repu** — pull model:
+      stáhne veřejný `.cz`, postaví `sites/eu`, nasadí Pages.
+      Žádný PAT ani deploy key. V `.cz` pak odstranit `nasazeni-eu.yml`.
 - [ ] **Umami:** nevylučovat lokální vývoj — skript se posílá i z
       `localhost`. Zvážit podmínku, aby se nenačítal mimo produkci.
 - [ ] **Deploy občas visí.** Postup: zkontrolovat předchozí deployment,

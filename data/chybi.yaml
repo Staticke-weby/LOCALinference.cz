@@ -563,15 +563,15 @@ polozky:
 
   - id: I02
     oblast: infrastruktura
-    titulek: "Secret PUBLIKACE_DEPLOY_KEY"
-    co_chybi: "Bez privátního SSH klíče deploy key s právem write na LOCALinference.eu EN workflow nepublikuje. Deploy key nemá expiraci."
+    titulek: "EN deploy workflow v .eu"
+    co_chybi: "V repu LOCALinference.eu chybí workflow, který stáhne veřejný .cz, postaví sites/eu a nasadí Pages. Pull model nepotřebuje žádný token."
     kde: []
     priorita: P0
     stav: ceka-na-vas
     davka: 6
-    hledat: "GitHub .eu repo → Settings → Deploy keys; source repo → Actions secrets"
-    poznamka: "Veřejná část do .eu repo, privátní do secretu PUBLIKACE_DEPLOY_KEY. Není to roční PAT."
-    zdroj: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys
+    hledat: "GitHub .eu repo → Actions, Pages"
+    poznamka: "Žádný PAT ani deploy key. V .cz se pak odstraní nasazeni-eu.yml."
+    zdroj: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
     overeno: null
 
   - id: I03

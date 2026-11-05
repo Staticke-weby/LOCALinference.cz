@@ -378,12 +378,12 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
   skryté, zdroj je veřejný.
 - **CZ:** workflow `nasazeni-cz.yml` postaví `sites/cz/dist` a pošle ho
   jako Pages artifact. Na web jde jen výstup, nikdy zdroj ani `node_modules`.
-- **EN:** až vznikne `sites/eu`, workflow `nasazeni-eu.yml` postaví
-  `sites/eu/dist` a pošle ho do `Staticke-weby/LOCALinference.eu`, odkud
-  ho servíruje GitHub Pages. Zdroj EN zůstává tady; `.eu` repo je jen
-  výstup. Vyžaduje secret `PUBLIKACE_DEPLOY_KEY` — privátní SSH klíč
-  deploy key s právem write na `.eu` repo. Deploy key nemá expiraci;
-  veřejná část je v `.eu` repu, privátní v Actions secretu.
+- **EN:** až vznikne `sites/eu`, workflow v repu
+  `Staticke-weby/LOCALinference.eu` si stáhne **veřejný** repo `.cz`,
+  postaví `sites/eu` a nasadí výstup na vlastní GitHub Pages. Repo
+  `.eu` obsahuje jen workflow a CNAME, žádný zdroj. Nepotřebuje PAT
+  ani deploy key. Workflow `nasazeni-eu.yml` v `.cz` se při tom
+  odstraní.
 - **Proč jedno repo:** data o zařízeních, cenách a měřeních jsou společná.
   Jeden zdroj pravdy znamená, že si CZ a EN nemohou začít odporovat.
 - **Domény:** `www.localinference.cz` a `www.localinference.eu`, obě
