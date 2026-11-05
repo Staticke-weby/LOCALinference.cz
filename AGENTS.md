@@ -50,7 +50,7 @@ a co od nich čtenář může čekat.
 
 Píšeme pro **lidi a malé týmy**, které zvážují vlastní AI — živnostníky,
 správce IT, nadšence i firmy. Mají rozpočet na zařízení a chtějí vědět, co od něj čekat — nejsou to
-ML inženýři ani nadšenci do benchmarků.
+ML inženýři ani lidé, kteří chtějí benchmarky.
 
 - **Každá stránka začíná lidsky:** co to je, pro koho to je, co to
   stojí a co od toho čekat. Teprve potom tabulky a technické detaily.
