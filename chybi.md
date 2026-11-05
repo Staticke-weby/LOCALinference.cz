@@ -2,18 +2,18 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**44 položek** · 19 otevreno · 3 ceka-na-vas · 15 prubezne · 7 hotovo · 37 markerů [DOPLNIT] na 14 stránkách.
+**46 položek** · 21 otevreno · 2 ceka-na-vas · 15 prubezne · 8 hotovo · 37 markerů [DOPLNIT] na 14 stránkách.
 
 ## Souhrn podle dávek
 
 | Dávka | Název | Otevřených |
 |---|---|---|
-| 1 | Generování: rychlosti, licence a slovník | 1 |
+| 1 | Generování: rychlosti, licence a slovník | 2 |
 | 2 | Katalogová data Qwen3.8 | 7 |
 | 3 | Kvalita, čeština a provoz | 4 |
 | 4 | Ceny a dostupnost | 6 |
-| 5 | Obsah a propojení | 4 |
-| 6 | Infrastruktura a publikace | 6 |
+| 5 | Obsah a propojení | 5 |
+| 6 | Infrastruktura a publikace | 5 |
 | 7 | Průběžná údržba | 9 |
 
 ## Dávka 1 — Generování: rychlosti, licence a slovník
@@ -30,8 +30,10 @@
 | G06 | Co na zařízeních poběží z generativních modelů | P1 | hotovo | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-mini/<br>/zarizeni/mac-studio/<br>/zarizeni/macbook-pro/<br>/zarizeni/rtx-spark-notebook/ |
 | G07 | Slovník: difuze, LoRA, PBR, TTS, inpainting | P1 | hotovo | /slovnik/software/<br>/slovnik/ |
 | G08 | RTX Spark: video a 3D | P1 | otevreno | /generovani/video/<br>/generovani/uprava-videa/<br>/generovani/3d/<br>/generovani/recepty/windows/<br>/generovani/recepty/dgx-os/<br>/generovani/recepty/linux/<br>/generovani/recepty/index/ |
+| G09 | Slovník: VRAM a STT | P1 | otevreno | /slovnik/software/<br>/slovnik/ |
 
 - **G08** — Obrázky už změřené jsou, ale video a 3D na RTX Sparku 128 GB nemají veřejné číslo. Chybí i Z-Image-Turbo při 8 krocích. *Hledat:* Principled Technologies, NVIDIA forum, Reddit, YouTube
+- **G09** — VRAM se používá v tabulkách a na stránkách zařízení, ale nemá vlastní heslo. Chybí i STT jako opak TTS. *Hledat:* interní rešerše, dokumentace NVIDIA/AMD
 
 ## Dávka 2 — Katalogová data Qwen3.8
 
@@ -101,11 +103,13 @@
 | O02 | Ověřit Ollama tag pro Qwen3.8 | P2 | otevreno | /modely/qwen3-8-flash-next/ |
 | O03 | Windows 11 na homepage | P2 | otevreno | /index/<br>/temata/lokalni-ai-na-windows-11/ |
 | O05 | Sekce „Co chybí“ v tématech | P2 | otevreno | /temata/<br>/zdroje/co-nevime/ |
+| O06 | Témata pro generování | P2 | otevreno | /temata/<br>/generovani/ |
 
 - **O04** — Search Console není napojená, takže témata nevycházejí z reálných dotazů. *Hledat:* Google Search Console
 - **O02** — Model page uvádí Ollama jako experimentální. Chybí potvrzení, že tag existuje a v jaké kvantizaci. *Hledat:* ollama.com/library, GitHub Ollama
 - **O03** — Chybí karta nebo přepínač „chci to jako počítač“; zatím to řeší až srovnání a téma. *Hledat:* interní návrh
 - **O05** — Není rozhodnuté, jestli má být seznam mezer veřejný u každého tématu. *Hledat:* rozhodnutí provozovatele
+- **O06** — V data/temata.yaml nejsou témata pro obrázky, video, audio a 3D. SEO rozcestník se soustředí jen na Qwen a zařízení. *Hledat:* Google Search Console, dotazy čtenářů
 
 ## Dávka 6 — Infrastruktura a publikace
 
@@ -113,14 +117,13 @@
 
 | ID | Co chybí | Priorita | Stav | Stránky |
 |---|---|---|---|---|
-| I01 | Přepnout DNS u Vedos | P0 | ceka-na-vas | — |
+| I01 | Přepnout DNS u Vedos | P0 | hotovo | — |
 | I02 | Secret PUBLIKACE_TOKEN | P0 | ceka-na-vas | — |
 | I06 | Kontaktní e-mail pro veřejnost | P0 | ceka-na-vas | /o-webu/pravni/ |
 | I03 | EN mutace sites/eu | P1 | otevreno | — |
 | I04 | Umami se posílá i z localhostu | P2 | otevreno | — |
 | I05 | Deploy občas visí | P2 | prubezne | — |
 
-- **I01** — Doména pořád ukazuje na parking 185.8.237.22. Web na localinference.cz neběží, i když build je zelený. *Hledat:* Vedos
 - **I02** — Bez fine-grained PAT s Contents: RW na LOCALinference.eu EN workflow nepublikuje. *Hledat:* GitHub nastavení repozitáře
 - **I06** — V právních informacích chybí kontaktní e-mail. Blokuje dokončení /o-webu/pravni/. *Hledat:* ESHOpino
 - **I03** — Anglická mutace nemá zdroj, build ani doménu. *Hledat:* interní práce

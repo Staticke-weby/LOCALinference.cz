@@ -1,6 +1,8 @@
 # Plán: generativní AI (obrázky, video, audio, 3D, překlady)
 
-*Návrh rozšíření webu. Stav k 5. 11. 2026. Zatím neschváleno.*
+*Historie návrhu. Sekce Generování je hotová; aktuální seznam mezer a
+dalších kroků je v [`data/chybi.yaml`](data/chybi.yaml) a [`chybi.md`](chybi.md).
+Stav k 5. 11. 2026.*
 
 ---
 
@@ -208,23 +210,23 @@ Pro 3D: rozlišení voxelů a formát výstupu.
 
 ### Fáze 0 — rozhodnutí (blokuje zbytek)
 
-- [ ] Rozsah: jen 128GB zařízení, nebo i cloud?
-- [ ] Má být nová sekce v hlavním menu, nebo pod `/modely/`?
-- [ ] Chceme u generativních modelů měření z komunit (jako u LLM),
-      nebo jen popis a doporučení?
+- [x] Rozsah: jen 128GB zařízení, nebo i cloud? — rozhodnuto: jen 128GB.
+- [x] Má být nová sekce v hlavním menu, nebo pod `/modely/`? — rozhodnuto: vlastní sekce.
+- [x] Chceme u generativních modelů měření z komunit (jako u LLM),
+      nebo jen popis a doporučení? — rozhodnuto: převzatá měření se zdrojem.
 
 ### Fáze 1 — data a jedna vzorová stránka
 
 - [x] `data/generativni-modely.yaml` + schema + validace.
-- [ ] Registr zdrojů: model cards, licence, ComfyUI docs, oMLX, Draw Things.
+- [ ] Registr zdrojů: model cards, licence, ComfyUI docs, oMLX, Draw Things. — částečně; chybí Draw Things a jednotlivé model cards.
 - [x] Vzorová stránka: **obrázky** (nejzralejší obor).
-- [ ] Zjistit reálné časy na 128GB strojích z komunitních měření.
-- [ ] Rychlostní tabulka pro každé zařízení (DGX, RTX, Strix, Mac) — obrázky, video, audio, 3D.
+- [x] Zjistit reálné časy na 128GB strojích z komunitních měření. — DGX, Strix, Mac a RTX Spark; video a 3D částečně (G08).
+- [x] Rychlostní tabulka pro každé zařízení (DGX, RTX, Strix, Mac) — obrázky, video, audio, 3D. — tabulky jsou v receptech a na stránkách zařízení.
 
 ### Fáze 2 — video a audio
 
-- [ ] Video: Wan 2.2 vs HunyuanVideo 1.5 vs LTX — licence, nároky, kvalita.
-- [ ] Audio: TTS + klonování + podcast; upozornit na souhlas s hlasem.
+- [x] Video: Wan 2.2 vs HunyuanVideo 1.5 vs LTX — licence, nároky, kvalita.
+- [x] Audio: TTS + klonování + podcast; upozornit na souhlas s hlasem.
 - [x] Stránky: video, úprava videa, rozhýbání obrázků, audio.
 - [x] Recepty ComfyUI pro Windows, macOS, DGX OS a Linux.
 
@@ -236,10 +238,10 @@ Pro 3D: rozlišení voxelů a formát výstupu.
 
 ### Fáze 4 — propojení
 
-- [ ] Odkazy ze stránek zařízení („co na tom poběží“ rozšířit
+- [x] Odkazy ze stránek zařízení („co na tom poběží“ rozšířit
       o generativní modely).
-- [ ] Slovník: pojmy difuze, LoRA, VRAM, PBR, TTS, STT.
-- [ ] Témata: „AI na obrázky lokálně“, „AI video lokálně“ atd.
+- [ ] Slovník: pojmy difuze, LoRA, VRAM, PBR, TTS, STT. — chybí VRAM a STT (G09).
+- [ ] Témata: „AI na obrázky lokálně“, „AI video lokálně“ atd. — O06.
 
 ---
 

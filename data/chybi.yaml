@@ -173,6 +173,21 @@ polozky:
     zdroj: null
     overeno: null
 
+  - id: G09
+    oblast: generovani
+    titulek: "Slovník: VRAM a STT"
+    co_chybi: "VRAM se používá v tabulkách a na stránkách zařízení, ale nemá vlastní heslo. Chybí i STT jako opak TTS."
+    kde:
+      - slovnik/software
+      - slovnik
+    priorita: P1
+    stav: otevreno
+    davka: 1
+    hledat: "interní rešerše, dokumentace NVIDIA/AMD"
+    poznamka: "VRAM odlišit od unified memory; STT vysvětlit na Whisperu."
+    zdroj: null
+    overeno: null
+
   # --- Dávka 2: katalogová data Qwen3.8 ----------------------------------
   - id: D01
     oblast: data
@@ -503,19 +518,34 @@ polozky:
     zdroj: null
     overeno: null
 
+  - id: O06
+    oblast: obsah
+    titulek: "Témata pro generování"
+    co_chybi: "V data/temata.yaml nejsou témata pro obrázky, video, audio a 3D. SEO rozcestník se soustředí jen na Qwen a zařízení."
+    kde:
+      - temata
+      - generovani
+    priorita: P2
+    stav: otevreno
+    davka: 5
+    hledat: "Google Search Console, dotazy čtenářů"
+    poznamka: "Začít podle reálných dotazů, ne vymýšlet klíčová slova."
+    zdroj: null
+    overeno: null
+
   # --- Dávka 6: infrastruktura ------------------------------------------
   - id: I01
     oblast: infrastruktura
     titulek: "Přepnout DNS u Vedos"
-    co_chybi: "Doména pořád ukazuje na parking 185.8.237.22. Web na localinference.cz neběží, i když build je zelený."
+    co_chybi: "Hotovo: doména už servíruje web, ne parking."
     kde: []
     priorita: P0
-    stav: ceka-na-vas
+    stav: hotovo
     davka: 6
     hledat: "Vedos"
-    poznamka: "www CNAME na staticke-weby.github.io, apex A na 185.199.108–111.153, pak Enforce HTTPS."
-    zdroj: null
-    overeno: null
+    poznamka: "Ověřeno 5. 11. 2026 na https://www.localinference.cz; zkontrolovat ještě Enforce HTTPS a apex."
+    zdroj: https://www.localinference.cz
+    overeno: 2026-11-05
 
   - id: I02
     oblast: infrastruktura
