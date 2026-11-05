@@ -12,7 +12,7 @@
   typ: zdroj
   titulek: "Přepínač jazyka, hreflang, llms.txt a RSS"
   co_se_zmenilo: "Každá stránka má pod nadpisem odkaz na protějšek v druhém jazyce a v hlavičce hreflang cs/en/x-default. Vznikl llms.txt pro oba weby a RSS changelogu na /zdroje/novinky/rss.xml."
-  dotcene_stranky: [o-webu, zdroje/novinky]
+  dotcene_stranky: [o-webu/metodika, zdroje/novinky]
   zdroj: https://www.localinference.cz/zdroje/novinky/rss.xml
 
 - datum: 2026-11-05
