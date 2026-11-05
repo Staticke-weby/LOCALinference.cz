@@ -1,0 +1,147 @@
+# Historie cen konkrétních konfigurací. Zapisuje se při každé změně ceny.
+# `id` odpovídá id v data/*-oem.yaml. Nejnovější záznam = aktuální cena.
+
+- id: asus-ascent-gx10-1tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 162990
+      dostupnost: "Skladem > 5 ks"
+
+- id: lenovo-thinkstation-pgx-1tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 179990
+      dostupnost: "Skladem > 5 ks"
+
+- id: hp-zgx-nano-g1n-4tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 179990
+      dostupnost: "Na objednávku – termín upřesníme"
+
+- id: gigabyte-ai-top-atom-4tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 179990
+      dostupnost: "Skladem > 5 ks"
+
+- id: hp-zgx-nano-g1n-2tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 184990
+      dostupnost: "Na objednávku – termín upřesníme"
+
+- id: dell-pro-max-gb10-2tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 188990
+      dostupnost: "Skladem > 5 ks u dodavatele"
+
+- id: lenovo-thinkstation-pgx-2tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 196050
+      dostupnost: "Skladem > 5 ks"
+
+- id: hp-zgx-nano-g1n-1tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 201990
+      dostupnost: "Na objednávku – termín upřesníme"
+
+- id: nvidia-dgx-spark-4tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 218990
+      dostupnost: "Skladem > 5 ks"
+
+- id: asus-ascent-gx10-2tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 219990
+      dostupnost: "Na cestě 5 ks, očekáváme 12. 11. 2026"
+
+- id: acer-veriton-gn100-4tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 225847
+      dostupnost: "Na objednávku – termín upřesníme"
+
+- id: pny-dgx-spark-4tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 229990
+      dostupnost: "Na cestě > 5 ks, očekáváme 10. 11. 2026"
+
+- id: dell-pro-max-gb10-4tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 229990
+      dostupnost: "Skladem 2 ks u dodavatele"
+
+- id: asus-ascent-gx10-4tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 229990
+      dostupnost: "Skladem 4 ks"
+
+- id: lenovo-thinkstation-pgx-4tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 249990
+      dostupnost: "Doručení na prodejnu zdarma"
+
+- id: acemagic-a10a-128-2tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 119990
+      dostupnost: "Skladem > 5 ks"
+
+- id: acer-veriton-ra110-128-2tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 119990
+      dostupnost: "Na cestě > 5 ks, očekáváme 29. 01. 2027"
+
+
+- id: asus-proart-p14-128-1tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 125990
+      dostupnost: "Skladem > 5 ks"
+
+- id: lenovo-yoga-pro-9-128-2tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 129989
+      dostupnost: "Skladem 4 ks"
+
+- id: asus-proart-p16-128-1tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 130990
+      dostupnost: "Očekáváme 17. 10. 2026; část variant nedostupná"
+
+- id: msi-prestige-n16-flip-128-2tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 149874
+      dostupnost: "Skladem 1 ks"
+
+- id: asus-proart-p16-128-1tb-153
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 153990
+      dostupnost: "Předobjednávka, očekáváme prosinec 2026"
+
+- id: surface-laptop-ultra-128-1tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 165653
+      dostupnost: "Předobjednávka, očekáváme prosinec 2026"
+
+- id: surface-laptop-ultra-128-1tb-167
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 167767
+      dostupnost: "Předobjednávka, očekáváme prosinec 2026"

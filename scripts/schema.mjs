@@ -233,3 +233,17 @@ export const zmena = z.object({
   dotcene_stranky: z.array(z.string().min(1)).default([]),
   zdroj: url,
 });
+
+
+export const historieCen = z.object({
+  id,
+  zaznamy: z
+    .array(
+      z.object({
+        datum,
+        cena_czk_s_dph: z.number().positive(),
+        dostupnost: z.string().optional(),
+      }),
+    )
+    .min(1),
+});

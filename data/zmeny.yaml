@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-05
+  typ: cena
+  titulek: "Historie cen u konkrétních konfigurací"
+  co_se_zmenilo: "Přidán soubor data/historie-cen.yaml a sekce Vývoj ceny na 24 stránkách konfigurací. Staré ceny se u variant archivují, na stránkách rodin zůstává jen aktuální cena."
+  dotcene_stranky: [zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-05
   typ: obsah
   titulek: "Samostatné stránky pro každou OEM konfiguraci"
   co_se_zmenilo: "Z YAML dat se generuje 25 stránek /zarizeni/konfigurace/<id>/ — 15 DGX Spark, 3 Strix Halo a 7 RTX notebooků. Každá má cenu, parametry, dostupnost, odkaz na Alzu a rozcestník. Tabulky variant na ně odkazují. Stránky jsou v sitemapě."

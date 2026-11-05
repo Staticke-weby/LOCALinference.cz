@@ -118,6 +118,11 @@ export type StrixHaloOem = {
 
 export type RtxNotebookOem = StrixHaloOem;
 
+export type HistorieCen = {
+  id: string;
+  zaznamy: Array<{ datum: string | Date; cena_czk_s_dph: number; dostupnost?: string }>;
+};
+
 export type Mereni = {
   id: string;
   datum: string | Date;
@@ -339,6 +344,15 @@ export function cenaText(z: Zarizeni): {
     jeOdhad: true,
     sDph: false,
   };
+}
+
+export function getHistorieCen(id: string): HistorieCen['zaznamy'] {
+  const vse = load<HistorieCen[]>('historie-cen.yaml') ?? [];
+  const z = vse.find((x) => x.id === id);
+  if (!z) return [];
+  return [...z.zaznamy].sort(
+    (a, b) => new Date(b.datum).getTime() - new Date(a.datum).getTime(),
+  );
 }
 
 export function nazevZarizeni(id: string): string {

@@ -45,10 +45,31 @@ Postup:
    `objednaci_kod` a `dostupnost`.
 3. Nastav `overeno` na datum kontroly, u stránek pak `last_verified`.
 4. Zapiš změnu do `data/zmeny.yaml`.
-5. `npm run build` a kontrola.
+5. U konkrétní konfigurace přidej záznam do `data/historie-cen.yaml`
+   (viz níže).
+6. `npm run build` a kontrola.
 
 Do odkazů na webu se **nepřidávají produkty** — vždy jen kategorie
 s affiliate parametry (viz `AGENTS.md`).
+
+### Historie cen konfigurací
+
+Konkrétní OEM varianty mají vlastní stránky a jako jediné drží historii
+ceny. `data/historie-cen.yaml` obsahuje pro každé `id` seznam `zaznamy`;
+nový záznam se **přidává, staré se nepřepisují**:
+
+```yaml
+- id: asus-ascent-gx10-1tb
+  zaznamy:
+    - datum: 2026-11-05
+      cena_czk_s_dph: 162990
+      dostupnost: "Skladem > 5 ks"
+    - datum: 2026-12-01
+      cena_czk_s_dph: 165990
+```
+
+Na stránce konfigurace se zobrazí tabulka od nejnovějšího data.
+Aktuální cena na stránce rodiny zůstává jen jedna (bez historie).
 
 ---
 

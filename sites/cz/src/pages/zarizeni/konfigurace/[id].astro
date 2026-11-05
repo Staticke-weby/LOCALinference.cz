@@ -7,6 +7,7 @@ import {
   getDgxSparkOem,
   getRtxNotebookOem,
   getStrixHaloOem,
+  getHistorieCen,
 } from '../../../lib/data';
 
 type Rodina = {
@@ -77,6 +78,7 @@ const cena = sku.cena_czk_s_dph != null ? `${formatKc(sku.cena_czk_s_dph)} Kč` 
 const datum = formatDatum(sku.overeno);
 const sklad = /skladem/i.test(sku.dostupnost);
 const title = `${sku.nazev}: cena a kde koupit`;
+const historie = getHistorieCen(sku.id);
 ---
 
 <StarlightPage
@@ -114,6 +116,34 @@ const title = `${sku.nazev}: cena a kde koupit`;
   </p>
 
   <AlzaCena kategorie={rodina.kategorie} text="Otevřít kategorii na Alza.cz" />
+
+  <h2>Vývoj ceny</h2>
+
+  {historie.length > 0 ? (
+    <>
+      <p>
+        Ceny jsou převzaté z nabídky prodejce, včetně DPH. Historii vedeme
+        od {formatDatum(historie[historie.length - 1].datum)}; starší záznamy
+        se nepřepisují.
+      </p>
+      <table class="li-tabulka">
+        <thead>
+          <tr><th>Datum</th><th>Cena vč. DPH</th><th>Dostupnost</th></tr>
+        </thead>
+        <tbody>
+          {historie.map((z) => (
+            <tr>
+              <td>{formatDatum(z.datum)}</td>
+              <td class="li-cislo">{formatKc(z.cena_czk_s_dph)} Kč</td>
+              <td>{z.dostupnost ?? '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  ) : (
+    <p>Cenu u této konfigurace zatím nesledujeme.</p>
+  )}
 
   <h2>Co na stroji poběží</h2>
 
