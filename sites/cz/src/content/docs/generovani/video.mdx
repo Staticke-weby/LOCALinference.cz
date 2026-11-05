@@ -1,0 +1,58 @@
+---
+title: "Lokální generování videa: Wan, HunyuanVideo a LTX"
+description: "Které modely dělají video lokálně, jak dlouhé klipy zvládnou, jak rychle běží na 128 GB a jaké mají licenční podmínky."
+last_verified: 2026-11-05
+sidebar:
+  order: 3
+---
+
+import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+
+Video je nejnáročnější obor. Počítejte s **minutami na klip**, ne
+sekundami. Na 128GB stroji to jde, ale je to dávková práce, ne
+interaktivní hraní.
+
+## Modely
+
+<TabulkaGenerativnich kategorie="video" />
+
+## Co z toho poběží u nás
+
+- **DGX Spark a RTX Spark** — CUDA, ComfyUI, nejlepší cesta.
+- **Strix Halo** — Vulkan/ROCm, pomalejší, `[DOPLNIT: měření]`.
+- **Mac** — Draw Things nebo mlx-video (Wan, LTX); bez zvuku.
+
+## Licence — pozor
+
+- **Wan 2.2** — Apache-2.0, komerčně bez podmínek. Bezpečná volba.
+- **HunyuanVideo 1.5** — licence **vylučuje EU, UK a Jižní Koreu**.
+- **LTX-2.5** — zdarma do 10 milionů USD ročního obratu.
+- **MiniMax H3** — licence vylučuje USA.
+
+## Jak dlouhé klipy
+
+- **5 sekund** je standard, se kterým se dnes počítá.
+- Delší klip se skládá z několika záběrů, ne jedním během.
+- Zvuk řeší jen LTX-2.5 a H3; jinde je audio samostatný krok.
+
+## Kde je limit
+
+- **Konzistence postavy** mezi záběry.
+- **Přesnost pohybu** — ruce a předměty se rozpadají.
+- **Čas** — 5s klip mohou být minuty podle rozlišení.
+- **Teplota** — dlouhý běh narazí na [throttling](/slovnik/provoz/throttling/).
+
+## Kudy dál
+
+- [Rozhýbání obrázků](/generovani/rozhybani-obrazku/) — z fotky klip.
+- [Úprava videa](/generovani/uprava-videa/) — střih a přegenerování.
+- [Audio](/generovani/audio/) — dabing a zvuk zvlášť.
+- [Slovník](/slovnik/) — difuze a kvantizace.
+
+## Zdroje
+
+- [Wan 2.2](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B)
+- [HunyuanVideo 1.5](https://huggingface.co/tencent/HunyuanVideo-1.5)
+- [LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5)
+
+*Naposledy ověřeno: 5. 11. 2026.*

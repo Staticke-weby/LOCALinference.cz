@@ -118,6 +118,31 @@ export type StrixHaloOem = {
 
 export type RtxNotebookOem = StrixHaloOem;
 
+export type GenerativniModel = {
+  id: string;
+  nazev: string;
+  kategorie:
+    | 'obrazky'
+    | 'uprava-obrazku'
+    | 'video'
+    | 'uprava-videa'
+    | 'rozhybani'
+    | 'audio'
+    | 'preklady'
+    | '3d'
+    | 'herni-prvky';
+  vyrobce: string;
+  licence: string;
+  komercni: 'ano' | 'ne' | 'podminky';
+  parametry_b?: number | null;
+  naroky: string;
+  runtime: string[];
+  kvalita: string;
+  rychlost?: string | null;
+  zdroj: string;
+  overeno: string | Date;
+};
+
 export type HistorieCen = {
   id: string;
   zaznamy: Array<{ datum: string | Date; cena_czk_s_dph: number; dostupnost?: string }>;
@@ -344,6 +369,11 @@ export function cenaText(z: Zarizeni): {
     jeOdhad: true,
     sDph: false,
   };
+}
+
+export function getGenerativniModely(kategorie?: GenerativniModel['kategorie']): GenerativniModel[] {
+  const vse = load<GenerativniModel[]>('generativni-modely.yaml') ?? [];
+  return kategorie ? vse.filter((m) => m.kategorie === kategorie) : vse;
 }
 
 export function getHistorieCen(id: string): HistorieCen['zaznamy'] {

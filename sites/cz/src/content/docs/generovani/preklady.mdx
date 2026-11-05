@@ -1,0 +1,54 @@
+---
+title: "Překlady lokálně: text, titulky a čeština"
+description: "Překlad s lokálním modelem: které modely zvládnou češtinu, jak jsou přesné, jaké mají licence a kdy je lepší lidský překlad."
+last_verified: 2026-11-05
+sidebar:
+  order: 7
+---
+
+import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+
+Překlad je úloha, kde lokální model často stačí — a kde zároveň
+nejvíc záleží na kontextu. Strojový překlad bez kontextu dělá chyby,
+které si běžný čtenář nevšimne, ale právník ano.
+
+## Modely
+
+<TabulkaGenerativnich kategorie="preklady" />
+
+## Na co se hodí
+
+- **Pracovní překlad** — e-maily, poznámky, dokumentace.
+- **Titulky** — přepis řeči a překlad do češtiny.
+- **Lokalizace** — texty aplikací a webů.
+- **Rychlý přehled** — cizí dokument, než ho dáte překladateli.
+
+## Kde je limit
+
+- **Odborné texty** — právo, medicína, technické normy.
+- **Kreativní text** — styl a humor se ztrácí.
+- **Čeština** — modely trénované na angličtině mají slabší slovosled
+  i terminologii.
+- **Dlouhé texty** — kontext se musí hlídat, jinak se překlad rozpadá.
+
+## Licence
+
+- **Whisper** (přepis řeči) — MIT.
+- **NLLB-200** — CC-BY-NC, **nekomerční**.
+- **MADLAD-400** — otevřená licence, podmínky ověřit.
+- U firemního použití si vždy zkontrolujte model card.
+
+## Kudy dál
+
+- [Audio](/generovani/audio/) — dabing k překladu.
+- [Video](/generovani/video/) — titulky k videu.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — textový model na překlad.
+- [Slovník](/slovnik/) — pojmy bez balastu.
+
+## Zdroje
+
+- [Whisper large-v3](https://huggingface.co/openai/whisper-large-v3)
+- [NLLB-200](https://huggingface.co/facebook/nllb-200-3.3B)
+- [MADLAD-400](https://huggingface.co/google/madlad400-7b-mt)
+
+*Naposledy ověřeno: 5. 11. 2026.*

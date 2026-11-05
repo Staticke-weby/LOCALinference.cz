@@ -1,0 +1,58 @@
+---
+title: "Úprava obrázků lokálně: mazání objektů a výměna pozadí"
+description: "Inpainting, mazání objektů a výměna pozadí na vlastním stroji. Které modely to umí, jak přesné jsou a co je potřeba pro komerční použití."
+last_verified: 2026-11-05
+sidebar:
+  order: 2
+---
+
+import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+
+Vygenerovat obrázek je jedna věc. Upravit existující — vyndat objekt,
+vyměnit pozadí, přepsat nápis — je druhá a často užitečnější.
+
+## Modely
+
+<TabulkaGenerativnich kategorie="uprava-obrazku" />
+
+## Tři druhy úprav
+
+- **Inpainting** — vyznačíte oblast a model ji přemaluje.
+- **Outpainting** — rozšíříte obrázek za jeho okraj.
+- **Instrukční úprava** — napíšete „dej jí modré tričko“ a model
+  upraví jen tu část.
+
+## Co z toho poběží u nás
+
+Na DGX Sparku a RTX Sparku běží ComfyUI s CUDA; na Strix Halu přes
+Vulkan nebo ROCm; na Macu Draw Things. Časy pro úpravy jsou
+`[DOPLNIT: měření]` — obecně platí, že úprava je pomalejší než
+generování stejné velikosti.
+
+## Licence
+
+- **FLUX.2 klein 4B** — Apache-2.0, komerčně použitelné.
+- **Qwen-Image-Edit 2.1** — Qwen Research License, **nekomerční**.
+  Na testování a interní použití ano, na produkt ne.
+
+## Kde je limit
+
+- **Vlasy, prsty, jemné hrany** — nejčastější místo, kde úprava selže.
+- **Text v úpravě** — krátký nápis ano, složitá typografie ne.
+- **Konzistence** — výměna pozadí může změnit osvětlení postavy.
+- **Rychlost** — úprava je náročnější než generování.
+
+## Kudy dál
+
+- [Obrázky](/generovani/obrazky/) — základy generování.
+- [Video](/generovani/video/) — pohyb místo statického obrázku.
+- [3D](/generovani/3d/) — z upravené fotky model.
+- [Slovník](/slovnik/) — pojmy bez balastu.
+
+## Zdroje
+
+- [Qwen-Image-Edit](https://huggingface.co/Qwen/Qwen-Image-Edit-2509)
+- [FLUX.2 klein 4B](https://huggingface.co/black-forest-labs/FLUX.2-klein-4B)
+- [ComfyUI dokumentace](https://docs.comfy.org/)
+
+*Naposledy ověřeno: 5. 11. 2026.*

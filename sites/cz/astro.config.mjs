@@ -272,6 +272,10 @@ export default defineConfig({
           items: [{ autogenerate: { directory: 'modely' } }],
         },
         {
+          label: 'Generování',
+          items: [{ autogenerate: { directory: 'generovani' } }],
+        },
+        {
           label: 'Návody',
           items: [{ autogenerate: { directory: 'navody' } }],
         },

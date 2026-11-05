@@ -1,0 +1,53 @@
+---
+title: "Lokální audio: řeč, klonování hlasu a dabing"
+description: "Text-to-speech a klonování hlasu na vlastním stroji. Které modely jsou komerčně použitelné, jak rychlé jsou a na co si dát pozor."
+last_verified: 2026-11-05
+sidebar:
+  order: 6
+---
+
+import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+
+Hlas je nejlevnější část generativní AI — malé modely běží i na
+procesoru. Na 128GB boxu jde o sekundy, ne minuty.
+
+## Modely
+
+<TabulkaGenerativnich kategorie="audio" />
+
+## Co dnes jde
+
+- **Narace a audiokniha** — pevný hlas, dlouhý text.
+- **Klonování hlasu** — z několika sekund ukázky.
+- **Dabing** — přepis, překlad a nový hlas.
+- **Podcast** — dva hlasy, střídání mluvčích.
+
+## Licence a etika
+
+- **Kokoro, Qwen3-TTS, Chatterbox, Ming-3.0** — komerčně použitelné.
+- **Klonujte jen hlasy, ke kterým máte svolení.** Většina licencí
+  výslovně zakazuje impersonaci.
+- U dabingu vzniká i **právo k originálnímu záznamu** — řešte ho
+  stejně jako u hudby.
+
+## Kde je limit
+
+- **Emoce** — model přečte text, ale neherecky ho nezahraje.
+- **Čeština** — záleží na modelu; u některých je přízvuk znát.
+- **Dlouhý text** — chce se rozdělit na odstavce.
+- **Výslovnost jmen** — často je potřeba ruční korekce.
+
+## Kudy dál
+
+- [Překlady](/generovani/preklady/) — dabing potřebuje překlad.
+- [Video](/generovani/video/) — obraz a hlas zvlášť.
+- [Obrázky](/generovani/obrazky/) — ilustrace k naraci.
+- [Slovník](/slovnik/) — pojmy bez balastu.
+
+## Zdroje
+
+- [Kokoro 82M](https://huggingface.co/hexgrad/Kokoro-82M)
+- [Qwen3-TTS](https://huggingface.co/Qwen/Qwen3-TTS)
+- [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2)
+
+*Naposledy ověřeno: 5. 11. 2026.*

@@ -1,0 +1,52 @@
+---
+title: "Herní prvky a assety lokálně: sprity, UI a textury"
+description: "Generování herních assetů na vlastním stroji: sprity, ikony, UI, textury a 3D props. Co dnes zvládne 128GB box a kde je ruční práce nutná."
+last_verified: 2026-11-05
+sidebar:
+  order: 9
+---
+
+import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+
+Pro malý tým nebo sólového vývojáře je generování assetů největší
+úspora času: koncept, varianta, textura. Ne hotový asset — **výchozí
+bod**, který se dodělá.
+
+## Co dnes jde
+
+- **Sprity a ikony** — postavy, předměty, tlačítka.
+- **Textury** — povrchy, dlaždice, pozadí.
+- **UI prvky** — rámečky, panely, ikony.
+- **3D props** — bedny, sudy, nábytek z fotky nebo skici.
+
+## Modely
+
+Používají se stejné modely jako u obrázků a 3D — záleží na výstupu:
+
+<TabulkaGenerativnich kategorie="herni-prvky" />
+
+Když tabulka není plná, je to proto, že herní assety nejsou samostatná
+rodina modelů: berou se z [obrázků](/generovani/obrazky/) a
+[3D](/generovani/3d/).
+
+## Co je potřeba dodělat ručně
+
+- **Konzistence stylu** — mezi sprity se model rozchází.
+- **Průhlednost** — pozadí se musí odstranit.
+- **Měřítko a atlas** — sprity se skládají do atlasu.
+- **Licence** — u komerční hry je to první kontrola.
+
+## Kudy dál
+
+- [Obrázky](/generovani/obrazky/) — základ pro sprity.
+- [3D](/generovani/3d/) — modely s texturou.
+- [Úprava obrázků](/generovani/uprava-obrazku/) — doladění.
+- [Slovník](/slovnik/) — pojmy bez balastu.
+
+## Zdroje
+
+- [Z-Image-Turbo](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+- [TRELLIS.2](https://github.com/microsoft/TRELLIS.2)
+- [ComfyUI dokumentace](https://docs.comfy.org/)
+
+*Naposledy ověřeno: 5. 11. 2026.*

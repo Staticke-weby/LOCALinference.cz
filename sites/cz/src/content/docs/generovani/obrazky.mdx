@@ -1,0 +1,62 @@
+---
+title: "Lokální generování obrázků: fotorealismus i plakáty"
+description: "Které modely dělají fotorealistické obrázky a plakáty lokálně, jak rychle běží na 128 GB a jakou mají licenci pro komerční použití."
+last_verified: 2026-11-05
+sidebar:
+  order: 1
+---
+
+import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+
+Obrázky jsou nejzralejší část generativní AI. Na 128GB stroji dnes
+vznikne **fotorealistická scéna za jednotky sekund** a plakát s textem
+za pár desítek sekund.
+
+## Modely
+
+<TabulkaGenerativnich kategorie="obrazky" />
+
+## Co z toho poběží u nás
+
+- **DGX Spark** — Z-Image-Turbo 7,5 s a FLUX.2 klein 3,1 s na
+  1024×1024 (ComfyUI, převzato z [LocalAgentBoard](https://localagentboard.com/images)).
+- **Strix Halo a RTX Spark** — běží přes ComfyUI, časy `[DOPLNIT: měření]`.
+- **Mac** — přes Draw Things nebo ComfyUI s Metalem; časy
+  `[DOPLNIT: měření]`.
+
+## Licence je první otázka
+
+- **Z-Image-Turbo** a **FLUX.2 klein 4B** — Apache-2.0, komerčně bez
+  podmínek. Pro firmu nejbezpečnější volba.
+- **Qwen-Image 2.1** — Qwen Research License, **nekomerční**.
+  Na plakáty a testování dobré, na produkt ne.
+- **FLUX.2 dev** — nekomerční weights, komerční licence se dokupuje.
+
+## Jak začít
+
+1. Nainstalujte **ComfyUI** (nebo Draw Things na Macu).
+2. Stáhněte Z-Image-Turbo nebo FLUX.2 klein.
+3. První obrázek: 1024×1024, 4–8 kroků.
+4. Teprve pak řešte LoRA a vlastní styly.
+
+## Kde je limit
+
+- **Text v obraze** — krátký nápis ano, drobné popisky ne.
+- **Ruce a anatomické detaily** — pořád místy chybují.
+- **Konzistence postavy** — mezi obrázky se bez referencí rozpadá.
+- **Čeština v obraze** — slabší než angličtina.
+
+## Kudy dál
+
+- [Úpravy obrázků](/generovani/uprava-obrazku/) — když nestačí vygenerovat.
+- [Herní prvky](/generovani/herni-prvky/) — sprity a UI.
+- [Video](/generovani/video/) — když má obrázek ožít.
+- [Slovník](/slovnik/) — difuze, LoRA, kvantizace.
+
+## Zdroje
+
+- [LocalAgentBoard — srovnání na DGX Spark](https://localagentboard.com/images)
+- [Z-Image-Turbo](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+- [FLUX.2 klein 4B](https://huggingface.co/black-forest-labs/FLUX.2-klein-4B)
+
+*Naposledy ověřeno: 5. 11. 2026.*

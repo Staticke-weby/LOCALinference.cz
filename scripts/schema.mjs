@@ -247,3 +247,30 @@ export const historieCen = z.object({
     )
     .min(1),
 });
+
+
+export const generativniModel = z.object({
+  id,
+  nazev: z.string().min(2),
+  kategorie: z.enum([
+    'obrazky',
+    'uprava-obrazku',
+    'video',
+    'uprava-videa',
+    'rozhybani',
+    'audio',
+    'preklady',
+    '3d',
+    'herni-prvky',
+  ]),
+  vyrobce: z.string().min(1),
+  licence: z.string().min(2),
+  komercni: z.enum(['ano', 'ne', 'podminky']),
+  parametry_b: z.number().positive().nullable().optional(),
+  naroky: z.string().min(2),
+  runtime: z.array(z.string().min(1)).min(1),
+  kvalita: z.string().min(5),
+  rychlost: z.string().nullable().optional(),
+  zdroj: url,
+  overeno: datum,
+});

@@ -1,0 +1,56 @@
+---
+title: "3D modely z fotky lokálně: TRELLIS.2 a Hunyuan3D"
+description: "Image-to-3D na vlastním stroji: z jedné fotky mesh s PBR texturou. Které modely to umí, jak jsou věrné a co je potřeba pro herní asset."
+last_verified: 2026-11-05
+sidebar:
+  order: 8
+---
+
+import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+
+Z jedné fotky vznikne 3D model s texturou. Není to náhrada modeláře,
+ale na prototyp, pozadí do hry nebo produktový náhled to dnes stačí.
+
+## Modely
+
+<TabulkaGenerativnich kategorie="3d" />
+
+## Co dnes jde
+
+- **Mesh s PBR** — barva, drsnost, kovovost; výstup GLB.
+- **Více pohledů** — z několika fotek je model věrnější.
+- **Rozdělení na části** — některé modely umí samostatné komponenty.
+- **Retopologie** — hrubý mesh je potřeba zjednodušit pro hru.
+
+## Co z toho poběží u nás
+
+Na DGX Sparku a RTX Sparku přes ComfyUI; na Strix Halu a Macu
+`[DOPLNIT: měření]`. 3D je paměťově náročné, ale kratší než video.
+
+## Kde je limit
+
+- **Zadní strana objektu** — model ji hádá, nezná ji.
+- **Tenké a průhledné věci** — dráty, sklo, látka.
+- **Topologie** — výstup není připravený pro animaci.
+- **Měřítko** — model nemá reálné rozměry.
+
+## Licence
+
+- **TRELLIS.2** — MIT, komerčně bez podmínek. Nejbezpečnější volba.
+- **Hunyuan3D** — Tencent community, podmínky.
+- **Pixal3D** — licence k ověření.
+
+## Kudy dál
+
+- [Obrázky](/generovani/obrazky/) — kvalitní vstupní fotka.
+- [Herní prvky](/generovani/herni-prvky/) — sprity a UI.
+- [Video](/generovani/video/) — animace místo statického modelu.
+- [Slovník](/slovnik/) — PBR a další pojmy.
+
+## Zdroje
+
+- [TRELLIS.2](https://github.com/microsoft/TRELLIS.2)
+- [Hunyuan3D](https://huggingface.co/tencent/Hunyuan3D-2)
+- [Pixal3D](https://github.com/TencentARC/Pixal3D)
+
+*Naposledy ověřeno: 5. 11. 2026.*

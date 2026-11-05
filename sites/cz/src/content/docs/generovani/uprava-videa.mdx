@@ -1,0 +1,49 @@
+---
+title: "Úprava videa lokálně: přegenerování a rozšíření záběru"
+description: "Úpravy existujícího videa na vlastním stroji: přemalování částí, rozšíření záběru, oprava pohybu. Co dnes jde a co je ještě slabé."
+last_verified: 2026-11-05
+sidebar:
+  order: 4
+---
+
+import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+
+Upravit hotové video je těžší než vygenerovat nové. Model musí držet
+zbytek záběru beze změny — a to je přesně to, co dnešním modelům dělá
+největší problém.
+
+## Modely
+
+<TabulkaGenerativnich kategorie="uprava-videa" />
+
+## Co dnes jde
+
+- **Přemalování části klipu** (VACE) — vyznačíte oblast a model ji
+  nahradí, zbytek zůstane.
+- **Rozšíření záběru** — doplnění okrajů, změna formátu.
+- **Přegenerování úseku** (retake) — necháte klip a necháte model
+  předělat jen vybranou pasáž.
+
+## Kde je limit
+
+- **Nekonzistence** — po přemalování se může změnit nasvícení.
+- **Délka** — modely pracují s krátkými okny, delší klip se skládá.
+- **Zvuk** — zvuková stopa se neupravuje s obrazem.
+
+Pro střih a titulky je pořád lepší klasický editor. Generativní úpravy
+dávají smysl tam, kde potřebujete něco **domalovat**, ne sestříhat.
+
+## Kudy dál
+
+- [Video](/generovani/video/) — jak klip vzniká.
+- [Rozhýbání obrázků](/generovani/rozhybani-obrazku/) — kratší cesta.
+- [Audio](/generovani/audio/) — dabing k hotovému videu.
+- [Slovník](/slovnik/) — pojmy bez balastu.
+
+## Zdroje
+
+- [Wan 2.2 VACE](https://huggingface.co/Wan-AI/Wan2.2-VACE-Fun-A14B)
+- [LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5)
+- [ComfyUI dokumentace](https://docs.comfy.org/)
+
+*Naposledy ověřeno: 5. 11. 2026.*

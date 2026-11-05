@@ -1,0 +1,424 @@
+# Generativní modely: obrázky, video, audio, 3D, překlady.
+# `kategorie`: obrazky | uprava-obrazku | video | uprava-videa | rozhybani | audio | preklady | 3d | herni-prvky
+# `komercni`: ano | ne | podminky
+# `rychlost`: jen podložené číslo s kontextem, jinak null.
+
+- id: z-image-turbo
+  nazev: Z-Image-Turbo
+  kategorie: obrazky
+  vyrobce: Tongyi-MAI (Alibaba)
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 6
+  naroky: "16 GB VRAM, 24 GB unified"
+  runtime: [ComfyUI, Diffusers]
+  kvalita: "fotorealismus, anglický a čínský text v obraze"
+  rychlost: "7,5 s na 1024², 8 kroků (DGX Spark, ComfyUI)"
+  zdroj: https://huggingface.co/Tongyi-MAI/Z-Image-Turbo
+  overeno: 2026-11-05
+
+- id: flux2-klein-4b
+  nazev: FLUX.2 [klein] 4B
+  kategorie: obrazky
+  vyrobce: Black Forest Labs
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 4
+  naroky: "13 GB VRAM"
+  runtime: [ComfyUI, Diffusers]
+  kvalita: "nejrychlejší, interaktivní náhledy; slabší drobný text"
+  rychlost: "3,1 s na 1024², 4 kroky (DGX Spark, ComfyUI)"
+  zdroj: https://huggingface.co/black-forest-labs/FLUX.2-klein-4B
+  overeno: 2026-11-05
+
+- id: qwen-image-21-turbo
+  nazev: Qwen-Image 2.1 Turbo
+  kategorie: obrazky
+  vyrobce: Qwen (Alibaba)
+  licence: Qwen Research License
+  komercni: ne
+  parametry_b: 7
+  naroky: "24 GB VRAM"
+  runtime: [ComfyUI, Diffusers]
+  kvalita: "typografie, průhledné PNG, až 10 referencí"
+  rychlost: "9,5 s na 1024², 8 kroků (DGX Spark, ComfyUI)"
+  zdroj: https://huggingface.co/Qwen/Qwen-Image-2.1
+  overeno: 2026-11-05
+
+- id: flux2-dev
+  nazev: FLUX.2 [dev]
+  kategorie: obrazky
+  vyrobce: Black Forest Labs
+  licence: FLUX non-commercial
+  komercni: ne
+  parametry_b: 32
+  naroky: "24–48 GB VRAM"
+  runtime: [ComfyUI, Diffusers]
+  kvalita: "nejvyšší kvalita rodiny, pomalejší"
+  rychlost: null
+  zdroj: https://huggingface.co/black-forest-labs/FLUX.2-dev
+  overeno: 2026-11-05
+
+- id: hunyuanimage-3
+  nazev: HunyuanImage 3.0
+  kategorie: obrazky
+  vyrobce: Tencent
+  licence: Tencent Hunyuan Community
+  komercni: podminky
+  parametry_b: 80
+  naroky: "multi-GPU, desítky GB"
+  runtime: [Diffusers]
+  kvalita: "velký model pro maximální kvalitu, mimo dosah jednoho boxu"
+  rychlost: null
+  zdroj: https://huggingface.co/tencent/HunyuanImage-3.0
+  overeno: 2026-11-05
+
+- id: qwen-image-edit-21
+  nazev: Qwen-Image-Edit 2.1
+  kategorie: uprava-obrazku
+  vyrobce: Qwen (Alibaba)
+  licence: Qwen Research License
+  komercni: ne
+  parametry_b: 7
+  naroky: "24 GB VRAM"
+  runtime: [ComfyUI, Diffusers]
+  kvalita: "úpravy tahem, maskou a poznámkami; zachová zbytek obrazu"
+  rychlost: null
+  zdroj: https://huggingface.co/Qwen/Qwen-Image-Edit-2509
+  overeno: 2026-11-05
+
+- id: flux2-klein-edit
+  nazev: FLUX.2 [klein] 4B (editace)
+  kategorie: uprava-obrazku
+  vyrobce: Black Forest Labs
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 4
+  naroky: "13 GB VRAM"
+  runtime: [ComfyUI, Diffusers]
+  kvalita: "rychlé úpravy a více referencí v jednom modelu"
+  rychlost: null
+  zdroj: https://huggingface.co/black-forest-labs/FLUX.2-klein-4B
+  overeno: 2026-11-05
+
+- id: wan-22
+  nazev: Wan 2.2
+  kategorie: video
+  vyrobce: Alibaba Tongyi
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 27
+  naroky: "5B varianta 8–16 GB; A14B 48 GB+"
+  runtime: [ComfyUI, Diffusers, mlx-video]
+  kvalita: "nejlepší licence a univerzálnost; 5s klip, bez zvuku"
+  rychlost: null
+  zdroj: https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B
+  overeno: 2026-11-05
+
+- id: hunyuanvideo-15
+  nazev: HunyuanVideo 1.5
+  kategorie: video
+  vyrobce: Tencent
+  licence: Tencent Hunyuan Community
+  komercni: podminky
+  parametry_b: 8.3
+  naroky: "14 GB s offloadem, 720p"
+  runtime: [ComfyUI, Diffusers]
+  kvalita: "nejlepší tváře a pohyb; mimo EU/UK/KR licenčně omezeno"
+  rychlost: null
+  zdroj: https://huggingface.co/tencent/HunyuanVideo-1.5
+  overeno: 2026-11-05
+
+- id: ltx-25
+  nazev: LTX-2.5
+  kategorie: video
+  vyrobce: Lightricks
+  licence: Lightricks Community (zdarma do 10 mil. USD obratu)
+  komercni: podminky
+  parametry_b: 22
+  naroky: "32 GB VRAM"
+  runtime: [ComfyUI, Diffusers]
+  kvalita: "video i zvuk v jednom, až 4K; licence podle obratu"
+  rychlost: null
+  zdroj: https://huggingface.co/Lightricks/LTX-2.5
+  overeno: 2026-11-05
+
+- id: kandinsky-6
+  nazev: Kandinsky 6.0
+  kategorie: video
+  vyrobce: Sber AI
+  licence: Kandinsky Community
+  komercni: podminky
+  parametry_b: null
+  naroky: "16 GB preset"
+  runtime: [ComfyUI]
+  kvalita: "kompromis kvalita/nároky, 16 GB"
+  rychlost: null
+  zdroj: https://huggingface.co/ai-forever/Kandinsky-6.0
+  overeno: 2026-11-05
+
+- id: wan-22-i2v
+  nazev: Wan 2.2 I2V
+  kategorie: rozhybani
+  vyrobce: Alibaba Tongyi
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 14
+  naroky: "24–48 GB"
+  runtime: [ComfyUI, mlx-video]
+  kvalita: "rozhybání fotky nebo ilustrace, 5 s"
+  rychlost: null
+  zdroj: https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B
+  overeno: 2026-11-05
+
+- id: hunyuanvideo-i2v
+  nazev: HunyuanVideo 1.5 I2V
+  kategorie: rozhybani
+  vyrobce: Tencent
+  licence: Tencent Hunyuan Community
+  komercni: podminky
+  parametry_b: 8.3
+  naroky: "14–24 GB"
+  runtime: [ComfyUI]
+  kvalita: "věrné tváře, plynulý pohyb"
+  rychlost: null
+  zdroj: https://huggingface.co/tencent/HunyuanVideo-1.5
+  overeno: 2026-11-05
+
+- id: wan-22-vace
+  nazev: Wan 2.2 VACE (úpravy videa)
+  kategorie: uprava-videa
+  vyrobce: Alibaba Tongyi
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 14
+  naroky: "24–48 GB"
+  runtime: [ComfyUI]
+  kvalita: "přemalování částí videa, rozšiřování záběru"
+  rychlost: null
+  zdroj: https://huggingface.co/Wan-AI/Wan2.2-VACE-Fun-A14B
+  overeno: 2026-11-05
+
+- id: ltx-25-retake
+  nazev: LTX-2.5 Retake
+  kategorie: uprava-videa
+  vyrobce: Lightricks
+  licence: Lightricks Community
+  komercni: podminky
+  parametry_b: 22
+  naroky: "32 GB VRAM"
+  runtime: [ComfyUI]
+  kvalita: "přegenerování části klipu se zachováním zbytku"
+  rychlost: null
+  zdroj: https://huggingface.co/Lightricks/LTX-2.5
+  overeno: 2026-11-05
+
+- id: kokoro-82m
+  nazev: Kokoro 82M
+  kategorie: audio
+  vyrobce: hexgrad
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 0.082
+  naroky: "CPU stačí, 2–3 GB VRAM"
+  runtime: [Python, llama.cpp]
+  kvalita: "rychlý a spolehlivý hlas pro naraci, pevné hlasy"
+  rychlost: null
+  zdroj: https://huggingface.co/hexgrad/Kokoro-82M
+  overeno: 2026-11-05
+
+- id: qwen3-tts
+  nazev: Qwen3-TTS
+  kategorie: audio
+  vyrobce: Qwen (Alibaba)
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 1.7
+  naroky: "8–16 GB VRAM"
+  runtime: [Python]
+  kvalita: "klonování hlasu, 10 jazyků"
+  rychlost: null
+  zdroj: https://huggingface.co/Qwen/Qwen3-TTS
+  overeno: 2026-11-05
+
+- id: voxcpm2
+  nazev: VoxCPM2
+  kategorie: audio
+  vyrobce: OpenBMB
+  licence: open weights (ověřit)
+  komercni: podminky
+  parametry_b: 2
+  naroky: "8–16 GB VRAM, MLX na Macu"
+  runtime: [Python, MLX]
+  kvalita: "48 kHz, klonování a návrh hlasu, 30 jazyků"
+  rychlost: null
+  zdroj: https://huggingface.co/openbmb/VoxCPM2
+  overeno: 2026-11-05
+
+- id: chatterbox
+  nazev: Chatterbox
+  kategorie: audio
+  vyrobce: Resemble AI
+  licence: MIT
+  komercni: ano
+  parametry_b: 0.5
+  naroky: "8 GB VRAM"
+  runtime: [Python]
+  kvalita: "klonování z krátké ukázky, dobrá kvalita"
+  rychlost: null
+  zdroj: https://github.com/resemble-ai/chatterbox
+  overeno: 2026-11-05
+
+- id: ming-3-tts
+  nazev: Ming-3.0-tts
+  kategorie: audio
+  vyrobce: Ming
+  licence: MIT
+  komercni: ano
+  parametry_b: 0.5
+  naroky: "8 GB VRAM"
+  runtime: [Python]
+  kvalita: "nejlepší komerčně použitelný výsledek v aréně"
+  rychlost: null
+  zdroj: https://huggingface.co/Ming-3/Ming-3.0-tts
+  overeno: 2026-11-05
+
+- id: whisper-large-v3
+  nazev: Whisper large-v3
+  kategorie: preklady
+  vyrobce: OpenAI
+  licence: MIT (weights)
+  komercni: ano
+  parametry_b: 1.55
+  naroky: "8–10 GB VRAM, jde i na CPU"
+  runtime: [Python, llama.cpp]
+  kvalita: "přepis a překlad řeči, široká podpora"
+  rychlost: null
+  zdroj: https://huggingface.co/openai/whisper-large-v3
+  overeno: 2026-11-05
+
+- id: nllb-200
+  nazev: NLLB-200
+  kategorie: preklady
+  vyrobce: Meta
+  licence: CC-BY-NC-4.0
+  komercni: ne
+  parametry_b: 54
+  naroky: "24 GB+ VRAM"
+  runtime: [Python]
+  kvalita: "200 jazyků, včetně češtiny; nekomerční licence"
+  rychlost: null
+  zdroj: https://huggingface.co/facebook/nllb-200-3.3B
+  overeno: 2026-11-05
+
+- id: madlad-400
+  nazev: MADLAD-400
+  kategorie: preklady
+  vyrobce: Google
+  licence: Apache-2.0 (ověřit)
+  komercni: podminky
+  parametry_b: 7.5
+  naroky: "16–24 GB"
+  runtime: [Python]
+  kvalita: "400+ jazyků, otevřená licence"
+  rychlost: null
+  zdroj: https://huggingface.co/google/madlad400-7b-mt
+  overeno: 2026-11-05
+
+- id: trellis-2
+  nazev: TRELLIS.2
+  kategorie: 3d
+  vyrobce: Microsoft Research
+  licence: MIT
+  komercni: ano
+  parametry_b: 4
+  naroky: "16–24 GB VRAM"
+  runtime: [ComfyUI, Python]
+  kvalita: "obrázek → 3D mesh s PBR, až 1536³"
+  rychlost: null
+  zdroj: https://github.com/microsoft/TRELLIS.2
+  overeno: 2026-11-05
+
+- id: pixal3d
+  nazev: Pixal3D
+  kategorie: 3d
+  vyrobce: Tencent ARC / Tsinghua
+  licence: open (ověřit)
+  komercni: podminky
+  parametry_b: null
+  naroky: "16–24 GB VRAM"
+  runtime: [ComfyUI]
+  kvalita: "věrnost předloze, PBR materiály"
+  rychlost: null
+  zdroj: https://github.com/TencentARC/Pixal3D
+  overeno: 2026-11-05
+
+- id: hunyuan3d-2
+  nazev: Hunyuan3D 2.x
+  kategorie: 3d
+  vyrobce: Tencent
+  licence: Tencent Hunyuan Community
+  komercni: podminky
+  parametry_b: null
+  naroky: "8–24 GB VRAM"
+  runtime: [ComfyUI, Python]
+  kvalita: "nejpoužívanější open 3D, dvoustupňový pipeline"
+  rychlost: null
+  zdroj: https://huggingface.co/tencent/Hunyuan3D-2
+  overeno: 2026-11-05
+
+- id: triposr
+  nazev: TripoSR
+  kategorie: 3d
+  vyrobce: Tripo AI / Stability
+  licence: MIT
+  komercni: ano
+  parametry_b: null
+  naroky: "6–8 GB VRAM"
+  runtime: [Python]
+  kvalita: "rychlý hrubý mesh, bez PBR"
+  rychlost: null
+  zdroj: https://github.com/VAST-AI-Research/TripoSR
+  overeno: 2026-11-05
+
+- id: z-image-herni
+  nazev: Z-Image-Turbo (sprity a ikony)
+  kategorie: herni-prvky
+  vyrobce: Tongyi-MAI (Alibaba)
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 6
+  naroky: "16–24 GB"
+  runtime: [ComfyUI]
+  kvalita: "sprity, ikony a UI prvky; pozadí je potřeba odstranit"
+  rychlost: "7,5 s na 1024² (DGX Spark)"
+  zdroj: https://huggingface.co/Tongyi-MAI/Z-Image-Turbo
+  overeno: 2026-11-05
+
+- id: flux2-klein-herni
+  nazev: FLUX.2 klein 4B (UI a textury)
+  kategorie: herni-prvky
+  vyrobce: Black Forest Labs
+  licence: Apache-2.0
+  komercni: ano
+  parametry_b: 4
+  naroky: "13 GB"
+  runtime: [ComfyUI]
+  kvalita: "rychlá varianta pro UI panely a textury"
+  rychlost: "3,1 s na 1024² (DGX Spark)"
+  zdroj: https://huggingface.co/black-forest-labs/FLUX.2-klein-4B
+  overeno: 2026-11-05
+
+- id: trellis-herni
+  nazev: TRELLIS.2 (3D props)
+  kategorie: herni-prvky
+  vyrobce: Microsoft Research
+  licence: MIT
+  komercni: ano
+  parametry_b: 4
+  naroky: "16–24 GB"
+  runtime: [ComfyUI]
+  kvalita: "props s PBR texturou, výstup GLB"
+  rychlost: null
+  zdroj: https://github.com/microsoft/TRELLIS.2
+  overeno: 2026-11-05

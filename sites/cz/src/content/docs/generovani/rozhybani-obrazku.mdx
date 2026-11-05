@@ -1,0 +1,53 @@
+---
+title: "Rozhýbání obrázku: z fotky krátký klip lokálně"
+description: "Image-to-video na vlastním stroji: z fotky nebo ilustrace vznikne krátký klip. Které modely to umí, jak dlouho to trvá a kde selhávají."
+last_verified: 2026-11-05
+sidebar:
+  order: 5
+---
+
+import TabulkaGenerativnich from '../../../components/TabulkaGenerativnich.astro';
+
+Máte fotku nebo ilustraci a chcete z ní klip. Tomu se říká
+**image-to-video** a je to nejpraktičtější část generativního videa —
+výchozí obrázek drží kompozici, model dodá pohyb.
+
+## Modely
+
+<TabulkaGenerativnich kategorie="rozhybani" />
+
+## Co od toho čekat
+
+- **Krátký pohyb** — vlasy, voda, listí, kamera. Ne herecký výkon.
+- **Zachování scény** — kompozice zůstane, detaily se mohou posunout.
+- **Délka** — typicky 3–5 sekund; delší klip je řada záběrů.
+
+## Co z toho poběží u nás
+
+- **DGX Spark a RTX Spark** — CUDA, ComfyUI, nejrychlejší cesta.
+- **Strix Halo** — Vulkan/ROCm, výrazně pomalejší.
+- **Mac** — mlx-video (Wan 2.1/2.2 I2V) nebo Draw Things.
+
+Časy na našich strojích `[DOPLNIT: měření]`.
+
+## Kde je limit
+
+- **Obličeje** — mrkání a ústa jsou nejčastější zdroj chyb.
+- **Ruce a předměty** — mohou se „roztéct“.
+- **Text v obraze** — pohyb ho rozbije.
+- **Opakování** — model má tendenci vrátit se na začátek.
+
+## Kudy dál
+
+- [Video](/generovani/video/) — text na video.
+- [Úprava videa](/generovani/uprava-videa/) — hotový klip upravit.
+- [Obrázky](/generovani/obrazky/) — nejdřív kvalitní výchozí snímek.
+- [Slovník](/slovnik/) — pojmy bez balastu.
+
+## Zdroje
+
+- [Wan 2.2 I2V](https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B)
+- [HunyuanVideo 1.5](https://huggingface.co/tencent/HunyuanVideo-1.5)
+- [mlx-video](https://github.com/Blaizzy/mlx-video)
+
+*Naposledy ověřeno: 5. 11. 2026.*
