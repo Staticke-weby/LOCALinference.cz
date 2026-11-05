@@ -1,8 +1,17 @@
-// Z jednoho sitemap-index.xml + sitemap-0.xml udělá jediný /sitemap.xml.
-// Astro sitemapu vždy rozdělí na index a dílčí soubor; s 131 URL to není
-// potřeba. Search Console i lidé hledají /sitemap.xml, takže po buildu
-// zůstane jen ten a pomocné soubory se smažou.
-import { copyFileSync, existsSync, rmSync } from 'node:fs';
+// Z Astro sitemapy udělá jediný /sitemap.xml.
+// Astro sitemapu vždy rozdělí na sitemap-index.xml + sitemap-0.xml a do
+// hlavičky každé stránky vloží odkaz na index. S 131 URL je dělení zbytečné,
+// takže po buildu zůstane jen /sitemap.xml, odkazy v HTML se přepíšou
+// a pomocné soubory se smažou.
+import {
+  copyFileSync,
+  existsSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { join } from 'node:path';
 
 const dist = process.argv[2];
@@ -25,4 +34,24 @@ copyFileSync(dilci, cil);
 rmSync(dilci);
 if (existsSync(index)) rmSync(index);
 
-console.log(`sitemap.xml → ${cil} (index i dílčí soubor smazány)`);
+// Odkaz <link rel="sitemap" href="/sitemap-index.xml"> v hlavičkách.
+let prepsano = 0;
+
+function projdi(slozka) {
+  for (const polozka of readdirSync(slozka)) {
+    const cesta = join(slozka, polozka);
+    if (statSync(cesta).isDirectory()) {
+      projdi(cesta);
+      continue;
+    }
+    if (!polozka.endsWith('.html')) continue;
+    const html = readFileSync(cesta, 'utf8');
+    if (!html.includes('/sitemap-index.xml')) continue;
+    writeFileSync(cesta, html.replaceAll('/sitemap-index.xml', '/sitemap.xml'));
+    prepsano += 1;
+  }
+}
+
+projdi(dist);
+
+console.log(`sitemap.xml → ${cil} (index i dílčí soubor smazány, HTML upraveno: ${prepsano})`);
