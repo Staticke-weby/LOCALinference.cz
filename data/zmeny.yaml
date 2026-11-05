@@ -3,6 +3,20 @@
 
 - datum: 2026-11-05
   typ: obsah
+  titulek: "Homepage: obsahové bloky a obrázek i na EN"
+  co_se_zmenilo: "Na české homepage nahradily bloky „Pro koho je web“ a „Proč věřit datům“ jedenáct dlaždic s odkazy na obsah. Anglická homepage dostala stejný hero obrázek GB10 jako česká."
+  dotcene_stranky: [index]
+  zdroj: https://www.localinference.eu
+
+- datum: 2026-11-05
+  typ: zdroj
+  titulek: "Přepínač jazyka, hreflang, llms.txt a RSS"
+  co_se_zmenilo: "Každá stránka má pod nadpisem odkaz na protějšek v druhém jazyce a v hlavičce hreflang cs/en/x-default. Vznikl llms.txt pro oba weby a RSS changelogu na /zdroje/novinky/rss.xml."
+  dotcene_stranky: [o-webu, zdroje/novinky]
+  zdroj: https://www.localinference.cz/zdroje/novinky/rss.xml
+
+- datum: 2026-11-05
+  typ: obsah
   titulek: "FAQ, vlastní 404 a kontrola interních odkazů"
   co_se_zmenilo: "Vznikla stránka /zaciname/faq/ s deseti dotazy a FAQPage strukturou, vlastní 404 s odkazy a skript kontrola-odkazu.mjs, který po buildu ověří všechny interní odkazy. Opraveno 15 starých odkazů v changelogu."
   dotcene_stranky: [zaciname/faq, zdroje/novinky]
