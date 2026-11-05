@@ -1,4 +1,7 @@
 # Stav překladu CZ → EN. Generuje npm run parita -- --zapis.
+- cz: '404'
+  en: '404'
+  stav: hotovo
 - cz: data
   en: data
   stav: hotovo
@@ -308,9 +311,6 @@
 - cz: zdroje/zdroje
   en: sources/sources
   stav: hotovo
-- cz: '404'
-  en: '404'
-  stav: ceka
 - cz: zarizeni/konfigurace/<id>
   en: devices/configurations/<id>
   stav: hotovo
