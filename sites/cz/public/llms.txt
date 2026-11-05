@@ -1,0 +1,33 @@
+# LOCALinference.cz
+
+> Nezávislý průvodce lokální AI na hotových 128GB zařízeních. Co na nich
+> poběží, jak rychle a co to stojí. Vlastní měření neděláme; čísla
+> přebíráme z veřejných zdrojů s datem a konfigurací.
+
+Jazyk: čeština. Anglická mutace: https://www.localinference.eu
+
+## Hlavní stránky
+
+- https://www.localinference.cz/ — přehled
+- https://www.localinference.cz/zarizeni/srovnani/ — srovnání 128GB zařízení
+- https://www.localinference.cz/modely/qwen3-8-flash-next/ — jediný model katalogu
+- https://www.localinference.cz/generovani/ — obrázky, video, audio, 3D
+- https://www.localinference.cz/generovani/licence/ — licence a komerční použití
+- https://www.localinference.cz/navody/ — první spuštění
+- https://www.localinference.cz/slovnik/ — slovník pojmů
+- https://www.localinference.cz/temata/ — témata podle dotazů
+- https://www.localinference.cz/zdroje/mereni/ — měření
+- https://www.localinference.cz/zdroje/co-nevime/ — co nevíme
+- https://www.localinference.cz/zdroje/novinky/ — changelog
+
+## Data
+
+Data jsou ve YAML v repozitáři:
+https://github.com/Staticke-weby/LOCALinference.cz
+
+## Pravidla
+
+- Jen hotová zařízení se 128 GB a více unified paměti.
+- Jen Qwen3.8 Flash Next jako model katalogu.
+- Žádná vlastní měření; každé číslo má zdroj a datum.
+- Ceny v Kč včetně DPH; USD v závorce.

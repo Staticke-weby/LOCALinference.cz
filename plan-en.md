@@ -188,9 +188,10 @@ Konkrétní slugy se překládají podle obsahu:
 
 ### Fáze 4 — SEO a publikace
 
-- [ ] Jazykový přepínač na protějšek a `hreflang`.
+- [x] Jazykový přepínač na protějšek a `hreflang`.
+- [x] `llms.txt` pro CZ i EN.
+- [x] RSS changelogu (CZ; EN na něj odkazuje).
 - [ ] Vlastní Search Console, keyword clusters.
-- [ ] `llms.txt`, RSS changelogu.
 
 ## Parita
 

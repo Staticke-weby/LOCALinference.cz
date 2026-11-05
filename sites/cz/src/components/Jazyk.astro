@@ -1,0 +1,13 @@
+---
+import { jazykOdkaz } from '../lib/jazyk';
+
+const { en } = jazykOdkaz(Astro.url.pathname);
+---
+
+<a class="li-jazyk" href={en} hreflang="en" lang="en">English</a>
+
+<style>
+  .li-jazyk {
+    font-size: var(--sl-text-sm);
+  }
+</style>

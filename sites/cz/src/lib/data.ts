@@ -445,3 +445,13 @@ export function relOdkazu(url: string): string {
   }
   return 'noopener noreferrer';
 }
+
+export type Preklad = {
+  cz: string;
+  en: string;
+  stav: string;
+};
+
+export function getPreklady(): Preklad[] {
+  return load<Preklad[]>('preklady.yaml') ?? [];
+}

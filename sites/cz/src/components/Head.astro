@@ -1,0 +1,11 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+import { jazykOdkaz } from '../lib/jazyk';
+
+const { cs, en } = jazykOdkaz(Astro.url.pathname);
+---
+
+<Default><slot /></Default>
+<link rel="alternate" hreflang="cs" href={cs} />
+<link rel="alternate" hreflang="en" href={en} />
+<link rel="alternate" hreflang="x-default" href={cs} />

@@ -52,8 +52,7 @@ const datum = new Intl.DateTimeFormat('en-US', {
   }}
 >
   <p class="li-verdict">
-    <strong>{sku.nazev}</strong> is one OEM configuration of the
-    <a href={`/devices/${rodina.id}/`}>{rodina.nazev}</a>. It differs in
+    <strong>{sku.nazev}</strong> is one OEM configuration of the <a href={`/devices/${rodina.id}/`}>{rodina.nazev}</a>. It differs in
     storage and vendor; the chip, memory and software are the same as the
     other variants.
   </p>
@@ -76,10 +75,7 @@ const datum = new Intl.DateTimeFormat('en-US', {
   </p>
   <p>
     The Czech edition tracks the Czech retail price for this exact
-    configuration:
-    <a href={`https://www.localinference.cz/zarizeni/konfigurace/${sku.id}/`}>
-      Czech price and availability
-    </a>.
+    configuration: <a href={`https://www.localinference.cz/zarizeni/konfigurace/${sku.id}/`}>Czech price and availability</a>.
   </p>
 
   <h2>What runs on it</h2>
@@ -87,9 +83,7 @@ const datum = new Intl.DateTimeFormat('en-US', {
   <p>
     Qwen3.8 Flash Next fits on {sku.pamet_gb} GB of unified memory with a
     recommended 128K context. Speed and limits are the same as the rest of
-    the {rodina.nazev} family. See the
-    <a href={`/devices/${rodina.id}/`}>family page</a> and the
-    <a href="/models/qwen3-8-flash-next/">model page</a>.
+    the {rodina.nazev} family. See the <a href={`/devices/${rodina.id}/`}>family page</a> and the <a href="/models/qwen3-8-flash-next/">model page</a>.
   </p>
 
   <h2>More</h2>

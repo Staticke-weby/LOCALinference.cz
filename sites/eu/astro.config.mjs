@@ -23,6 +23,7 @@ export default defineConfig({
       lastUpdated: false,
       customCss: ['./src/styles/custom.css'],
       components: {
+        Head: './src/components/Head.astro',
         PageTitle: './src/components/PageTitle.astro',
         SiteTitle: './src/components/SiteTitle.astro',
         Footer: './src/components/Footer.astro',
@@ -38,6 +39,15 @@ export default defineConfig({
         { tag: 'meta', attrs: { property: 'og:image:alt', content: 'LOCALinference — local AI on 128 GB' } },
         { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
         { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://www.localinference.eu/og-en.png' } },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'alternate',
+            type: 'application/rss+xml',
+            title: 'LOCALinference — changelog',
+            href: 'https://www.localinference.cz/zdroje/novinky/rss.xml',
+          },
+        },
         {
           tag: 'script',
           attrs: {

@@ -1,0 +1,33 @@
+# LOCALinference.eu
+
+> Independent guide to local AI on turnkey 128GB devices. What runs,
+> how fast and what it costs. We do not run our own benchmarks; figures
+> come from public sources with a date and configuration.
+
+Language: English. Czech edition: https://www.localinference.cz
+
+## Key pages
+
+- https://www.localinference.eu/ — overview
+- https://www.localinference.eu/devices/compare/ — 128GB device comparison
+- https://www.localinference.eu/models/qwen3-8-flash-next/ — the model
+- https://www.localinference.eu/generation/ — images, video, audio, 3D
+- https://www.localinference.eu/generation/licensing/ — licenses
+- https://www.localinference.eu/guides/ — first run
+- https://www.localinference.eu/dictionary/ — terms
+- https://www.localinference.eu/topics/ — topics
+- https://www.localinference.eu/sources/measurements/ — measurements
+- https://www.localinference.eu/sources/what-we-dont-know/ — gaps
+- https://www.localinference.eu/sources/changelog/ — changelog
+
+## Data
+
+YAML data lives in the Czech source repository:
+https://github.com/Staticke-weby/LOCALinference.cz
+
+## Rules
+
+- Turnkey devices with 128 GB or more unified memory only.
+- Qwen3.8 Flash Next is the only model in the catalogue.
+- No own benchmarks; every number has a source and a date.
+- USD list prices; no retailer or affiliate links.

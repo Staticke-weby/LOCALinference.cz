@@ -2,7 +2,7 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**47 položek** · 14 otevreno · 2 ceka-na-vas · 15 prubezne · 16 hotovo · 34 markerů [DOPLNIT] na 13 stránkách.
+**47 položek** · 13 otevreno · 2 ceka-na-vas · 15 prubezne · 17 hotovo · 34 markerů [DOPLNIT] na 13 stránkách.
 
 ## Souhrn podle dávek
 
@@ -13,7 +13,7 @@
 | 3 | Kvalita, čeština a provoz | 3 |
 | 4 | Ceny a dostupnost | 5 |
 | 5 | Obsah a propojení | 3 |
-| 6 | Infrastruktura a publikace | 4 |
+| 6 | Infrastruktura a publikace | 3 |
 | 7 | Průběžná údržba | 9 |
 
 ## Dávka 1 — Generování: rychlosti, licence a slovník
@@ -115,13 +115,12 @@
 | I01 | Přepnout DNS u Vedos | P0 | hotovo | — |
 | I02 | EN Pages a workflow v .eu | P0 | ceka-na-vas | — |
 | I06 | Kontaktní e-mail pro veřejnost | P0 | ceka-na-vas | /o-webu/pravni/ |
-| I03 | EN mutace sites/eu | P1 | otevreno | — |
+| I03 | EN mutace sites/eu | P1 | hotovo | — |
 | I04 | Umami se posílá i z localhostu | P2 | hotovo | — |
 | I05 | Deploy občas visí | P2 | prubezne | — |
 
 - **I02** — Workflow deploy.yml v .eu repu je hotový. Zbývá zapnout Pages (GitHub Actions) a nastavit custom domain www.localinference.eu včetně DNS. *Hledat:* GitHub .eu repo → Settings → Pages; DNS u registrátora
 - **I06** — V právních informacích chybí kontaktní e-mail. Blokuje dokončení /o-webu/pravni/. *Hledat:* ESHOpino
-- **I03** — Anglická mutace nemá zdroj, build ani doménu. *Hledat:* interní práce
 - **I05** — GitHub Pages deployment občas zůstane viset nebo se zruší. *Hledat:* GitHub Actions
 
 ## Dávka 7 — Průběžná údržba
