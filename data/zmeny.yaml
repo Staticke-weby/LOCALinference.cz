@@ -4,7 +4,7 @@
 - datum: 2026-11-05
   typ: zdroj
   titulek: "Sitemap na /sitemap.xml i pro EN"
-  co_se_zmenilo: "Build nově kopíruje sitemap-0.xml na /sitemap.xml, takže obě domény mají sitemap na očekávané adrese. Robots.txt na EN i CZ ukazuje na /sitemap.xml."
+  co_se_zmenilo: "Build z Astro sitemapy udělá jediný /sitemap.xml a pomocné sitemap-index.xml a sitemap-0.xml smaže. Robots.txt na EN i CZ ukazuje na /sitemap.xml."
   dotcene_stranky: [o-webu/metodika, zdroje/novinky]
   zdroj: https://www.localinference.eu/sitemap.xml
 

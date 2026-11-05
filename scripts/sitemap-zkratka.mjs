@@ -1,7 +1,8 @@
-// Zkopíruje sitemap-0.xml na /sitemap.xml.
-// Astro generuje sitemap-index.xml + sitemap-0.xml; lidé i Search Console
-// ale hledají /sitemap.xml. Obsah je stejný seznam URL, jen kratší jméno.
-import { copyFileSync, existsSync } from 'node:fs';
+// Z jednoho sitemap-index.xml + sitemap-0.xml udělá jediný /sitemap.xml.
+// Astro sitemapu vždy rozdělí na index a dílčí soubor; s 131 URL to není
+// potřeba. Search Console i lidé hledají /sitemap.xml, takže po buildu
+// zůstane jen ten a pomocné soubory se smažou.
+import { copyFileSync, existsSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 
 const dist = process.argv[2];
@@ -11,13 +12,17 @@ if (!dist) {
   process.exit(1);
 }
 
-const zdroj = join(dist, 'sitemap-0.xml');
+const dilci = join(dist, 'sitemap-0.xml');
+const index = join(dist, 'sitemap-index.xml');
 const cil = join(dist, 'sitemap.xml');
 
-if (!existsSync(zdroj)) {
-  console.error(`Chybí ${zdroj} — sitemap se nevygenerovala.`);
+if (!existsSync(dilci)) {
+  console.error(`Chybí ${dilci} — sitemap se nevygenerovala.`);
   process.exit(1);
 }
 
-copyFileSync(zdroj, cil);
-console.log(`sitemap.xml → ${cil}`);
+copyFileSync(dilci, cil);
+rmSync(dilci);
+if (existsSync(index)) rmSync(index);
+
+console.log(`sitemap.xml → ${cil} (index i dílčí soubor smazány)`);
