@@ -1,0 +1,35 @@
+---
+title: "Qwen3.8 Flash Next on Strix Halo: measured data"
+description: "Qwen3.8 Flash Next on Strix Halo 128 GB: decode 36–63 tok/s, prefill 0.5–2.4k tok/s and long-context behaviour, with sources."
+last_verified: 2026-11-05
+---
+
+Strix Halo is the cheapest 128GB box. These are public community
+measurements, not our tests.
+
+## What the reports show
+
+- **Decode:** roughly **36–63 tok/s** depending on engine, quantization
+  and MTP.
+- **Prefill:** **0.5–2.4k tok/s**, falling with prompt length.
+- **TTFT:** at a 32K prompt, roughly **16–40 s** before the first token.
+- **Long context:** 256K works, but decode drops and memory pressure
+  rises.
+
+## Configuration matters
+
+Reports differ by engine (llama.cpp, Gufo, vLLM), quantization
+(UD-Q4_K_XL, AWQ, EXL3), KV cache and MTP. A single number without that
+context is not comparable.
+
+## Where next
+
+- [Strix Halo](/devices/strix-halo/) — specs and price.
+- [Measurements](/sources/measurements/) — the data table.
+- [Model](/models/qwen3-8-flash-next/) — context and limits.
+
+## Sources
+
+- [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+
+*Last verified: 5 November 2026.*

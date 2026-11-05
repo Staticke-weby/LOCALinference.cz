@@ -1,0 +1,62 @@
+---
+title: "Local 3D: a model from a photo on 128 GB"
+description: "Image-to-3D on 128GB devices: TRELLIS.2, Pixal3D and Hunyuan3D, real times, GLB and PBR output, and licenses."
+last_verified: 2026-11-05
+---
+
+import TabulkaGenerativnichEn from '../../../components/TabulkaGenerativnichEn.astro';
+
+A single photo becomes a textured 3D model. It is not a replacement for
+a modeller, but for a prototype, a game prop or a product preview it is
+enough today. On a 128GB machine this is minutes, not hours.
+
+## Models
+
+<TabulkaGenerativnichEn kategorie="3d" />
+
+## Measured times
+
+| Device | Model and settings | Time |
+|---|---|---|
+| Strix Halo | TRELLIS.2, 512, texture included | 116 s |
+| Strix Halo | TRELLIS.2, 1024, texture included | 399 s |
+| Mac with M4 Pro 24 GB | TRELLIS.2, 512, texture included | 5 min 13 s |
+
+Sourced measurements, not our tests. Strix Halo is Windows with ROCm;
+Mac is MPS. DGX Spark and RTX Spark have no public number.
+
+## Format and quality
+
+- **GLB** — geometry, materials and textures in one file.
+- **PBR** — base colour, metallic, roughness; looks right under light.
+- **Topology** — the output is not ready for animation; retopology is
+  usually needed.
+- **Scale** — GLB has no real-world dimensions; set them manually.
+
+## License
+
+- **TRELLIS.2** — MIT, commercial use.
+- **Pixal3D** — MIT, commercial use; third-party components may differ.
+- **Hunyuan3D 2.0** — Tencent community license excludes the EU.
+
+## Where it falls short
+
+- **The back of the object** — the model guesses.
+- **Thin and transparent things** — wires, glass, fabric.
+- **Topology** — not animation-ready.
+- **Textures** — flatter than a real scan.
+
+## Where next
+
+- [Game assets](/generation/game-assets/) — assets for a game.
+- [PBR](/dictionary/software/pbr/) — what material maps mean.
+- [Licensing](/generation/licensing/) — commercial use.
+- [Recipes](/generation/recipes/) — ComfyUI on your platform.
+
+## Sources
+
+- [TRELLIS.2](https://github.com/microsoft/TRELLIS.2)
+- [trellis-mac](https://github.com/shivampkumar/trellis-mac)
+- [TRELLIS.2 on Strix Halo](https://github.com/kroqueta-s/trellis-strix-halo)
+
+*Last verified: 5 November 2026.*

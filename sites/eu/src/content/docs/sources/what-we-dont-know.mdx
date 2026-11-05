@@ -1,0 +1,36 @@
+---
+title: "What we do not know about local AI"
+description: "Open gaps in local AI data: TTFT, concurrency, long context, Czech tests, vision, noise and 3D on some devices."
+last_verified: 2026-11-05
+---
+
+A guide that admits gaps is more trustworthy than one with a number for
+everything. These are the main ones.
+
+## Measurement gaps
+
+- **RTX Spark mini** — no public Qwen3.8 measurement.
+- **TTFT and prefill** — measured differently across reports.
+- **Concurrency 4+** — most reports are single-stream.
+- **128K and 262K** — speed and quality together are rare.
+- **Noise and power** — few sustained-load measurements.
+
+## Quality gaps
+
+- **Czech tests** — no public benchmark at English level.
+- **Vision** — documents and screenshots vary by task.
+- **Tool calling** — benchmarks exist, operational tests are rare.
+- **3D on DGX Spark and RTX Spark** — no public number.
+
+## How we handle it
+
+We mark missing data instead of guessing. When a figure appears later,
+we add it with a source and a date.
+
+## Where next
+
+- [Measurements](/sources/measurements/) — what we do have.
+- [Methodology](/about/methodology/) — how we work.
+- [Model](/models/qwen3-8-flash-next/) — known limits.
+
+*Last verified: 5 November 2026.*

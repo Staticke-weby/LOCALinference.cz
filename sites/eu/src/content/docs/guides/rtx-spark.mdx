@@ -1,0 +1,68 @@
+---
+title: "RTX Spark first run: Windows 11 on Arm"
+description: "RTX Spark first run: Windows 11 Arm updates, NVIDIA driver, CUDA, ComfyUI ARM64 and the first local model or image."
+last_verified: 2026-11-05
+---
+
+RTX Spark is a Windows 11 on Arm machine with an NVIDIA GPU and 128 GB
+of unified memory. The hardware is fast; the software is the part that
+needs care.
+
+## What you need
+
+- RTX Spark laptop or mini with 128 GB.
+- Windows 11 Arm fully updated.
+- The NVIDIA driver for RTX Spark (not a generic GeForce driver).
+- Native Arm64 Python and tools.
+
+## Step 1: updates and driver
+
+Complete Windows Update, install the RTX Spark driver and reboot.
+Verify:
+
+```powershell
+nvidia-smi
+```
+
+You should see the RTX Spark GPU and a CUDA version.
+
+## Step 2: choose the runtime
+
+| Task | Recommended path |
+|---|---|
+| First chat | Ollama or llama.cpp with an Arm64 build |
+| ComfyUI | Comfy Desktop for Windows ARM64 |
+| vLLM | community Windows Arm64 port; not official |
+
+## Step 3: first model
+
+Start with a GGUF quantization that fits 128 GB. Qwen3.8 Flash Next at
+4-bit is the working point. Do not assume a Linux Arm64 package will
+run in Windows Python — it will not.
+
+## Step 4: ComfyUI
+
+Install **Comfy Desktop for Windows ARM64** and select the NVIDIA ARM64
+option. The first image should be Z-Image-Turbo at 1024², 8 steps.
+
+## Where it falls short
+
+- **Windows on Arm** still lacks some Python wheels.
+- **Custom nodes** that depend on x64 binaries may fail.
+- **Sustained load** throttles faster than a desktop.
+- **Battery** suffers under load.
+
+## Where next
+
+- [RTX Spark notebook](/devices/rtx-spark-notebook/) — specs and price.
+- [RTX Spark mini](/devices/rtx-spark-mini/) — desktop variant.
+- [Windows recipe](/generation/recipes/windows/) — ComfyUI details.
+- [Model](/models/qwen3-8-flash-next/) — context and limits.
+
+## Sources
+
+- [NVIDIA RTX Spark development](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976)
+- [NVIDIA RTX Spark compatibility](https://nvidia.custhelp.com/app/answers/detail/a_id/5931/)
+- [Comfy Desktop for Windows](https://docs.comfy.org/installation/desktop/windows)
+
+*Last verified: 5 November 2026.*

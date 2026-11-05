@@ -1,0 +1,103 @@
+---
+title: "Generative model licenses: what you can use commercially"
+description: "Licenses for local image, video and 3D models: Apache-2.0, MIT, Qwen Research, Tencent Hunyuan and LTX. What commercial use means in the EU."
+last_verified: 2026-11-05
+---
+
+With generative models, the license often matters before quality. A
+model that makes the best images may ban commercial use — or exclude the
+European Union entirely.
+
+## Three separate questions
+
+1. **Weights license.** What may you do with the model — use, modify,
+   redistribute, sell outputs?
+2. **Output license.** Most licenses leave outputs to you. Qwen Research
+   restricts the model, not the image itself.
+3. **Territory.** Some licenses apply only in a defined territory.
+   Tencent Hunyuan explicitly excludes the EU, UK and South Korea.
+
+For a company in Czechia, the third question is the most common trap:
+the model downloads and runs, but the license does not permit use in
+the EU at all.
+
+## What is safe
+
+| License | Meaning | Examples |
+|---|---|---|
+| **Apache-2.0** | Use, modify and commercialise, no fee | Z-Image-Turbo, FLUX.2 klein, VoxCPM2, MADLAD-400 |
+| **MIT** | Same, shorter text | TRELLIS.2, Pixal3D, Chatterbox, Ming-3.0 |
+
+## Conditional
+
+| License | Condition | Examples |
+|---|---|---|
+| **LTX-2.x Community** | Free under $10M annual revenue; paid above | LTX-2.5 |
+| **Tencent Hunyuan Community** | Excludes EU, UK and South Korea; extra terms above 100M users | HunyuanImage 3.0, HunyuanVideo 1.5, Hunyuan3D 2.0 |
+
+LTX is fine for small and mid-sized companies. Tencent is a fundamental
+problem: **in Czechia the model cannot be used**, because the whole EU
+is excluded. It is not a "condition", it is missing permission.
+
+## Non-commercial
+
+| License | Meaning | Examples |
+|---|---|---|
+| **Qwen Research License** | Research and evaluation only; commercial use needs a separate license | Qwen-Image 2.1, Qwen-Image-Edit 2.1 |
+| **FLUX non-commercial** | Non-commercial weights; commercial license is purchased | FLUX.2 dev |
+
+## Model overview
+
+| Model | License | Commercial in the EU |
+|---|---|---|
+| Z-Image-Turbo | Apache-2.0 | yes |
+| FLUX.2 klein 4B | Apache-2.0 | yes |
+| Qwen-Image 2.1 | Qwen Research | no |
+| FLUX.2 dev | FLUX non-commercial | no |
+| HunyuanImage 3.0 | Tencent Community | no — outside EU |
+| Wan 2.2 | Apache-2.0 | yes |
+| LTX-2.5 | LTX Community | under $10M revenue |
+| HunyuanVideo 1.5 | Tencent Community | no — outside EU |
+| TRELLIS.2 | MIT | yes |
+| Pixal3D | MIT | yes |
+| Hunyuan3D 2.0 | Tencent Community | no — outside EU |
+| VoxCPM2 | Apache-2.0 | yes |
+| Kokoro 82M | Apache-2.0 | yes |
+| Chatterbox | MIT | yes |
+| MADLAD-400 | Apache-2.0 | yes |
+
+Based on model cards and license files, verified 5 November 2026.
+Always check the repository for the exact version.
+
+## Checklist before deployment
+
+- **Who owns the rights** — an individual, a lab, a company?
+- **Does the license say "commercial", or only "research"?**
+- **Does it exclude a territory?** Look for "Territory" and "European Union".
+- **Is there a revenue or user limit?**
+- **What does it say about outputs?**
+- **Are third-party components under different licenses?**
+- **Is this for a product, or internal use?**
+
+## Where it falls short
+
+- **Licenses change** with new versions; every record has a date.
+- **Outputs can carry their own rights** — people, trademarks, music.
+- **Voice cloning** is restricted by most licenses regardless of the model.
+- **This is not legal advice.** For large contracts, ask a lawyer.
+
+## Where next
+
+- [Images](/generation/images/) — models and licenses.
+- [Video](/generation/video/) — Wan, LTX and Hunyuan.
+- [3D](/generation/3d/) — TRELLIS.2 and Pixal3D.
+- [Audio](/generation/audio/) — TTS and voice cloning.
+
+## Sources
+
+- [Qwen Research License](https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE)
+- [Tencent Hunyuan Community License](https://huggingface.co/tencent/HunyuanVideo-1.5/blob/main/LICENSE)
+- [LTX-2.x Community License](https://github.com/Lightricks/LTX-2/blob/main/LICENSE-2_x)
+- [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2)
+
+*Last verified: 5 November 2026.*

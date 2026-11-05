@@ -1,0 +1,30 @@
+---
+title: "Why MoE: sparse models on one box"
+description: "Mixture-of-experts models activate only a few parameters per token. Why that makes 125B models practical on 128 GB."
+last_verified: 2026-11-05
+---
+
+A **mixture-of-experts (MoE)** model has many parameters but activates
+only a few per token. Qwen3.8 Flash Next has 125B parameters and
+activates **6B per token**.
+
+## Why it matters
+
+- **Memory** still has to hold all weights: about 100 GB at 4-bit.
+- **Compute per token** is closer to a 6B model, so decode is faster.
+- **Bandwidth** still limits decode: each token reads the active
+  experts, not the whole model.
+
+## The trade-off
+
+MoE is efficient at inference but needs more memory than a dense model
+of the same active size. That is exactly why 128 GB is the minimum:
+enough memory for the weights, with room for KV cache.
+
+## Where next
+
+- [Model](/models/qwen3-8-flash-next/)
+- [How it works](/getting-started/how-it-works/)
+- [Dictionary](/dictionary/performance/decode/)
+
+*Last verified: 5 November 2026.*

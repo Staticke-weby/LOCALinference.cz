@@ -1,0 +1,82 @@
+---
+title: "DGX Spark first run: from unboxing to a local model"
+description: "DGX Spark first run: DGX OS updates, GPU check, vLLM or llama.cpp, first Qwen3.8 Flash Next query and API access from another machine."
+last_verified: 2026-11-05
+---
+
+DGX Spark runs **DGX OS** with CUDA and the NVIDIA stack. This guide is
+the shortest path to a working model.
+
+## What you need
+
+- DGX Spark with 128 GB unified memory.
+- Network access and a Hugging Face account.
+- About 30 GB free for the first model, more for larger ones.
+
+## Step 1: update DGX OS
+
+Complete the first boot, connect to the network and install updates.
+NVIDIA ships the driver and CUDA; do not replace them with distribution
+packages.
+
+## Step 2: verify the GPU
+
+```bash
+nvidia-smi
+```
+
+You should see the GB10 GPU and the driver. If not, stop and fix the
+driver before installing anything else.
+
+## Step 3: choose a runtime
+
+| Runtime | Use |
+|---|---|
+| **vLLM** | production server, OpenAI API, NVFP4 |
+| **llama.cpp** | simple local server, GGUF |
+| **Ollama** | easiest first query |
+
+For a first test, Ollama or llama.cpp is enough. For a server, use the
+NVIDIA vLLM recipe.
+
+## Step 4: first query
+
+With Ollama:
+
+```bash
+ollama run qwen3.8-flash-next:125b-mlx
+```
+
+With llama.cpp, download a GGUF build that fits 128 GB and start
+`llama-server`. The exact command is in the model card; do not guess
+quantization.
+
+## Step 5: API from another machine
+
+vLLM and llama.cpp expose an OpenAI-compatible API on a local port. Bind
+it to the LAN only if you understand the risk; otherwise use an SSH
+tunnel:
+
+```bash
+ssh -L 8000:localhost:8000 user@spark
+```
+
+## Where it falls short
+
+- **ARM64** limits some Python packages.
+- **Long context** costs memory and prefill time.
+- **One box** is for one to four users, not a department.
+
+## Where next
+
+- [DGX Spark](/devices/dgx-spark/) — specs and price.
+- [Model](/models/qwen3-8-flash-next/) — context and limits.
+- [vLLM dictionary](/dictionary/software/vllm/) — what the server does.
+
+## Sources
+
+- [NVIDIA DGX Spark documentation](https://docs.nvidia.com/dgx/dgx-spark/)
+- [DGX Spark NGC guide](https://docs.nvidia.com/dgx/dgx-spark/ngc.html)
+- [vLLM recipe](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+
+*Last verified: 5 November 2026.*

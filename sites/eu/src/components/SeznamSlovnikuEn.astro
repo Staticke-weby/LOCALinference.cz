@@ -1,0 +1,36 @@
+---
+import { getSlovnikEn } from '../lib/data';
+
+const vse = getSlovnikEn();
+const skupiny: Record<string, string> = {
+  performance: 'Performance and measurement',
+  software: 'Software and runtime',
+  memory: 'Memory and model',
+  operations: 'Operations and hardware',
+};
+const poradi = ['performance', 'software', 'memory', 'operations'];
+---
+
+{poradi.map((g) => {
+  const polozky = vse.filter((e) => e.group === g);
+  if (!polozky.length) return null;
+  return (
+    <>
+      <h2>{skupiny[g]}</h2>
+      <ul>
+        {polozky.map((e) => (
+          <li>
+            <a href={`/dictionary/${e.group}/${e.slug}/`}>{e.title}</a>
+            <span class="li-pozn"> — {e.description}</span>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+})}
+
+<style>
+  .li-pozn {
+    color: var(--sl-color-gray-3);
+  }
+</style>

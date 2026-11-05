@@ -1,0 +1,61 @@
+# English topic pages. One entry = /topics/<slug>/.
+- slug: local-ai-for-business
+  title: "Local AI for business: when it pays off"
+  description: "When local AI makes sense for a small company, what it costs and where the limits are."
+  intro: "Local AI is not cheaper than cloud for every workload. It pays off when data must stay on site, costs must be predictable and the model fits on one machine."
+  points: ["Data stays on your desk", "Predictable cost per machine", "One box for one to four users"]
+- slug: cost-of-local-ai
+  title: "What local AI costs"
+  description: "US list prices for 128GB devices, electricity and the total cost of local AI."
+  intro: "A 128GB box costs between roughly $3,500 and $7,000 at US list prices, plus electricity and administration. The model itself is free."
+  points: ["Hardware is the main cost", "Electricity is small per month", "Cloud costs scale with tokens"]
+- slug: dgx-spark
+  title: "DGX Spark: price and performance"
+  description: "DGX Spark 128 GB: US price, CUDA stack, Qwen3.8 Flash Next and OEM variants."
+  intro: "DGX Spark is the most integrated 128GB box. It costs more than Strix Halo, but brings CUDA, DGX OS and enterprise management."
+  points: ["CUDA and the NVIDIA stack", "273 GB/s bandwidth", "Official vLLM recipe"]
+- slug: strix-halo
+  title: "Strix Halo: price and performance"
+  description: "Strix Halo 128 GB: the cheapest route to Qwen3.8 Flash Next, ROCm limits and OEM variants."
+  intro: "Strix Halo is the cheapest route to 128 GB of unified memory. Decode is good for the price; prefill is weaker than on CUDA."
+  points: ["Lowest price for 128 GB", "ROCm, Windows or Linux", "Weaker prefill"]
+- slug: rtx-spark
+  title: "RTX Spark: mini and notebook"
+  description: "RTX Spark 128 GB: Windows on Arm, CUDA, measured FLUX and LTX times, and the limits of the platform."
+  intro: "RTX Spark puts a GB10-class chip into Windows on Arm devices. CUDA works; some Python packages do not have Arm64 wheels yet."
+  points: ["CUDA on Windows on Arm", "128 GB in a laptop or mini", "Arm64 software gaps"]
+- slug: qwen3-8-flash-next
+  title: "Qwen3.8 Flash Next on 128 GB"
+  description: "The model this site is built around: context, memory, speed, tools and limits."
+  intro: "Qwen3.8 Flash Next is a 125B MoE model with 6B active parameters. It fits on a 128GB device at 4-bit with a recommended 128K context."
+  points: ["262K native context", "Apache-2.0 license", "Vision and tool use"]
+- slug: 128gb-unified-memory
+  title: "128 GB unified memory: why it is the minimum"
+  description: "Why 128 GB of unified memory is the working minimum for Qwen3.8 Flash Next."
+  intro: "The model has 125 billion parameters. At 4-bit it needs about 100 GB for weights, plus KV cache and the system. 64 GB is not enough."
+  points: ["Weights plus KV cache", "Shared CPU and GPU pool", "No 24GB VRAM ceiling"]
+- slug: local-ai-on-windows-11
+  title: "Local AI on Windows 11"
+  description: "Which 128GB devices run Windows 11, what software works and when Linux is better."
+  intro: "Windows 11 is available on Strix Halo, RTX Spark and some OEM boxes. DGX Spark is Linux-only. The choice matters for tools and drivers."
+  points: ["Windows on Arm limits", "CUDA on RTX Spark", "Linux for servers"]
+- slug: local-ai-images
+  title: "Local AI for images"
+  description: "Image generation on 128GB devices: models, measured times, licenses and limits."
+  intro: "Images are the most mature local workload. Z-Image-Turbo and FLUX.2 klein are the safe commercial choices; Qwen-Image is non-commercial."
+  points: ["Seconds per image", "Apache-2.0 options", "Text and hands still fail"]
+- slug: local-ai-video
+  title: "Local AI for video"
+  description: "Video generation on 128GB devices: Wan, LTX and Hunyuan, times and licenses."
+  intro: "Video takes minutes per clip. Wan 2.2 is the safest license; HunyuanVideo cannot be used in the EU; LTX is free under $10M revenue."
+  points: ["Minutes per clip", "Wan 2.2 Apache-2.0", "Hunyuan excludes the EU"]
+- slug: local-ai-audio
+  title: "Local AI for audio"
+  description: "Speech and voice cloning on 128GB devices: models, licenses and ethics."
+  intro: "Audio is cheap: small models run on a CPU. Voice cloning needs permission from the speaker and a license that allows it."
+  points: ["Kokoro runs on CPU", "VoxCPM2 at 48 kHz", "Consent is mandatory"]
+- slug: local-ai-3d
+  title: "Local AI for 3D"
+  description: "Image-to-3D on 128GB devices: TRELLIS.2, Pixal3D, times and licenses."
+  intro: "A photo becomes a textured GLB model in minutes. TRELLIS.2 and Pixal3D are MIT; Hunyuan3D excludes the EU."
+  points: ["GLB with PBR", "Minutes per model", "Topology needs work"]

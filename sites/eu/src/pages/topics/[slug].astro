@@ -1,0 +1,54 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getTemataEn } from '../../lib/data';
+
+export function getStaticPaths() {
+  return getTemataEn().map((t) => ({ params: { slug: t.slug }, props: { tema: t } }));
+}
+
+const { tema } = Astro.props as {
+  tema: { slug: string; title: string; description: string; intro: string; points: string[] };
+};
+
+const odkazy: Record<string, string[]> = {
+  'local-ai-images': ['/generation/images/', '/generation/licensing/'],
+  'local-ai-video': ['/generation/video/', '/generation/licensing/'],
+  'local-ai-audio': ['/generation/audio/', '/generation/translation/'],
+  'local-ai-3d': ['/generation/3d/', '/generation/licensing/'],
+  'dgx-spark': ['/devices/dgx-spark/', '/devices/compare/'],
+  'strix-halo': ['/devices/strix-halo/', '/devices/compare/'],
+  'rtx-spark': ['/devices/rtx-spark-mini/', '/devices/rtx-spark-notebook/'],
+  'qwen3-8-flash-next': ['/models/qwen3-8-flash-next/', '/devices/compare/'],
+  '128gb-unified-memory': ['/devices/compare/', '/models/qwen3-8-flash-next/'],
+  'local-ai-on-windows-11': ['/devices/ai-laptops/', '/devices/rtx-spark-notebook/'],
+};
+const dalsi = odkazy[tema.slug] ?? ['/devices/compare/', '/generation/'];
+---
+
+<StarlightPage
+  frontmatter={{
+    title: tema.title,
+    description: tema.description,
+    last_verified: new Date('2026-11-05'),
+  }}
+>
+  <p class="li-uvod">{tema.intro}</p>
+
+  <ul>
+    {tema.points.map((p) => <li>{p}</li>)}
+  </ul>
+
+  <h2>Where next</h2>
+  <ul>
+    {dalsi.map((href) => <li><a href={href}>{href}</a></li>)}
+    <li><a href="/devices/compare/">Compare devices</a></li>
+  </ul>
+
+  <p><em>Last verified: 5 November 2026.</em></p>
+</StarlightPage>
+
+<style>
+  .li-uvod {
+    font-size: var(--sl-text-lg);
+  }
+</style>

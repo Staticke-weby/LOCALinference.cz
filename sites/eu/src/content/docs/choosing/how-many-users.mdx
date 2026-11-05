@@ -1,0 +1,30 @@
+---
+title: "How many users can one 128GB box serve?"
+description: "One 128GB device is comfortable for one to four concurrent users. Why more users need another box, not a bigger one."
+last_verified: 2026-11-05
+---
+
+One 128GB box is comfortable for **one to four concurrent users**.
+Above that, per-user speed falls and memory pressure rises.
+
+## Why
+
+- **Memory bandwidth is shared.** Every stream competes for the same
+  GB/s.
+- **KV cache grows with users.** Four long contexts can fill the box.
+- **Prefill queues.** A long prompt blocks others while it is processed.
+
+## What to do
+
+- **1–4 users:** one box is fine.
+- **5–10 users:** add a second box and split workloads.
+- **20+ users:** this is a server problem; a single 128GB box is not the
+  right shape.
+
+## Where next
+
+- [Devices](/devices/compare/) — memory and bandwidth.
+- [Concurrency](/dictionary/performance/concurrency/) — the term.
+- [Budget](/choosing/budget/) — cost per box.
+
+*Last verified: 5 November 2026.*

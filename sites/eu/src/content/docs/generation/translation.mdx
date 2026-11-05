@@ -1,0 +1,52 @@
+---
+title: "Local translation: text, subtitles and Czech"
+description: "Translation with a local model: which models handle Czech, how accurate they are, their licenses and when a human translator is still needed."
+last_verified: 2026-11-05
+---
+
+import TabulkaGenerativnichEn from '../../../components/TabulkaGenerativnichEn.astro';
+
+Translation is a task where a local model is often enough — and where
+context matters most. Machine translation without context makes errors
+a casual reader will miss but a lawyer will not.
+
+## Models
+
+<TabulkaGenerativnichEn kategorie="preklady" />
+
+## What it is good for
+
+- **Working translation** — emails, notes, documentation.
+- **Subtitles** — speech transcription and translation.
+- **Localization** — app and website strings.
+- **Quick overview** — a foreign document before a human translator.
+
+## Where it falls short
+
+- **Specialist text** — law, medicine, technical standards.
+- **Creative text** — style and humour are lost.
+- **Czech** — English-first models have weaker word order and terminology.
+- **Long text** — watch the context or the translation falls apart.
+
+## License
+
+- **Whisper** (speech transcription) — MIT.
+- **NLLB-200** — CC-BY-NC, **non-commercial**.
+- **MADLAD-400** — Apache-2.0, commercial use.
+
+Always check the model card for corporate use.
+
+## Where next
+
+- [Audio](/generation/audio/) — dubbing for a translation.
+- [Video](/generation/video/) — subtitles for video.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — text translation.
+- [Dictionary](/dictionary/) — terms without jargon.
+
+## Sources
+
+- [Whisper large-v3](https://huggingface.co/openai/whisper-large-v3)
+- [NLLB-200](https://huggingface.co/facebook/nllb-200-3.3B)
+- [MADLAD-400](https://huggingface.co/google/madlad400-7b-mt)
+
+*Last verified: 5 November 2026.*

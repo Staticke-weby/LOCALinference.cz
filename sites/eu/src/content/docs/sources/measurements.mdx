@@ -1,0 +1,32 @@
+---
+title: "Measurements: local AI performance data"
+description: "Measured local AI performance: Qwen3.8 Flash Next, image and video generation on 128GB devices, with configuration and source."
+last_verified: 2026-11-05
+---
+
+We collect public measurements rather than running our own. Each entry
+has a device, model, quantization, engine, context and source.
+
+## What is in the table
+
+- **Qwen3.8 Flash Next** — decode, prefill, TTFT and context on DGX
+  Spark, Strix Halo, RTX Spark and Mac.
+- **Image generation** — Z-Image, FLUX and Qwen-Image.
+- **Video and 3D** — Wan, LTX, HunyuanVideo and TRELLIS.2.
+
+## How to read it
+
+- **Raw values first.** We show the configuration before any comparison.
+- **Ranges, not one number.** When sources disagree, both are shown.
+- **No normalisation without a formula.** Calculated values are marked.
+
+The full table, including Czech-specific measurements, is in the
+[Czech edition](https://www.localinference.cz/zdroje/mereni/).
+
+## Where next
+
+- [Model](/models/qwen3-8-flash-next/) — context and memory.
+- [Devices](/devices/compare/) — bandwidth by device.
+- [What we do not know](/sources/what-we-dont-know/) — gaps.
+
+*Last verified: 5 November 2026.*

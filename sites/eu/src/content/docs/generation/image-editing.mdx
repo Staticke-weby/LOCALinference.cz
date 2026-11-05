@@ -1,0 +1,53 @@
+---
+title: "Local image editing: object removal and backgrounds"
+description: "Inpainting, object removal and background replacement on your own machine. Which models do it, how precise they are and what commercial use requires."
+last_verified: 2026-11-05
+---
+
+import TabulkaGenerativnichEn from '../../../components/TabulkaGenerativnichEn.astro';
+
+Generating an image is one thing. Editing an existing one — removing an
+object, replacing a background, rewriting a sign — is often more useful.
+
+## Models
+
+<TabulkaGenerativnichEn kategorie="uprava-obrazku" />
+
+## Three kinds of editing
+
+- **Inpainting** — mark an area and the model repaints it.
+- **Outpainting** — extend the image beyond its edge.
+- **Instruction editing** — type "give her a blue shirt" and the model
+  changes only that part.
+
+## How it runs
+
+On DGX Spark and RTX Spark, ComfyUI uses CUDA; on Strix Halo, Vulkan or
+ROCm; on Mac, Draw Things. Editing is generally slower than generating
+the same size, and we do not have public times for every device.
+
+## License
+
+- **FLUX.2 klein 4B** — Apache-2.0, commercial use.
+- **Qwen-Image-Edit 2.1** — Qwen Research, **non-commercial**.
+
+## Where it falls short
+
+- **Hair, fingers, fine edges** — the most common failure.
+- **Text in edits** — short signs yes, complex typography no.
+- **Consistency** — a new background can change the lighting on the subject.
+- **Speed** — editing is heavier than generating.
+
+## Where next
+
+- [Images](/generation/images/) — the basics.
+- [Video](/generation/video/) — motion instead of a still.
+- [3D](/generation/3d/) — a model from an edited photo.
+- [Licensing](/generation/licensing/) — commercial use.
+
+## Sources
+
+- [Qwen-Image-Edit](https://huggingface.co/Qwen/Qwen-Image-Edit-2509)
+- [ComfyUI documentation](https://docs.comfy.org/)
+
+*Last verified: 5 November 2026.*

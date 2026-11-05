@@ -1,0 +1,51 @@
+---
+title: "Local game assets: sprites, UI and textures"
+description: "Generating game assets on your own machine: sprites, icons, UI, textures and 3D props. What works today and where manual work is still needed."
+last_verified: 2026-11-05
+---
+
+import TabulkaGenerativnichEn from '../../../components/TabulkaGenerativnichEn.astro';
+
+For a small team or a solo developer, asset generation is the biggest
+time saver: a concept, a variant, a texture. Not a finished asset — a
+**starting point** that still needs work.
+
+## What works today
+
+- **Sprites and icons** — characters, items, buttons.
+- **Textures** — surfaces, tiles, backgrounds.
+- **UI elements** — frames, panels, icons.
+- **3D props** — crates, barrels, furniture from a photo or sketch.
+
+## Models
+
+Asset work uses the same models as images and 3D:
+
+<TabulkaGenerativnichEn kategorie="herni-prvky" />
+
+When the table is short, it is because game assets are not a separate
+model family: they come from [images](/generation/images/) and
+[3D](/generation/3d/).
+
+## What still needs manual work
+
+- **Style consistency** — the model drifts between sprites.
+- **Transparency** — backgrounds must be removed.
+- **Scale and atlas** — sprites are packed into an atlas.
+- **License** — the first check for a commercial game.
+
+## Where next
+
+- [Images](/generation/images/) — the basis for sprites.
+- [3D](/generation/3d/) — textured models.
+- [Image editing](/generation/image-editing/) — finishing touches.
+- [Licensing](/generation/licensing/) — commercial use.
+- [Dictionary](/dictionary/software/pbr/) — PBR materials.
+
+## Sources
+
+- [Z-Image-Turbo](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+- [TRELLIS.2](https://github.com/microsoft/TRELLIS.2)
+- [ComfyUI](https://docs.comfy.org/)
+
+*Last verified: 5 November 2026.*

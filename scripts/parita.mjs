@@ -62,6 +62,7 @@ const SLUGY = {
   decode: 'decode',
   tflops: 'tflops',
   roofline: 'roofline',
+  kalkulacka: 'calculator',
   'power-limit': 'power-limit',
   throttling: 'throttling',
   difuze: 'diffusion',
@@ -128,6 +129,9 @@ function enRouta(cz) {
 const czSoubory = projdi(CZ);
 const enSoubory = new Set(projdi(EN).map((f) => routa(EN, f)));
 const maZarizeni = fs.existsSync(path.join(ROOT, 'sites/eu/src/pages/devices/[id].astro'));
+const maSlovnik = fs.existsSync(path.join(ROOT, 'sites/eu/src/pages/dictionary/[group]/[slug].astro'));
+const maTemata = fs.existsSync(path.join(ROOT, 'sites/eu/src/pages/topics/[slug].astro'));
+const ma404 = fs.existsSync(path.join(ROOT, 'sites/eu/src/pages/404.astro'));
 const dynamickaZarizeni = new Set([
   'dgx-spark',
   'strix-halo',
@@ -143,7 +147,10 @@ for (const f of czSoubory) {
   const cz = routa(CZ, f);
   const en = enRouta(cz);
   const jeDynamicke =
-    maZarizeni && cz.startsWith('zarizeni/') && dynamickaZarizeni.has(cz.split('/')[1]);
+    (maZarizeni && cz.startsWith('zarizeni/') && dynamickaZarizeni.has(cz.split('/')[1])) ||
+    (maSlovnik && cz.startsWith('slovnik/') && cz.split('/').length >= 3) ||
+    (maTemata && cz.startsWith('temata/') && cz.split('/').length >= 2) ||
+    (ma404 && cz === '404');
   if (enSoubory.has(en) || jeDynamicke) hotovo.push({ cz, en });
   else chybi.push({ cz, en });
 }

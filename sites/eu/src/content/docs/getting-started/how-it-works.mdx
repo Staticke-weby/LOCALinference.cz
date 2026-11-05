@@ -1,0 +1,36 @@
+---
+title: "How local AI works: weights, context and tokens"
+description: "A plain explanation of model weights, quantization, KV cache, context and tokens per second for local AI."
+last_verified: 2026-11-05
+---
+
+A local model is a large file of **weights** plus a runtime that runs
+it. The weights are the model; the runtime is llama.cpp, vLLM, MLX or
+Ollama.
+
+## Weights and quantization
+
+The full model is too large for most machines. **Quantization** stores
+weights at 4 or 8 bits instead of 16. A 125B model at 4-bit fits in
+128 GB; at 16-bit it does not.
+
+## Context and KV cache
+
+The **context** is the text the model can see at once. Qwen3.8 Flash
+Next supports 262K natively. To avoid rereading the prompt, the runtime
+keeps a **KV cache**. It grows with context length and the number of
+users.
+
+## Tokens per second
+
+Generation is token by token. **Decode** speed is limited by memory
+bandwidth, not raw compute. **Prefill** reads the prompt and sets the
+time to first token (TTFT).
+
+## Where next
+
+- [Dictionary](/dictionary/) — all terms.
+- [Model](/models/qwen3-8-flash-next/) — context and memory.
+- [Devices](/devices/compare/) — bandwidth by device.
+
+*Last verified: 5 November 2026.*

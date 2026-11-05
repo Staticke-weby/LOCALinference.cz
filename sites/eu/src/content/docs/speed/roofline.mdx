@@ -1,0 +1,39 @@
+---
+title: "Roofline: the bandwidth ceiling for local AI"
+description: "Why memory bandwidth sets the maximum tokens per second, and how to check whether a measurement is physically plausible."
+last_verified: 2026-11-05
+---
+
+Token generation reads model weights. The theoretical ceiling is:
+
+**tokens/s ≈ memory bandwidth ÷ bytes read per token**
+
+For a 6B-active model at 4-bit, one token reads roughly **3 GB** of
+active weights. On a 273 GB/s device the ceiling is about **90 tok/s**;
+real measurements land lower because of overhead, KV cache and
+inefficiency.
+
+## Device bandwidth
+
+| Device | Bandwidth | Theoretical ceiling (3 GB/token) |
+|---|---|---|
+| DGX Spark | 273 GB/s | ~91 tok/s |
+| Strix Halo | 256 GB/s | ~85 tok/s |
+| RTX Spark | 300 GB/s | ~100 tok/s |
+| Mac Studio | 614 GB/s | ~205 tok/s |
+
+## How to use it
+
+- If a measurement is **above** the ceiling, look for MTP, a smaller
+  quantization or an NPU.
+- If it is **far below**, look for CPU fallback, heat or a bad
+  quantization.
+- The ceiling is not a promise; it is a sanity check.
+
+## Where next
+
+- [Calculator](/speed/calculator/) — estimate your device.
+- [Tokens per second](/dictionary/performance/tokens-per-second/)
+- [Model](/models/qwen3-8-flash-next/)
+
+*Last verified: 5 November 2026.*

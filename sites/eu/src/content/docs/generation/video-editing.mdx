@@ -1,0 +1,45 @@
+---
+title: "Local video editing: re-generating part of a clip"
+description: "Editing existing video on your own machine: repainting part of a shot, extending the frame, fixing motion. What works and what is still weak."
+last_verified: 2026-11-05
+---
+
+import TabulkaGenerativnichEn from '../../../components/TabulkaGenerativnichEn.astro';
+
+Editing an existing video is harder than generating a new one. The model
+must keep the rest of the shot unchanged — exactly what today's models
+struggle with.
+
+## Models
+
+<TabulkaGenerativnichEn kategorie="uprava-videa" />
+
+## What works today
+
+- **Repainting part of a clip** (VACE) — mark an area, the model
+  replaces it, the rest stays.
+- **Extending the frame** — filling the edges, changing the aspect ratio.
+- **Retake** — keep the clip and re-generate only a section.
+
+## Where it falls short
+
+- **Inconsistency** — lighting can change after a repaint.
+- **Length** — models work in short windows; longer clips are assembled.
+- **Audio** — the soundtrack is not edited with the picture.
+
+For cutting and subtitles, a classic editor is still better. Generative
+editing makes sense when you need to **add something**, not to cut.
+
+## Where next
+
+- [Video](/generation/video/) — how a clip is made.
+- [Image to video](/generation/image-to-video/) — a shorter route.
+- [Audio](/generation/audio/) — dubbing for an existing video.
+- [Licensing](/generation/licensing/) — commercial use.
+
+## Sources
+
+- [Wan 2.2 VACE](https://huggingface.co/Wan-AI/Wan2.2-VACE-Fun-A14B)
+- [LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5)
+
+*Last verified: 5 November 2026.*

@@ -1,0 +1,71 @@
+---
+title: "Mac first run: local models on Apple Silicon"
+description: "Mac first run: MLX, oMLX or llama.cpp, first Qwen3.8 Flash Next query, memory settings and measured speed on Apple Silicon."
+last_verified: 2026-11-05
+---
+
+Apple Silicon is the quietest and most efficient way to run a 128GB
+model. The trade-off is software: no CUDA, so the stack is MLX, Metal
+or llama.cpp.
+
+## What you need
+
+- Apple Silicon Mac with 128 GB unified memory (Mac Studio or MacBook Pro).
+- macOS 13 or newer.
+- Xcode command line tools for some builds.
+
+## Step 1: choose a runtime
+
+| Runtime | Use |
+|---|---|
+| **oMLX / MLX** | best Apple Silicon performance, 4-bit models |
+| **llama.cpp** | GGUF, broad model support |
+| **Ollama / LM Studio** | easiest first query |
+
+## Step 2: first query
+
+With Ollama:
+
+```bash
+ollama run qwen3.8-flash-next:125b-mlx
+```
+
+With MLX, convert or download a 4-bit MLX build and run the model card
+command. Do not mix Linux Arm64 packages with macOS.
+
+## Step 3: memory
+
+128 GB is shared between CPU and GPU. A 4-bit model fits with room for
+128K context; 262K is the ceiling and costs memory. Close memory-hungry
+apps before a long run.
+
+## Speed
+
+On an M5 Max 128 GB, public measurements put Qwen3.8 Flash Next at
+roughly 30 tokens/s decode at 8K context and 24–26 tokens/s at
+32–64K. These are community numbers, not our tests.
+
+For image generation, Z-Image-Turbo takes about 22 s at 1344×768 on an
+M5 Pro.
+
+## Where it falls short
+
+- **No CUDA** — CUDA-only tools and nodes do not run.
+- **Video** is slow; use MLX or accept minutes per clip.
+- **Sustained load** throttles on a laptop.
+- **Memory is not upgradeable.**
+
+## Where next
+
+- [Mac Studio](/devices/mac-studio/) — desktop specs.
+- [MacBook Pro](/devices/macbook-pro/) — portable specs.
+- [macOS recipe](/generation/recipes/macos/) — ComfyUI and Metal.
+- [Model](/models/qwen3-8-flash-next/) — context and limits.
+
+## Sources
+
+- [Apple MLX](https://ml-explore.github.io/mlx/)
+- [oMLX benchmarks](https://omlx.ai/benchmarks/performance/7fpjs406)
+- [llama.cpp](https://github.com/ggml-org/llama.cpp)
+
+*Last verified: 5 November 2026.*

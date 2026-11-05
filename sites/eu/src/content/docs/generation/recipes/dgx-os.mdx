@@ -1,0 +1,136 @@
+---
+title: "ComfyUI on DGX Spark: the DGX OS recipe"
+description: "NVIDIA's official ComfyUI path for DGX Spark: host Python for images, a container for video, GPU verification and ARM64 limits."
+last_verified: 2026-11-05
+---
+
+DGX Spark runs **DGX OS**, an Ubuntu-based system with CUDA and NVIDIA
+drivers. Do not repeat a generic Linux guide: NVIDIA publishes a
+playbook that is the best starting point for this box.
+
+## What you need
+
+- **DGX Spark** with DGX OS. Docker and the NVIDIA Container Toolkit are
+  included.
+- **Python 3.8+**, `pip` and `git` for the host path.
+- **~30 GB free** for images; **~70 GB** for the first video tier and
+  over 200 GB for all tiers.
+- **Hugging Face token** for gated models.
+
+## Two paths
+
+| Path | What it is | For |
+|---|---|---|
+| **Image Gen Quick Start** | Python venv on the host | first image, Z-Image-Turbo |
+| **Video Gen Workflow** | Docker container on NGC PyTorch | FLUX, Wan, HunyuanVideo, ControlNet |
+
+Start with the host path. The container solves dependencies but takes
+more disk and time to build.
+
+## Step 1: verify GPU and Docker
+
+```bash
+nvidia-smi
+```
+
+Docker must see the GPU:
+
+```bash
+docker run --rm --gpus all nvcr.io/nvidia/cuda:13.0.1-devel-ubuntu24.04 nvidia-smi
+```
+
+## Step 2: first image on host Python
+
+Follow the **Image Gen Quick Start** tab in the
+[playbook](https://build.nvidia.com/spark/comfyui). It creates a venv,
+installs PyTorch and ComfyUI and downloads **Z-Image-Turbo**.
+
+Playbook figures: **~30 GB disk**, **~24 GB memory** for Z-Image (12 GB
+diffusion model + 8 GB text encoder before activations).
+
+The UI runs at `http://<spark-ip>:8188`.
+
+## Step 3: video in a container
+
+```bash
+git clone https://github.com/NVIDIA/dgx-spark-playbooks
+cd dgx-spark-playbooks/nvidia/playbook-comfyui
+
+docker build -t comfyui -f assets/Dockerfile .
+```
+
+The build takes about 5–10 minutes. Then download models by tier:
+
+```bash
+bash assets/scripts/download-models.sh 1
+```
+
+Tier 1 has FLUX.1 dev and Wan 2.1 T2V 14B, takes **~70 GB** and peaks
+around **80 GB**. All tiers need over 200 GB and up to 120 GB memory.
+
+Run it:
+
+```bash
+docker run --gpus all -p 8188:8188 \
+  -v "$(pwd)/input:/opt/ComfyUI/input" \
+  -v "$(pwd)/assets/workflows:/opt/ComfyUI/user/default/workflows" \
+  -v "$HOME/.cache/huggingface:/root/.cache/huggingface" \
+  comfyui
+```
+
+## Step 4: verify the GPU
+
+```bash
+curl -I http://localhost:8188
+docker exec comfyui nvidia-smi
+```
+
+If the log says `Device: cuda`, it works.
+
+## Speed
+
+On DGX Spark 128 GB:
+
+| Model | Steps | Time | Memory |
+|---|---|---|---|
+| FLUX.2 klein 4B | 4 | 3.1 s | 18.3 GB |
+| Z-Image-Turbo | 8 | 7.5 s | 24.4 GB |
+| Qwen-Image 2.1 Turbo | 8 | 9.5 s | 31.5 GB |
+
+Sourced measurements, not our tests. RTX Spark has no public Z-Image
+number.
+
+## Limits
+
+- **ARM64.** `onnxruntime-gpu` has no aarch64 wheel, so some
+  preprocessors run on the CPU.
+- **Audio in the container.** The NGC image has a `torchaudio` stub;
+  audio workflows do not run there.
+- **Shared memory.** Flush the buffer cache when memory gets tight.
+- **Port 8188.** ComfyUI has no authentication. Do not expose it to the
+  internet; use an SSH tunnel.
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `permission denied` in Docker | user not in the docker group | add and re-login |
+| Container cannot see the GPU | missing `--gpus all` | add it |
+| `torchaudio` error | NGC stub | do not use audio in the container |
+| Slow, GPU idle | running on CPU | check CUDA in the venv or `nvidia-smi` |
+| Model does not fit | tier too large | lower resolution or frames |
+
+## Where next
+
+- [Linux](/generation/recipes/linux/) — the same principles on a normal box.
+- [Windows](/generation/recipes/windows/) — the RTX Spark path.
+- [Video](/generation/video/) — models and licenses.
+- [DGX Spark](/devices/dgx-spark/) — what the device does with text.
+
+## Sources
+
+- [NVIDIA ComfyUI playbook](https://build.nvidia.com/spark/comfyui)
+- [DGX Spark NGC guide](https://docs.nvidia.com/dgx/dgx-spark/ngc.html)
+- [NVIDIA playbook Dockerfile](https://github.com/NVIDIA/dgx-spark-playbooks/blob/main/nvidia/playbook-comfyui/assets/Dockerfile)
+
+*Last verified: 5 November 2026.*

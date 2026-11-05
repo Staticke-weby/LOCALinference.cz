@@ -1,0 +1,51 @@
+---
+import { getGenerativniModely, type GenerativniModel } from '../lib/data';
+
+interface Props {
+  kategorie: GenerativniModel['kategorie'];
+}
+
+const { kategorie } = Astro.props;
+const modely = getGenerativniModely(kategorie);
+
+const komercni: Record<string, string> = {
+  ano: 'yes',
+  ne: 'no',
+  podminky: 'conditions',
+};
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>License</th>
+        <th>Commercial</th>
+        <th>Requirements</th>
+      </tr>
+    </thead>
+    <tbody>
+      {modely.map((m) => (
+        <tr>
+          <td>
+            <a href={m.zdroj} target="_blank" rel="noopener noreferrer">{m.nazev}</a>
+            <span class="li-pozn"> · {m.vyrobce}</span>
+          </td>
+          <td>{m.licence}</td>
+          <td class:list={{ 'li-komercni-ne': m.komercni === 'ne' }}>{komercni[m.komercni]}</td>
+          <td>{m.naroky}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+  .li-komercni-ne {
+    color: var(--sl-color-red-high);
+  }
+</style>

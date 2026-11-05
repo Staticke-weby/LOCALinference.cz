@@ -1,0 +1,36 @@
+---
+title: "How we read data: sources, dates and ranges"
+description: "How LOCALinference reads public benchmarks: source types, dates, measured versus calculated values and why we publish gaps."
+last_verified: 2026-11-05
+---
+
+We do not run our own benchmarks. Every number comes from a public
+source, with a date and a configuration.
+
+## What we record
+
+- **Source type** — vendor, independent lab or community.
+- **Configuration** — device, model, quantization, engine, context,
+  concurrency.
+- **Type** — measured or calculated.
+- **Confidence** — high, medium or low.
+
+## What we do with disagreements
+
+When two sources differ, we show both and explain the likely cause:
+quantization, engine version, context length, concurrency or cooling.
+We do not pick the best number.
+
+## What we never do
+
+- Invent a number when no source exists.
+- Present a calculation as a measurement.
+- Compare figures measured under different conditions without saying so.
+
+## Where next
+
+- [Methodology](/about/methodology/) — the full method.
+- [What we do not know](/sources/what-we-dont-know/) — open gaps.
+- [Measurements](/sources/measurements/) — the data table.
+
+*Last verified: 5 November 2026.*

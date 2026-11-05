@@ -1,0 +1,37 @@
+---
+title: "Token speed calculator: what to expect"
+description: "Estimate local AI token speed from memory bandwidth and model size, with a table for each 128GB device."
+last_verified: 2026-11-05
+---
+
+This is a rough planning tool, not a benchmark. It uses the roofline:
+
+**tokens/s ≈ bandwidth ÷ active bytes per token × efficiency**
+
+For Qwen3.8 Flash Next at 4-bit, active weights are about **3 GB** per
+token. Real efficiency is typically **50–70%**.
+
+## Estimate by device
+
+| Device | Bandwidth | Ceiling | Planning range (50–70%) |
+|---|---|---|---|
+| DGX Spark | 273 GB/s | ~91 tok/s | ~45–64 tok/s |
+| Strix Halo | 256 GB/s | ~85 tok/s | ~43–60 tok/s |
+| RTX Spark | 300 GB/s | ~100 tok/s | ~50–70 tok/s |
+| Mac Studio | 614 GB/s | ~205 tok/s | ~100–140 tok/s |
+
+## What changes the number
+
+- **Quantization** — fewer bits, less traffic.
+- **Active parameters** — more active parameters, more traffic.
+- **MTP** — can raise decode above the plain roofline.
+- **Context and concurrency** — more KV cache and more streams reduce
+  per-user speed.
+
+## Where next
+
+- [Roofline](/speed/roofline/) — the formula.
+- [Devices](/devices/compare/) — bandwidth.
+- [Model](/models/qwen3-8-flash-next/)
+
+*Last verified: 5 November 2026.*

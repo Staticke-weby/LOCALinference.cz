@@ -266,6 +266,30 @@ export function getZarizeniEn(id: string): ZarizeniEn | undefined {
   return vse.find((z) => z.id === id);
 }
 
+export type SlovnikEn = {
+  group: string;
+  slug: string;
+  title: string;
+  description: string;
+  text: string;
+};
+
+export function getSlovnikEn(): SlovnikEn[] {
+  return load<SlovnikEn[]>('en/slovnik.yaml') ?? [];
+}
+
+export type TemaEn = {
+  slug: string;
+  title: string;
+  description: string;
+  intro: string;
+  points: string[];
+};
+
+export function getTemataEn(): TemaEn[] {
+  return load<TemaEn[]>('en/temata.yaml') ?? [];
+}
+
 export function getDgxSparkOem(): DgxSparkOem[] {
   return (load<DgxSparkOem[]>('dgx-spark-oem.yaml') ?? []).sort(
     (a, b) => a.cena_czk_s_dph - b.cena_czk_s_dph || b.uloziste_gb - a.uloziste_gb,

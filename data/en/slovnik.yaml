@@ -1,0 +1,184 @@
+# English dictionary entries. One entry = one page at /dictionary/<group>/<slug>/.
+- group: performance
+  slug: ttft
+  title: "TTFT: time to first token"
+  description: "TTFT is the wait before the first token appears. It decides how fast a local model feels."
+  text: "TTFT measures the time between sending a prompt and receiving the first token. Long prompts and weak prefill make it worse. A chat can feel slow even when decode is fast."
+- group: performance
+  slug: prefill
+  title: "Prefill: reading the prompt"
+  description: "Prefill is the model reading your prompt before it starts answering. It sets TTFT."
+  text: "Prefill processes the input tokens in parallel and fills the KV cache. It is compute-heavy, so long documents and weak GPUs hurt. Decode speed does not help here."
+- group: performance
+  slug: decode
+  title: "Decode: generating the answer"
+  description: "Decode is the token-by-token generation of the answer. Memory bandwidth sets its ceiling."
+  text: "Decode produces one token per step and is limited by memory bandwidth, not raw compute. That is why a 128GB box with 273 GB/s cannot match a data-centre GPU."
+- group: performance
+  slug: tokens-per-second
+  title: "Tokens per second"
+  description: "Tokens per second measures generation speed. It is not the same as words per second."
+  text: "A token is roughly three quarters of a word in English. A model at 30 tokens/s feels readable; below 10 tokens/s it feels slow. Always compare the same model, quantization and context."
+- group: performance
+  slug: concurrency
+  title: "Concurrency: users at once"
+  description: "Concurrency is how many requests a box serves at the same time without falling apart."
+  text: "A single 128GB box is comfortable for one to four users. More users share the same memory bandwidth, so each stream slows down. Aggregated throughput can rise while per-user speed falls."
+- group: performance
+  slug: parallelism
+  title: "Parallelism: splitting a model"
+  description: "Parallelism splits a model across GPUs. On a single 128GB box it is usually unnecessary."
+  text: "Tensor parallelism splits layers across devices and needs fast interconnects. This site does not cover multi-box pools; models that need them are outside the catalogue."
+- group: performance
+  slug: memory-bandwidth
+  title: "Memory bandwidth"
+  description: "Memory bandwidth in GB/s sets the ceiling for token generation."
+  text: "Each generated token reads the model's weights. The faster the memory, the more tokens per second. DGX Spark has 273 GB/s, Strix Halo 256 GB/s, Mac Studio up to 614 GB/s."
+- group: performance
+  slug: tflops
+  title: "TFLOPS"
+  description: "TFLOPS measures compute. It matters for prefill and training more than for decode."
+  text: "A model can have high TFLOPS and still generate slowly if memory bandwidth is low. For local inference, bandwidth is usually the first number to check."
+
+- group: software
+  slug: cuda
+  title: "CUDA"
+  description: "CUDA is NVIDIA's compute platform. It has the widest tool support for local AI."
+  text: "CUDA works on NVIDIA GPUs and on GB10-based devices such as DGX Spark and RTX Spark. Most inference engines and custom nodes target it first."
+- group: software
+  slug: rocm
+  title: "ROCm"
+  description: "ROCm is AMD's compute platform. It works, but is less mature than CUDA."
+  text: "ROCm supports Strix Halo through gfx1151. Some optimizations are missing and FP8 can be unstable. Budget time for drivers and kernel versions."
+- group: software
+  slug: vllm
+  title: "vLLM"
+  description: "vLLM is a production server for local models with an OpenAI-compatible API."
+  text: "It batches requests, shares KV cache and serves several users. It is the official path for Qwen3.8 Flash Next on DGX Spark. For a single user, llama.cpp is often simpler."
+- group: software
+  slug: llamacpp
+  title: "llama.cpp"
+  description: "llama.cpp is the simplest way to run a GGUF model locally."
+  text: "It runs on CPU, CUDA, Vulkan and Metal. It is a good first step and a solid single-user server. Throughput at high concurrency is lower than vLLM."
+- group: software
+  slug: quantization
+  title: "Quantization"
+  description: "Quantization shrinks model weights to 4 or 8 bits. It saves memory and can speed up inference."
+  text: "A 125B model at 4-bit fits in 128 GB; at 16-bit it does not. Quality loss is usually small but not zero, and some formats are faster on specific hardware."
+- group: software
+  slug: gguf
+  title: "GGUF"
+  description: "GGUF is the file format used by llama.cpp and many local tools."
+  text: "A GGUF file contains weights and metadata. Quantized variants are named Q4_K_M, Q8_0 and similar. It is the most portable format for local inference."
+- group: software
+  slug: huggingface
+  title: "Hugging Face"
+  description: "Hugging Face is where most open models and model cards live."
+  text: "You download weights and read the license there. Gated models need an account and a token. Always check the model card for the exact version."
+- group: software
+  slug: nvfp4
+  title: "NVFP4"
+  description: "NVFP4 is NVIDIA's 4-bit format for Blackwell GPUs."
+  text: "It keeps a 125B model under 128 GB on DGX Spark and runs through vLLM. It is NVIDIA-specific; AMD and Apple use other formats."
+- group: software
+  slug: mtp
+  title: "MTP: multi-token prediction"
+  description: "MTP lets a model propose several tokens per step and verify them."
+  text: "It speeds up decode when acceptance is high. Gains shrink at long context. It needs a draft head or a compatible model build."
+- group: software
+  slug: ollama
+  title: "Ollama"
+  description: "Ollama is the easiest way to run a model locally."
+  text: "One command downloads and serves a model. It is good for a first query and simple apps. For production, vLLM or llama.cpp give more control."
+- group: software
+  slug: vulkan
+  title: "Vulkan"
+  description: "Vulkan is a graphics API used for local inference on AMD and Windows."
+  text: "llama.cpp can use Vulkan on Strix Halo and other AMD GPUs. It is often more stable than ROCm on Windows, but slower on some workloads."
+- group: software
+  slug: wsl2
+  title: "WSL2"
+  description: "WSL2 runs Linux inside Windows. It is useful when a tool has no native Windows build."
+  text: "It gives you a Linux userland without dual boot. GPU access works on NVIDIA, but memory and driver behavior differ from native Linux."
+- group: software
+  slug: rag
+  title: "RAG: retrieval-augmented generation"
+  description: "RAG lets a model answer from your documents instead of its training data."
+  text: "You split documents into chunks, store embeddings and retrieve relevant passages. The model answers with those passages in context. It reduces hallucination but does not eliminate it."
+- group: software
+  slug: vision
+  title: "Vision"
+  description: "Vision means the model can read images as well as text."
+  text: "Qwen3.8 Flash Next accepts images and documents. Quality varies by task: screenshots and charts are easier than dense scans."
+- group: software
+  slug: agentic-tasks
+  title: "Agentic tasks"
+  description: "Agentic tasks let a model call tools and work in steps."
+  text: "The model plans, calls a tool, reads the result and continues. Latency and context matter more than raw benchmark scores. One box can serve a small agent team."
+- group: software
+  slug: diffusion
+  title: "Diffusion"
+  description: "Diffusion learns to remove noise and turns it into an image."
+  text: "Generation starts from noise and denoises in steps. Turbo models need 4–8 steps. Fewer steps means faster output and less detail."
+- group: software
+  slug: lora
+  title: "LoRA"
+  description: "LoRA is a small adapter that changes a model's style or speed."
+  text: "It adds small matrices instead of retraining the whole model. A LoRA can fix a style, a character or reduce steps. It has its own license."
+- group: software
+  slug: pbr
+  title: "PBR"
+  description: "PBR describes 3D materials so they look right under light."
+  text: "It uses base colour, metallic, roughness and normal maps. TRELLIS.2 outputs GLB with PBR textures. Without PBR, a model looks like plastic."
+- group: software
+  slug: tts
+  title: "TTS: text to speech"
+  description: "TTS turns text into spoken audio. RTF says how fast."
+  text: "Small models run on a CPU. Voice cloning needs a reference clip and permission from the speaker. Most licenses ban impersonation."
+- group: software
+  slug: stt
+  title: "STT: speech to text"
+  description: "STT transcribes speech into text. Whisper is the common local model."
+  text: "It is used for subtitles, meeting notes and dubbing. RTF below 1 means faster than real time. Names and noise are the main failure cases."
+- group: software
+  slug: inpainting
+  title: "Inpainting"
+  description: "Inpainting repaints only a marked part of an image."
+  text: "You provide a mask: white means generate, black means keep. It is used for object removal, background replacement and small fixes."
+- group: software
+  slug: upscaling
+  title: "Upscaling"
+  description: "Upscaling increases image resolution. Generative upscaling can invent detail."
+  text: "Classic upscalers add sharpness without new content. Generative ones repaint and may change faces or text. Check the result before print."
+
+- group: memory
+  slug: context
+  title: "Context"
+  description: "Context is how much text a model can keep in view at once."
+  text: "Qwen3.8 Flash Next supports 262K natively and 1M with YaRN. 128K is the recommended operating point. More context costs memory and speed."
+- group: memory
+  slug: kv-cache
+  title: "KV cache"
+  description: "KV cache stores attention state so the model does not reread the whole prompt."
+  text: "It grows with context length and concurrency. Two 262K sessions can use most of a 128GB box. That is why long context and many users compete for memory."
+- group: memory
+  slug: unified-memory
+  title: "Unified memory"
+  description: "Unified memory is one pool shared by CPU and GPU."
+  text: "DGX Spark, RTX Spark, Strix Halo and Apple Silicon use it. A model can use the whole pool, but the system and KV cache share it too."
+- group: memory
+  slug: vram
+  title: "VRAM"
+  description: "VRAM is GPU memory. On 128GB boxes it is shared with the system."
+  text: "A model card that asks for 16 GB VRAM fits a 24GB card. On a unified-memory box the model can use tens of GB, but bandwidth is shared."
+
+- group: operations
+  slug: power-limit
+  title: "Power limit"
+  description: "Power limit caps how much power the chip may draw."
+  text: "A lower limit means less heat and noise, and lower sustained performance. Laptops are limited more than desktops. Check the device page for the configured limit."
+- group: operations
+  slug: throttling
+  title: "Throttling"
+  description: "Throttling is a chip slowing down to stay within temperature or power limits."
+  text: "Long video or agent runs hit it first. The result is lower tokens per second and longer waits. Desktops handle sustained load better than laptops."

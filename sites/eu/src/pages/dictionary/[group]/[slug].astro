@@ -1,0 +1,39 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getSlovnikEn } from '../../../lib/data';
+
+export function getStaticPaths() {
+  const vse = getSlovnikEn();
+  return vse.map((e) => ({ params: { group: e.group, slug: e.slug }, props: { entry: e } }));
+}
+
+const { entry } = Astro.props as {
+  entry: { group: string; slug: string; title: string; description: string; text: string };
+};
+---
+
+<StarlightPage
+  frontmatter={{
+    title: entry.title,
+    description: entry.description,
+    last_verified: new Date('2026-11-05'),
+  }}
+>
+  <p class="li-uvod">{entry.description}</p>
+  <p>{entry.text}</p>
+
+  <h2>Where next</h2>
+  <ul>
+    <li><a href="/dictionary/">Dictionary overview</a></li>
+    <li><a href="/models/qwen3-8-flash-next/">Qwen3.8 Flash Next</a></li>
+    <li><a href="/devices/compare/">Compare 128GB devices</a></li>
+  </ul>
+
+  <p><em>Last verified: 5 November 2026.</em></p>
+</StarlightPage>
+
+<style>
+  .li-uvod {
+    font-size: var(--sl-text-lg);
+  }
+</style>

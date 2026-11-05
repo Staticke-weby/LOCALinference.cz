@@ -1,0 +1,73 @@
+---
+title: "Strix Halo first run: Windows or Linux"
+description: "Strix Halo first run: Windows 11 or Linux, ROCm setup, GPU verification, llama.cpp or vLLM and the first Qwen3.8 Flash Next query."
+last_verified: 2026-11-05
+---
+
+Strix Halo is an AMD APU with 128 GB of unified memory. It is the
+cheapest route to a 128GB box, but the software stack is less mature
+than CUDA.
+
+## What you need
+
+- Strix Halo machine with 128 GB.
+- Windows 11 or a recent Linux with kernel 6.18+.
+- ROCm for GPU acceleration; the CPU fallback is much slower.
+
+## Windows 11
+
+1. Install the AMD Adrenalin driver.
+2. Install the ROCm-compatible PyTorch build for gfx1151.
+3. Verify:
+
+```powershell
+rocminfo
+python -c "import torch; print(torch.cuda.is_available())"
+```
+
+4. Start with llama.cpp or Ollama. vLLM on Windows is a community path,
+   not an official one.
+
+## Linux
+
+1. Set the BIOS dedicated graphics memory to minimum and open GTT.
+2. Install ROCm and verify `gfx1151`.
+3. Install PyTorch from the ROCm index.
+4. Verify with `rocminfo` and `torch.cuda.is_available()`.
+
+```bash
+rocminfo | grep gfx
+python -c "import torch; print(torch.cuda.is_available(), torch.version.hip)"
+```
+
+## First model
+
+Use a GGUF quantization that fits comfortably in 128 GB. Qwen3.8 Flash
+Next at 4-bit is the working point; 128K context is the recommended
+operating context, 262K is the ceiling.
+
+## API
+
+llama.cpp and vLLM expose an OpenAI-compatible API. For remote access,
+use an SSH tunnel rather than exposing the port.
+
+## Where it falls short
+
+- **Prefill** is weaker than on CUDA.
+- **ROCm** is less mature; some optimizations are missing.
+- **FP8** models can crash; use GGUF.
+- **Memory is soldered**; buy the capacity you need.
+
+## Where next
+
+- [Strix Halo](/devices/strix-halo/) — specs and price.
+- [Linux recipe](/generation/recipes/linux/) — ComfyUI with ROCm.
+- [Model](/models/qwen3-8-flash-next/) — context and limits.
+
+## Sources
+
+- [AMD ROCm documentation](https://rocm.docs.amd.com/)
+- [Strix Halo wiki](https://strixhalo.wiki/)
+- [llama.cpp](https://github.com/ggml-org/llama.cpp)
+
+*Last verified: 5 November 2026.*

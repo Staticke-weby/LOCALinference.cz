@@ -1,0 +1,115 @@
+---
+title: "ComfyUI on macOS: Apple Silicon recipe"
+description: "ComfyUI on Apple Silicon: Comfy Desktop, manual Metal install, Draw Things, MLX for video and measured generation times."
+last_verified: 2026-11-05
+---
+
+The Mac is surprisingly good at generation — as long as you stay with
+images and audio. Instead of CUDA it uses **Metal** through PyTorch
+MPS. That means different performance, different libraries and some
+nodes that simply do not run.
+
+## What you need
+
+- **macOS 13 Ventura or newer.**
+- **Apple Silicon M1 or newer** — Comfy Desktop does not support Intel Macs.
+- At least **4.85 GB** for the app, tens of GB for models.
+- **32 GB unified memory or more** recommended; 64 GB is comfortable.
+
+## Step 1: Comfy Desktop
+
+Download the `.dmg` from [comfy.org/download](https://comfy.org/download),
+drag it to Applications and launch it. On first launch macOS may show a
+security warning: allow it in **System Settings → Privacy & Security**.
+
+## Step 2: verify Metal
+
+```bash
+python3 -c "import torch; print(torch.backends.mps.is_available())"
+```
+
+It must print `True`. In the ComfyUI log, look for `Device: mps`.
+
+## Step 3: first image
+
+1. Text-to-image workflow.
+2. **Z-Image-Turbo**, 1024×1024, 8 steps.
+3. Let the first run finish; it loads the model.
+4. Measure the second and third image.
+
+## Manual install
+
+```bash
+conda create -n comfyenv python=3.13
+conda activate comfyenv
+
+git clone https://github.com/Comfy-Org/ComfyUI.git
+cd ComfyUI
+
+conda install pytorch-nightly::pytorch torchvision torchaudio -c pytorch-nightly
+pip install -r requirements.txt
+
+python main.py
+```
+
+ComfyUI documents this `pytorch-nightly` path for Mac ARM. A stable pip
+wheel may lack Metal acceleration.
+
+## What works and what does not
+
+| Task | Status | Note |
+|---|---|---|
+| Images | yes | Z-Image, FLUX, Qwen-Image |
+| Image editing | yes | inpainting and instruction edits |
+| Video | partly | MLX (`mlx-video`) or Draw Things |
+| 3D | yes, minutes | TRELLIS.2 via MPS |
+| Audio | yes | Kokoro, Qwen3-TTS run on CPU too |
+| Custom nodes | limited | CUDA-only nodes do not work |
+
+There is no **SageAttention, FlashAttention or TensorRT** on Mac — they
+are built on CUDA. Workflows that require them run slower or not at all.
+
+## Measured times
+
+| Model | Resolution | Steps | Time |
+|---|---|---|---|
+| Z-Image-Turbo | 1344×768 | 8 | 22 s |
+| FLUX.1 Krea | 1344×768 | — | 85 s |
+| Qwen-Image | 1344×768 | 8 | about 33 s |
+
+One machine, community measurement, not our test. Video and 3D:
+
+| Task | Model and settings | Time |
+|---|---|---|
+| Video | Wan 2.2 T2V A14B, 512×320, 81 frames, 10 steps | 10 min 25 s |
+| Video | Wan 2.2 T2V A14B, 768×512, 81 frames | 36 min 53 s |
+| 3D | TRELLIS.2, 512, 400K vertices | 5 min 13 s |
+
+Video measured on an M5 Max 128 GB via MLX; 3D on an M4 Pro 24 GB via
+MPS.
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `mps.is_available()` is `False` | CPU-only torch | reinstall from conda nightly |
+| Crash while loading | not enough unified memory | smaller quantization, close apps |
+| `CUDA not available` in a node | CUDA-only node | use an alternative |
+| Video will not start | missing CUDA node | `mlx-video` or Draw Things |
+| Very slow | CPU | check `Device: mps` |
+
+## Where next
+
+- [Windows](/generation/recipes/windows/) — the CUDA path.
+- [Linux](/generation/recipes/linux/) — NVIDIA and Strix Halo.
+- [Video](/generation/video/) — what the Mac can and cannot do.
+- [Audio](/generation/audio/) — TTS and voice cloning.
+
+## Sources
+
+- [Comfy Desktop for macOS](https://docs.comfy.org/installation/desktop/macos)
+- [ComfyUI manual install](https://docs.comfy.org/installation/manual_install)
+- [ComfyUI benchmark on M5 Pro](https://github.com/ian902792/ComfyUI-Mac/blob/main/BENCHMARK.md)
+- [mlx-video](https://github.com/Blaizzy/mlx-video)
+
+*Last verified: 5 November 2026.*

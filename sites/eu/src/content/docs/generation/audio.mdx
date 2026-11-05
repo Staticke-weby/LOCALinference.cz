@@ -1,0 +1,59 @@
+---
+title: "Local audio: speech and voice cloning on 128 GB"
+description: "Text-to-speech and voice cloning on 128GB devices: Kokoro, VoxCPM2 and Qwen3-TTS, licenses, ethics and what to expect."
+last_verified: 2026-11-05
+---
+
+import TabulkaGenerativnichEn from '../../../components/TabulkaGenerativnichEn.astro';
+
+Audio is the cheapest part of generative AI. Small models run on a CPU
+and take almost no memory on a 128GB machine. Unlike video or 3D, this
+is seconds, not minutes.
+
+## Models
+
+<TabulkaGenerativnichEn kategorie="audio" />
+
+## What works today
+
+- **Narration** — long text in one voice, audiobooks, podcasts.
+- **Voice cloning** — from a few seconds of reference audio.
+- **Dubbing** — transcription, translation and a new voice.
+- **Voice design** — create a voice from a description, no sample.
+
+## License and ethics
+
+- **Kokoro, VoxCPM2, Qwen3-TTS, Chatterbox, Ming-3.0** — commercial use.
+- **Clone only voices you have permission to use.** Most licenses ban
+  impersonation.
+- Dubbing also involves rights to the original recording.
+
+## Speed
+
+We do not have public TTS measurements on our 128GB devices. The
+VoxCPM2 vendor reports an RTF around **0.3 on an RTX 4090**, which is a
+different device. Smaller models such as Kokoro run on a CPU; text
+length, not the GPU, is the limit.
+
+## Where it falls short
+
+- **Emotion** — the model reads text, it does not act it.
+- **Czech** — depends on the model; some have a noticeable accent.
+- **Long text** — split into paragraphs or intonation drifts.
+- **Names** — manual correction is often needed.
+
+## Where next
+
+- [Translation](/generation/translation/) — dubbing needs translation.
+- [Video](/generation/video/) — picture and voice separately.
+- [TTS](/dictionary/software/tts/) — what RTF means.
+- [STT](/dictionary/software/stt/) — the other direction.
+- [Licensing](/generation/licensing/) — commercial use of voice.
+
+## Sources
+
+- [Kokoro 82M](https://huggingface.co/hexgrad/Kokoro-82M)
+- [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2)
+- [Qwen3-TTS](https://huggingface.co/Qwen/Qwen3-TTS)
+
+*Last verified: 5 November 2026.*

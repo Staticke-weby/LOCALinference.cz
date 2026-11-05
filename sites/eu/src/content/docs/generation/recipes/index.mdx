@@ -1,0 +1,48 @@
+---
+title: "ComfyUI recipes for Windows, macOS, DGX OS and Linux"
+description: "How to run ComfyUI on each platform: Windows, macOS, DGX OS and Linux with NVIDIA or AMD Strix Halo. What works and where the limits are."
+last_verified: 2026-11-05
+---
+
+The same model behaves differently on each platform. This section is
+about the **environment**: what to install, how to verify the GPU and
+what will not work.
+
+## Four platforms, four worlds
+
+| Platform | Install | Acceleration | What works | Limit |
+|---|---|---|---|---|
+| **Windows 11 x64** | Comfy Desktop or manual | CUDA | everything | drivers |
+| **Windows 11 Arm** (RTX Spark) | Comfy Desktop ARM64 | CUDA | images and editing | missing ARM64 packages |
+| **macOS** (Apple Silicon) | Comfy Desktop or manual | Metal | images, editing, audio | no CUDA, video via MLX |
+| **DGX OS** (DGX Spark) | NVIDIA playbook | CUDA | everything | ARM64 and container limits |
+| **Linux x86** (NVIDIA) | manual or container | CUDA | everything | distribution |
+| **Linux** (Strix Halo) | manual or container | ROCm | images, video, 3D | kernel, GTT, FP8 |
+
+## Measured times
+
+| Device | Model | Settings | Time |
+|---|---|---|---|
+| DGX Spark | Z-Image-Turbo | 1024², 8 steps | 7.5 s |
+| DGX Spark | FLUX.2 klein 4B | 1024², 4 steps | 3.1 s |
+| Strix Halo | Z-Image-Turbo | 1024², 8 steps | ~24 s |
+| MacBook Pro M5 Pro | Z-Image-Turbo | 1344×768, 8 steps | 22 s |
+| RTX Spark | FLUX.2 klein 4B | 1024², 20 steps | 17.75 s |
+
+Sourced measurements, not our tests. Conditions differ.
+
+## Platform recipes
+
+- [Windows](/generation/recipes/windows/) — x64 and Arm, Comfy Desktop and manual CUDA.
+- [macOS](/generation/recipes/macos/) — Apple Silicon, Metal and MLX.
+- [DGX OS](/generation/recipes/dgx-os/) — official NVIDIA playbook.
+- [Linux](/generation/recipes/linux/) — NVIDIA CUDA and AMD Strix Halo ROCm.
+
+## Sources
+
+- [ComfyUI manual install](https://docs.comfy.org/installation/manual_install)
+- [Comfy Desktop for Windows](https://docs.comfy.org/installation/desktop/windows)
+- [Comfy Desktop for macOS](https://docs.comfy.org/installation/desktop/macos)
+- [NVIDIA ComfyUI playbook](https://build.nvidia.com/spark/comfyui)
+
+*Last verified: 5 November 2026.*

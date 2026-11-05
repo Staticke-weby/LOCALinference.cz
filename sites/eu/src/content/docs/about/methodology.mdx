@@ -1,0 +1,46 @@
+---
+title: "Methodology: how we read local AI data"
+description: "Our method: public sources with dates, measured versus calculated values, ranges, confidence and roofline checks."
+last_verified: 2026-11-05
+---
+
+We interpret public data. We do not run a lab. This page explains the
+rules behind every number.
+
+## Sources and dates
+
+Every figure has a source and a date. Vendor figures, independent labs
+and community reports are labelled. A number without a source does not
+appear.
+
+## Measured and calculated
+
+- **Measured** — taken from a source, with device, model, quantization,
+  engine, context and concurrency.
+- **Calculated** — derived from documented inputs, with the formula
+  shown. Never presented as a measurement.
+
+## Ranges and disagreement
+
+When sources disagree, we show the range and explain the likely cause.
+We do not choose the best number.
+
+## Roofline check
+
+If a measurement exceeds the theoretical memory-bandwidth ceiling, we
+mark it as suspicious or explain what made it faster (MTP, NPU, a
+different quantization).
+
+## Confidence
+
+- **High** — two or more independent sources agree.
+- **Medium** — one independent source or several community reports.
+- **Low** — a single community or vendor figure.
+
+## Where next
+
+- [How we write](/about/how-we-write/) — editorial rules.
+- [What we do not know](/sources/what-we-dont-know/) — gaps.
+- [Measurements](/sources/measurements/) — the data.
+
+*Last verified: 5 November 2026.*

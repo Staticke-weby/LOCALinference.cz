@@ -1,0 +1,61 @@
+---
+title: "Local AI for images: photorealism and posters"
+description: "Which models generate photoreal images and posters locally, how fast they run on 128GB devices, and which licenses allow commercial use."
+last_verified: 2026-11-05
+---
+
+import TabulkaGenerativnichEn from '../../../components/TabulkaGenerativnichEn.astro';
+
+Images are the most mature part of generative AI. On a 128GB machine
+you get a photoreal scene in seconds to tens of seconds and a poster
+with text in a few tens of seconds.
+
+## Models
+
+<TabulkaGenerativnichEn kategorie="obrazky" />
+
+## Measured times
+
+| Device | Model | Settings | Time |
+|---|---|---|---|
+| DGX Spark | Z-Image-Turbo | 1024², 8 steps | 7.5 s |
+| DGX Spark | FLUX.2 klein 4B | 1024², 4 steps | 3.1 s |
+| RTX Spark | FLUX.2 klein 4B | 1024², 20 steps | 17.75 s |
+| Strix Halo | Z-Image-Turbo | 1024², 8 steps | ~24 s |
+| MacBook Pro M5 Pro | Z-Image-Turbo | 1344×768, 8 steps | 22 s |
+
+These are **sourced measurements**, not our tests. Conditions differ,
+so the numbers are not a direct comparison.
+
+## License first
+
+- **Z-Image-Turbo and FLUX.2 klein** — Apache-2.0, commercial use.
+- **Qwen-Image 2.1** — Qwen Research, **non-commercial**.
+- **FLUX.2 dev** — non-commercial weights.
+- **HunyuanImage 3.0** — license excludes the EU; not usable in Czechia.
+
+See [licensing](/generation/licensing/) for details.
+
+## Where it falls short
+
+- **Text in images** — short signs yes, small print no.
+- **Hands and anatomy** — still fail sometimes.
+- **Character consistency** — falls apart without references.
+- **Czech text in images** — weaker than English.
+
+## Where next
+
+- [Image editing](/generation/image-editing/) — when generating is not enough.
+- [Game assets](/generation/game-assets/) — sprites and UI.
+- [Video](/generation/video/) — when an image should move.
+- [Recipes](/generation/recipes/) — run ComfyUI on your platform.
+- [Dictionary](/dictionary/software/diffusion/) — diffusion, LoRA, quantization.
+
+## Sources
+
+- [LocalAgentBoard — DGX Spark](https://localagentboard.com/images)
+- [Principled Technologies — RTX Spark vs M5 Pro](https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/)
+- [Z-Image-Turbo](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+- [FLUX.2 klein 4B](https://huggingface.co/black-forest-labs/FLUX.2-klein-4B)
+
+*Last verified: 5 November 2026.*

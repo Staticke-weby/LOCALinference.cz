@@ -1,0 +1,108 @@
+---
+title: "ComfyUI on Windows: local generation recipe"
+description: "Install ComfyUI on Windows 11 x64 and Arm: Comfy Desktop, manual CUDA install, GPU verification and the first image. What works on RTX Spark."
+last_verified: 2026-11-05
+---
+
+Windows is the most common route to local generation. On a normal
+NVIDIA PC it takes minutes. On **RTX Spark** with Windows on Arm it is
+different: the same program, but some packages exist only for Arm64.
+
+## What you need
+
+- **Windows 10 or newer** (Windows 11 Arm for RTX Spark).
+- **NVIDIA driver** and, for the manual route, the CUDA toolkit.
+- **Comfy Desktop** takes about 4.85 GB per installation.
+- **Disk for models** — Z-Image with its text encoder is around 20 GB.
+
+## Step 1: Comfy Desktop
+
+Download from [comfy.org/download](https://comfy.org/download) and run
+the installer.
+
+1. Choose a **local install**, not cloud.
+2. On **RTX Spark**, select **NVIDIA ARM64**.
+3. Open the UI in your browser.
+
+## Step 2: verify the GPU
+
+```powershell
+nvidia-smi
+```
+
+You must see the card and driver. In the ComfyUI log, look for
+`Device: cuda`. If it says `cpu`, PyTorch is running without CUDA.
+
+## Step 3: first image
+
+1. Load the basic **text to image** workflow.
+2. Model: **Z-Image-Turbo** (Apache-2.0).
+3. 1024×1024, **8 steps**.
+4. Try 4 steps afterwards; turbo models often lose little.
+
+The first run is slower: the model loads and kernels compile. Measure
+the second and third image.
+
+## Manual install (x64)
+
+```powershell
+conda create -n comfyenv python=3.13
+conda activate comfyenv
+
+git clone https://github.com/Comfy-Org/ComfyUI.git
+cd ComfyUI
+
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu130
+pip install -r requirements.txt
+
+python main.py
+```
+
+Python 3.13 is the safe choice today; 3.14 may lack wheels. The UI is
+at `http://127.0.0.1:8188`.
+
+## What works and what does not
+
+| Task | x64 with NVIDIA | RTX Spark (Arm) |
+|---|---|---|
+| Images | yes | yes |
+| Image editing | yes | yes |
+| Video | yes, slow | depends on nodes |
+| 3D | yes | depends on nodes |
+| Audio | yes | yes via Python |
+| Custom nodes | most | only with Arm64 wheels |
+
+On RTX Spark, **cryptography, grpcio, PyArrow, tiktoken and OpenCV**
+may lack Arm64 wheels. ComfyUI-Manager then fails to install a node.
+
+## Speed
+
+We have no public Z-Image number for RTX Spark. FLUX.2 klein runs at
+**17.75 s** for 1024² at 20 steps. On DGX Spark, Z-Image does 1024² in
+7.5 s at 8 steps.
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `Torch not compiled with CUDA` | CPU wheel | reinstall torch from the CUDA index |
+| `no kernel image is available` | wrong architecture | update driver and torch |
+| Node will not install on Arm | no Arm64 wheel | find an Arm64 build or skip the node |
+| Out of memory after a few images | shared memory and cache | lower resolution, close apps |
+| Very slow generation | CPU | check `Device: cuda` in the log |
+
+## Where next
+
+- [macOS](/generation/recipes/macos/) — no CUDA.
+- [Linux](/generation/recipes/linux/) — NVIDIA and Strix Halo.
+- [DGX OS](/generation/recipes/dgx-os/) — the NVIDIA path.
+- [Images](/generation/images/) — models and licenses.
+
+## Sources
+
+- [Comfy Desktop for Windows](https://docs.comfy.org/installation/desktop/windows)
+- [ComfyUI manual install](https://docs.comfy.org/installation/manual_install)
+- [NVIDIA RTX Spark compatibility](https://nvidia.custhelp.com/app/answers/detail/a_id/5931/)
+- [NVIDIA RTX Spark development](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976)
+
+*Last verified: 5 November 2026.*

@@ -1,0 +1,20 @@
+---
+import { getTemataEn } from '../lib/data';
+
+const temata = getTemataEn();
+---
+
+<ul>
+  {temata.map((t) => (
+    <li>
+      <a href={`/topics/${t.slug}/`}>{t.title}</a>
+      <span class="li-pozn"> — {t.description}</span>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .li-pozn {
+    color: var(--sl-color-gray-3);
+  }
+</style>

@@ -1,0 +1,146 @@
+---
+title: "ComfyUI on Linux: NVIDIA and Strix Halo recipes"
+description: "Install ComfyUI on Linux with CUDA or ROCm: NVIDIA setup, AMD Strix Halo memory tuning, GPU verification and measured times."
+last_verified: 2026-11-05
+---
+
+Linux is the most flexible platform — and the most “do it yourself”.
+There is no single recommended path. What matters is whether you have
+an **NVIDIA card with CUDA** or **AMD Strix Halo with ROCm**.
+
+## Two branches
+
+| | NVIDIA | AMD Strix Halo |
+|---|---|---|
+| Backend | CUDA | ROCm (gfx1151) |
+| Install | pip from the CUDA index | ROCm + special wheels |
+| Difficulty | low | high |
+| Risk | small | kernel, GTT, FP8 |
+
+## NVIDIA: the classic path
+
+```bash
+conda create -n comfyenv python=3.13
+conda activate comfyenv
+
+git clone https://github.com/Comfy-Org/ComfyUI.git
+cd ComfyUI
+
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu130
+pip install -r requirements.txt
+
+python main.py
+```
+
+Verify:
+
+```bash
+nvidia-smi
+python -c "import torch; print(torch.cuda.is_available())"
+```
+
+It must print `True`. The log should say `Device: cuda`.
+
+## Strix Halo: ROCm and memory
+
+Strix Halo is an APU with unified memory. The GPU sees system RAM only
+when the system allows it. Without tuning, ComfyUI behaves as if it has
+little VRAM — or crashes.
+
+### What you need
+
+- **Ubuntu 25.10/26.04** or **Fedora 43** with kernel **6.18.4+**.
+- **ROCm** and a verified `gfx1151`.
+- Patience: more breaks here than with CUDA.
+
+### Step 1: memory
+
+In BIOS, set **dedicated graphics memory to minimum** and open **GTT**
+(shared memory) through kernel parameters. For a 128GB machine,
+community guides use around **110 GB GTT** and leave the rest to the
+system. Reboot and check:
+
+```bash
+rocminfo | grep gfx
+```
+
+You must see `gfx1151`.
+
+### Step 2: PyTorch
+
+ComfyUI documents Linux ROCm 7.2:
+
+```bash
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm7.2
+```
+
+For gfx1151, TheRock builds with explicit support are often used. If
+the official wheel does not see the GPU, find the current `gfx1151`
+index.
+
+Verify:
+
+```bash
+python -c "import torch; print(torch.cuda.is_available(), torch.version.hip)"
+```
+
+### Step 3: run ComfyUI
+
+Community guides for Strix Halo recommend disabling mmap and cache:
+
+```bash
+python main.py --disable-mmap --cache-none --bf16-vae --gpu-only
+```
+
+These are a starting point, not universal flags.
+
+## Measured times
+
+| Task | Model and settings | Time |
+|---|---|---|
+| Image | Z-Image-Turbo, 1024², 8 steps | ~24 s |
+| Video | Wan 2.2 T2V A14B, 720p, 41 frames, 4 steps | ~33 min |
+| Video | LTX2 T2V, 720p, 121 frames | ~10 min |
+| Video | HunyuanVideo 1.5, 720p, 61 frames | ~15.5 min |
+| 3D | TRELLIS.2, 512 | 116 s |
+| 3D | TRELLIS.2, 1024 | 399 s |
+
+Video is a cold run on Linux with ComfyUI; 3D is Windows with ROCm,
+including texture and post-processing.
+
+## What works
+
+| Task | Status | Note |
+|---|---|---|
+| Images | yes | Z-Image, FLUX, Qwen-Image |
+| Image editing | yes | including inpainting |
+| Video | yes, slower | Wan 2.2, HunyuanVideo |
+| 3D | yes | TRELLIS.2, Hunyuan3D |
+| Audio | yes | TTS runs on CPU too |
+| FP8 models | problematic | Qwen-Image FP8 crashes; use GGUF |
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `rocminfo` does not see gfx1151 | old kernel/firmware | update kernel and linux-firmware |
+| `torch.cuda.is_available()` is `False` | CPU wheel | reinstall the ROCm build |
+| ComfyUI crashes on load | GTT or FP8 | raise GTT, use GGUF |
+| Second image fails | heat and cache | pause, `--cache-none` |
+| Very slow | CPU | check HIP in the log |
+
+## Where next
+
+- [DGX OS](/generation/recipes/dgx-os/) — the NVIDIA official path.
+- [Windows](/generation/recipes/windows/) — if you do not want dual boot.
+- [Strix Halo](/devices/strix-halo/) — what the device does with text.
+- [Video](/generation/video/) — models and licenses.
+
+## Sources
+
+- [ComfyUI manual install (ROCm)](https://docs.comfy.org/installation/manual_install)
+- [Strix Halo ComfyUI and Z-Image (GPD)](https://www.gpd.hk/newsinfo/3222619.html)
+- [Xalcon — ComfyUI on Strix Halo](https://github.com/Xalcon/comfyui-strix-halo)
+- [kyuz0 — Strix Halo toolboxes](https://github.com/kyuz0/amd-strix-halo-comfyui-toolboxes)
+
+*Last verified: 5 November 2026.*

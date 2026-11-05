@@ -1,0 +1,45 @@
+---
+title: "FAQ: local AI on 128 GB"
+description: "Answers to common questions about local AI on 128GB devices: 64 GB, device choice, speed, Czech, licenses and operation."
+last_verified: 2026-11-05
+---
+
+## Is 64 GB enough?
+
+No. Qwen3.8 Flash Next needs about 100 GB for weights at 4-bit, plus
+KV cache. 64 GB is not enough for usable quality.
+
+## Can I use my own PC or a whitebox?
+
+This site covers **turnkey devices with 128 GB or more**. Whiteboxes,
+racks and 24GB graphics cards are outside the catalogue: the model does
+not fit on one card.
+
+## Which device is cheapest?
+
+Strix Halo is the cheapest route to 128 GB. See [devices](/devices/).
+Prices are US list prices, excluding tax and shipping.
+
+## Is it as fast as ChatGPT?
+
+No. A local 128GB box is a desk-side machine. Decode is tens of tokens
+per second; cloud APIs are faster and shared.
+
+## Does Qwen3.8 Flash Next speak Czech?
+
+It is multilingual, but we do not have public Czech benchmarks. Do not
+assume English-level quality for legal or medical text.
+
+## Can I use outputs commercially?
+
+It depends on the model license. Z-Image, FLUX.2 klein, Wan 2.2 and
+TRELLIS.2 are safe; Qwen Research and Tencent Hunyuan are not. See
+[licensing](/generation/licensing/).
+
+## Where next
+
+- [What is local AI](/getting-started/what-is-local-ai/)
+- [Devices](/devices/)
+- [Licensing](/generation/licensing/)
+
+*Last verified: 5 November 2026.*

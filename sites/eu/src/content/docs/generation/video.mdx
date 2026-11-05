@@ -1,0 +1,62 @@
+---
+title: "Local video generation: Wan, HunyuanVideo and LTX"
+description: "Which models generate video locally, how long clips take on 128GB devices, and which licenses allow commercial use in the EU."
+last_verified: 2026-11-05
+---
+
+import TabulkaGenerativnichEn from '../../../components/TabulkaGenerativnichEn.astro';
+
+Video is the heaviest workload. Expect **minutes per clip**, not
+seconds. A 128GB machine can do it, but it is batch work, not
+interactive play.
+
+## Models
+
+<TabulkaGenerativnichEn kategorie="video" />
+
+## Measured times
+
+| Device | Model and settings | Time |
+|---|---|---|
+| Strix Halo | Wan 2.2 T2V A14B, 720p, 41 frames, 4 steps | ~33 min |
+| Strix Halo | LTX2 T2V, 720p, 121 frames | ~10 min |
+| Strix Halo | HunyuanVideo 1.5, 720p, 61 frames | ~15.5 min |
+| RTX Spark | LTX-2.3 T2V 22B, 720p, 121 frames, NVFP4 | 97.6 s |
+| MacBook Pro M5 Max | Wan 2.2 T2V A14B Q4, 512×320, 81 frames | 10 min 25 s |
+
+Sourced measurements, not our tests. Resolutions and step counts differ.
+
+## License warning
+
+- **Wan 2.2** — Apache-2.0, commercial use.
+- **LTX-2.5** — free under $10M annual revenue.
+- **HunyuanVideo 1.5** — license excludes the EU; not usable in Czechia.
+
+## Clip length
+
+- **Five seconds** is the standard working clip.
+- Longer videos are assembled from several shots, not one run.
+- Sound is handled by LTX-2.5 and some other models; elsewhere audio is
+  a separate step.
+
+## Where it falls short
+
+- **Character consistency** between shots.
+- **Motion accuracy** — hands and objects fall apart.
+- **Time** — a five-second clip can take minutes.
+- **Heat** — long runs hit [throttling](/dictionary/operations/throttling/).
+
+## Where next
+
+- [Image to video](/generation/image-to-video/) — a clip from a photo.
+- [Video editing](/generation/video-editing/) — rework a shot.
+- [Audio](/generation/audio/) — dubbing and sound separately.
+- [Recipes](/generation/recipes/) — ComfyUI on your platform.
+
+## Sources
+
+- [kyuz0 — Strix Halo ComfyUI benchmarks](https://kyuz0.github.io/amd-strix-halo-comfyui-toolboxes/)
+- [Principled Technologies — RTX Spark vs M5 Pro](https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/)
+- [Wan 2.2](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B)
+
+*Last verified: 5 November 2026.*

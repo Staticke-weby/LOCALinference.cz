@@ -81,7 +81,11 @@ export default defineConfig({
           label: 'Start here',
           items: [
             { label: 'Home', link: '/' },
-            { label: 'About this site', link: '/about/' },
+            { label: 'What is local AI', link: '/getting-started/what-is-local-ai/' },
+            { label: 'How it works', link: '/getting-started/how-it-works/' },
+            { label: 'How we read data', link: '/getting-started/how-we-read-data/' },
+            { label: 'Environment', link: '/getting-started/environment/' },
+            { label: 'FAQ', link: '/getting-started/faq/' },
           ],
         },
         {
@@ -104,6 +108,92 @@ export default defineConfig({
           label: 'Model',
           items: [
             { label: 'Qwen3.8 Flash Next', link: '/models/qwen3-8-flash-next/' },
+            { label: 'Why MoE', link: '/models/why-moe/' },
+          ],
+        },
+        {
+          label: 'Generation',
+          items: [
+            { label: 'Overview', link: '/generation/' },
+            { label: 'Images', link: '/generation/images/' },
+            { label: 'Image editing', link: '/generation/image-editing/' },
+            { label: 'Video', link: '/generation/video/' },
+            { label: 'Video editing', link: '/generation/video-editing/' },
+            { label: 'Image to video', link: '/generation/image-to-video/' },
+            { label: 'Audio', link: '/generation/audio/' },
+            { label: 'Translation', link: '/generation/translation/' },
+            { label: '3D', link: '/generation/3d/' },
+            { label: 'Game assets', link: '/generation/game-assets/' },
+            { label: 'Licensing', link: '/generation/licensing/' },
+            {
+              label: 'Recipes',
+              items: [
+                { label: 'Overview', link: '/generation/recipes/' },
+                { label: 'Windows', link: '/generation/recipes/windows/' },
+                { label: 'macOS', link: '/generation/recipes/macos/' },
+                { label: 'DGX OS', link: '/generation/recipes/dgx-os/' },
+                { label: 'Linux', link: '/generation/recipes/linux/' },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Guides',
+          items: [
+            { label: 'Overview', link: '/guides/' },
+            { label: 'DGX Spark', link: '/guides/dgx-spark/' },
+            { label: 'Strix Halo', link: '/guides/strix-halo/' },
+            { label: 'RTX Spark', link: '/guides/rtx-spark/' },
+            { label: 'Mac', link: '/guides/mac/' },
+          ],
+        },
+        {
+          label: 'Choosing',
+          items: [
+            { label: 'Budget', link: '/choosing/budget/' },
+            { label: 'Desktop or laptop', link: '/choosing/desktop-vs-laptop/' },
+            { label: 'How many users', link: '/choosing/how-many-users/' },
+            { label: 'Safe choice', link: '/choosing/safe-choice/' },
+          ],
+        },
+        {
+          label: 'Dictionary',
+          items: [{ label: 'Overview', link: '/dictionary/' }],
+        },
+        {
+          label: 'Topics',
+          items: [{ label: 'Overview', link: '/topics/' }],
+        },
+        {
+          label: 'Speed',
+          items: [
+            { label: 'Roofline', link: '/speed/roofline/' },
+            { label: 'Calculator', link: '/speed/calculator/' },
+          ],
+        },
+        {
+          label: 'Sources',
+          items: [
+            { label: 'Sources', link: '/sources/sources/' },
+            { label: 'Measurements', link: '/sources/measurements/' },
+            { label: 'What we do not know', link: '/sources/what-we-dont-know/' },
+            { label: 'Changelog', link: '/sources/changelog/' },
+          ],
+        },
+        {
+          label: 'About',
+          items: [
+            { label: 'About', link: '/about/' },
+            { label: 'Methodology', link: '/about/methodology/' },
+            { label: 'How we write', link: '/about/how-we-write/' },
+            { label: 'Legal', link: '/about/legal/' },
+          ],
+        },
+        {
+          label: 'Data',
+          items: [
+            { label: 'Overview', link: '/data/' },
+            { label: 'Qwen3.8 on Strix Halo', link: '/data/qwen3-8-flash-next-strix-halo/' },
           ],
         },
       ],
