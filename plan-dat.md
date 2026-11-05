@@ -1,71 +1,55 @@
-# Plán hledání dat a podkladů
+# Registr mezer: co hledat a v jakém pořadí
 
-*Živý seznam toho, co na webu chybí, kde to hledat a kdy to bude hotové.
-Obor se rychle vyvíjí, takže se seznam průběžně doplňuje.*
+*Postup pro doplňování dat. Samotný seznam mezer je v
+[`data/chybi.yaml`](data/chybi.yaml); přehled se generuje do
+[`chybi.md`](chybi.md). Stav k 5. 11. 2026.*
 
-## Jak to používat
+## Kde co je
 
-- **Zařízení pod 128 GB nezařazujeme.** Qwen3.8 Flash Next je minimum
-  a na menší stroj se nevejde v použitelné kvalitě.
-- **P0** — blokuje důvěryhodné tvrzení nebo doporučení. Řešit první.
+| Soubor | Co obsahuje |
+|---|---|
+| `data/chybi.yaml` | **Jediný zdroj pravdy**: co chybí, kde, proč, kde hledat, priorita, stav a dávka |
+| `chybi.md` | Vygenerovaný přehled pro člověka; needituje se ručně |
+| `data/temata.yaml` | Témata a jejich `chybi` — zadání pro obsah, ne pro data |
+| `data/zmeny.yaml` | Co se už změnilo |
+| `/zdroje/co-nevime/` | Veřejný výběr mezer, ne interní backlog |
+
+## Jak se to používá
+
+- **Dávka** je téma, které se řeší najednou (např. „Generování:
+  rychlosti a licence“). Uvnitř dávky se jde od **P0** k **P2**.
+- **P0** — blokuje důvěryhodné tvrzení nebo doporučení.
 - **P1** — zlepší kvalitu, ale stránka funguje i bez toho.
-- **P2** — průběžné sledování a údržba.
-- Každá položka má **ID**, **co hledáme**, **proč**, **kde** a **stav**.
-- Po nalezení: zapsat do `data/*.yaml`, přidat zdroj do `data/zdroje.yaml`,
-  zapsat změnu do `data/zmeny.yaml`, aktualizovat `overeno` a odstranit
-  `[DOPLNIT]` z textu.
-- Když se objeví nový model nebo zařízení, založit novou položku a projít
-  checklist na konci.
+- **P2** — průběžná údržba a sledování.
+- **Stav**: `otevreno` → `hleda-se` → `hotovo`; `ceka-na-vas` znamená,
+  že je potřeba rozhodnutí provozovatele; `prubezne` je opakovaná kontrola.
 
-## P0 — chybí a brzdí závěry
+## Příkazy
 
-| ID | Co hledáme | Proč | Kde hledat | Stav |
-|---|---|---|---|---|
-| D01 | RTX Spark mini: první veřejné měření Qwen3.8 FN (TTFT, prefill, decode, 128k) | stránka nemá žádné číslo | NVIDIA forum, llamaperf, Reddit, GitHub benchmarky | `[DOPLNIT]` |
-| D02 | DGX Spark a Strix Halo: TTFT a prefill na jednotném promptu | reporty měří prefill různě | madeye, llamaperf, SMF, SparkLab, GitHub | `[DOPLNIT]` |
-| D03 | Souběžnost 4+ na všech zařízeních: agregát a tok/s na stream | většina reportů je single-stream | vLLM/SGLang benchmarky, fóra, InferenceX | `[DOPLNIT]` |
-| D04 | 128k a 262k kontext: rychlost i kvalita pro Qwen3.8 | maximum není provozní bod | llamaperf, MRCR/needle testy, komunitní reporty | `[DOPLNIT]` |
-| D05 | Qwen3.8: podložené doporučení provozního kontextu | `doporuceny: null` | Qwen model card, vLLM recipe, nezávislé testy | `[DOPLNIT]` |
-| D06 | Kvantizace u 4 hipfire měření na Strix Halu | bez kvantizace nelze číslo srovnat | llamaperf detail reportu | `[DOPLNIT]` |
+```bash
+npm run chybi          # přehled podle dávek a stavu
+npm run chybi:zapis    # přepíše chybi.md
+npm run check:chybi    # validace registru; spadne na neevidovaný [DOPLNIT]
+```
 
-## P1 — kvalita a použitelnost
+`npm run check` teď registr kontroluje taky. Když někdo přidá do
+článku `[DOPLNIT]` a nezaloží položku, build se zastaví. To je záměr:
+seznam mezer nemá tiše růst.
 
-| ID | Co hledáme | Proč | Kde hledat | Stav |
-|---|---|---|---|---|
-| D10 | České testy: shrnutí, extrakce, e-mail, kód, screenshot | anglické benchmarky nestačí | vlastní zadání, komunitní testy, OpenWork zkušenosti | `[DOPLNIT]` |
-| D11 | Vision testy: dokumenty, OCR, tabulky, screenshoty | vision je výchozí, kvalita se liší | model cards, komunitní reporty, Reddit, GitHub | `[DOPLNIT]` |
-| D12 | Hluk, příkon a teploty v zátěži | rozhoduje o použití v kanceláři | recenze, fóra, měření uživatelů | `[DOPLNIT]` |
-| D13 | Tool calling a agentní úlohy | agenti jsou hlavní use case | model cards, benchmarky, komunitní testy | `[DOPLNIT]` |
+## Postup u jedné položky
 
-## P1 — ceny a dostupnost
+1. Otevřít `data/chybi.yaml`, najít ID a přečíst `co_chybi` a `hledat`.
+2. Dohledat veřejný zdroj. Vlastní měření neděláme.
+3. Zapsat hodnotu do `data/*.yaml` včetně `zdroj`, `overeno`, `typ`
+   a `duveryhodnost`.
+4. Upravit text stránky a odstranit `[DOPLNIT]`.
+5. Přidat zdroj do `data/zdroje.yaml`, pokud v něm ještě není.
+6. Zapsat změnu do `data/zmeny.yaml`.
+7. V registru přepnout `stav: hotovo` a doplnit `zdroj` a `overeno`.
+8. Spustit `npm run chybi:zapis`, `npm run check` a build.
 
-| ID | Co hledáme | Proč | Kde hledat | Stav |
-|---|---|---|---|---|
-| C01 | České ceny všech 128GB konfigurací | US listovka není česká cena | Alza, CZC, TS Bohemia, Mironet, OEM | průběžně |
-| C02 | Ověřit Alza snapshot ručně | Alza blokuje roboty (403) | Alza podle objednacího kódu | průběžně |
-| C03 | RTX Spark notebook 128: všechny OEM ceny | ceny se liší podle OEM | Microsoft, ASUS, HP, Lenovo, MSI, Dell | průběžně |
-| C06 | Kurzy ČNB a ECB | přepočet cen | ČNB, ECB | denně |
-
-## P2 — nové modely a zařízení
-
-| ID | Co hledáme | Proč | Kde hledat | Stav |
-|---|---|---|---|---|
-| N01 | Nové verze Qwen3.8 Flash Next (model card, blog, licence) | jediný model katalogu | qwen.ai/blog, HF Qwen | průběžně |
-| N02 | Nové kvantizace Qwen3.8 FN (NVFP4, GGUF, MLX, QAT) | mění paměť a rychlost | HF, Unsloth, Ollama | průběžně |
-| N03 | Nová podpora v runtime (vLLM, llama.cpp, SGLang, Ollama) | mění čísla i dostupnost | GitHub releases, docs | průběžně |
-| N04 | Nová zařízení s 128GB+ unified pamětí | rozšiřuje katalog | NVIDIA, AMD, OEM, Alza | průběžně |
-| N05 | Software okolo modelu (MTP, QSA, mmproj, tool parsery) | kvalita a rychlost provozu | vLLM recipes, llama.cpp, HF | průběžně |
-
-## P2 — provoz a zdroje
-
-| ID | Co hledáme | Proč | Kde hledat | Stav |
-|---|---|---|---|---|
-| S01 | Nové zdroje a změny model cardů | hlídač má pokrýt klíčové zdroje | RSS, GitHub releases, HF, HTML | týdně |
-| S02 | Link rot a změny URL | mrtvé odkazy snižují důvěru | `npm run check:zdroje` | týdně |
-| S03 | Alza a další prodejce s 403 | ruční kontrola | `kontrola: manual` | týdně |
-| S04 | Changelog a `overeno` | každá změna má datum | `data/zmeny.yaml` | průběžně |
-| S05 | Kontaktní e-mail provozovatele | chybí v právních informacích | ESHOpino | `[DOPLNIT]` |
-| S06 | Brand, GitHub organizace, analytics | blokuje publikaci | rozhodnutí provozovatele | `[DOPLNIT]` |
+Když se zdroj nenajde, položka zůstane `hleda-se` a v textu zůstane
+`[DOPLNIT]`. Nikdy se nedosazuje odhad.
 
 ## Checklist pro nový model
 
@@ -97,7 +81,8 @@ Obor se rychle vyvíjí, takže se seznam průběžně doplňuje.*
 - Text na stránce ji používá a nemá `[DOPLNIT]`.
 - Změna je v `data/zmeny.yaml`.
 - Zdroj je v `data/zdroje.yaml` a `npm run check:zdroje` projde.
-- `npm run check` a `npm run build` projdou bez varování.
+- `npm run check` a build projdou bez varování.
+- V registru je `stav: hotovo`.
 
 ## Kudy dál
 

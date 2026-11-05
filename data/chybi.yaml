@@ -1,0 +1,686 @@
+# Registr mezer: co na webu chybí, kde to hledat a v jaké dávce to řešit.
+# `stav`: otevreno | hleda-se | ceka-na-vas | prubezne | hotovo
+# `priorita`: P0 (blokuje tvrzení) | P1 (kvalita) | P2 (údržba)
+# `kde`: cesty stránek bez lomítek na začátku a bez přípony.
+# Kontrola: `npm run chybi`, zápis přehledu: `npm run chybi:zapis`.
+
+davky:
+  - id: 1
+    nazev: "Generování: rychlosti, licence a slovník"
+    cil: "Doplnit čísla, která na stránkách generování chybí, a uzavřít licenční otázky."
+  - id: 2
+    nazev: "Katalogová data Qwen3.8"
+    cil: "TTFT, prefill, souběžnost a dlouhý kontext na všech zařízeních."
+  - id: 3
+    nazev: "Kvalita, čeština a provoz"
+    cil: "Dosadit české testy, vision, tool calling a měření hluku."
+  - id: 4
+    nazev: "Ceny a dostupnost"
+    cil: "Aktuální české ceny všech konfigurací a kurzy."
+  - id: 5
+    nazev: "Obsah a propojení"
+    cil: "Stránky, které na webu chybí, a odkazy mezi nimi."
+  - id: 6
+    nazev: "Infrastruktura a publikace"
+    cil: "Doména, tokeny a věci, které čekají na provozovatele."
+  - id: 7
+    nazev: "Průběžná údržba"
+    cil: "Sledování nových modelů, runtime a zdrojů."
+
+# Stránky, kde je [DOPLNIT] součást vysvětlení metodiky, ne skutečná mezera.
+ignorovat_stranky:
+  - o-webu/jak-piseme
+  - o-webu/metodika
+  - zdroje/mereni
+  - zaciname/jak-cteme-data
+
+polozky:
+  # --- Dávka 1: generování ------------------------------------------------
+  - id: G01
+    oblast: generovani
+    titulek: "RTX Spark: naměřené časy generování"
+    co_chybi: "Chybí časy pro obrázky, video a 3D na RTX Sparku 128 GB. Zatím je na stránkách jen [DOPLNIT]."
+    kde:
+      - generovani/obrazky
+      - generovani/video
+      - generovani/uprava-obrazku
+      - generovani/recepty
+      - generovani/recepty/windows
+      - generovani/recepty/dgx-os
+      - generovani/recepty/linux
+      - generovani/recepty/index
+    priorita: P0
+    stav: otevreno
+    davka: 1
+    hledat: "NVIDIA forum, Reddit r/StableDiffusion, YouTube benchmarky, LocalAgentBoard"
+    poznamka: "Stačí jeden model (Z-Image-Turbo, 1024², 8 kroků) se zařízením, rozlišením a verzí ComfyUI."
+    zdroj: null
+    overeno: null
+
+  - id: G02
+    oblast: generovani
+    titulek: "Mac: 3D a video"
+    co_chybi: "Na Macu je změřené jen generování obrázků. Video přes MLX a 3D jsou bez čísel a 3D je označené jako neověřené."
+    kde:
+      - generovani/recepty/macos
+      - generovani/3d
+      - generovani/video
+      - generovani/rozhybani-obrazku
+      - generovani/uprava-obrazku
+    priorita: P1
+    stav: otevreno
+    davka: 1
+    hledat: "mlx-video benchmarky, Reddit r/LocalLLaMA, YouTube, komunitní repozitáře"
+    poznamka: "U videa uvést délku klipu, rozlišení, fps a jestli byl použit MLX nebo Draw Things."
+    zdroj: null
+    overeno: null
+
+  - id: G03
+    oblast: generovani
+    titulek: "Strix Halo: video a 3D"
+    co_chybi: "U obrázků máme ~24 s na 1024², ale video, úpravy videa a 3D na Strix Halu nemají žádné číslo."
+    kde:
+      - generovani/video
+      - generovani/uprava-videa
+      - generovani/3d
+      - generovani/rozhybani-obrazku
+      - generovani/uprava-obrazku
+      - generovani/recepty/dgx-os
+    priorita: P1
+    stav: otevreno
+    davka: 1
+    hledat: "kyuz0 benchmarky, Strix Halo wiki, Reddit, YouTube"
+    poznamka: "Uvést backend (ROCm/Vulkan), verzi jádra a nastavení GTT."
+    zdroj: https://kyuz0.github.io/amd-strix-halo-comfyui-toolboxes/
+    overeno: null
+
+  - id: G04
+    oblast: generovani
+    titulek: "Ověřit licence pěti generativních modelů"
+    co_chybi: "U VoxCPM2, Pixal3D a MADLAD-400 je licence označená jako „ověřit“. U HunyuanImage a HunyuanVideo je potřeba ověřit, co přesně znamená „podmínky“ pro českou firmu."
+    kde:
+      - generovani
+      - generovani/licence
+    priorita: P0
+    stav: otevreno
+    davka: 1
+    hledat: "Hugging Face model card, LICENSE, web výrobce"
+    poznamka: "Výsledek zapsat do data/generativni-modely.yaml a do sloupce Komerční."
+    zdroj: null
+    overeno: null
+
+  - id: G05
+    oblast: generovani
+    titulek: "Stránka Licence generativních modelů"
+    co_chybi: "Licence jsou roztroušené v tabulkách. Chybí stránka, která vysvětlí Apache-2.0, MIT, Research licenci a komunitní licence na jednom místě."
+    kde:
+      - generovani/licence
+    priorita: P1
+    stav: otevreno
+    davka: 1
+    hledat: "interní rešerše z model cards"
+    poznamka: "Provázat se slovníkem a s tabulkami modelů."
+    zdroj: null
+    overeno: null
+
+  - id: G06
+    oblast: generovani
+    titulek: "Co na zařízeních poběží z generativních modelů"
+    co_chybi: "Stránky zařízení mluví jen o Qwen3.8. Chybí jim tabulka generativních modelů, které na daném stroji poběží, a odkaz na recept."
+    kde:
+      - zarizeni/dgx-spark
+      - zarizeni/strix-halo
+      - zarizeni/rtx-spark-mini
+      - zarizeni/mac-studio
+      - zarizeni/macbook-pro
+      - zarizeni/rtx-spark-notebook
+    priorita: P1
+    stav: otevreno
+    davka: 1
+    hledat: "interní data + recepty"
+    poznamka: "Nestačí odkaz na /generovani/; čtenář chce vědět, co poběží právě na jeho krabici."
+    zdroj: null
+    overeno: null
+
+  - id: G07
+    oblast: generovani
+    titulek: "Slovník: difuze, LoRA, PBR, TTS, inpainting"
+    co_chybi: "Pojmy z generování se používají, ale nemají vlastní heslo. Chybí difuze, LoRA, PBR, TTS, STT, inpainting a upscaling."
+    kde:
+      - slovnik/software
+      - slovnik
+    priorita: P1
+    stav: otevreno
+    davka: 1
+    hledat: "interní rešerše, odborné zdroje"
+    poznamka: "Každé heslo musí mít příklad na konkrétním zařízení."
+    zdroj: null
+    overeno: null
+
+  # --- Dávka 2: katalogová data Qwen3.8 ----------------------------------
+  - id: D01
+    oblast: data
+    titulek: "RTX Spark mini: první veřejné měření Qwen3.8"
+    co_chybi: "Stránka nemá žádné číslo: TTFT, prefill, decode ani chování na 128k."
+    kde:
+      - zarizeni/rtx-spark-mini
+      - zarizeni/rtx-spark-notebook
+    priorita: P0
+    stav: otevreno
+    davka: 2
+    hledat: "NVIDIA forum, llamaperf, Reddit, GitHub benchmarky"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: D02
+    oblast: data
+    titulek: "DGX Spark a Strix Halo: TTFT a prefill na jednotném promptu"
+    co_chybi: "Reporty měří prefill různě, takže čísla nejdou srovnat. Chybí stejný prompt a stejná kvantizace."
+    kde:
+      - zarizeni/dgx-spark
+      - zarizeni/strix-halo
+      - data/qwen3-8-flash-next-strix-halo
+    priorita: P0
+    stav: otevreno
+    davka: 2
+    hledat: "madeye, llamaperf, SMF, SparkLab, GitHub"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: D03
+    oblast: data
+    titulek: "Souběžnost 4+ na všech zařízeních"
+    co_chybi: "Většina reportů je single-stream. Chybí agregát a tok/s na jeden stream při čtyřech souběžných požadavcích."
+    kde:
+      - zarizeni/dgx-spark
+      - zarizeni/strix-halo
+      - zarizeni/rtx-spark-mini
+      - zarizeni/rtx-spark-notebook
+      - zarizeni/srovnani
+      - temata/128gb-unified-memory
+    priorita: P0
+    stav: otevreno
+    davka: 2
+    hledat: "vLLM a SGLang benchmarky, fóra, InferenceX"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: D04
+    oblast: data
+    titulek: "128k a 262k kontext: rychlost i kvalita"
+    co_chybi: "Maximum v datasheetu nic neříká o praxi. Chybí rychlost a kvalita na dlouhém kontextu pro Qwen3.8."
+    kde:
+      - zarizeni/dgx-spark
+      - zarizeni/strix-halo
+      - modely/qwen3-8-flash-next
+    priorita: P1
+    stav: otevreno
+    davka: 2
+    hledat: "llamaperf, MRCR a needle testy, komunitní reporty"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: D05
+    oblast: data
+    titulek: "Podložené doporučení provozního kontextu"
+    co_chybi: "V datech je doporuceny: null. Chybí podložené doporučení, kolik kontextu má smysl provozovat."
+    kde:
+      - modely/qwen3-8-flash-next
+      - zaciname/jak-cteme-data
+    priorita: P0
+    stav: otevreno
+    davka: 2
+    hledat: "Qwen model card, vLLM recipe, nezávislé testy"
+    poznamka: "Nahradit [DOPLNIT] v data/modely.yaml i v textu."
+    zdroj: null
+    overeno: null
+
+  - id: D06
+    oblast: data
+    titulek: "Kvantizace u čtyř měření na Strix Halu"
+    co_chybi: "U čtyř záznamů v data/mereni.yaml je kvantizace [DOPLNIT]. Bez ní číslo nelze srovnat."
+    kde:
+      - data/qwen3-8-flash-next-strix-halo
+      - zdroje/mereni
+    priorita: P1
+    stav: otevreno
+    davka: 2
+    hledat: "llamaperf detail reportu"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: D08
+    oblast: data
+    titulek: "Windows ARM64 proti Linuxu na stejném modelu"
+    co_chybi: "Chybí srovnání Qwen3.8 Flash Next na RTX Sparku s Windows ARM64 a na DGX Sparku s Linuxem."
+    kde:
+      - zarizeni/rtx-spark-notebook
+      - temata/lokalni-ai-na-windows-11
+    priorita: P1
+    stav: otevreno
+    davka: 2
+    hledat: "NVIDIA forum, komunitní měření, Reddit"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  # --- Dávka 3: kvalita a provoz ----------------------------------------
+  - id: D10
+    oblast: kvalita
+    titulek: "České testy: shrnutí, extrakce, e-mail, kód"
+    co_chybi: "Anglické benchmarky nestačí. Chybí české úlohy na Qwen3.8."
+    kde:
+      - modely/qwen3-8-flash-next
+      - temata/lokalni-ai-a-cestina
+    priorita: P1
+    stav: otevreno
+    davka: 3
+    hledat: "komunitní testy, OpenWork zkušenosti, veřejné české benchmarky"
+    poznamka: "Vlastní měření neděláme; hledáme veřejné výsledky."
+    zdroj: null
+    overeno: null
+
+  - id: D11
+    oblast: kvalita
+    titulek: "Vision: dokumenty, OCR, tabulky, screenshoty"
+    co_chybi: "Vision je výchozí, ale kvalita se liší. Chybí reálné testy."
+    kde:
+      - modely/qwen3-8-flash-next
+      - zarizeni/srovnani
+    priorita: P1
+    stav: otevreno
+    davka: 3
+    hledat: "model cards, komunitní reporty, Reddit, GitHub"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: D12
+    oblast: kvalita
+    titulek: "Hluk, příkon a teploty v zátěži"
+    co_chybi: "Chybí měření hluku, příkonu a teplot pro DGX Spark, Strix Halo a RTX notebooky."
+    kde:
+      - zarizeni/dgx-spark
+      - zarizeni/strix-halo
+      - zarizeni/rtx-spark-notebook
+      - zarizeni/macbook-pro
+      - slovnik/provoz/power-limit
+    priorita: P1
+    stav: otevreno
+    davka: 3
+    hledat: "recenze, fóra, měření uživatelů"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: D13
+    oblast: kvalita
+    titulek: "Tool calling a agentní úlohy"
+    co_chybi: "Agenti jsou hlavní use case, ale chybí veřejné testy tool callingu pro Qwen3.8."
+    kde:
+      - modely/qwen3-8-flash-next
+      - temata/lokalni-ai-agenti
+    priorita: P1
+    stav: otevreno
+    davka: 3
+    hledat: "model cards, benchmarky, komunitní testy"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  # --- Dávka 4: ceny -----------------------------------------------------
+  - id: C01
+    oblast: ceny
+    titulek: "České ceny všech 128GB konfigurací"
+    co_chybi: "Americká listovka není česká cena. U části konfigurací chybí česká cena nebo je jen odhad."
+    kde:
+      - zarizeni/dgx-spark
+      - zarizeni/strix-halo
+      - zarizeni/rtx-spark-notebook
+      - vyber/rozpocet
+    priorita: P1
+    stav: prubezne
+    davka: 4
+    hledat: "Alza, CZC, TS Bohemia, Mironet, OEM"
+    poznamka: "Do tabulek jen koncová cena včetně DPH, bez sloupců bez DPH a dostupnost."
+    zdroj: null
+    overeno: null
+
+  - id: C02
+    oblast: ceny
+    titulek: "Ruční kontrola Alza snapshotu"
+    co_chybi: "Alza blokuje roboty (403), ceny je potřeba ověřovat ručně v prohlížeči."
+    kde:
+      - zarizeni/dgx-spark
+      - zarizeni/strix-halo
+      - zarizeni/rtx-spark-notebook
+    priorita: P2
+    stav: prubezne
+    davka: 4
+    hledat: "Alza podle objednacího kódu"
+    poznamka: "Postup je v aktualizace.md."
+    zdroj: null
+    overeno: null
+
+  - id: C03
+    oblast: ceny
+    titulek: "RTX Spark notebook: všechny OEM ceny"
+    co_chybi: "Ceny se liší podle OEM. Chybí české ceny některých variant."
+    kde:
+      - zarizeni/rtx-spark-notebook
+      - zarizeni/konfigurace
+    priorita: P1
+    stav: prubezne
+    davka: 4
+    hledat: "Microsoft, ASUS, HP, Lenovo, MSI, Dell, Alza"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: C04
+    oblast: ceny
+    titulek: "Česká cena RTX Spark mini"
+    co_chybi: "Na webu je jen přepočet z USD označený jako odhad. Česká cena chybí."
+    kde:
+      - zarizeni/rtx-spark-mini
+      - temata/cena-lokalni-ai
+      - vyber/rozpocet
+    priorita: P1
+    stav: otevreno
+    davka: 4
+    hledat: "české e-shopy, OEM zastoupení"
+    poznamka: "Dokud cenu neznáme, zůstává odhad s kurzem ČNB."
+    zdroj: null
+    overeno: null
+
+  - id: C06
+    oblast: ceny
+    titulek: "Kurzy ČNB a ECB"
+    co_chybi: "Kurzy je potřeba pravidelně aktualizovat kvůli přepočtům."
+    kde:
+      - vyber/rozpocet
+      - temata/cena-lokalni-ai
+    priorita: P2
+    stav: prubezne
+    davka: 4
+    hledat: "ČNB, ECB"
+    poznamka: "Držet v data/kurzy.yaml, nepřepočítávat ručně."
+    zdroj: null
+    overeno: null
+
+  - id: C07
+    oblast: ceny
+    titulek: "Dostupnost Maců 128 GB"
+    co_chybi: "Mac 128 GB je „na cestě“ / předprodej. Chybí potvrzení, kdy bude skladem, aby se dalo psát „skladem“."
+    kde:
+      - zarizeni/mac-studio
+      - zarizeni/macbook-pro
+    priorita: P2
+    stav: prubezne
+    davka: 4
+    hledat: "Apple CZ, Alza"
+    poznamka: "Dokud není potvrzeno, netvrdit „skladem“."
+    zdroj: null
+    overeno: null
+
+  # --- Dávka 5: obsah ----------------------------------------------------
+  - id: O02
+    oblast: obsah
+    titulek: "Ověřit Ollama tag pro Qwen3.8"
+    co_chybi: "Model page uvádí Ollama jako experimentální. Chybí potvrzení, že tag existuje a v jaké kvantizaci."
+    kde:
+      - modely/qwen3-8-flash-next
+    priorita: P2
+    stav: otevreno
+    davka: 5
+    hledat: "ollama.com/library, GitHub Ollama"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: O03
+    oblast: obsah
+    titulek: "Windows 11 na homepage"
+    co_chybi: "Chybí karta nebo přepínač „chci to jako počítač“; zatím to řeší až srovnání a téma."
+    kde:
+      - index
+      - temata/lokalni-ai-na-windows-11
+    priorita: P2
+    stav: otevreno
+    davka: 5
+    hledat: "interní návrh"
+    poznamka: "Rozhodnout, jestli to patří na homepage, nebo stačí téma."
+    zdroj: null
+    overeno: null
+
+  - id: O04
+    oblast: obsah
+    titulek: "Google Search Console"
+    co_chybi: "Search Console není napojená, takže témata nevycházejí z reálných dotazů."
+    kde:
+      - temata
+    priorita: P1
+    stav: otevreno
+    davka: 5
+    hledat: "Google Search Console"
+    poznamka: "Po napojení rozšířit data/temata.yaml podle dotazů."
+    zdroj: null
+    overeno: null
+
+  - id: O05
+    oblast: obsah
+    titulek: "Sekce „Co chybí“ v tématech"
+    co_chybi: "Není rozhodnuté, jestli má být seznam mezer veřejný u každého tématu."
+    kde:
+      - temata
+      - zdroje/co-nevime
+    priorita: P2
+    stav: otevreno
+    davka: 5
+    hledat: "rozhodnutí provozovatele"
+    poznamka: "Homepage mezery neukazuje; otázka je jen u témat."
+    zdroj: null
+    overeno: null
+
+  # --- Dávka 6: infrastruktura ------------------------------------------
+  - id: I01
+    oblast: infrastruktura
+    titulek: "Přepnout DNS u Vedos"
+    co_chybi: "Doména pořád ukazuje na parking 185.8.237.22. Web na localinference.cz neběží, i když build je zelený."
+    kde: []
+    priorita: P0
+    stav: ceka-na-vas
+    davka: 6
+    hledat: "Vedos"
+    poznamka: "www CNAME na staticke-weby.github.io, apex A na 185.199.108–111.153, pak Enforce HTTPS."
+    zdroj: null
+    overeno: null
+
+  - id: I02
+    oblast: infrastruktura
+    titulek: "Secret PUBLIKACE_TOKEN"
+    co_chybi: "Bez fine-grained PAT s Contents: RW na LOCALinference.eu EN workflow nepublikuje."
+    kde: []
+    priorita: P0
+    stav: ceka-na-vas
+    davka: 6
+    hledat: "GitHub nastavení repozitáře"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: I03
+    oblast: infrastruktura
+    titulek: "EN mutace sites/eu"
+    co_chybi: "Anglická mutace nemá zdroj, build ani doménu."
+    kde: []
+    priorita: P1
+    stav: otevreno
+    davka: 6
+    hledat: "interní práce"
+    poznamka: "Zdroj zůstává v tomto repu, výstup jde do LOCALinference.eu."
+    zdroj: null
+    overeno: null
+
+  - id: I04
+    oblast: infrastruktura
+    titulek: "Umami se posílá i z localhostu"
+    co_chybi: "Skript se načítá i při vývoji. Chybí podmínka, aby se mimo produkci neposílal."
+    kde: []
+    priorita: P2
+    stav: otevreno
+    davka: 6
+    hledat: "interní práce"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: I05
+    oblast: infrastruktura
+    titulek: "Deploy občas visí"
+    co_chybi: "GitHub Pages deployment občas zůstane viset nebo se zruší."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 6
+    hledat: "GitHub Actions"
+    poznamka: "Zrušit zaseknutý běh a spustit znovu; Attempt #3 obvykle projde."
+    zdroj: null
+    overeno: null
+
+  - id: I06
+    oblast: infrastruktura
+    titulek: "Kontaktní e-mail pro veřejnost"
+    co_chybi: "V právních informacích chybí kontaktní e-mail. Blokuje dokončení /o-webu/pravni/."
+    kde:
+      - o-webu/pravni
+    priorita: P0
+    stav: ceka-na-vas
+    davka: 6
+    hledat: "ESHOpino"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  # --- Dávka 7: údržba ---------------------------------------------------
+  - id: N01
+    oblast: provoz
+    titulek: "Nové verze Qwen3.8 Flash Next"
+    co_chybi: "Sledovat model card, blog a licenci jediného modelu katalogu."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 7
+    hledat: "qwen.ai/blog, Hugging Face Qwen"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: N02
+    oblast: provoz
+    titulek: "Nové kvantizace Qwen3.8"
+    co_chybi: "Sledovat NVFP4, GGUF, MLX a QAT; mění paměť i rychlost."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 7
+    hledat: "Hugging Face, Unsloth, Ollama"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: N03
+    oblast: provoz
+    titulek: "Nová podpora v runtime"
+    co_chybi: "Sledovat vLLM, llama.cpp, SGLang a Ollama; mění čísla i dostupnost."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 7
+    hledat: "GitHub releases, dokumentace"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: N04
+    oblast: provoz
+    titulek: "Nová zařízení se 128 GB+"
+    co_chybi: "Sledovat NVIDIA, AMD, OEM a Alza."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 7
+    hledat: "NVIDIA, AMD, OEM, Alza"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: N05
+    oblast: provoz
+    titulek: "Software okolo modelu"
+    co_chybi: "Sledovat MTP, QSA, mmproj a tool parsery."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 7
+    hledat: "vLLM recipes, llama.cpp, Hugging Face"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: S01
+    oblast: provoz
+    titulek: "Změny zdrojů a model cardů"
+    co_chybi: "Hlídač má pokrýt klíčové zdroje; chybí kontrola, že nic nevypadlo."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 7
+    hledat: "RSS, GitHub releases, Hugging Face, HTML"
+    poznamka: "npm run hlidac"
+    zdroj: null
+    overeno: null
+
+  - id: S02
+    oblast: provoz
+    titulek: "Link rot a změny URL"
+    co_chybi: "Mrtvé odkazy snižují důvěru."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 7
+    hledat: "npm run check:zdroje"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: S03
+    oblast: provoz
+    titulek: "Alza a další prodejci s 403"
+    co_chybi: "Automatická kontrola cen nefunguje, je potřeba ruční."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 7
+    hledat: "ruční kontrola v prohlížeči"
+    poznamka: null
+    zdroj: null
+    overeno: null
+
+  - id: S04
+    oblast: provoz
+    titulek: "Changelog a overeno"
+    co_chybi: "Každá změna má mít datum a zápis v changelogu."
+    kde: []
+    priorita: P2
+    stav: prubezne
+    davka: 7
+    hledat: "data/zmeny.yaml"
+    poznamka: null
+    zdroj: null
+    overeno: null

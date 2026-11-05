@@ -34,7 +34,8 @@ Data, kontrola a build jsou hotové. Obsah se doplňuje po stránkách.
 
 ```bash
 npm install
-npm run check          # data + obsah
+npm run check          # data + obsah + registr mezer
+npm run chybi          # co chybí, podle dávek a priorit
 npm run dev            # web na http://localhost:4321
 npm run build          # kontrola + build do sites/cz/dist
 ```

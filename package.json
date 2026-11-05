@@ -5,10 +5,13 @@
   "type": "module",
   "description": "Local Inference — průvodce lokální AI na hotových zařízeních",
   "scripts": {
-    "check": "npm run check:data && npm run check:obsah",
+    "check": "npm run check:data && npm run check:obsah && npm run check:chybi",
     "check:data": "node scripts/kontrola-dat.mjs",
     "check:obsah": "node scripts/kontrola-obsahu.mjs",
+    "check:chybi": "node scripts/chybi.mjs --kontrola",
     "check:zdroje": "node scripts/kontrola-zdroju.mjs",
+    "chybi": "node scripts/chybi.mjs",
+    "chybi:zapis": "node scripts/chybi.mjs --zapis",
     "hlidac": "node scripts/hlidac.mjs",
     "dev": "npm --prefix sites/cz run dev",
     "build": "npm run check && npm --prefix sites/cz run build"

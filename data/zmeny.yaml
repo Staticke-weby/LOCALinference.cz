@@ -3,6 +3,13 @@
 
 - datum: 2026-11-05
   typ: obsah
+  titulek: "Registr mezer a dávkové doplňování"
+  co_se_zmenilo: "Vznikl data/chybi.yaml jako jediný seznam toho, co na webu chybí: 43 položek v 7 dávkách, s prioritou, stavem, stránkami a místem hledání. Skript scripts/chybi.mjs kontroluje, že každý [DOPLNIT] má položku v registru, a generuje chybi.md. npm run check teď registr validuje. Veřejná stránka /zdroje/co-nevime/ doplněna o generování."
+  dotcene_stranky: [zdroje/co-nevime]
+  zdroj: https://github.com/Staticke-weby/LOCALinference.cz
+
+- datum: 2026-11-05
+  typ: obsah
   titulek: "Recepty pro Windows, macOS, DGX OS a Linux"
   co_se_zmenilo: "Nová část /generovani/recepty/ s pěti stránkami: přehled, Windows (x64 i Arm), macOS, DGX OS a Linux (NVIDIA i Strix Halo). Každá uvádí instalaci, ověření GPU, co platforma umí a kde je limit. Na recepty odkazují stránky obrázků, videa, audia a 3D."
   dotcene_stranky: [generovani, generovani/recepty]

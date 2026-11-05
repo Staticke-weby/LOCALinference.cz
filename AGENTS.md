@@ -193,6 +193,8 @@ vlastní evidenci:
 - **`data/mereni.yaml`** — každé měření s konfigurací (viz níže).
 - **`data/zmeny.yaml`** — ručně psaný changelog: co se změnilo, kdy a které
   stránky se to týká.
+- **`data/chybi.yaml`** — registr mezer: co chybí, kde, proč, kde hledat,
+  priorita, stav a dávka. Přehled generuje `npm run chybi`.
 - **`scripts/hlidac.mjs`** — pravidelná kontrola zdrojů. Umí RSS/Atom,
   GitHub releases, změny model card na Hugging Face a hash klíčové části
   HTML stránky. Porovná stav s `data/stav-zdroju.json`, vypíše report
@@ -203,6 +205,32 @@ vlastní evidenci:
 
 Pravidlo: **každý údaj má svého vlastníka a datum kontroly.** Když se zdroj
 nedá ověřit, údaj se označí `[DOPLNIT]` nebo se z webu odstraní.
+
+### 3.2 Registr mezer a dávkové doplňování
+
+Chybějící údaje se neřeší náhodně. Všechno, co chybí, je v
+`data/chybi.yaml`; nic se nedohledává „až se to objeví“.
+
+- **Jedna položka = jedna mezera.** Má `id`, `oblast`, `titulek`,
+  `co_chybi`, `kde` (stránky), `priorita` (P0–P2), `stav`, `davka`,
+  `hledat`, `zdroj` a `overeno`.
+- **Dávka** je téma, které se řeší najednou. Uvnitř dávky platí pořadí
+  P0 → P1 → P2.
+- **Stavy:** `otevreno`, `hleda-se`, `ceka-na-vas` (rozhodnutí
+  provozovatele), `prubezne` (opakovaná kontrola), `hotovo`.
+- **`[DOPLNIT]` v článku musí mít položku v registru.** `npm run
+  check:chybi` jinak selže. To brání tichému růstu seznamu.
+- **Postup:** dohledat veřejný zdroj → zapsat do `data/*.yaml` s datem
+  a typem → upravit text → přidat zdroj → changelog → `stav: hotovo`
+  → `npm run chybi:zapis` → `npm run check`.
+- **Příkazy:** `npm run chybi` (přehled), `npm run chybi:zapis`
+  (přepíše `chybi.md`), `npm run check:chybi` (validace).
+- **Veřejný seznam** je jen výběr na `/zdroje/co-nevime/`; interní
+  registr obsahuje víc a nemusí být veřejný.
+
+Když se objeví nová mezera, založí se položka **hned**, ne až při
+psaní stránky. Když se položka vyřeší, nezůstane v textu `[DOPLNIT]`
+ani v datech `null`.
 
 ---
 

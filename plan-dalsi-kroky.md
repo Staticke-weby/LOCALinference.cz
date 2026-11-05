@@ -1,6 +1,6 @@
 # Co ještě chybí dodělat
 
-*Souhrn všech otevřených návrhů a mezer. Stav k 4. 11. 2026.*
+*Souhrn všech otevřených návrhů a mezer. Stav k 5. 11. 2026.*
 
 Legenda: **P0** blokuje provoz nebo důvěryhodnost · **P1** zlepší web ·
 **P2** průběžná údržba.
@@ -47,18 +47,17 @@ Legenda: **P0** blokuje provoz nebo důvěryhodnost · **P1** zlepší web ·
 - [ ] **Ceny:** doplnit českou cenu RTX Spark mini (zatím jen odhad).
 - [x] **Ceny Maců:** Mac Studio 147 990–171 990 Kč, MacBook Pro 209 990–434 490 Kč (Alza, 4. 11. 2026).
 
-## 4. Data a měření (z `plan-dat.md`)
+## 4. Data a měření (registr mezer)
 
-- [ ] **D01** RTX Spark mini: první veřejné měření Qwen3.8 FN.
-- [ ] **D02** DGX Spark a Strix Halo: TTFT a prefill na jednotném promptu.
-- [ ] **D03** Souběžnost 4+ na všech zařízeních.
-- [ ] **D04** 128k a 262k kontext: rychlost i kvalita.
-- [ ] **D05** Podložené doporučení provozního kontextu.
-- [ ] **D06** Kvantizace u čtyř měření na Strix Halu.
-- [ ] **D10** České testy: shrnutí, extrakce, e-mail, kód, screenshot.
-- [ ] **D11** Vision testy: dokumenty, OCR, tabulky.
-- [ ] **D12** Hluk, příkon a teploty v zátěži.
-- [ ] **D13** Tool calling a agentní úlohy.
+Konkrétní datové mezery už nejsou v tomto souboru. Vedou se v
+[`data/chybi.yaml`](data/chybi.yaml) podle dávek a priorit; přehled
+vygeneruje `npm run chybi`. Patří tam D01–D13 (TTFT, souběžnost,
+kontext, čeština, vision, hluk, tool calling) i nové mezery
+z generování.
+
+- [ ] **Dávka 2** — katalogová data Qwen3.8 (D01–D08).
+- [ ] **Dávka 3** — kvalita, čeština a provoz (D10–D13).
+- [ ] **Dávka 1** — generování: časy, licence, slovník (G01–G07).
 
 ## 5. SEO a obsahový plán
 

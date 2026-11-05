@@ -1,7 +1,7 @@
 ---
 title: "Co nevíme: mezery v datech o lokální AI"
 description: "Veřejný seznam toho, co u lokálních modelů a zařízení chybí: TTFT, prefill, dlouhý kontext, souběžnost a české testy."
-last_verified: 2026-11-04
+last_verified: 2026-11-05
 sidebar:
   order: 2
 ---
@@ -27,6 +27,8 @@ zařízení a chuť měřit, tady je přesně vidět, co by pomohlo.
 | **Čeština** | srovnávací testy na českých úlohách | benchmarky v angličtině neřeknou vše | vysoká |
 | **Vision** | reálné testy dokumentů a screenshotů | vision je výchozí, ale kvalita se liší | střední |
 | **Hluk a příkon** | měření v zátěži | rozhoduje o použití v kanceláři/domácnosti | střední |
+| **Generování obrázků** | časy na RTX Sparku a Macu, ověřené licence | bez toho nejde říct, co je rychlé a co komerčně bezpečné | vysoká |
+| **Generování videa a 3D** | časy na Strix Halu a Macu | video jsou minuty, ne sekundy; čtenář to musí vědět předem | střední |
 | **Ceny v ČR/EU** | dostupnost, DPH, doprava | americká cena není česká cena | střední |
 
 ## Co by změnilo závěr o lokální AI
@@ -67,4 +69,4 @@ srovnatelnosti. Podrobnosti jsou v [metodice](/o-webu/metodika/).
 - [Registr zdrojů](/zdroje/zdroje/)
 - [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 5. 11. 2026.*

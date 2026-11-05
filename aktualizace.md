@@ -18,10 +18,26 @@ změna je dohledatelná.*
 | Texty stránek | `obsah/` | při změně faktu | člověk |
 
 **Pravidlo:** nikdy neměň číslo bez data a zdroje. Když zdroj chybí, použij
-`[DOPLNIT]` a zapiš to do `poznamky-agenta.md`.
+`[DOPLNIT]` a založ položku v `data/chybi.yaml` (viz `npm run chybi`).
 
 **Ceny jen aktuální.** Žádné „původně“, přeškrtnuté ceny, slevy ani historie
 zdražování. Stará cena se nahradí novou, ne doplní.
+
+---
+
+## 1.0 Dávkové doplňování mezer
+
+Chybějící údaje se řeší po dávkách, ne nahodile. Zdroj pravdy je
+`data/chybi.yaml`; přehled pro člověka je `chybi.md`.
+
+1. `npm run chybi` vypíše dávky a v každé priority P0 → P2.
+2. Vyber jednu dávku a u položky přečti `co_chybi` a `hledat`.
+3. Dohledej veřejný zdroj, zapiš data, uprav text a odstraň `[DOPLNIT]`.
+4. Přepni položku na `stav: hotovo`, doplň `zdroj` a `overeno`.
+5. `npm run chybi:zapis`, `npm run check`, build.
+
+Když do článku přibude `[DOPLNIT]` bez položky v registru, `npm run check`
+selže. Je to záměr — seznam mezer nemá růst potichu.
 
 ---
 
