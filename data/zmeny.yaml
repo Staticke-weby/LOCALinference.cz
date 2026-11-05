@@ -1,349 +1,254 @@
-# Changelog dat a obsahu. Každá změna má datum, typ, dotčené stránky a zdroj.
+# Changelog obsahu a dat. Každá změna má datum, typ, dotčené stránky a zdroj.
 # `typ`: cena | model | mereni | zdroj | obsah
-
-- datum: 2026-11-05
-  typ: zdroj
-  titulek: "Sitemap na /sitemap.xml i pro EN"
-  co_se_zmenilo: "Build z Astro sitemapy udělá jediný /sitemap.xml a pomocné sitemap-index.xml a sitemap-0.xml smaže. Robots.txt na EN i CZ ukazuje na /sitemap.xml."
-  dotcene_stranky: [o-webu/metodika, zdroje/novinky]
-  zdroj: https://www.localinference.eu/sitemap.xml
-
+# Patří sem jen to, co čtenář na webu pozná: ceny, měření, modely, nové
+# stránky a pojmy. Technické záznamy o stavbě webu (build, sitemap,
+# hreflang, menu, opravy odkazů) sem nepatří.
 - datum: 2026-11-05
   typ: obsah
-  titulek: "Odkaz na druhou jazykovou verzi na každé stránce"
-  co_se_zmenilo: "Přepínač jazyka je nově pod nadpisem i na konfiguracích, homepage a stránkách bez data ověření, má podobu malého tlačítka a v patičce přibyl odkaz na protějšek. Cílí na stejnou stránku v druhém jazyce, ne na homepage."
-  dotcene_stranky: [index, zarizeni/srovnani, zdroje/novinky]
-  zdroj: https://www.localinference.eu
-
-- datum: 2026-11-05
-  typ: obsah
-  titulek: "Anglická homepage rozšířená"
-  co_se_zmenilo: "EN homepage má dvanáct dlaždic s odkazy na obsah (zařízení, model, generování, návody, výběr, slovník, témata, měření, konfigurace, zdroje), sekci Kde začít a odkaz na slovník — stejně jako česká verze."
+  titulek: "Anglická mutace webu"
+  co_se_zmenilo: "Celý web je nově i v angličtině na www.localinference.eu — stejné stránky, stejná data, ceny v USD a žádné odkazy na prodejce. Pod nadpisem každé stránky je odkaz na protějšek v druhém jazyce."
   dotcene_stranky: [index]
   zdroj: https://www.localinference.eu
-
 - datum: 2026-11-05
   typ: obsah
-  titulek: "Homepage: obsahové bloky a obrázek i na EN"
-  co_se_zmenilo: "Na české homepage nahradily bloky „Pro koho je web“ a „Proč věřit datům“ jedenáct dlaždic s odkazy na obsah. Anglická homepage dostala stejný hero obrázek GB10 jako česká."
-  dotcene_stranky: [index]
-  zdroj: https://www.localinference.eu
-
-- datum: 2026-11-05
-  typ: zdroj
-  titulek: "Přepínač jazyka, hreflang, llms.txt a RSS"
-  co_se_zmenilo: "Každá stránka má pod nadpisem odkaz na protějšek v druhém jazyce a v hlavičce hreflang cs/en/x-default. Vznikl llms.txt pro oba weby a RSS changelogu na /zdroje/novinky/rss.xml."
-  dotcene_stranky: [o-webu/metodika, zdroje/novinky]
-  zdroj: https://www.localinference.cz/zdroje/novinky/rss.xml
-
-- datum: 2026-11-05
-  typ: obsah
-  titulek: "FAQ, vlastní 404 a kontrola interních odkazů"
-  co_se_zmenilo: "Vznikla stránka /zaciname/faq/ s deseti dotazy a FAQPage strukturou, vlastní 404 s odkazy a skript kontrola-odkazu.mjs, který po buildu ověří všechny interní odkazy. Opraveno 15 starých odkazů v changelogu."
-  dotcene_stranky: [zaciname/faq, zdroje/novinky]
-  zdroj: https://github.com/Staticke-weby/LOCALinference.cz
-
+  titulek: "Časté dotazy k lokální AI"
+  co_se_zmenilo: "Vznikla stránka /zaciname/faq/ s deseti dotazy, které se u lokální AI opakují: kolik to stojí, jak rychle to běží, co se děje s daty, jaký model zvolit a kdy je lepší zůstat v cloudu."
+  dotcene_stranky: [zaciname/faq]
+  zdroj: https://www.localinference.cz/zaciname/faq/
 - datum: 2026-11-05
   typ: obsah
   titulek: "Čtyři témata pro generování: obrázky, video, audio a 3D"
   co_se_zmenilo: "Vznikla témata /temata/lokalni-ai-na-obrazky/, -video, -audio a -3d s hledanými výrazy, tabulkou zařízení, časy, licencemi a sekcí Co chybí. Jsou v přehledu témat a prolinkovaná z osmi stránek generování."
   dotcene_stranky: [temata, generovani]
   zdroj: https://search.google.com/search-console
-
 - datum: 2026-11-05
   typ: obsah
-  titulek: "Generování je propojené se zařízeními a dávka 1 uzavřená"
-  co_se_zmenilo: "Na deset stránek generování přibyla tabulka Na kterých zařízeních to poběží s odkazy na všech šest zařízení, srovnání a kategorie. Zároveň vznikla hesla VRAM a STT, doplněno doporučení 128K kontextu, RTX Spark video 97,56 s, Ollama tag a Umami jen v produkci."
+  titulek: "Generování je propojené se zařízeními"
+  co_se_zmenilo: "Na deset stránek generování přibyla tabulka Na kterých zařízeních to poběží s odkazy na všech šest zařízení, srovnání a kategorie. Vznikl pojem VRAM, doporučení 128K kontextu a čas RTX Spark u videa 97,56 s."
   dotcene_stranky: [generovani, slovnik, modely/qwen3-8-flash-next, zdroje/co-nevime]
   zdroj: https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/
-
 - datum: 2026-11-05
   typ: obsah
-  titulek: "Dávka 1 dokončena: časy, licence, slovník a zařízení"
-  co_se_zmenilo: "Doplněny časy videa a 3D pro Mac a Strix Halo, vznikla stránka /generovani/licence/, šest hesel ve slovníku (difuze, LoRA, PBR, TTS, inpainting, upscaling) a tabulka generativních modelů na šesti stránkách zařízení. Registr mezer má 7 hotových položek z dávky 1."
+  titulek: "Časy generování, licence a šest nových pojmů"
+  co_se_zmenilo: "Doplněny časy videa a 3D pro Mac a Strix Halo, vznikla stránka /generovani/licence/, šest hesel ve slovníku (difuze, LoRA, PBR, TTS, inpainting, upscaling) a tabulka generativních modelů na šesti stránkách zařízení."
   dotcene_stranky: [generovani, generovani/licence, slovnik, zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook, zarizeni/macbook-pro]
   zdroj: https://kyuz0.github.io/amd-strix-halo-comfyui-toolboxes/
-
 - datum: 2026-11-05
   typ: model
   titulek: "Licence generativních modelů ověřeny, RTX Spark má první časy"
   co_se_zmenilo: "VoxCPM2 a MADLAD-400 jsou Apache-2.0, Pixal3D MIT — všechny komerčně použitelné. Licence Tencent Hunyuan (Image 3.0, Video 1.5, 3D 2.0) vylučuje EU, UK a Jižní Koreu, proto je v ČR nelze použít a v tabulkách mají „ne“. Doplněno měření RTX Spark: FLUX.2 klein 4B 17,75 s na 1024² při 20 krocích (Principled Technologies)."
   dotcene_stranky: [generovani, generovani/obrazky, generovani/video, generovani/3d, generovani/audio, generovani/preklady, generovani/recepty]
   zdroj: https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/
-
-- datum: 2026-11-05
-  typ: obsah
-  titulek: "Registr mezer a dávkové doplňování"
-  co_se_zmenilo: "Vznikl data/chybi.yaml jako jediný seznam toho, co na webu chybí: 43 položek v 7 dávkách, s prioritou, stavem, stránkami a místem hledání. Skript scripts/chybi.mjs kontroluje, že každý [DOPLNIT] má položku v registru, a generuje chybi.md. npm run check teď registr validuje. Veřejná stránka /zdroje/co-nevime/ doplněna o generování."
-  dotcene_stranky: [zdroje/co-nevime]
-  zdroj: https://github.com/Staticke-weby/LOCALinference.cz
-
 - datum: 2026-11-05
   typ: obsah
   titulek: "Recepty pro Windows, macOS, DGX OS a Linux"
   co_se_zmenilo: "Nová část /generovani/recepty/ s pěti stránkami: přehled, Windows (x64 i Arm), macOS, DGX OS a Linux (NVIDIA i Strix Halo). Každá uvádí instalaci, ověření GPU, co platforma umí a kde je limit. Na recepty odkazují stránky obrázků, videa, audia a 3D."
   dotcene_stranky: [generovani, generovani/recepty]
   zdroj: https://docs.comfy.org/installation/manual_install
-
 - datum: 2026-11-05
   typ: mereni
   titulek: "První časy generování pro Strix Halo a Mac"
   co_se_zmenilo: "Do receptů přidáno naměřené Z-Image-Turbo: Strix Halo 128 GB ~24 s na 1024²/8 kroků (výrobce GPD) a MacBook Pro M5 Pro 64 GB 22 s na 1344×768 (komunita). U RTX Sparku zůstává [DOPLNIT]."
   dotcene_stranky: [generovani/recepty]
   zdroj: https://www.gpd.hk/newsinfo/3222619.html
-
 - datum: 2026-11-05
   typ: obsah
   titulek: "Nová sekce Generování: obrázky, video, audio, 3D"
   co_se_zmenilo: "Přibylo 10 stránek /generovani/ a databáze 30 generativních modelů s licencí, nároky a rychlostí. Sekce odpovídá, co poběží na 128GB zařízeních; u DGX Sparku jsou naměřené časy u obrázků, ostatní jsou označené k doplnění."
   dotcene_stranky: [generovani]
   zdroj: https://localagentboard.com/images
-
 - datum: 2026-11-05
   typ: cena
   titulek: "Historie cen u konkrétních konfigurací"
-  co_se_zmenilo: "Přidán soubor data/historie-cen.yaml a sekce Vývoj ceny na 24 stránkách konfigurací. Staré ceny se u variant archivují, na stránkách rodin zůstává jen aktuální cena."
+  co_se_zmenilo: "Na 24 stránkách OEM konfigurací je nově vidět vývoj ceny v čase; u rodin zůstává jen aktuální cena."
   dotcene_stranky: [zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm
-
 - datum: 2026-11-05
   typ: obsah
   titulek: "Samostatné stránky pro každou OEM konfiguraci"
   co_se_zmenilo: "Z YAML dat se generuje 25 stránek /zarizeni/konfigurace/<id>/ — 15 DGX Spark, 3 Strix Halo a 7 RTX notebooků. Každá má cenu, parametry, dostupnost, odkaz na Alzu a rozcestník. Tabulky variant na ně odkazují. Stránky jsou v sitemapě."
   dotcene_stranky: [zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm
-
 - datum: 2026-11-04
   typ: mereni
   titulek: "Měření Qwen3.8 Flash Next na M5 Max a návod pro Mac"
   co_se_zmenilo: "Doplněna tři veřejná měření z oMLX (M5 Max 40jader, 128 GB, oQ3, 8k/32k/64k): decode 30,6/24,4/25,8 tok/s, prefill 1435/1050/815 tok/s. Nový návod /navody/mac/ popisuje MLX, oMLX a llama.cpp Metal."
   dotcene_stranky: [zarizeni/mac-studio, zarizeni/macbook-pro, navody/mac, zdroje/mereni]
   zdroj: https://omlx.ai/benchmarks/performance/7fpjs406
-
 - datum: 2026-11-04
   typ: cena
   titulek: "Ceny Mac Studia a MacBooku Pro z Alza.cz"
   co_se_zmenilo: "Mac Studio 128 GB (M5 Max, 614 GB/s) stojí 147 990–171 990 Kč vč. DPH; MacBook Pro 128 GB 209 990–434 490 Kč. Specifikace upraveny na M5 Max podle Apple. Ceny se aktualizují přes kategorie Alza uvedené v aktualizace.md."
   dotcene_stranky: [zarizeni/mac-studio, zarizeni/macbook-pro, temata/cena-lokalni-ai]
   zdroj: https://www.alza.cz/mac-studio/18894763.htm
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Kategorie AI box a AI notebook mají vlastní stránku"
   co_se_zmenilo: "Přibyly stránky /zarizeni/ai-boxy/ a /zarizeni/ai-notebooky/, které vysvětlují, co to je, jak to funguje, co u toho rozhoduje a kdy se vyplatí. Jsou první položkou v menu obou kategorií a pojem se prolinkuje automaticky."
   dotcene_stranky: [zarizeni/ai-boxy, zarizeni/ai-notebooky, zarizeni/srovnani]
   zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-spark/
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Další pojmy ve slovníku a MoE pod Modely"
   co_se_zmenilo: "Přibyly stránky Decode, Propustnost paměti, TFLOPS, Unified memory, Kontext, MTP, NVFP4 a Ollama. Stránka Proč MoE se přesunula z Začínáme do menu Model. Všechny nové pojmy se automaticky prolinkují."
   dotcene_stranky: [slovnik/vykon/decode, slovnik/vykon/propustnost-pameti, slovnik/vykon/tflops, slovnik/pamet/unified-memory, slovnik/pamet/kontext, slovnik/software/mtp, slovnik/software/nvfp4, slovnik/software/ollama, modely/proc-moe]
   zdroj: https://docs.vllm.ai/
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Windows 11 jako rozhodovací kritérium"
   co_se_zmenilo: "Srovnání má sloupec Systém, na stránkách zařízení je OS vidět v rychlých faktech. Nové téma /temata/lokalni-ai-na-windows-11/ říká, která tři zařízení Windows 11 mají, co na nich funguje a kde jsou limity. Pojem Windows 11 se prolinkuje automaticky."
   dotcene_stranky: [temata/lokalni-ai-na-windows-11, zarizeni/srovnani, zarizeni/rtx-spark-notebook, zarizeni/strix-halo]
   zdroj: https://learn.microsoft.com/en-us/windows/arm/
-
-- datum: 2026-11-04
-  typ: obsah
-  titulek: "Nové pořadí menu a sloučené skupiny"
-  co_se_zmenilo: "Menu jde v pořadí čtenáře: Začínáme, Zařízení (Srovnání první), Výběr, Model, Návody, Slovník, Rychlost a měření, Témata, Zdroje, O webu. Datové karty se přesunuly pod Rychlost a měření, čímž zmizela samostatná skupina Data."
-  dotcene_stranky: [index, zarizeni/srovnani]
-  zdroj: https://www.localinference.cz/
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Hugging Face: co to je a jak si vytvořit token"
   co_se_zmenilo: "Nová stránka ve slovníku vysvětluje, jak Hugging Face funguje, k čemu je HF token, jak ho vytvořit a jak ho bezpečně použít. Odkazuje na ní návod pro DGX Spark."
   dotcene_stranky: [slovnik/software/huggingface, navody/dgx-spark]
   zdroj: https://huggingface.co/docs/hub/security-tokens
-
 - datum: 2026-11-04
   typ: obsah
-  titulek: "Slovník jako samostatná kategorie s automatickým prolinkováním"
-  co_se_zmenilo: "Pojmy se přesunuly z /zaciname/ do /slovnik/ a jsou rozdělené do skupin Výkon a měření, Software a runtime, Paměť a model a Provoz a hardware. Přibyly pojmy Tok/s, KV cache, Kvantizace a GGUF. Plugin rehypeSlovnik prolinkuje první výskyt každého pojmu na stránce, takže se články propojují jako wikipedie."
+  titulek: "Slovník jako samostatná kategorie"
+  co_se_zmenilo: "Pojmy se přesunuly z /zaciname/ do /slovnik/ a jsou rozdělené do skupin Výkon a měření, Software a runtime, Paměť a model a Provoz a hardware. Přibyly pojmy Tok/s, KV cache, Kvantizace a GGUF."
   dotcene_stranky: [slovnik, index, zarizeni, modely, zaciname]
   zdroj: https://docs.vllm.ai/
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Vysvětlivky: TTFT, prefill, souběžnost, paralelizace, power limit, throttling"
   co_se_zmenilo: "Šest nových stránek vysvětluje pojmy, které se na webu používaly bez výkladu. Slovník má 25 pojmů, odkazy vedou z Jak čteme data, Kolik uživatelů a stránky RTX Spark notebooku."
   dotcene_stranky: [zaciname/co-je-ttft, zaciname/co-je-prefill, zaciname/co-je-soubeznost, zaciname/co-je-paralelizace, zaciname/co-je-power-limit, zaciname/co-je-throttling, zaciname/slovnik]
   zdroj: https://docs.vllm.ai/en/latest/design/metrics.html
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Vysvětlivky pojmů: CUDA, ROCm, vLLM, llama.cpp a slovník"
   co_se_zmenilo: "Přibyly čtyři stránky s vysvětlením pojmů, které se na webu používají — CUDA, ROCm, vLLM a llama.cpp — a slovník s 19 pojmy. Ze stránek zařízení a modelu na ně vedou odkazy, patička odkazuje na slovník."
   dotcene_stranky: [zaciname/co-je-cuda, zaciname/co-je-rocm, zaciname/co-je-vllm, zaciname/co-je-llamacpp, zaciname/slovnik]
   zdroj: https://docs.nvidia.com/cuda/
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Čeština: ceny v USA místo „listových cen“"
   co_se_zmenilo: "Pojem „US listová cena“ a „US listovka“ nahradilo „cena v USA“ — v češtině se pro list price používá ceníková nebo doporučená cena, ne doslovný překlad. Upraven i hero text na úvodní stránce."
   dotcene_stranky: [index, zarizeni/dgx-spark-oem, zarizeni/strix-halo-oem, zarizeni/rtx-spark-notebook-oem, vyber/rozpocet, temata]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm
-
 - datum: 2026-11-04
   typ: cena
   titulek: "Ověření cen na Alza.cz a jen aktuální ceny"
   co_se_zmenilo: "Ceny ověřeny proti nabídce Alza.cz k 4. 11. 2026. Lenovo ThinkStation PGX 1TB má aktuálně 179 990 Kč. Z dat i tabulek zmizely původní ceny, slevy a historie zdražování — web uvádí jen jednu aktuální cenu k datu ověření."
   dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/dgx-spark, zaciname/co-je-lokalni-ai]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Cenové tabulky jen s koncovou cenou včetně DPH"
   co_se_zmenilo: "Z OEM tabulek zmizel sloupec Dostupnost a Cena bez DPH; zůstává jen cena včetně DPH. Odstraněny poznámky o affiliate odkazech a štítek u odkazů na ceny — vysvětlení zůstává v právních informacích. U Strix Halo a DGX Spark OEM doplněny texty bez uvádění cen bez DPH."
   dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/strix-halo-oem, zarizeni/rtx-spark-notebook-oem, vyber/rozpocet]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Odkazy na aktuální ceny na Alza.cz"
   co_se_zmenilo: "Na 22 stránek přibyl odkaz na aktuální ceny v kategorii Alza.cz s různou textací (Ověřit cenu, Ceny a dostupnost, Kolik stojí dnes…). Odkaz je vždy affiliate a označený štítkem. Patička místo „Co nevíme“ odkazuje na Zdroje."
   dotcene_stranky: [index, zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook, zarizeni/rtx-spark-mini, vyber/rozpocet, temata]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm
-
 - datum: 2026-11-04
   typ: obsah
-  titulek: "Affiliate odkazy na Alza.cz míří na kategorii"
-  co_se_zmenilo: "Všechny odkazy na Alza.cz vedou na kategorii (AI počítače, RTX Spark), ne na konkrétní produkt, a nesou affiliate parametry. Mají rel=sponsored a na stránkách je věta o affiliate. Registr zdrojů má místo produktových položek dvě kategorie."
-  dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/strix-halo-oem, zarizeni/rtx-spark-notebook-oem, vyber/rozpocet, o-webu/pravni]
-  zdroj: https://www.alza.cz/ai-pc/18907789.htm
-
-- datum: 2026-11-04
-  typ: obsah
-  titulek: "SEO: témata, sitemap.xml, OG obrázky a logo"
-  co_se_zmenilo: "Nadpisy a titulky přepsané na hledané fráze. Přibyl rozcestník /temata/ se 7 tématy (data/temata.yaml), vlastní /sitemap.xml, OG obrázky og-cz.png a og-en.png, favicon [Li] a logo v hlavičce. Robots odkazuje na /sitemap.xml."
+  titulek: "Rozcestník témat podle hledaných dotazů"
+  co_se_zmenilo: "Vznikla stránka /temata/ se sedmi tématy — cena lokální AI, lokální AI pro firmy, DGX Spark, Strix Halo, RTX Spark, Qwen3.8 Flash Next a 128 GB unified paměti. Každé téma odpovídá na konkrétní dotaz a odkazuje na data."
   dotcene_stranky: [temata, index, zarizeni/dgx-spark, modely/qwen3-8-flash-next]
   zdroj: https://www.localinference.cz/temata/
-
 - datum: 2026-11-04
   typ: model
   titulek: "Jediný model katalogu: Qwen3.8 Flash Next"
   co_se_zmenilo: "Web se zužuje na Qwen3.8 Flash Next. Ostatní modely a jejich zmínky byly odstraněny; návody, měření i software se týkají jen tohoto modelu."
   dotcene_stranky: [index, modely/qwen3-8-flash-next, navody]
   zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next
-
 - datum: 2026-11-04
   typ: cena
   titulek: "České ceny RTX Spark notebooků"
   co_se_zmenilo: "Přidáno 7 variant ASUS ProArt P14/P16, Lenovo Yoga Pro 9, MSI Prestige a Surface Laptop Ultra s 128GB. Ceny od 125 990 Kč vč. DPH; nová stránka /zarizeni/rtx-spark-notebook/."
   dotcene_stranky: [zarizeni/rtx-spark-notebook-oem, zarizeni/rtx-spark-notebook, vyber/rozpocet]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-
 - datum: 2026-11-04
   typ: cena
   titulek: "České ceny primárně v Kč"
   co_se_zmenilo: "Cenové tabulky a stránky zařízení uvádějí první českou cenu v Kč. Kde ji známe, je s DPH; kde ne, je přepočet z USD označený jako odhad. USD zůstává jako původní/listová cena."
   dotcene_stranky: [zarizeni/srovnani, zarizeni/dgx-spark, zarizeni/strix-halo, vyber/rozpocet]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Návody na první spuštění"
   co_se_zmenilo: "Nová sekce /navody/ s postupy pro DGX Spark, RTX Spark mini/notebook a Strix Halo na Windows i Linuxu. Od vybalení po první chat s modelem."
   dotcene_stranky: [navody, zarizeni/dgx-spark, zarizeni/rtx-spark-mini, zarizeni/strix-halo]
   zdroj: https://docs.nvidia.com/dgx/dgx-spark/first-boot.html
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Web píšeme pro majitele firem a CTO"
   co_se_zmenilo: "Přidána pravidla cílové skupiny a tónu. Homepage, úvodní stránky a stránky zařízení mají shrnutí pro vedení před technickými detaily."
   dotcene_stranky: [index, zaciname/co-je-lokalni-ai, o-webu/jak-piseme, o-webu/metodika]
   zdroj: https://localinference.cz/o-webu/jak-piseme/
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Katalog se zužuje na 128 GB"
   co_se_zmenilo: "Zařízení pod 128 GB vyřazena. Web řeší jen smysluplnou lokální AI na 128GB+ strojích; minimum je Qwen3.8 Flash Next. Odstraněny stránky dalších modelů a přehled konfigurací."
   dotcene_stranky: [index, zarizeni/srovnani, modely/qwen3-8-flash-next]
   zdroj: https://localinference.cz/
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Provozovatel ESHOpino s.r.o. a žádná vlastní měření"
   co_se_zmenilo: "Doplněny právní informace a provozovatel shodný s OpenWork.cz. Metodika a redakční pravidla nově výslovně říkají, že vlastní měření neprovádíme a pracujeme jen se zdroji."
   dotcene_stranky: [o-webu/pravni, o-webu/jak-piseme, o-webu/metodika]
   zdroj: https://www.localinference.cz/o-webu/pravni/
-
 - datum: 2026-11-04
   typ: cena
   titulek: "České ceny Strix Halo: 128 GB za 119 990 Kč"
   co_se_zmenilo: "Acemagic A10A a Acer Veriton RA110 s Ryzen AI Max+ 395, 128GB a 2TB za 119 990 Kč vč. DPH. Nová stránka /zarizeni/strix-halo/ a doplnění rozpočtu."
   dotcene_stranky: [zarizeni/strix-halo-oem, zarizeni/strix-halo, vyber/rozpocet]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-
 - datum: 2026-11-04
   typ: cena
   titulek: "České ceny 15 GB10 OEM strojů"
   co_se_zmenilo: "Nová stránka /zarizeni/dgx-spark/ přináší ceny ASUS, Lenovo, HP, Dell, GIGABYTE, Acer, PNY a NVIDIA z Alza.cz k 4. 11. 2026, včetně a bez DPH."
   dotcene_stranky: [zarizeni/dgx-spark-oem, zarizeni/dgx-spark]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-
-- datum: 2026-11-04
-  typ: obsah
-  titulek: "Přidán changelog"
-  co_se_zmenilo: "Nová stránka /zdroje/novinky/ načítá změny z data/zmeny.yaml."
-  dotcene_stranky: [zdroje/novinky]
-  zdroj: https://localinference.cz/zdroje/novinky/
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Katalog jen malé 128GB boxy"
   co_se_zmenilo: "Mac Studio, Gorgon Halo a DGX Station vyřazeny. Web se drží malých boxů za dosažitelnou cenu; víc uživatelů se řeší počtem boxů."
   dotcene_stranky: [vyber/rozpocet, zarizeni/srovnani]
   zdroj: https://localinference.cz/zarizeni/srovnani/
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "DGX Station vyřazen z katalogu"
   co_se_zmenilo: "Web se drží zařízení v rozumných nákladech. DGX Station za 91–125 tis. USD do katalogu nepatří."
   dotcene_stranky: [vyber/rozpocet, zarizeni/dgx-spark]
   zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-station/
-
 - datum: 2026-11-04
   typ: cena
   titulek: "RTX Spark notebook: ověřená cena 128GB konfigurací"
   co_se_zmenilo: "Cena změněna z nepodloženého rozsahu na 5 899–6 499 USD; 2 599 USD je 24GB konfigurace."
   dotcene_stranky: [zarizeni/rtx-spark-notebook, zaciname/co-je-lokalni-ai]
   zdroj: https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark
-
 - datum: 2026-11-04
   typ: cena
   titulek: "DGX Spark: cena 6 950 USD k 2. 10. 2026"
   co_se_zmenilo: "Doplněna cena a její zdroj."
   dotcene_stranky: [zarizeni/dgx-spark, zaciname/co-je-lokalni-ai]
   zdroj: https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark
-
 - datum: 2026-11-04
   typ: mereni
   titulek: "DGX Spark: konflikt 70 vs. 36,8–45,8 tok/s"
   co_se_zmenilo: "Doplněno nezávislé měření Qwen3.8 Flash Next na DGX Spark a vysvětlení rozdílu konfigurací."
   dotcene_stranky: [zaciname/jak-to-funguje, data/qwen3-8-flash-next-strix-halo]
   zdroj: https://madeye.github.io/qwen38-flash-next-on-dgx-spark/
-
 - datum: 2026-11-04
   typ: mereni
   titulek: "RTX Spark notebook: nativní vLLM pod Windows ARM64"
   co_se_zmenilo: "Přidán komunitní port vLLM bez WSL; 70,44 tok/s vs. 35,37 tok/s v SPEED-Bench coding."
   dotcene_stranky: [zarizeni/rtx-spark-notebook]
   zdroj: https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530
-
 - datum: 2026-11-04
   typ: model
   titulek: "Qwen3.8 Flash Next: referenční minimum"
   co_se_zmenilo: "Doplněny specifikace, kontext, vision a kvantizace z model cardu."
   dotcene_stranky: [modely/qwen3-8-flash-next]
   zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next
-
 - datum: 2026-11-04
   typ: obsah
   titulek: "Zrušeny vlastní odhady"

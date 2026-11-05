@@ -85,9 +85,13 @@
 - **`/temata/`** je rozcestník podle hledaných výrazů. Data v
   `data/temata.yaml` (7 témat) a každé téma má `chybi` jako veřejný backlog.
   Nová témata se zakládají z dotazů v Google Search Console.
-- **`/sitemap.xml`** je vlastní route s `lastmod` z `last_verified`.
-  Starlight dál generuje `sitemap-index.xml`; robots odkazuje na
-  `/sitemap.xml`.
+- **`/sitemap.xml`** je jediná sitemapa. Build po Astru vezme
+  `sitemap-0.xml`, uloží ho jako `/sitemap.xml`, smaže index i dílčí
+  soubor a přepíše odkazy v hlavičkách. Viz `scripts/sitemap-zkratka.mjs`.
+- **Changelog** (`data/zmeny.yaml`, stránka `/zdroje/novinky/`) obsahuje
+  jen změny obsahu: ceny, měření, modely, nové stránky a pojmy. Technické
+  záznamy o stavbě webu (build, sitemap, hreflang, menu, opravy odkazů)
+  tam nepatří.
 - **Navigace:** dlouhé SEO titulky by lámaly levý sloupec, proto mají
   stránky krátký `sidebar.label`. `title` zůstává dlouhý kvůli SERP.
 - **OG obrázky** `og-cz.png` / `og-en.png` (1200×630) se generují ze SVG
