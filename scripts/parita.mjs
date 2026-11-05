@@ -139,7 +139,6 @@ for (const f of czSoubory) {
 
 // Dynamické stránky konfigurací: 25 OEM variant.
 const maKonfigurace = fs.existsSync(path.join(ROOT, 'sites/eu/src/pages/devices/configurations/[id].astro'));
-const konfiguracePocet = 25;
 
 const podleSekce = {};
 for (const c of chybi) {
@@ -149,7 +148,8 @@ for (const c of chybi) {
 
 console.log(`CZ stránek: ${czSoubory.length}`);
 console.log(`EN hotovo: ${hotovo.length}`);
-console.log(`Chybí: ${chybi.length}${maKonfigurace ? ` + ${konfiguracePocet} konfigurací` : ''}`);
+console.log(`Chybí: ${chybi.length}`);
+console.log(`Konfigurace: ${maKonfigurace ? 'hotovo (25)' : 'chybí'}`);
 for (const [s, n] of Object.entries(podleSekce).sort((a, b) => b[1] - a[1])) {
   console.log(`  ${s}: ${n}`);
 }
