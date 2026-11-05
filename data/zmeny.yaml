@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-05
+  typ: zdroj
+  titulek: "Sitemap na /sitemap.xml i pro EN"
+  co_se_zmenilo: "Build nově kopíruje sitemap-0.xml na /sitemap.xml, takže obě domény mají sitemap na očekávané adrese. Robots.txt na EN i CZ ukazuje na /sitemap.xml."
+  dotcene_stranky: [o-webu/metodika, zdroje/novinky]
+  zdroj: https://www.localinference.eu/sitemap.xml
+
+- datum: 2026-11-05
   typ: obsah
   titulek: "Odkaz na druhou jazykovou verzi na každé stránce"
   co_se_zmenilo: "Přepínač jazyka je nově pod nadpisem i na konfiguracích, homepage a stránkách bez data ověření, má podobu malého tlačítka a v patičce přibyl odkaz na protějšek. Cílí na stejnou stránku v druhém jazyce, ne na homepage."
