@@ -144,9 +144,14 @@
   font-size: var(--sl-text-sm);
 }
 
+/* Homepage: hero měl nad i pod sebou přes 100 px prázdna. */
+.hero {
+  padding-block: clamp(1.25rem, 0.75rem + 3vmin, 2.5rem);
+}
+
 /* Hero obrázek na úvodní stránce. */
 .li-hero-foto {
-  margin: 2rem 0 2.5rem;
+  margin: 0.5rem 0 1.75rem;
 }
 .li-hero-foto img {
   display: block;
