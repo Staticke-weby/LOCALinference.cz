@@ -178,3 +178,10 @@ body:has(.hero) {
   white-space: nowrap;
 }
 
+
+/* Odkaz na druhou jazykovou verzi pod nadpisem stranky. */
+.li-jazyk-horni {
+  margin: 0 0 0.9rem;
+  font-size: var(--sl-text-sm);
+}
+

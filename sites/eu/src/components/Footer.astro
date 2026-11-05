@@ -1,5 +1,8 @@
 ---
 import Default from '@astrojs/starlight/components/Footer.astro';
+import { jazykOdkaz } from '../lib/jazyk';
+
+const { cs } = jazykOdkaz(Astro.url.pathname);
 ---
 
 <Default {...Astro.props}><slot /></Default>
@@ -16,7 +19,7 @@ import Default from '@astrojs/starlight/components/Footer.astro';
     <span class="li-oddelovac">·</span>
     <a href="/models/qwen3-8-flash-next/">Model</a>
     <span class="li-oddelovac">·</span>
-    <a href="https://www.localinference.cz/">Čeština</a>
+    <a href={cs} hreflang="cs" lang="cs">Česká verze</a>
   </p>
   <p class="li-provozovatel">
     Operated by ESHOpino s.r.o., Company ID 03223485, Prague, Czech Republic.

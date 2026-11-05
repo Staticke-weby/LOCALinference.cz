@@ -1,5 +1,6 @@
 ---
-// Page title + last verified date (frontmatter `last_verified`).
+// Page title + last verified date (frontmatter `last_verified`) and a link
+// to the other language version.
 import Default from '@astrojs/starlight/components/PageTitle.astro';
 import Jazyk from './Jazyk.astro';
 
@@ -15,16 +16,16 @@ const dateFormat = new Intl.DateTimeFormat('en-US', {
 ---
 
 <Default><slot /></Default>
-{
-  lastVerified instanceof Date && !Number.isNaN(lastVerified.getTime()) ? (
-    <div class="li-pod-nadpisem">
+<div class="li-pod-nadpisem">
+  {
+    lastVerified instanceof Date && !Number.isNaN(lastVerified.getTime()) ? (
       <span class="li-overeno">
         Last verified: {dateFormat.format(lastVerified)}
       </span>
-      <Jazyk />
-    </div>
-  ) : null
-}
+    ) : null
+  }
+  <Jazyk />
+</div>
 
 <style>
   .li-pod-nadpisem {

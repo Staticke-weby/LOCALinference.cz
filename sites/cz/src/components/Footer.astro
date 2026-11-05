@@ -1,5 +1,8 @@
 ---
 import Default from '@astrojs/starlight/components/Footer.astro';
+import { jazykOdkaz } from '../lib/jazyk';
+
+const { en } = jazykOdkaz(Astro.url.pathname);
 ---
 
 <Default {...Astro.props}><slot /></Default>
@@ -24,6 +27,8 @@ import Default from '@astrojs/starlight/components/Footer.astro';
     <a href="/zdroje/zdroje/">Zdroje</a>
     <span class="li-oddelovac">·</span>
     <a href="/o-webu/pravni/">Právní informace</a>
+    <span class="li-oddelovac">·</span>
+    <a href={en} hreflang="en" lang="en">English version</a>
   </p>
   <p class="li-provozovatel">
     Provozovatel: ESHOpino s.r.o., IČO 03223485.

@@ -1,5 +1,6 @@
 ---
-// Nadpis stránky + datum poslední kontroly (frontmatter `last_verified`).
+// Nadpis stránky + datum poslední kontroly (frontmatter `last_verified`)
+// a odkaz na druhou jazykovou verzi.
 import Default from '@astrojs/starlight/components/PageTitle.astro';
 import Jazyk from './Jazyk.astro';
 
@@ -15,16 +16,16 @@ const datumFormat = new Intl.DateTimeFormat('cs-CZ', {
 ---
 
 <Default><slot /></Default>
-{
-  lastVerified instanceof Date && !Number.isNaN(lastVerified.getTime()) ? (
-    <div class="li-pod-nadpisem">
+<div class="li-pod-nadpisem">
+  {
+    lastVerified instanceof Date && !Number.isNaN(lastVerified.getTime()) ? (
       <span class="li-overeno">
         Naposledy ověřeno: {datumFormat.format(lastVerified)}
       </span>
-      <Jazyk />
-    </div>
-  ) : null
-}
+    ) : null
+  }
+  <Jazyk />
+</div>
 
 <style>
   .li-pod-nadpisem {

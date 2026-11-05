@@ -3,6 +3,13 @@
 
 - datum: 2026-11-05
   typ: obsah
+  titulek: "Odkaz na druhou jazykovou verzi na každé stránce"
+  co_se_zmenilo: "Přepínač jazyka je nově pod nadpisem i na konfiguracích, homepage a stránkách bez data ověření, má podobu malého tlačítka a v patičce přibyl odkaz na protějšek. Cílí na stejnou stránku v druhém jazyce, ne na homepage."
+  dotcene_stranky: [index, zarizeni/konfigurace, zdroje/novinky]
+  zdroj: https://www.localinference.eu
+
+- datum: 2026-11-05
+  typ: obsah
   titulek: "Anglická homepage rozšířená"
   co_se_zmenilo: "EN homepage má dvanáct dlaždic s odkazy na obsah (zařízení, model, generování, návody, výběr, slovník, témata, měření, konfigurace, zdroje), sekci Kde začít a odkaz na slovník — stejně jako česká verze."
   dotcene_stranky: [index]

@@ -8,6 +8,23 @@ const { cs } = jazykOdkaz(Astro.url.pathname);
 
 <style>
   .li-jazyk {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    padding: 0.1em 0.65em;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
     font-size: var(--sl-text-sm);
+    line-height: 1.7;
+    text-decoration: none;
+    color: var(--sl-color-accent);
+    white-space: nowrap;
+  }
+  .li-jazyk::after {
+    content: '→';
+    font-size: 0.9em;
+  }
+  .li-jazyk:hover {
+    border-color: var(--sl-color-accent);
   }
 </style>
