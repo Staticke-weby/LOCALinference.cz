@@ -191,7 +191,7 @@ Konkrétní slugy se překládají podle obsahu:
 - [x] Jazykový přepínač na protějšek a `hreflang`.
 - [x] `llms.txt` pro CZ i EN.
 - [x] RSS changelogu (CZ; EN na něj odkazuje).
-- [ ] Vlastní Search Console, keyword clusters.
+- [x] Search Console napojená (CZ i EN).
 
 ## Parita
 

@@ -2,7 +2,7 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**47 položek** · 13 otevreno · 2 ceka-na-vas · 15 prubezne · 17 hotovo · 34 markerů [DOPLNIT] na 13 stránkách.
+**47 položek** · 12 otevreno · 2 ceka-na-vas · 15 prubezne · 18 hotovo · 34 markerů [DOPLNIT] na 13 stránkách.
 
 ## Souhrn podle dávek
 
@@ -12,7 +12,7 @@
 | 2 | Katalogová data Qwen3.8 | 6 |
 | 3 | Kvalita, čeština a provoz | 3 |
 | 4 | Ceny a dostupnost | 5 |
-| 5 | Obsah a propojení | 3 |
+| 5 | Obsah a propojení | 2 |
 | 6 | Infrastruktura a publikace | 3 |
 | 7 | Průběžná údržba | 9 |
 
@@ -96,13 +96,12 @@
 
 | ID | Co chybí | Priorita | Stav | Stránky |
 |---|---|---|---|---|
-| O04 | Google Search Console | P1 | otevreno | /temata/ |
+| O04 | Google Search Console | P1 | hotovo | /temata/ |
 | O02 | Ověřit Ollama tag pro Qwen3.8 | P2 | hotovo | /modely/qwen3-8-flash-next/ |
 | O03 | Windows 11 na homepage | P2 | otevreno | /index/<br>/temata/lokalni-ai-na-windows-11/ |
 | O05 | Sekce „Co chybí“ v tématech | P2 | otevreno | /temata/<br>/zdroje/co-nevime/ |
 | O06 | Témata pro generování | P2 | hotovo | /temata/<br>/generovani/ |
 
-- **O04** — Search Console není napojená, takže témata nevycházejí z reálných dotazů. *Hledat:* Google Search Console
 - **O03** — Chybí karta nebo přepínač „chci to jako počítač“; zatím to řeší až srovnání a téma. *Hledat:* interní návrh
 - **O05** — Není rozhodnuté, jestli má být seznam mezer veřejný u každého tématu. *Hledat:* rozhodnutí provozovatele
 

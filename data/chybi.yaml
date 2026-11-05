@@ -506,16 +506,16 @@ polozky:
   - id: O04
     oblast: obsah
     titulek: "Google Search Console"
-    co_chybi: "Search Console není napojená, takže témata nevycházejí z reálných dotazů."
+    co_chybi: "Hotovo: Search Console je napojená, dotazy se dají použít pro témata."
     kde:
       - temata
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 5
     hledat: "Google Search Console"
-    poznamka: "Po napojení rozšířit data/temata.yaml podle dotazů."
-    zdroj: null
-    overeno: null
+    poznamka: "Po napojení rozšiřovat data/temata.yaml podle reálných dotazů."
+    zdroj: https://search.google.com/search-console
+    overeno: 2026-11-05
 
   - id: O05
     oblast: obsah
