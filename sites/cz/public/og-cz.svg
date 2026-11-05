@@ -10,8 +10,9 @@
     <text x="152" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="44" font-weight="700" fill="#35b48f">]</text>
     <text x="196" y="148" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="42" font-weight="800" letter-spacing="-0.01em" fill="#ffffff">LOCAL<tspan font-weight="400" fill="#c1c3c8">inference</tspan></text>
   </g>
-  <text x="80" y="330" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="72" font-weight="800" fill="#ffffff">Lokální AI pro firmy</text>
-  <text x="80" y="402" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="34" fill="#c1c3c8">128GB boxy · Qwen3.8 Flash Next · ceny v Kč</text>
+  <text x="80" y="318" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="48" font-weight="800" fill="#ffffff">Lokální AI,</text>
+  <text x="80" y="378" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="48" font-weight="800" fill="#ffffff">na kterou se můžete spolehnout</text>
+  <text x="80" y="470" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="30" fill="#c9d3e2">128GB boxy · Qwen3.8 Flash Next · ceny v Kč</text>
   <text x="80" y="548" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="26" fill="#35b48f">localinference.cz</text>
   <g transform="translate(880 300)">
     <rect x="0" y="0" width="230" height="150" rx="18" fill="#1f2a27" stroke="#2f4a43" stroke-width="2"/>

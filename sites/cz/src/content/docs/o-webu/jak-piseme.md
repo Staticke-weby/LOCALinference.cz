@@ -13,7 +13,7 @@ provozovat.
 
 ## Pro koho píšeme
 
-Pro **majitele firem, CTO, podnikatele a vedoucí IT**. Mají rozpočet na
+Pro **lidi a malé týmy**, které zajímá vlastní AI. Mají rozpočet na
 zařízení a chtějí vědět, co od něj čekat. Nejsou to ML inženýři a nemají
 čas číst všechny tabulky.
 

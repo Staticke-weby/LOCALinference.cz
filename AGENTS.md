@@ -48,8 +48,8 @@ a co od nich čtenář může čekat.
 
 ### 2.1 Cílová skupina a tón
 
-Píšeme pro **majitele firem, CTO, podnikatele a vedoucí IT**. Mají
-rozpočet na zařízení a chtějí vědět, co od něj čekat — nejsou to
+Píšeme pro **lidi a malé týmy**, které zvážují vlastní AI — živnostníky,
+správce IT, nadšence i firmy. Mají rozpočet na zařízení a chtějí vědět, co od něj čekat — nejsou to
 ML inženýři ani nadšenci do benchmarků.
 
 - **Každá stránka začíná lidsky:** co to je, pro koho to je, co to

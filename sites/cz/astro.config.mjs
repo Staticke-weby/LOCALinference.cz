@@ -177,7 +177,7 @@ export default defineConfig({
     starlight({
       title: 'LOCALinference',
       description:
-        'Lokální AI pro firmy na 128GB boxech. Ceny v Kč, Qwen3.8 Flash Next a návody krok za krokem.',
+        'Lokální AI na hotových 128GB zařízeních. Ceny v Kč, Qwen3.8 Flash Next a návody krok za krokem.',
       favicon: '/favicon.svg',
       defaultLocale: 'root',
       locales: {
@@ -198,7 +198,7 @@ export default defineConfig({
         { tag: 'meta', attrs: { property: 'og:image', content: 'https://www.localinference.cz/og-cz.png' } },
         { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
         { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
-        { tag: 'meta', attrs: { property: 'og:image:alt', content: 'LOCALinference — lokální AI pro firmy' } },
+        { tag: 'meta', attrs: { property: 'og:image:alt', content: 'LOCALinference — lokální AI na 128 GB' } },
         { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
         { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://www.localinference.cz/og-cz.png' } },
         {
