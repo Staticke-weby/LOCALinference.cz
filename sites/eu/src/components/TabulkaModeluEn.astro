@@ -1,0 +1,35 @@
+---
+import { getModelById } from '../lib/data';
+
+const model = getModelById('qwen3-8-flash-next');
+const kontext = model?.kontext;
+---
+
+{model && (
+  <div class="li-tabulka-obal">
+    <table class="li-tabulka">
+      <thead>
+        <tr>
+          <th>Specification</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Architecture</td><td>MoE, 512 experts (10 routed + 1 shared)</td></tr>
+        <tr><td>Total parameters</td><td>176B (125B main + 51B N-gram + 4B MTP)</td></tr>
+        <tr><td>Active parameters</td><td>6B per token</td></tr>
+        <tr><td>Native context</td><td>262,144 tokens</td></tr>
+        <tr><td>Extension</td><td>1,000,000 tokens with YaRN</td></tr>
+        <tr><td>Recommended operating context</td><td>{kontext?.doporuceny ? `${kontext.doporuceny.toLocaleString('en-US')} (128K)` : '—'}</td></tr>
+        <tr><td>Vision</td><td>Yes (text and images)</td></tr>
+        <tr><td>License</td><td>Apache-2.0</td></tr>
+      </tbody>
+    </table>
+  </div>
+)}
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+title: "Local AI on 128 GB: what runs and what it costs"
+description: "Local AI on turnkey 128GB devices: what runs, how fast and what it costs. An independent guide, no ads and no retailer links."
+template: splash
+last_verified: 2026-11-05
+hero:
+  title: Local AI you can rely on
+  tagline: Turnkey 128GB machines for Qwen3.8 Flash Next. What they cost, what they run and where the limits are.
+  actions:
+    - text: See the devices
+      link: /devices/
+      icon: right-arrow
+    - text: Read the model
+      link: /models/qwen3-8-flash-next/
+      icon: document
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## What you will find
+
+<CardGrid>
+  <LinkCard
+    title="Devices and prices"
+    href="/devices/"
+    description="Six turnkey 128GB machines, US list prices and what runs on them."
+  />
+  <LinkCard
+    title="Qwen3.8 Flash Next"
+    href="/models/qwen3-8-flash-next/"
+    description="The model this site is built around: context, memory, speed and limits."
+  />
+  <LinkCard
+    title="About this site"
+    href="/about/"
+    description="How we read data, where it comes from and why we publish the gaps."
+  />
+</CardGrid>
+
+## Why 128 GB is the minimum
+
+Qwen3.8 Flash Next has 125 billion parameters and needs room for KV
+cache. On 128 GB of unified memory it fits with a useful context; on
+64 GB it does not fit in usable quality. That is why this site does
+not cover smaller machines.
+
+The trade-off is real: a 128GB box is not as fast as a data-centre GPU,
+and not every model fits. What it buys is a machine on your desk, with
+your data, and a predictable bill.
+
+## An independent guide
+
+We do not run our own benchmarks. Figures come from vendors,
+independent labs and community reports, always with a source and a
+date. Where sources disagree, we show the range and explain why.
+
+*Czech edition: [localinference.cz](https://www.localinference.cz/).*

@@ -1,0 +1,56 @@
+---
+import { getZarizeni } from '../lib/data';
+
+const zarizeni = getZarizeni();
+const usd = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 0,
+});
+
+function cena(z: (typeof zarizeni)[number]): string {
+  const c = z.cena;
+  if (!c) return '—';
+  if (typeof c.usd === 'number') return usd.format(c.usd);
+  if (typeof c.od_usd === 'number') {
+    return c.do_usd ? `${usd.format(c.od_usd)}–${usd.format(c.do_usd)}` : `from ${usd.format(c.od_usd)}`;
+  }
+  return '—';
+}
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Device</th>
+        <th>Memory</th>
+        <th>Bandwidth</th>
+        <th>List price</th>
+        <th>OS</th>
+      </tr>
+    </thead>
+    <tbody>
+      {zarizeni.map((z) => (
+        <tr>
+          <td>{z.nazev}</td>
+          <td>{z.pamet_gb} GB {z.pamet_typ}</td>
+          <td>{z.bandwidth_gbs} GB/s</td>
+          <td>{cena(z)}</td>
+          <td>{z.os.join(', ')}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<p class="li-pozn">
+  US list prices, excluding tax and shipping, as published by the vendor.
+  No retailer links. Check the date on the device page before relying on a price.
+</p>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+</style>

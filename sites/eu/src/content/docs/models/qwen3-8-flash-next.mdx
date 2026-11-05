@@ -1,0 +1,62 @@
+---
+title: "Qwen3.8 Flash Next on 128 GB: specs and limits"
+description: "Qwen3.8 Flash Next: 125B MoE with 6B active parameters, 262K context, Apache-2.0. What fits on a 128GB device and where it falls short."
+last_verified: 2026-11-05
+---
+
+import TabulkaModeluEn from '../../../components/TabulkaModeluEn.astro';
+
+**Qwen3.8 Flash Next** is the model this catalogue is built around.
+It is a sparse mixture-of-experts model: 125 billion parameters in the
+main model, only **6 billion active per token**. That is what makes it
+practical on a single 128GB machine.
+
+<TabulkaModeluEn />
+
+## What it can do
+
+- **Agentic coding:** SWE-bench Pro 62.5, DeepSWE 1.1 58.7,
+  SWE-bench Multilingual 81.0.
+- **Tool use:** Toolathlon Verified 73.5, CoWorkBench 73.9.
+- **General knowledge:** MMLU 90.36 on the base model.
+- **Vision:** text and images, including documents, charts and
+  screenshots.
+- **Languages:** multilingual, but quality varies by language and task.
+
+Figures are from the model card and the Qwen blog; they are not our
+measurements.
+
+## Memory and context
+
+At 4-bit or NVFP4 the model fits on a 128GB device with room for KV
+cache. The native context is **262,144 tokens**; 128K is the
+recommended operating point. Longer context costs memory and speed,
+and quality on retrieval tasks can degrade.
+
+The device has to hold the weights, the KV cache and the rest of the
+system. That is why this site does not cover 64GB machines.
+
+## Where it falls short
+
+- **Czech and smaller languages:** no public benchmark we can point to;
+  do not assume English-level quality.
+- **Very long context:** 262K is a ceiling, not a working setting.
+- **Concurrency:** one box is for one to four users, not a team of
+  twenty.
+- **Dense models:** they do not fit or run too slowly; this site treats
+  them as a warning, not a recommendation.
+
+## Where next
+
+- [Devices](/devices/) — what runs it and what it costs.
+- [About this site](/about/) — how we read the numbers.
+- [Czech edition](https://www.localinference.cz/modely/qwen3-8-flash-next/) —
+  measured speeds per device.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [vLLM recipe](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+
+*Last verified: 5 November 2026.*

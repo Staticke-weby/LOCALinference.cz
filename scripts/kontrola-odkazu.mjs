@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = process.cwd();
-const DIST = path.join(ROOT, 'sites/cz/dist');
+const DIST = path.resolve(ROOT, process.argv[2] ?? 'sites/cz/dist');
 
 if (!fs.existsSync(DIST)) {
   console.error('Chybí sites/cz/dist — nejdřív spusťte build.');

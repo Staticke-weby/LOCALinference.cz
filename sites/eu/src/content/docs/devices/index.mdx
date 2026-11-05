@@ -1,0 +1,45 @@
+---
+title: "128GB devices: what runs and what it costs"
+description: "Six turnkey 128GB machines for local AI: memory, bandwidth, US list prices and what they run. No retailer links."
+last_verified: 2026-11-05
+---
+
+import TabulkaZarizeniEn from '../../../components/TabulkaZarizeniEn.astro';
+
+The catalogue covers **turnkey devices with 128 GB or more of unified
+memory**. No whiteboxes, no racks and no 24GB graphics cards: the model
+has to fit on one machine, including KV cache and a useful context.
+
+<TabulkaZarizeniEn />
+
+## What the numbers mean
+
+- **Memory** is shared between CPU and GPU. It is not a 24GB graphics
+  card with a hard ceiling.
+- **Bandwidth** sets the ceiling for token generation. More GB/s means
+  faster decode, not faster prefill.
+- **List price** is the vendor's US price. It excludes tax, shipping
+  and local availability.
+
+## What runs on them
+
+The model this site is built around is **Qwen3.8 Flash Next**. It fits
+on every device in the table at 4-bit or NVFP4, with a recommended
+operating context of 128K tokens.
+
+Some devices are faster than others. CUDA machines generally beat
+ROCm and Metal on prefill; Apple Silicon is the quietest and most
+efficient. The [model page](/models/qwen3-8-flash-next/) explains the
+trade-offs, and the Czech edition has measured numbers for each device.
+
+## Where the limits are
+
+- **Long context** costs memory and speed. 128K is a working point,
+  262K is the ceiling.
+- **Concurrency** is limited by memory bandwidth. One box is for one to
+  four users, not a department.
+- **Availability** differs by country. This edition does not link to
+  retailers.
+
+*Czech edition with Czech prices and retailer categories:
+[localinference.cz](https://www.localinference.cz/zarizeni/srovnani/).*
