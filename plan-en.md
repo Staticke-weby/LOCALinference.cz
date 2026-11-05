@@ -168,9 +168,11 @@ Konkrétní slugy se překládají podle obsahu:
 
 ### Fáze 1 — zařízení a model (48 stránek)
 
-- Home, Start, Výběr.
-- 9 stránek zařízení + 25 konfigurací.
-- Model Qwen3.8 Flash Next, data o Strix Halu.
+- [x] 9 stránek zařízení: 6 rodin, AI boxy, AI laptops, srovnání.
+- [x] 25 konfigurací OEM v `/devices/configurations/`.
+- [x] Model Qwen3.8 Flash Next.
+- [x] Paritní skript `npm run parita`.
+- [ ] Start, výběr a data o Strix Halu.
 
 ### Fáze 2 — generování a návody (21 stránek)
 
