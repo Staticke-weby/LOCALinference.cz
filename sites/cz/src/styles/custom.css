@@ -1,0 +1,179 @@
+/* Vlastní identita Local Inference nad Starlightem.
+   Barvy jen přes proměnné, žádné webfonty. */
+
+:root {
+  /* Zelená + zlato, stejná rodina jako OpenWork.cz.
+     Akcent má kontrast min. 4,5:1 na bílé. */
+  --sl-color-accent-low: #d7ede9;
+  --sl-color-accent: #187a63;
+  --sl-color-accent-high: #135a49;
+
+  --li-gold-low: #f7efd6;
+  --li-gold: #c79a2e;
+  --li-gold-high: #7d6216;
+
+  /* Text na akcentovém tlačítku. */
+  --li-btn-text: #ffffff;
+
+  --sl-font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --sl-font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+    Consolas, 'DejaVu Sans Mono', monospace;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #10352c;
+  --sl-color-accent: #35b48f;
+  --sl-color-accent-high: #b6e6d8;
+
+  --li-gold-low: #342d15;
+  --li-gold: #d9b44a;
+  --li-gold-high: #f2e2a6;
+
+  /* Na světlém akcentu je čitelný tmavý text. */
+  --li-btn-text: #08221c;
+}
+
+/* Asides v paletě značky. */
+.starlight-aside--tip {
+  --sl-color-asides-text-accent: var(--sl-color-accent-high);
+  --sl-color-asides-border: var(--sl-color-accent);
+  background-color: var(--sl-color-accent-low);
+}
+.starlight-aside--note {
+  --sl-color-asides-text-accent: var(--li-gold-high);
+  --sl-color-asides-border: var(--li-gold);
+  background-color: var(--li-gold-low);
+}
+
+/* Tabulky z dat. */
+.li-tabulka {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--sl-text-sm);
+}
+.li-tabulka th,
+.li-tabulka td {
+  border: 1px solid var(--sl-color-gray-5);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+.li-tabulka thead th {
+  background: var(--sl-color-gray-6);
+  font-weight: 600;
+}
+.li-tabulka tbody tr:nth-child(even) td {
+  background: var(--sl-color-gray-7, transparent);
+}
+.li-os {
+  white-space: nowrap;
+}
+.li-tabulka td.li-cislo {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Štítky typu údaje. */
+.li-stitky {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0 1rem;
+}
+.li-stitek {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 999px;
+  font-size: var(--sl-text-xs);
+  color: var(--sl-color-gray-2);
+  background: var(--sl-color-gray-6);
+}
+.li-stitek--mereno {
+  border-color: var(--sl-color-accent);
+  color: var(--sl-color-accent-high);
+  background: var(--sl-color-accent-low);
+}
+.li-stitek--vypocet {
+  border-color: var(--li-gold);
+  color: var(--li-gold-high);
+  background: var(--li-gold-low);
+}
+
+/* Datová karta / upozornění. */
+.li-data {
+  border: 1px solid var(--sl-color-gray-5);
+  border-left: 3px solid var(--sl-color-accent);
+  border-radius: 0.4rem;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  font-size: var(--sl-text-sm);
+}
+.li-data h3 {
+  margin-top: 0;
+}
+.li-data--vypocet {
+  border-left-color: var(--li-gold);
+}
+
+/* Rychlé odkazy na úvodní stránce. */
+.li-mrizka {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.li-mrizka a {
+  display: block;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+.li-mrizka a:hover {
+  border-color: var(--sl-color-accent);
+  background: var(--sl-color-accent-low);
+}
+.li-mrizka strong {
+  display: block;
+  color: var(--sl-color-white);
+}
+.li-mrizka span {
+  color: var(--sl-color-gray-3);
+  font-size: var(--sl-text-sm);
+}
+
+/* Hero obrázek na úvodní stránce. */
+.li-hero-foto {
+  margin: 2rem 0 2.5rem;
+}
+.li-hero-foto img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.6rem;
+}
+.li-hero-foto figcaption {
+  margin-top: 0.5rem;
+  font-size: var(--sl-text-xs);
+  color: var(--sl-color-gray-3);
+}
+
+/* Jemný svit za hero. Na těle stránky, aby přechod neměl viditelný okraj. */
+body:has(.hero) {
+  background-image: radial-gradient(
+    90% 55% at 78% 0%,
+    color-mix(in srgb, var(--sl-color-accent) 13%, transparent) 0%,
+    transparent 62%
+  );
+  background-repeat: no-repeat;
+}
+
+/* Slovnik: prvni a posledni sloupec nedelit. */
+.li-slovnik th:first-child,
+.li-slovnik td:first-child,
+.li-slovnik th:last-child,
+.li-slovnik td:last-child {
+  white-space: nowrap;
+}
