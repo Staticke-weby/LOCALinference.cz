@@ -577,13 +577,13 @@ polozky:
   - id: I03
     oblast: infrastruktura
     titulek: "EN mutace sites/eu"
-    co_chybi: "Scaffold, 9 stránek zařízení, 25 konfigurací a paritní skript jsou hotové. Zbývá přeložit start, generování, návody, slovník, témata a zdroje."
+    co_chybi: "EN obsah je hotový: 103/104 CZ dokumentů (404 je společná), 25 konfigurací, slovník a témata. Zbývá jazykový přepínač, hreflang a Search Console."
     kde: []
     priorita: P1
     stav: otevreno
     davka: 6
     hledat: "interní práce"
-    poznamka: "Parita: 104 CZ dokumentů, hotovo 5 + dynamické stránky. EN běží na www.localinference.eu."
+    poznamka: "Parita: npm run parita. EN běží na www.localinference.eu."
     zdroj: https://www.localinference.eu
     overeno: 2026-11-05
 

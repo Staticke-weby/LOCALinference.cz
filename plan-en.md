@@ -176,20 +176,21 @@ Konkrétní slugy se překládají podle obsahu:
 
 ### Fáze 2 — generování a návody (21 stránek)
 
-- 16 stránek generování včetně receptů a licencí.
-- 5 návodů pro DGX, Strix, RTX a Mac.
+- [x] 16 stránek generování včetně receptů a licencí.
+- [x] 5 návodů pro DGX, Strix, RTX a Mac.
 
 ### Fáze 3 — slovník, témata, zdroje (56 stránek)
 
-- 37 hesel slovníku.
-- 13 témat.
-- Zdroje, měření, changelog, o webu, právní, FAQ.
+- [x] 37 hesel slovníku.
+- [x] 13 témat.
+- [x] Zdroje, měření, changelog, o webu, právní, FAQ.
+- [x] Start, výběr, data, roofline a kalkulačka.
 
 ### Fáze 4 — SEO a publikace
 
-- Vlastní Search Console, keyword clusters.
-- `llms.txt`, RSS changelogu.
-- Kontrola `hreflang` a překladových párů.
+- [ ] Jazykový přepínač na protějšek a `hreflang`.
+- [ ] Vlastní Search Console, keyword clusters.
+- [ ] `llms.txt`, RSS changelogu.
 
 ## Parita
 
