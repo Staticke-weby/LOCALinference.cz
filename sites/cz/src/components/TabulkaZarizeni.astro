@@ -22,19 +22,19 @@ const zarizeni = filtr ? vse.filter((z) => filtr.includes(z.id)) : vse;
         <th>Bandwidth</th>
         <th>Systém</th>
         <th>Cena v ČR</th>
+        <th>Detail</th>
       </tr>
     </thead>
     <tbody>
       {zarizeni.map((z) => (
         <tr>
-          <td>
-            {z.stranka ? <a href={z.stranka}>{z.nazev}</a> : z.nazev}
-          </td>
+          <td>{z.nazev}</td>
           {showKategorie && <td>{z.kategorie}</td>}
           <td class="li-cislo">{formatCislo(z.pamet_gb)} GB</td>
           <td class="li-cislo">{formatCislo(z.bandwidth_gbs)} GB/s</td>
           <td class="li-os">{z.os.join(' / ')}</td>
           <td><Cena zarizeni={z} /></td>
+          <td class="li-detail" style="white-space:nowrap">{z.stranka ? <a href={z.stranka}>Detail</a> : '—'}</td>
         </tr>
       ))}
     </tbody>
@@ -44,5 +44,9 @@ const zarizeni = filtr ? vse.filter((z) => filtr.includes(z.id)) : vse;
 <style>
   .li-tabulka-obal {
     overflow-x: auto;
+  }
+  .li-detail {
+    white-space: nowrap;
+    text-align: right;
   }
 </style>

@@ -1,0 +1,54 @@
+---
+// Rozcestník k zařízení: před nákupem i po něm.
+interface Props {
+  navod: string;
+}
+
+const { navod } = Astro.props;
+---
+
+<nav class="li-rozcestnik" aria-label="Rozcestník k zařízení">
+  <div class="li-rozcestnik__skupina">
+    <span class="li-rozcestnik__nadpis">Před nákupem</span>
+    <a href="#kde-koupit">Cena a kde koupit</a>
+    <a href="/zarizeni/srovnani/">Srovnání zařízení</a>
+    <a href="/vyber/rozpocet/">Rozpočet</a>
+    <a href="/vyber/kolik-uzivatelu/">Kolik uživatelů</a>
+  </div>
+  <div class="li-rozcestnik__skupina">
+    <span class="li-rozcestnik__nadpis">Po nákupu</span>
+    <a href={navod}>První spuštění</a>
+    <a href="/zdroje/mereni/">Naměřené hodnoty</a>
+    <a href="/rychlost/kalkulacka/">Kalkulačka čekání</a>
+    <a href="/slovnik/">Slovník pojmů</a>
+  </div>
+</nav>
+
+<style>
+  .li-rozcestnik {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 0.75rem 1.5rem;
+    margin: 1.25rem 0 1.5rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background: var(--sl-color-gray-7, transparent);
+  }
+  .li-rozcestnik__skupina {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.9rem;
+    align-items: baseline;
+  }
+  .li-rozcestnik__nadpis {
+    flex-basis: 100%;
+    font-size: var(--sl-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-3);
+  }
+  .li-rozcestnik a {
+    font-size: var(--sl-text-sm);
+  }
+</style>
