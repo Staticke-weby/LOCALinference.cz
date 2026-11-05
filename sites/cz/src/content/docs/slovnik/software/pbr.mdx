@@ -1,0 +1,60 @@
+---
+title: "Co je PBR a proč na něm záleží u 3D assetů"
+description: "PBR je způsob popisu povrchu, díky kterému 3D model vypadá správně pod světlem. Vysvětlíme base color, metalness, roughness a formát GLB."
+last_verified: 2026-11-05
+sidebar:
+  label: PBR
+  order: 18
+---
+
+**PBR** (Physically Based Rendering) je způsob, jak popsat povrch
+3D objektu tak, aby se choval jako skutečný materiál — kov, dřevo,
+plast, kůže. Místo jedné „barvy“ nese model několik map, které
+renderer použije při výpočtu světla.
+
+## Co obsahuje
+
+- **Base color** — základní barva bez odlesků.
+- **Metallic** — je povrch kov, nebo nekov?
+- **Roughness** — je povrch matný, nebo lesklý?
+- **Normal** — drobné nerovnosti, které nejsou v geometrii.
+- **Alpha** — průhlednost, pokud ji materiál má.
+
+Bez PBR vypadá model v Blenderu nebo ve hře „plastově“: chybí mu
+odlesky, hrubost i kovový vzhled. S PBR se dá objekt přenést jinam
+a vypadá přirozeně, protože renderer ví, jak materiál reaguje na světlo.
+
+## Kde to potkáte
+
+- **TRELLIS.2** vyrábí mesh i s PBR texturou, výstupem je **GLB**.
+- **Pixal3D** se chlubí věrností předloze a PBR materiály.
+- **Hunyuan3D** má dvoustupňový pipeline, kde druhý krok dodělává texturu.
+
+## Formát GLB
+
+**GLB** je jeden soubor, který obsahuje geometrii, materiály i textury.
+Otevře ho Blender, Godot, Unity i prohlížeč. Pro herní asset je to
+nejpraktičtější výstup: nemusíte řešit, která textura patří kam.
+
+## Kde je limit
+
+- **PBR nevyrábí detaily**, které v objektu nejsou. Model si zadní
+  stranu domýšlí.
+- **Měřítko** — GLB nemá reálné rozměry, je potřeba ho nastavit ručně.
+- **Topologie** — výstup není připravený na animaci; často je potřeba
+  retopologie.
+- **Textury** — vygenerovaná textura bývá plošší než skutečná.
+
+## Kudy dál
+
+- [3D modely](/generovani/3d/) — TRELLIS.2 a Hunyuan3D.
+- [Herní prvky](/generovani/herni-prvky/) — assety do hry.
+- [Difuze](/slovnik/software/difuze/) — jak se generuje obraz.
+- [Licence](/generovani/licence/) — co smíte použít komerčně.
+
+## Zdroje
+
+- [TRELLIS.2](https://github.com/microsoft/TRELLIS.2)
+- [Pixal3D](https://github.com/TencentARC/Pixal3D)
+
+*Naposledy ověřeno: 5. 11. 2026.*

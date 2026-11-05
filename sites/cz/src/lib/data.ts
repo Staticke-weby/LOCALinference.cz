@@ -376,6 +376,23 @@ export function getGenerativniModely(kategorie?: GenerativniModel['kategorie']):
   return kategorie ? vse.filter((m) => m.kategorie === kategorie) : vse;
 }
 
+export type GenerovaniZarizeni = {
+  zarizeni: string;
+  poznamka?: string;
+  polozky: {
+    uloha: string;
+    model: string;
+    konfigurace: string;
+    cas: string;
+    odkaz?: string;
+  }[];
+};
+
+export function getGenerovaniNaZarizeni(id: string): GenerovaniZarizeni | undefined {
+  const vse = load<GenerovaniZarizeni[]>('generovani-na-zarizeni.yaml') ?? [];
+  return vse.find((z) => z.zarizeni === id);
+}
+
 export function getHistorieCen(id: string): HistorieCen['zaznamy'] {
   const vse = load<HistorieCen[]>('historie-cen.yaml') ?? [];
   const z = vse.find((x) => x.id === id);

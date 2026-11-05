@@ -14,6 +14,7 @@ import AlzaCena from '../../../components/AlzaCena.astro';
 import TabulkaStrixHaloOem from '../../../components/TabulkaStrixHaloOem.astro';
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
+import GenerovaniNaZarizeni from '../../../components/GenerovaniNaZarizeni.astro';
 
 **Verdikt:** Nejlevnější cesta k 128 GB unified paměti. Qwen3.8 Flash Next
 na něm běží, ale prefill je slabší než u CUDA strojů — dlouhé dokumenty
@@ -78,6 +79,10 @@ mají stejný čip Ryzen AI Max+ 395 a 128 GB; liší se tělem a zárukou.
 **Co z toho plyne:** decode se v reportech pohybuje zhruba 36–63 tok/s
 podle enginu a kvantizace. Prefill je 0,5–2,4 tis. tok/s a s délkou promptu
 klesá. Na 32k prompt to může být 16–40 s před prvním tokenem.
+
+## Co na něm poběží z generativních modelů
+
+<GenerovaniNaZarizeni zarizeni="strix-halo" />
 
 ## Jak rychle běží Qwen3.8 Flash Next na Strix Halu
 

@@ -26,10 +26,11 @@ výchozí obrázek drží kompozici, model dodá pohyb.
 ## Co z toho poběží u nás
 
 - **DGX Spark a RTX Spark** — CUDA, ComfyUI, nejrychlejší cesta.
-- **Strix Halo** — Vulkan/ROCm, výrazně pomalejší.
-- **Mac** — mlx-video (Wan 2.1/2.2 I2V) nebo Draw Things.
-
-Časy na našich strojích `[DOPLNIT: měření]`.
+- **Strix Halo** — Wan 2.2 I2V 720p (41 snímků) kolem **33,8 min**
+  (ComfyUI, 4kroková LoRA; [kyuz0](https://kyuz0.github.io/amd-strix-halo-comfyui-toolboxes/)).
+- **Mac** — mlx-video (Wan 2.1/2.2 I2V) nebo Draw Things. Pro I2V
+  nemáme veřejné číslo; T2V na M5 Max 128 GB trvá 10,5 min
+  v 512×320 a 36,9 min v 768×512.
 
 ## Kde je limit
 

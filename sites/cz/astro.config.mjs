@@ -83,6 +83,12 @@ function rehypeSlovnik() {
     { re: /\bMTP\b/g, url: '/slovnik/software/mtp/', slug: 'software/mtp' },
     { re: /\bNVFP4\b/g, url: '/slovnik/software/nvfp4/', slug: 'software/nvfp4' },
     { re: /\bOllama\b/g, url: '/slovnik/software/ollama/', slug: 'software/ollama' },
+    { re: /\bdifuz\w*/gi, url: '/slovnik/software/difuze/', slug: 'software/difuze' },
+    { re: /\bLoRA\b/g, url: '/slovnik/software/lora/', slug: 'software/lora' },
+    { re: /\bPBR\b/g, url: '/slovnik/software/pbr/', slug: 'software/pbr' },
+    { re: /\bTTS\b/g, url: '/slovnik/software/tts/', slug: 'software/tts' },
+    { re: /\binpainting\w*/gi, url: '/slovnik/software/inpainting/', slug: 'software/inpainting' },
+    { re: /\bupscal\w*/gi, url: '/slovnik/software/upscaling/', slug: 'software/upscaling' },
   ];
 
   const SKIP_PARENTS = new Set(['a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
@@ -273,7 +279,29 @@ export default defineConfig({
         },
         {
           label: 'Generování',
-          items: [{ autogenerate: { directory: 'generovani' } }],
+          items: [
+            { label: 'Přehled', link: '/generovani/' },
+            { label: 'Obrázky', link: '/generovani/obrazky/' },
+            {
+              label: 'Recepty',
+              items: [
+                { label: 'Přehled receptů', link: '/generovani/recepty/' },
+                { label: 'Windows', link: '/generovani/recepty/windows/' },
+                { label: 'macOS', link: '/generovani/recepty/macos/' },
+                { label: 'DGX OS', link: '/generovani/recepty/dgx-os/' },
+                { label: 'Linux', link: '/generovani/recepty/linux/' },
+              ],
+            },
+            { label: 'Úprava obrázků', link: '/generovani/uprava-obrazku/' },
+            { label: 'Video', link: '/generovani/video/' },
+            { label: 'Úprava videa', link: '/generovani/uprava-videa/' },
+            { label: 'Rozhýbání', link: '/generovani/rozhybani-obrazku/' },
+            { label: 'Audio', link: '/generovani/audio/' },
+            { label: 'Překlady', link: '/generovani/preklady/' },
+            { label: '3D', link: '/generovani/3d/' },
+            { label: 'Herní prvky', link: '/generovani/herni-prvky/' },
+            { label: 'Licence', link: '/generovani/licence/' },
+          ],
         },
         {
           label: 'Návody',

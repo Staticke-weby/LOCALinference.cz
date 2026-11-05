@@ -1,0 +1,126 @@
+---
+title: "Licence generativních modelů: co můžete komerčně použít"
+description: "Přehled licencí lokálních modelů pro obrázky, video a 3D: Apache-2.0, MIT, Qwen Research, Tencent Hunyuan a LTX. Co znamená komerční použití v ČR."
+last_verified: 2026-11-05
+sidebar:
+  label: Licence
+  order: 11
+---
+
+U generativních modelů rozhoduje licence často dřív než kvalita.
+Model, který dělá nejlepší obrázky, může zakazovat komerční použití —
+nebo platit jen mimo Evropskou unii. Tato stránka shrnuje, co znamenají
+jednotlivé typy licencí a které modely jsou pro českou firmu bezpečné.
+
+## Tři otázky, které je potřeba oddělit
+
+1. **Licence vah.** Co smíte dělat s modelem — používat, upravovat,
+   dál šířit, prodávat výstupy?
+2. **Licence výstupů.** Většina licencí nechává výstupy vám. Tencent
+   to říká výslovně, Qwen Research omezuje použití modelu, ne přímo
+   obrázek.
+3. **Území.** Některé licence platí jen v určeném teritoriu. Tencent
+   Hunyuan výslovně vylučuje EU, UK a Jižní Koreu.
+
+Pro firmu v ČR je třetí otázka nejčastější past: model se stáhne,
+funguje, ale licence ho v EU vůbec nepovoluje.
+
+## Co je bezpečné
+
+| Licence | Co znamená | Příklady |
+|---|---|---|
+| **Apache-2.0** | Použití, úpravy i komerční nasazení, bez poplatku | Z-Image-Turbo, FLUX.2 klein, VoxCPM2, MADLAD-400 |
+| **MIT** | Totéž, jen kratší text | TRELLIS.2, Pixal3D, Chatterbox, Ming-3.0 |
+| **CC-BY** | Komerčně ano, ale s uvedením autora | některé datasety a vedlejší modely |
+
+U Apache-2.0 a MIT platí jediná povinnost: zachovat text licence
+a oznámení o autorských právech. Do produktu se nemusí nic doplácet.
+
+## Co je podmíněné
+
+| Licence | Podmínka | Příklady |
+|---|---|---|
+| **LTX-2.x Community** | Zdarma do 10 mil. USD ročního obratu, nad ním placená licence | LTX-2.5 |
+| **Tencent Hunyuan Community** | Platí mimo EU, UK a Jižní Koreu; nad 100 mil. uživatelů zvláštní licence | HunyuanImage 3.0, HunyuanVideo 1.5, Hunyuan3D 2.0 |
+
+LTX je pro malou a střední firmu prakticky bez problémů. U Tencentu
+je problém zásadní: **v ČR model používat nelze**, protože celé EU
+je z licence vyňaté. Nejde o „podmínku“, ale o chybějící oprávnění.
+
+## Co je nekomerční
+
+| Licence | Co to znamená | Příklady |
+|---|---|---|
+| **Qwen Research License** | Jen výzkum a hodnocení; komerční použití vyžaduje zvláštní licenci | Qwen-Image 2.1, Qwen-Image-Edit 2.1 |
+| **FLUX non-commercial** | Nekomerční weights, komerční licence se dokupuje | FLUX.2 dev |
+
+U Qwen Research se komerční licence poptává u Qwen na adrese
+uvedené v licenci. Do té doby model patří na testování a interní
+experimenty, ne do produktu nebo k zakázce.
+
+## Přehled modelů z katalogu
+
+| Model | Licence | Komerčně v ČR |
+|---|---|---|
+| Z-Image-Turbo | Apache-2.0 | ano |
+| FLUX.2 klein 4B | Apache-2.0 | ano |
+| Qwen-Image 2.1 | Qwen Research | ne |
+| FLUX.2 dev | FLUX non-commercial | ne |
+| HunyuanImage 3.0 | Tencent Community | ne — mimo EU |
+| Wan 2.2 | Apache-2.0 | ano |
+| LTX-2.5 | LTX Community | do 10 mil. USD obratu |
+| HunyuanVideo 1.5 | Tencent Community | ne — mimo EU |
+| TRELLIS.2 | MIT | ano |
+| Pixal3D | MIT | ano |
+| Hunyuan3D 2.0 | Tencent Community | ne — mimo EU |
+| VoxCPM2 | Apache-2.0 | ano |
+| Kokoro 82M | Apache-2.0 | ano |
+| Chatterbox | MIT | ano |
+| MADLAD-400 | Apache-2.0 | ano |
+
+Tabulka vychází z model cards a licenčních souborů k 5. 11. 2026.
+Konkrétní model vždy ověřte v jeho repozitáři — licence se může
+změnit u nové verze.
+
+## Co zkontrolovat před nasazením
+
+- **Kdo je držitel práv** — jednotlivec, laboratoř, nebo firma?
+- **Je v licenci slovo „commercial“ povolené, nebo jen „research“?**
+- **Nevylučuje licence území?** Hledejte „Territory“ a „European Union“.
+- **Nemá licenci limit obratu nebo počtu uživatelů?**
+- **Co licence říká o výstupech?** Většina je nechává vám, ale ne všechny.
+- **Jsou v repozitáři třetí komponenty s jinou licencí?** Pixal3D
+  a TRELLIS.2 staví na dalších knihovnách; projděte NOTICE.
+- **Používáte model na produkt, nebo jen interně?** Interní použití
+  má často jiná pravidla než distribuce.
+
+## Kde je limit
+
+- **Licence se může změnit** u nové verze modelu. Datum ověření je
+  u každého záznamu.
+- **Výstup může mít vlastní práva** — u fotek lidí, ochranných známek
+  nebo hudby řešte práva stejně jako u klasické tvorby.
+- **Klonování hlasu** omezuje většina licencí bez ohledu na to, co
+  dovoluje model samotný.
+- **Tato stránka není právní rada.** U velkých zakázek si licenci
+  nechte zkontrolovat právníkem.
+
+## Kudy dál
+
+- [Obrázky](/generovani/obrazky/) — které modely a jejich licence.
+- [Video](/generovani/video/) — Wan, LTX a Hunyuan.
+- [3D](/generovani/3d/) — TRELLIS.2, Pixal3D a Hunyuan3D.
+- [Audio](/generovani/audio/) — TTS a klonování hlasu.
+- [Metodika](/o-webu/metodika/) — jak ověřujeme zdroje.
+
+## Zdroje
+
+- [Qwen Research License](https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE)
+- [Tencent Hunyuan Community License — HunyuanVideo 1.5](https://huggingface.co/tencent/HunyuanVideo-1.5/blob/main/LICENSE)
+- [Tencent Hunyuan 3D 2.0 License](https://huggingface.co/tencent/Hunyuan3D-2/blob/main/LICENSE)
+- [LTX-2.x Community License](https://github.com/Lightricks/LTX-2/blob/main/LICENSE-2_x)
+- [VoxCPM2 — Apache-2.0](https://huggingface.co/openbmb/VoxCPM2)
+- [MADLAD-400 — Apache-2.0](https://huggingface.co/google/madlad400-7b-mt)
+- [Pixal3D — MIT](https://github.com/TencentARC/Pixal3D)
+
+*Naposledy ověřeno: 5. 11. 2026.*

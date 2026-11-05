@@ -1,0 +1,57 @@
+---
+title: "Co je LoRA a proč se vejde do malého souboru"
+description: "LoRA je malý adaptér, který mění chování velkého modelu. Vysvětlíme, k čemu je dobrá, jak se používá v ComfyUI a co znamená pro licenci."
+last_verified: 2026-11-05
+sidebar:
+  label: LoRA
+  order: 17
+---
+
+**LoRA** (Low-Rank Adaptation) je malý soubor, který se přiloží
+k velkému modelu a změní jeho chování — styl, postavu, nebo rychlost.
+Nemění váhy modelu. Přidává k nim několik malých matic, které se
+naučily, co má model dělat jinak.
+
+## Proč to existuje
+
+Přeučit celý model na nový styl je drahé a výsledek zabere desítky GB.
+LoRA má často **desítky až stovky MB** a dá se kombinovat: jedna na
+styl, druhá na postavu, třetí na rychlost. V ComfyUI se načítá node
+**Load LoRA** a nastaví se síla (typicky 0,6–1,0).
+
+## Tři použití, která potkáte
+
+- **Styl** — akvarel, produktová fotografie, comics.
+- **Postava nebo produkt** — stejný obličej či předmět napříč scénami.
+- **Zrychlení** — tzv. Lightning nebo 4-step LoRA. Model, který by
+  potřeboval 20 kroků, udělá práci ve čtyřech. U videa to zkracuje
+  běh z desítek minut na jednotky.
+
+## Příklad z našeho katalogu
+
+Wan 2.2 na Strix Halu: klip 1280×720 o 41 snímcích s 4krokovou
+LoRA trvá kolem **33 minut**. Bez LoRA by stejný klip trval výrazně
+déle. Na DGX Sparku je rozdíl ještě vidět u obrázků — turbo model je
+v podstatě model s vestavěnou distilled LoRA.
+
+## Na co si dát pozor
+
+- **Kvalita** — LoRA trénovaná na malém vzorku dělá chyby v detailech.
+- **Síla** — příliš vysoká hodnota rozbíjí anatomii i text.
+- **Licence** — LoRA má vlastní licenci. Komerční model pod
+  nekomerční LoRA je problém.
+- **Verze** — LoRA pro jinou verzi základního modelu nemusí fungovat.
+
+## Kudy dál
+
+- [Difuze](/slovnik/software/difuze/) — jak generování funguje.
+- [Obrázky](/generovani/obrazky/) — modely a jejich licence.
+- [Licence](/generovani/licence/) — co smíte komerčně použít.
+- [Recepty](/generovani/recepty/) — kde LoRA zapnout.
+
+## Zdroje
+
+- [Z-Image-Turbo — model card](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+- [Wan 2.2 — model card](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B)
+
+*Naposledy ověřeno: 5. 11. 2026.*

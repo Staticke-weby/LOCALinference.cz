@@ -1,0 +1,147 @@
+# Co z generativních modelů poběží na konkrétním zařízení.
+# `cas` je převzaté měření s konfigurací; "—" znamená, že veřejné číslo není.
+# `odkaz` míří na stránku s modelem a podrobnostmi.
+
+- zarizeni: dgx-spark
+  poznamka: "Obrázky jsou veřejně naměřené. U videa a 3D zatím konkrétní číslo nemáme; postup je v oficiálním NVIDIA playbooku."
+  polozky:
+    - uloha: Obrázky
+      model: Z-Image-Turbo
+      konfigurace: "1024², 8 kroků, ComfyUI"
+      cas: "7,5 s"
+      odkaz: /generovani/obrazky/
+    - uloha: Obrázky
+      model: FLUX.2 klein 4B
+      konfigurace: "1024², 4 kroky, ComfyUI"
+      cas: "3,1 s"
+      odkaz: /generovani/obrazky/
+    - uloha: Obrázky
+      model: Qwen-Image 2.1 Turbo
+      konfigurace: "1024², 8 kroků, ComfyUI"
+      cas: "9,5 s"
+      odkaz: /generovani/obrazky/
+    - uloha: Video
+      model: Wan 2.2, LTX-2.5
+      konfigurace: "kontejner NVIDIA playbook"
+      cas: "—"
+      odkaz: /generovani/video/
+    - uloha: 3D
+      model: TRELLIS.2
+      konfigurace: "ComfyUI"
+      cas: "—"
+      odkaz: /generovani/3d/
+
+- zarizeni: rtx-spark-mini
+  poznamka: "Veřejné měření pro mini chybí. Čip je stejný jako v notebooku, ale výkon a chlazení se liší, proto čísla nepřenášíme."
+  polozky:
+    - uloha: Obrázky
+      model: Z-Image-Turbo
+      konfigurace: "1024², 8 kroků"
+      cas: "—"
+      odkaz: /generovani/obrazky/
+    - uloha: Obrázky
+      model: FLUX.2 klein 4B
+      konfigurace: "1024², 20 kroků"
+      cas: "—"
+      odkaz: /generovani/obrazky/
+    - uloha: Video
+      model: Wan 2.2 5B
+      konfigurace: "720p"
+      cas: "—"
+      odkaz: /generovani/video/
+    - uloha: 3D
+      model: TRELLIS.2
+      konfigurace: "ComfyUI"
+      cas: "—"
+      odkaz: /generovani/3d/
+
+- zarizeni: rtx-spark-notebook
+  poznamka: "FLUX je nezávislé měření. U videa známe čas na klip, ale ne jeho délku a rozlišení, proto ho neberte jako srovnatelný údaj."
+  polozky:
+    - uloha: Obrázky
+      model: FLUX.2 klein 4B
+      konfigurace: "1024², 20 kroků, ComfyUI"
+      cas: "17,75 s"
+      odkaz: /generovani/obrazky/
+    - uloha: Obrázky
+      model: Z-Image-Turbo
+      konfigurace: "1024², 8 kroků"
+      cas: "—"
+      odkaz: /generovani/obrazky/
+    - uloha: Video
+      model: LTX-2.3 T2V 22B
+      konfigurace: "NVFP4, jeden klip"
+      cas: "97,6 s*"
+      odkaz: /generovani/video/
+    - uloha: 3D
+      model: TRELLIS.2
+      konfigurace: "ComfyUI"
+      cas: "—"
+      odkaz: /generovani/3d/
+
+- zarizeni: strix-halo
+  poznamka: "Video je měřené na Linuxu s ComfyUI a 4krokovou LoRA, 3D na Windows s ROCm. První běh bývá pomalejší."
+  polozky:
+    - uloha: Obrázky
+      model: Z-Image-Turbo
+      konfigurace: "1024², 8 kroků, ComfyUI"
+      cas: "~24 s"
+      odkaz: /generovani/obrazky/
+    - uloha: Video
+      model: Wan 2.2 T2V A14B
+      konfigurace: "720p, 41 snímků, 4 kroky"
+      cas: "~33 min"
+      odkaz: /generovani/video/
+    - uloha: Video
+      model: LTX2 T2V
+      konfigurace: "720p, 121 snímků"
+      cas: "~10 min"
+      odkaz: /generovani/video/
+    - uloha: 3D
+      model: TRELLIS.2
+      konfigurace: "512, včetně textury"
+      cas: "116 s"
+      odkaz: /generovani/3d/
+
+- zarizeni: mac-studio
+  poznamka: "Měřeno na MacBooku Pro se stejným čipem M5 Max, resp. M4 Pro. Mac Studio může být díky chlazení rychlejší; vlastní číslo pro M5 Ultra nemáme."
+  polozky:
+    - uloha: Obrázky
+      model: Z-Image-Turbo
+      konfigurace: "1024², 8 kroků"
+      cas: "—"
+      odkaz: /generovani/obrazky/
+    - uloha: Video
+      model: Wan 2.2 T2V A14B Q4
+      konfigurace: "512×320, 81 snímků, 10 kroků"
+      cas: "10 min 25 s"
+      odkaz: /generovani/video/
+    - uloha: 3D
+      model: TRELLIS.2
+      konfigurace: "512, včetně textury"
+      cas: "5 min 13 s"
+      odkaz: /generovani/3d/
+
+- zarizeni: macbook-pro
+  poznamka: "Obrázky a video jsou měřené na M5 Pro a M5 Max, 3D na M4 Pro 24 GB. Silnější čip je rychlejší; čísla nejsou zárukou pro každou konfiguraci."
+  polozky:
+    - uloha: Obrázky
+      model: Z-Image-Turbo
+      konfigurace: "1344×768, 8 kroků, ComfyUI"
+      cas: "22 s"
+      odkaz: /generovani/obrazky/
+    - uloha: Obrázky
+      model: FLUX.2 klein 4B
+      konfigurace: "1024², 20 kroků"
+      cas: "84,8 s"
+      odkaz: /generovani/obrazky/
+    - uloha: Video
+      model: Wan 2.2 T2V A14B Q4
+      konfigurace: "512×320, 81 snímků, 10 kroků, MLX"
+      cas: "10 min 25 s"
+      odkaz: /generovani/video/
+    - uloha: 3D
+      model: TRELLIS.2
+      konfigurace: "512, včetně textury, MPS"
+      cas: "5 min 13 s"
+      odkaz: /generovani/3d/

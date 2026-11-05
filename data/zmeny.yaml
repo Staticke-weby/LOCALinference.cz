@@ -2,6 +2,13 @@
 # `typ`: cena | model | mereni | zdroj | obsah
 
 - datum: 2026-11-05
+  typ: obsah
+  titulek: "Dávka 1 dokončena: časy, licence, slovník a zařízení"
+  co_se_zmenilo: "Doplněny časy videa a 3D pro Mac a Strix Halo, vznikla stránka /generovani/licence/, šest hesel ve slovníku (difuze, LoRA, PBR, TTS, inpainting, upscaling) a tabulka generativních modelů na šesti stránkách zařízení. Registr mezer má 7 hotových položek z dávky 1."
+  dotcene_stranky: [generovani, generovani/licence, slovnik, zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook, zarizeni/macbook-pro]
+  zdroj: https://kyuz0.github.io/amd-strix-halo-comfyui-toolboxes/
+
+- datum: 2026-11-05
   typ: model
   titulek: "Licence generativních modelů ověřeny, RTX Spark má první časy"
   co_se_zmenilo: "VoxCPM2 a MADLAD-400 jsou Apache-2.0, Pixal3D MIT — všechny komerčně použitelné. Licence Tencent Hunyuan (Image 3.0, Video 1.5, 3D 2.0) vylučuje EU, UK a Jižní Koreu, proto je v ČR nelze použít a v tabulkách mají „ne“. Doplněno měření RTX Spark: FLUX.2 klein 4B 17,75 s na 1024² při 20 krocích (Principled Technologies)."

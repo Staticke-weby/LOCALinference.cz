@@ -79,8 +79,8 @@ z conda kanálu. Stabilní pip wheel nemusí mít Metal akceleraci.
 |---|---|---|
 | Obrázky | ano | Z-Image, FLUX, Qwen-Image |
 | Úpravy obrázků | ano | inpainting i instrukční úpravy |
-| Video | částečně | přes MLX (`mlx-video`) nebo Draw Things |
-| 3D | neověřeno | `[DOPLNIT: test]` |
+| Video | ano, pomalu | MLX (`mlx-video`) nebo Draw Things |
+| 3D | ano, minuty | TRELLIS.2 přes MPS, 5minutové běhy |
 | Audio | ano | Kokoro, Qwen3-TTS běží i na CPU |
 | Vlastní nodes | omezeně | CUDA-specifické nody nefungují |
 
@@ -104,7 +104,18 @@ rozlišení než u DGX Sparku, takže čísla nejdou srovnávat přímo.
 Na 64GB stroji se u Qwen-Image špička paměti blížila 61 GB — velké
 modely se vejdou, ale nezůstává rezerva.
 
-Pro RTX Spark a Strix Halo `[DOPLNIT: měření]`.
+Video a 3D jsou řádově pomalejší:
+
+| Úloha | Model a nastavení | Čas |
+|---|---|---|
+| Video | Wan 2.2 T2V A14B, 512×320, 81 snímků, 10 kroků | 10 min 25 s |
+| Video | Wan 2.2 T2V A14B, 768×512, 81 snímků | 36 min 53 s |
+| 3D | TRELLIS.2, 512, 400K vrcholů | 5 min 13 s |
+
+Video je měřené na **MacBooku Pro M5 Max 128 GB** přes MLX, 3D na
+**Macu s M4 Pro 24 GB** přes MPS. Na M1 Max 64 GB trvá 2s klip
+v 480p přes hodinu. Pro RTX Spark a Strix Halo platí čísla
+v jejich receptech.
 
 ## Když to nefunguje
 

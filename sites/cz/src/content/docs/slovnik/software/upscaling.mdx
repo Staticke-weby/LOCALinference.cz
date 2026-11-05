@@ -1,0 +1,51 @@
+---
+title: "Co je upscaling a kdy zvyšovat rozlišení"
+description: "Upscaling zvětší obrázek. Vysvětlíme rozdíl mezi klasickým zvětšením a generativním domýšlením detailů a kdy se to hodí."
+last_verified: 2026-11-05
+sidebar:
+  label: Upscaling
+  order: 21
+---
+
+**Upscaling** je zvětšení obrázku na vyšší rozlišení. Není to jen
+„roztažení pixelů“ — kvalitní upscaler doplní hrany a textury tak,
+aby výsledek vypadal ostře i po zvětšení.
+
+## Dva druhy
+
+- **Klasický upscaler** (Real-ESRGAN, SwinIR) — učí se doplňovat
+  detaily z velkého množství obrázků. Je rychlý a nepřidává nový obsah.
+- **Generativní upscale** — model část obrazu překreslí. Umí dodat
+  detaily, ale může si vymyslet věci, které v předloze nebyly.
+
+Pro produktovou fotku nebo tisk je bezpečnější klasický upscaler.
+Pro koncept nebo herní texturu je generativní cesta použitelná, ale
+výsledek se musí zkontrolovat.
+
+## Kde to použít
+
+- **Tisk** — malý obrázek na plakát potřebuje víc pixelů.
+- **Herní textury** — dlaždice a sprity v vyšším rozlišení.
+- **Detail** — zvětšení výřezu pro kontrolu kvality.
+- **3D** — textura 1024 na 2048 pro bližší pohled.
+
+## Kde je limit
+
+- **Vymyšlené detaily** — generativní upscale může změnit text nebo
+  obličej.
+- **Zdroj musí být dobrý** — z rozbitého obrázku kvalitní nevznikne.
+- **Paměť** — velké rozlišení je náročné na [unified memory](/slovnik/pamet/unified-memory/).
+
+## Kudy dál
+
+- [Obrázky](/generovani/obrazky/) — jak vzniká základ.
+- [Inpainting](/slovnik/software/inpainting/) — úprava části.
+- [Herní prvky](/generovani/herni-prvky/) — textury a sprity.
+- [Recepty](/generovani/recepty/) — jak upscale spustit.
+
+## Zdroje
+
+- [ComfyUI — dokumentace](https://docs.comfy.org/)
+- [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN)
+
+*Naposledy ověřeno: 5. 11. 2026.*

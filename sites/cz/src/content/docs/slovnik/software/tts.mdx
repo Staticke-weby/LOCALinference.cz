@@ -1,0 +1,62 @@
+---
+title: "Co je TTS a jak rychle mluví lokální model"
+description: "TTS převádí text na řeč. Vysvětlíme RTF, klonování hlasu, české hlasy a které modely běží na 128GB stroji i na procesoru."
+last_verified: 2026-11-05
+sidebar:
+  label: TTS
+  order: 19
+---
+
+**TTS** (text-to-speech) je převod textu na mluvenou řeč. U lokálního
+provozu nejde o „robota z navigace“ — dnešní modely umí přirozený
+přednes, různé hlasy a z krátké ukázky naklonují konkrétní hlas.
+
+## Co je RTF
+
+**RTF** (real-time factor) říká, kolik sekund výpočtu stojí jedna
+sekunda řeči. RTF 0,3 znamená, že deset sekund řeči vznikne za tři
+sekundy. Čím nižší, tím rychlejší. U malých TTS modelů se RTF
+pohybuje hluboko pod 1 i na procesoru.
+
+## Co dnes jde lokálně
+
+- **Narace** — dlouhý text jedním hlasem, audiokniha, podcast.
+- **Klonování** — z několika sekund ukázky vznikne podobný hlas.
+- **Dabing** — přepis, překlad a nový hlas.
+- **Návrh hlasu** — popíšete „mladý muž, klidný, hluboký“ a model
+  hlas vytvoří bez ukázky.
+
+## Modely z katalogu
+
+- **Kokoro 82M** — Apache-2.0, běží i na CPU, pevné hlasy.
+- **VoxCPM2** — Apache-2.0, 2B, 48 kHz, 30 jazyků, klonování.
+- **Qwen3-TTS** — Apache-2.0, klonování a deset jazyků.
+- **Chatterbox** a **Ming-3.0** — MIT, dobrá kvalita pro komerční použití.
+
+## Etika a licence
+
+Klonovat hlas smíte jen se **svolením jeho majitele**. Většina licencí
+výslovně zakazuje impersonaci a podvod. U dabingu vzniká i právo
+k původnímu záznamu — řešte ho stejně jako hudbu.
+
+## Kde je limit
+
+- **Emoce** — model přečte text, ale neoherecky ho nezahraje.
+- **Čeština** — záleží na modelu; u některých je cizí přízvuk znát.
+- **Výslovnost jmen** — často je potřeba ruční korekce.
+- **Dlouhý text** — dělí se na odstavce, jinak se rozpadá intonace.
+
+## Kudy dál
+
+- [Audio](/generovani/audio/) — modely a postupy.
+- [Překlady](/generovani/preklady/) — dabing potřebuje překlad.
+- [Licence](/generovani/licence/) — komerční použití hlasu.
+- [Slovník](/slovnik/) — další pojmy.
+
+## Zdroje
+
+- [Kokoro 82M](https://huggingface.co/hexgrad/Kokoro-82M)
+- [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2)
+- [Qwen3-TTS](https://huggingface.co/Qwen/Qwen3-TTS)
+
+*Naposledy ověřeno: 5. 11. 2026.*

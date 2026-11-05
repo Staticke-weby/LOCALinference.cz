@@ -140,7 +140,20 @@ jádra.
 Je to **měření výrobce zařízení**, ne nezávislý test — berte ho jako
 horní orientaci. Komunitní měření na jiných konfiguracích hlásí
 u Qwen-Image 30–36 s na srovnatelné rozlišení podle kvantizace.
-Pro RTX Spark `[DOPLNIT: měření]`.
+Pro RTX Spark `[DOPLNIT: měření]`. Video a 3D vypadají takhle
+(ComfyUI, 4krokové LoRA, Linux; [kyuz0](https://kyuz0.github.io/amd-strix-halo-comfyui-toolboxes/)):
+
+| Úloha | Model | Nastavení | Čas |
+|---|---|---|---|
+| Video | Wan 2.2 T2V A14B | 1280×720, 41 snímků, 4 kroky + LoRA | ~33 min |
+| Video | LTX2 T2V | 1280×720, 121 snímků | ~10 min |
+| Video | HunyuanVideo 1.5 T2V | 1280×720, 61 snímků | ~15,5 min |
+| 3D | TRELLIS.2 | 512 | 116 s |
+| 3D | TRELLIS.2 | 1024 | 399 s |
+
+Video čísla jsou studené běhy včetně načtení modelu. 3D je měřené
+na Windows s ROCm (32 GB dedikované paměti), se započtenou texturou
+a postprocessingem.
 
 ## Když to nefunguje
 

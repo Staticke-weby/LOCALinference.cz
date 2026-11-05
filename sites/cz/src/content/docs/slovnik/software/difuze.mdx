@@ -1,0 +1,65 @@
+---
+title: "Co je difuze a proč generuje obrázky"
+description: "Difuzní model se učí odstraňovat šum. Vysvětlíme, co znamenají kroky, proč turbo modely stačí na 4–8 kroků a jak to ovlivní rychlost."
+last_verified: 2026-11-05
+sidebar:
+  label: Difuze
+  order: 16
+---
+
+**Difuze** je způsob, jakým dnes vzniká většina lokálních obrázků
+a videí. Model se neučí kreslit obrázek přímo — učí se **odstraňovat
+šum** z náhodného šumu. Když to umí dobře, stačí mu na začátku dát
+čistý šum a nechat ho ho postupně vyčistit.
+
+## Jak to vypadá v praxi
+
+1. Na začátku je **náhodný šum** — nic, co by připomínalo obrázek.
+2. Model dostane **textové zadání** a v každém kroku šum trochu sníží.
+3. Po několika krocích je z šumu obrázek, který odpovídá zadání.
+
+Tomu se říká **denoising** a počet kroků je nejdůležitější číslo
+pro rychlost. Víc kroků znamená jemnější výsledek, ale lineárně delší
+výpočet.
+
+## Kroky a turbo modely
+
+Klasický difuzní model potřeboval 20–50 kroků. **Turbo** a distillation
+modely se naučily dělat totéž v 4–8 krocích. Proto se dnes u obrázků
+potkáváte s čísly jako „8 kroků“ — a proto je první obrázek na DGX
+Sparku hotový za 7,5 s, ne za minutu.
+
+Postup je vždy stejný:
+
+- **víc kroků** — kvalitnější detaily, delší čekání,
+- **méně kroků** — rychlé náhledy, občas horší text a ruce.
+
+## Latentní prostor
+
+Modely nepracují přímo s pixely, ale se zmenšenou reprezentací
+obrázku — **latentem**. Desetkrát menší mřížka znamená řádově méně
+výpočtu. Výsledek se na konci převede zpět do pixelů přes **VAE**,
+což je právě ta část, která umí být pomalá a paměťově náročná.
+
+## Kde se to potká s naším webem
+
+- Na **DGX Sparku** dává Z-Image-Turbo 1024² za 7,5 s při 8 krocích.
+- Na **Strix Halu** kolem 24 s za stejných podmínek.
+- Na **Macu** 22 s při 1344×768.
+
+Čísla se liší hlavně podle zařízení, ale i podle kroků a rozlišení.
+Proto u každého času uvádíme konfiguraci.
+
+## Kudy dál
+
+- [Obrázky](/generovani/obrazky/) — které modely a licence.
+- [Kvantizace](/slovnik/software/kvantizace/) — jak se zmenšují váhy.
+- [Recepty](/generovani/recepty/) — jak difuzní model spustit.
+- [Video](/generovani/video/) — difuze v čase.
+
+## Zdroje
+
+- [Z-Image-Turbo — model card](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+- [ComfyUI — dokumentace](https://docs.comfy.org/)
+
+*Naposledy ověřeno: 5. 11. 2026.*

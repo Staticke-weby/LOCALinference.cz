@@ -25,8 +25,13 @@ ale na prototyp, pozadí do hry nebo produktový náhled to dnes stačí.
 
 ## Co z toho poběží u nás
 
-Na DGX Sparku a RTX Sparku přes ComfyUI; na Strix Halu a Macu
-`[DOPLNIT: měření]`. 3D je paměťově náročné, ale kratší než video.
+Na DGX Sparku a RTX Sparku přes ComfyUI; veřejné číslo pro ně
+nemáme. Na **Strix Halu** trvá TRELLIS.2 při rozlišení 512 **116 s**
+a při 1024 **399 s** (Windows, ROCm, včetně textury a postprocessingu;
+[kroqueta-s](https://github.com/kroqueta-s/trellis-strix-halo)).
+Na **Macu** je to **5 min 13 s** celkem, z toho zhruba 3 min 20 s
+generování a pečení textury (M4 Pro 24 GB, MPS;
+[trellis-mac](https://github.com/shivampkumar/trellis-mac)).
 
 ## Kde je limit
 
@@ -49,6 +54,7 @@ Na DGX Sparku a RTX Sparku přes ComfyUI; na Strix Halu a Macu
 - [Herní prvky](/generovani/herni-prvky/) — sprity a UI.
 - [Video](/generovani/video/) — animace místo statického modelu.
 - [Recepty](/generovani/recepty/) — ComfyUI na vaší platformě.
+- [Licence](/generovani/licence/) — MIT versus komunitní licence.
 - [Slovník](/slovnik/) — PBR a další pojmy.
 
 ## Zdroje

@@ -1,0 +1,53 @@
+---
+title: "Co je inpainting a jak upravit jen část obrázku"
+description: "Inpainting přemaluje jen vyznačenou část obrázku. Vysvětlíme masku, outpainting, instrukční úpravy a kde dnešní modely selhávají."
+last_verified: 2026-11-05
+sidebar:
+  label: Inpainting
+  order: 20
+---
+
+**Inpainting** je úprava, při které zůstane většina obrázku beze změny
+a model přemaluje jen vyznačenou oblast. V ComfyUI se oblast označí
+**maskou** — bílá znamená „tady generuj“, černá „tady nech“.
+
+## Tři druhy úprav
+
+- **Inpainting** — vyndat objekt, opravit část, přepsat nápis.
+- **Outpainting** — rozšířit obrázek za jeho okraj, změnit formát.
+- **Instrukční úprava** — napíšete „dej jí modré tričko“ a model
+  upraví jen to, co je potřeba.
+
+## Jak to funguje
+
+Model dostane původní obrázek, masku a textové zadání. V maskované
+části začne z šumu a hlídá, aby okraje navazovaly na okolí. Čím větší
+oblast, tím víc si musí domýšlet — a tím větší je riziko, že se změní
+osvětlení nebo perspektiva.
+
+## Modely z katalogu
+
+- **Qwen-Image-Edit 2.1** — tahem, maskou i poznámkami; až 10 referencí.
+- **FLUX.2 klein 4B** — generování i editace v jednom, Apache-2.0.
+- **Klasický inpainting** v ComfyUI — pro jednoduché zásahy stačí.
+
+## Kde je limit
+
+- **Vlasy, prsty a jemné hrany** — nejčastější místo, kde úprava selže.
+- **Text** — krátký nápis ano, složitá typografie ne.
+- **Konzistence** — výměna pozadí může změnit nasvícení postavy.
+- **Rychlost** — úprava je náročnější než generování stejné velikosti.
+
+## Kudy dál
+
+- [Úprava obrázků](/generovani/uprava-obrazku/) — postupy a modely.
+- [Difuze](/slovnik/software/difuze/) — jak vzniká obraz.
+- [Upscaling](/slovnik/software/upscaling/) — když je výstup malý.
+- [Licence](/generovani/licence/) — komerční použití úprav.
+
+## Zdroje
+
+- [Qwen-Image-Edit](https://huggingface.co/Qwen/Qwen-Image-Edit-2509)
+- [ComfyUI — dokumentace](https://docs.comfy.org/)
+
+*Naposledy ověřeno: 5. 11. 2026.*

@@ -1,0 +1,49 @@
+---
+import { getGenerovaniNaZarizeni } from '../lib/data';
+
+interface Props {
+  zarizeni: string;
+}
+
+const data = getGenerovaniNaZarizeni(Astro.props.zarizeni);
+---
+
+{data && (
+  <>
+    <p>{data.poznamka}</p>
+    <div class="li-tabulka-obal">
+      <table class="li-tabulka">
+        <thead>
+          <tr>
+            <th>Úloha</th>
+            <th>Model</th>
+            <th>Nastavení</th>
+            <th>Čas</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.polozky.map((p) => (
+            <tr>
+              <td>
+                {p.odkaz ? <a href={p.odkaz}>{p.uloha}</a> : p.uloha}
+              </td>
+              <td>{p.model}</td>
+              <td>{p.konfigurace}</td>
+              <td>{p.cas}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="li-pozn">
+      Převzatá měření, ne náš test. Časy platí pro uvedenou konfiguraci;
+      podrobnosti a zdroje jsou na stránkách obrázků, videa a 3D.
+    </p>
+  </>
+)}
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+</style>

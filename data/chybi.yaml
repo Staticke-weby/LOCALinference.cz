@@ -56,7 +56,7 @@ polozky:
   - id: G02
     oblast: generovani
     titulek: "Mac: 3D a video"
-    co_chybi: "Na Macu je změřené jen generování obrázků. Video přes MLX a 3D jsou bez čísel a 3D je označené jako neověřené."
+    co_chybi: "Doplněno: Wan 2.2 T2V 512×320 10 min 25 s, 768×512 36 min 53 s (M5 Max 128 GB, MLX); TRELLIS.2 512 celkem 5 min 13 s (M4 Pro 24 GB, MPS)."
     kde:
       - generovani/recepty/macos
       - generovani/3d
@@ -64,17 +64,17 @@ polozky:
       - generovani/rozhybani-obrazku
       - generovani/uprava-obrazku
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 1
     hledat: "mlx-video benchmarky, Reddit r/LocalLLaMA, YouTube, komunitní repozitáře"
-    poznamka: "U videa uvést délku klipu, rozlišení, fps a jestli byl použit MLX nebo Draw Things."
-    zdroj: null
-    overeno: null
+    poznamka: "3D zdroj: https://github.com/shivampkumar/trellis-mac. U videa uvést délku klipu, rozlišení a fps."
+    zdroj: https://jutsustudio.com/blog/wan-2-2-mac/
+    overeno: 2026-11-05
 
   - id: G03
     oblast: generovani
     titulek: "Strix Halo: video a 3D"
-    co_chybi: "U obrázků máme ~24 s na 1024², ale video, úpravy videa a 3D na Strix Halu nemají žádné číslo."
+    co_chybi: "Doplněno: Wan 2.2 720p 41 snímků ~33 min, LTX2 720p 121 snímků ~10 min, HunyuanVideo 1.5 720p 61 snímků ~15,5 min. TRELLIS.2 512 116 s, 1024 399 s."
     kde:
       - generovani/video
       - generovani/uprava-videa
@@ -83,12 +83,12 @@ polozky:
       - generovani/uprava-obrazku
       - generovani/recepty/dgx-os
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 1
     hledat: "kyuz0 benchmarky, Strix Halo wiki, Reddit, YouTube"
-    poznamka: "Uvést backend (ROCm/Vulkan), verzi jádra a nastavení GTT."
+    poznamka: "Video: Linux, ComfyUI, 4kroková LoRA, studené běhy. 3D: Windows, ROCm, 32 GB dedikované paměti; https://github.com/kroqueta-s/trellis-strix-halo."
     zdroj: https://kyuz0.github.io/amd-strix-halo-comfyui-toolboxes/
-    overeno: null
+    overeno: 2026-11-05
 
   - id: G04
     oblast: generovani
@@ -108,21 +108,21 @@ polozky:
   - id: G05
     oblast: generovani
     titulek: "Stránka Licence generativních modelů"
-    co_chybi: "Licence jsou roztroušené v tabulkách. Chybí stránka, která vysvětlí Apache-2.0, MIT, Research licenci a komunitní licence na jednom místě."
+    co_chybi: "Vznikla stránka /generovani/licence/ s typy licencí, přehledem modelů a kontrolou před nasazením."
     kde:
       - generovani/licence
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 1
     hledat: "interní rešerše z model cards"
-    poznamka: "Provázat se slovníkem a s tabulkami modelů."
-    zdroj: null
-    overeno: null
+    poznamka: "Provázáno se slovníkem a s tabulkami modelů."
+    zdroj: https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE
+    overeno: 2026-11-05
 
   - id: G06
     oblast: generovani
     titulek: "Co na zařízeních poběží z generativních modelů"
-    co_chybi: "Stránky zařízení mluví jen o Qwen3.8. Chybí jim tabulka generativních modelů, které na daném stroji poběží, a odkaz na recept."
+    co_chybi: "Stránky zařízení dostaly tabulku generativních modelů s úlohou, nastavením a časem, včetně odkazu na obrázky, video a 3D."
     kde:
       - zarizeni/dgx-spark
       - zarizeni/strix-halo
@@ -131,27 +131,27 @@ polozky:
       - zarizeni/macbook-pro
       - zarizeni/rtx-spark-notebook
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 1
     hledat: "interní data + recepty"
-    poznamka: "Nestačí odkaz na /generovani/; čtenář chce vědět, co poběží právě na jeho krabici."
-    zdroj: null
-    overeno: null
+    poznamka: "Data jsou v data/generovani-na-zarizeni.yaml, komponenta GenerovaniNaZarizeni.astro."
+    zdroj: https://localagentboard.com/images
+    overeno: 2026-11-05
 
   - id: G07
     oblast: generovani
     titulek: "Slovník: difuze, LoRA, PBR, TTS, inpainting"
-    co_chybi: "Pojmy z generování se používají, ale nemají vlastní heslo. Chybí difuze, LoRA, PBR, TTS, STT, inpainting a upscaling."
+    co_chybi: "Přidáno šest hesel: difuze, LoRA, PBR, TTS, inpainting a upscaling. Všechna jsou v indexu slovníku a automaticky se prolinkují."
     kde:
       - slovnik/software
       - slovnik
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 1
     hledat: "interní rešerše, odborné zdroje"
-    poznamka: "Každé heslo musí mít příklad na konkrétním zařízení."
-    zdroj: null
-    overeno: null
+    poznamka: "rehypeSlovnik v astro.config.mjs prolinkuje první výskyt."
+    zdroj: https://docs.comfy.org/
+    overeno: 2026-11-05
 
   - id: G08
     oblast: generovani
