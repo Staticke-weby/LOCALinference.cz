@@ -15,7 +15,8 @@
     "objevy": "node scripts/objevy.mjs",
     "hlidac": "node scripts/hlidac.mjs",
     "dev": "npm --prefix sites/cz run dev",
-    "build": "npm run check && npm --prefix sites/cz run build"
+    "build": "npm run check && npm --prefix sites/cz run build && npm run check:odkazy",
+    "check:odkazy": "node scripts/kontrola-odkazu.mjs"
   },
   "devDependencies": {
     "gray-matter": "^4.0.3",

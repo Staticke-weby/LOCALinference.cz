@@ -3,6 +3,13 @@
 
 - datum: 2026-11-05
   typ: obsah
+  titulek: "FAQ, vlastní 404 a kontrola interních odkazů"
+  co_se_zmenilo: "Vznikla stránka /zaciname/faq/ s deseti dotazy a FAQPage strukturou, vlastní 404 s odkazy a skript kontrola-odkazu.mjs, který po buildu ověří všechny interní odkazy. Opraveno 15 starých odkazů v changelogu."
+  dotcene_stranky: [zaciname/faq, zdroje/novinky]
+  zdroj: https://github.com/Staticke-weby/LOCALinference.cz
+
+- datum: 2026-11-05
+  typ: obsah
   titulek: "Čtyři témata pro generování: obrázky, video, audio a 3D"
   co_se_zmenilo: "Vznikla témata /temata/lokalni-ai-na-obrazky/, -video, -audio a -3d s hledanými výrazy, tabulkou zařízení, časy, licencemi a sekcí Co chybí. Jsou v přehledu témat a prolinkovaná z osmi stránek generování."
   dotcene_stranky: [temata, generovani]

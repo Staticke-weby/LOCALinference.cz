@@ -37,6 +37,7 @@ npm install
 npm run check          # data + obsah + registr mezer
 npm run chybi          # co chybí, podle dávek a priorit
 npm run objevy         # kandidáti na rozšíření webu
+npm run check:odkazy   # interní odkazy v hotovém buildu
 npm run dev            # web na http://localhost:4321
 npm run build          # kontrola + build do sites/cz/dist
 ```

@@ -11,13 +11,32 @@ const typLabel: Record<string, string> = {
   obsah: 'obsah',
 };
 
+const LEGACY: Record<string, string> = {
+  'zarizeni': 'zarizeni/srovnani',
+  'modely': 'modely/qwen3-8-flash-next',
+  'zaciname': 'zaciname/co-je-lokalni-ai',
+  'zaciname/slovnik': 'slovnik',
+  'zaciname/co-je-ttft': 'slovnik/vykon/ttft',
+  'zaciname/co-je-prefill': 'slovnik/vykon/prefill',
+  'zaciname/co-je-soubeznost': 'slovnik/vykon/soubeznost',
+  'zaciname/co-je-paralelizace': 'slovnik/vykon/paralelizace',
+  'zaciname/co-je-power-limit': 'slovnik/provoz/power-limit',
+  'zaciname/co-je-throttling': 'slovnik/provoz/throttling',
+  'zaciname/co-je-cuda': 'slovnik/software/cuda',
+  'zaciname/co-je-rocm': 'slovnik/software/rocm',
+  'zaciname/co-je-vllm': 'slovnik/software/vllm',
+  'zaciname/co-je-llamacpp': 'slovnik/software/llamacpp',
+};
+
 function odkazStranky(stranka: string): string {
-  if (stranka === 'index' || stranka === '/' || stranka === '') return '/';
-  if (stranka.startsWith('/')) return stranka;
-  return `/${stranka.replace(/\/$/, '')}/`;
+  const cil = LEGACY[stranka] ?? stranka;
+  if (cil === 'index' || cil === '/' || cil === '') return '/';
+  if (cil.startsWith('/')) return cil;
+  return `/${cil.replace(/\/$/, '')}/`;
 }
 
 function popisStranky(stranka: string): string {
+  const cil = LEGACY[stranka] ?? stranka;
   const nazvy: Record<string, string> = {
     'zaciname/co-je-lokalni-ai': 'Co je lokální AI',
     'zaciname/jak-to-funguje': 'Jak to funguje',
@@ -41,9 +60,20 @@ function popisStranky(stranka: string): string {
     'zdroje/mereni': 'Všechna měření',
     'zdroje/co-nevime': 'Co nevíme',
     'zdroje/novinky': 'Novinky',
+    'slovnik': 'Slovník',
+    'slovnik/vykon/ttft': 'TTFT',
+    'slovnik/vykon/prefill': 'Prefill',
+    'slovnik/vykon/soubeznost': 'Souběžnost',
+    'slovnik/vykon/paralelizace': 'Paralelizace',
+    'slovnik/provoz/power-limit': 'Power limit',
+    'slovnik/provoz/throttling': 'Throttling',
+    'slovnik/software/cuda': 'CUDA',
+    'slovnik/software/rocm': 'ROCm',
+    'slovnik/software/vllm': 'vLLM',
+    'slovnik/software/llamacpp': 'llama.cpp',
   };
-  if (nazvy[stranka]) return nazvy[stranka];
-  const casti = stranka.split('/');
+  if (nazvy[cil]) return nazvy[cil];
+  const casti = cil.split('/');
   return casti[casti.length - 1].replace(/-/g, ' ');
 }
 ---

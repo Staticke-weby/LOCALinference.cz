@@ -1,0 +1,122 @@
+---
+title: "Časté dotazy k lokální AI: 128 GB, ceny a provoz"
+description: "Odpovědi na časté otázky o lokální AI na 128GB zařízeních: stačí 64 GB, které zařízení vybrat, jak rychle to běží, čeština, licence a provoz."
+last_verified: 2026-11-05
+sidebar:
+  label: Časté dotazy
+  order: 5
+---
+
+Deset otázek, které dostáváme nejčastěji. Odpovědi odkazují na
+podrobnější stránky, kde je zdroj a datum.
+
+## Stačí 64 GB paměti?
+
+Pro Qwen3.8 Flash Next ne. Model má 125 miliard parametrů a do
+128 GB se vejde včetně KV cache pro rozumný kontext. Na 64 GB se
+nevejde v použitelné kvalitě, proto menší zařízení do katalogu
+nezařazujeme. Podrobnosti jsou u [modelu](/modely/qwen3-8-flash-next/).
+
+## Můžu použít vlastní počítač nebo whitebox?
+
+Web řeší **hotová zařízení** se 128 GB a více unified paměti.
+Skládačky, racky a klasické grafické karty s 24 GB do katalogu
+nepatří — model se na ně nevejde celý. Proč to tak je, vysvětluje
+[128 GB unified memory](/temata/128gb-unified-memory/).
+
+## Které zařízení je nejlevnější?
+
+Nejlevnější cesta k 128 GB je dnes **Strix Halo**. Aktuální cenu
+najdete na [stránce zařízení](/zarizeni/strix-halo/), ne v textu —
+ceny se mění. Srovnání všech strojů je v [přehledu](/zarizeni/srovnani/).
+
+## Bude to rychlé jako ChatGPT?
+
+Lokální model běží na vašem stroji, takže rychlost závisí na
+zařízení, kvantizaci a délce kontextu. U Qwen3.8 Flash Next se
+decode pohybuje v desítkách tok/s podle stroje. Čísla a konfigurace
+jsou u [měření](/zdroje/mereni/); nejsou to benchmarky z cloudu.
+
+## Umí Qwen3.8 Flash Next česky?
+
+Model je multilingvní, ale to není totéž jako dobrá čeština na
+vašich úlohách. Veřejné české testy zatím nemáme, proto to nikde
+netvrdíme jako hotovou věc. Co chybí, je v [tématu modelu](/temata/qwen3-8-flash-next/).
+
+## Můžu výstupy použít komerčně?
+
+Záleží na licenci modelu, ne na tom, že běží lokálně. Z-Image,
+FLUX.2 klein, Wan 2.2 a TRELLIS.2 jsou bezpečné; Qwen Research a
+Tencent Hunyuan komerčně použít nelze. Přehled je na
+[licencích](/generovani/licence/).
+
+## Jak je to s elektřinou a hlukem?
+
+U části zařízení chybí veřejná měření příkonu a hluku v zátěži.
+Kde je máme, jsou u zařízení; kde ne, je to označené jako
+chybějící údaj. Provozní náklady jsou v [rozpočtu](/vyber/rozpocet/).
+
+## Co když model nejde spustit?
+
+Začněte [návodem pro své zařízení](/navody/) a pak
+[recepty pro ComfyUI](/generovani/recepty/). U generování jsou
+nejčastější problémy s ovladači, ARM64 balíčky a pamětí.
+
+## Jak často se web aktualizuje?
+
+Každá stránka s proměnlivými údaji má datum poslední kontroly.
+Změny se zapisují do [novinek](/zdroje/novinky/). Data a ceny
+kontrolujeme průběžně, zdroje týdně.
+
+## Proč tu nejsou levnější modely a menší zařízení?
+
+Protože se na ně Qwen3.8 Flash Next nevejde celý. Web není katalog
+všeho, co existuje — je to průvodce tím, co na 128 GB dává smysl.
+Menší modely zmiňujeme jen jako varování nebo srovnání.
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Stačí 64 GB paměti?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Pro Qwen3.8 Flash Next ne. Model se vejde do 128 GB včetně KV cache; na 64 GB neběží v použitelné kvalitě.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Můžu použít vlastní počítač nebo whitebox?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Web řeší hotová zařízení se 128 GB a více unified paměti. Skládačky a karty s 24 GB do katalogu nepatří.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Které zařízení je nejlevnější?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nejlevnější cesta k 128 GB je Strix Halo. Aktuální cenu najdete na stránce zařízení.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Umí Qwen3.8 Flash Next česky?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Model je multilingvní, ale veřejné české testy nemáme. Kvalitu češtiny proto netvrdíme jako hotovou věc.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Můžu výstupy použít komerčně?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Záleží na licenci modelu. Z-Image, FLUX.2 klein, Wan 2.2 a TRELLIS.2 jsou bezpečné; Qwen Research a Tencent Hunyuan ne.',
+      },
+    },
+  ],
+})} />
