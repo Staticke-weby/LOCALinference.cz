@@ -1,0 +1,81 @@
+---
+title: "Lokální AI na 3D: model z fotky na 128 GB"
+description: "Image-to-3D na 128GB zařízeních: TRELLIS.2, Pixal3D a Hunyuan3D, reálné časy na Strix Halu a Macu, formát GLB, PBR a licence."
+last_verified: 2026-11-05
+sidebar:
+  order: 12
+---
+
+Z jedné fotky vznikne 3D model s texturou. Není to náhrada modeláře,
+ale na prototyp, pozadí do hry nebo produktový náhled to dnes stačí.
+Na 128GB stroji jde o minuty, ne hodiny.
+
+## Co dnes jde
+
+- **Mesh s PBR** — barva, drsnost, kovovost; výstup GLB.
+- **Více pohledů** — z několika fotek je model věrnější.
+- **Rozdělení na části** — některé modely umí samostatné komponenty.
+- **Retopologie** — hrubý mesh je potřeba zjednodušit pro hru.
+
+## Která zařízení to zvládnou
+
+| Zařízení | Role | Poznámka |
+|---|---|---|
+| [DGX Spark](/zarizeni/dgx-spark/) | CUDA | ComfyUI, bez veřejného čísla |
+| [RTX Spark mini](/zarizeni/rtx-spark-mini/) | stolní | Windows on Arm, bez měření |
+| [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) | na cesty | Windows on Arm, bez měření |
+| [Strix Halo](/zarizeni/strix-halo/) | nejlevnější 128 GB | ROCm, TRELLIS.2 změřený |
+| [Mac Studio](/zarizeni/mac-studio/) | tichý | MPS, minuty na model |
+| [MacBook Pro](/zarizeni/macbook-pro/) | na cesty | MPS, minuty na model |
+
+## Jak rychle
+
+| Zařízení | Model a nastavení | Čas |
+|---|---|---|
+| Strix Halo | TRELLIS.2, 512, včetně textury | 116 s |
+| Strix Halo | TRELLIS.2, 1024, včetně textury | 399 s |
+| Mac s M4 Pro 24 GB | TRELLIS.2, 512, včetně textury | 5 min 13 s |
+
+Jsou to **převzatá měření**, ne náš test. Strix Halo je měřený na
+Windows s ROCm, Mac na MPS. Pro DGX Spark a RTX Spark veřejné číslo
+nemáme; na DGX Sparku je postup v oficiálním NVIDIA playbooku.
+
+## Formát a kvalita
+
+- **GLB** — geometrie, materiály i textury v jednom souboru.
+- **PBR** — base color, metallic, roughness; model vypadá správně
+  pod světlem.
+- **Topologie** — výstup není připravený na animaci, často je potřeba
+  retopologie.
+- **Měřítko** — GLB nemá reálné rozměry, nastavuje se ručně.
+
+## Licence
+
+- **TRELLIS.2** — MIT, komerčně bez podmínek.
+- **Pixal3D** — MIT, komerčně použitelné; dílčí komponenty mohou mít
+  vlastní licenci.
+- **Hunyuan3D 2.0** — komunitní licence vylučuje EU, v ČR nepoužitelné.
+
+## Kde je limit
+
+- **Zadní strana objektu** — model ji hádá, nezná ji.
+- **Tenké a průhledné věci** — dráty, sklo, látka.
+- **Topologie** — výstup není připravený pro animaci.
+- **Textury** — vygenerovaná textura bývá plošší než skutečná.
+
+## Kudy dál
+
+- [3D modely](/generovani/3d/) — modely a postupy.
+- [Herní prvky](/generovani/herni-prvky/) — assety do hry.
+- [PBR](/slovnik/software/pbr/) — co znamenají materiálové mapy.
+- [Licence](/generovani/licence/) — co smíte použít komerčně.
+- [Recepty](/generovani/recepty/) — ComfyUI na vaší platformě.
+
+## Zdroje
+
+- [TRELLIS.2](https://github.com/microsoft/TRELLIS.2)
+- [trellis-mac — TRELLIS.2 na Apple Silicon](https://github.com/shivampkumar/trellis-mac)
+- [kroqueta-s — TRELLIS.2 na Strix Halu](https://github.com/kroqueta-s/trellis-strix-halo)
+- [Pixal3D](https://github.com/TencentARC/Pixal3D)
+
+*Naposledy ověřeno: 5. 11. 2026.*

@@ -2,7 +2,7 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**47 položek** · 15 otevreno · 2 ceka-na-vas · 15 prubezne · 15 hotovo · 34 markerů [DOPLNIT] na 13 stránkách.
+**47 položek** · 14 otevreno · 2 ceka-na-vas · 15 prubezne · 16 hotovo · 34 markerů [DOPLNIT] na 13 stránkách.
 
 ## Souhrn podle dávek
 
@@ -12,7 +12,7 @@
 | 2 | Katalogová data Qwen3.8 | 6 |
 | 3 | Kvalita, čeština a provoz | 3 |
 | 4 | Ceny a dostupnost | 5 |
-| 5 | Obsah a propojení | 4 |
+| 5 | Obsah a propojení | 3 |
 | 6 | Infrastruktura a publikace | 4 |
 | 7 | Průběžná údržba | 9 |
 
@@ -100,12 +100,11 @@
 | O02 | Ověřit Ollama tag pro Qwen3.8 | P2 | hotovo | /modely/qwen3-8-flash-next/ |
 | O03 | Windows 11 na homepage | P2 | otevreno | /index/<br>/temata/lokalni-ai-na-windows-11/ |
 | O05 | Sekce „Co chybí“ v tématech | P2 | otevreno | /temata/<br>/zdroje/co-nevime/ |
-| O06 | Témata pro generování | P2 | otevreno | /temata/<br>/generovani/ |
+| O06 | Témata pro generování | P2 | hotovo | /temata/<br>/generovani/ |
 
 - **O04** — Search Console není napojená, takže témata nevycházejí z reálných dotazů. *Hledat:* Google Search Console
 - **O03** — Chybí karta nebo přepínač „chci to jako počítač“; zatím to řeší až srovnání a téma. *Hledat:* interní návrh
 - **O05** — Není rozhodnuté, jestli má být seznam mezer veřejný u každého tématu. *Hledat:* rozhodnutí provozovatele
-- **O06** — V data/temata.yaml nejsou témata pro obrázky, video, audio a 3D. SEO rozcestník se soustředí jen na Qwen a zařízení. *Hledat:* Google Search Console, dotazy čtenářů
 
 ## Dávka 6 — Infrastruktura a publikace
 

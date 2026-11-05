@@ -1,0 +1,73 @@
+---
+title: "Lokální AI na video: co zvládne 128 GB"
+description: "Generování videa na 128GB zařízeních: Wan 2.2, LTX-2.5 a HunyuanVideo, reálné časy na Strix Halu, RTX Sparku a Macu, licence a limity."
+last_verified: 2026-11-05
+sidebar:
+  order: 10
+---
+
+Video je nejnáročnější část lokální generativní AI. Počítejte
+s **minutami na klip**, ne sekundami. Na 128GB stroji to jde, ale je
+to dávková práce, ne interaktivní hraní.
+
+## Co dnes jde
+
+- **Text na video** — pětisekundový klip z popisu.
+- **Obrázek na video** — rozhýbání fotky nebo ilustrace.
+- **Úpravy videa** — přemalování části záběru.
+- **Video se zvukem** — jen některé modely, např. LTX-2.5.
+
+## Která zařízení to zvládnou
+
+| Zařízení | Role | Poznámka |
+|---|---|---|
+| [DGX Spark](/zarizeni/dgx-spark/) | CUDA | oficiální NVIDIA playbook, bez veřejného čísla |
+| [RTX Spark mini](/zarizeni/rtx-spark-mini/) | stolní | Windows on Arm, bez měření |
+| [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) | na cesty | LTX změřený, Windows on Arm beta |
+| [Strix Halo](/zarizeni/strix-halo/) | nejlevnější 128 GB | ROCm, video je pomalé |
+| [Mac Studio](/zarizeni/mac-studio/) | tichý | MLX, bez CUDA |
+| [MacBook Pro](/zarizeni/macbook-pro/) | na cesty | MLX, video v minutách |
+
+## Jak rychle
+
+| Zařízení | Model a nastavení | Čas |
+|---|---|---|
+| Strix Halo | Wan 2.2 T2V A14B, 720p, 41 snímků, 4 kroky | ~33 min |
+| Strix Halo | LTX2 T2V, 720p, 121 snímků | ~10 min |
+| Strix Halo | HunyuanVideo 1.5, 720p, 61 snímků | ~15,5 min |
+| RTX Spark | LTX-2.3 T2V 22B, 720p, 121 snímků, NVFP4 | 97,6 s |
+| MacBook Pro M5 Max | Wan 2.2 T2V A14B Q4, 512×320, 81 snímků | 10 min 25 s |
+| MacBook Pro M5 Max | Wan 2.2 T2V A14B Q4, 768×512, 81 snímků | 36 min 53 s |
+
+Jsou to **převzatá měření**, ne náš test. Strix Halo a Mac měří
+jiné rozlišení než RTX Spark, takže čísla nejsou přímé srovnání.
+
+## Licence
+
+- **Wan 2.2** — Apache-2.0, komerčně bez podmínek.
+- **LTX-2.5** — zdarma do 10 milionů USD ročního obratu.
+- **HunyuanVideo 1.5** — licence vylučuje EU, v ČR nepoužitelné.
+
+## Kde je limit
+
+- **Konzistence postavy** mezi záběry.
+- **Přesnost pohybu** — ruce a předměty se rozpadají.
+- **Čas** — pětisekundový klip mohou být minuty.
+- **Teplota** — dlouhý běh narazí na [throttling](/slovnik/provoz/throttling/).
+
+## Kudy dál
+
+- [Generování videa](/generovani/video/) — modely a postupy.
+- [Rozhýbání obrázků](/generovani/rozhybani-obrazku/) — z fotky klip.
+- [Úprava videa](/generovani/uprava-videa/) — střih a přegenerování.
+- [Recepty](/generovani/recepty/) — ComfyUI na vaší platformě.
+- [Licence](/generovani/licence/) — proč Hunyuan v ČR nelze.
+
+## Zdroje
+
+- [kyuz0 — ComfyUI benchmarky na Strix Halu](https://kyuz0.github.io/amd-strix-halo-comfyui-toolboxes/)
+- [Principled Technologies — RTX Spark vs M5 Pro](https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/)
+- [Wan 2.2](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B)
+- [LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5)
+
+*Naposledy ověřeno: 5. 11. 2026.*

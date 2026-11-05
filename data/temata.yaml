@@ -81,8 +81,8 @@
     - /modely/qwen3-8-flash-next/
     - /data/qwen3-8-flash-next-strix-halo/
     - /navody/dgx-spark/
-  chybi: "Chybí podložené doporučení provozního kontextu a české testy."
-  overeno: 2026-11-04
+  chybi: "Chybí provozní měření na 128k, české testy a souběžnost 4+."
+  overeno: 2026-11-05
 
 - id: 128gb-unified-memory
   nazev: 128 GB unified memory
@@ -111,3 +111,66 @@
     - /navody/rtx-spark/
   chybi: "Chybí měření Qwen3.8 Flash Next na Windows ARM64 proti Linuxu."
   overeno: 2026-11-04
+
+- id: lokalni-ai-na-obrazky
+  nazev: Lokální AI na obrázky
+  hledany_vyraz: "lokální AI na obrázky"
+  popis: "Které modely generují obrázky na 128GB zařízeních, jak rychle, jakou mají licenci a co od nich čekat."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /temata/lokalni-ai-na-obrazky/
+    - /generovani/obrazky/
+    - /generovani/licence/
+    - /generovani/recepty/
+    - /zarizeni/srovnani/
+  chybi: "Chybí časy pro úpravy obrázků a Z-Image na RTX Sparku při 8 krocích."
+  overeno: 2026-11-05
+
+- id: lokalni-ai-na-video
+  nazev: Lokální AI na video
+  hledany_vyraz: "lokální AI na video"
+  popis: "Generování videa na 128GB zařízeních: Wan, LTX a Hunyuan, reálné časy, licence a limity."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /temata/lokalni-ai-na-video/
+    - /generovani/video/
+    - /generovani/rozhybani-obrazku/
+    - /generovani/licence/
+    - /generovani/recepty/
+    - /zarizeni/srovnani/
+  chybi: "Chybí měření videa na DGX Sparku a další modely na RTX Sparku."
+  overeno: 2026-11-05
+
+- id: lokalni-ai-na-audio
+  nazev: Lokální AI na audio
+  hledany_vyraz: "lokální AI na audio"
+  popis: "Řeč, klonování hlasu a dabing na 128GB zařízeních: které modely, jaké licence a kde je limit."
+  priorita: stredni
+  stav: hotovo
+  stranky:
+    - /temata/lokalni-ai-na-audio/
+    - /generovani/audio/
+    - /generovani/preklady/
+    - /generovani/licence/
+    - /slovnik/software/tts/
+    - /slovnik/software/stt/
+  chybi: "Chybí veřejné měření TTS na 128GB zařízeních; malé modely běží i na CPU."
+  overeno: 2026-11-05
+
+- id: lokalni-ai-na-3d
+  nazev: Lokální AI na 3D
+  hledany_vyraz: "lokální AI na 3D"
+  popis: "3D modely z fotky na 128GB zařízeních: TRELLIS.2, Pixal3D a Hunyuan3D, časy, formáty a licence."
+  priorita: stredni
+  stav: hotovo
+  stranky:
+    - /temata/lokalni-ai-na-3d/
+    - /generovani/3d/
+    - /generovani/herni-prvky/
+    - /generovani/licence/
+    - /slovnik/software/pbr/
+    - /zarizeni/srovnani/
+  chybi: "Chybí měření 3D na DGX Sparku a RTX Sparku."
+  overeno: 2026-11-05

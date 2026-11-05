@@ -1,0 +1,76 @@
+---
+title: "Lokální AI na obrázky: co zvládne 128 GB"
+description: "Generování obrázků na 128GB zařízeních: Z-Image, FLUX a Qwen-Image, reálné časy na DGX Sparku, RTX Sparku, Strix Halu a Macu, licence a limity."
+last_verified: 2026-11-05
+sidebar:
+  order: 9
+---
+
+Obrázky jsou nejzralejší část lokální generativní AI. Na 128GB stroji
+dnes vznikne fotorealistická scéna za sekundy až desítky sekund a
+plakát s textem za pár desítek sekund.
+
+## Co dnes jde
+
+- **Fotorealistické scény** — portréty, produkty, krajiny.
+- **Plakáty a typografie** — krátký text v obraze.
+- **Průhledné PNG** — stáhne se podklad, zůstane objekt.
+- **Varianty a série** — stejný styl napříč obrázky.
+
+## Která zařízení to zvládnou
+
+| Zařízení | Role | Poznámka |
+|---|---|---|
+| [DGX Spark](/zarizeni/dgx-spark/) | nejrychlejší měřené | CUDA, ComfyUI, oficiální playbook |
+| [RTX Spark mini](/zarizeni/rtx-spark-mini/) | stolní | Windows on Arm, bez veřejného čísla |
+| [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) | na cesty | FLUX změřený, Windows on Arm beta |
+| [Strix Halo](/zarizeni/strix-halo/) | nejlevnější 128 GB | ROCm, pomalejší než CUDA |
+| [Mac Studio](/zarizeni/mac-studio/) | tichý a úsporný | Metal, bez CUDA |
+| [MacBook Pro](/zarizeni/macbook-pro/) | na cesty | Metal, dobré na obrázky |
+
+## Jak rychle
+
+| Zařízení | Model | Nastavení | Čas |
+|---|---|---|---|
+| DGX Spark | Z-Image-Turbo | 1024², 8 kroků | 7,5 s |
+| DGX Spark | FLUX.2 klein 4B | 1024², 4 kroky | 3,1 s |
+| RTX Spark | FLUX.2 klein 4B | 1024², 20 kroků | 17,75 s |
+| Strix Halo | Z-Image-Turbo | 1024², 8 kroků | ~24 s |
+| MacBook Pro M5 Pro | Z-Image-Turbo | 1344×768, 8 kroků | 22 s |
+
+Jsou to **převzatá měření**, ne náš test. Podmínky se liší, proto
+čísla nejsou přímé srovnání. Z-Image na RTX Sparku při 8 krocích
+veřejné číslo nemá.
+
+## Licence
+
+- **Z-Image-Turbo a FLUX.2 klein** — Apache-2.0, komerčně bez podmínek.
+- **Qwen-Image 2.1** — Qwen Research, **nekomerční**.
+- **FLUX.2 dev** — nekomerční weights.
+- **HunyuanImage 3.0** — licence vylučuje EU, v ČR nepoužitelné.
+
+Podrobnosti jsou na stránce [licence](/generovani/licence/).
+
+## Kde je limit
+
+- **Text v obraze** — krátký nápis ano, drobné popisky ne.
+- **Ruce a anatomické detaily** — pořád místy chybují.
+- **Konzistence postavy** — bez referencí se mezi obrázky rozpadá.
+- **Čeština v obraze** — slabší než angličtina.
+
+## Kudy dál
+
+- [Generování obrázků](/generovani/obrazky/) — modely a postupy.
+- [Recepty](/generovani/recepty/) — ComfyUI na vaší platformě.
+- [Úprava obrázků](/generovani/uprava-obrazku/) — když nestačí vygenerovat.
+- [Licence](/generovani/licence/) — co smíte komerčně použít.
+- [VRAM](/slovnik/pamet/vram/) — proč se nároky liší podle zařízení.
+
+## Zdroje
+
+- [LocalAgentBoard — měření na DGX Spark](https://localagentboard.com/images)
+- [Principled Technologies — RTX Spark vs M5 Pro](https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/)
+- [GPD — Z-Image na Strix Halu](https://www.gpd.hk/newsinfo/3222619.html)
+- [Z-Image-Turbo](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+
+*Naposledy ověřeno: 5. 11. 2026.*

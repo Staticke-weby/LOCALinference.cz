@@ -3,6 +3,13 @@
 
 - datum: 2026-11-05
   typ: obsah
+  titulek: "Čtyři témata pro generování: obrázky, video, audio a 3D"
+  co_se_zmenilo: "Vznikla témata /temata/lokalni-ai-na-obrazky/, -video, -audio a -3d s hledanými výrazy, tabulkou zařízení, časy, licencemi a sekcí Co chybí. Jsou v přehledu témat a prolinkovaná z osmi stránek generování."
+  dotcene_stranky: [temata, generovani]
+  zdroj: https://search.google.com/search-console
+
+- datum: 2026-11-05
+  typ: obsah
   titulek: "Generování je propojené se zařízeními a dávka 1 uzavřená"
   co_se_zmenilo: "Na deset stránek generování přibyla tabulka Na kterých zařízeních to poběží s odkazy na všech šest zařízení, srovnání a kategorie. Zároveň vznikla hesla VRAM a STT, doplněno doporučení 128K kontextu, RTX Spark video 97,56 s, Ollama tag a Umami jen v produkci."
   dotcene_stranky: [generovani, slovnik, modely/qwen3-8-flash-next, zdroje/co-nevime]

@@ -1,0 +1,75 @@
+---
+title: "Lokální AI na audio: řeč a klonování hlasu na 128 GB"
+description: "Text-to-speech a klonování hlasu na 128GB zařízeních: Kokoro, VoxCPM2 a Qwen3-TTS, licence, etika a co od lokálního hlasu čekat."
+last_verified: 2026-11-05
+sidebar:
+  order: 11
+---
+
+Audio je nejlevnější část lokální generativní AI. Malé modely běží
+i na procesoru a na 128GB stroji nezaberou skoro nic. Na rozdíl od
+videa nebo 3D tu jde o sekundy, ne minuty.
+
+## Co dnes jde
+
+- **Narace** — dlouhý text jedním hlasem, audiokniha, podcast.
+- **Klonování hlasu** — z několika sekund ukázky.
+- **Dabing** — přepis, překlad a nový hlas.
+- **Návrh hlasu** — popisem vytvoříte nový hlas bez ukázky.
+
+## Která zařízení to zvládnou
+
+| Zařízení | Role | Poznámka |
+|---|---|---|
+| [DGX Spark](/zarizeni/dgx-spark/) | CUDA | TTS i STT, malé modely |
+| [RTX Spark mini](/zarizeni/rtx-spark-mini/) | stolní | Windows on Arm, Python |
+| [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) | na cesty | Windows on Arm, Python |
+| [Strix Halo](/zarizeni/strix-halo/) | nejlevnější 128 GB | TTS běží i na CPU |
+| [Mac Studio](/zarizeni/mac-studio/) | tichý | MLX i CPU |
+| [MacBook Pro](/zarizeni/macbook-pro/) | na cesty | MLX i CPU |
+
+## Modely
+
+- **Kokoro 82M** — Apache-2.0, běží i na procesoru, pevné hlasy.
+- **VoxCPM2** — Apache-2.0, 2B, 48 kHz, 30 jazyků, klonování.
+- **Qwen3-TTS** — Apache-2.0, klonování a deset jazyků.
+- **Chatterbox** a **Ming-3.0** — MIT, dobrá kvalita pro komerční použití.
+
+## Jak rychle
+
+Veřejné měření TTS přímo na našich 128GB zařízeních nemáme.
+Výrobce VoxCPM2 udává RTF kolem **0,3 na RTX 4090**, což je jiné
+zařízení než náš katalog. Menší modely jako Kokoro zvládne
+i procesor; u nich je úzkým místem délka textu, ne GPU.
+
+## Licence a etika
+
+- **Kokoro, VoxCPM2, Qwen3-TTS, Chatterbox, Ming-3.0** — komerčně použitelné.
+- **Klonujte jen hlasy, ke kterým máte svolení.** Většina licencí
+  výslovně zakazuje impersonaci.
+- U dabingu vzniká i **právo k původnímu záznamu** — řešte ho stejně
+  jako u hudby.
+
+## Kde je limit
+
+- **Emoce** — model přečte text, ale neoherecky ho nezahraje.
+- **Čeština** — záleží na modelu; u některých je cizí přízvuk znát.
+- **Dlouhý text** — dělí se na odstavce, jinak se rozpadá intonace.
+- **Výslovnost jmen** — často je potřeba ruční korekce.
+
+## Kudy dál
+
+- [Generování audia](/generovani/audio/) — modely a postupy.
+- [Překlady](/generovani/preklady/) — dabing potřebuje překlad.
+- [TTS](/slovnik/software/tts/) — co je RTF a jak funguje klonování.
+- [STT](/slovnik/software/stt/) — opačný směr, přepis řeči.
+- [Licence](/generovani/licence/) — komerční použití hlasu.
+
+## Zdroje
+
+- [Kokoro 82M](https://huggingface.co/hexgrad/Kokoro-82M)
+- [VoxCPM2](https://huggingface.co/openbmb/VoxCPM2)
+- [Qwen3-TTS](https://huggingface.co/Qwen/Qwen3-TTS)
+- [Whisper large-v3](https://huggingface.co/openai/whisper-large-v3)
+
+*Naposledy ověřeno: 5. 11. 2026.*

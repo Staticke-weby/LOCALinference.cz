@@ -535,17 +535,17 @@ polozky:
   - id: O06
     oblast: obsah
     titulek: "Témata pro generování"
-    co_chybi: "V data/temata.yaml nejsou témata pro obrázky, video, audio a 3D. SEO rozcestník se soustředí jen na Qwen a zařízení."
+    co_chybi: "Přidána čtyři témata: obrázky, video, audio a 3D. Každé má stránku, hledaný výraz, odkazy na zařízení a sekci Co chybí."
     kde:
       - temata
       - generovani
     priorita: P2
-    stav: otevreno
+    stav: hotovo
     davka: 5
     hledat: "Google Search Console, dotazy čtenářů"
-    poznamka: "Začít podle reálných dotazů, ne vymýšlet klíčová slova."
-    zdroj: null
-    overeno: null
+    poznamka: "Čtyři stránky v /temata/, prolinkované z generování i přes TabulkaTemat."
+    zdroj: https://search.google.com/search-console
+    overeno: 2026-11-05
 
   # --- Dávka 6: infrastruktura ------------------------------------------
   - id: I01
