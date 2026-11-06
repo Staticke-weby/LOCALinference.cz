@@ -92,6 +92,20 @@ klesá. Na 32k prompt to může být 16–40 s před prvním tokenem.
 - **Dlouhé dokumenty:** prefill je hlavní limit, ne decode.
 - **Souběžnost:** většina reportů je single-stream; 4+ je `[DOPLNIT]`.
 
+## Co NPU skutečně umí
+
+„50 TOPS“ je číslo pro INT8 a konkrétní runtime, ne pro váš model.
+**Ollama ani vLLM NPU nepoužívají** — běží na GPU. NPU se ovládá
+samostatně přes FastFlowLM nebo Ryzen AI SDK; na Linuxu potřebuje
+jádro 7.0+ (nebo `amdxdna-dkms`), XRT a firmware.
+
+Zvládne malé modely. Naměřené hodnoty na Strix Halo: Llama 3.2 1B
+~49–50 tok/s, Llama 3.1 8B ~8 tok/s. Na Qwen3.8 Flash Next
+s 125B parametry to nestačí; ten běží na GPU.
+
+Praktický důsledek: NPU berte jako doplněk pro malý pomocný model,
+ne jako cestu, jak zrychlit hlavní práci.
+
 ## Na co si dát pozor
 
 - **[ROCm](/slovnik/software/rocm/)** není tak zralý jako [CUDA](/slovnik/software/cuda/). Některé optimalizace (FP8 KV cache,
@@ -131,5 +145,9 @@ Skladem na Alza.cz k 5. 11. 2026 (Acemagic A10A). Cena 119 990 Kč vč. DPH.
 - [Compute Market — Strix Halo ceny](https://www.compute-market.com/blog/strix-halo-mini-pc-local-ai-2026)
 - [AMD Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html)
 - [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+- [AMD — ROCm kompatibilita (gfx1151)](https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html)
+- [AMD — Ryzen AI Software pro Linux (NPU)](https://ryzenai.docs.amd.com/en/latest/linux.html)
+- [FastFlowLM — NPU na Linuxu](https://fastflowlm.com/docs/install_lin)
+- [nix-amd-ai — měření NPU a Vulkanu na Strix Halo](https://github.com/noamsto/nix-amd-ai/blob/main/docs/performance.md)
 
 *Naposledy ověřeno: 4. 11. 2026.*

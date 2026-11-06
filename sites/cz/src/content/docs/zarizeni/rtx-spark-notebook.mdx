@@ -137,6 +137,15 @@ chování je `[DOPLNIT: měření]`.
 - **Kde narazí:** throttling, spánek a zavření víka, hluk, výdrž baterie.
   Konkrétní čísla `[DOPLNIT]`.
 
+## Windows on Arm: co čekat
+
+- **CUDA na Windows ARM je developer preview** (CUDA 13.4, 2026).
+  Ollama a llama.cpp fungují, ale část Python stacku potřebuje ARM64 kola.
+- **Paměť:** Windows dělí unified pool na GPU-dedikovanou část a shared;
+  podíl se nastavuje ručně.
+- **vLLM** je komunitní port, ne oficiální Windows build.
+- **Smart App Control** může blokovat nepodepsané nástroje.
+
 ## Na co si dát pozor
 
 - **Throttling:** 45–80 W v tenkém šasi znamená trvalý ventilátor a vyšší
@@ -200,6 +209,10 @@ Skladem na Alza.cz k 5. 11. 2026 (ASUS ProArt P14, Lenovo Yoga Pro 9). Cena od 1
   ceny 128GB konfigurací (10/2026).
 - [BetterClaw — RTX Spark vs DGX Spark](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark) —
   cena 128GB konfigurace, srovnání.
+- [XDA — CUDA na Windows on Arm je verze 1](https://www.xda-developers.com/things-nobody-tells-you-before-buying-an-rtx-spark-laptop) —
+  ARM64 stack, Smart App Control (10/2026).
+- [NeoTeo — jak Windows dělí unified paměť](https://www.neoteo.com/en/nvidia-rtx-spark-review-how-windows-divides-unified-memory) —
+  GPU carveout a shared paměť (11/2026).
 - [První ceny RTX Spark notebooků](https://news.qq.com/rain/a/20261008A04Z5W00) —
   ASUS ProArt P14 128GB za 141 tis. Kč (6 499 USD, odhad; 10/2026).
 - [Presenc AI — RTX Spark local LLM benchmarks](https://presenc.ai/research/nvidia-rtx-spark-local-llm-benchmarks-2026) —

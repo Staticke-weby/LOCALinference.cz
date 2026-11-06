@@ -34,12 +34,33 @@ a rozdíl je v ekosystému, ne ve výkonu.
   než papírové tok/s.
 - **Podpora** — když stroj spadne, chcete vědět, komu zavolat.
 
+## Doporučená cesta
+
+Neexistuje jedno „nejlepší“ zařízení. Rozhoduje, na čem chcete
+pracovat a jaký runtime potřebujete rozjet.
+
+| Chcete | Vezměte | Proč |
+|---|---|---|
+| Windows a jeden stroj na práci i AI | **RTX Spark 128 GB** | plný Windows, CUDA a ovladače; vLLM běží přes komunitní port |
+| Linux, vLLM a nejmíň překvapení | **DGX Spark** | oficiální recepty a DGX OS; druhý systém ale řešíte vy |
+| Nejnižší cenu za 128 GB | **Strix Halo** | chat, RAG a kód; slabší prefill a NPU mimo hlavní cestu |
+
+Dvě věci, aby to nebylo naivní doporučení:
+
+- **RTX Spark** je nejmladší platforma. CUDA na Windows ARM je
+  developer preview a část Python ekosystému potřebuje ARM64 kola.
+  První odpoledne padne na instalaci.
+- **Strix Halo** má 50 TOPS NPU, ale Ollama ani vLLM ho nepoužívají.
+  NPU obslouží jen malé modely přes FastFlowLM; Qwen3.8 Flash Next
+  na něm nepojede.
+
 ## Rozhodovací zkratka
 
 1. Data musí zůstat u vás? Pokud ne, cloud může být levnější.
 2. Kolik lidí to použije? Do čtyř jeden box; víc se řeší počtem boxů.
 3. Potřebujete přenášet? Ano → notebook. Ne → box.
-4. Potřebujete CUDA? Ano → DGX nebo RTX. Ne → Strix Halo.
+4. Potřebujete CUDA? Ano → RTX Spark (Windows) nebo DGX Spark
+   (Linux). Ne → Strix Halo.
 
 ## Kudy dál
 

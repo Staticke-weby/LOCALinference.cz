@@ -103,6 +103,45 @@ const datum = new Intl.DateTimeFormat('en-US', {
     </div>
   </div>
 
+  {['rtx-spark-mini', 'rtx-spark-notebook'].includes(z.id) && (
+    <>
+      <h2>Windows on Arm: what to expect</h2>
+      <ul>
+        <li>
+          <strong>CUDA on Windows Arm is a developer preview.</strong> It arrived
+          in 2026 (CUDA 13.4) and part of the Python stack needs Arm64 wheels.
+        </li>
+        <li>
+          <strong>Memory:</strong> Windows splits the unified pool into a
+          GPU-dedicated part and shared memory; the split is set manually.
+        </li>
+        <li>
+          <strong>vLLM</strong> runs through a community port, not an official
+          Windows build.
+        </li>
+        <li>
+          <strong>Smart App Control</strong> can block unsigned tools.
+        </li>
+      </ul>
+    </>
+  )}
+
+  {z.id === 'strix-halo' && (
+    <>
+      <h2>What the NPU actually does</h2>
+      <p>
+        The advertised 50 TOPS is an INT8 figure for a specific runtime, not for
+        your model. <strong>Ollama and vLLM do not use the NPU</strong> — they
+        run on the GPU. The NPU needs FastFlowLM or the Ryzen AI SDK, plus XRT
+        and firmware on Linux.
+      </p>
+      <p>
+        It handles small models: about 49 tok/s for a 1B model and 8 tok/s for
+        8B in community measurements. Qwen3.8 Flash Next runs on the GPU.
+      </p>
+    </>
+  )}
+
   {konfigurace.length > 0 && (
     <>
       <h2>OEM configurations</h2>

@@ -14,6 +14,24 @@ the 4-bit model**. Everything else is a trade-off.
 - **Strix Halo if price matters** — slower prefill, but much cheaper.
 - **Mac if silence matters** — no CUDA, excellent image performance.
 
+## The recommended path
+
+There is no single best device. What decides is the OS you work on and the
+runtime you need.
+
+| You want | Choose | Why |
+|---|---|---|
+| Windows and one machine for work and AI | **RTX Spark 128 GB** | full Windows, CUDA and drivers; vLLM runs through a community port |
+| Linux, vLLM and the fewest surprises | **DGX Spark** | official recipes and DGX OS; but you maintain a second system |
+| The lowest price for 128 GB | **Strix Halo** | chat, RAG and code; weaker prefill and the NPU is outside the main path |
+
+Two caveats so this is not naive advice:
+
+- **RTX Spark** is the youngest platform. CUDA on Windows Arm is a developer
+  preview and part of the Python ecosystem needs Arm64 wheels.
+- **Strix Halo** has a 50 TOPS NPU, but Ollama and vLLM do not use it. The NPU
+  only serves small models through FastFlowLM; Qwen3.8 Flash Next runs on the GPU.
+
 ## What to avoid
 
 - **64 GB** — the model does not fit.

@@ -85,6 +85,21 @@ Stejná paměť i bandwidth. Mini vyhraje na stálém provozu a chlazení,
 notebook na cestách. Nepřetržitý výkon mini by měl být vyšší, ale bez
 měření to neuvádíme.
 
+## Windows on Arm: co čekat
+
+- **CUDA na Windows ARM je developer preview.** Dorazila v roce 2026
+  (CUDA 13.4) a je zaměřená na RTX Spark; část nástrojů ještě nemá
+  ARM64 build.
+- **Python stack:** potřebujete ARM64 kola. Knihovny bez nich se
+  nespustí, i když na Linuxu fungují.
+- **Paměť:** Windows dělí pool na GPU-dedikovanou část a shared;
+  podíl se nastavuje ručně. Není to „jedno číslo“ jako u DGX OS.
+- **Smart App Control** může zablokovat nepodepsané nástroje.
+- **vLLM** běží přes komunitní port, ne oficiální podporu.
+
+Nic z toho neznamená, že to nejde — znamená to, že první instalace
+není odpoledne a půl.
+
 ## Na co si dát pozor
 
 - **Windows/Arm:** runtime je jiný než Linux; nativní vLLM port existuje,
@@ -112,5 +127,7 @@ V českém maloobchodě se neprodává. Kategorie AI počítačů na Alza.cz je 
 - [RTX Spark PC — přehled zařízení](https://rtxsparkpc.com/)
 - [NVIDIA RTX Spark porting guide](https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html)
 - [BetterClaw — RTX Spark vs DGX Spark](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark)
+- [XDA — CUDA na Windows on Arm je verze 1](https://www.xda-developers.com/things-nobody-tells-you-before-buying-an-rtx-spark-laptop)
+- [NeoTeo — jak Windows dělí unified paměť](https://www.neoteo.com/en/nvidia-rtx-spark-review-how-windows-divides-unified-memory)
 
 *Naposledy ověřeno: 4. 11. 2026.*

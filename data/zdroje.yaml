@@ -564,3 +564,68 @@
   posledni_kontrola: 2026-11-05
   stav: ok
   poznamka: "Licence vylučuje EU, UK a Jižní Koreu; v ČR nelze modely použít."
+
+- id: amd-rocm-matrix
+  nazev: AMD ROCm - matice kompatibility
+  url: https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html
+  typ: html
+  co_sledujeme: [gfx1151, podpora-os, verze-jadra, pytorch]
+  frekvence: mesicne
+  priorita: vysoka
+  duveryhodnost: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "Strix Halo (gfx1151) je podporovaný na Ubuntu 24.04/26.04 a Windows 11 25H2; jádro 6.18.4+."
+
+- id: amd-ryzen-ai-linux
+  nazev: AMD Ryzen AI Software - instalace na Linuxu (NPU)
+  url: https://ryzenai.docs.amd.com/en/latest/linux.html
+  typ: html
+  co_sledujeme: [npu, xrt, firmware, podporovane-modely]
+  frekvence: mesicne
+  priorita: vysoka
+  duveryhodnost: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "NPU je samostatná cesta: XRT, firmware, Ubuntu 24.04, jádro 6.10+."
+
+- id: fastflowlm-linux
+  nazev: FastFlowLM - NPU na Linuxu
+  url: https://fastflowlm.com/docs/install_lin
+  typ: html
+  co_sledujeme: [npu, podporovane-modely, pozadavky]
+  frekvence: mesicne
+  priorita: stredni
+  duveryhodnost: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "NPU runtime pro XDNA2; XDNA1 nepodporuje."
+
+- id: nix-amd-ai
+  nazev: nix-amd-ai - měření NPU a Vulkanu na Strix Halo
+  url: https://github.com/noamsto/nix-amd-ai/blob/main/docs/performance.md
+  typ: github
+  co_sledujeme: [npu, vulkan, rocm, tok-s]
+  frekvence: mesicne
+  priorita: stredni
+  duveryhodnost: nizka
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "Komunitní měření: 1B ~49 tok/s, 8B ~8 tok/s na NPU."
+
+- id: cuda-woa
+  nazev: NVIDIA CUDA na Windows on Arm
+  url: https://developer.nvidia.com/topics/ai/local-ai/port-apps
+  typ: html
+  co_sledujeme: [cuda, windows-arm, rtx-spark, verze]
+  frekvence: mesicne
+  priorita: vysoka
+  duveryhodnost: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "CUDA 13.4 pro Windows ARM, developer preview pro RTX Spark."

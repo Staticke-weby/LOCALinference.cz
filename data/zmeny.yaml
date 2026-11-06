@@ -3,6 +3,14 @@
 # Patří sem jen to, co čtenář na webu pozná: ceny, měření, modely, nové
 # stránky a pojmy. Technické záznamy o stavbě webu (build, sitemap,
 # hreflang, menu, opravy odkazů) sem nepatří.
+
+- datum: 2026-11-06
+  typ: obsah
+  titulek: "Doporučená cesta: Windows, Linux, nebo cena"
+  co_se_zmenilo: "Ve výběru je tabulka Doporučená cesta: Windows a jeden stroj → RTX Spark, Linux a vLLM → DGX Spark, nejnižší cena → Strix Halo. U Strix Hala přibyla sekce Co NPU skutečně umí, u RTX Sparku sekce Windows on Arm: co čekat."
+  dotcene_stranky: [vyber/bezpecna-volba, zarizeni/strix-halo, zarizeni/rtx-spark-mini, zarizeni/rtx-spark-notebook]
+  zdroj: https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html
+
 - datum: 2026-11-05
   typ: obsah
   titulek: "Anglická mutace webu"
