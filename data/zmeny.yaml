@@ -6,6 +6,13 @@
 
 - datum: 2026-11-06
   typ: obsah
+  titulek: "Návod RTX Spark přepsán na vLLM a model od NVIDIA"
+  co_se_zmenilo: "Návod už nevede přes llama.cpp, ale přes vLLM build pro Windows ARM64 a model nvidia/Qwen3.8-Flash-Next-FP4-Local. Přibylo nastavení 96 GB GPU paměti, odkládacího souboru, instalace, spuštění serveru a test API."
+  dotcene_stranky: [navody/rtx-spark, navody]
+  zdroj: https://github.com/devjeonghwan/vllm-for-rtx-spark
+
+- datum: 2026-11-06
+  typ: obsah
   titulek: "Homepage: AI-ready notebooky a proč dávají smysl"
   co_se_zmenilo: "Úvodní fotka je nově NVIDIA RTX Spark a hero popisuje AI-ready notebooky pro Qwen3.8 Flash Next. Přibyla sekce Kdy vyhrává notebook: přenosnost, baterie a model na localhostu bez nastavování sítě."
   dotcene_stranky: [index, vyber/stolni-vs-notebook]

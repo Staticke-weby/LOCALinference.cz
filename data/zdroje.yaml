@@ -629,3 +629,29 @@
   posledni_kontrola: 2026-11-06
   stav: ok
   poznamka: "CUDA 13.4 pro Windows ARM, developer preview pro RTX Spark."
+
+- id: nvidia-qwen38-fp4-local
+  nazev: NVIDIA Qwen3.8 Flash Next FP4 Local - model card
+  url: https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local
+  typ: hf
+  co_sledujeme: [kvantizace, licence, pozadavky, zmeny]
+  frekvence: tydne
+  priorita: vysoka
+  duveryhodnost: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "Odladěná NVFP4 varianta pro 128GB GB10 stroje; zdroj pro návod RTX Spark."
+
+- id: vllm-rtx-spark
+  nazev: vllm-for-rtx-spark - Windows ARM64 build
+  url: https://github.com/devjeonghwan/vllm-for-rtx-spark
+  typ: github
+  co_sledujeme: [releases, konfigurace, benchmarky, zmeny]
+  frekvence: tydne
+  priorita: vysoka
+  duveryhodnost: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "Komunitní preview build; 70,44 tok/s v SPEED-Bench coding na RTX Spark N1X."

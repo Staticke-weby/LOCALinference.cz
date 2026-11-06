@@ -1,68 +1,147 @@
 ---
-title: "RTX Spark first run: Windows 11 on Arm"
-description: "RTX Spark first run: Windows 11 Arm updates, NVIDIA driver, CUDA, ComfyUI ARM64 and the first local model or image."
-last_verified: 2026-11-05
+title: "RTX Spark: run Qwen3.8 Flash Next in vLLM"
+description: "From Windows 11 to the first chat on RTX Spark: NVIDIA's NVFP4 model, the Windows ARM64 vLLM build and the verified steps."
+last_verified: 2026-11-06
 ---
 
-RTX Spark is a Windows 11 on Arm machine with an NVIDIA GPU and 128 GB
-of unified memory. The hardware is fast; the software is the part that
-needs care.
+RTX Spark is a Windows 11 on Arm machine with 128 GB of unified memory.
+This guide runs **Qwen3.8 Flash Next** on it through **vLLM**, using
+NVIDIA's NVFP4 checkpoint.
 
-## What you need
+> **What you need:** Windows 11 Arm64, an NVIDIA driver compatible with
+> CUDA 13.4, ARM64 Python 3.13, about 80 GB for the model and another
+> 32 GB on NVMe for the PLE cache.
 
-- RTX Spark laptop or mini with 128 GB.
-- Windows 11 Arm fully updated.
-- The NVIDIA driver for RTX Spark (not a generic GeForce driver).
-- Native Arm64 Python and tools.
+**Two things up front:**
 
-## Step 1: updates and driver
+- **The model is NVIDIA's** — `nvidia/Qwen3.8-Flash-Next-FP4-Local` on
+  Hugging Face, tuned for 128GB GB10 machines.
+- **The vLLM build is community** — `devjeonghwan/vllm-for-rtx-spark`
+  ships an ARM64 vLLM wheel with MTP and CUDA graphs. It is not an
+  official Windows build from vLLM or NVIDIA. The numbers below are the
+  author's, not ours.
 
-Complete Windows Update, install the RTX Spark driver and reboot.
-Verify:
+## Step 1: Windows, driver and memory
+
+Complete Windows Update, install the RTX Spark driver from
+[nvidia.com/drivers](https://www.nvidia.com/en-us/drivers/) and reboot.
 
 ```powershell
 nvidia-smi
 ```
 
-You should see the RTX Spark GPU and a CUDA version.
+You should see **RTX Spark N1X** and a driver version. If not, check that
+you installed the Arm64 driver, not x64.
 
-## Step 2: choose the runtime
+Then set **96 GB of dedicated GPU memory**, which leaves about 32 GB for
+Windows.
 
-| Task | Recommended path |
+**Increase the paging file.** CUDA allocations on Windows go through
+system commit, so a small pagefile causes OOM even with free GPU memory:
+*Advanced system settings → Performance → Settings → Advanced → Virtual
+memory → Change*, turn off automatic management, pick the NVMe drive and
+set **Initial 98304 MB**, **Maximum 131072 MB**. Reboot.
+
+## Step 2: Install vLLM for Windows ARM64
+
+1. Download the **Windows ARM64 ZIP** from
+   [releases](https://github.com/devjeonghwan/vllm-for-rtx-spark/releases).
+2. Extract it to a short path, for example `C:\vllm-spark`.
+3. In PowerShell in that folder:
+
+```powershell
+.\scripts\install.ps1 -Python python
+```
+
+The script creates `.venv` and installs the bundled vLLM wheel; PyTorch
+and FlashAttention come from NVIDIA. It takes several minutes.
+
+## Step 3: Download NVIDIA's model
+
+The checkpoint is `nvidia/Qwen3.8-Flash-Next-FP4-Local`. You need the
+`hf` tool from `huggingface_hub`:
+
+```powershell
+python -m pip install -U huggingface_hub
+hf download nvidia/Qwen3.8-Flash-Next-FP4-Local --local-dir C:\models\Qwen3.8-Flash-Next-FP4-Local
+```
+
+It is tens of GB. Set `HF_HOME` to another drive first if you need to.
+
+## Step 4: Start the server
+
+```powershell
+.\.venv\Scripts\vllm.exe serve C:\models\Qwen3.8-Flash-Next-FP4-Local `
+  --config configs\qwen3.8-flash-next\gpu-96gb-draft-kv-bf16.yaml
+```
+
+The config assumes **96 GB of GPU memory**, MTP speculative decoding,
+CUDA graphs, a **409,600-token context** and up to **16 concurrent
+requests**.
+
+The first start prepares the PLE cache and can take several minutes. The
+server then listens on `http://127.0.0.1:8000`.
+
+Other memory profiles:
+
+| GPU | KV budget | Profile |
+|---|---|---|
+| 90 GB | 12 GB | `gpu-90gb-draft-kv-bf16.yaml` |
+| 96 GB | 18 GB | `gpu-96gb-draft-kv-bf16.yaml` (default) |
+| 108 GB | 27 GB | `gpu-108gb-draft-kv-bf16.yaml` (experimental) |
+
+## Step 5: Check the API
+
+```powershell
+curl.exe http://127.0.0.1:8000/v1/models
+```
+
+The response must list `Qwen/Qwen3.8-Flash-Next`. Then try a chat:
+
+```powershell
+'{"model":"Qwen/Qwen3.8-Flash-Next","messages":[{"role":"user","content":"Answer in one sentence."}]}' `
+  | curl.exe http://127.0.0.1:8000/v1/chat/completions -H 'Content-Type: application/json' --data-binary '@-'
+```
+
+## Step 6: Share it on the network
+
+The server listens on `127.0.0.1` by default. To share it, add
+`--host 0.0.0.0`, open port 8000 and **add authentication** — the default
+vLLM server has none. Point clients at `http://machine-address:8000/v1`
+with model `Qwen/Qwen3.8-Flash-Next`.
+
+## Step 7: What next
+
+- **Open WebUI** or **LM Studio** as a chat front end over the OpenAI API.
+- **OpenCode / OpenClaw** for agentic coding.
+- **Task Scheduler** to start the server at login.
+- **Monitoring** — `nvidia-smi`, Task Manager, temperatures, power.
+
+## When it fails
+
+| Symptom | Check |
 |---|---|
-| First chat | Ollama or llama.cpp with an Arm64 build |
-| ComfyUI | Comfy Desktop for Windows ARM64 |
-| vLLM | community Windows Arm64 port; not official |
-
-## Step 3: first model
-
-Start with a GGUF quantization that fits 128 GB. Qwen3.8 Flash Next at
-4-bit is the working point. Do not assume a Linux Arm64 package will
-run in Windows Python — it will not.
-
-## Step 4: ComfyUI
-
-Install **Comfy Desktop for Windows ARM64** and select the NVIDIA ARM64
-option. The first image should be Z-Image-Turbo at 1024², 8 steps.
-
-## Where it falls short
-
-- **Windows on Arm** still lacks some Python wheels.
-- **Custom nodes** that depend on x64 binaries may fail.
-- **Sustained load** throttles faster than a desktop.
-- **Battery** suffers under load.
+| `nvidia-smi` shows nothing | Arm64 driver, Windows Update, reboot |
+| `install.ps1` fails | Arm64 Python 3.13, not x64; short path without spaces |
+| `vllm.exe` missing | install did not finish; run the script again |
+| CUDA OOM with free GPU | pagefile too small — 98304/131072 MB |
+| Model load is slow | normal; the first start fills the PLE cache |
+| Port 8000 in use | add `--port 8001` |
+| Slow on a laptop | plug in, check the 96 GB allocation and throttling |
 
 ## Where next
 
 - [RTX Spark notebook](/devices/rtx-spark-notebook/) — specs and price.
 - [RTX Spark mini](/devices/rtx-spark-mini/) — desktop variant.
-- [Windows recipe](/generation/recipes/windows/) — ComfyUI details.
 - [Model](/models/qwen3-8-flash-next/) — context and limits.
 
 ## Sources
 
-- [NVIDIA RTX Spark development](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976)
-- [NVIDIA RTX Spark compatibility](https://nvidia.custhelp.com/app/answers/detail/a_id/5931/)
-- [Comfy Desktop for Windows](https://docs.comfy.org/installation/desktop/windows)
+- [nvidia/Qwen3.8-Flash-Next-FP4-Local — model card](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local)
+- [devjeonghwan/vllm-for-rtx-spark — README and configs](https://github.com/devjeonghwan/vllm-for-rtx-spark)
+- [NVIDIA forum — native vLLM on RTX Spark, 70.44 tok/s](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530)
+- [NVIDIA forum — CUDA allocations and system commit](https://forums.developer.nvidia.com/t/rtx-spark-on-windows-cuda-allocations-consume-system-commit-even-with-96-gib-dedicated-gpu-memory/386453)
+- [NVIDIA Local AI Inference Recipes — RTX Spark (llama.cpp)](https://nvidia.github.io/local-ai-inference-recipes/hardware/rtx-spark/index.html)
+- [NVIDIA RTX Spark — Getting Started](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976)
 
-*Last verified: 5 November 2026.*
+*Last verified: 6 November 2026.*

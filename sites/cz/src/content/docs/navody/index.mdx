@@ -16,7 +16,7 @@ model. Tady jsou návody pro každou platformu v katalogu. Cíl je stejný:
 | Zařízení | OS | Model | Backend |
 |---|---|---|---|
 | [DGX Spark](/navody/dgx-spark/) | DGX OS (Ubuntu) | Qwen3.8 Flash Next | vLLM, oficiální recept NVIDIA |
-| [RTX Spark mini/notebook](/navody/rtx-spark/) | Windows 11 Arm64 | Qwen3.8 Flash Next | llama.cpp CUDA |
+| [RTX Spark mini/notebook](/navody/rtx-spark/) | Windows 11 Arm64 | Qwen3.8 Flash Next | vLLM, komunitní ARM64 build |
 | [Strix Halo](/navody/strix-halo/) | Windows 11 / Ubuntu | Qwen3.8 Flash Next | llama.cpp Vulkan/ROCm |
 
 ## Co mají návody pro lokální AI společné
@@ -32,8 +32,9 @@ model. Tady jsou návody pro každou platformu v katalogu. Cíl je stejný:
 ## Co se u DGX, RTX a Strix Halu liší
 
 - **DGX Spark** má CUDA a DGX OS; nejjednodušší je oficiální vLLM recept.
-- **RTX Spark** je Windows Arm64; potřebujete ARM64 build llama.cpp
-  a CUDA DLLs.
+- **RTX Spark** je Windows Arm64; model berte od NVIDIA (NVFP4) a
+  runtime z komunitního vLLM buildu pro ARM64. llama.cpp CUDA je
+  oficiální alternativa, ale pomalejší.
 - **Strix Halo** je x86 s ROCm/Vulkan; na Windows je nejjednodušší
   Vulkan, na Linuxu ROCm nebo Lemonade build.
 
