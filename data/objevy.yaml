@@ -13,3 +13,39 @@ polozky:
     proc: "128GB turnkey Strix Halo, který v katalogu OEM variant chybí."
     stav: novy
     poznamka: "Ověřit českou dostupnost a cenu; pokud ano, zařadit mezi OEM varianty."
+
+  - id: O-002
+    datum: 2026-11-06
+    typ: zarizeni
+    nazev: "AMD Ryzen AI Halo Developer Platform 128 GB"
+    url: https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html
+    proc: "První hotový 128GB box přímo od AMD, 3 999 USD, s předinstalovaným Linuxem a ROCm. V katalogu chybí."
+    stav: novy
+    poznamka: "Ověřit evropskou dostupnost a českou cenu; zda jde o turnkey produkt s podporou."
+
+  - id: O-003
+    datum: 2026-11-06
+    typ: zarizeni
+    nazev: "Gorgon Halo 192 GB (Ryzen AI Max+ PRO 495)"
+    url: https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory
+    proc: "Nástupce Strix Hala s 192GB unified paměti. MINISFORUM 7 399 USD, Framework 6 799 USD, BOSGAME 6 199 USD."
+    stav: novy
+    poznamka: "Katalog je postavený na 128 GB; 192 GB je nová třída. Rozhodnout, zda ji zařadit, nebo jen zmínit."
+
+  - id: O-004
+    datum: 2026-11-06
+    typ: mereni
+    nazev: "veloGB10 v0.7.0: Qwen3.8 FN 137 tok/s na jednom GB10"
+    url: https://forums.developer.nvidia.com/t/velogb10-v0-7-0-release-qwen3-8-flash-next-tp-2-186-tok-sec-single-at-137-tok-sec-on-code/384765
+    proc: "Komunitní měření na GB10: 137 tok/s single a 186 tok/s při TP=2. Ověřit konfiguraci a zda jde o DGX Spark nebo RTX Spark."
+    stav: novy
+    poznamka: "TP=2 je mimo katalog (pool dvou boxů); single číslo by šlo zařadit po ověření."
+
+  - id: O-005
+    datum: 2026-11-06
+    typ: model
+    nazev: "Unsloth GGUF v3.1 pro Qwen3.8 Flash Next"
+    url: https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF
+    proc: "Aktualizované GGUF z 4. 11. 2026 s vyšší přesností kvantizace. Může změnit doporučenou kvantizaci na llama.cpp."
+    stav: novy
+    poznamka: "Ověřit čísla z model cardu a porovnat s dosavadní UD-IQ4_XS."
