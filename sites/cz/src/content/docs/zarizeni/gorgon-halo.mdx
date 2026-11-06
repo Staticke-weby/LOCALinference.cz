@@ -1,6 +1,6 @@
 ---
-title: "Gorgon Halo 192 GB: co poběží a proč není rychlejší"
-description: "192 GB unified paměti pro modely, které se na 128 GB nevejdou. Co to znamená pro Qwen3.8 Flash Next, kde je limit a proč 15–20 tok/s nestačí."
+title: "Gorgon Halo 192 GB: prostor pro Qwen3.8 Flash Next, ne pro obří modely"
+description: "192 GB unified paměti znamená vyšší kvantizaci, delší kontext a víc souběžných požadavků pro Qwen3.8 Flash Next. Obří modely v Q2 patří do serverovny."
 last_verified: 2026-11-06
 sidebar:
   label: Gorgon Halo 192 GB
@@ -10,15 +10,18 @@ sidebar:
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 
-**Verdikt:** Gorgon Halo je o **kapacitě, ne o rychlosti**. Vejde se na
-něj model, který se na 128 GB nevejde, ale neběží rychleji — propustnost
-paměti roste jen o necelých 7 %. Pro Qwen3.8 Flash Next nepřináší nic
-proti Strix Halu. Smysl má pro modely nad 128 GB a pro dva modely naráz.
+**Verdikt:** Gorgon Halo není vstupenka k obřím modelům. 192 GB je
+prostor navíc pro **Qwen3.8 Flash Next**: vyšší kvantizaci, delší
+kontext a víc souběžných požadavků. Model, který 192 GB potřebuje
+v rozumné kvalitě, patří do serverovny — na stole z něj bude 15 tok/s
+a horší odpovědi.
 
 <aside class="tip">
-**Pro koho:** kdo potřebuje model nad 128 GB nebo dva modely současně
-a nevadí mu 15–20 tok/s. **Pro koho ne:** denní chat a kód, kde chcete
-odpověď hned. **Minimum pro denní práci:** i tady Qwen3.8 Flash Next.
+**Pro koho:** kdo chce Qwen3.8 Flash Next provozovat ve vyšší
+kvantizaci, s dlouhým kontextem nebo pro víc lidí naráz.
+**Pro koho ne:** kdo hledá „nějaký velký model“; na ten je potřeba
+server, ne stolní box. **Minimum pro denní práci:** i tady Qwen3.8
+Flash Next na 128 GB.
 </aside>
 
 > **Toto jsou převzatá data, ne naše měření.** Specifikace jsou
@@ -28,14 +31,14 @@ odpověď hned. **Minimum pro denní práci:** i tady Qwen3.8 Flash Next.
 
 ## Co to znamená v praxi
 
-- **Pro jaké úlohy:** modely, které se na 128 GB nevejdou celé
-  (DeepSeek V4.1 Flash Q2, MiMo V2.6 Flash, GLM-5.3 Flash Q2), nebo dva
-  modely v paměti vedle sebe.
-- **Kolik lidí obslouží:** 1–2; na víc přidejte box.
+- **Pro jaké úlohy:** Qwen3.8 Flash Next ve FP8 místo 4bitů, delší
+  kontext, víc souběžných požadavků, případně druhý malý model
+  v paměti pro agentní práci.
+- **Kolik lidí obslouží:** 2–4 podle kontextu; na víc přidejte box.
 - **Co to stojí:** od 134 900 Kč bez DPH (6 199 USD, odhad); americké
   ceny 6 199–7 499 USD bez DPH a dopravy.
-- **Kde narazíte:** propustnost paměti, kvalita Q2 kvantizace a stejný
-  software jako u Strix Hala.
+- **Kde narazíte:** propustnost paměti je stejná jako u Strix Hala,
+  takže vyšší kvantizace nezrychlí model — jen zlepší kvalitu.
 
 ## Rychlá fakta
 
@@ -43,59 +46,66 @@ odpověď hned. **Minimum pro denní práci:** i tady Qwen3.8 Flash Next.
 
 ## Co na něm poběží
 
-**Qwen3.8 Flash Next** se vejde i na 128 GB. Na 192 GB ho ale můžete
-provozovat v **FP8** místo 4bitů — kvalita jde nahoru, rychlost ne.
-Kolik přesně, `[DOPLNIT: měření]`.
+**Qwen3.8 Flash Next** se vejde i na 128 GB. Rozdíl je v tom, co
+s pamětí navíc uděláte:
 
-Větší smysl dávají modely, které se na 128 GB nevejdou:
-
-| Model | Kvantizace | Co to znamená |
+| Provoz | Co získáte | Co to stojí |
 |---|---|---|
-| DeepSeek V4.1 Flash | Q2 | vejde se celý do paměti, bez streamování z SSD |
-| MiMo V2.6 Flash | — | vejde se, ale s rostoucím kontextem zpomaluje |
-| GLM-5.3 Flash | Q2 | vejde se; na interaktivní práci pomalé |
-| Qwen3.8 Flash Next | FP8 | vyšší kvalita než 4bit, rychlost `[DOPLNIT]` |
+| NVFP4, 128K kontext | stejné jako na 128 GB | nic navíc |
+| FP8 | vyšší kvalita odpovědí | rychlost `[DOPLNIT]` |
+| delší kontext | víc KV cache, delší dokumenty | pomalejší první token |
+| víc souběžných požadavků | obsluha týmu | každý požadavek bere paměť |
+
+## Co se vejde, ale nedoporučujeme
+
+Na 192 GB se vejde i **DeepSeek V4.1 Flash Q2** nebo **GLM-5.3 Flash
+Q2**. Jenže Q2 není stejný model jako ten, který dostanete z API — je
+to jiná, výrazně horší kvalita. A běží kolem 14–18 tok/s, což na
+interaktivní práci nestačí.
+
+Platí to obecně: **nízká kvantizace není zdarma**. Čím agresivnější
+kvantizace, tím víc model ztrácí přesnost a tím víc „vymýšlí“. Model,
+který potřebuje 192 GB i v rozumné kvantizaci, patří na HBM do
+serverovny, ne na stůl.
 
 ## Jak rychle
 
-| Model | Decode | Zdroj |
+| Model | Decode | Pro denní práci? |
 |---|---|---|
-| Qwen3.8 Flash Next | `[DOPLNIT]` | — |
-| DeepSeek V4.1 Flash Q2 | ~14 tok/s | Framework, 9/2026 |
-| MiMo V2.6 Flash | 16–18 tok/s | Framework, 9/2026 |
-| GLM-5.3 Flash Q2 | pomalé na interaktivní práci | Framework, 9/2026 |
+| Qwen3.8 Flash Next | `[DOPLNIT]` | ano, čeká se na měření |
+| DeepSeek V4.1 Flash Q2 | ~14 tok/s | ne |
+| MiMo V2.6 Flash | 16–18 tok/s | ne |
+| GLM-5.3 Flash Q2 | pomalé | ne |
 
-Žádné z těchto čísel není nezávislý test — jsou od výrobce. Proto je
-neuvádíme jako doporučený provozní bod.
+Čísla u velkých modelů jsou od výrobce (Framework, 9/2026), ne
+nezávislý test. Uvádíme je proto, aby bylo vidět, že kapacita
+neznamená použitelnost.
+
+**Práh 50 tok/s:** velké modely v Q2 ho nesplňují — 14–18 tok/s a horší
+kvalita. Proto je nedoporučujeme na denní práci.
 
 **Co z toho plyne:** 15–20 tok/s je na chat ještě použitelné, na
-agentní práci a „modely, které dlouho přemýšlejí“ ne. Reasoning model
+agentní práci a reasoning modely ne. Model, který „dlouho přemýšlí“,
 vygeneruje tisíce tokenů, než se dostane k odpovědi; při 15 tok/s to
-jsou minuty čekání. Na takovou práci je 192GB box příliš pomalý.
-
-## Kontext a souběžnost
-
-Z 192 GB jde GPU přidělit až **160 GB**, zbytek zůstává systému.
-Delší kontext a víc souběžných požadavků tedy jde, ale každý token
-navíc platíte stejnou propustností jako u Strix Hala.
+jsou minuty čekání.
 
 ## Kdy má smysl a kdy ne
 
 | Situace | Doporučení |
 |---|---|
-| Model nad 128 GB, který se jinam nevejde | **Ano** |
-| Dva modely současně (rychlý + silný) | **Ano** |
-| Batch úlohy přes noc | **Ano** |
-| Denní chat, kód a agenti | **Ne** — 128GB stroj je stejně rychlý a levnější |
-| Jen Qwen3.8 Flash Next | **Ne** — nepřinese nic |
+| Qwen3.8 Flash Next ve FP8 s dlouhým kontextem | **Ano** |
+| Víc lidí naráz na jednom boxu | **Ano**, ale ověřit souběžnost |
+| Druhý malý model pro agenty | **Ano** |
+| Provozovat 300B+ model v Q2 | **Ne** — patří do serverovny |
+| Denní chat a kód s Q38FN | **Ne** — 128GB stroj je stejně rychlý a levnější |
 
 ## Na co si dát pozor
 
-- **Není to rychlejší.** Stejná architektura, stejný počet CUDA
-  ekvivalentů, jen o 6,7 % vyšší propustnost.
+- **Není to rychlejší.** Stejná architektura, stejná GPU jádra, jen
+  o 6,7 % vyšší propustnost paměti.
 - **Stejný software.** ROCm, Vulkan, llama.cpp i vLLM se chovají jako
   na Strix Halu; [NPU](/slovnik/software/rocm/) zůstává okrajová cesta.
-- **Q2 kvantizace** u velkých modelů znamená nižší kvalitu. Čím menší
+- **Q2 kvantizace** u velkých modelů znamená horší kvalitu. Čím menší
   kvantizace, tím víc model „šumí“.
 - **Cena.** 6 199–7 499 USD je blízko DGX Sparku a RTX Sparku.
 - **Chybí měření.** Nezávislý test na 495 jsme nenašli.
@@ -109,8 +119,7 @@ navíc platíte stejnou propustností jako u Strix Hala.
 - [Strix Halo](/zarizeni/strix-halo/) — 128 GB, stejný software, nižší cena.
 - [Srovnání zařízení](/zarizeni/srovnani/) — všechny stroje v katalogu.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co model potřebuje.
-- [Propustnost paměti](/slovnik/vykon/propustnost-pameti/) — proč decode
-  neporoste s kapacitou.
+- [Kvantizace](/slovnik/software/kvantizace/) — co která ztrácí.
 
 ## Zdroje
 

@@ -42,17 +42,18 @@
   weaknesses: ["No CUDA", "Video takes minutes per clip", "Thermal throttling under sustained load"]
 
 - id: gorgon-halo
-  verdict: 192GB lets models that do not fit on 128GB stay in memory, but it
-    does not make them fast. Qwen3.8 Flash Next gains nothing over 128GB.
-  for_who: Teams that need a model above 128GB, or two models loaded at once,
-    and accept slower generation.
-  not_for: Interactive work where 15-20 tok/s is too slow, or anyone who only
-    runs Qwen3.8 Flash Next.
+  verdict: 192GB is headroom for Qwen3.8 Flash Next - higher precision, longer
+    context, more concurrent requests. It is not a way to run huge models on a
+    desk; those belong in a server room.
+  for_who: Teams that want Qwen3.8 Flash Next in FP8, with a long context or
+    for more people at once.
+  not_for: Anyone looking for a large model at low quantization, where 15-20
+    tok/s and weaker answers are not usable.
   strengths:
-    - 192GB of unified memory
+    - 192GB for FP8 and longer context
     - Up to 160GB for the GPU
-    - Two models loaded at once
+    - More concurrent requests
   weaknesses:
     - Only 6.7 percent more bandwidth than Strix Halo
-    - Same ROCm stack and the same limits
+    - Huge models are slow and worse at Q2
     - 6,199-7,499 USD

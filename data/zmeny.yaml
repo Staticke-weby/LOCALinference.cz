@@ -6,8 +6,15 @@
 
 - datum: 2026-11-06
   typ: obsah
+  titulek: "Provozní práh: 50 tok/s v použitelné kvalitě"
+  co_se_zmenilo: "Metodika nově říká, co považujeme za použitelné: model musí běžet aspoň 50 tok/s v běžném provozu a v kvalitě, která není agresivní kvantizace. Je to redakční volba, ne měření. Práh je i v bezpečné volbě a na stránce Gorgon Halo."
+  dotcene_stranky: [o-webu/metodika, vyber/bezpecna-volba, zarizeni/gorgon-halo]
+  zdroj: https://www.localinference.cz/o-webu/metodika/
+
+- datum: 2026-11-06
+  typ: obsah
   titulek: "Nové zařízení: Gorgon Halo 192 GB"
-  co_se_zmenilo: "Do katalogu přibyl Gorgon Halo 192 GB (Ryzen AI Max+ PRO 495) jako jediný stroj nad 128 GB. Stránka vysvětluje, že jde o kapacitu, ne rychlost: Qwen3.8 Flash Next na něm nezíská nic a velké modely běží 14–18 tok/s. Nezávislé měření chybí."
+  co_se_zmenilo: "Do katalogu přibyl Gorgon Halo 192 GB (Ryzen AI Max+ PRO 495) jako jediný stroj nad 128 GB. Stránka ho nedoporučuje na obří modely: 192 GB je prostor pro Qwen3.8 Flash Next ve vyšší kvantizaci a s delším kontextem. Modely v Q2 běží 14–18 tok/s a mají horší kvalitu; nezávislé měření chybí."
   dotcene_stranky: [zarizeni/gorgon-halo, zarizeni/srovnani, zarizeni/ai-boxy]
   zdroj: https://frame.work/blog/what-192gb-changes-for-local-ai-on-the-framework-desktop
 

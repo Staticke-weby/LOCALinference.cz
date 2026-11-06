@@ -239,12 +239,12 @@
     - HP
     - PELADN
   silne:
-    - 192 GB unified paměti
+    - 192 GB pro FP8 a delší kontext
     - až 160 GB pro GPU
-    - dva modely naráz
+    - víc souběžných požadavků
   slabe:
     - jen +6,7 % propustnosti proti Strix Halu
-    - stejný ROCm stack
+    - obří modely jsou pomalé a v Q2 horší
     - cena 6 199–7 499 USD
   zdroje:
     - https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html

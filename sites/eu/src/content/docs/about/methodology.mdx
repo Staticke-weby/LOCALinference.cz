@@ -7,6 +7,22 @@ last_verified: 2026-11-05
 We interpret public data. We do not run a lab. This page explains the
 rules behind every number.
 
+## The 50 tok/s threshold
+
+We only recommend hardware that meets two conditions at once:
+
+1. **Usable quality.** Not Q2 or another aggressive quantization where the
+   model loses accuracy and starts making things up. Low precision is not free.
+2. **At least 50 tok/s** in normal use, not in a benchmark on a short prompt.
+
+Why 50: 1,000 tokens take 20 seconds at 50 tok/s. At 20 tok/s it is 50
+seconds, and at 15 tok/s over a minute. In an agent loop that calls the
+model several times, that becomes minutes.
+
+**This is an editorial choice, not a measurement.** Every number still
+carries its configuration and date. A model that misses the threshold
+stays in the comparison, it is just not recommended for daily work.
+
 ## Sources and dates
 
 Every figure has a source and a date. Vendor figures, independent labs

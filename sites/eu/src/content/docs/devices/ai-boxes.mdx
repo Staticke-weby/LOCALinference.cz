@@ -13,7 +13,7 @@ better than a laptop and has room for 128 GB or more of unified memory.
 |---|---|---|---|
 | [DGX Spark](/devices/dgx-spark/) | CUDA, DGX OS | 273 GB/s | Integrated NVIDIA stack |
 | [Strix Halo](/devices/strix-halo/) | ROCm, Windows/Linux | 256 GB/s | Lowest price |
-| [Gorgon Halo 192 GB](/devices/gorgon-halo/) | ROCm, Windows/Linux | 273 GB/s | Models above 128 GB |
+| [Gorgon Halo 192 GB](/devices/gorgon-halo/) | ROCm, Windows/Linux | 273 GB/s | Headroom for Q38FN |
 | [RTX Spark mini](/devices/rtx-spark-mini/) | CUDA, Windows on Arm | 300 GB/s | Windows desktop |
 | [Mac Studio](/devices/mac-studio/) | Metal, macOS | 614 GB/s | Quiet, efficient images |
 
@@ -27,8 +27,8 @@ better than a laptop and has room for 128 GB or more of unified memory.
 ## What differs
 
 - **CUDA vs ROCm vs Metal.** Tool support differs more than raw speed.
-- **Memory ceiling.** 192 GB fits models that do not fit on 128 GB, but
-  it is not faster.
+- **Memory ceiling.** 192 GB buys precision, context and concurrency for
+  Qwen3.8 Flash Next. It does not make huge models usable.
 - **Cooling and noise.** A desktop stays quieter under sustained load.
 - **Price.** Strix Halo is the cheapest; DGX Spark the most integrated.
 

@@ -23,6 +23,22 @@ Tato stránka popisuje, jak to děláme. Je to zároveň slib: **žádné čísl
 v tabulkách není z našeho testu.** Buď je převzaté (`namereno`), nebo
 vypočtené z podložených vstupů (`vypocet`).
 
+## Provozní práh: 50 tok/s v použitelné kvalitě
+
+Doporučujeme jen to, co splní dvě podmínky současně:
+
+1. **Použitelná kvalita.** Ne Q2 ani jiná agresivní kvantizace, kde model
+   ztrácí přesnost a začne si vymýšlet. Nízká kvantizace není zdarma.
+2. **Alespoň 50 tok/s** v běžném provozu, ne v benchmarku na krátkém promptu.
+
+Proč 50: tisíc tokenů se při 50 tok/s vygeneruje za 20 sekund. Při
+20 tok/s to je 50 sekund a při 15 tok/s přes minutu. U agentní úlohy,
+která volá model vícekrát, se z toho stanou minuty čekání.
+
+**Tohle je naše redakční volba, ne měření.** U každého čísla proto
+zůstává konfigurace a datum. Model, který práh nesplňuje, nevypadává
+ze srovnání — jen ho nedoporučujeme na denní práci.
+
 ## Jak ověřujeme data o lokální AI
 
 1. **Sbíráme primární data.** Model cards, dokumentace výrobců, nezávislé

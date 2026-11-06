@@ -10,6 +10,8 @@ the 4-bit model**. Everything else is a trade-off.
 ## The safe baseline
 
 - **128 GB unified memory** — the model fits with 128K context.
+- **At least 50 tok/s at usable quality** — below that, work stops feeling
+  fluid. See the [methodology](/about/methodology/).
 - **CUDA if you need the widest tool support** — DGX Spark or RTX Spark.
 - **Strix Halo if price matters** — slower prefill, but much cheaper.
 - **Mac if silence matters** — no CUDA, excellent image performance.
