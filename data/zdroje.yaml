@@ -470,7 +470,7 @@
 
 - id: alza-rtx-spark
   nazev: Alza.cz - RTX Spark (kategorie)
-  url: https://www.alza.cz/rtx-spark/18924563.htm?idp=12510&banner_id=41939
+  url: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
   typ: html
   co_sledujeme: [cena, dostupnost, konfigurace]
   frekvence: tydne
