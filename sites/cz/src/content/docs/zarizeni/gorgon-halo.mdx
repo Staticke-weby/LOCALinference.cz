@@ -10,15 +10,16 @@ sidebar:
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 
-**Verdikt:** Gorgon Halo není vstupenka k obřím modelům. 192 GB je
-prostor navíc pro **Qwen3.8 Flash Next**: vyšší kvantizaci, delší
-kontext a víc souběžných požadavků. Model, který 192 GB potřebuje
-v rozumné kvalitě, patří do serverovny — na stole z něj bude 15 tok/s
-a horší odpovědi.
+**Verdikt:** Gorgon Halo není vstupenka k obřím modelům ani
+k nejvyšší kvantizaci. 192 GB je prostor navíc pro **Qwen3.8 Flash
+Next**: delší kontext a víc souběžných požadavků. Vyšší kvantizace
+dává smysl jen tehdy, když měření ukáže, že se vyplatí — FP8 má
+zhruba dvakrát větší váhy, takže je pomalejší. Model, který 192 GB
+potřebuje v rozumné kvalitě, patří do serverovny.
 
 <aside class="tip">
-**Pro koho:** kdo chce Qwen3.8 Flash Next provozovat ve vyšší
-kvantizaci, s dlouhým kontextem nebo pro víc lidí naráz.
+**Pro koho:** kdo chce Qwen3.8 Flash Next provozovat s dlouhým
+kontextem nebo pro víc lidí naráz.
 **Pro koho ne:** kdo hledá „nějaký velký model“; na ten je potřeba
 server, ne stolní box. **Minimum pro denní práci:** i tady Qwen3.8
 Flash Next na 128 GB.
@@ -31,9 +32,9 @@ Flash Next na 128 GB.
 
 ## Co to znamená v praxi
 
-- **Pro jaké úlohy:** Qwen3.8 Flash Next ve FP8 místo 4bitů, delší
-  kontext, víc souběžných požadavků, případně druhý malý model
-  v paměti pro agentní práci.
+- **Pro jaké úlohy:** Qwen3.8 Flash Next s delším kontextem, víc
+  souběžných požadavků, případně druhý malý model v paměti pro
+  agentní práci.
 - **Kolik lidí obslouží:** 2–4 podle kontextu; na víc přidejte box.
 - **Co to stojí:** od 134 900 Kč bez DPH (6 199 USD, odhad); americké
   ceny 6 199–7 499 USD bez DPH a dopravy.
@@ -51,10 +52,15 @@ s pamětí navíc uděláte:
 
 | Provoz | Co získáte | Co to stojí |
 |---|---|---|
-| NVFP4, 128K kontext | stejné jako na 128 GB | nic navíc |
-| FP8 | vyšší kvalita odpovědí | rychlost `[DOPLNIT]` |
+| NVFP4, 128K kontext | ověřený výchozí bod | nic navíc |
+| FP8 | vyšší kvalita odpovědí | zhruba 2× větší váhy, nižší decode |
 | delší kontext | víc KV cache, delší dokumenty | pomalejší první token |
 | víc souběžných požadavků | obsluha týmu | každý požadavek bere paměť |
+
+**FP8 není automaticky lepší.** Váhy jsou zhruba dvakrát větší než
+u 4bitů, a protože decode brzdí propustnost paměti, znamená to
+řádově poloviční rychlost. Jestli se vyšší kvalita vyplatí, ukáže
+až měření — do té doby zůstává ověřeným optimem NVFP4.
 
 ## Co se vejde, ale nedoporučujeme
 
@@ -81,8 +87,10 @@ serverovny, ne na stůl.
 nezávislý test. Uvádíme je proto, aby bylo vidět, že kapacita
 neznamená použitelnost.
 
-**Práh 50 tok/s:** velké modely v Q2 ho nesplňují — 14–18 tok/s a horší
-kvalita. Proto je nedoporučujeme na denní práci.
+**Práh 50 tok/s a optimum:** velké modely v Q2 práh nesplňují —
+14–18 tok/s a horší kvalita. Ani vyšší kvantizace není cíl: hledáme
+nejlepší poměr kvality a rychlosti, který práh udrží. Proto je
+NVFP4 výchozí a FP8 jen kandidát na měření.
 
 **Co z toho plyne:** 15–20 tok/s je na chat ještě použitelné, na
 agentní práci a reasoning modely ne. Model, který „dlouho přemýšlí“,
@@ -93,10 +101,11 @@ jsou minuty čekání.
 
 | Situace | Doporučení |
 |---|---|
-| Qwen3.8 Flash Next ve FP8 s dlouhým kontextem | **Ano** |
+| Qwen3.8 Flash Next s dlouhým kontextem | **Ano** |
 | Víc lidí naráz na jednom boxu | **Ano**, ale ověřit souběžnost |
 | Druhý malý model pro agenty | **Ano** |
 | Provozovat 300B+ model v Q2 | **Ne** — patří do serverovny |
+| FP8 bez měření, že se vyplatí | **Ne** — nejdřív změřit |
 | Denní chat a kód s Q38FN | **Ne** — 128GB stroj je stejně rychlý a levnější |
 
 ## Na co si dát pozor

@@ -6,6 +6,13 @@
 
 - datum: 2026-11-06
   typ: obsah
+  titulek: "Optimum místo maxima: FP8 není automaticky lepší"
+  co_se_zmenilo: "Gorgon Halo už nedoporučuje FP8 jako vylepšení. Váhy jsou zhruba dvakrát větší než u 4bitů, takže decode klesá; ověřený výchozí bod zůstává NVFP4. Metodika doplňuje, že hledáme optimum kvality a rychlosti, ne maximum ani nejvyšší kvantizaci."
+  dotcene_stranky: [zarizeni/gorgon-halo, o-webu/metodika, vyber/bezpecna-volba]
+  zdroj: https://www.localinference.cz/zarizeni/gorgon-halo/
+
+- datum: 2026-11-06
+  typ: obsah
   titulek: "Provozní práh: 50 tok/s v použitelné kvalitě"
   co_se_zmenilo: "Metodika nově říká, co považujeme za použitelné: model musí běžet aspoň 50 tok/s v běžném provozu a v kvalitě, která není agresivní kvantizace. Je to redakční volba, ne měření. Práh je i v bezpečné volbě a na stránce Gorgon Halo."
   dotcene_stranky: [o-webu/metodika, vyber/bezpecna-volba, zarizeni/gorgon-halo]

@@ -239,7 +239,7 @@
     - HP
     - PELADN
   silne:
-    - 192 GB pro FP8 a delší kontext
+    - 192 GB pro delší kontext
     - až 160 GB pro GPU
     - víc souběžných požadavků
   slabe:

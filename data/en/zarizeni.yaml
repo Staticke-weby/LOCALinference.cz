@@ -42,15 +42,16 @@
   weaknesses: ["No CUDA", "Video takes minutes per clip", "Thermal throttling under sustained load"]
 
 - id: gorgon-halo
-  verdict: 192GB is headroom for Qwen3.8 Flash Next - higher precision, longer
-    context, more concurrent requests. It is not a way to run huge models on a
-    desk; those belong in a server room.
-  for_who: Teams that want Qwen3.8 Flash Next in FP8, with a long context or
-    for more people at once.
+  verdict: 192GB is headroom for Qwen3.8 Flash Next - longer context and more
+    concurrent requests. Higher precision is not automatically better - FP8
+    roughly doubles the weights and slows decoding. Huge models belong in a
+    server room.
+  for_who: Teams that want Qwen3.8 Flash Next with a long context or for more
+    people at once.
   not_for: Anyone looking for a large model at low quantization, where 15-20
     tok/s and weaker answers are not usable.
   strengths:
-    - 192GB for FP8 and longer context
+    - 192GB for longer context
     - Up to 160GB for the GPU
     - More concurrent requests
   weaknesses:

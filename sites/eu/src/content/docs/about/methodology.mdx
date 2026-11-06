@@ -19,6 +19,10 @@ Why 50: 1,000 tokens take 20 seconds at 50 tok/s. At 20 tok/s it is 50
 seconds, and at 15 tok/s over a minute. In an agent loop that calls the
 model several times, that becomes minutes.
 
+The goal is not maximum quality or the highest precision: it is a
+**verified optimum** - the best quality-to-speed ratio that holds the
+threshold.
+
 **This is an editorial choice, not a measurement.** Every number still
 carries its configuration and date. A model that misses the threshold
 stays in the comparison, it is just not recommended for daily work.
