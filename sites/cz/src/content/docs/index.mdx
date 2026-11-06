@@ -5,7 +5,7 @@ template: splash
 last_verified: 2026-11-04
 hero:
   title: Lokální AI, na kterou se můžete spolehnout
-  tagline: Hotové 128GB boxy, na kterých poběží Qwen3.8 Flash Next. Kolik stojí, co zvládnou a kde je jejich limit.
+  tagline: AI-ready notebooky se 128 GB paměti pro Qwen3.8 Flash Next. Přenosné, na baterii, vše v jednom — model běží na localhostu, bez serveru a bez nastavování sítě.
   actions:
     - text: Kdy se to vyplatí
       link: /zaciname/co-je-lokalni-ai/
@@ -20,19 +20,19 @@ import AlzaCena from '../../components/AlzaCena.astro';
 
 import { Card, CardGrid, LinkCard, Aside } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
-import gb10 from '../../assets/gb10.jpg';
+import rtxspark from '../../assets/rtx-spark.jpg';
 
 <figure class="li-hero-foto">
   <Image
-    src={gb10}
-    alt="Řada kompaktních GB10 strojů: dva ASUS Ascent, dva NVIDIA DGX Spark, dva Lenovo ThinkStation a další"
-    widths={[640, 960, 1199]}
+    src={rtxspark}
+    alt="Dva AI-ready notebooky otevřené proti sobě, na displeji běží návrh a generování obrazu"
+    widths={[640, 960, 1024]}
     sizes="(max-width: 50rem) 100vw, 48rem"
     loading="eager"
     fetchpriority="high"
   />
   <figcaption>
-    GB10 v podání ASUS, NVIDIA a Lenovo. Ilustrační foto výrobce.
+    AI-ready notebooky s NVIDIA RTX Spark. Ilustrační foto NVIDIA.
   </figcaption>
 </figure>
 

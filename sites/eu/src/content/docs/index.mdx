@@ -5,7 +5,7 @@ template: splash
 last_verified: 2026-11-05
 hero:
   title: Local AI you can rely on
-  tagline: Turnkey 128GB machines for Qwen3.8 Flash Next. What they cost, what they run and where the limits are.
+  tagline: AI-ready laptops with 128 GB of memory for Qwen3.8 Flash Next. Portable, battery-powered, all in one — the model runs on localhost, with no server and no network to configure.
   actions:
     - text: See the devices
       link: /devices/
@@ -18,19 +18,19 @@ hero:
 
 import { Aside, CardGrid, LinkCard } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
-import gb10 from '../../assets/gb10.jpg';
+import rtxspark from '../../assets/rtx-spark.jpg';
 
 <figure class="li-hero-foto">
   <Image
-    src={gb10}
-    alt="A row of compact GB10 machines: two ASUS Ascent, two NVIDIA DGX Spark, two Lenovo ThinkStation and others"
-    widths={[640, 960, 1199]}
+    src={rtxspark}
+    alt="Two AI-ready laptops opened back to back, with design and image generation on screen"
+    widths={[640, 960, 1024]}
     sizes="(max-width: 50rem) 100vw, 48rem"
     loading="eager"
     fetchpriority="high"
   />
   <figcaption>
-    GB10 from ASUS, NVIDIA and Lenovo. Manufacturer photo.
+    AI-ready laptops with NVIDIA RTX Spark. NVIDIA render.
   </figcaption>
 </figure>
 

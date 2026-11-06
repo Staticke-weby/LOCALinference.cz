@@ -6,6 +6,13 @@
 
 - datum: 2026-11-06
   typ: obsah
+  titulek: "Homepage: AI-ready notebooky a proč dávají smysl"
+  co_se_zmenilo: "Úvodní fotka je nově NVIDIA RTX Spark a hero popisuje AI-ready notebooky pro Qwen3.8 Flash Next. Přibyla sekce Kdy vyhrává notebook: přenosnost, baterie a model na localhostu bez nastavování sítě."
+  dotcene_stranky: [index, vyber/stolni-vs-notebook]
+  zdroj: https://www.nvidia.com/en-us/products/rtx-spark/
+
+- datum: 2026-11-06
+  typ: obsah
   titulek: "Doporučená cesta: Windows, Linux, nebo cena"
   co_se_zmenilo: "Ve výběru je tabulka Doporučená cesta: Windows a jeden stroj → RTX Spark, Linux a vLLM → DGX Spark, nejnižší cena → Strix Halo. U Strix Hala přibyla sekce Co NPU skutečně umí, u RTX Sparku sekce Windows on Arm: co čekat."
   dotcene_stranky: [vyber/bezpecna-volba, zarizeni/strix-halo, zarizeni/rtx-spark-mini, zarizeni/rtx-spark-notebook]
