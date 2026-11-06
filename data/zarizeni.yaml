@@ -203,3 +203,51 @@
     - https://www.apple.com/macbook-pro/specs/
     - https://ml-explore.github.io/mlx/
   overeno: 2026-11-04
+
+- id: gorgon-halo
+  nazev: Gorgon Halo 192 GB
+  vyrobce: AMD / OEM
+  kategorie: mini-pc
+  stranka: /zarizeni/gorgon-halo/
+  pamet_gb: 192
+  pamet_typ: unified
+  bandwidth_gbs: 273
+  bandwidth_pozn: LPDDR5X-8533, 256bit
+  cena:
+    od_usd: 6199
+    do_usd: 7499
+    overeno: 2026-11-04
+    zdroj: https://videocardz.com/newz/bosgame-m5-max-with-192gb-ram-launches-at-6199-over-1100-cheaper-than-amd-ryzen-ai-halo
+    poznamka: "192 GB od 6 199 USD (BOSGAME), HP ZBook Ultra G3a 7 449 USD; bez DPH a dopravy."
+  cpu: Ryzen AI Max+ PRO 495
+  gpu: Radeon 8065S
+  os:
+    - Windows 11
+    - Linux
+  software:
+    - ROCm
+    - Vulkan
+    - llama.cpp
+    - vLLM-ROCm
+  prikon_w: 120
+  prikon_pozn: 120 W provozní režim, až 160 W špička
+  hmotnost_kg: null
+  prodejce:
+    - MINISFORUM
+    - Framework
+    - BOSGAME
+    - HP
+    - PELADN
+  silne:
+    - 192 GB unified paměti
+    - až 160 GB pro GPU
+    - dva modely naráz
+  slabe:
+    - jen +6,7 % propustnosti proti Strix Halu
+    - stejný ROCm stack
+    - cena 6 199–7 499 USD
+  zdroje:
+    - https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html
+    - https://frame.work/blog/what-192gb-changes-for-local-ai-on-the-framework-desktop
+    - https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory
+  overeno: 2026-11-06

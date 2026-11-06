@@ -107,6 +107,7 @@ export default defineConfig({
             { label: 'AI laptops', link: '/devices/ai-laptops/' },
             { label: 'DGX Spark', link: '/devices/dgx-spark/' },
             { label: 'Strix Halo', link: '/devices/strix-halo/' },
+            { label: 'Gorgon Halo 192 GB', link: '/devices/gorgon-halo/' },
             { label: 'RTX Spark mini', link: '/devices/rtx-spark-mini/' },
             { label: 'RTX Spark notebook', link: '/devices/rtx-spark-notebook/' },
             { label: 'Mac Studio', link: '/devices/mac-studio/' },

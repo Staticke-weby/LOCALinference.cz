@@ -1,31 +1,34 @@
 ---
-title: "AI boxes: four desktop 128GB machines"
-description: "Desktop 128GB machines for local AI: DGX Spark, Strix Halo, RTX Spark mini and Mac Studio. What they run and how they differ."
-last_verified: 2026-11-05
+title: "AI boxes: five desktop machines for local AI"
+description: "Desktop machines for local AI: DGX Spark, Strix Halo, Gorgon Halo 192 GB, RTX Spark mini and Mac Studio. What they run and how they differ."
+last_verified: 2026-11-06
 ---
 
 A desktop box is the default shape for local AI: it stays on, cools
-better than a laptop and has room for 128 GB of unified memory.
+better than a laptop and has room for 128 GB or more of unified memory.
 
-## The four boxes
+## The five boxes
 
 | Device | Stack | Bandwidth | Best for |
 |---|---|---|---|
 | [DGX Spark](/devices/dgx-spark/) | CUDA, DGX OS | 273 GB/s | Integrated NVIDIA stack |
 | [Strix Halo](/devices/strix-halo/) | ROCm, Windows/Linux | 256 GB/s | Lowest price |
+| [Gorgon Halo 192 GB](/devices/gorgon-halo/) | ROCm, Windows/Linux | 273 GB/s | Models above 128 GB |
 | [RTX Spark mini](/devices/rtx-spark-mini/) | CUDA, Windows on Arm | 300 GB/s | Windows desktop |
 | [Mac Studio](/devices/mac-studio/) | Metal, macOS | 614 GB/s | Quiet, efficient images |
 
 ## What they have in common
 
-- **128 GB unified memory** — Qwen3.8 Flash Next fits with a useful
-  context.
+- **128 GB of unified memory or more** — Qwen3.8 Flash Next fits with a
+  useful context.
 - **No discrete VRAM ceiling** — the model can use the whole pool.
 - **One to four users** — more users need another box.
 
 ## What differs
 
 - **CUDA vs ROCm vs Metal.** Tool support differs more than raw speed.
+- **Memory ceiling.** 192 GB fits models that do not fit on 128 GB, but
+  it is not faster.
 - **Cooling and noise.** A desktop stays quieter under sustained load.
 - **Price.** Strix Halo is the cheapest; DGX Spark the most integrated.
 

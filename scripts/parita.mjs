@@ -134,6 +134,7 @@ const maTemata = fs.existsSync(path.join(ROOT, 'sites/eu/src/pages/topics/[slug]
 const dynamickaZarizeni = new Set([
   'dgx-spark',
   'strix-halo',
+  'gorgon-halo',
   'rtx-spark-mini',
   'rtx-spark-notebook',
   'mac-studio',

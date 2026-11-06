@@ -281,6 +281,9 @@
 - cz: zarizeni/dgx-spark
   en: devices/dgx-spark
   stav: hotovo
+- cz: zarizeni/gorgon-halo
+  en: devices/gorgon-halo
+  stav: hotovo
 - cz: zarizeni/mac-studio
   en: devices/mac-studio
   stav: hotovo

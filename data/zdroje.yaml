@@ -655,3 +655,42 @@
   posledni_kontrola: 2026-11-06
   stav: ok
   poznamka: "Komunitní preview build; 70,44 tok/s v SPEED-Bench coding na RTX Spark N1X."
+
+- id: gorgon-framework-192
+  nazev: Framework - co 192 GB změní pro lokální AI
+  url: https://frame.work/blog/what-192gb-changes-for-local-ai-on-the-framework-desktop
+  typ: html
+  co_sledujeme: [gorgon-halo, modely, tok-s, kontejnery]
+  frekvence: tydne
+  priorita: vysoka
+  duveryhodnost: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "Výrobce: DeepSeek V4.1 Flash ~14 tok/s, MiMo 16–18 tok/s. Není nezávislý test."
+
+- id: amd-ryzen-ai-max-495
+  nazev: AMD Ryzen AI Max+ PRO 495
+  url: https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html
+  typ: html
+  co_sledujeme: [specifikace, npu, pamet, dostupnost]
+  frekvence: mesicne
+  priorita: vysoka
+  duveryhodnost: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "192 GB LPDDR5X-8533, 55 TOPS NPU, Gorgon Halo."
+
+- id: videocardz-gorgon
+  nazev: VideoCardz - Gorgon Halo systémy
+  url: https://videocardz.com/topics/cpus/amd-ryzen-400
+  typ: html
+  co_sledujeme: [ceny, dostupnost, oem]
+  frekvence: tydne
+  priorita: stredni
+  duveryhodnost: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-06
+  stav: ok
+  poznamka: "Ceny 192GB strojů: BOSGAME 6 199 USD, Framework 6 799, MINISFORUM 7 399, HP 7 449."

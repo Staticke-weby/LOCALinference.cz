@@ -29,8 +29,8 @@ polozky:
     nazev: "Gorgon Halo 192 GB (Ryzen AI Max+ PRO 495)"
     url: https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory
     proc: "Nástupce Strix Hala s 192GB unified paměti. MINISFORUM 7 399 USD, Framework 6 799 USD, BOSGAME 6 199 USD."
-    stav: novy
-    poznamka: "Katalog je postavený na 128 GB; 192 GB je nová třída. Rozhodnout, zda ji zařadit, nebo jen zmínit."
+    stav: prevzato
+    poznamka: "Zařazeno jako samostatné zařízení /zarizeni/gorgon-halo/ s jasnou větou, že pro Q38FN nepřináší rychlost."
 
   - id: O-004
     datum: 2026-11-06

@@ -744,3 +744,18 @@ polozky:
     poznamka: null
     zdroj: null
     overeno: null
+
+  - id: Z06
+    oblast: zarizeni
+    titulek: "Gorgon Halo 192 GB: chybí nezávislé měření"
+    co_chybi: "Nemáme nezávislý test Qwen3.8 Flash Next ani větších modelů na Ryzen AI Max+ PRO 495. Zatím jen čísla od Frameworku (DeepSeek ~14 tok/s, MiMo 16–18 tok/s)."
+    kde:
+      - zarizeni/gorgon-halo
+      - zarizeni/srovnani
+    priorita: P1
+    stav: otevreno
+    davka: 2
+    hledat: "Phoronix, Local LLM Benchmarks, Reddit r/LocalLLaMA, recenze 495"
+    poznamka: "Zařízení je na trhu od září 2026; měření se mohou objevit v řádu týdnů."
+    zdroj: https://frame.work/blog/what-192gb-changes-for-local-ai-on-the-framework-desktop
+    overeno: 2026-11-06

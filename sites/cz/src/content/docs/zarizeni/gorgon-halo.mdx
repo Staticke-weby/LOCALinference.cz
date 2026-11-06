@@ -1,0 +1,122 @@
+---
+title: "Gorgon Halo 192 GB: co poběží a proč není rychlejší"
+description: "192 GB unified paměti pro modely, které se na 128 GB nevejdou. Co to znamená pro Qwen3.8 Flash Next, kde je limit a proč 15–20 tok/s nestačí."
+last_verified: 2026-11-06
+sidebar:
+  label: Gorgon Halo 192 GB
+  order: 5
+---
+
+import RychlaFakta from '../../../components/RychlaFakta.astro';
+import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
+
+**Verdikt:** Gorgon Halo je o **kapacitě, ne o rychlosti**. Vejde se na
+něj model, který se na 128 GB nevejde, ale neběží rychleji — propustnost
+paměti roste jen o necelých 7 %. Pro Qwen3.8 Flash Next nepřináší nic
+proti Strix Halu. Smysl má pro modely nad 128 GB a pro dva modely naráz.
+
+<aside class="tip">
+**Pro koho:** kdo potřebuje model nad 128 GB nebo dva modely současně
+a nevadí mu 15–20 tok/s. **Pro koho ne:** denní chat a kód, kde chcete
+odpověď hned. **Minimum pro denní práci:** i tady Qwen3.8 Flash Next.
+</aside>
+
+> **Toto jsou převzatá data, ne naše měření.** Specifikace jsou
+> z oficiálních zdrojů AMD a výrobců, rychlosti z blogu Frameworku
+> a recenzí. Nezávislé měření na 495 zatím není; kde chybí, je
+> `[DOPLNIT]`. Podrobnosti v [metodice](/o-webu/metodika/).
+
+## Co to znamená v praxi
+
+- **Pro jaké úlohy:** modely, které se na 128 GB nevejdou celé
+  (DeepSeek V4.1 Flash Q2, MiMo V2.6 Flash, GLM-5.3 Flash Q2), nebo dva
+  modely v paměti vedle sebe.
+- **Kolik lidí obslouží:** 1–2; na víc přidejte box.
+- **Co to stojí:** od 134 900 Kč bez DPH (6 199 USD, odhad); americké
+  ceny 6 199–7 499 USD bez DPH a dopravy.
+- **Kde narazíte:** propustnost paměti, kvalita Q2 kvantizace a stejný
+  software jako u Strix Hala.
+
+## Rychlá fakta
+
+<RychlaFakta id="gorgon-halo" />
+
+## Co na něm poběží
+
+**Qwen3.8 Flash Next** se vejde i na 128 GB. Na 192 GB ho ale můžete
+provozovat v **FP8** místo 4bitů — kvalita jde nahoru, rychlost ne.
+Kolik přesně, `[DOPLNIT: měření]`.
+
+Větší smysl dávají modely, které se na 128 GB nevejdou:
+
+| Model | Kvantizace | Co to znamená |
+|---|---|---|
+| DeepSeek V4.1 Flash | Q2 | vejde se celý do paměti, bez streamování z SSD |
+| MiMo V2.6 Flash | — | vejde se, ale s rostoucím kontextem zpomaluje |
+| GLM-5.3 Flash | Q2 | vejde se; na interaktivní práci pomalé |
+| Qwen3.8 Flash Next | FP8 | vyšší kvalita než 4bit, rychlost `[DOPLNIT]` |
+
+## Jak rychle
+
+| Model | Decode | Zdroj |
+|---|---|---|
+| Qwen3.8 Flash Next | `[DOPLNIT]` | — |
+| DeepSeek V4.1 Flash Q2 | ~14 tok/s | Framework, 9/2026 |
+| MiMo V2.6 Flash | 16–18 tok/s | Framework, 9/2026 |
+| GLM-5.3 Flash Q2 | pomalé na interaktivní práci | Framework, 9/2026 |
+
+Žádné z těchto čísel není nezávislý test — jsou od výrobce. Proto je
+neuvádíme jako doporučený provozní bod.
+
+**Co z toho plyne:** 15–20 tok/s je na chat ještě použitelné, na
+agentní práci a „modely, které dlouho přemýšlejí“ ne. Reasoning model
+vygeneruje tisíce tokenů, než se dostane k odpovědi; při 15 tok/s to
+jsou minuty čekání. Na takovou práci je 192GB box příliš pomalý.
+
+## Kontext a souběžnost
+
+Z 192 GB jde GPU přidělit až **160 GB**, zbytek zůstává systému.
+Delší kontext a víc souběžných požadavků tedy jde, ale každý token
+navíc platíte stejnou propustností jako u Strix Hala.
+
+## Kdy má smysl a kdy ne
+
+| Situace | Doporučení |
+|---|---|
+| Model nad 128 GB, který se jinam nevejde | **Ano** |
+| Dva modely současně (rychlý + silný) | **Ano** |
+| Batch úlohy přes noc | **Ano** |
+| Denní chat, kód a agenti | **Ne** — 128GB stroj je stejně rychlý a levnější |
+| Jen Qwen3.8 Flash Next | **Ne** — nepřinese nic |
+
+## Na co si dát pozor
+
+- **Není to rychlejší.** Stejná architektura, stejný počet CUDA
+  ekvivalentů, jen o 6,7 % vyšší propustnost.
+- **Stejný software.** ROCm, Vulkan, llama.cpp i vLLM se chovají jako
+  na Strix Halu; [NPU](/slovnik/software/rocm/) zůstává okrajová cesta.
+- **Q2 kvantizace** u velkých modelů znamená nižší kvalitu. Čím menší
+  kvantizace, tím víc model „šumí“.
+- **Cena.** 6 199–7 499 USD je blízko DGX Sparku a RTX Sparku.
+- **Chybí měření.** Nezávislý test na 495 jsme nenašli.
+
+## Srovnání se Strix Halem
+
+<TabulkaZarizeni filtr={["strix-halo", "gorgon-halo"]} />
+
+## Kudy dál
+
+- [Strix Halo](/zarizeni/strix-halo/) — 128 GB, stejný software, nižší cena.
+- [Srovnání zařízení](/zarizeni/srovnani/) — všechny stroje v katalogu.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co model potřebuje.
+- [Propustnost paměti](/slovnik/vykon/propustnost-pameti/) — proč decode
+  neporoste s kapacitou.
+
+## Zdroje
+
+- [AMD Ryzen AI Max+ PRO 495](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html)
+- [Framework — What 192GB changes for local AI](https://frame.work/blog/what-192gb-changes-for-local-ai-on-the-framework-desktop) (30. 9. 2026)
+- [VideoCardz — první Gorgon Halo PC, 7 399 USD](https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory) (28. 9. 2026)
+- [VideoCardz — BOSGAME M5 Max 192 GB za 6 199 USD](https://videocardz.com/newz/bosgame-m5-max-with-192gb-ram-launches-at-6199-over-1100-cheaper-than-amd-ryzen-ai-halo) (4. 11. 2026)
+
+*Naposledy ověřeno: 6. 11. 2026.*

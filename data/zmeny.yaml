@@ -6,6 +6,13 @@
 
 - datum: 2026-11-06
   typ: obsah
+  titulek: "Nové zařízení: Gorgon Halo 192 GB"
+  co_se_zmenilo: "Do katalogu přibyl Gorgon Halo 192 GB (Ryzen AI Max+ PRO 495) jako jediný stroj nad 128 GB. Stránka vysvětluje, že jde o kapacitu, ne rychlost: Qwen3.8 Flash Next na něm nezíská nic a velké modely běží 14–18 tok/s. Nezávislé měření chybí."
+  dotcene_stranky: [zarizeni/gorgon-halo, zarizeni/srovnani, zarizeni/ai-boxy]
+  zdroj: https://frame.work/blog/what-192gb-changes-for-local-ai-on-the-framework-desktop
+
+- datum: 2026-11-06
+  typ: obsah
   titulek: "Návod RTX Spark přepsán na vLLM a model od NVIDIA"
   co_se_zmenilo: "Návod už nevede přes llama.cpp, ale přes vLLM build pro Windows ARM64 a model nvidia/Qwen3.8-Flash-Next-FP4-Local. Přibylo nastavení 96 GB GPU paměti, odkládacího souboru, instalace, spuštění serveru a test API."
   dotcene_stranky: [navody/rtx-spark, navody]

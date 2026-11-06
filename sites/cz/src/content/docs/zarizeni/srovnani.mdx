@@ -1,7 +1,7 @@
 ---
-title: "Srovnání 128GB AI boxů: cena, výkon a Qwen3.8 Flash Next"
-description: "Přehled hotových 128GB boxů podle paměti, propustnosti a ceny. Menší zařízení do katalogu nepatří."
-last_verified: 2026-11-04
+title: "Srovnání 128GB a 192GB AI strojů: cena, výkon a Qwen3.8 Flash Next"
+description: "Přehled hotových 128GB a 192GB strojů podle paměti, propustnosti a ceny. Menší zařízení do katalogu nepatří."
+last_verified: 2026-11-06
 sidebar:
   label: Srovnání
   order: 1
@@ -11,10 +11,13 @@ import AlzaCena from '../../../components/AlzaCena.astro';
 
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 
-Katalog drží **jen hotové stroje se 128 GB unified paměti**. Menší
-zařízení nezařazujeme: Qwen3.8 Flash Next se na ně nevejde v použitelné
-kvalitě i s rozumným kontextem. Větší a dražší stroje také ne — pro víc
-uživatelů se škáluje počtem boxů.
+Katalog drží **jen hotové stroje se 128 GB unified paměti a víc**.
+Menší zařízení nezařazujeme: Qwen3.8 Flash Next se na ně nevejde
+v použitelné kvalitě i s rozumným kontextem.
+
+Jediná výjimka nad 128 GB je [Gorgon Halo 192 GB](/zarizeni/gorgon-halo/) —
+vejde se na něj model, který se jinam nevejde, ale není rychlejší. Pro
+víc uživatelů se škáluje počtem boxů, ne dražším strojem.
 
 <TabulkaZarizeni />
 
@@ -27,7 +30,7 @@ jsou v samostatných přehledech:
 [DGX Spark OEM](/zarizeni/dgx-spark/) a
 [Strix Halo OEM](/zarizeni/strix-halo/).
 
-## Jak vybrat 128GB AI box: tři otázky
+## Jak vybrat AI box: tři otázky
 
 1. **Kolik lidí to má obsloužit?** Do čtyř stačí jeden box. Pro víc
    přidávejte boxy, ne dražší stroj.
@@ -37,10 +40,10 @@ jsou v samostatných přehledech:
    bez DPH; DGX Spark je zhruba dvojnásobek. Rozdíl je ekosystém
    a podpora, ne jen výkon.
 
-## Jak číst srovnání 128GB AI boxů
+## Jak číst srovnání
 
 - **Paměť** rozhoduje, který model se vejde celý. Pro Qwen3.8 Flash Next
-  potřebujete 128 GB.
+  potřebujete 128 GB; 192 GB dává smysl jen pro větší modely.
 - **Bandwidth** rozhoduje o decode. PC boxy mají 256–300 GB/s.
 - **Cena** je bez DPH a dopravy, k datu u zařízení.
 - **Forma** rozhoduje o provozu: notebook na cesty, mini PC na stůl.

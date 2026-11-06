@@ -40,3 +40,19 @@
   not_for: "Video-heavy work or sustained multi-user serving."
   strengths: ["Portable 128GB", "Silent under light load", "Good image and audio performance"]
   weaknesses: ["No CUDA", "Video takes minutes per clip", "Thermal throttling under sustained load"]
+
+- id: gorgon-halo
+  verdict: 192GB lets models that do not fit on 128GB stay in memory, but it
+    does not make them fast. Qwen3.8 Flash Next gains nothing over 128GB.
+  for_who: Teams that need a model above 128GB, or two models loaded at once,
+    and accept slower generation.
+  not_for: Interactive work where 15-20 tok/s is too slow, or anyone who only
+    runs Qwen3.8 Flash Next.
+  strengths:
+    - 192GB of unified memory
+    - Up to 160GB for the GPU
+    - Two models loaded at once
+  weaknesses:
+    - Only 6.7 percent more bandwidth than Strix Halo
+    - Same ROCm stack and the same limits
+    - 6,199-7,499 USD

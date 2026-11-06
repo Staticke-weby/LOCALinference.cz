@@ -75,6 +75,7 @@ const TOPIC_REV = Object.fromEntries(Object.entries(TOPIC).map(([en, cz]) => [cz
 const ZARIZENI = new Set([
   'dgx-spark',
   'strix-halo',
+  'gorgon-halo',
   'rtx-spark-mini',
   'rtx-spark-notebook',
   'mac-studio',

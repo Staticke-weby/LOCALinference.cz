@@ -277,6 +277,7 @@ export default defineConfig({
             { label: 'Srovnání', link: '/zarizeni/srovnani/' },
             { label: 'DGX Spark', link: '/zarizeni/dgx-spark/' },
             { label: 'Strix Halo', link: '/zarizeni/strix-halo/' },
+            { label: 'Gorgon Halo 192 GB', link: '/zarizeni/gorgon-halo/' },
             { label: 'RTX Spark mini', link: '/zarizeni/rtx-spark-mini/' },
             { label: 'Mac Studio', link: '/zarizeni/mac-studio/' },
           ],
