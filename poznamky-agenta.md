@@ -372,3 +372,22 @@ Podklad je silný v hardwaru, roofline a ekonomice. Slabší je v „co od model
 čekat“ — chybí mu benchmarky kvality a české testy. Ty bude potřeba doplnit
 z model cards a vlastního měření. Regulatorní část je pro web okrajová;
 použije se jen tam, kde se dotýká provozu (data, logy, odpovědnost).
+
+---
+
+## 2026-11-09 - Kontrola zdrojů: licence a nová měření
+
+- **Qwen3.8 Flash Next není Apache-2.0**, ale Qwen Community License 1.0.
+  Ověřeno v LICENSE na HF. Opraveno v datech, CZ/EN stránce modelu,
+  tabulce EN a FAQ. Podmínky: zachovat licenci, nad 100M MAU / 20M USD
+  měsíčně uvést název, MaaS a AI work assistant jen se zvláštní licencí.
+- **DGX Spark:** přidán reprodukovatelný komunitní recept (salient-data),
+  69,3 tok/s median a 91,9 tok/s při 6 streamech. Není to výchozí stav;
+  pro plánování zůstává 36,8 tok/s.
+- **Gorgon Halo:** první komunitní test 19-20 tok/s je sporný, do stránky
+  jsme ho dali jako spodní mez, ne jako vlastnost čipu. Gap Z06 zůstává.
+- **Framework Desktop 128GB:** CZ cena 98 390 Kč vč. DPH, skladem ne;
+  jde o DIY, ne turnkey. O-001 je posuzuje-se.
+- **AMD Ryzen AI Halo 128GB:** 3 999,99 USD, Micro Center exclusive (US);
+  evropská dostupnost chybí. O-002 je posuzuje-se, rozhodnutí o zařazení
+  mezi OEM varianty Strix Hala je na provozovateli.

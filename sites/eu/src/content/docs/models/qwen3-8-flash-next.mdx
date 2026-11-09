@@ -1,7 +1,7 @@
 ---
 title: "Qwen3.8 Flash Next on 128 GB: specs and limits"
-description: "Qwen3.8 Flash Next: 125B MoE with 6B active parameters, 262K context, Apache-2.0. What fits on a 128GB device and where it falls short."
-last_verified: 2026-11-05
+description: "Qwen3.8 Flash Next: 125B MoE with 6B active parameters, 262K context, Qwen Community License. What fits on a 128GB device and where it falls short."
+last_verified: 2026-11-09
 ---
 
 import TabulkaModeluEn from '../../../components/TabulkaModeluEn.astro';
@@ -36,6 +36,16 @@ and quality on retrieval tasks can degrade.
 The device has to hold the weights, the KV cache and the rest of the
 system. That is why this site does not cover 64GB machines.
 
+## License
+
+The weights are under the **Qwen Community License 1.0**, not Apache-2.0.
+Use, modification and commercial deployment are free. The conditions:
+keep the license text; above 100 million monthly active users or
+US$20 million monthly revenue, display the model name in the product
+interface; and offering the model as a service (Model-as-a-Service) or
+as a standalone AI work assistant requires a separate license from Qwen.
+Internal use in a small company is unaffected.
+
 ## Where it falls short
 
 - **Czech and smaller languages:** no public benchmark we can point to;
@@ -59,4 +69,4 @@ system. That is why this site does not cover 64GB machines.
 - [Qwen blog](https://qwen.ai/blog?id=qwen3.8-flash-next)
 - [vLLM recipe](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
 
-*Last verified: 5 November 2026.*
+*Last verified: 9 November 2026.*

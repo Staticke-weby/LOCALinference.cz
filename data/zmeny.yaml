@@ -4,6 +4,13 @@
 # stránky a pojmy. Technické záznamy o stavbě webu (build, sitemap,
 # hreflang, menu, opravy odkazů) sem nepatří.
 
+- datum: 2026-11-09
+  typ: model
+  titulek: "Oprava licence Qwen3.8 Flash Next: Qwen Community License 1.0"
+  co_se_zmenilo: "Model není pod Apache-2.0, ale pod Qwen Community License 1.0. Komerční použití zůstává zdarma; nad 100 mil. měsíčních uživatelů nebo 20 mil. USD měsíčního obratu je nutné uvést název modelu a nabízení modelu jako služby nebo jako samostatného AI pracovního asistenta vyžaduje zvláštní licenci. Opraveno na stránce modelu, v tabulce, na EN mutaci a v FAQ."
+  dotcene_stranky: [modely/qwen3-8-flash-next, zaciname/faq]
+  zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/main/LICENSE
+
 - datum: 2026-11-06
   typ: obsah
   titulek: "Optimum místo maxima: FP8 není automaticky lepší"

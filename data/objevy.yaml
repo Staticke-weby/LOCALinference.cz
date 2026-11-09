@@ -11,8 +11,8 @@ polozky:
     nazev: "Framework Desktop 128 GB"
     url: https://frame.work/desktop
     proc: "128GB turnkey Strix Halo, který v katalogu OEM variant chybí."
-    stav: novy
-    poznamka: "Ověřit českou dostupnost a cenu; pokud ano, zařadit mezi OEM varianty."
+    stav: posuzuje-se
+    poznamka: "9. 11. 2026: 128GB DIY 98 390 Kč vč. DPH, skladem ne. DIY není turnkey (chybí disk, OS a ventilátor); hotová 128GB verze není dostupná. Do katalogu hotových zařízení zatím nepatří."
 
   - id: O-002
     datum: 2026-11-06
@@ -20,8 +20,8 @@ polozky:
     nazev: "AMD Ryzen AI Halo Developer Platform 128 GB"
     url: https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html
     proc: "První hotový 128GB box přímo od AMD, 3 999 USD, s předinstalovaným Linuxem a ROCm. V katalogu chybí."
-    stav: novy
-    poznamka: "Ověřit evropskou dostupnost a českou cenu; zda jde o turnkey produkt s podporou."
+    stav: posuzuje-se
+    poznamka: "9. 11. 2026 ověřeno: 128 GB, 3 999,99 USD, Micro Center exclusive (US), Linux i Windows. Evropská dostupnost a česká cena nejsou; rozhodnout, zda zařadit jako OEM variantu Strix Hala."
 
   - id: O-003
     datum: 2026-11-06

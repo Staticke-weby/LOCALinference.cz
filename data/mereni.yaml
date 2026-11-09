@@ -2,6 +2,66 @@
 # `typ`: namereno (převzato od zdroje) | vypocet (z podložených vstupů) | vlastni (dnes nepoužíváme)
 # `mereno_kym`: vyrobce | nezavisle | komunita | my
 
+- id: 2026-10-22-dgx-spark-qwen38-recipe-median
+  datum: 2026-10-22
+  zarizeni: dgx-spark
+  model: qwen3-8-flash-next
+  kvantizace: NVFP4
+  engine: vLLM
+  engine_verze: "nightly 8e2beaa3 + 14 patches"
+  kontext: null
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: null
+  decode_toks: 69.3
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: 6
+    kv_cache: "MTP BF16, QSA FP8"
+    flash_attention: null
+    chunked_prefill: true
+    teplota: 0
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: stredni
+  normalizace: "median 40 promptů, 1 stream, thinking off; 3 běhy"
+  interpretace: "Optimalizovaný komunitní recept se 14 patchi; próza 41,0, kód 70-74. Ukazuje, že ~70 tok/s je na jednom boxu dosažitelné, ale není to výchozí konfigurace."
+  zdroj: https://forums.developer.nvidia.com/t/six-weeks-optimizing-qwen3-8-flash-next-on-one-dgx-spark-67-5-tok-s-median-decode-80-on-structured-work-reproducible-recipe-with-raw-data/385463
+  poznamka: "Build 2026-10-22; měřeno 22. 10. 2026, kontrola 25. 10. 2026. Délky promptů harness neuvádí."
+
+- id: 2026-10-22-dgx-spark-qwen38-recipe-6stream
+  datum: 2026-10-22
+  zarizeni: dgx-spark
+  model: qwen3-8-flash-next
+  kvantizace: NVFP4
+  engine: vLLM
+  engine_verze: "nightly 8e2beaa3 + 14 patches"
+  kontext: null
+  kontext_strop: 262144
+  ttft_ms: null
+  prefill_toks: null
+  decode_toks: null
+  agregat_toks: 91.9
+  soubeznost: 6
+  nastaveni:
+    mtp: true
+    mtp_draft_tokens: 3
+    kv_cache: "MTP BF16, QSA FP8"
+    flash_attention: null
+    chunked_prefill: true
+    teplota: 0
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: komunita
+  duveryhodnost: stredni
+  normalizace: "6 streamů, batch aggregate, 1 běh; thinking off"
+  interpretace: "Agregát ~92 tok/s při 6 streamech. Jeden box, ne pool; TTFT a rozptyl nejsou změřené."
+  zdroj: https://forums.developer.nvidia.com/t/six-weeks-optimizing-qwen3-8-flash-next-on-one-dgx-spark-67-5-tok-s-median-decode-80-on-structured-work-reproducible-recipe-with-raw-data/385463
+  poznamka: "Harness headline je median batch agregátů; měřeno 22. 10. 2026."
+
 - id: 2026-09-10-dgx-spark-qwen38-prose
   datum: 2026-09-10
   zarizeni: dgx-spark

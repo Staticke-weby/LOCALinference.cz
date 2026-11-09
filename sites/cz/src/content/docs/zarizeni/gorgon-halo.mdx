@@ -1,7 +1,7 @@
 ---
 title: "Gorgon Halo 192 GB: prostor pro Qwen3.8 Flash Next, ne pro obří modely"
-description: "192 GB unified paměti znamená vyšší kvantizaci, delší kontext a víc souběžných požadavků pro Qwen3.8 Flash Next. Obří modely v Q2 patří do serverovny."
-last_verified: 2026-11-06
+description: "192 GB unified paměti znamená delší kontext a víc souběžných požadavků pro Qwen3.8 Flash Next. Obří modely v Q2 patří do serverovny."
+last_verified: 2026-11-09
 sidebar:
   label: Gorgon Halo 192 GB
   order: 5
@@ -117,7 +117,12 @@ jsou minuty čekání.
 - **Q2 kvantizace** u velkých modelů znamená horší kvalitu. Čím menší
   kvantizace, tím víc model „šumí“.
 - **Cena.** 6 199–7 499 USD je blízko DGX Sparku a RTX Sparku.
-- **Chybí měření.** Nezávislý test na 495 jsme nenašli.
+- **První měření je sporné.** Komunitní test na 192GB boxu
+  (Q6_K_XL, llama.cpp/ROCm) naměřil 19–20 tok/s na krátkém promptu
+  a 4,6 tok/s na 249K kontextu. Jiní uživatelé stejnou konfiguraci
+  zpochybňují a na Strix Halu hlásí 50–65 tok/s. Dokud nepřijde
+  nezávislé měření, bereme číslo jako spodní mez, ne jako vlastnost
+  čipu.
 
 ## Srovnání se Strix Halem
 
@@ -137,4 +142,4 @@ jsou minuty čekání.
 - [VideoCardz — první Gorgon Halo PC, 7 399 USD](https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory) (28. 9. 2026)
 - [VideoCardz — BOSGAME M5 Max 192 GB za 6 199 USD](https://videocardz.com/newz/bosgame-m5-max-with-192gb-ram-launches-at-6199-over-1100-cheaper-than-amd-ryzen-ai-halo) (4. 11. 2026)
 
-*Naposledy ověřeno: 6. 11. 2026.*
+*Naposledy ověřeno: 9. 11. 2026.*

@@ -1,7 +1,7 @@
 ---
 title: "Qwen3.8 Flash Next: výkon na 128 GB, kontext a provoz"
 description: "Referenční MoE model s 176B / 6B aktivních parametrů, 262k kontextem a vision. Co umí, kolik potřebuje paměti a jak rychle běží."
-last_verified: 2026-11-04
+last_verified: 2026-11-09
 sidebar:
   label: Qwen3.8 Flash Next
   order: 1
@@ -41,12 +41,20 @@ kompromisu.
 | Rozšíření | 1 000 000 s YaRN | model card |
 | Doporučený provozní kontext | 131 072 (128K) | [Unsloth](https://unsloth.ai/docs/models/qwen3.8-next) |
 | Vision | ano (text + obrázky) | model card |
-| Licence | Apache-2.0 | model card |
+| Licence | Qwen Community License 1.0 | [model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next), [LICENSE](https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/main/LICENSE) |
 
 **Kontext:** maximum není doporučený provozní bod. Ve veřejných
 benchmarcích se používá **128K pro běžné úlohy** a 256K pro agentní
 běhy; 128K bereme jako rozumný provozní bod, 262K je strop. Kvalita
 i rychlost jsou na kratším kontextu lepší.
+
+**Licence není Apache-2.0.** Model je pod **Qwen Community License 1.0**.
+Použití, úpravy i komerční nasazení jsou zdarma. Povinnosti: zachovat
+text licence; nad 100 milionů měsíčních uživatelů nebo 20 milionů USD
+měsíčního obratu uvést v rozhraní produktu název modelu; a kdo model
+nabízí jako službu (Model-as-a-Service) nebo jako samostatný AI pracovní
+asistent, potřebuje od Qwen zvláštní licenci. Pro interní nasazení
+v malé firmě se tím nic nemění.
 
 ## Co umí Qwen3.8 Flash Next
 
@@ -128,4 +136,4 @@ naměřeného rozsahu, ne marketingové maximum.
 - [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
 - [NVIDIA forum — native vLLM on RTX Spark](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 9. 11. 2026.*

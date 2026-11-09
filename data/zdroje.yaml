@@ -20,9 +20,9 @@
   co_sledujeme: [parametry, kontext, benchmarky, licence, vision]
   frekvence: tydne
   priorita: vysoka
-  posledni_kontrola: 2026-11-04
+  posledni_kontrola: 2026-11-09
   stav: ok
-  poznamka: Kanonický zdroj pro specifikace referenčního modelu.
+  poznamka: "9. 11. 2026 ověřena licence: Qwen Community License 1.0, ne Apache-2.0. Kanonický zdroj pro specifikace."
 
 - id: qwen38-blog
   nazev: Qwen blog — Qwen3.8-Flash-Next
@@ -41,8 +41,9 @@
   co_sledujeme: [konfigurace, kvantizace, dgx-spark]
   frekvence: tydne
   priorita: vysoka
-  posledni_kontrola: 2026-11-04
+  posledni_kontrola: 2026-11-09
   stav: ok
+  poznamka: "Recept aktualizován 27. 10. 2026; stable vLLM >= 0.30.0, doporučený nightly."
 
 - id: news-qq-rtx-prices
   nazev: První ceny RTX Spark notebooků
@@ -115,8 +116,9 @@
   co_sledujeme: [parametry, cena, dostupnost, notebook]
   frekvence: tydne
   priorita: vysoka
-  posledni_kontrola: 2026-11-04
+  posledni_kontrola: 2026-11-09
   stav: ok
+  poznamka: "9. 11. 2026 beze změny: až 128 GB unified, 1 petaflop FP4, 6 144 CUDA jader."
 
 - id: nvidia-rtx-spark-porting
   nazev: NVIDIA Windows on Arm Porting Guide — RTX Spark
@@ -413,8 +415,9 @@
   co_sledujeme: [vydani, windows-arm64, vulkan, cuda]
   frekvence: tydne
   priorita: vysoka
-  posledni_kontrola: 2026-11-04
+  posledni_kontrola: 2026-11-09
   stav: ok
+  poznamka: "9. 11. 2026 build b12221; žádná změna specifická pro Qwen3.8."
 
 - id: amd-rocm-ryzen-uma
   nazev: AMD ROCm - AI Inference on Ryzen AI Max
@@ -694,3 +697,14 @@
   posledni_kontrola: 2026-11-06
   stav: ok
   poznamka: "Ceny 192GB strojů: BOSGAME 6 199 USD, Framework 6 799, MINISFORUM 7 399, HP 7 449."
+
+- id: salient-dgx-recipe
+  nazev: salient-data — Qwen3.8 Flash Next na DGX Spark
+  url: https://github.com/salient-data/qwen38-next-dgx-recipe
+  typ: github
+  co_sledujeme: [mereni, konfigurace, vllm]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-09
+  stav: ok
+  poznamka: "Reprodukovatelný komunitní recept; 69,3 tok/s median a 91,9 tok/s při 6 streamech (build 2026-10-22)."

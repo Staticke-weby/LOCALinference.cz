@@ -28,7 +28,7 @@
   title: "Qwen3.8 Flash Next on 128 GB"
   description: "The model this site is built around: context, memory, speed, tools and limits."
   intro: "Qwen3.8 Flash Next is a 125B MoE model with 6B active parameters. It fits on a 128GB device at 4-bit with a recommended 128K context."
-  points: ["262K native context", "Apache-2.0 license", "Vision and tool use"]
+  points: ["262K native context", "Qwen Community License 1.0", "Vision and tool use"]
 - slug: 128gb-unified-memory
   title: "128 GB unified memory: why it is the minimum"
   description: "Why 128 GB of unified memory is the working minimum for Qwen3.8 Flash Next."

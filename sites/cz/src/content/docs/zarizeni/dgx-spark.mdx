@@ -1,7 +1,7 @@
 ---
 title: "DGX Spark 128 GB skladem: cena a kde koupit"
 description: "128 GB unified paměti, 273 GB/s a CUDA. Co na DGX Sparku reálně běží, česká cena od 162 990 Kč, OEM varianty a pro koho se vyplatí."
-last_verified: 2026-11-04
+last_verified: 2026-11-09
 sidebar:
   label: DGX Spark
   order: 2
@@ -84,9 +84,11 @@ mají stejný čip GB10, 128 GB paměti a DGX OS. Liší se výrobce,
 
 <TabulkaMereni zarizeni="dgx-spark" />
 
-**Konflikt, který je potřeba číst:** Qwen/NVIDIA uvádí kolem 70 tok/s,
-nezávislé měření 36,8–45,8 tok/s. Rozdíl je engine, MTP, workload a délka
-běhu. Pro plánování berte **spodní hranici 36,8 tok/s**, ne 70.
+**Konflikt, který je potřeba číst:** NVIDIA a optimalizované komunitní
+recepty uvádějí 67–70 tok/s (NVFP4 + MTP + patche), výchozí konfigurace
+a nezávislé měření 36,8–45,8 tok/s. Rozdíl je engine, MTP, počet patchů
+a workload, ne fyzika. Pro plánování berte **spodní hranici 36,8 tok/s**;
+70 je strop optimalizovaného receptu, ne výchozí stav.
 
 ## Co na něm poběží z generativních modelů
 
@@ -108,7 +110,9 @@ běhu. Pro plánování berte **spodní hranici 36,8 tok/s**, ne 70.
 | 1M | s YaRN, na tomto zařízení nepraktické | 0–1 |
 
 Maximum není doporučení. Jeden 200k request může vytlačit ostatní
-z KV cache. Konkrétní chování při 4 souběžných je `[DOPLNIT: měření]`.
+z KV cache. První komunitní měření při 6 streamech dává agregát
+91,9 tok/s, ale na krátkých promptech; chování na 32k a 128k je stále
+`[DOPLNIT: měření]`.
 
 ## Co od DGX Sparku čekat
 
@@ -159,4 +163,4 @@ Skladem na Alza.cz k 5. 11. 2026 (ASUS GX10 i další varianty). Cena začíná 
 - [CORSAIR — DGX Spark llama.cpp](https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/)
 - [BetterClaw — RTX Spark vs DGX Spark](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 9. 11. 2026.*

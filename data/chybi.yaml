@@ -237,7 +237,7 @@ polozky:
   - id: D03
     oblast: data
     titulek: "Souběžnost 4+ na všech zařízeních"
-    co_chybi: "Většina reportů je single-stream. Chybí agregát a tok/s na jeden stream při čtyřech souběžných požadavcích."
+    co_chybi: "Většina reportů je single-stream. DGX Spark má nově 6-stream agregát 91,9 tok/s, ale chybí 4+ souběžné na ostatních zařízeních a na dlouhém kontextu."
     kde:
       - zarizeni/dgx-spark
       - zarizeni/strix-halo
@@ -748,7 +748,7 @@ polozky:
   - id: Z06
     oblast: zarizeni
     titulek: "Gorgon Halo 192 GB: chybí nezávislé měření"
-    co_chybi: "Nemáme nezávislý test Qwen3.8 Flash Next ani větších modelů na Ryzen AI Max+ PRO 495. Zatím jen čísla od Frameworku (DeepSeek ~14 tok/s, MiMo 16–18 tok/s)."
+    co_chybi: "Nemáme nezávislý test Qwen3.8 Flash Next ani větších modelů na Ryzen AI Max+ PRO 495. První komunitní test existuje, ale je sporný: 19–20 tok/s na krátkém promptu, 4,6 tok/s na 249K. Jiní uživatelé hlásí 50–65 tok/s a konfiguraci zpochybňují."
     kde:
       - zarizeni/gorgon-halo
       - zarizeni/srovnani
@@ -756,6 +756,6 @@ polozky:
     stav: otevreno
     davka: 2
     hledat: "Phoronix, Local LLM Benchmarks, Reddit r/LocalLLaMA, recenze 495"
-    poznamka: "Zařízení je na trhu od září 2026; měření se mohou objevit v řádu týdnů."
-    zdroj: https://frame.work/blog/what-192gb-changes-for-local-ai-on-the-framework-desktop
-    overeno: 2026-11-06
+    poznamka: "Zařízení je na trhu od září 2026. 11/2026 první komunitní test (Q6_K_XL, llama.cpp/ROCm, 192 GB): 19–20 tok/s krátký prompt, 14,8 při 32k, 4,6 při 249k. Sporné; potřebujeme nezávislé měření."
+    zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next/discussions/84
+    overeno: 2026-11-09
