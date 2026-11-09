@@ -24,6 +24,29 @@
   stav: ok
   poznamka: "9. 11. 2026 ověřena licence: Qwen Community License 1.0, ne Apache-2.0. Kanonický zdroj pro specifikace."
 
+- id: qwen38-license
+  nazev: Qwen3.8 Flash Next — LICENSE
+  url: https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/LICENSE
+  typ: html
+  co_sledujeme: [licence]
+  frekvence: mesicne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-09
+  stav: ok
+  poznamka: "Přímý text Qwen Community License 1.0; změna se promítne do stránky modelu a FAQ."
+
+- id: hf-qwen38-discussions
+  nazev: HF — Qwen3.8 Flash Next, komunitní měření
+  url: https://huggingface.co/Qwen/Qwen3.8-Flash-Next/discussions
+  typ: html
+  co_sledujeme: [komunitni-mereni, gorgon-halo, strix-halo, dgx-spark]
+  frekvence: tydne
+  priorita: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-09
+  stav: ok
+  poznamka: "Ruční průchod diskusí; 11/2026 odtud první měření Gorgon Hala (192 GB, Q6_K_XL)."
+
 - id: qwen38-blog
   nazev: Qwen blog — Qwen3.8-Flash-Next
   url: https://qwen.ai/blog?id=qwen3.8-flash-next
@@ -65,6 +88,28 @@
   posledni_kontrola: 2026-11-04
   stav: ok
   poznamka: Ověřené konfigurace pro konkrétní hardware.
+
+- id: vllm-releases
+  nazev: vLLM — releases
+  url: https://github.com/vllm-project/vllm/releases
+  typ: github
+  co_sledujeme: [vydani, qwen38, mtp, vykon]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-09
+  stav: ok
+  poznamka: "Stable 0.32, RC 0.33; změny se promítají do návodů a měření."
+
+- id: sglang-releases
+  nazev: SGLang — releases
+  url: https://github.com/sgl-project/sglang/releases
+  typ: github
+  co_sledujeme: [vydani, qwen38, vykon]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-09
+  stav: ok
+  poznamka: "Alternativa k vLLM; 0.5.23 k 2. 11. 2026."
 
 - id: sglang-cookbook
   nazev: SGLang Cookbook
@@ -685,6 +730,18 @@
   stav: ok
   poznamka: "192 GB LPDDR5X-8533, 55 TOPS NPU, Gorgon Halo."
 
+- id: amd-ryzen-ai-halo
+  nazev: AMD Ryzen AI Halo — 128GB Developer Platform
+  url: https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html
+  typ: html
+  co_sledujeme: [cena, dostupnost, specifikace]
+  frekvence: mesicne
+  priorita: stredni
+  duveryhodnost: vysoka
+  posledni_kontrola: 2026-11-09
+  stav: ok
+  poznamka: "První hotový 128GB box od AMD, 3 999 USD; US Micro Center, EU dostupnost chybí. Kandidát O-002."
+
 - id: videocardz-gorgon
   nazev: VideoCardz - Gorgon Halo systémy
   url: https://videocardz.com/topics/cpus/amd-ryzen-400
@@ -708,3 +765,14 @@
   posledni_kontrola: 2026-11-09
   stav: ok
   poznamka: "Reprodukovatelný komunitní recept; 69,3 tok/s median a 91,9 tok/s při 6 streamech (build 2026-10-22)."
+
+- id: roozich-qwen38-spark
+  nazev: roozich — Qwen3.8 Flash Spark (DFlash2)
+  url: https://github.com/roozich/Qwen3.8-Flash-Spark
+  typ: github
+  co_sledujeme: [mereni, dflash2, rtx-spark]
+  frekvence: tydne
+  priorita: nizka
+  posledni_kontrola: 2026-11-09
+  stav: ok
+  poznamka: "Komunitní recept pro DGX Spark a RTX Spark; 57 tok/s s DFlash2. Ověřovat, ne přebírat bez konfigurace."
