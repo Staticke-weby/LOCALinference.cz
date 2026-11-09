@@ -1,6 +1,6 @@
 ---
 title: "Právní informace"
-description: "Provozovatel webu LOCALinference, odpovědnost za obsah a autorská práva."
+description: "Provozovatel LOCALinference, odpovědnost za obsah, autorská práva, affiliate odkazy a zpracování údajů. Právní informace k webu."
 last_verified: 2026-11-04
 sidebar:
   order: 3

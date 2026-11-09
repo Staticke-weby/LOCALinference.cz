@@ -1,6 +1,6 @@
 ---
 title: "Datové karty: co tvrdí zdroj a co z toho plyne"
-description: "Jak čteme veřejná měření, proč u nich uvádíme konfiguraci, rozpětí a důvěryhodnost a kde jsou mezery."
+description: "Jak čteme veřejná měření lokální AI: konfigurace, rozpětí, důvěryhodnost a roofline. Proč u čísel uvádíme zdroj a datum a kde jsou mezery."
 last_verified: 2026-11-04
 sidebar:
   order: 1
