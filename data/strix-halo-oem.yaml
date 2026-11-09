@@ -1,5 +1,5 @@
 # České maloobchodní ceny strojů s AMD Ryzen AI Max+ 395 (Strix Halo).
-# Ceny jsou z nabídky Alza.cz ze 4. 11. 2026, včetně a bez DPH.
+# Ceny jsou z nabídky Alza.cz; Acemagic ověřen 9. 11. 2026, původní snapshot 4. 11. 2026, včetně a bez DPH.
 # Nejde o ceny z amerického trhu; ty jsou v data/zarizeni.yaml.
 # Ceny kolísají. Před nákupem ověřte aktuální stav.
 
@@ -14,7 +14,7 @@
   prodejce: Alza.cz
   objednaci_kod: Ace1a4n
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-09
   poznamka: "Novinka; Tiny; Windows 11 Pro; HDMI 2.0 a DisplayPort 2.0."
 
 - id: acer-veriton-ra110-128-2tb

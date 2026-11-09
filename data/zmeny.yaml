@@ -5,6 +5,13 @@
 # hreflang, menu, opravy odkazů) sem nepatří.
 
 - datum: 2026-11-09
+  typ: cena
+  titulek: "Ceny Alza ověřeny 9. 11. 2026; MacBook Pro zlevnil"
+  co_se_zmenilo: "Ruční kontrola přes OpenChamber browser. Beze změny: ASUS GX10 1TB 162 990 Kč, Acemagic A10A 119 990 Kč, NVIDIA DGX Spark 4TB 218 990 Kč, GIGABYTE AI TOP ATOM 4TB 179 990 Kč, Mac Studio 128 GB 147 990/171 990 Kč a ASUS ProArt P14 128 GB 125 990 Kč. MacBook Pro 128 GB: nejnižší nalezená cena 177 739 Kč za 14\" 128GB/2TB, 16\" 128GB/8TB 300 490 Kč; část variant je nedostupná. U ostatních variant zůstává datum 4. 11."
+  dotcene_stranky: [zarizeni/dgx-spark, zarizeni/strix-halo, zarizeni/rtx-spark-notebook, zarizeni/mac-studio, zarizeni/macbook-pro, zarizeni/srovnani]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-09
   typ: model
   titulek: "Oprava licence Qwen3.8 Flash Next: Qwen Community License 1.0"
   co_se_zmenilo: "Model není pod Apache-2.0, ale pod Qwen Community License 1.0. Komerční použití zůstává zdarma; nad 100 mil. měsíčních uživatelů nebo 20 mil. USD měsíčního obratu je nutné uvést název modelu a nabízení modelu jako služby nebo jako samostatného AI pracovního asistenta vyžaduje zvláštní licenci. Opraveno na stránce modelu, v tabulce, na EN mutaci a v FAQ."

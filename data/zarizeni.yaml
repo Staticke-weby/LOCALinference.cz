@@ -20,8 +20,8 @@
     od: 162990
     do: 249990
     s_dph: true
-    overeno: 2026-11-04
-    zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939?idp=12510&banner_id=41939
+    overeno: 2026-11-09
+    zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
     poznamka: "Nejlevnější GB10 OEM 162 990 Kč (ASUS GX10 1TB); NVIDIA DGX Spark 218 990 Kč; Lenovo 249 990 Kč; vč. DPH."
   cpu: GB10 Grace Blackwell
   gpu: Blackwell
@@ -84,7 +84,7 @@
     od: 125990
     do: 167767
     s_dph: true
-    overeno: 2026-11-04
+    overeno: 2026-11-09
     zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
     poznamka: "ASUS ProArt P14 128GB/1TB 125 990 Kč; Lenovo Yoga Pro 9 129 989 Kč; Surface Laptop Ultra až 167 767 Kč; vč. DPH."
   cpu: NVIDIA Grace 20 jader
@@ -105,7 +105,7 @@
     - https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530
     - https://github.com/devjeonghwan/vllm-for-rtx-spark
     - https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models
-  overeno: 2026-11-04
+  overeno: 2026-11-09
 
 - id: strix-halo
   nazev: Strix Halo 128 GB (OEM)
@@ -125,7 +125,7 @@
     od: 119990
     do: 119990
     s_dph: true
-    overeno: 2026-11-04
+    overeno: 2026-11-09
     zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
     poznamka: "Acemagic A10A a Acer Veriton RA110, 128GB/2TB, vč. DPH."
   cpu: Ryzen AI Max+ 395
@@ -141,7 +141,7 @@
     - https://www.gmktec.com/
     - https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html
     - https://llamaperf.com/gpu/strix-halo-128gb
-  overeno: 2026-11-04
+  overeno: 2026-11-09
 
 - id: mac-studio
   nazev: Apple Mac Studio 128 GB
@@ -166,13 +166,13 @@
     od: 147990
     do: 171990
     s_dph: true
-    overeno: 2026-11-04
+    overeno: 2026-11-09
     zdroj: https://www.alza.cz/mac-studio/18894763.htm?idp=12510&banner_id=41939
     poznamka: "128GB/512GB 147 990 Kč; 128GB/2TB 171 990 Kč; vč. DPH."
   zdroje:
     - https://www.apple.com/mac-studio/specs/
     - https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md
-  overeno: 2026-11-04
+  overeno: 2026-11-09
 
 - id: macbook-pro
   nazev: Apple MacBook Pro 16" 128 GB
@@ -193,16 +193,16 @@
   silne: [128 GB v notebooku, MLX, tichy chod, vydrz]
   slabe: [throttling, zadna CUDA, macOS only, cena]
   cena_czk:
-    od: 209990
+    od: 177739
     do: 434490
     s_dph: true
-    overeno: 2026-11-04
+    overeno: 2026-11-09
     zdroj: https://www.alza.cz/search.htm?exps=MacBook%20Pro%20128GB&idp=12510&banner_id=41939
-    poznamka: "14\" od 209 990 Kč, 16\" od 224 490 Kč; vč. DPH."
+    poznamka: "14\" 128GB/2TB 177 739 Kč; 16\" 128GB/8TB 300 490 Kč; vč. DPH. Část variant nedostupná, ceny se rychle mění."
   zdroje:
     - https://www.apple.com/macbook-pro/specs/
     - https://ml-explore.github.io/mlx/
-  overeno: 2026-11-04
+  overeno: 2026-11-09
 
 - id: gorgon-halo
   nazev: Gorgon Halo 192 GB

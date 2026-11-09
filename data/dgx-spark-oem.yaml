@@ -1,5 +1,5 @@
 # České maloobchodní ceny strojů s NVIDIA GB10 (DGX Spark platforma).
-# Ceny jsou z nabídky Alza.cz ze 4. 11. 2026, včetně a bez DPH.
+# Ceny jsou z nabídky Alza.cz; klíčové položky ověřeny 9. 11. 2026, původní snapshot 4. 11. 2026, včetně a bez DPH.
 # Nejsou to ceny z amerického trhu; ty jsou v data/zarizeni.yaml.
 # Ceny kolísají a některé položky jsou akční. Před nákupem ověřte aktuální stav.
 
@@ -14,7 +14,7 @@
   prodejce: Alza.cz
   objednaci_kod: NRn15002
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-09
   poznamka: "Nejlevnější 128GB GB10 stroj v této nabídce."
 
 - id: lenovo-thinkstation-pgx-1tb
@@ -56,7 +56,7 @@
   prodejce: Alza.cz
   objednaci_kod: SG100x2
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-09
 
 - id: hp-zgx-nano-g1n-2tb
   nazev: HP ZGX Nano G1n AI 2TB
@@ -123,7 +123,7 @@
   prodejce: Alza.cz
   objednaci_kod: NRn2000
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-09
   poznamka: "Referenční DGX Spark; v této nabídce dražší než některé OEM 4TB varianty."
 
 - id: asus-ascent-gx10-2tb

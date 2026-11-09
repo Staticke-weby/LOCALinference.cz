@@ -1,5 +1,5 @@
 # České maloobchodní ceny notebooků s NVIDIA RTX Spark N1X, 128 GB.
-# Ceny jsou z nabídky Alza.cz ze 4. 11. 2026, včetně a bez DPH.
+# Ceny jsou z nabídky Alza.cz; ASUS ProArt P14 ověřen 9. 11. 2026, původní snapshot 4. 11. 2026, včetně a bez DPH.
 # Nejde o ceny z amerického trhu; ty jsou v data/zarizeni.yaml.
 # Ceny kolísají. Před nákupem ověřte aktuální stav.
 
@@ -14,7 +14,7 @@
   prodejce: Alza.cz
   objednaci_kod: NA563z10a06
   zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-09
   poznamka: "14\" OLED 2880×1800 120Hz; Windows 11 Pro; 1 rok ochrany proti poškození po registraci. Tři varianty, jedna bez adaptéru."
 
 - id: lenovo-yoga-pro-9-128-2tb
