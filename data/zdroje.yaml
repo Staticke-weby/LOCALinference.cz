@@ -512,9 +512,9 @@
   frekvence: tydne
   priorita: vysoka
   kontrola: manual
-  posledni_kontrola: 2026-11-04
+  posledni_kontrola: 2026-11-09
   stav: ok
-  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
+  poznamka: "fetch/HEAD vrací 403; ceny se ověřují ručně v OpenChamber browseru."
 
 - id: alza-rtx-spark
   nazev: Alza.cz - RTX Spark (kategorie)
@@ -524,9 +524,9 @@
   frekvence: tydne
   priorita: vysoka
   kontrola: manual
-  posledni_kontrola: 2026-11-04
+  posledni_kontrola: 2026-11-09
   stav: ok
-  poznamka: "Alza blokuje roboty; ceny se ověřují ručně."
+  poznamka: "fetch/HEAD vrací 403; ceny se ověřují ručně v OpenChamber browseru."
 - id: acer-veriton-ra110
   nazev: Acer - Veriton RA110 AI Mini Workstation
   url: https://www.acer.com/us-en/desktops-and-all-in-ones/veriton-workstations/veriton-ra110-ai-mini-workstation

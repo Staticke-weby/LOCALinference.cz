@@ -391,3 +391,16 @@ použije se jen tam, kde se dotýká provozu (data, logy, odpovědnost).
 - **AMD Ryzen AI Halo 128GB:** 3 999,99 USD, Micro Center exclusive (US);
   evropská dostupnost chybí. O-002 je posuzuje-se, rozhodnutí o zařazení
   mezi OEM varianty Strix Hala je na provozovateli.
+
+---
+
+## 2026-11-09 - Alza: OpenChamber browser funguje
+
+- Ceny v datech z 4. 11. pocházejí z **uživatelského snapshotu** nabídky
+  Alza.cz, ne z automatické kontroly. `fetch`/HEAD vrací 403.
+- **OpenChamber browser Alzu načte**: kategorie AI počítačů i RTX Spark
+  notebooků, včetně produktových stránek. Pro ruční kontrolu C02/S03
+  používat ten, ne fetch.
+- 9. 11. ověřeny klíčové ceny: ASUS GX10 1TB 162 990 Kč, Acemagic A10A
+  128GB/2TB 119 990 Kč, DGX Spark 4TB 218 990 Kč, ASUS ProArt P14 128GB
+  125 990 Kč. Sedí se snapshotem.

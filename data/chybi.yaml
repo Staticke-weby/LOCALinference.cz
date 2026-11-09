@@ -399,7 +399,7 @@ polozky:
   - id: C02
     oblast: ceny
     titulek: "Ruční kontrola Alza snapshotu"
-    co_chybi: "Alza blokuje roboty (403), ceny je potřeba ověřovat ručně v prohlížeči."
+    co_chybi: "Alza blokuje fetch/HEAD (403), ceny je potřeba ověřovat ručně. OpenChamber browser kategorie i produkty načte."
     kde:
       - zarizeni/dgx-spark
       - zarizeni/strix-halo
@@ -408,9 +408,9 @@ polozky:
     stav: prubezne
     davka: 4
     hledat: "Alza podle objednacího kódu"
-    poznamka: "Postup je v aktualizace.md."
+    poznamka: "11/2026 ověřeno: OpenChamber browser načte AI počítače i RTX Spark; fetch vrací 403."
     zdroj: null
-    overeno: null
+    overeno: 2026-11-09
 
   - id: C03
     oblast: ceny
@@ -722,15 +722,15 @@ polozky:
   - id: S03
     oblast: provoz
     titulek: "Alza a další prodejci s 403"
-    co_chybi: "Automatická kontrola cen nefunguje, je potřeba ruční."
+    co_chybi: "Automatická kontrola cen nefunguje (403), je potřeba ruční přes OpenChamber browser."
     kde: []
     priorita: P2
     stav: prubezne
     davka: 7
-    hledat: "ruční kontrola v prohlížeči"
-    poznamka: null
+    hledat: "ruční kontrola v OpenChamber browseru"
+    poznamka: "fetch/HEAD 403; OpenChamber browser funguje."
     zdroj: null
-    overeno: null
+    overeno: 2026-11-09
 
   - id: S04
     oblast: provoz
