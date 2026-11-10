@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Slovník: chat template, teplota, flash attention, GTT a offload"
+  co_se_zmenilo: "Pět nových hesel: chat template (proč model ignoruje systémový prompt), teplota a vzorkování (kdy nulu a kdy tvořivost), flash attention (co zrychlí u dlouhého kontextu), GTT (paměť graficky na Strix Halu) a offload (proč velký model na malé kartě běží pomalu). Všechna jsou v automatickém prolinkování."
+  dotcene_stranky: [slovnik/software/chat-template, slovnik/software/teplota-vzorkovani, slovnik/software/flash-attention, slovnik/pamet/gtt, slovnik/pamet/offload]
+  zdroj: https://www.localinference.cz/slovnik/software/chat-template/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Časté dotazy: offline provoz, bezpečnost, 192 GB a dolaďování"
   co_se_zmenilo: "FAQ má čtrnáct otázek: přibyl výpočet roční spotřeby z příkonu, odpověď o provozu bez internetu, o bezpečnosti proti cloudu, o strojích nad 128 GB a o dolaďování. Přidána rozhodovací tabulka podle potřeby."
   dotcene_stranky: [zaciname/faq]

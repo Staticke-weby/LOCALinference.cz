@@ -1,0 +1,111 @@
+---
+title: "Chat template: proč model odpovídá špatně, i když je dobrý"
+description: "Chat template je formát, kterým se modelu posílá systémová zpráva a dotaz. Vysvětlíme, proč ho musíte dodržet a jak ho najít."
+last_verified: 2026-11-10
+sidebar:
+  label: Chat template
+  order: 33
+---
+
+**Chat template** je předpis, jak se z konverzace stane text, který model
+skutečně dostane. Každý model čeká jiné značky pro roli, začátek
+a konec zprávy. Když formát nesedí, model dostane zmatek — ačkoli je
+kvalitní.
+
+## Rychlá odpověď
+
+- **Chat template není prompt.** Je to obal, do kterého se prompt vkládá.
+- **Špatný template = špatné odpovědi**, i s dobrým modelem.
+- **Bývá v `tokenizer_config.json`** u modelu na Hugging Face.
+- **Enginy ho umí načíst**; ruční skládání řetězců je častá chyba.
+
+## Jak to vypadá
+
+Bez template pošlete modelu text:
+
+```
+Jaká je spotřeba DGX Sparku?
+```
+
+Model ale čeká něco jako:
+
+```
+<|im_start|>system
+Jsi technický asistent.<|im_end|>
+<|im_start|>user
+Jaká je spotřeba DGX Sparku?<|im_end|>
+<|im_start|>assistant
+```
+
+Značky se liší model od modelu. Některé používají `[INST]`, jiné
+`<|start_header_id|>`, další vlastní. **Nelze je hádat.**
+
+## Kde ho najít
+
+- **Hugging Face** — v souborech modelu, typicky `tokenizer_config.json`
+  v poli `chat_template`.
+- **Model card** — často uvádí doporučený formát.
+- **Engine** — vLLM a llama.cpp template načtou samy, když ho soubor
+  obsahuje.
+
+U Qwen3.8 Flash Next je template součástí repozitáře; při vlastním
+skládání promptu se snadno zapomene na ukončení zprávy.
+
+## Co se stane, když nesedí
+
+- Model pokračuje v textu místo odpovědi.
+- Nerozumí systémovému promptu a ignoruje instrukce.
+- Opakuje otázku nebo vrací prázdné odpovědi.
+- Nástroje přestanou fungovat, protože [function calling](/slovnik/software/function-calling/)
+  má vlastní formát.
+- Výstup je v jiném jazyce, než je dotaz.
+
+## Jak to nastavit
+
+- **vLLM** — `--chat-template` nebo automaticky z modelu.
+- **llama.cpp** — `--chat-template` s názvem nebo souborem.
+- **Ollama** — template v Modelfile.
+- **Vlastní aplikace** — použijte knihovnu, ne ruční spojování.
+
+Když engine template nezná, načtěte ho ze souboru modelu. Nikdy
+neargumentujte „vypadá to podobně“: rozdíl v jedné značce změní
+chování celého modelu.
+
+## Jak poznat, že je to template
+
+Příznaky se překrývají s jinými chybami. Pomůže test:
+
+1. Pošlete **jednoduchý dotaz** bez systémového promptu.
+2. Pošlete stejný dotaz **s dlouhým systémovým promptem**.
+3. Když model ignoruje systémový prompt, je to obvykle template.
+
+Druhý test: vypište přesně, co engine posílá (log nebo `--verbose`).
+Když v textu nejsou značky rolí, template se nepoužil.
+
+## Kde je limit
+
+- **Template neopraví slabý model.** Špatná kvalita může být
+  [kvantizace](/slovnik/software/kvantizace/).
+- **Různé verze modelu mají různé template.** Aktualizace může
+  změnit formát.
+- **Tool calling má vlastní formát.** Chat template a tool template
+  nejsou totéž.
+- **Některé servery template obcházejí.** Vlastní skládání promptu
+  je pak na vás.
+
+## Kudy dál
+
+- [Function calling](/slovnik/software/function-calling/) — nástroje.
+- [Structured output](/slovnik/software/structured-output/) — JSON.
+- [vLLM](/slovnik/software/vllm/) — engine.
+- [llama.cpp](/slovnik/software/llamacpp/) — lokální runtime.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Řešení problémů](/temata/provoz/reseni-problemu/) — když odpovídá špatně.
+
+## Zdroje
+
+- [Hugging Face — chat templates](https://huggingface.co/docs/transformers/main/chat_templating)
+- [vLLM — chat template](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

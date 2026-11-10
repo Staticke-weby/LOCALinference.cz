@@ -1,0 +1,96 @@
+---
+title: "Flash attention: jak zrychlit dlouhý kontext"
+description: "Flash attention počítá pozornost po blocích a šetří paměť. Vysvětlíme, co zrychlí, co ne a kdy se na 128 GB vyplatí."
+last_verified: 2026-11-10
+sidebar:
+  label: Flash attention
+  order: 35
+---
+
+**Flash attention** je efektivnější výpočet pozornosti. Nezrychluje
+model jako takový, ale snižuje počet čtení z paměti při práci
+s dlouhým kontextem. Na 128GB boxu se proto hodí hlavně tam, kde
+posíláte dlouhé dokumenty nebo držíte dlouhou historii.
+
+## Rychlá odpověď
+
+- **Flash attention = jiný výpočet stejné věci**, ne nová kvalita.
+- **Šetří paměť a propustnost**, ne počet parametrů.
+- **Nejvíc pomůže u dlouhého kontextu**, u krátkého je rozdíl malý.
+- **Zapíná se v enginu**, ne v modelu; podpora závisí na platformě.
+
+## Problém, který řeší
+
+Klasická pozornost vytvoří velkou matici pozornosti pro každou vrstvu
+a hlavu. U krátkého dotazu je malá. U 100 tisíc tokenů je obrovská —
+a hlavně se pořád čte z paměti, což je pomalé.
+
+Flash attention počítá pozornost **po blocích** a mezivýsledky drží
+v rychlé paměti. Výsledek je stejný, jen se méně dat přesouvá.
+
+## Co to přinese
+
+| Situace | Přínos |
+|---|---|
+| Krátký chat do 4k | malý |
+| RAG s 32k kontextem | znatelný |
+| Dlouhý dokument 128k | velký |
+| Dávka více požadavků | hlavně paměť |
+
+Čísla závisí na enginu, kvantizaci a hardwaru. Nikde neuvádíme
+„zrychlení 2×“, protože to neplatí obecně — u krátkého kontextu
+bude rozdíl v jednotkách procent.
+
+## Kde to je
+
+- **vLLM** — zapíná se automaticky podle verze a platformy.
+- **SGLang** — podporuje.
+- **llama.cpp** — vlastní implementace pozornosti, ne všechny
+  backendy mají stejnou optimalizaci.
+- **MLX** — optimalizace pro Apple Silicon.
+
+Na CUDA je podpora nejzralejší; na ROCm a MPS záleží na verzi.
+Když engine flash attention nepodporuje, poběží klasická cesta —
+pomalejší, ale funkční.
+
+## Jak poznat, že pomáhá
+
+- **TTFT** na dlouhém promptu klesne.
+- **Paměť** pro pozornost klesne, takže se vejde delší kontext.
+- **Souběžnost** se mírně zlepší.
+
+Měřte na stejném promptu a stejné kvantizaci. Porovnávat čísla
+z různých konfigurací nemá smysl.
+
+## Kdy to neřešit
+
+- Kontext do 8k.
+- Engine to má zapnuté výchozně a funguje.
+- Problém je v [prefillu](/slovnik/vykon/prefill/) nebo v disku.
+- Model se stejně nevejde do paměti.
+
+## Kde je limit
+
+- **Není to náhrada za málo paměti.** Pořád platí, že model a
+  [KV cache](/slovnik/pamet/kv-cache/) musí být v paměti.
+- **Nezlepší kvalitu.** Na [context rot](/slovnik/pamet/context-rot/)
+  nemá vliv.
+- **Verze rozhoduje.** Starší buildy mohou mít pomalou cestu.
+- **Na některých platformách chybí.**
+
+## Kudy dál
+
+- [Prefill](/slovnik/vykon/prefill/) — čtení promptu.
+- [KV cache](/slovnik/pamet/kv-cache/) — co bere paměť.
+- [vLLM](/slovnik/software/vllm/) — engine.
+- [Kontext](/slovnik/pamet/kontext/) — tři čísla.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [FlashAttention — arXiv](https://arxiv.org/abs/2205.14135)
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+- [llama.cpp — GitHub](https://github.com/ggml-org/llama.cpp)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

@@ -1,0 +1,91 @@
+---
+title: "Offload: proč se model vejde, ale běží pomalu"
+description: "Offload přesouvá část modelu z VRAM do systémové paměti. Vysvětlíme, proč to na malé kartě pomůže a na 128GB boxu nemá smysl."
+last_verified: 2026-11-10
+sidebar:
+  label: Offload
+  order: 5
+---
+
+**Offload** znamená, že se část modelu nevejde do grafické paměti
+a odkládá se do systémové. Model pak běží, ale výrazně pomaleji,
+protože data putují přes sběrnici. Na 128GB boxu s unified pamětí
+offload nepotřebujete — a to je hlavní důvod, proč takový stroj
+existuje.
+
+## Rychlá odpověď
+
+- **Offload = část modelu v pomalejší paměti.**
+- **Běží to, ale rychlost padá** řádově podle toho, kolik se odloží.
+- **Na 16–24GB kartě** je to jediná cesta k velkému modelu.
+- **Na 128GB boxu** je offload zbytečný; model se vejde celý.
+
+## Jak to funguje
+
+1. Engine načte do VRAM, co se vejde.
+2. Zbytek vrstev nebo vah nechá v systémové paměti.
+3. Při výpočtu se data přenášejí přes PCIe nebo jinou sběrnici.
+4. Čím víc se odkládá, tím víc času padne na přenos.
+
+V llama.cpp se počet vrstev na GPU nastavuje parametrem
+`--n-gpu-layers`. Když dáte méně, než model má, zbytek běží na
+procesoru. Ve vLLM existuje `--cpu-offload-gb`.
+
+## Jak se to projeví
+
+| Podíl odložených vrstev | Projev |
+|---|---|
+| pár procent | mírné zpomalení |
+| třetina | znatelné zpomalení |
+| většina | rychlost jako na procesoru |
+
+Přesná čísla závisí na sběrnici a modelu. Obecně platí: **jakmile
+se odkládá víc než malá část, ztrácí smysl model zvětšovat**.
+Radši menší model celý v paměti než velký rozkouskovaný.
+
+## Proč na 128 GB ne
+
+U [unified memory](/slovnik/pamet/unified-memory/) sedí model i GPU
+ve stejné paměti. Není co odkládat — a hlavně není kam: není rychlá
+a pomalá vrstva, je jedna společná. Proto se Qwen3.8 Flash Next
+vejde celý a běží plynule.
+
+To je i odpověď na otázku „proč nekoupit kartu s 24 GB a nedokoupit
+RAM“: offload přes PCIe je mnohonásobně pomalejší než unified paměť.
+
+## Kdy offload použít
+
+- **Jednorázový test** velkého modelu na malé kartě.
+- **Dávková úloha**, kde nezáleží na čase.
+- **Když chcete zjistit,** jestli se větší model vyplatí koupit.
+
+## Kdy ne
+
+- **Denní práce** s odpovědí do minuty.
+- **Víc uživatelů** — fronta se prodlouží.
+- **Agentní úlohy**, kde každý krok čeká na model.
+- **Když existuje menší model**, který úlohu zvládne.
+
+## Kde je limit
+
+- **Offload není rozšíření paměti.** Je to náhrada, ne řešení.
+- **Sběrnice rozhoduje** o tom, jak velký je propad.
+- **Kvantizace může pomoct víc** než offload.
+- **Měření s offloadem** se nedá srovnávat s čistým během.
+
+## Kudy dál
+
+- [Unified memory](/slovnik/pamet/unified-memory/) — proč je to jinak.
+- [VRAM](/slovnik/pamet/vram/) — paměť karty.
+- [Kvantizace](/slovnik/software/kvantizace/) — menší váhy.
+- [llama.cpp](/slovnik/software/llamacpp/) — `--n-gpu-layers`.
+- [vLLM](/slovnik/software/vllm/) — `--cpu-offload-gb`.
+- [128 GB unified memory](/temata/128gb-unified-memory/) — proč 128 GB.
+
+## Zdroje
+
+- [llama.cpp — dokumentace](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+- [vLLM — CPU offload](https://docs.vllm.ai/en/latest/configuration/optimization.html)
+- [NVIDIA — unified memory](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#um-unified-memory-programming-hd)
+
+*Naposledy ověřeno: 10. 11. 2026.*

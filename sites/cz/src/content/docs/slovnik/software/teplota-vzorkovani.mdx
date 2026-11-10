@@ -1,0 +1,103 @@
+---
+title: "Teplota a vzorkování: jak ovlivnit, co model odpoví"
+description: "Teplota, top_p a top_k řídí, jak model vybírá další token. Vysvětlíme, kdy nastavit nulu, kdy vyšší teplotu a co ovlivní kvalitu."
+last_verified: 2026-11-10
+sidebar:
+  label: Teplota a vzorkování
+  order: 34
+---
+
+**Teplota** a **vzorkování** rozhodují, jak model vybírá další slovo.
+Nejde o kvalitu modelu, ale o to, jak moc má být odpověď doslovná nebo
+pestrá. Špatné nastavení umí zkazit i dobrou odpověď — a naopak
+nezachrání model, který na úlohu nestačí.
+
+## Rychlá odpověď
+
+- **Teplota 0** = vždy nejpravděpodobnější token; vhodná pro extrakci,
+  kód a JSON.
+- **Vyšší teplota** = pestřejší text; hodí se na nápady, ne na fakta.
+- **Top_p a top_k** ořezávají výběr; často stačí nastavit jen top_p.
+- **Doporučené hodnoty** má model card; nehádejte je.
+
+## Jak výběr tokenu funguje
+
+1. Model spočítá pravděpodobnosti pro všechna další slova.
+2. **Teplota** je zploští nebo naopak vyostří.
+3. **Top_p** (nucleus) nechá jen slova do určité kumulativní
+   pravděpodobnosti.
+4. **Top_k** nechá jen k nejsilnějších kandidátů.
+5. **Min_p** odřízne slova pod relativní hranicí.
+6. Z výsledku se vybere token, u teploty 0 deterministicky.
+
+## Kdy co nastavit
+
+| Úloha | Teplota | Poznámka |
+|---|---:|---|
+| Extrakce dat, JSON | 0–0,2 | potřebujete opakovatelnost |
+| Kód a debugging | 0–0,3 | menší tvořivost, méně chyb |
+| RAG a citace | 0–0,3 | model má vycházet z dokumentů |
+| Shrnutí | 0,2–0,5 | mírná variabilita je v pořádku |
+| Brainstorming | 0,7–1,0 | chcete rozmanité nápady |
+| Kreativní psaní | 0,8–1,2 | podle modelu a vkusu |
+
+Čísla jsou orientační rozsahy, ne doporučení výrobce. **Konkrétní
+hodnoty pro Qwen3.8 Flash Next** jsou v model cardu; držte se jich,
+dokud nemáte vlastní vyhodnocení.
+
+## Co je seed
+
+**Seed** je počáteční číslo pro generátor náhody. Se stejným seedem
+a stejnou teplotou dostanete u mnoha enginů stejný výstup. To se hodí
+pro testování a reprodukci chyb, ale **nezaručuje to stejný výsledek
+mezi verzemi** modelu nebo enginu.
+
+## Vliv na kvalitu a rychlost
+
+- **Vyšší teplota neznamená delší odpověď.** Délku řídí `max_tokens`.
+- **Vzorkování je rychlostně skoro zdarma**; čas jde na decode.
+- **Teplota 0 nezaručí správnost**, jen opakovatelnost.
+- **Příliš vysoká teplota** vede k opakování a nesmyslům.
+- **Příliš nízká teplota** u kreativní úlohy vede k šablonovitosti.
+
+## Česká specifika
+
+U češtiny se špatné vzorkování projeví jinak než v angličtině:
+
+- **Přepínání do angličtiny** při vyšší teplotě.
+- **Kostrbaté skloňování**, když model tápe mezi variantami.
+- **Vymýšlení českých názvů** u odborných pojmů.
+
+Když se to děje, snižte teplotu a ověřte [chat template](/slovnik/software/chat-template/).
+Často nejde o model, ale o formát dotazu.
+
+## Co měřit
+
+- **Správnost** na vaší sadě dotazů.
+- **Opakovatelnost** při stejném seedu.
+- **Délku odpovědi** a počet tokenů.
+- **Podíl odpovědí v jiném jazyce**.
+- **Latence** při různém nastavení.
+
+## Kdy to neřešit
+
+- Model je špatně načtený — nejdřív template.
+- Odpověď chybí kvůli kontextu, ne vzorkování.
+- Úloha je daná a hodnoty má model card.
+- Nemáte testovací sadu, podle které byste změnu poznali.
+
+## Kudy dál
+
+- [Chat template](/slovnik/software/chat-template/) — formát dotazu.
+- [Reasoning](/slovnik/software/reasoning/) — myšlenky před odpovědí.
+- [Structured output](/slovnik/software/structured-output/) — JSON.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Řešení problémů](/temata/provoz/reseni-problemu/) — když odpovídá špatně.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Hugging Face — generation strategies](https://huggingface.co/docs/transformers/main/en/generation_strategies)
+- [vLLM — sampling params](https://docs.vllm.ai/en/latest/dev/sampling_params.html)
+
+*Naposledy ověřeno: 10. 11. 2026.*

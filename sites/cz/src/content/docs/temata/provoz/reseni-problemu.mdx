@@ -91,7 +91,7 @@ NVIDIA; mimo něj se mohou rozcházet verze CUDA a ovladače. Držte se
 |---|---|---|
 | desítky sekund na token | výpočet na CPU | zkontrolovat GPU v logu |
 | rychlost po minutě klesne | [throttling](/slovnik/provoz/throttling/) | zlepšit chlazení, snížit [power limit](/slovnik/provoz/power-limit/) |
-| první odpověď trvá dlouho, pak je to rychlé | prefill dlouhého promptu | zkrátit kontext, zapnout prefix caching |
+| první odpověď trvá dlouho, pak je to rychlé | prefill dlouhého promptu | zkrátit kontext, zapnout [prefix caching](/slovnik/pamet/prefix-caching/) a [flash attention](/slovnik/software/flash-attention/) |
 | s každým uživatelem pomaleji | fronta a KV cache | omezit souběžnost, sledovat [monitoring](/temata/provoz/monitoring/) |
 | mnohem pomalejší než tabulky | jiná kvantizace nebo kontext | porovnat konfiguraci, ne jen model |
 

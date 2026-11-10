@@ -123,6 +123,11 @@ function rehypeSlovnik() {
     { re: /\bbatch size\b/gi, url: '/slovnik/vykon/batch-size/', slug: 'vykon/batch-size' },
     { re: /\breasoning\b/gi, url: '/slovnik/software/reasoning/', slug: 'software/reasoning' },
     { re: /\bcontext rot\b/gi, url: '/slovnik/pamet/context-rot/', slug: 'pamet/context-rot' },
+    { re: /\bchat template\b/gi, url: '/slovnik/software/chat-template/', slug: 'software/chat-template' },
+    { re: /\bteplota vzorkov\w*/gi, url: '/slovnik/software/teplota-vzorkovani/', slug: 'software/teplota-vzorkovani' },
+    { re: /\bflash attention\b/gi, url: '/slovnik/software/flash-attention/', slug: 'software/flash-attention' },
+    { re: /\bGTT\b/g, url: '/slovnik/pamet/gtt/', slug: 'pamet/gtt' },
+    { re: /\boffload\w*/gi, url: '/slovnik/pamet/offload/', slug: 'pamet/offload' },
   ];
 
   const SKIP_PARENTS = new Set(['a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']);

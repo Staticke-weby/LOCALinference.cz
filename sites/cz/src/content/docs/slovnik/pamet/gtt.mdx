@@ -1,0 +1,88 @@
+---
+title: "GTT: jak Strix Halo přiděluje paměť grafice"
+description: "GTT je část systémové paměti, kterou na AMD vidí grafika. Vysvětlíme, proč na Strix Halu rozhoduje BIOS a jak velký model se vejde."
+last_verified: 2026-11-10
+sidebar:
+  label: GTT
+  order: 4
+---
+
+**GTT** (Graphics Translation Table) je na AMD mapa paměti, kterou
+grafika vidí jako svou. U běžné karty jde o pomocnou oblast
+v systémové paměti. U [Strix Halo](/zarizeni/strix-halo/) je to
+klíčové: čip nemá vlastní VRAM, takže model musí být dostupný
+přes GTT.
+
+## Rychlá odpověď
+
+- **GTT není VRAM.** Je to okno do systémové paměti pro GPU.
+- **Na Strix Halu rozhoduje, kolik toho GPU vidí.**
+- **Nastavuje se v BIOSu a jádře**, ne v aplikaci.
+- **Malé GTT = model se nevejde**, i když je paměti dost.
+
+## Jak to funguje
+
+1. Operační systém přidělí paměť procesu.
+2. GTT namapuje stránky tak, aby je GPU mohlo adresovat.
+3. Engine (ROCm, Vulkan) alokuje buffer pro váhy a KV cache.
+4. Když mapa nestačí, alokace selže nebo se použije pomalejší cesta.
+
+U diskrétní karty je model nejdřív ve VRAM. U Strix Halo je jeden
+společný fond a GTT určuje, jak velký kus z něj grafika použije.
+
+## Kde se nastavuje
+
+- **BIOS/UEFI** — položka pro velikost sdílené grafické paměti
+  (carveout).
+- **Jádro** — parametry AMD GPU ovladače pro GTT.
+- **Windows** — sdílená paměť se přiděluje dynamicky; limity se liší
+  od Linuxu.
+
+Konkrétní názvy položek se liší podle výrobce boxu. Když je v BIOSu
+volba „iGPU memory“ nebo „UMA frame buffer“, je to ono.
+
+## Proč na tom záleží
+
+Qwen3.8 Flash Next v NVFP4 má kolem 101 GB. Na 128GB stroji zbývá
+přibližně 20 GB na KV cache, systém a aplikace. Když GPU nevidí
+dost paměti, model se nenačte — a chybová hláška přitom mluví
+o „out of memory“, ne o GTT.
+
+## Jak to ověřit
+
+- **Linux** — `rocminfo`, `dmesg` a nástroje pro AMD GPU.
+- **Windows** — správce úloh a nastavení grafické paměti; ověřte,
+  co hlásí engine v logu.
+- **Engine** — log při startu ukáže, kolik paměti alokoval.
+
+Když model padá na paměť a přitom je v systému volno, je GTT první
+podezřelý.
+
+## Kde je limit
+
+- **GTT nezrychlí výpočet.** Je to správa paměti.
+- **Příliš velké GTT** může ubrat paměť systému.
+- **Nastavení se liší** podle výrobce a verze BIOSu.
+- **Aktualizace BIOSu** může hodnoty vrátit na výchozí.
+
+## Kdy to neřešit
+
+- Máte DGX Spark, RTX Spark nebo Mac — tam GTT neexistuje.
+- Model se vejde a běží.
+- Problém je v ovladači, ne v paměti.
+
+## Kudy dál
+
+- [Strix Halo](/zarizeni/strix-halo/) — zařízení a limity.
+- [Unified memory](/slovnik/pamet/unified-memory/) — společná paměť.
+- [VRAM](/slovnik/pamet/vram/) — proč u diskrétní karty jinak.
+- [ROCm](/slovnik/software/rocm/) — runtime.
+- [Řešení problémů](/temata/provoz/reseni-problemu/) — když padá na paměť.
+
+## Zdroje
+
+- [AMD — ROCm dokumentace](https://rocm.docs.amd.com/)
+- [AMD — Ryzen AI Max (Strix Halo)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-max.html)
+- [kyuz0 — Strix Halo AI toolboxes](https://github.com/kyuz0/amd-strix-halo-toolboxes)
+
+*Naposledy ověřeno: 10. 11. 2026.*
