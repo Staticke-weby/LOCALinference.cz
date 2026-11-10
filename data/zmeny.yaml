@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Nová stránka: řešení problémů pro všechny platformy"
+  co_se_zmenilo: "Přibyla stránka s tabulkami příznaků a příčin: model se nespustí, běží na CPU, padá na paměť, přehřívá se, odpovídá špatně. Obsahuje rozhodovací strom, kontroly GPU pro NVIDIA, AMD a Apple a odkazy z návodů i receptů."
+  dotcene_stranky: [temata/provoz/reseni-problemu, temata/provoz, temata, zaciname/faq, navody/dgx-spark, navody/strix-halo, navody/rtx-spark, navody/mac, generovani/recepty/windows, generovani/recepty/macos, generovani/recepty/linux, generovani/recepty/dgx-os]
+  zdroj: https://www.localinference.cz/temata/provoz/reseni-problemu/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Generování: obrázky, video, audio a 3D do hloubky"
   co_se_zmenilo: "Čtyři témata o generování dostala rozšířenou strukturu: rychlá odpověď, výběr modelu, pracovní postup, kolik paměti a času, česká specifika, časté chyby, co měřit a kdy to nepoužívat. Přibyly výpočty dávek a vysvětlení, jak difuze, TTS řetěz a image-to-3D fungují."
   dotcene_stranky: [temata/lokalni-ai-na-obrazky, temata/lokalni-ai-na-video, temata/lokalni-ai-na-audio, temata/lokalni-ai-na-3d]

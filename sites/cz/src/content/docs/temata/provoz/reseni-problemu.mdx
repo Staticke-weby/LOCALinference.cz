@@ -1,0 +1,167 @@
+---
+title: "Když lokální AI nefunguje: příznaky a řešení"
+description: "Model se nespustí, běží pomalu nebo odpovídá špatně? Tabulky příznaků, příčin a kontrol pro Windows, DGX OS, Strix Halo a macOS."
+last_verified: 2026-11-10
+sidebar:
+  label: Řešení problémů
+  order: 6
+---
+
+Většina problémů s lokální AI má čtyři příčiny: model se nevešel,
+engine nevidí GPU, stroj se přehřívá, nebo je špatně nastavený
+kontext. Než začnete měnit model, zjistěte, která z nich to je.
+Tabulky níže jsou od nejčastějšího k nejvzácnějšímu.
+
+## Rychlá odpověď
+
+- **Nejdřív zkontrolujte GPU**, ne model: `nvidia-smi`, `rocminfo`
+  nebo `system_profiler`.
+- **Z logu enginu hledejte `cuda`, `rocm` nebo `metal`.** Když tam
+  není, běží výpočet na procesoru.
+- **Pomalý běh po pár minutách** je obvykle [throttling](/slovnik/provoz/throttling/),
+  ne slabý model.
+- **Špatná kvalita** bývá kvantizace, teplota vzorkování nebo špatný
+  chat template, ne „hloupý model“.
+
+## Rozhodovací strom
+
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:760px" viewBox="0 0 760 250" role="img" aria-labelledby="troubleshoot-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="troubleshoot-title">Rozhodovací strom: od příznaku k příčině</title>
+    <rect x="10" y="95" width="150" height="60" rx="8" fill="none" stroke="currentColor" />
+    <text x="85" y="122" text-anchor="middle" fill="currentColor" font-size="13">příznak</text>
+    <text x="85" y="140" text-anchor="middle" fill="currentColor" font-size="11">co vidíte</text>
+    <line x1="160" y1="125" x2="200" y2="125" stroke="currentColor" /><polygon points="200,121 210,125 200,129" fill="currentColor" />
+    <rect x="210" y="10" width="170" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="295" y="35" text-anchor="middle" fill="currentColor" font-size="12">nespustí se</text>
+    <text x="295" y="52" text-anchor="middle" fill="currentColor" font-size="11">→ OOM, model, verze</text>
+    <rect x="210" y="96" width="170" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="295" y="121" text-anchor="middle" fill="currentColor" font-size="12">běží pomalu</text>
+    <text x="295" y="138" text-anchor="middle" fill="currentColor" font-size="11">→ GPU, teplota, KV cache</text>
+    <rect x="210" y="182" width="170" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="295" y="207" text-anchor="middle" fill="currentColor" font-size="12">špatná kvalita</text>
+    <text x="295" y="224" text-anchor="middle" fill="currentColor" font-size="11">→ kvantizace, template</text>
+    <line x1="380" y1="38" x2="430" y2="38" stroke="currentColor" /><polygon points="430,34 440,38 430,42" fill="currentColor" />
+    <line x1="380" y1="124" x2="430" y2="124" stroke="currentColor" /><polygon points="430,120 440,124 430,128" fill="currentColor" />
+    <line x1="380" y1="210" x2="430" y2="210" stroke="currentColor" /><polygon points="430,206 440,210 430,214" fill="currentColor" />
+    <rect x="440" y="10" width="300" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="450" y="33" fill="currentColor" font-size="12">snížit kontext nebo kvantizaci</text>
+    <text x="450" y="52" fill="currentColor" font-size="11">zkontrolovat log a verzi enginu</text>
+    <rect x="440" y="96" width="300" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="450" y="119" fill="currentColor" font-size="12">ověřit, že běží GPU</text>
+    <text x="450" y="138" fill="currentColor" font-size="11">teplota, power limit, fronta</text>
+    <rect x="440" y="182" width="300" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="450" y="205" fill="currentColor" font-size="12">porovnat s delším kontextem</text>
+    <text x="450" y="224" fill="currentColor" font-size="11">teplota vzorkování, chat template</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">Začněte příznakem, ne výměnou modelu. Většina chyb se opraví v konfiguraci.</figcaption>
+</figure>
+
+## Nejdřív: běží model na GPU?
+
+| Platforma | Příkaz | Co hledat |
+|---|---|---|
+| NVIDIA (DGX, RTX) | `nvidia-smi` | název karty, driver, využité MiB |
+| AMD (Strix Halo) | `rocminfo` | agent s `gfx1151` |
+| Apple | `system_profiler SPDisplaysDataType` | čip a počet jader |
+| Engine | log při startu | `cuda`, `rocm`, `metal`, nebo `cpu` |
+
+Když log hlásí `cpu`, je to nejčastější příčina „pomalého modelu“.
+Engine funguje, jen nevidí grafiku — obvykle kvůli špatnému balíčku
+PyTorche nebo ovladači.
+
+## Model se nespustí
+
+| Příznak | Příčina | Co udělat |
+|---|---|---|
+| `out of memory` při načtení | model + KV cache se nevešly | zkratit kontext, nižší kvantizace, menší batch |
+| `unknown model architecture` | starý engine | aktualizovat [vLLM](/slovnik/software/vllm/) nebo [llama.cpp](/slovnik/software/llamacpp/) |
+| `no kernel image is available` | torch nesedí na architekturu | přeinstalovat torch pro správnou CUDA |
+| `permission denied` na soubory modelu | špatná práva | opravit vlastníka a práva |
+| start trvá mnoho minut | načítání z pomalého disku | model na NVMe, ne na síťovém disku |
+| `CUDA error: driver too old` | ovladač starší než runtime | aktualizovat ovladač |
+
+U [DGX Sparku](/zarizeni/dgx-spark/) je oficiální cesta kontejner
+NVIDIA; mimo něj se mohou rozcházet verze CUDA a ovladače. Držte se
+[návodu](/navody/dgx-spark/), ne blogových receptů.
+
+## Běží pomalu
+
+| Příznak | Příčina | Co udělat |
+|---|---|---|
+| desítky sekund na token | výpočet na CPU | zkontrolovat GPU v logu |
+| rychlost po minutě klesne | [throttling](/slovnik/provoz/throttling/) | zlepšit chlazení, snížit [power limit](/slovnik/provoz/power-limit/) |
+| první odpověď trvá dlouho, pak je to rychlé | prefill dlouhého promptu | zkrátit kontext, zapnout prefix caching |
+| s každým uživatelem pomaleji | fronta a KV cache | omezit souběžnost, sledovat [monitoring](/temata/provoz/monitoring/) |
+| mnohem pomalejší než tabulky | jiná kvantizace nebo kontext | porovnat konfiguraci, ne jen model |
+
+Než začnete řešit, spočítejte si [roofline](/rychlost/roofline/): když
+naměřené číslo převyšuje teoretický strop, je měření špatně; když je
+hluboko pod ním, brzdí něco jiného než paměť.
+
+## Odpovídá špatně
+
+| Příznak | Příčina | Co udělat |
+|---|---|---|
+| opakuje se, nedrží formát | teplota vzorkování | snížit teplotu, omezit max tokens |
+| nerozumí systému promptu | chat template | použít template z model cardu |
+| míchá jazyky | slabá kvantizace | zkusit vyšší přesnost |
+| ztrácí informace uprostřed | [context rot](/slovnik/pamet/context-rot/) | kratší kontext, RAG |
+| vymýšlí nástroje | function calling | ověřit schéma a formát odpovědi |
+
+## Podle platformy
+
+| Platforma | Typický problém | Kde hledat |
+|---|---|---|
+| Windows x64 | CPU fallback, ovladač | `nvidia-smi`, log ComfyUI |
+| Windows on Arm | chybí ARM64 wheel | build ze zdroje, nebo node vynechat |
+| DGX OS | verze CUDA mimo kontejner | oficiální kontejner NVIDIA |
+| Strix Halo | ROCm a `gfx1151` | `rocminfo`, [ROCm](/slovnik/software/rocm/) |
+| macOS | MPS vs. CPU | `mlx-lm`, log enginu |
+
+Na Windows on Arm se problémy projevují hlavně u vlastních nodes
+v ComfyUI: část balíčků nemá ARM64 wheel a instalace skončí chybou.
+[Recept pro Windows](/generovani/recepty/windows/) vypisuje konkrétní
+balíčky, které NVIDIA jmenuje.
+
+Na Strix Halu je nejčastější příčinou kombinace ovladače a verze
+ROCm. Když `rocminfo` kartu vidí, ale engine ne, je problém
+v runtime, ne v hardwaru.
+
+## Co poslat podpoře
+
+Když se problém nepodaří vyřešit, pošlete tři věci místo popisu
+„nejde to“:
+
+1. **Příznak** — přesná hláška nebo číslo, ne dojem.
+2. **Prostředí** — zařízení, OS, verze enginu a ovladače.
+3. **Konfigurace** — model, kvantizace, kontext, batch, příkaz.
+
+Bez těchto údajů nejde problém zopakovat a odpověď bude odhad.
+
+## Kde je limit
+
+- **Ne každý problém je v modelu.** Většina je v konfiguraci.
+- **Aktualizace může zhoršit.** Pinujte verze, které fungují.
+- **Throttling se nepozná z jednoho čísla.** Sledujte průběh.
+- **Komunitní recepty stárnou.** Ověřujte datum a verzi.
+
+## Kudy dál
+
+- [Monitoring](/temata/provoz/monitoring/) — co sledovat.
+- [Aktualizace](/temata/provoz/aktualizace/) — verze a rollback.
+- [API server](/temata/provoz/api-server/) — když nejde přístup.
+- [Windows 11](/temata/lokalni-ai-na-windows-11/) — specifika platformy.
+- [Throttling](/slovnik/provoz/throttling/) — proč výkon klesá.
+- [KV cache](/slovnik/pamet/kv-cache/) — proč dochází paměť.
+
+## Zdroje
+
+- [vLLM — troubleshooting](https://docs.vllm.ai/en/latest/usage/troubleshooting.html)
+- [llama.cpp — GitHub issues](https://github.com/ggml-org/llama.cpp/issues)
+- [ComfyUI — dokumentace](https://docs.comfy.org/)
+- [NVIDIA — DGX Spark dokumentace](https://docs.nvidia.com/dgx/dgx-spark/)
+- [ROCm — dokumentace](https://rocm.docs.amd.com/)
+- [Apple — MLX](https://ml-explore.github.io/mlx/)
+
+*Naposledy ověřeno: 10. 11. 2026.*
