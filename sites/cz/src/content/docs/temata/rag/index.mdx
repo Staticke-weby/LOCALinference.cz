@@ -21,6 +21,36 @@ by se vše posílalo do kontextu nebo do cloudu.
 - **Není to magie.** Kvalita závisí na datech, chuncích, embeddingu
   a kontrole. Špatný RAG je horší než obyčejné hledání.
 
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:900px" viewBox="0 0 900 190" role="img" aria-labelledby="rag-diagram-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="rag-diagram-title">RAG pipeline: dokumenty, chunky, embeddingy, hledání, model, citace</title>
+    <rect x="10" y="55" width="130" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="75" y="85" text-anchor="middle" fill="currentColor" font-size="13">dokumenty</text>
+    <text x="75" y="104" text-anchor="middle" fill="currentColor" font-size="11">PDF, e-maily</text>
+    <line x1="140" y1="90" x2="170" y2="90" stroke="currentColor" /><polygon points="170,86 178,90 170,94" fill="currentColor" />
+    <rect x="178" y="55" width="120" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="238" y="85" text-anchor="middle" fill="currentColor" font-size="13">chunky</text>
+    <text x="238" y="104" text-anchor="middle" fill="currentColor" font-size="11">dělení</text>
+    <line x1="298" y1="90" x2="328" y2="90" stroke="currentColor" /><polygon points="328,86 336,90 328,94" fill="currentColor" />
+    <rect x="336" y="55" width="130" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="401" y="85" text-anchor="middle" fill="currentColor" font-size="13">embeddingy</text>
+    <text x="401" y="104" text-anchor="middle" fill="currentColor" font-size="11">vektory</text>
+    <line x1="466" y1="90" x2="496" y2="90" stroke="currentColor" /><polygon points="496,86 504,90 496,94" fill="currentColor" />
+    <rect x="504" y="55" width="120" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="564" y="85" text-anchor="middle" fill="currentColor" font-size="13">hledání</text>
+    <text x="564" y="104" text-anchor="middle" fill="currentColor" font-size="11">top-K</text>
+    <line x1="624" y1="90" x2="654" y2="90" stroke="currentColor" /><polygon points="654,86 662,90 654,94" fill="currentColor" />
+    <rect x="662" y="55" width="110" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="717" y="85" text-anchor="middle" fill="currentColor" font-size="13">model</text>
+    <text x="717" y="104" text-anchor="middle" fill="currentColor" font-size="11">odpověď</text>
+    <line x1="772" y1="90" x2="802" y2="90" stroke="currentColor" /><polygon points="802,86 810,90 802,94" fill="currentColor" />
+    <rect x="810" y="55" width="80" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="850" y="85" text-anchor="middle" fill="currentColor" font-size="13">citace</text>
+    <text x="850" y="104" text-anchor="middle" fill="currentColor" font-size="11">zdroj</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">RAG neposílá celý archiv; vybere relevantní chunky a odpověď doloží citací.</figcaption>
+</figure>
+
 ## Jak RAG funguje
 
 1. **Dokumenty** se načtou z disků, e-mailu nebo systému.

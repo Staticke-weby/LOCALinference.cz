@@ -500,8 +500,8 @@ Pravidla:
 - [x] `/temata/agenti/` + 5 dceřiných stránek (10. 11. 2026).
 - [x] `/temata/provoz/` + 5 dceřiných stránek (10. 11. 2026).
 - [x] `/temata/praxe/` + 4 profese (právo, účetnictví, výroba, vývojáři) (10. 11. 2026).
-- [ ] 10 dalších hesel ve slovníku.
-- [ ] 3 diagramy (roofline, MoE, RAG).
+- [x] 10 dalších hesel ve slovníku (10. 11. 2026).
+- [x] 3 diagramy (roofline, MoE, RAG) (10. 11. 2026).
 
 ### Dávka 3 — generování a doplnění (3–4 týdny)
 

@@ -1,0 +1,71 @@
+---
+title: "PagedAttention: jak vLLM šetří paměť pro kontext"
+description: "PagedAttention ukládá KV cache po stránkách. Vysvětlíme, proč to snižuje fragmentaci a umožní víc souběžných požadavků."
+last_verified: 2026-11-10
+sidebar:
+  label: PagedAttention
+  order: 6
+---
+
+**PagedAttention** je technologie z [vLLM](/slovnik/software/vllm/),
+která spravuje [KV cache](/slovnik/pamet/kv-cache/) po malých
+stránkách, podobně jako operační systém paměť. Místo jednoho velkého
+souvislého bloku tak lze lépe využít paměť a obsloužit víc požadavků.
+
+## Rychlá odpověď
+
+- **KV cache se dělí na stránky**, ne na jeden blok.
+- **Méně fragmentace** znamená víc místa pro kontext a souběžnost.
+- **Není to model ani kvantizace**; je to správa paměti.
+- **Používá se hlavně ve vLLM**, ne v llama.cpp.
+
+## Problém
+
+Když každý požadavek alokuje velký souvislý blok pro maximální kontext,
+většina paměti zůstane nevyužitá. Když požadavků přibude, dojde místo
+dřív, než by fyzicky muselo.
+
+## Jak to funguje
+
+1. KV cache se rozdělí na **bloky** pevné velikosti.
+2. Bloková tabulka mapuje logické pozice na fyzické bloky.
+3. Požadavek dostane jen tolik bloků, kolik potřebuje.
+4. Sdílené prefixy mohou používat stejné bloky.
+5. Uvolněné bloky se vrací do poolu.
+
+## Co to přinese
+
+- **Víc souběžných požadavků** při stejné paměti.
+- **Méně fragmentace**.
+- **Lepší využití** dlouhého kontextu.
+- **Prefix caching** je přirozenější.
+
+## Kde je limit
+
+- **Režie správy** — tabulky a kopírování.
+- **Ne všechny enginy** to umí.
+- **Nezlepší kvalitu modelu.**
+- **Nezvýší propustnost paměti.**
+
+## Kdy to oceníte
+
+- Tým 2–4 lidé na jednom boxu.
+- RAG s mnoha krátkými dotazy.
+- Dlouhý kontext u víc uživatelů.
+- VLLM v produkci.
+
+## Kudy dál
+
+- [KV cache](/slovnik/pamet/kv-cache/) — co se ukládá.
+- [Prefix caching](/slovnik/pamet/prefix-caching/) — opakované dotazy.
+- [vLLM](/slovnik/software/vllm/) — engine.
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — souběžnost.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [vLLM — PagedAttention](https://docs.vllm.ai/en/latest/design/kernel/paged_attention.html)
+- [PagedAttention — arXiv](https://arxiv.org/abs/2309.06180)
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

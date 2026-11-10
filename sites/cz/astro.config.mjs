@@ -111,6 +111,18 @@ function rehypeSlovnik() {
     { re: /\bembedding\w*/gi, url: '/slovnik/software/embeddingy/', slug: 'software/embeddingy' },
     { re: /\bvektorov\w*\s+datab\w*/gi, url: '/slovnik/software/vektorova-databaze/', slug: 'software/vektorova-databaze' },
     { re: /\bprompt injection\b/gi, url: '/slovnik/provoz/prompt-injection/', slug: 'provoz/prompt-injection' },
+    { re: /\bstructured output\b/gi, url: '/slovnik/software/structured-output/', slug: 'software/structured-output' },
+    { re: /\bstrukturovan\w* výstup\w*/gi, url: '/slovnik/software/structured-output/', slug: 'software/structured-output' },
+    { re: /\breranker\w*/gi, url: '/slovnik/software/reranker/', slug: 'software/reranker' },
+    { re: /\bOCR\b/g, url: '/slovnik/software/ocr/', slug: 'software/ocr' },
+    { re: /\bprefix cach\w*/gi, url: '/slovnik/pamet/prefix-caching/', slug: 'pamet/prefix-caching' },
+    { re: /\bPagedAttention\b/g, url: '/slovnik/pamet/paged-attention/', slug: 'pamet/paged-attention' },
+    { re: /\bRoPE\b/g, url: '/slovnik/pamet/rope-yarn/', slug: 'pamet/rope-yarn' },
+    { re: /\bYaRN\b/g, url: '/slovnik/pamet/rope-yarn/', slug: 'pamet/rope-yarn' },
+    { re: /\bMLX\b/g, url: '/slovnik/software/mlx/', slug: 'software/mlx' },
+    { re: /\bbatch size\b/gi, url: '/slovnik/vykon/batch-size/', slug: 'vykon/batch-size' },
+    { re: /\breasoning\b/gi, url: '/slovnik/software/reasoning/', slug: 'software/reasoning' },
+    { re: /\bcontext rot\b/gi, url: '/slovnik/pamet/context-rot/', slug: 'pamet/context-rot' },
   ];
 
   const SKIP_PARENTS = new Set(['a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']);

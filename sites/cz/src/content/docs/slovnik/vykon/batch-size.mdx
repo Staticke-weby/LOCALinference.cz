@@ -1,0 +1,80 @@
+---
+title: "Batch size: jak dávkování mění rychlost a latenci"
+description: "Batch size určuje, kolik požadavků model zpracuje najednou. Vysvětlíme vliv na tok/s, TTFT a souběžnost na 128 GB."
+last_verified: 2026-11-10
+sidebar:
+  label: Batch size
+  order: 9
+---
+
+**Batch size** je počet požadavků, které server zpracuje v jednom
+kroku. U lokální AI se nepoužívá jen pevná dávka; moderní enginy
+dávkují průběžně (continuous batching). Větší dávka zlepší agregát,
+ale může zhoršit čekání jednotlivce.
+
+## Rychlá odpověď
+
+- **Větší batch = vyšší agregát**, ale často horší TTFT.
+- **Na 128 GB** je limitem KV cache, ne výpočet.
+- **Continuous batching** přidává požadavky průběžně.
+- **Ladění** je o kompromisu, ne o maximu.
+
+## Co to je
+
+Když přijdou čtyři požadavky, server je může zpracovat:
+
+- **po jednom** — nízká latence, nízký agregát,
+- **v dávce** — vyšší agregát, vyšší latence,
+- **průběžně** — nové požadavky se přidávají k běžícím.
+
+## Vliv na čísla
+
+| Větší batch | Co se stane |
+|---|---|
+| **Agregát tok/s** | roste |
+| **TTFT** | může růst |
+| **KV cache** | roste s počtem požadavků |
+| **Paměť** | může dojít |
+| **Fairness** | kratší požadavky mohou čekat |
+
+## Na 128 GB
+
+Qwen3.8 v NVFP4 má ~101 GB. Zbytek je na KV cache. Čím větší batch,
+tím víc cache. Proto se u vLLM nastavuje:
+
+- `max-num-seqs`,
+- `max-num-batched-tokens`,
+- `gpu-memory-utilization`.
+
+Hodnoty závisí na kontextu a kvantizaci.
+
+## Co měřit
+
+- **TTFT** při 1, 2, 4 požadavcích.
+- **Agregát** tok/s.
+- **Paměť** a KV cache.
+- **Chybovost** a timeouty.
+- **Fairness** — kdo čeká.
+
+## Kdy batch neřešit
+
+- Jeden uživatel.
+- Krátké dotazy.
+- Model se vejde jen tak.
+- Nemáte monitoring.
+
+## Kudy dál
+
+- [Souběžnost](/slovnik/vykon/soubeznost/) — kolik lidí.
+- [PagedAttention](/slovnik/pamet/paged-attention/) — paměť.
+- [KV cache](/slovnik/pamet/kv-cache/) — limit.
+- [vLLM](/slovnik/software/vllm/) — engine.
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — praxe.
+
+## Zdroje
+
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+- [vLLM — continuous batching](https://docs.vllm.ai/en/latest/design/continuous_batching.html)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

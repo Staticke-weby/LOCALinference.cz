@@ -1,0 +1,77 @@
+---
+title: "OCR: jak převést český sken na text pro AI"
+description: "OCR převádí obrázek na text. Vysvětlíme, jak funguje, kde selhává u češtiny a jak kvalitu ověřit před RAG."
+last_verified: 2026-11-10
+sidebar:
+  label: OCR
+  order: 29
+---
+
+**OCR** (Optical Character Recognition) převádí text z obrázku nebo
+skenu na strojově čitelný text. Pro RAG je to první krok u dokumentů,
+které nemají textovou vrstvu. Když OCR selže, všechno další je
+špatně.
+
+## Rychlá odpověď
+
+- **Nejdřív zjistěte, jestli PDF textovou vrstvu má.** Pokud ano,
+  OCR nepotřebujete.
+- **Čeština potřebuje český jazykový model** a kontrolu diakritiky.
+- **Kvalita skenu rozhoduje** víc než volba nástroje.
+- **OCR není validace**; čísla a data se musí ověřit.
+
+## Co OCR zvládne
+
+- tištěný text,
+- tabulky (s omezeními),
+- formuláře,
+- razítka (částečně),
+- rukopis (nespolehlivě).
+
+## Pipeline
+
+1. **Sken** — rozlišení, kontrast, orientace.
+2. **Předzpracování** — ořez, narovnání, odstranění šumu.
+3. **OCR** — český jazykový model.
+4. **Kontrola** — diakritika, čísla, tabulky.
+5. **Čištění** — hlavičky, patičky, opakování.
+6. **Validace** — proti originálu.
+
+## Nástroje
+
+- **Tesseract** — open-source, český model.
+- **PaddleOCR** — alternativa pro složité dokumenty.
+- **Qwen3.8 vision** — kontrola nebo extrakce z obrázku.
+- **pdfplumber** — tabulky v textovém PDF.
+
+## Česká specifika
+
+- **Diakritika** — háčky a čárky.
+- **Podobné znaky** — `0`/`O`, `1`/`l`, `ř`/`r`.
+- **Tabulky** — české formátování čísel.
+- **Zkratky** — IČO, DIČ, DPH.
+- **Rukopis** — často nespolehlivý.
+
+## Kdy OCR nepoužívat
+
+- PDF má textovou vrstvu.
+- Text je příliš rozmazaný.
+- Jde o rukopis, který nikdo nepřečte.
+- Stačí vision model pro jeden obrázek.
+
+## Kudy dál
+
+- [PDF a skeny](/temata/rag/pdf-a-skeny/) — postup.
+- [Extrakce dat](/temata/cestina/extrakce-dat/) — pole.
+- [Vision](/slovnik/software/vision/) — model.
+- [RAG](/temata/rag/) — pipeline.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Tesseract — dokumentace](https://tesseract-ocr.github.io/)
+- [PaddleOCR — dokumentace](https://www.paddleocr.ai/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

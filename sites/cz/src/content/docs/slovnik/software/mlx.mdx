@@ -1,0 +1,84 @@
+---
+title: "MLX: jak běží lokální AI na Apple Silicon"
+description: "MLX je Apple framework pro modely na M čipech. Vysvětlíme, jak funguje, kolik paměti potřebuje Qwen3.8 a kde je limit."
+last_verified: 2026-11-10
+sidebar:
+  label: MLX
+  order: 30
+---
+
+**MLX** je framework Applu pro strojové učení na Apple Silicon.
+Na Macu je to nativní cesta k lokálnímu modelu: využívá unified
+memory, Metal a optimalizace pro čipy M. Pro Qwen3.8 Flash Next
+znamená hlavně možnost běžet na Mac Studiu nebo MacBooku Pro
+s 128 GB.
+
+## Rychlá odpověď
+
+- **MLX = Apple runtime**, ne model.
+- **Využívá unified memory** a Metal.
+- **Qwen3.8 v MLX 4bit** má zhruba 88 GB.
+- **Je jen pro Apple Silicon**; na NVIDIA/AMD neběží.
+
+## Jak funguje
+
+MLX je knihovna pro tenzory a trénink/inferenci na Apple čipech.
+Modely se převádějí do MLX formátu a běží na GPU přes Metal.
+Výhoda je unified memory: model nemusí kopírovat mezi CPU a GPU.
+
+## Na 128 GB Macu
+
+| Model | Paměť | Zařízení |
+|---|---:|---|
+| Qwen3.8 Flash Next MLX 4bit | ~88 GB | Mac Studio, MacBook Pro |
+| Menší modely | jednotky GB | i méně paměti |
+
+Po načtení zbyde místo na kontext a systém. U 128 GB je to použitelné
+pro jednoho uživatele; u delšího kontextu sledujte KV cache.
+
+## Software
+
+- **MLX** — základní framework.
+- **mlx-lm** — inference a server.
+- **oMLX** — komunitní benchmarky a nástroje.
+- **llama.cpp s Metalem** — alternativa.
+
+## Kdy MLX
+
+- Máte Mac Studio nebo MacBook Pro.
+- Chcete ticho a nízkou spotřebu.
+- Data zůstávají na Macu.
+- Stačí jeden uživatel.
+
+## Kdy ne
+
+- Potřebujete CUDA.
+- Chcete vLLM a OpenAI API.
+- Provozujete tým 20 lidí.
+- Potřebujete NVFP4.
+
+## Kde je limit
+
+- **Apple only.**
+- **Méně nástrojů** než CUDA.
+- **Kvantizace** může změnit kvalitu.
+- **Throttling** u notebooku.
+- **Paměť je připájená.**
+
+## Kudy dál
+
+- [Mac Studio](/zarizeni/mac-studio/) — box.
+- [MacBook Pro](/zarizeni/macbook-pro/) — notebook.
+- [Unified memory](/slovnik/pamet/unified-memory/) — paměť.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Ollama](/slovnik/software/ollama/) — alternativa.
+- [Kontext](/slovnik/pamet/kontext/) — dlouhý text.
+
+## Zdroje
+
+- [Apple — MLX dokumentace](https://ml-explore.github.io/mlx/)
+- [MLX — GitHub](https://github.com/ml-explore/mlx)
+- [mlx-lm — GitHub](https://github.com/ml-explore/mlx-lm)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

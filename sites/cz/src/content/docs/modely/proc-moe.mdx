@@ -14,6 +14,26 @@ Rozhoduje počet **aktivních** parametrů, ne celkových.
 > **Toto jsou převzatá data, ne naše měření.** Čísla pocházejí z veřejných
 > měření; konfigurace je u zdrojů. Podrobnosti v [metodice](/o-webu/metodika/).
 
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:760px" viewBox="0 0 760 200" role="img" aria-labelledby="moe-diagram-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="moe-diagram-title">MoE aktivuje jen část expertů pro každý token</title>
+    <rect x="20" y="50" width="190" height="95" rx="8" fill="none" stroke="currentColor" />
+    <text x="115" y="85" text-anchor="middle" fill="currentColor" font-size="15">512 expertů</text>
+    <text x="115" y="108" text-anchor="middle" fill="currentColor" font-size="12">celková kapacita</text>
+    <line x1="210" y1="97" x2="280" y2="97" stroke="currentColor" stroke-width="1.5" />
+    <polygon points="280,92 290,97 280,102" fill="currentColor" />
+    <rect x="290" y="50" width="210" height="95" rx="8" fill="none" stroke="currentColor" />
+    <text x="395" y="85" text-anchor="middle" fill="currentColor" font-size="15">10 + 1 shared</text>
+    <text x="395" y="108" text-anchor="middle" fill="currentColor" font-size="12">aktivní na token</text>
+    <line x1="500" y1="97" x2="570" y2="97" stroke="currentColor" stroke-width="1.5" />
+    <polygon points="570,92 580,97 570,102" fill="currentColor" />
+    <rect x="580" y="50" width="160" height="95" rx="8" fill="none" stroke="currentColor" />
+    <text x="660" y="85" text-anchor="middle" fill="currentColor" font-size="15">token</text>
+    <text x="660" y="108" text-anchor="middle" fill="currentColor" font-size="12">rychlejší decode</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">Paměť drží všechny experty, ale výpočet jen aktivní část.</figcaption>
+</figure>
+
 ## Dense model: proč je na 128 GB pomalý
 
 **Dense model** používá při každém tokenu všechny parametry. Když má

@@ -1,0 +1,81 @@
+---
+title: "Reranker: jak zlepšit pořadí výsledků v RAG"
+description: "Reranker přerovná nalezené dokumenty podle relevance. Vysvětlíme, jak funguje, kdy pomůže a co stojí."
+last_verified: 2026-11-10
+sidebar:
+  label: Reranker
+  order: 28
+---
+
+**Reranker** je druhý krok hledání. Vektorová databáze najde
+kandidáty, reranker je přerovná podle toho, jak dobře odpovídají
+dotazu. V RAG to často znamená rozdíl mezi „našlo to skoro“ a
+„našlo to správně“.
+
+## Rychlá odpověď
+
+- **Reranker nehledá v celém archivu.** Pracuje s top-K kandidáty.
+- **Zlepšuje pořadí**, ne nutně recall; když správný chunk není
+  v kandidátech, nepomůže.
+- **Je pomalejší než vektorové hledání**, ale u menšího K je to
+  únosné.
+- **Hodí se pro české dokumenty**, kde je mnoho podobných pasáží.
+
+## Jak funguje
+
+1. Vektorové hledání vrátí **50–100 kandidátů**.
+2. Reranker ohodnotí každý pár dotaz–chunk.
+3. Vrátí **top 5–10** pro model.
+4. Model odpoví s citacemi.
+
+Reranker je přesnější, protože vidí dotaz i dokument společně.
+Vektorové hledání je rychlé, ale ztrácí jemné rozdíly.
+
+## Typy
+
+| Typ | Výhoda | Nevýhoda |
+|---|---|---|
+| **Cross-encoder** | přesný | pomalejší |
+| **LLM reranker** | rozumí kontextu | dražší |
+| **Hybridní** | kombinuje signály | složitější |
+
+Pro lokální RAG stačí malý cross-encoder; nemusí to být velký model.
+
+## Kdy to pomůže
+
+- Hodně podobných dokumentů.
+- České skloňování a synonyma.
+- Dlouhé dokumenty s více tématy.
+- RAG, kde model často cituje špatnou pasáž.
+
+## Kdy to nepomůže
+
+- Správný chunk není v kandidátech.
+- Chunking je špatný.
+- Dotaz je příliš obecný.
+- Data jsou neaktuální.
+
+## Co měřit
+
+- **Recall@k** před rerankerem a po něm.
+- **Precision@k**.
+- **Latence** navíc.
+- **Kvalita odpovědi** a citací.
+- **Náklady** na CPU/GPU.
+
+## Kudy dál
+
+- [Embeddingy v praxi](/temata/rag/embeddingy-v-praxi/) — hledání.
+- [Chunking](/temata/rag/chunking/) — kandidáti.
+- [Citace a hodnocení](/temata/rag/citace-a-hodnoceni/) — měření.
+- [RAG](/temata/rag/) — pipeline.
+- [Vektorová databáze](/slovnik/software/vektorova-databaze/) — úložiště.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Sentence Transformers — dokumentace](https://www.sbert.net/)
+- [MTEB — benchmark](https://huggingface.co/spaces/mteb/leaderboard)
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+
+*Naposledy ověřeno: 10. 11. 2026.*

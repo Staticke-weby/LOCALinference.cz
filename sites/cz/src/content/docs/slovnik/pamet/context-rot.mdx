@@ -1,0 +1,73 @@
+---
+title: "Context rot: proč dlouhý kontext zhoršuje odpovědi"
+description: "Context rot je pokles kvality při dlouhém kontextu. Vysvětlíme, jak se projeví, proč vzniká a jak mu předcházet."
+last_verified: 2026-11-10
+sidebar:
+  label: Context rot
+  order: 8
+---
+
+**Context rot** je situace, kdy model s delším kontextem odpovídá
+hůř, ne lépe. Informace se v dlouhém textu ztrácí, model cituje
+špatnou pasáž nebo si vymyslí souvislost. Není to jen „malý kontext“;
+je to problém pozornosti a kvality.
+
+## Rychlá odpověď
+
+- **Víc kontextu ≠ lepší odpověď.**
+- **Informace uprostřed dlouhého textu** se hledá hůř.
+- **RAG a kratší kontext** často porazí maximum.
+- **Testujte kvalitu**, ne jen jestli se text vešel.
+
+## Jak se projeví
+
+- Model vynechá důležitou větu.
+- Citace ukazuje na špatnou stranu.
+- Odpověď míchá dva dokumenty.
+- Model opakuje začátek a zapomene konec.
+- U dlouhého chatu ztrácí kontext.
+
+## Proč vzniká
+
+- **Pozornost není dokonalá** — model nemá nekonečnou pracovní paměť.
+- **Příliš mnoho tokenů** — signál se ztrácí v šumu.
+- **Chunking a RAG** — špatně vybrané části.
+- **Kvantizace** — drobné chyby se s délkou sčítají.
+
+## Co s tím
+
+- **Kratší kontext** — posílejte jen relevantní část.
+- **RAG** — vyberte top chunky, ne celý archiv.
+- **Citace** — model musí ukázat zdroj.
+- **Dělení** — shrňte po částech.
+- **Testování** — 32k, 128k, 262k.
+
+## Kdy je dlouhý kontext správný
+
+- Jeden velký dokument, který nejde rozdělit.
+- Právní nebo technická analýza.
+- Agentní úloha s historií.
+- Když kvalita na kratším kontextu nestačí.
+
+## Kdy ne
+
+- Běžný chat.
+- RAG nad mnoha dokumenty.
+- Když stačí 32k.
+- Když model na dlouhém kontextu selhává.
+
+## Kudy dál
+
+- [Kontext](/slovnik/pamet/kontext/) — tři čísla.
+- [Prefill](/slovnik/vykon/prefill/) — čtení.
+- [RAG](/temata/rag/) — výběr dokumentů.
+- [Citace a hodnocení](/temata/rag/citace-a-hodnoceni/) — kontrola.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

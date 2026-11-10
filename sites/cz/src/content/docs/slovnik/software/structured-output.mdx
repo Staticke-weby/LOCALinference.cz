@@ -1,0 +1,108 @@
+---
+title: "Structured output: jak dostat z modelu validní JSON"
+description: "Structured output nutí model vrátit data podle schématu. Vysvětlíme JSON Schema, guided decoding, validaci a kdy se to hodí."
+last_verified: 2026-11-10
+sidebar:
+  label: Structured output
+  order: 27
+---
+
+**Structured output** znamená, že model nevrátí volný text, ale data
+podle předem daného schématu. Místo věty „faktura je od firmy X“ dostanete
+JSON s poli `dodavatel`, `ico`, `castka`. Hodí se všude, kde výstup
+zpracovává program.
+
+## Rychlá odpověď
+
+- **Structured output = tvar odpovědi**, ne volání nástroje.
+- **JSON Schema** popíše pole, typy a povinné údaje.
+- **Guided decoding** donutí model držet schéma.
+- **Validace je povinná**; schéma nezaručí správná data, jen správný
+  tvar.
+
+## Structured output vs. function calling
+
+| Co | Co řeší | Příklad |
+|---|---|---|
+| **Structured output** | jak vypadá odpověď | extrakce faktury do JSON |
+| **Function calling** | jak model požádá o akci | zavolej `read_file` |
+| **RAG** | co má model vidět | najdi smlouvu |
+
+Structured output se často používá uvnitř function callingu: argumenty
+funkce jsou také strukturovaná data.
+
+## JSON Schema
+
+Schéma má:
+
+- **typy** — string, number, boolean, array, object,
+- **povinná pole**,
+- **enum** pro volby,
+- **limity** — délka, rozsah,
+- **popisy** pro model.
+
+Příklad pro fakturu:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "dodavatel": { "type": "string" },
+    "ico": { "type": "string" },
+    "castka": { "type": "number" },
+    "mena": { "type": "string", "enum": ["CZK", "EUR"] }
+  },
+  "required": ["dodavatel", "ico", "castka"]
+}
+```
+
+## Guided decoding
+
+Enginy umí omezit generování na platné tokeny podle schématu:
+
+- **vLLM** — structured outputs / guided decoding.
+- **llama.cpp** — grammars.
+- **Ollama** — omezená podpora podle verze.
+
+Výsledek je validní JSON častěji, ale **ne automaticky správný**.
+Model může vyplnit špatné IČO, které schématu vyhovuje.
+
+## Validace
+
+1. **Parsování** — je to JSON?
+2. **Schéma** — sedí typy a povinná pole?
+3. **Byznys pravidla** — IČO, DPH, součet.
+4. **Proti zdroji** — částka a datum.
+5. **Retry** — při chybě vraťte modelu konkrétní problém.
+6. **Člověk** — u citlivých dat.
+
+## Kdy se to hodí
+
+- Extrakce faktur a formulářů.
+- Klasifikace dokumentů.
+- Tool calling a argumenty.
+- Generování tabulek.
+- API odpovědi pro aplikaci.
+
+## Kdy to nedělat
+
+- Volný text je cílem.
+- Schéma je příliš složité.
+- Model je malý a nespolehlivý.
+- Data se mají jen shrnout, ne strukturovat.
+
+## Kudy dál
+
+- [Function calling](/slovnik/software/function-calling/) — volání.
+- [Extrakce dat](/temata/cestina/extrakce-dat/) — postup.
+- [vLLM](/slovnik/software/vllm/) — engine.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [vLLM — structured outputs](https://docs.vllm.ai/en/latest/features/structured_outputs.html)
+- [JSON Schema — dokumentace](https://json-schema.org/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

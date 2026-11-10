@@ -1,0 +1,77 @@
+---
+title: "Reasoning: kdy modelu pomáhá přemýšlet před odpovědí"
+description: "Reasoning znamená, že model generuje myšlenkové tokeny před odpovědí. Vysvětlíme, kdy pomůže, kdy škodí a co to stojí."
+last_verified: 2026-11-10
+sidebar:
+  label: Reasoning
+  order: 31
+---
+
+**Reasoning** je režim, kdy model nejdřív generuje vnitřní úvahu a
+teprve pak odpověď. U Qwen3.8 Flash Next je myšlení ve výchozím
+stavu zapnuté a lze ho ovládat přes `enable_thinking` a
+`reasoning_effort`. Pomáhá u složitých úloh, ale stojí čas a tokeny.
+
+## Rychlá odpověď
+
+- **Reasoning pomáhá u matematiky, kódu a plánování.**
+- **U jednoduché extrakce nebo shrnutí často škodí** — zdržuje a
+  přidává šum.
+- **Myšlenky se počítají do tokenů** a zabírají kontext.
+- **Pro produkci měřte kvalitu i latenci**, ne jen „chytrý dojem“.
+
+## Jak to funguje
+
+Model generuje posloupnost myšlenek, pak odpověď. Některé enginy
+myšlenky skryjí, jiné je vrátí v `reasoning_content`. Qwen3.8 umí:
+
+- **thinking on/off**,
+- **reasoning_effort** (low, medium, high, xhigh),
+- **preserve_thinking** — zda si nechá myšlenky v historii.
+
+## Kdy pomůže
+
+- Vícekrokové úlohy.
+- Matematika a logika.
+- Kód a debugging.
+- Plánování agenta.
+- Analýza, kde záleží na postupu.
+
+## Kdy ne
+
+- Extrakce polí.
+- Krátké shrnutí.
+- Klasifikace.
+- Chat, kde stačí rychlá odpověď.
+- Když je limit latence.
+
+## Cena
+
+- **Víc tokenů** — myšlenky se platí časem i kontextem.
+- **Delší TTFT** — čeká se na první odpověď.
+- **Větší KV cache** — historie roste.
+- **Vyšší spotřeba** — delší běh.
+
+## Jak nastavit
+
+- **Vypněte thinking** u jednoduchých úloh.
+- **Nastavte effort** podle složitosti.
+- **Omezte max tokens** pro myšlenky.
+- **Logujte** délku myšlenek a kvalitu.
+- **Testujte** na svých úlohách.
+
+## Kudy dál
+
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Kontext](/slovnik/pamet/kontext/) — myšlenky zabírají místo.
+- [TTFT](/slovnik/vykon/ttft/) — čekání.
+- [Agentní úlohy](/slovnik/software/agentni-ulohy/) — plánování.
+- [Function calling](/slovnik/software/function-calling/) — nástroje.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog — Qwen3.8-Flash-Next](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

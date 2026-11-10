@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Slovník: 10 nových hesel a tři diagramy"
+  co_se_zmenilo: "Přidáno deset hesel: structured output, reranker, OCR, prefix caching, PagedAttention, RoPE a YaRN, context rot, MLX, batch size a reasoning. Do roofline, MoE a RAG přibyly inline SVG diagramy. Nové pojmy jsou v automatickém prolinkování."
+  dotcene_stranky: [slovnik/software/structured-output, slovnik/software/reranker, slovnik/software/ocr, slovnik/pamet/prefix-caching, slovnik/pamet/paged-attention, slovnik/pamet/rope-yarn, slovnik/pamet/context-rot, slovnik/software/mlx, slovnik/vykon/batch-size, slovnik/software/reasoning, rychlost/roofline, modely/proc-moe, temata/rag]
+  zdroj: https://www.localinference.cz/slovnik/software/structured-output/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Nový cluster: Praxe pro profese"
   co_se_zmenilo: "Přidán hub /temata/praxe/ a čtyři profesní stránky: právo, účetnictví, výroba a vývojáři. Obsahují use cases, workflow, data, rizika, měření a odkazy na RAG, agenty a provoz."
   dotcene_stranky: [temata/praxe, temata/praxe/pravo, temata/praxe/ucetnictvi, temata/praxe/vyroba, temata/praxe/vyvojari]

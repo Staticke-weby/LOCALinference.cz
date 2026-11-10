@@ -1,0 +1,79 @@
+---
+title: "RoPE a YaRN: jak model rozšiřuje kontext"
+description: "RoPE dává modelu pozici tokenů, YaRN rozšiřuje kontext. Vysvětlíme, co to znamená pro Qwen3.8 a kdy rozšíření použít."
+last_verified: 2026-11-10
+sidebar:
+  label: RoPE a YaRN
+  order: 7
+---
+
+**RoPE** (Rotary Position Embedding) je způsob, jak model ví, kde
+v textu se token nachází. **YaRN** je metoda, která umožní modelu
+pracovat s delším kontextem, než na jaký byl trénovaný. Qwen3.8 Flash
+Next má nativních 262k a s YaRN až 1M tokenů.
+
+## Rychlá odpověď
+
+- **RoPE = pozice tokenů.** Bez něj by model nerozlišil pořadí.
+- **YaRN = rozšíření kontextu** pomocí škálování pozic.
+- **1M je experiment**, ne doporučený provoz.
+- **Statické YaRN může zhoršit krátké texty.**
+
+## RoPE
+
+Model potřebuje vědět, který token je první a který poslední. RoPE
+otáčí vektory podle pozice; pozornost pak počítá vztah mezi tokeny.
+Je to součást architektury, ne nastavení enginu.
+
+## YaRN
+
+YaRN upraví frekvence RoPE tak, aby model zvládl delší sekvence.
+U Qwen3.8 se používá:
+
+- **nativní 262 144 tokenů**,
+- **1 000 000 s YaRN** a `factor` 4.
+
+Konfigurace se liší podle enginu. vLLM a SGLang podporují YaRN, ale
+je potřeba nastavit `rope_parameters` a `max-model-len`.
+
+## Kdy YaRN použít
+
+- **Dlouhý dokument** nejde rozdělit.
+- **Agentní historie** je delší než nativní kontext.
+- **Analýza archivu** v jednom dotazu.
+
+## Kdy ne
+
+- Běžný chat do 32k.
+- RAG, kde stačí Relevantní chunky.
+- Když kvalita na kratším kontextu stačí.
+- Když nemáte dost paměti na KV cache.
+
+## Kvalita
+
+Dlouhý kontext není automaticky kvalitní. Model může hůř najít
+informaci uprostřed. YaRN je nástroj pro extrém, ne výchozí stav.
+
+## Co měřit
+
+- **Kvalita** na 32k, 128k a 262k.
+- **TTFT** a prefill.
+- **Paměť** KV cache.
+- **Stabilita** při dlouhém běhu.
+
+## Kudy dál
+
+- [Kontext](/slovnik/pamet/kontext/) — tři čísla.
+- [KV cache](/slovnik/pamet/kv-cache/) — paměť.
+- [Prefill](/slovnik/vykon/prefill/) — čtení.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [vLLM](/slovnik/software/vllm/) — engine.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [YaRN — arXiv](https://arxiv.org/abs/2309.00071)
+- [RoPE — arXiv](https://arxiv.org/abs/2104.09864)
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

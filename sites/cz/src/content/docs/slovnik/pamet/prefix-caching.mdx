@@ -1,0 +1,74 @@
+---
+title: "Prefix caching: jak zrychlit opakované dotazy"
+description: "Prefix caching znovu použije zpracovaný začátek kontextu. Vysvětlíme, kdy zrychlí TTFT, jak funguje a kde je riziko."
+last_verified: 2026-11-10
+sidebar:
+  label: Prefix caching
+  order: 5
+---
+
+**Prefix caching** je znovupoužití už zpracovaného začátku kontextu.
+Když každý dotaz začíná stejným systémovým promptem nebo stejným
+dokumentem, model nemusí tento prefix počítat znovu. U RAG a agentů
+to může výrazně zkrátit [TTFT](/slovnik/vykon/ttft/).
+
+## Rychlá odpověď
+
+- **Cache se týká prefixu**, ne celého dotazu.
+- **Nejvíc pomůže**, když se opakuje dlouhý systémový prompt nebo
+  dokument.
+- **Není to zdarma** — cache bere paměť a musí se invalidovat.
+- **Sdílená cache mezi uživateli** může být bezpečnostní riziko.
+
+## Jak to funguje
+
+1. První dotaz zpracuje prefix a uloží KV cache.
+2. Další dotaz se stejným prefixem cache znovu použije.
+3. Počítá se jen nová část (dotaz a odpověď).
+4. Když se prefix změní, cache se invaliduje.
+
+## Kde to pomůže
+
+- **Systémový prompt** — dlouhý návod pro všechny dotazy.
+- **RAG** — stejný dokument nebo instrukce.
+- **Agenti** — stejná historie a nástroje.
+- **Chat** — multi-turn konverzace.
+- **Dávkové zpracování** — stejný kontext pro mnoho úloh.
+
+## Kde to nepomůže
+
+- Každý dotaz má jiný prefix.
+- Kontext je krátký.
+- Cache je malá a rychle se evictuje.
+- Model nebo engine cache nepodporuje.
+
+## Rizika
+
+- **Paměť** — cache zabírá KV cache.
+- **Soukromí** — sdílená cache mezi uživateli.
+- **Neplatná data** — změna dokumentu bez invalidace.
+- **Komplexita** — těžší monitoring a ladění.
+
+## Co měřit
+
+- **TTFT** před a po.
+- **Hit rate** cache.
+- **Paměť** cache.
+- **Kvalita** odpovědí.
+- **Bezpečnost** — kdo cache sdílí.
+
+## Kudy dál
+
+- [KV cache](/slovnik/pamet/kv-cache/) — co se ukládá.
+- [TTFT](/slovnik/vykon/ttft/) — čekání.
+- [vLLM](/slovnik/software/vllm/) — engine.
+- [RAG](/temata/rag/) — dokumenty.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [vLLM — prefix caching](https://docs.vllm.ai/en/latest/features/prefix_caching.html)
+- [llama.cpp — prompt cache](https://github.com/ggml-org/llama.cpp)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

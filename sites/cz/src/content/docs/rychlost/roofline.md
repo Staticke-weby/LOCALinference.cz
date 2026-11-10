@@ -15,6 +15,21 @@ paměť, tím méně tokenů za sekundu.
 > a model cardů. Výsledek je strop, který vám řekne, jestli je naměřené
 > číslo vůbec možné. Podrobnosti v [metodice](/o-webu/metodika/).
 
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:760px" viewBox="0 0 760 260" role="img" aria-labelledby="roofline-diagram-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="roofline-diagram-title">Roofline: strop je daný propustností paměti a výpočtem</title>
+    <line x1="70" y1="210" x2="720" y2="210" stroke="currentColor" stroke-width="1.5" />
+    <line x1="70" y1="210" x2="70" y2="30" stroke="currentColor" stroke-width="1.5" />
+    <text x="395" y="245" text-anchor="middle" fill="currentColor" font-size="13">náročnost na výpočet →</text>
+    <text x="24" y="120" text-anchor="middle" fill="currentColor" font-size="13" transform="rotate(-90 24 120)">tok/s →</text>
+    <path d="M70 180 L360 70 L700 70" fill="none" stroke="currentColor" stroke-width="3" />
+    <line x1="360" y1="70" x2="360" y2="205" stroke="currentColor" stroke-dasharray="5 5" />
+    <text x="230" y="150" fill="currentColor" font-size="13">decode: brzdí paměť</text>
+    <text x="470" y="55" fill="currentColor" font-size="13">prefill: brzdí výpočet</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">Decode je vlevo (paměť), prefill vpravo (výpočet). Roofline ukazuje, kde je strop.</figcaption>
+</figure>
+
 ## Roofline vzorec pro lokální AI
 
 ```
