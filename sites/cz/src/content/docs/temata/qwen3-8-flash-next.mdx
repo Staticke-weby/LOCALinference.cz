@@ -116,6 +116,77 @@ recept na DGX Sparku umí ~69 tok/s, ale není to výchozí stav.
 Na DGX Sparku je oficiální cesta vLLM s NVFP4. Na Strix Halu je
 realističtější llama.cpp a GGUF. Na Macu MLX.
 
+## Tři cesty nasazení
+
+| Cesta | Kde | Co potřebujete | Kdy ji zvolit |
+|---|---|---|---|
+| **vLLM + NVFP4** | DGX Spark, RTX Spark | Linux/DGX OS nebo Windows ARM64 port | tým, API, souběžnost |
+| **llama.cpp + GGUF** | Strix Halo, Mac, Windows | GGUF kvantizaci, Vulkan/Metal/CUDA | jeden uživatel, jednoduchost |
+| **Ollama** | notebook, první test | nic než Ollama | rychlý start, experiment |
+
+Na DGX Sparku je nejlepší oficiální recept vLLM s NVFP4. Na Strix
+Halu je realističtější llama.cpp s GGUF Q4_K_M. Na Macu MLX. Na RTX
+Sparku záleží, jestli zvolíte nativní Windows port, nebo Linux.
+
+## RAG, agent, nebo dlouhý kontext
+
+| Potřeba | Vhodný přístup | Proč |
+|---|---|---|
+| Odpovědi z mnoha dokumentů | [RAG](/slovnik/software/rag/) | do kontextu jde jen relevantní část |
+| Akce v aplikacích | [agentní úlohy](/slovnik/software/agentni-ulohy/) | model volá nástroje |
+| Jeden velký dokument | dlouhý kontext | nemusíte chunkovat |
+| Opakované dotazy nad stejnými daty | RAG + cache | nižší prefill a přesnější zdroj |
+| Práce s e-mailem a soubory | agent + oprávnění | riziko injection je vyšší |
+
+Dlouhý kontext není náhrada RAG. Čím víc dokumentů posíláte, tím
+dražší a pomalejší je každý dotaz. RAG je levnější a lépe se cituje.
+
+## Jak otestovat češtinu
+
+1. **Vyberte 20–50 úloh** z praxe: shrnutí, extrakce, e-mail, korektura,
+   překlad, odpověď z dokumentu.
+2. **Zapište správné odpovědi** nebo kritéria, ne jen dojem.
+3. **Spusťte stejný model a kvantizaci**, kterou budete provozovat.
+4. **Sledujte čtyři věci:** fakta, čísla, citace, gramatiku.
+5. **Porovnejte s baseline** — člověk, cloud, jiný model.
+6. **Výsledek uložte** a opakujte po změně verze nebo kvantizace.
+
+Bez tohoto testu je „umí česky“ marketing. S testem máte rozhodnutí.
+
+## Srovnání s jinými modely
+
+Qwen3.8 Flash Next je kompromis. Jiné modely mohou být lepší v jedné
+ose, ale na 128 GB to často znamená horší druhou:
+
+| Model | Výhoda | Proč ho nedoporučujeme na 128 GB |
+|---|---|---|
+| **Dense 27B** | menší, někdy kvalitní | na složité agentní úlohy a dlouhý kontext nestačí |
+| **Dense 70B** | vyšší kvalita na některých úlohách | nevejde se v použitelné kvantizaci a rychlosti |
+| **300B+ MoE v Q2** | větší kapacita | pomalé a kvalita Q2 je horší; patří do serverovny |
+| **Menší 7–14B** | rychlé, levné | nezvládne složité dokumenty a tool calling |
+
+Nejde o to, že by jiné modely byly špatné. Na tomto hardware a pro
+tyto úlohy je Qwen3.8 Flash Next rozumný výchozí bod.
+
+## Jak číst benchmarky
+
+- **Čísla jsou ze stejné verze modelu a harnessu.** Jiná verze nebo
+  prompt znamenají jiné číslo.
+- **Benchmark není vaše úloha.** SWE-bench neříká, jak zvládne vaše
+  smlouvy.
+- **Vyšší číslo nemusí znamenat použitelnost.** Záleží na latenci,
+  ceně a chybovosti.
+- **Vždy si přečtěte poznámky pod tabulkou.** Model card uvádí
+  podmínky, které se do marketingového souhrnu nevejdou.
+
+## Kdy model nestačí
+
+- **Nejtěžší reasoning** — na frontier úlohy je cloud jinde.
+- **20+ uživatelů** — jeden box je málo.
+- **Trvale 262k kontext** — KV cache vytlačí souběžnost.
+- **Dense 70B kvalita** — na 128 GB se nevejde.
+- **Stoprocentní přesnost** — u faktů a čísel vždy kontrola.
+
 ## Kde je limit
 
 - **Dlouhý kontext** — 262k je strop, ne denní provoz.
@@ -133,6 +204,15 @@ USD měsíčního obratu je nutné uvést název modelu a nabízení modelu
 jako služby nebo jako samostatného AI pracovního asistenta vyžaduje
 zvláštní licenci. Pro interní nasazení v malé firmě se nic nemění.
 
+## Co kontrolovat při nákupu
+
+- **Kvantizaci** — NVFP4, FP8, GGUF Q4, MLX.
+- **Engine** — vLLM, llama.cpp, Ollama, MLX.
+- **Kontext** — 128k provoz, 262k maximum.
+- **Paměť** — váhy + KV cache + režie.
+- **Licenci** — Qwen Community License 1.0.
+- **Podporu** — kdo řeší aktualizace a incidenty.
+
 ## Kdy sáhnout jinam
 
 Jen jako varování, ne doporučení:
@@ -142,6 +222,28 @@ Jen jako varování, ne doporučení:
 - **Dense 70B** — na 128 GB se nevejde v použitelné kvalitě.
 - **300B+ MoE v Q2** — technicky se může vejít, ale rychlost a kvalita
   na desku nestačí. Patří do serverovny.
+
+## Jak model ladit
+
+- **MTP** — zapněte, pokud ho engine podporuje; zrychlí decode.
+- **KV cache** — FP8 ušetří paměť, ověřte kvalitu.
+- **Kontext** — snižte na 32k/128k podle úlohy.
+- **Prefix caching** — pomůže u opakovaných promptů.
+- **Teplotu a top_p** — pro práci nižší, pro kreativu vyšší.
+- **Parser nástrojů** — bez něj se tool calling rozpadne.
+
+Ladění má smysl až po tom, co máte baseline. Jinak nevíte, co se
+zlepšilo.
+
+## Co si zapamatovat
+
+- **180B celkem, 6B aktivních.**
+- **128k provoz, 262k strop.**
+- **NVFP4 ~101 GB**, na 128 GB zbývá ~27 GB.
+- **Češtinu si otestujte**, nevěřte marketing。
+- **Licence je Qwen Community 1.0**, ne Apache.
+- **Model se mění.** Před koupí si ověřte verzi a licenci v model
+  cardu; starší návody mohou platit pro jinou verzi.
 
 ## Kudy dál
 

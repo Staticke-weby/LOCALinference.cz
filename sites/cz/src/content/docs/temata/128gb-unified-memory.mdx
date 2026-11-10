@@ -123,7 +123,119 @@ podrobnosti jsou v [ceně lokální AI](/temata/cena-lokalni-ai/).
 - **„Stačí se podívat na velikost vah.“** Musíte počítat KV cache
   a režii.
 
+## Jak se počítá KV cache
+
+Přesná velikost KV cache závisí na počtu vrstev, hlav, dimenzi a
+typu dat. Zjednodušeně:
+
+> **KV cache ≈ 2 × vrstvy × hlavy × dimenze × tokeny × bajty na hodnotu**
+
+Dvojka je tam proto, že se ukládají klíče i hodnoty. Když zkrátíte
+kontext na polovinu, cache se přibližně zmenší na polovinu. Když
+přejdete z FP16 na FP8, zmenší se zhruba na polovinu. Když přidáte
+druhého uživatele, přibude druhá cache.
+
+Proto se u 128GB boxu neptejte jen „vejde se model?“, ale „vejde se
+model plus kontext pro lidi, kteří ho budou používat?“.
+
+## Čtyři scénáře
+
+| Scénář | Co se děje | Verdikt |
+|---|---|---|
+| **Jeden člověk, chat** | krátký kontext, jedna KV cache | bez problémů |
+| **Jeden člověk, RAG** | 5–10 chunků, delší vstup | dobré, ale prefill je znát |
+| **Čtyři lidé, dokumenty** | čtyři cache, střídavé dotazy | na hraně; záleží na délce |
+| **Agent s dlouhou historií** | historie a výstupy nástrojů rostou | rychle narazí na strop |
+
+Z toho plyne praktické pravidlo: **128 GB je dnes box pro jednoho až
+čtyři lidi, ne pro tým 20**. Pro víc lidí se přidává další box nebo
+server, ne delší kontext.
+
+## Jak poznat, že dochází paměť
+
+- **OOM při načtení modelu** — váhy se nevejdou spolu s rezervou.
+- **Swap a zpomalení** — systém odkládá stránky na disk.
+- **Model „zapomíná“ začátek** — kontext se zkrátil nebo se nevešel.
+- **První token trvá minuty** — prefill je na hraně.
+- **Po restartu je to lepší** — cache se neuklidila.
+
+Když se to děje, snižte kontext, kvantizujte KV cache nebo omezit
+souběžnost. Dokupovat RAM u těchto strojů nelze.
+
+## Co bude dál
+
+128 GB není věčný strop. Modely se zmenšují, kvantizace se zlepšuje
+a 262k kontext je dnes maximum, ne norma. Pro dnešní Qwen3.8 Flash
+Next ale 128 GB stačí a 192 GB je prostor navíc, ne podmínka.
+
+## 128 GB a RAG
+
+RAG neposílá celý dokument, ale několik chunků. To je pro 128 GB
+výhoda: místo 262k kontextu stačí 8–32k a zbytek paměti zůstane na
+souběžnost. Naopak dlouhý kontext bez RAG je drahý — každý dotaz
+znovu přečte celý dokument.
+
+Pro dokumentový RAG proto platí:
+
+- **embeddingy** jsou malé a mohou běžet na CPU,
+- **vektorová databáze** zabírá místo podle počtu chunků,
+- **model** dostane jen relevantní části,
+- **KV cache** zůstává menší.
+
+## Pět otázek před koupí
+
+1. **Kolik lidí bude box používat?** Jeden až čtyři; víc znamená
+   další box.
+2. **Jaký kontext potřebujete?** 32k, 128k, nebo 262k? Maximum není
+   denní provoz.
+3. **Jakou kvantizaci unesete?** NVFP4, GGUF Q4, nebo FP8?
+4. **Jaký software potřebujete?** CUDA/vLLM, ROCm, MLX, nebo Windows?
+5. **Kdo to bude spravovat?** Bez správce se box za půl roku rozpadne.
+
+Když odpovíte na těchto pět otázek, výběr zařízení je výrazně
+jednodušší. Cena je až šestá.
+
 <AlzaCena kategorie="boxy" text="Ceny 128GB boxů na Alze" />
+
+## Kdy koupit 192 GB
+
+192 GB dává smysl, když:
+
+- potřebujete **delší kontext** než 128k pro dokumenty nebo agenty,
+- chcete **víc souběžných požadavků** bez snižování kontextu,
+- chcete rezervu na **druhý menší model** v paměti,
+- počítáte s **FP8** nebo vyšší přesností u části úloh.
+
+Nedává smysl, když:
+
+- chcete **vyšší tok/s** — propustnost je podobná,
+- chcete provozovat **obří model** — ten patří do serverovny,
+- vám stačí 128k a 1–4 uživatelé — připlácíte zbytečně.
+
+## Jak se liší 128 GB podle zařízení
+
+| Zařízení | Paměť | Software | Kdy |
+|---|---|---|---|
+| DGX Spark | 128 GB, 273 GB/s | CUDA, DGX OS | tým, vLLM |
+| Strix Halo | 128 GB, 256 GB/s | ROCm, Vulkan | nejnižší cena |
+| RTX Spark | 128 GB, 300 GB/s | CUDA, Windows | mobilita |
+| Mac Studio | 128 GB, 614 GB/s | MLX | ticho, Apple |
+
+Stejná kapacita, jiný software a jiná propustnost. Proto se stejný
+model chová na každém stroji jinak.
+
+## Co si zapamatovat
+
+- **128 GB je minimum**, ne maximum.
+- **Váhy jsou jen začátek** — rozhoduje KV cache a souběžnost.
+- **128k je provoz**, 262k je strop.
+- **192 GB je prostor**, ne rychlost.
+- **Kupte podle softwaru**, ne jen podle paměti.
+- **128 GB není investice na deset let.** Za tři roky může model
+  nebo software chtít víc.
+- **128 GB není cíl, je to vstupenka.** Rozhoduje software a kontext.
+- **128 GB je dnes rozumný kompromis** mezi cenou, kontextem a tím,
+  co Qwen3.8 potřebuje.
 
 ## Kudy dál
 

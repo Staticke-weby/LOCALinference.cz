@@ -5,6 +5,13 @@
 # hreflang, menu, opravy odkazů) sem nepatří.
 
 - datum: 2026-11-10
+  typ: obsah
+  titulek: "Druhá vlna témat: 1 500+ slov a přepis DGX, Strix, RTX"
+  co_se_zmenilo: "Čtyři témata dorostla na 1 510–1 522 slov: 128 GB unified memory, cena lokální AI, lokální AI pro firmy a Qwen3.8 Flash Next. Témata DGX Spark, Strix Halo a RTX Spark jsou přepsaná na 1 181–1 290 slov: rozhodnutí, ceny, výkon, software, TCO, alternativy, otázky před koupí a měření po nasazení."
+  dotcene_stranky: [temata/128gb-unified-memory, temata/cena-lokalni-ai, temata/lokalni-ai-pro-firmy, temata/qwen3-8-flash-next, temata/dgx-spark, temata/strix-halo, temata/rtx-spark]
+  zdroj: https://www.localinference.cz/temata/128gb-unified-memory/
+
+- datum: 2026-11-10
   typ: model
   titulek: "Oprava celkového počtu parametrů: 180B, ne 176B"
   co_se_zmenilo: "Model card uvádí 125B hlavní model + 51B N-gram embedding + 4B MTP = 180B parametrů. Web dosud uváděl 176B, tedy součet bez MTP. Opraveno na stránce modelu, v tématech, návodech, slovníku a v datovém modelu. FP8 váhy zůstávají ~176 GB podle skutečného checkpointu."

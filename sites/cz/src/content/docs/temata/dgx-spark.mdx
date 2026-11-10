@@ -1,7 +1,7 @@
 ---
-title: "DGX Spark cena a výkon pro lokální AI"
-description: "DGX Spark 128 GB: česká cena od 162 990 Kč, výkon s Qwen3.8 Flash Next, OEM varianty, CUDA stack a kdy se vyplatí proti RTX Sparku."
-last_verified: 2026-11-04
+title: "DGX Spark: cena, výkon a kdy se vyplatí"
+description: "DGX Spark 128 GB: česká cena od 162 990 Kč, výkon Qwen3.8 Flash Next, CUDA a DGX OS, OEM varianty a srovnání s RTX Sparkem."
+last_verified: 2026-11-10
 sidebar:
   label: DGX Spark cena
   order: 3
@@ -11,46 +11,237 @@ import AlzaCena from '../../../components/AlzaCena.astro';
 
 DGX Spark je nejintegrovanější 128GB box s CUDA a DGX OS. Česká cena
 začíná na **162 990 Kč vč. DPH** (ASUS Ascent GX10 1TB); referenční
-NVIDIA DGX Spark 4TB stojí 218 990 Kč. V USA je cena 6 950 USD (151 tis. Kč, odhad).
+NVIDIA DGX Spark 4TB stojí 218 990 Kč. V USA je cena 6 950 USD bez
+DPH a dopravy. Není to nejlevnější cesta k 128 GB — je to cesta
+k nejzralejšímu CUDA stacku.
 
-<AlzaCena kategorie="boxy" text="Ověřit cenu DGX Sparku" />
+## Rychlá odpověď
+
+- **Pro koho:** vývojáře a malý tým, kteří chtějí CUDA, Linux a vLLM.
+- **Za co platíte:** software, ovladače, DGX OS a clustering, ne jen
+  hardware.
+- **Kdy ne:** pokud chcete nejnižší cenu (Strix Halo) nebo notebook
+  s Windows (RTX Spark).
 
 ## Co za to dostanete
 
-- **128 GB unified paměti** a 273 GB/s.
-- **Qwen3.8 Flash Next** v NVFP4, oficiální vLLM recept.
-- CUDA, DGX OS, clustering přes ConnectX-7.
-- 15 českých OEM variant od ASUS, Lenovo, HP, Dell, GIGABYTE, Acer,
-  PNY a NVIDIA.
+| Parametr | Hodnota |
+|---|---|
+| Paměť | 128 GB unified |
+| Propustnost | 273 GB/s |
+| Čip | GB10 Grace Blackwell |
+| GPU | Blackwell |
+| OS | DGX OS, Ubuntu |
+| Software | CUDA, vLLM, SGLang, llama.cpp |
+| Příkon | 140 W čip, 240 W napájení |
+| Clustering | ConnectX-7, 200 Gb/s |
+
+Na 128 GB poběží [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+v NVFP4 s rezervou na kontext. Podrobnosti o paměti jsou v
+[128 GB unified memory](/temata/128gb-unified-memory/).
+
+## Cena a varianty
+
+| Varianta | Cena vč. DPH | Poznámka |
+|---|---:|---|
+| ASUS Ascent GX10 1TB | 162 990 Kč | nejlevnější GB10 |
+| GIGABYTE AI TOP ATOM 4TB | 179 990 Kč | 4 TB |
+| Lenovo ThinkStation PGX 1TB | 179 990 Kč | on-site servis |
+| NVIDIA DGX Spark 4TB | 218 990 Kč | referenční stroj |
+| Lenovo ThinkStation PGX 4TB | 249 990 Kč | nejvyšší varianta |
+
+V nabídce je 15 GB10 OEM variant. Liší se úložištěm, chlazením,
+zárukou a dostupností, ne čipem. Podrobnosti jsou v
+[konfiguracích](/zarizeni/dgx-spark/) a na stránce
+[DGX Spark](/zarizeni/dgx-spark/).
 
 ## Jak rychle běží Qwen3.8 Flash Next
 
-Veřejná měření ukazují **36–65 tok/s** podle enginu a konfigurace.
-Nezávislé měření je 36,8–45,8 tok/s; NVIDIA udává kolem 70. Pro
-plánování berte spodní hranici.
+Veřejná měření ukazují **36,8–45,8 tok/s** v nezávislém testu a
+**67–70 tok/s** v optimalizovaných komunitních receptech. Rozdíl není
+fyzika, ale konfigurace: MTP, počet patchů, KV cache a délka promptu.
+
+| Konfigurace | Decode | Poznámka |
+|---|---:|---|
+| madeye, vLLM nightly, NVFP4, MTP3 | 36,8–45,8 tok/s | konzervativní baseline |
+| salient-data, 14 patchů, MTP | 67,5–69,3 tok/s | reprodukovatelný recept |
+| 6 streamů, batch | 91,9 tok/s | agregát, ne jeden uživatel |
+
+Pro plánování berte **spodní hranici 36,8 tok/s**. Sedmdesát je strop
+optimalizovaného receptu, ne výchozí stav. Čísla a konfigurace jsou
+ve [všech měřeních](/zdroje/mereni/).
+
+## Software: proč CUDA
+
+Na DGX Sparku běží:
+
+- **[vLLM](/slovnik/software/vllm/)** s NVFP4 a OpenAI API,
+- **SGLang** jako alternativa,
+- **[llama.cpp](/slovnik/software/llamacpp/)** s CUDA backendem,
+- **DGX OS** a NVIDIA ovladače.
+
+CUDA není záruka rychlosti, ale je to nejzralejší cesta pro Qwen3.8:
+oficiální recept, MTP, NVFP4 a nástroje pro monitoring. Na Strix Halu
+je ekosystém menší a prefill slabší.
 
 ## Kdy zvolit DGX Spark
 
 - Potřebujete **CUDA** a NVIDIA software stack.
-- Chcete clustering a správu flotily.
+- Chcete **Linux** a DGX OS, ne Windows.
+- Provozujete **vLLM** a chcete oficiální recept.
+- Chcete **clustering** a správu flotily.
 - Data nesmí opustit firmu.
 
 ## Kdy ne
 
-- Chcete nejnižší cenu za 128 GB — Strix Halo je levnější.
-- Potřebujete notebook — berte RTX Spark notebook.
-- Chcete 20+ uživatelů — přidejte boxy, ne dražší stroj.
+- Chcete **nejnižší cenu** za 128 GB — Strix Halo je o 43 tis. Kč
+  levnější.
+- Potřebujete **notebook** — berte RTX Spark notebook.
+- Chcete **Windows** a CUDA — RTX Spark je přirozenější.
+- Provozujete **20+ uživatelů** — přidejte boxy, ne dražší stroj.
+- Potřebujete **Windows aplikace** — DGX Spark je Linux.
 
-## Co chybí
+## Provoz a TCO
 
-- Nezávislé TTFT a prefill na jednotném promptu.
-- Souběžnost 4+ uživatelů.
+Příkon 140 W čipu a 240 W napájení znamená, že elektřina není
+zanedbatelná, ale ani dominantní. Spočítejte si:
+
+> **kWh za rok = příkon W × hodiny denně × dny / 1000**
+
+K tomu připočítejte správu, zálohy a záruku. DGX Spark není
+„nainstaluj a zapomeň“; je to server, který potřebuje aktualizace
+a monitoring. Podrobný rozklad je v [ceně lokální AI](/temata/cena-lokalni-ai/).
+
+## Srovnání s alternativami
+
+| Zařízení | Výhoda | Nevýhoda |
+|---|---|---|
+| **DGX Spark** | CUDA, DGX OS, vLLM, clustering | cena, Linux, uzavřenější stack |
+| **[Strix Halo](/zarizeni/strix-halo/)** | nejnižší cena, Windows/Linux | ROCm, slabší prefill |
+| **[RTX Spark notebook](/zarizeni/rtx-spark-notebook/)** | mobilita, Windows, CUDA | throttling, ARM64 runtime |
+| **[Mac Studio](/zarizeni/mac-studio/)** | MLX, ticho, 614 GB/s | bez CUDA, macOS |
+| **[Gorgon Halo](/zarizeni/gorgon-halo/)** | 192 GB, delší kontext | vyšší cena, stejná propustnost |
+
+## Referenční DGX vs. OEM
+
+NVIDIA DGX Spark 4TB za 218 990 Kč není nejlevnější varianta. OEM
+boxy od ASUS, Lenovo, HP, Dell, GIGABYTE, Acer a PNY mají stejný
+čip GB10, 128 GB paměti a DGX OS. Liší se:
+
+- **úložištěm** — 1 TB až 4 TB,
+- **chlazením a hlukem**,
+- **zárukou a servisem**,
+- **dostupností**,
+- **cenou**.
+
+Pro většinu firem je nejlepší **ASUS GX10 1TB** nebo **GIGABYTE
+4TB**; referenční DGX Spark dává smysl, když chcete přesně to, co
+NVIDIA testuje a podporuje. Podrobnosti jsou v
+[konfiguracích](/zarizeni/dgx-spark/).
+
+## DGX Spark ve firmě
+
+DGX Spark není jen „rychlejší box“. Dává smysl, když:
+
+- potřebujete **CUDA** a oficiální NVIDIA stack,
+- chcete **vLLM** s OpenAI API,
+- provozujete **1–4 uživatele** nebo malý tým,
+- data musí zůstat **u vás**,
+- počítáte s **clusteringem** dalších boxů.
+
+Nedává smysl jako univerzální server pro 20 lidí. Na to potřebujete
+víc boxů nebo jinou třídu stroje.
+
+## Časté chyby
+
+- **Koupit referenční DGX bez srovnání OEM** — platíte za logo.
+- **Čekat 70 tok/s z výchozího receptu** — bez MTP a patchů to
+  neplatí.
+- **Provozovat 262k kontext pro všechny** — KV cache vytlačí ostatní.
+- **Ignorovat spotřebu a hluk** — 240 W napájení a ventilátory
+  nejsou do obýváku.
+- **Nemít plán aktualizací** — DGX OS a vLLM se mění.
+
+## Otázky před koupí
+
+1. **Která OEM varianta?** ASUS 1TB, GIGABYTE 4TB, nebo referenční
+   NVIDIA?
+2. **Je cena vč. DPH a dopravy?** U B2B se to liší.
+3. **Jaká je záruka a servis?** On-site vs. pošta.
+4. **Kolik lidí bude box obsluhovat?** 1–4, nebo víc?
+5. **Jaký kontext bude běžný?** 32k, 128k, nebo 262k?
+6. **Kdo bude spravovat DGX OS a vLLM?**
+7. **Je v plánu clustering?** Pak potřebujete síť a licence.
+
+## Co měřit po nasazení
+
+- **TTFT** na vašich promptech, ne jen benchmark.
+- **Prefill** u typického dokumentu.
+- **Decode** při jednom a čtyřech streamech.
+- **Paměť** — kolik zbývá po načtení a při 128k.
+- **Teplotu a hluk** v místnosti, kde box stojí.
+- **Chyby** — kolik výstupů musí člověk opravit.
+
+Bez těchto šesti čísel nevíte, jestli box dělá, co jste čekali.
+
+## Jak vybrat variantu
+
+- **1 TB vs. 4 TB** — podle počtu modelů a datasetů.
+- **OEM vs. referenční DGX** — cena a servis vs. přesná NVIDIA
+  konfigurace.
+- **Záruka** — on-site se hodí pro firmu, pošta pro jednotlivce.
+
+## Kde je limit
+
+- **Cena** — za stejnou paměť zaplatíte víc než u Strix Halu.
+- **Linux** — nejsou tu Windows aplikace.
+- **Uzavřený stack** — méně svobody než u x86.
+- **Souběžnost** — jeden box pro 1–4 lidi.
+- **Chybějící měření** — TTFT a prefill na jednotném promptu, 4+ streamy.
+
+<AlzaCena kategorie="boxy" text="Ověřit cenu DGX Sparku" />
+
+## Praxe: co lidé řeší
+
+| Problém | Řešení |
+|---|---|
+| Model se načítá pomalu | zkontrolujte disk a první načtení |
+| 70 tok/s se nedaří | použijte MTP a správný recept |
+| 128k kontext nejde | snižte kontext nebo kvantizujte KV cache |
+| Box je slyšet | power limit a umístění |
+| Aktualizace rozbila vLLM | držte pinovanou verzi |
+
+## Časté mýty
+
+- **„DGX Spark je vždy nejrychlejší.“** Ne; rozhoduje konfigurace
+  a workload.
+- **„Stačí 70 tok/s z datasheetu.“** Bez MTP a patchů to neplatí.
+- **„DGX OS je Linux jako každý.“** Je uzavřenější a aktualizace
+  řídí NVIDIA.
+
+## Co si zapamatovat
+
+- **CUDA a DGX OS** jsou hlavní důvod koupě.
+- **162 990 Kč** je nejlevnější GB10, ne referenční DGX.
+- **36,8 tok/s** je konzervativní baseline.
+- **70 tok/s** je optimalizovaný recept.
+- **Jeden box pro 1–4 lidi**, ne pro tým 20.
+
+## Kudy dál
+
+- [DGX Spark — zařízení](/zarizeni/dgx-spark/) — cena a konfigurace.
+- [Návod pro DGX Spark](/navody/dgx-spark/) — první spuštění.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co na něm poběží.
+- [CUDA](/slovnik/software/cuda/) — proč na ní záleží.
+- [vLLM](/slovnik/software/vllm/) — server a OpenAI API.
+- [Srovnání zařízení](/zarizeni/srovnani/) — všechny stroje.
 
 ## Zdroje
 
-- [DGX Spark](/zarizeni/dgx-spark/)
-- [DGX Spark OEM](/zarizeni/dgx-spark/)
-- [Návod pro DGX Spark](/navody/dgx-spark/)
-- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [vLLM recipes — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+- [madeye — DGX Spark measurement](https://madeye.github.io/qwen38-flash-next-on-dgx-spark/)
+- [Všechna měření](/zdroje/mereni/)
+- [Alza.cz — AI počítače](https://www.alza.cz/ai-pc/18907789.htm)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

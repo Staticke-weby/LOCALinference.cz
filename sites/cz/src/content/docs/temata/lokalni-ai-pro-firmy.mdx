@@ -141,6 +141,65 @@ jako orientaci, ne jako právní radu.
 - **Jeden box obslouží 1–4 lidi.** Pro víc se přidává box, ne dražší
   stroj. Konkrétní limity jsou ve [srovnání](/zarizeni/srovnani/).
 
+## Pilotní checklist
+
+Než pustíte model do provozu, projděte těchto deset bodů:
+
+- [ ] **Proces** je popsaný a opakuje se aspoň několikrát týdně.
+- [ ] **Vstupy** jsou známé: jaké dokumenty, odkud a v jaké kvalitě.
+- [ ] **Výstup** má jasnou podobu a kontrolu.
+- [ ] **Baseline** existuje: čas, chyby a náklady před nasazením.
+- [ ] **Data** mají právní základ a oprávnění.
+- [ ] **Model a kvantizace** jsou zmrazené pro dobu testu.
+- [ ] **Logy** zaznamenávají, kdo co zadal a co dostal.
+- [ ] **Lidská kontrola** je u citlivých výstupů povinná.
+- [ ] **Zálohy** a obnova jsou vyzkoušené.
+- [ ] **Kritérium úspěchu** je číslo, ne dojem.
+
+Když některý bod chybí, pilot může „fungovat“, ale nedá se z něj
+udělat rozhodnutí.
+
+## Kdy projekt zastavit
+
+Lokální AI není projekt, který musí za každou cenu pokračovat. Zastavte
+ho, když:
+
+- **Kvalita** je pod vaší hranicí i po změně kvantizace nebo promptu.
+- **Čas** se nezkrátil, jen se přesunul na kontrolu.
+- **Lidé** výstupům nevěří a stejně vše dělají ručně.
+- **Náklady** na správu převýší přínos.
+- **Riziko** je vyšší než užitek — citlivá data, chybovost, odpovědnost.
+
+Zastavení pilotu je úspěch, pokud vás ušetřilo dražšího projektu.
+Rozhodnutí zapište a použijte při dalším pokusu.
+
+## Data a oprávnění
+
+| Typ dat | Co s nimi | Riziko |
+|---|---|---|
+| **Veřejné dokumenty** | lze použít bez zvláštního režimu | nízké |
+| **Interní know-how** | oprávnění, logy, zálohy | střední |
+| **Osobní údaje** | GDPR, minimalizace, retence | vysoké |
+| **Smlouvy a finance** | přesnost, audit, mlčenlivost | vysoké |
+| **Zdravotní data** | zvláštní kategorie, AI Act | velmi vysoké |
+| **Kód a tajemství** | sandbox, žádné klíče v promptu | vysoké |
+
+Lokální box snižuje riziko přenosu, ale neřeší oprávnění. Kdo má
+přístup k souborům, má přístup i k modelu, který je čte.
+
+## Kdo co dělá
+
+| Role | Odpovědnost |
+|---|---|
+| **Vlastník procesu** | ví, co je správný výstup, a nese odpovědnost |
+| **Správce boxu** | aktualizace, zálohy, monitoring, incidenty |
+| **Kontrolor** | prochází výstupy a označuje chyby |
+| **IT/bezpečnost** | oprávnění, síť, logy, incidenty |
+| **Vedení** | rozpočet, priority, rozhodnutí o pokračování |
+
+Bez vlastníka procesu vznikne „AI projekt“, který nikdo nepoužívá.
+Bez správce boxu se za půl roku rozpadne.
+
 ## Pořízení: 10 otázek na dodavatele
 
 1. Jaká je přesná konfigurace a jak dlouho je skladem?
@@ -154,6 +213,28 @@ jako orientaci, ne jako právní radu.
 9. Kdo má přístup k datům a logům?
 10. Jaké jsou podmínky vrácení a servisu?
 
+## Čtyři otázky před schválením
+
+1. **Jaký problém to řeší?** Jedna věta, ne „chceme AI“.
+2. **Jak poznáme úspěch?** Číslo, ne dojem.
+3. **Kdo nese odpovědnost za chybu?** Model ji nenese.
+4. **Co se stane, když to vypneme?** Kdo bude mít data a kdo proces.
+
+Když nedokážete odpovědět, projekt ještě není připravený.
+
+## Co napsat do rozhodnutí
+
+Pokud projekt schválíte, zapište:
+
+- **proces** a jeho vlastníka,
+- **data** a právní základ,
+- **model** a kvantizaci,
+- **kritérium úspěchu** a datum vyhodnocení,
+- **rozpočet** na stroj, provoz a správu,
+- **kdo** řeší incidenty a kdo schvaluje změny.
+
+Bez toho se projekt za tři měsíce nedá vyhodnotit.
+
 ## Co chybí
 
 - Případové studie českých firem a měření přínosu.
@@ -161,6 +242,15 @@ jako orientaci, ne jako právní radu.
 - Veřejná data o provozních nákladech.
 
 <AlzaCena kategorie="boxy" text="Co to stojí na Alze" />
+
+## Co říct vedení
+
+- **Není to náhrada cloudu.** Je to nástroj pro citlivé a opakované
+  úlohy.
+- **Je to provoz, ne nákup.** Bez správce se neobejde.
+- **Začneme pilotem.** Jeden proces, čtyři týdny, měřitelný výsledek.
+- **Rizika jsou známá.** Data, oprávnění, kvalita, odpovědnost.
+- **Rozhodneme se podle čísel.** Ne podle dojmu z dema.
 
 ## Kudy dál
 

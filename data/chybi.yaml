@@ -210,6 +210,7 @@ polozky:
     kde:
       - zarizeni/rtx-spark-mini
       - zarizeni/rtx-spark-notebook
+      - temata/rtx-spark
     priorita: P0
     stav: otevreno
     davka: 2

@@ -1,7 +1,7 @@
 ---
-title: "Strix Halo cena a výkon pro lokální AI"
+title: "Strix Halo: cena, výkon a kdy se vyplatí"
 description: "Strix Halo 128 GB: česká cena 119 990 Kč, Qwen3.8 Flash Next, ROCm a Vulkan, slabší prefill a kde je limit při dlouhém kontextu."
-last_verified: 2026-11-04
+last_verified: 2026-11-10
 sidebar:
   label: Strix Halo cena
   order: 4
@@ -11,45 +11,231 @@ import AlzaCena from '../../../components/AlzaCena.astro';
 
 Strix Halo je nejlevnější cesta k 128 GB unified paměti. Acemagic A10A
 a Acer Veriton RA110 stojí **119 990 Kč vč. DPH** (128 GB / 2 TB).
-V USA cena začíná na 3 449 USD (75 tis. Kč, odhad).
+V USA cena začíná na 3 449 USD bez DPH a dopravy. Za ušetřené peníze
+platíte menší zralostí softwaru a slabším prefilllem.
 
-<AlzaCena kategorie="boxy" text="Cena Strix Halu na Alze" />
+## Rychlá odpověď
+
+- **Pro koho:** firma nebo živnostník, který chce 128 GB za nejnižší
+  cenu a nevadí mu ROCm/Vulkan.
+- **Za co platíte:** x86, Windows/Linux, otevřenější ekosystém.
+- **Kdy ne:** potřebujete CUDA, nejrychlejší prefill nebo tým 20 lidí.
 
 ## Co za to dostanete
 
-- **128 GB unified paměti**, 256 GB/s, x86.
-- **Qwen3.8 Flash Next** běží přes llama.cpp nebo vLLM-ROCm.
-- Windows 11 Pro nebo Linux.
-- Otevřenější ekosystém než CUDA.
+| Parametr | Hodnota |
+|---|---|
+| Paměť | 128 GB unified |
+| Propustnost | 256 GB/s |
+| CPU/GPU | Ryzen AI Max+ 395, Radeon 8060S |
+| OS | Windows 11, Linux |
+| Software | ROCm, Vulkan, llama.cpp, vLLM-ROCm |
+| Příkon | výrobci neuvádějí jednotně |
+
+Na 128 GB poběží [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+přes llama.cpp a GGUF. NVFP4 zde neběží; používá se
+[GGUF](/slovnik/software/gguf/) kvantizace.
+
+## Cena a varianty
+
+| Varianta | Cena vč. DPH | Poznámka |
+|---|---:|---|
+| Acemagic A10A 128GB/2TB | 119 990 Kč | skladem, Windows 11 Pro |
+| Acer Veriton RA110 128GB/2TB | 119 990 Kč | dostupnost až 2027 |
+| AMD Ryzen AI Halo 128GB | česká cena není | v ČR nedostupné |
+
+Obě varianty mají stejný čip, paměť a software. Liší se značkou,
+zárukou a dostupností. Podrobnosti jsou v
+[konfiguracích](/zarizeni/strix-halo/) a na stránce
+[Strix Halo](/zarizeni/strix-halo/).
 
 ## Jak rychle běží Qwen3.8 Flash Next
 
 Komunitní reporty ukazují **36–79 tok/s** podle enginu, kvantizace
-a délky kontextu. Prefill je slabší než u CUDA strojů: na dlouhý
-dokument počítejte s delším čekáním na první token.
+a délky kontextu. Prefill je slabší než u CUDA strojů: na Strix Halu
+se pohybuje mezi **0,8 a 2,4 tis. tok/s**, takže 32k dokument může
+znamenat desítky sekund před prvním tokenem.
+
+| Provoz | Co čekat |
+|---|---|
+| Krátký chat | 50–79 tok/s podle konfigurace |
+| 32k dokument | pomalejší první token |
+| 128k kontext | výrazně delší prefill a méně souběžnosti |
+| 4 uživatelé | na hraně, záleží na kontextu |
+
+Čísla jsou převzatá z veřejných měření, ne naše. Konfigurace je v
+[datové kartě](/data/qwen3-8-flash-next-strix-halo/).
+
+## Software: ROCm a Vulkan
+
+Strix Halo nemá CUDA. Na výběr je:
+
+- **[llama.cpp](/slovnik/software/llamacpp/)** s Vulkanem nebo ROCm —
+  nejjednodušší a nejčastější cesta.
+- **[vLLM](/slovnik/software/vllm/) s ROCm** — funguje, ale je to
+  cesta pro trpělivé.
+- **Ollama** — pohodlný start, méně kontroly.
+
+Na Windows je Vulkan často nejjednodušší. Na Linuxu se vyplatí
+[ROCm](/slovnik/software/rocm/) a správné nastavení GTT/UMA. Počítejte
+s tím, že některé optimalizace přijdou později než u CUDA.
+
+## NPU: pro Qwen3.8 ho nepoužijete
+
+Marketing uvádí 50 TOPS pro NPU. To je číslo pro určitý runtime,
+ne pro váš model. Ollama ani vLLM NPU nepoužívají; běží na GPU.
+NPU se hodí pro malé modely přes FastFlowLM nebo Ryzen AI SDK.
+Qwen3.8 Flash Next je GPU záležitost.
 
 ## Kdy zvolit Strix Halo
 
 - Chcete **nejnižší cenu** za 128 GB.
 - CUDA nepotřebujete.
 - Nevadí vám ROCm a občasné kompromisy v ovladačích.
+- Chcete **Windows i Linux** na jednom stroji.
+- Provozujete **1–4 uživatele**, ne tým.
 
 ## Kdy ne
 
-- Potřebujete nejzralejší software a CUDA.
-- Chcete nejrychlejší prefill.
-- Provozujete 20+ uživatelů.
+- Potřebujete **CUDA** a nejzralejší software.
+- Chcete **nejrychlejší prefill**.
+- Provozujete **20+ uživatelů**.
+- Potřebujete **notebook** — Strix Halo je stolní box.
+- Chcete **NVFP4** — na AMD neběží.
 
-## Co chybí
+## Provoz a TCO
 
-- TTFT na jednotném promptu.
-- Souběžnost 4+ při 128k kontextu.
+Strix Halo je nejlevnější na pořízení, ale provozní náklady závisí
+na příkonu, vytížení a správě. Výrobci neuvádějí jednotný příkon;
+změřte si ho nebo použijte údaj konkrétního OEM. Elektřinu spočítejte
+podle vzorce v [ceně lokální AI](/temata/cena-lokalni-ai/).
+
+K tomu připočítejte:
+
+- správu ovladačů ROCm/Vulkan,
+- zálohy a monitoring,
+- záruku a servis podle OEM,
+- čas na řešení kompatibility.
+
+## Srovnání s alternativami
+
+| Zařízení | Výhoda | Nevýhoda |
+|---|---|---|
+| **Strix Halo** | nejnižší cena, Windows/Linux | ROCm, slabší prefill |
+| **[DGX Spark](/zarizeni/dgx-spark/)** | CUDA, DGX OS, vLLM | vyšší cena, Linux |
+| **[RTX Spark notebook](/zarizeni/rtx-spark-notebook/)** | mobilita, Windows, CUDA | throttling, ARM64 |
+| **[Mac Studio](/zarizeni/mac-studio/)** | MLX, ticho, 614 GB/s | bez CUDA, macOS |
+| **[Gorgon Halo](/zarizeni/gorgon-halo/)** | 192 GB, delší kontext | vyšší cena, stejná propustnost |
+
+## Který OEM a proč
+
+V ČR jsou dvě varianty za stejnou cenu:
+
+- **Acemagic A10A** — skladem, malé provedení, Windows 11 Pro.
+- **Acer Veriton RA110** — firemní značka a servis, ale dostupnost
+  až 2027.
+
+Obě mají stejný čip, 128 GB a 2 TB. Rozdíl je v záruce, servisu
+a tom, jestli potřebujete stroj hned. Pokud ano, Acemagic je
+realistická volba; pokud chcete Acer kvůli firemní podpoře, počítejte
+s čekáním.
+
+## Windows vs. Linux
+
+| | Windows 11 | Linux |
+|---|---|---|
+| Instalace | jednodušší pro běžného uživatele | více práce |
+| Vulkan | ano | ano |
+| ROCm | omezené | **nejlepší** |
+| vLLM | problematické | možné |
+| Stabilita | záleží na ovladačích | záleží na distribuci |
+
+Pro Qwen3.8 a llama.cpp je Windows použitelný. Pro vLLM a ROCm je
+Linux přirozenější. Pokud nechcete řešit ovladače, zvažte, jestli
+není lepší připlatit za CUDA stroj.
+
+## Časté chyby
+
+- **Čekat CUDA výkon** — Strix Halo není CUDA.
+- **Používat NPU na Qwen3.8** — NPU není pro tento model.
+- **Podcenit prefill** — dlouhý dokument zdrží.
+- **Koupit Acer a čekat na sklad** — termín může být 2027.
+- **Nemít chlazení a prostor** — box není notebook.
+
+## Otázky před koupí
+
+1. **Acemagic, nebo Acer?** Skladem vs. termín 2027.
+2. **Windows, nebo Linux?** Podle toho, co potřebujete.
+3. **Stačí vám llama.cpp?** Pokud ano, Strix je dobrá volba.
+4. **Jaký kontext?** 32k, 128k, nebo 262k?
+5. **Kdo vyřeší ROCm a Vulkan?**
+6. **Jaký je příkon a hluk konkrétního OEM?**
+7. **Nepotřebujete CUDA?** Pokud ano, berte jiný stroj.
+
+## Co měřit po nasazení
+
+- **Prefill** na 32k a 128k dokumentu.
+- **Decode** při jednom a čtyřech streamech.
+- **TTFT** na typickém dotazu.
+- **Teplotu a hluk** v zátěži.
+- **Stabilitu** po několika hodinách.
+- **Kvalitu** výstupů proti baseline.
+
+## Jak vybrat variantu
+
+- **Acemagic vs. Acer** — skladem vs. termín 2027.
+- **Windows vs. Linux** — podle software, který chcete provozovat.
+- **2 TB SSD** — u obou variant stejné; další úložiště řešte externě.
+
+## Kde je limit
+
+- **Prefill** — dlouhý dokument zdržuje.
+- **ROCm** — méně zralé než CUDA.
+- **Dostupnost** — Acer má termín až 2027.
+- **Příkon a hluk** — výrobci neuvádějí jednotně.
+- **Souběžnost** — jeden box pro 1–4 lidi.
+- **Chybějící měření** — TTFT a 4+ streamy na jednotném promptu.
+
+<AlzaCena kategorie="boxy" text="Cena Strix Halu na Alze" />
+
+## Praxe: co lidé řeší
+
+| Problém | Řešení |
+|---|---|
+| ROCm nevidí GPU | zkontrolujte verzi a oprávnění |
+| Vulkan je pomalý | zkuste ROCm nebo jiný backend |
+| Dlouhý dokument zdržuje | kratší kontext, RAG, chunking |
+| Acer není skladem | Acemagic nebo jiný stroj |
+| Příkon a hluk | změřte konkrétní OEM |
+
+## Časté mýty
+
+- **„Strix Halo je pomalý.“** Decode je dobrý; slabší je prefill.
+- **„ROCm je totéž co CUDA.“** Není; ekosystém a optimalizace se liší.
+- **„NPU pomůže Qwen3.8.“** Nepomůže; model běží na GPU.
+
+## Co si zapamatovat
+
+- **119 990 Kč** je nejnižší cena za 128 GB.
+- **256 GB/s** a x86, ne CUDA.
+- **Prefill je slabší** než u CUDA strojů.
+- **ROCm/Vulkan** jsou kompromis.
+- **Acer může mít termín 2027.**
+
+## Kudy dál
+
+- [Strix Halo — zařízení](/zarizeni/strix-halo/) — cena a konfigurace.
+- [Návod pro Strix Halo](/navody/strix-halo/) — první spuštění.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co na něm poběží.
+- [ROCm](/slovnik/software/rocm/) — proč je druhá liga.
+- [Prefill](/slovnik/vykon/prefill/) — proč dlouhý dokument zdržuje.
+- [Srovnání zařízení](/zarizeni/srovnani/) — všechny stroje.
 
 ## Zdroje
 
-- [Strix Halo](/zarizeni/strix-halo/)
-- [Strix Halo OEM](/zarizeni/strix-halo/)
-- [Návod pro Strix Halo](/navody/strix-halo/)
-- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+- [AMD — Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-max-300-series/amd-ryzen-ai-max-plus-395.html)
+- [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+- [Data: Qwen3.8 na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+- [Alza.cz — AI počítače](https://www.alza.cz/ai-pc/18907789.htm)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

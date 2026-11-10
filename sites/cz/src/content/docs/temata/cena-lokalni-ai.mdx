@@ -131,6 +131,83 @@ Když je výsledek menší než 36 měsíců, lokální stroj se při stejném
 objemu práce vyplatí. Když je větší, cloud je pořád levnější — nebo
 jste si jisti, že cena cloudu poroste.
 
+## Tři scénáře, tři různé ekonomiky
+
+TCO se nedá spočítat jednou tabulkou pro všechny. Liší se podle toho,
+kdo stroj používá.
+
+| Scénář | Co dosadit | Na co se ptát |
+|---|---|---|
+| **Živnostník** | cena stroje, hodiny práce, cena kWh | ušetří mi model víc času, než mě stojí provoz? |
+| **Tým 2–4 lidé** | stejné + správa a zálohy | zvládne jeden box frontu, nebo potřebuji druhý? |
+| **Dokumenty a RAG** | úložiště, zálohy, kvalita, kontrola | kolik stojí chyba a kdo ji odhalí? |
+
+U živnostníka často rozhoduje **čas**, ne cena hardwaru. U týmu
+rozhoduje **souběžnost** a správa. U dokumentů rozhoduje **kvalita
+a odpovědnost** — levný box, který občas vymyslí číslo, může být
+dražší než cloud.
+
+## Jak číst českou cenu
+
+Když vidíte „od 119 990 Kč“, zkontrolujte:
+
+- **Je cena s DPH?** Maloobchod obvykle ano, B2B může být bez.
+- **Je v ceně doprava?** U velkých boxů ano, u některých ne.
+- **Je v ceně adaptér?** U notebooků někdy chybí.
+- **Jaká je přesná varianta?** 1 TB vs. 4 TB mění cenu i dostupnost.
+- **Je skladem, nebo na cestě?** „Na cestě“ může znamenat měsíce.
+- **Jaká je záruka a servis?** On-site je něco jiného než pošta.
+- **Jde o akční cenu?** Zapište si datum; web drží jen aktuální cenu.
+
+Cena bez těchto údajů není srovnatelná. Proto se v tabulce výše
+bavíme o konkrétních variantách, ne o „nejlevnějším AI boxu“.
+
+## Skryté náklady
+
+| Položka | Proč ji neignorovat |
+|---|---|
+| **UPS** | výpadek při zápisu může poškodit data |
+| **Zálohy** | disk se pokazí; model se dá stáhnout znovu, data ne |
+| **Síť** | 10 GbE nebo Wi-Fi 7 pro přenos velkých souborů |
+| **Školení** | lidé musí vědět, co model umí a co ne |
+| **Správa** | aktualizace, monitoring, incidenty |
+| **Elektřina** | podle příkonu a vytížení |
+| **Místo a hluk** | box v kanceláři může být slyšet |
+| **Čas** | kontrola výstupů a opravy |
+
+U malého týmu bývá **správa a čas** větší položka než elektřina.
+Když je nemá kdo dělat, lokální AI se rozpadne dřív než cloud.
+
+## Rozhodovací tabulka
+
+| Rozpočet | Co pořídíte | Pro koho |
+|---|---|---|
+| **do 130 tis. Kč** | Strix Halo 128 GB | nejnižší cena, Windows/Linux |
+| **125–170 tis. Kč** | RTX Spark notebook | mobilita a Windows |
+| **160–250 tis. Kč** | DGX Spark / GB10 OEM | CUDA, Linux, tým |
+| **150–300 tis. Kč** | Mac Studio / MacBook Pro | Apple, MLX, ticho |
+| **6 199–7 499 USD** | Gorgon Halo 192 GB | delší kontext, ne rychlost |
+
+Poslední řádek je záměrně mimo české ceny: Gorgon se v ČR neprodává
+za českou maloobchodní cenu. US cena 6 199–7 499 USD je bez DPH
+a dopravy.
+
+## Náklady na tři roky: checklist
+
+Pro tříletý horizont si projděte:
+
+- [ ] **Pořízení** — cena konkrétní varianty vč. DPH a dopravy.
+- [ ] **Elektřina** — příkon × hodiny × cena kWh.
+- [ ] **Správa** — kdo a kolik hodin měsíčně.
+- [ ] **Zálohy** — disk, cloud nebo obojí.
+- [ ] **Záruka** — prodloužení a on-site servis.
+- [ ] **Školení** — kolik času zabere naučit lidi pracovat s výstupy.
+- [ ] **Rezerva** — na opravu nebo výměnu po záruce.
+- [ ] **Zbytková hodnota** — kolik stroj vynese po třech letech.
+
+Když některá položka chybí, TCO je podhodnocené. Nejčastěji se
+zapomíná na **správu a školení**, protože nejsou na faktuře.
+
 ## Jak ušetřit bez ztráty použitelnosti
 
 - **128 GB místo 192 GB**, pokud nepotřebujete delší kontext.
@@ -138,6 +215,15 @@ jste si jisti, že cena cloudu poroste.
 - **1 TB SSD** místo 4 TB, pokud modely stahujete postupně.
 - **Kvantizace** místo vyšší přesnosti, když kvalita drží.
 - **Kratší kontext** a RAG místo posílání celých dokumentů.
+
+## Jak poznat dobrou cenu
+
+- **Porovnávejte stejnou variantu** — 1 TB vs. 4 TB, Windows vs. bez OS.
+- **Čtěte, co je v ceně** — DPH, doprava, adaptér, záruka.
+- **Sledujte dostupnost** — „na cestě“ není skladem.
+- **Nepočítejte s věčnou akcí** — cena se může změnit.
+- **Zapište datum** — bez data cena ztrácí smysl.
+- **Nenechte se rozhodit affiliate odkazy** — pořadí se nemění.
 
 ## Na co si dát pozor
 
@@ -148,6 +234,16 @@ jste si jisti, že cena cloudu poroste.
 - **Affiliate odkazy** nemění pořadí; ceny ověřujte u prodejce.
 
 <AlzaCena kategorie="boxy" text="Ceny v kategorii AI počítače" />
+
+## Kdy se vyplatí počkat
+
+- **Na konkrétní variantu** — 4TB nebo Windows verze může přijít.
+- **Na pokles ceny paměti** — dnes spíš roste než klesá.
+- **Na novou generaci** — může změnit poměr cena/výkon.
+- **Na vyřešení dostupnosti** — Acer RA110 má termín 2027.
+
+Čekání má smysl, když stroj nepotřebujete hned. Nemá smysl, když
+už dnes ztrácíte čas ruční prací.
 
 ## Kudy dál
 

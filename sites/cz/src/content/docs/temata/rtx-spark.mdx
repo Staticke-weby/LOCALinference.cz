@@ -1,7 +1,7 @@
 ---
-title: "RTX Spark cena a výkon: mini a notebook"
+title: "RTX Spark: cena, výkon a kdy se vyplatí"
 description: "RTX Spark mini a notebook 128 GB: české ceny od 125 990 Kč, Qwen3.8 Flash Next ve vLLM, CUDA na Windows ARM64 a kde jsou limity."
-last_verified: 2026-11-04
+last_verified: 2026-11-10
 sidebar:
   label: RTX Spark cena
   order: 5
@@ -12,48 +12,222 @@ import AlzaCena from '../../../components/AlzaCena.astro';
 RTX Spark je Windows varianta 128GB boxu s CUDA. Notebooky v české
 nabídce začínají na **125 990 Kč vč. DPH** (ASUS ProArt P14 128GB/1TB);
 Surface Laptop Ultra stojí 165 653–167 767 Kč. Mini se v českém
-maloobchodě zatím neprodává, odhad z ceny v USA je **130 550 Kč**
-(5 999 USD, odhad).
+maloobchodě zatím neprodává; v USA začíná na 5 999 USD bez DPH
+a dopravy.
+
+## Rychlá odpověď
+
+- **Pro koho:** kdo chce Windows, CUDA a mobilitu.
+- **Za co platíte:** Windows ekosystém a CUDA, ne nejnižší cenu.
+- **Kdy ne:** pokud chcete Linux, nejnižší cenu nebo nejzralejší
+  serverový stack.
+
+## Co za to dostanete
+
+| Parametr | Notebook | Mini |
+|---|---|---|
+| Paměť | 128 GB unified | 128 GB unified |
+| Propustnost | 300 GB/s | 300 GB/s |
+| GPU | Blackwell RTX | Blackwell RTX |
+| OS | Windows 11 | Windows 11 |
+| Software | CUDA, vLLM port, llama.cpp, Ollama, LM Studio | stejný základ |
+| Příkon | 45–80 W | 140 W |
+| Česká cena | 125 990–167 767 Kč | není k dispozici |
+
+Na 128 GB poběží [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+přes llama.cpp nebo komunitní vLLM port. NVFP4 závisí na verzi
+enginu a Windows ARM64.
 
 ## Notebook vs. mini
 
 | | Notebook | Mini |
 |---|---|---|
-| Cena v ČR | 125 990–167 767 Kč | ≈ 130 550 Kč (odhad) |
-| Forma | na cesty | na stůl |
+| Mobilita | **ano** | ne |
+| Baterie | funguje jako UPS | není |
 | Chlazení | throttling | stálé |
-| Qwen3.8 Flash Next | ano | ano |
+| Hluk | podle zátěže | podle ventilátoru |
+| Cena v ČR | 125 990–167 767 Kč | není |
+| Vhodné na cesty | **ano** | ne |
 
-<AlzaCena kategorie="notebooky" text="Ceny RTX Sparků" />
+Notebook je zajímavý tím, že ho vezmete k datům. Mini je levnější
+na stůl, ale v ČR ho zatím neseženete.
 
 ## Jak rychle běží Qwen3.8 Flash Next
 
-[Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) má na notebooku
-veřejné měření **35,37 tok/s** (llama.cpp) a **70,44 tok/s**
-(komunitní vLLM port). Mini zatím veřejné měření nemá.
+Notebook má veřejné měření **35,37 tok/s** (llama.cpp) a **70,44 tok/s**
+(komunitní vLLM port). Rozdíl je konfigurace: MTP, CUDA graphs,
+počet requestů a teplota. Mini zatím veřejné měření nemá.
+
+| Konfigurace | Decode | Poznámka |
+|---|---:|---|
+| llama.cpp | 35,37 tok/s | konzervativní baseline |
+| vLLM port | 70,44 tok/s | optimalizovaný komunitní build |
+| Mini | `[DOPLNIT: měření]` | chybí veřejný test |
+
+Pro plánování berte **spodní hranici**. 70 tok/s není výchozí stav
+a na baterii/throttlingu může být nižší.
+
+## Windows ARM64 a CUDA
+
+RTX Spark není klasický x86 notebook. Je to Windows on Arm:
+
+- **CUDA na Windows Arm** je v roce 2026 developer preview.
+- Část Python stacku potřebuje **Arm64 kola**.
+- **vLLM** běží přes komunitní port, ne oficiální Windows build.
+- **Smart App Control** může blokovat nepodepsané nástroje.
+- Některé aplikace se spouštětí přes emulaci a ztrácí výkon.
+
+To neznamená, že to nefunguje. Znamená to, že počítejte s delším
+nastavením a méně ověřenou cestou než u DGX Sparku.
 
 ## Kdy zvolit RTX Spark
 
 - Potřebujete **Windows** a CUDA.
-- Notebook chcete na cesty, mini na stůl.
+- Notebook chcete **na cesty**.
 - CUDA stack je pro vás důležitější než cena.
+- Chcete **baterii jako UPS** při práci v terénu.
+- Stačí vám 1–4 uživatelé.
 
 ## Kdy ne
 
-- Chcete nejnižší cenu — Strix Halo je levnější.
-- Potřebujete Linux a DGX OS — berte DGX Spark.
-- Vadí vám Windows/Arm runtime.
+- Chcete **nejnižší cenu** — Strix Halo je levnější.
+- Potřebujete **Linux a DGX OS** — berte DGX Spark.
+- Vadí vám **Windows/Arm runtime**.
+- Potřebujete **stabilní server** pro tým — notebook není server.
+- Chcete **nejrychlejší prefill** — záleží na portu a konfiguraci.
 
-## Co chybí
+## Provoz a TCO
 
-- První veřejné měření RTX Spark mini.
-- Česká cena mini.
+Notebook má příkon 45–80 W, mini 140 W. Elektřinu spočítejte podle
+vzorce v [ceně lokální AI](/temata/cena-lokalni-ai/). U notebooku
+připočítejte adaptér, opotřebení baterie a případnou záruku.
+
+Provozní specifika:
+
+- **Throttling** — tenké tělo snižuje výkon po minutách.
+- **Baterie** — při dlouhém běhu se vybije; jako UPS vydrží krátký
+  výpadek.
+- **Hluk** — ventilátory podle zátěže.
+- **Aktualizace** — Windows, ovladače a ARM64 runtime.
+
+## Srovnání s alternativami
+
+| Zařízení | Výhoda | Nevýhoda |
+|---|---|---|
+| **RTX Spark notebook** | mobilita, Windows, CUDA | throttling, ARM64 |
+| **[DGX Spark](/zarizeni/dgx-spark/)** | CUDA, Linux, vLLM | není mobilní |
+| **[Strix Halo](/zarizeni/strix-halo/)** | nejnižší cena | ROCm, slabší prefill |
+| **[MacBook Pro](/zarizeni/macbook-pro/)** | MLX, výdrž, ticho | bez CUDA, macOS |
+| **[Gorgon Halo](/zarizeni/gorgon-halo/)** | 192 GB | vyšší cena, není mobilní |
+
+## Notebook v praxi
+
+Notebook je zajímavý tam, kde data vznikají:
+
+- **návštěva klienta** — dokumenty neodejdou z notebooku,
+- **práce v terénu** — bez připojení k firemní síti,
+- **cesta** — baterie jako krátká UPS,
+- **demo** — model běží na místě.
+
+Naopak na stůl je lepší mini nebo DGX Spark: lepší chlazení,
+stabilnější výkon a nižší cena za stejný čip.
+
+## Windows ARM64: co otestovat
+
+Před koupí si vyzkoušejte:
+
+- **Instalaci CUDA a ovladačů** — funguje vaše verze?
+- **vLLM port** — nastartuje a odpovídá na API?
+- **llama.cpp** — vidí GPU a používá správný backend?
+- **Python balíčky** — mají Arm64 kola?
+- **Smart App Control** — neblokuje vaše nástroje?
+- **Throttling** — jaký výkon drží po 10 minutách?
+
+Když některý krok nefunguje, počítejte s časem na práci.
+
+## Časté chyby
+
+- **Čekat x86 software** — některé aplikace nejdou nebo jsou pomalé.
+- **Provozovat notebook jako server** — throttling a baterie.
+- **Koupit mini bez české ceny** — dováží se z US.
+- **Spoléhat na 70 tok/s** — je to optimalizovaný port, ne výchozí.
+- **Ignorovat adaptér a záruku** — u některých variant chybí.
+
+## Otázky před koupí
+
+1. **Notebook, nebo mini?** Mobilita vs. stůl.
+2. **Je mini v ČR dostupné?** Zatím ne; dováží se z US.
+3. **Jaká je přesná varianta?** 128GB/1TB vs. vyšší.
+4. **Funguje váš software na Windows ARM64?**
+5. **Jaký je reálný výkon po 10 minutách?**
+6. **Kdo vyřeší CUDA a vLLM port?**
+7. **Stačí vám 1–4 uživatelé?**
+
+## Co měřit po nasazení
+
+- **Decode** v llama.cpp a vLLM portu.
+- **Throttling** po 10 a 30 minutách.
+- **Teplotu a hluk** v zátěži.
+- **Výdrž** na baterii při běžné práci.
+- **TTFT** na typickém promptu.
+- **Stabilitu** Windows ARM64 po aktualizaci.
+
+## Jak vybrat variantu
+
+- **Notebook vs. mini** — mobilita vs. stůl a stabilní chlazení.
+- **1 TB vs. vyšší** — podle modelů a datasetů.
+- **Záruka a adaptér** — u některých variant chybí.
+
+## Kde je limit
+
+- **Windows ARM64** — méně zralé než Linux/x86.
+- **Throttling** — notebook není server.
+- **Mini** — žádná česká cena, žádné veřejné měření.
+- **Souběžnost** — jeden box pro 1–4 lidi.
+- **CUDA** — na Arm64 je to preview, ne stoprocentní ekosystém.
+
+<AlzaCena kategorie="notebooky" text="Ceny RTX Sparků" />
+
+## Praxe: co lidé řeší
+
+| Problém | Řešení |
+|---|---|
+| vLLM na Windows nejde | použijte komunitní port |
+| CUDA nevidí GPU | zkontrolujte ovladače a Arm64 |
+| Notebook throttluje | power limit a chlazení |
+| Mini není v ČR | dovoz z US, záruka |
+| Výkon po aktualizaci klesl | pinujte verze a měřte |
+
+## Časté mýty
+
+- **„Notebook je server.“** Není; throttling a baterie ho limitují.
+- **„Windows ARM64 je jako x86.“** Není; část softwaru chybí.
+- **„70 tok/s je výchozí.“** Je to optimalizovaný komunitní port.
+
+## Co si zapamatovat
+
+- **Notebook od 125 990 Kč**, mini v ČR není.
+- **Windows a CUDA** jsou hlavní argument.
+- **35,37 tok/s** je baseline, 70 je optimalizovaný port.
+- **ARM64 a throttling** jsou limity.
+- **Mini nemá veřejné měření.**
+
+## Kudy dál
+
+- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — cena a konfigurace.
+- [RTX Spark mini](/zarizeni/rtx-spark-mini/) — co víme a co chybí.
+- [Návod pro RTX Spark](/navody/rtx-spark/) — první spuštění.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co na něm poběží.
+- [CUDA](/slovnik/software/cuda/) — proč na ní záleží.
+- [Throttling](/slovnik/provoz/throttling/) — proč notebook ztrácí výkon.
 
 ## Zdroje
 
-- [RTX Spark mini](/zarizeni/rtx-spark-mini/)
-- [RTX Spark notebook](/zarizeni/rtx-spark-notebook/)
-- [RTX Spark notebook OEM](/zarizeni/rtx-spark-notebook/)
-- [Návod pro RTX Spark](/navody/rtx-spark/)
+- [NVIDIA — RTX Spark](https://www.nvidia.com/en-us/products/rtx-spark/)
+- [NVIDIA — Windows on Arm porting guide](https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html)
+- [Microsoft — Surface Laptop Ultra](https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8)
+- [NVIDIA forum — native vLLM on RTX Spark](https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530)
+- [vllm-for-rtx-spark](https://github.com/devjeonghwan/vllm-for-rtx-spark)
+- [Alza.cz — RTX Spark notebooky](https://www.alza.cz/notebooky-rtx-spark/18924563.htm)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*
