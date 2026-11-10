@@ -15,6 +15,19 @@
   objednaci_kod: Ace1a4n
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-09
+  titulek: "Acemagic A10A 128GB: cena, Qwen3.8 a co zvládne"
+  description: "Acemagic A10A s Ryzen AI Max+ 395, 128 GB a 2 TB. Cena 119 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next."
+  popis: "Nejlevnější 128GB box v katalogu. Acemagic A10A je malý Windows stroj s Ryzen AI Max+ 395, 128 GB unified paměti a 2 TB SSD. Hodí se jako první lokální AI box pro jednoho až čtyři lidi; počítejte s ROCm/Vulkan a slabším prefillem."
+  pro_koho: "Pro firmu nebo živnostníka, který chce nejnižší cenu za 128 GB a provoz na Windows. Pro toho, kdo nepotřebuje CUDA ani DGX OS."
+  silne:
+    - "Nejnižší cena 128 GB v katalogu"
+    - "Windows 11 Pro a malé provedení"
+    - "128 GB + 2 TB v ceně"
+  slabe:
+    - "ROCm/Vulkan místo CUDA"
+    - "Slabší prefill než u CUDA strojů"
+    - "Pro 1–4 uživatele, ne pro tým"
+  kdy_ne: "Pokud potřebujete CUDA, NVFP4 nebo server pro víc lidí, sáhněte po DGX Sparku nebo RTX Sparku. Pokud chcete nejvyšší kvalitu za každou cenu, tento box ji nedodá."
   poznamka: "Novinka; Tiny; Windows 11 Pro; HDMI 2.0 a DisplayPort 2.0."
 
 - id: acer-veriton-ra110-128-2tb
@@ -29,6 +42,19 @@
   objednaci_kod: TC32k2h9pNAD
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
+  titulek: "Acer Veriton RA110 128GB: cena, Qwen3.8 a co zvládne"
+  description: "Acer Veriton RA110 s Ryzen AI Max+ 395, 128 GB a 2 TB. Cena 119 990 Kč vč. DPH, dostupnost a co na něm poběží."
+  popis: "Stejně levný 128GB box jako Acemagic, ale od Aceru. Acer Veriton RA110 je pracovní stanice s Windows 11 Pro, 128 GB unified paměti a 2 TB SSD. Liší se značkou, zárukou a dostupností."
+  pro_koho: "Pro firmu, která preferuje Acer a firemní záruku nebo servis, a chce nejnižší cenu za 128 GB."
+  silne:
+    - "Firemní značka a servis"
+    - "Windows 11 Pro"
+    - "128 GB + 2 TB"
+  slabe:
+    - "Dostupnost až 2027"
+    - "ROCm/Vulkan místo CUDA"
+    - "Stejný výkon jako Acemagic"
+  kdy_ne: "Pokud potřebujete stroj hned nebo CUDA, sáhněte po Acemagic, DGX Sparku nebo RTX Sparku."
   poznamka: "Windows 11 Pro; Wi-Fi; 2TB SSD."
 
 - id: amd-ryzen-ai-halo-128

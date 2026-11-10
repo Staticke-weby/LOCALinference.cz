@@ -98,6 +98,13 @@ export type DgxSparkOem = {
   zdroj: string;
   overeno: string | Date;
   poznamka?: string;
+  titulek?: string;
+  description?: string;
+  popis?: string;
+  pro_koho?: string;
+  silne?: string[];
+  slabe?: string[];
+  kdy_ne?: string;
 };
 
 export type StrixHaloOem = {
@@ -114,6 +121,13 @@ export type StrixHaloOem = {
   zdroj: string;
   overeno: string | Date;
   poznamka?: string;
+  titulek?: string;
+  description?: string;
+  popis?: string;
+  pro_koho?: string;
+  silne?: string[];
+  slabe?: string[];
+  kdy_ne?: string;
 };
 
 export type RtxNotebookOem = StrixHaloOem;

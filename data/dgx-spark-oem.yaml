@@ -15,6 +15,19 @@
   objednaci_kod: NRn15002
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-09
+  titulek: "ASUS Ascent GX10 1TB: cena, výkon a co na něm poběží"
+  description: "ASUS Ascent GX10 s GB10, 128 GB a 1 TB. Cena 162 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next v CUDA/vLLM."
+  popis: "Nejlevnější GB10 stroj v nabídce. Stejný čip, paměť a software jako DGX Spark, ale nižší cena a 1 TB úložiště. Pro vývojáře, kteří chtějí CUDA a DGX OS bez placení referenčního DGX Sparku."
+  pro_koho: "Pro vývojáře a malý tým, který chce CUDA, vLLM a DGX OS a chce ušetřit proti NVIDIA DGX Spark."
+  silne:
+    - "Nejnižší cena GB10 v nabídce"
+    - "CUDA + DGX OS"
+    - "Stejný výkon jako ostatní GB10"
+  slabe:
+    - "Menší úložiště než 4TB varianta"
+    - "Bez Windows"
+    - "Stejný výkon jako dražší GB10 varianty"
+  kdy_ne: "Pokud potřebujete Windows a notebook, nebo chcete 4TB úložiště a lepší dostupnost."
   poznamka: "Nejlevnější 128GB GB10 stroj v této nabídce."
 
 - id: lenovo-thinkstation-pgx-1tb
@@ -195,6 +208,19 @@
   objednaci_kod: NRn15004
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
+  titulek: "ASUS Ascent GX10 4TB: cena, výkon a co na něm poběží"
+  description: "ASUS Ascent GX10 s GB10, 128 GB a 4 TB. Cena 229 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next v CUDA/vLLM."
+  popis: "GB10 stroj s větším úložištěm pro modely a datasety. Stejný výkon jako 1TB varianta, ale 4 TB SSD. Pro ty, kdo chtějí CUDA a potřebují místo na víc modelů a záloh."
+  pro_koho: "Pro vývojáře a malý tým, který chce CUDA stroj a potřebuje místo na víc modelů, datasetů a záloh."
+  silne:
+    - "4 TB SSD"
+    - "CUDA + DGX OS"
+    - "Stejný software jako DGX Spark"
+  slabe:
+    - "Vyšší cena než 1TB"
+    - "Stejný výkon jako 1TB"
+    - "Dostupnost se může měnit"
+  kdy_ne: "Pokud stačí 1 TB a chcete ušetřit, nebo pokud potřebujete Windows a notebook."
   poznamka: "Akční cena -4 %."
 
 - id: lenovo-thinkstation-pgx-4tb

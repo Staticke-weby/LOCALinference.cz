@@ -1,7 +1,7 @@
 ---
-title: "Co je VRAM a proč se u 128GB boxů chová jinak"
-description: "VRAM je paměť grafického čipu. Vysvětlíme, proč u klasické karty rozhoduje o modelu a proč je u DGX Sparku, Strix Halu a Macu společná s procesorem."
-last_verified: 2026-11-05
+title: "VRAM: co to je a proč u 128GB boxů rozhoduje jinak"
+description: "VRAM je paměť grafického čipu. Vysvětlíme, proč u karty rozhoduje o modelu a proč je u DGX Sparku, Strix Halu a Macu společná s procesorem."
+last_verified: 2026-11-10
 sidebar:
   label: VRAM
   order: 4
@@ -10,7 +10,17 @@ sidebar:
 **VRAM** je paměť grafického čipu. U klasické grafické karty je
 oddělená od systémové RAM: karta má 16 nebo 24 GB a víc nedostane.
 Model se musí vejít tam, jinak se část přesune do pomalejší paměti
-nebo se nespustí.
+nebo se nespustí. U 128GB boxů se ale pravidla mění, protože grafika
+a procesor sdílejí jeden pool.
+
+## Rychlá odpověď
+
+- **VRAM = paměť pro grafiku.** U karty je pevně daná a nedá se
+  rozšířit.
+- **U 128GB boxů je to unified memory** — jeden pool pro CPU i GPU.
+  Model tedy neprochází přes 16GB kartu, ale může využít desítky GB.
+- **Víc VRAM neznamená automaticky víc tok/s.** Rozhoduje propustnost
+  paměti, kvantizace a software.
 
 ## Proč na tom záleží
 
@@ -19,21 +29,24 @@ váhy modelu, textový encoder, aktivace a mezipaměť pro kontext se
 musí vejít do paměti karty. U obrázků je to hlavně velikost modelu,
 u textu roste s délkou kontextu a počtem souběžných uživatelů.
 
-## U 128GB boxů je to jinak
+Na klasické kartě platí tvrdý strop. Když model potřebuje 20 GB a
+karta má 16 GB, nepomůže „přidat RAM“ — část se odloží do systémové
+paměti a rychlost spadne, nebo se model vůbec nespustí.
 
-DGX Spark, RTX Spark, Strix Halo i Apple Silicon mají **unified
-memory** — jeden paměťový pool pro procesor i grafiku. Model tedy
-nemusí „projít“ přes 16GB kartu; může využít desítky GB.
+## VRAM vs. unified memory
 
-To ale není zadarmo:
+| Co | Klasická karta | 128GB box (DGX, RTX, Strix, Mac) |
+|---|---|---|
+| Paměť | oddělená VRAM | jeden pool pro CPU i GPU |
+| Rozšíření | většinou ne | ne (připájená) |
+| Strop modelu | podle VRAM karty | podle celého poolu |
+| Rychlost | vlastní VRAM | sdílená propustnost |
+| Rezerva pro OS | malá | musí se odečíst |
 
-- **Propustnost se sdílí.** Když model běží, bere paměťovou šířku
-  i zbytek systému.
-- **Systém potřebuje rezervu.** Část paměti zůstává pro OS a aplikace.
-- **Kontext a KV cache** zabírají stejný pool jako váhy.
-
-Proto se u 128GB strojů bavíme o tom, kolik paměti zůstane po
-načtení modelu — ne o tom, jestli se model „vejde do VRAM“.
+U 128GB stroje tedy neřešíte „vejde se do 16 GB VRAM“, ale **kolik
+zůstane po načtení modelu**. Qwen3.8 Flash Next v NVFP4 má zhruba
+101 GB, takže na 128GB boxu zbývá kolem 27 GB na [KV cache](/slovnik/pamet/kv-cache/),
+aktivace a systém.
 
 ## Příklad
 
@@ -42,16 +55,52 @@ je to na hraně. Na DGX Sparku se vejde do 128 GB unified paměti
 a ještě zbyde na delší kontext nebo druhý model. Na Strix Halu je
 pool menší, protože část zabírá systém a BIOS.
 
+U Qwen3.8 Flash Next je rozdíl ještě větší: na 16GB kartě neběží
+v použitelné kvalitě vůbec, na 128GB boxu běží celý. To je důvod,
+proč tento web nezačíná u grafických karet, ale u hotových 128GB
+strojů.
+
+## Kdy VRAM rozhoduje nejvíc
+
+- **Obrázky a video** — model, rozlišení a počet snímků.
+- **Dlouhý kontext** — KV cache roste s délkou vstupu.
+- **Víc modelů najednou** — každý drží vlastní váhy.
+- **Souběžnost** — každý požadavek bere část KV cache.
+
+Naopak u krátkého chatu s jedním uživatelem se rozdíl mezi 24 a 32 GB
+projeví méně než rozdíl v propustnosti paměti.
+
+## Časté mýty
+
+- **„VRAM je vždy rychlejší než RAM.“** Není to tak jednoduché;
+  u unified memory rozhoduje propustnost a software.
+- **„Víc VRAM = víc tok/s.“** Ne. Model se sice vejde, ale rychlost
+  určuje bandwidth a počet aktivních parametrů.
+- **„Unified memory lze rozšířit.“** U těchto zařízení je připájená.
+- **„Stačí se podívat na velikost modelu.“** Je potřeba počítat
+  i KV cache a režii.
+
+## Jak zjistit, kolik máte
+
+- **NVIDIA:** `nvidia-smi` ukáže VRAM a využití.
+- **AMD:** `rocm-smi` nebo systémový monitor.
+- **macOS:** Activity Monitor a `system_profiler`.
+- **Unified memory:** dívejte se na celkový pool a rezervu, kterou si
+  bere systém; „volné GB“ nejsou totéž co dostupná paměť pro model.
+
 ## Kudy dál
 
 - [Unified memory](/slovnik/pamet/unified-memory/) — společná paměť.
 - [KV cache](/slovnik/pamet/kv-cache/) — co roste s kontextem.
 - [Kontext](/slovnik/pamet/kontext/) — okno, které model vidí.
 - [Obrázky](/generovani/obrazky/) — jaké nároky mají modely.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — kolik zabere.
 
 ## Zdroje
 
 - [NVIDIA DGX Spark — dokumentace](https://docs.nvidia.com/dgx/dgx-spark/)
+- [AMD — Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-max-300-series/amd-ryzen-ai-max-plus-395.html)
+- [Apple — Mac Studio specifikace](https://www.apple.com/mac-studio/specs/)
 - [Z-Image-Turbo — model card](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
 
-*Naposledy ověřeno: 5. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

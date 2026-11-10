@@ -77,6 +77,13 @@ export const dgxSparkOem = z
     zdroj: url,
     overeno: datum,
     poznamka: z.string().optional(),
+    titulek: z.string().optional(),
+    description: z.string().optional(),
+    popis: z.string().optional(),
+    pro_koho: z.string().optional(),
+    silne: z.array(z.string()).optional(),
+    slabe: z.array(z.string()).optional(),
+    kdy_ne: z.string().optional(),
   })
   .refine((v) => v.cena_czk_bez_dph < v.cena_czk_s_dph, {
     message: 'cena bez DPH musí být nižší než cena s DPH',
@@ -97,6 +104,13 @@ export const strixHaloOem = z
     zdroj: url,
     overeno: datum,
     poznamka: z.string().optional(),
+    titulek: z.string().optional(),
+    description: z.string().optional(),
+    popis: z.string().optional(),
+    pro_koho: z.string().optional(),
+    silne: z.array(z.string()).optional(),
+    slabe: z.array(z.string()).optional(),
+    kdy_ne: z.string().optional(),
   })
   .refine(
     (v) =>

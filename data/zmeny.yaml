@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Slovník: VRAM, kontext, NVFP4 a CUDA; konfigurace Acemagic, GX10 a RA110"
+  co_se_zmenilo: "Čtyři klíčová hesla slovníku jsou rozšířená na 578–672 slov: VRAM, kontext, NVFP4 a CUDA. Přibyly tabulky, výpočty, české příklady a bezpečnostní upozornění. Konfigurační stránky Acemagic A10A, ASUS GX10 1TB/4TB a Acer Veriton RA110 mají vlastní titulek, popis, sekci pro koho, silné stránky, slabiny a kdy je nekupovat."
+  dotcene_stranky: [slovnik/pamet/vram, slovnik/pamet/kontext, slovnik/software/nvfp4, slovnik/software/cuda, zarizeni/konfigurace/acemagic-a10a-128-2tb, zarizeni/konfigurace/asus-ascent-gx10-1tb, zarizeni/konfigurace/asus-ascent-gx10-4tb, zarizeni/konfigurace/acer-veriton-ra110-128-2tb]
+  zdroj: https://www.localinference.cz/slovnik/pamet/vram/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Slovník: šest hesel rozšířeno na 600+ slov"
   co_se_zmenilo: "Přepsáno a rozšířeno šest klíčových hesel: prefill, upscaling, ollama, vllm, huggingface a tflops. Mají novou strukturu, české příklady, tabulky, výpočty a silnější interní odkazy. Prefill a tflops nově vysvětlují vztah k TTFT a roofline; Hugging Face má přesný postup pro HF token a bezpečnost."
   dotcene_stranky: [slovnik/vykon/prefill, slovnik/software/upscaling, slovnik/software/ollama, slovnik/software/vllm, slovnik/software/huggingface, slovnik/vykon/tflops]

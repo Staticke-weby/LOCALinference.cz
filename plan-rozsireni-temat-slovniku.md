@@ -487,8 +487,8 @@ Pravidla:
 - [ ] `/temata/lokalni-ai-pro-firmy/` — 2 200 slov.
 - [ ] `/temata/qwen3-8-flash-next/` — 1 800 slov.
 - [ ] `/temata/strix-halo/`, `/temata/rtx-spark/`, `/temata/dgx-spark/` — 1 400 každá.
-- [x] 6 hesel ve slovníku na 599–658 slov: `prefill`, `upscaling`, `ollama`, `vllm`, `huggingface`, `tflops` (10. 11. 2026).
-- [ ] 4 další hesla: `vram`, `kontext`, `nvfp4`, `cuda`.
+- [x] 10 hesel ve slovníku na 578–672 slov: `prefill`, `upscaling`, `ollama`, `vllm`, `huggingface`, `tflops`, `vram`, `kontext`, `nvfp4`, `cuda` (10. 11. 2026).
+- [x] Konfigurační stránky Acemagic A10A, ASUS GX10 1TB/4TB a Acer RA110: vlastní titulek, popis, pro koho, silné stránky, slabiny a kdy nekupovat (10. 11. 2026).
 - [ ] 5 nových hesel z oblasti agentů/RAG.
 - [ ] 2 diagramy (KV cache, prefill/decode).
 
@@ -576,7 +576,7 @@ Pravidla:
 3. Přepsat `/temata/cena-lokalni-ai/`.
 4. Přepsat `/temata/lokalni-ai-pro-firmy/`.
 5. Přepsat `/temata/qwen3-8-flash-next/`.
-6. Rozšířit 10 klíčových hesel slovníku (6 hotovo 10. 11. 2026: prefill, upscaling, ollama, vllm, huggingface, tflops).
+6. Rozšířit 10 klíčových hesel slovníku (hotovo 10. 11. 2026: prefill, upscaling, ollama, vllm, huggingface, tflops, vram, kontext, nvfp4, cuda).
 7. Přidat 5 nových hesel (MCP, function calling, embeddingy, vektorová DB, prompt injection).
 8. Přidat 2 diagramy (KV cache, prefill/decode).
 9. Spustit `check:prolinkovani:strict` a zapnout do CI.

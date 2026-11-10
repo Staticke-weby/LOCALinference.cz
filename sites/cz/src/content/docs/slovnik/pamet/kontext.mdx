@@ -1,7 +1,7 @@
 ---
-title: "Co je kontext a proč maximum není doporučená hodnota"
-description: "Kontext je okno textu, které si model pamatuje. Vysvětlíme rozdíl mezi nativním maximem, doporučeným provozem a tím, co zařízení reálně udrží."
-last_verified: 2026-11-04
+title: "Kontext: co to je a proč maximum není doporučená hodnota"
+description: "Kontext je okno textu, které si model pamatuje. Vysvětlíme rozdíl mezi nativním maximem, doporučeným provozem a tím, co 128GB box reálně udrží."
+last_verified: 2026-11-10
 sidebar:
   label: Kontext
   order: 3
@@ -9,44 +9,105 @@ sidebar:
 
 **Kontext** je množství textu, které model zpracuje v jednom dotazu —
 zadání i odpověď dohromady. Udává se v tokenech: 32k znamená zhruba
-32 tisíc tokenů, tedy desítky stran textu.
+32 tisíc tokenů, tedy desítky stran textu. Větší kontext ale není
+automaticky lepší. Je to pracovní paměť, která něco stojí.
+
+## Rychlá odpověď
+
+- **Kontext = pracovní okno modelu.** Všechno, co model v daném dotazu
+  „vidí“, se musí vejít sem.
+- **Maximum z datasheetu není doporučený provoz.** U Qwen3.8 Flash Next
+  je nativní maximum 262k, doporučený provoz 128k a reálný strop závisí
+  na KV cache a souběžnosti.
+- **Delší kontext = víc paměti, pomalejší první token a často horší
+  kvalita.** Maximum je strop, ne cíl.
 
 ## Tři čísla, která se pletou
 
-- **Nativní maximum** — co model umí papírově. Qwen3.8 Flash Next má
- 262k.
-- **Doporučený provozní kontext** — kde kvalita a rychlost ještě
-  drží. U 128GB boxu je to 128k.
-- **Reálně udržitelný kontext** — co zařízení zvládne s ohledem na
-  [KV cache](/slovnik/pamet/kv-cache/) a [souběžnost](/slovnik/vykon/soubeznost/).
+| Číslo | Co znamená | U Qwen3.8 Flash Next |
+|---|---|---|
+| **Nativní maximum** | co model umí papírově | 262 144 tokenů |
+| **Doporučený provoz** | kde kvalita a rychlost drží | 128 000 tokenů |
+| **Reálný strop zařízení** | co zvládne box s KV cache a souběžností | záleží na kvantizaci a počtu uživatelů |
 
-Maximum není cíl. Čím delší kontext, tím víc paměti a tím pomalejší
-[prefill](/slovnik/vykon/prefill/) i [decode](/slovnik/vykon/decode/).
+Rozdíl mezi prvním a druhým číslem není marketing. Je to rozdíl mezi
+„model se do kontextu vejde“ a „model v něm ještě rozumně odpovídá“.
+
+## Kolik textu to je
+
+Token není slovo. V angličtině se jeden token často popisuje jako
+zhruba tři čtvrtiny slova; čeština má jiný poměr a delší slova.
+Proto berte převody jako orientační:
+
+| Kontext | Orientačně | Co to znamená |
+|---|---|---|
+| 8k | několik stran | krátký dokument, chat |
+| 32k | desítky stran | delší smlouva, článek, část kódu |
+| 128k | stovky stran | kniha nebo velký balík dokumentů |
+| 262k | velmi velký archiv | maximum modelu, ne denní provoz |
+
+Přesný počet tokenů závisí na tokenizeru. Když na tom záleží, změřte
+ho v enginu, ne odhadem.
 
 ## Proč delší kontext bolí
 
-- **Paměť** — KV cache roste lineárně s délkou.
-- **Čas** — 128k dokument znamená desítky sekund před prvním tokenem.
-- **Kvalita** — model se v dlouhém textu hůř soustředí; nejlepší
-  výsledky bývají na kratším, dobře strukturovaném zadání.
-- **Souběžnost** — dlouhý kontext sníží počet lidí, které box obslouží.
+- **Paměť** — [KV cache](/slovnik/pamet/kv-cache/) roste s délkou
+  kontextu. Na 128GB boxu tím ubývá prostor pro souběžnost.
+- **Čas** — [prefill](/slovnik/vykon/prefill/) dlouhého dokumentu
+  znamená delší [TTFT](/slovnik/vykon/ttft/).
+- **Kvalita** — model se v dlouhém textu hůř soustředí. Výzkum
+  „Lost in the Middle“ ukazuje, že informace uprostřed dlouhého
+  kontextu se hledají hůř než na začátku a na konci.
+- **Souběžnost** — dlouhý kontext sníží počet lidí, které box
+  obslouží.
 
 ## Co s tím v praxi
 
 - Posílejte **relevantní část**, ne celý dokument.
 - Shrnutí pište **po částech**, ne jedním dotazem nad vším.
 - U RAG dávejte **méně, ale přesnějších** úryvků.
+- Používejte **prefix caching**, když se začátek dotazu opakuje.
+- U dlouhých úloh počítejte s delším čekáním a nastavte očekávání.
+
+## Kdy je dlouhý kontext správná volba
+
+- **Právní a technická dokumentace** — potřebujete vidět souvislosti.
+- **Kód** — jeden soubor nebo diff může být velký.
+- **Agentní úlohy** — historie a výstupy nástrojů se posílají znovu.
+- **Analýza jednoho velkého dokumentu** — když nejde rozdělit.
+
+Naopak u běžného chatu je 128k zbytečné. Kratší kontext je rychlejší,
+levnější a často přesnější.
+
+## Časté mýty
+
+- **„Čím větší kontext, tím lepší model.“** Ne. Závisí na úloze
+  a kvalitě práce s kontextem.
+- **„Maximum je doporučená hodnota.“** Není. Je to strop.
+- **„Dlouhý kontext nic nestojí.“** Stojí paměť, čas a souběžnost.
+- **„Když se dokument vejde, model ho přečte celý.“** Vejde se, ale
+  nemusí v něm najít správnou informaci.
+
+## Jak zjistit počet tokenů
+
+Přesný počet závisí na tokenizeru. V Pythonu použijte tokenizer
+z model cardu (`AutoTokenizer.from_pretrained(...)`); v enginu se počet
+často objeví v logu nebo v odpovědi API. Pro orientaci stačí odhad,
+pro rozhodování o kontextu potřebujete skutečné číslo.
 
 ## Kudy dál
 
 - [Co je KV cache](/slovnik/pamet/kv-cache/) — co kontext fyzicky zabírá.
+- [Co je prefill](/slovnik/vykon/prefill/) — proč dlouhý vstup zdržuje.
 - [128 GB unified memory](/temata/128gb-unified-memory/) — proč je to minimum.
-- [Jak to funguje](/zaciname/jak-to-funguje/) — kontext v souvislostech.
-- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — souběžnost.
+- [RAG](/slovnik/software/rag/) — jak pracovat s dokumenty chytře.
 
 ## Zdroje
 
 - [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [vLLM — dokumentace](https://docs.vllm.ai/)
 - [Jak čteme data](/zaciname/jak-cteme-data/) — kontext a měření.
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

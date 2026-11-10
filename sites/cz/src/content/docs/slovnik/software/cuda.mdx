@@ -1,7 +1,7 @@
 ---
-title: "Co je CUDA a proč na ní u lokální AI záleží"
-description: "CUDA je NVIDIA platforma pro výpočty na GPU. Vysvětlíme, co znamená pro provoz Qwen3.8 Flash Next na 128GB boxu a kdy ji nepotřebujete."
-last_verified: 2026-11-04
+title: "CUDA: co to je a proč na ní u lokální AI záleží"
+description: "CUDA je NVIDIA platforma pro výpočty na GPU. Vysvětlíme, co znamená pro Qwen3.8 Flash Next, kde ji potkáte a kdy se bez ní obejdete."
+last_verified: 2026-11-10
 sidebar:
   label: CUDA
   order: 1
@@ -11,6 +11,15 @@ sidebar:
 model ani program — je to vrstva, na které běží software od výrobců
 a open-source projektů. Když se řekne „ten stroj má CUDA“, znamená to,
 že na něm poběží nástroje, které jsou pro CUDA napsané.
+
+## Rychlá odpověď
+
+- **CUDA = ekosystém NVIDIA.** Zahrnuje ovladače, toolkit a knihovny
+  pro výpočty na GPU.
+- **Pro lokální AI je důležitá proto**, že na ní běží vLLM, llama.cpp,
+  FlashAttention i NVFP4.
+- **Není to záruka rychlosti.** O tok/s rozhoduje propustnost paměti
+  a software, ne logo. Na Strix Halu běží model bez CUDA.
 
 ## K čemu to je
 
@@ -27,18 +36,41 @@ Pro lokální AI to znamená tři věci:
 - **Nové nástroje** vycházejí nejdřív pro CUDA. Podpora AMD nebo Applu
   přichází později a bývá méně úplná.
 
-## Kde ji v katalogu potkáte
+## CUDA, ROCm, Metal a Vulkan
 
-- **DGX Spark** — GB10 Grace Blackwell, CUDA, DGX OS.
-- **RTX Spark mini a notebook** — Blackwell RTX, CUDA na Windows.
-- **Strix Halo** — CUDA nemá, používá **ROCm** a Vulkan.
+| Platforma | Pro koho | Zralost pro Qwen3.8 | Typické problémy |
+|---|---|---|---|
+| **CUDA** | NVIDIA | nejvyšší | Windows ARM64 je novinka |
+| **ROCm** | AMD | střední | prefill, knihovny, verze |
+| **Metal** | Apple | střední | MLX, méně nástrojů |
+| **Vulkan** | AMD, Intel, NVIDIA | nižší | méně optimalizací |
 
 Rozdíl není v tom, že by CUDA byla „rychlejší“. Rozdíl je v tom, že na
 CUDA stroji je hotový recept, který funguje, a při problému najdete
 odpověď. Na Strix Halu je potřeba počítat s tím, že některé věci
 půjdou přes Vulkan a některé vůbec.
 
-## Co to neznamená
+## Kde ji v katalogu potkáte
+
+- **DGX Spark** — GB10 Grace Blackwell, CUDA, DGX OS.
+- **RTX Spark mini a notebook** — Blackwell RTX, CUDA na Windows.
+- **Strix Halo** — CUDA nemá, používá [ROCm](/slovnik/software/rocm/)
+  a Vulkan.
+- **Mac** — CUDA nemá, používá Metal a MLX.
+
+## Windows on Arm
+
+RTX Spark notebook je Windows on Arm, ne klasický x86. CUDA na Windows
+Arm je v roce 2026 stále **developer preview**: část Python stacku
+potřebuje Arm64 kola a některé nástroje se spouštějí přes komunitní
+porty. Pro vLLM existuje komunitní build, ale není to oficiální
+Windows CUDA jako na x86.
+
+To neznamená, že to nefunguje. Znamená to, že počítejte s delším
+nastavením a méně ověřenou cestou. Pro produkci je dnes bezpečnější
+DGX Spark s Linuxem.
+
+## Co CUDA neznamená
 
 - **CUDA není záruka rychlosti.** O tok/s rozhoduje propustnost paměti
   a počet aktivních parametrů, ne logo na krabici.
@@ -46,18 +78,39 @@ půjdou přes Vulkan a některé vůbec.
   i na Strix Halu přes llama.cpp.
 - **CUDA neznamená uzamčení navždy.** Model i váhy jsou přenositelné;
   mění se jen engine, kterým je spustíte.
+- **CUDA není totéž co Tensor Cores.** Tensor Cores jsou hardware;
+  CUDA je software, který je používá.
+
+## Kdy je CUDA rozhodující
+
+- **Produkční vLLM** s OpenAI API a souběžností.
+- **NVFP4** a nízká přesnost na Blackwellu.
+- **Více uživatelů** a dávkové zpracování.
+- **Nástroje, které existují jen pro CUDA** — některé knihovny pro
+  vision, video a fine-tuning.
+
+## Kdy se bez ní obejdete
+
+- **Jeden uživatel** a chat na Strix Halu přes llama.cpp.
+- **Nejnižší cena** — Strix Halo je levnější než CUDA stroje.
+- **Mac** — pokud vám stačí MLX a ekosystém Apple.
+- **Jednoduché generování obrázků** — ComfyUI funguje i na ROCm
+  a Vulkanu, i když s většími kompromisy.
 
 ## Kudy dál
 
 - [Co je ROCm](/slovnik/software/rocm/) — alternativa od AMD.
 - [Co je vLLM](/slovnik/software/vllm/) — server, který CUDA používá.
+- [Co je NVFP4](/slovnik/software/nvfp4/) — formát pro Blackwell.
 - [DGX Spark](/zarizeni/dgx-spark/) — CUDA stroj v katalogu.
-- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+- [Lokální AI na Windows 11](/temata/lokalni-ai-na-windows-11/) — co
+  na Windows ARM64 funguje.
 
 ## Zdroje
 
 - [NVIDIA — CUDA Toolkit documentation](https://docs.nvidia.com/cuda/)
+- [NVIDIA — Windows on Arm porting guide](https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html)
 - [vLLM — CUDA installation](https://docs.vllm.ai/en/latest/getting_started/installation/gpu.html)
 - [llama.cpp — CUDA backend](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

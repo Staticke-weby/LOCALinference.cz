@@ -70,27 +70,38 @@ const { sku, rodina } = Astro.props as {
     zdroj: string;
     overeno: string | Date;
     poznamka?: string;
+    titulek?: string;
+    description?: string;
+    popis?: string;
+    pro_koho?: string;
+    silne?: string[];
+    slabe?: string[];
+    kdy_ne?: string;
   };
   rodina: Rodina;
 };
 
-const cena = sku.cena_czk_s_dph != null ? `${formatKc(sku.cena_czk_s_dph)} Kč` : '—';
+const cena = sku.cena_czk_s_dph != null ? `${formatKc(sku.cena_czk_s_dph)} Kč` : '-';
 const datum = formatDatum(sku.overeno);
 const sklad = /skladem/i.test(sku.dostupnost);
-const title = `${sku.nazev}: cena a kde koupit`;
+const title = sku.titulek ?? `${sku.nazev}: cena a kde koupit`;
 const historie = getHistorieCen(sku.id);
 ---
 
 <StarlightPage
   frontmatter={{
     title,
-    description: `${sku.nazev} s ${sku.pamet_gb} GB paměti a ${sku.uloziste_gb / 1024} TB úložiště. Cena ${cena} vč. DPH, dostupnost a co na stroji poběží.`,
+    description: sku.description ?? `${sku.nazev} s ${sku.pamet_gb} GB paměti a ${sku.uloziste_gb / 1024} TB úložiště. Cena ${cena} vč. DPH, dostupnost a co na stroji poběží.`,
   }}
 >
   <p class="li-verdict">
-    <strong>{sku.nazev}</strong> je konkrétní varianta {rodina.kratce}. Liší se
-    úložištěm a dodavatelem — čip, paměť a software jsou stejné jako
-    u ostatních variant.
+    {sku.popis ?? (
+      <>
+        <strong>{sku.nazev}</strong> je konkrétní varianta {rodina.kratce}. Liší se
+        úložištěm a dodavatelem - čip, paměť a software jsou stejné jako
+        u ostatních variant.
+      </>
+    )}
   </p>
 
   <div class="li-cena-velka">
@@ -108,6 +119,37 @@ const historie = getHistorieCen(sku.id);
       <tr><th>Rodina</th><td><a href={rodina.stranka}>{rodina.nazev}</a></td></tr>
     </tbody>
   </table>
+
+  {sku.pro_koho && (
+    <>
+      <h2>Pro koho je tato varianta</h2>
+      <p>{sku.pro_koho}</p>
+    </>
+  )}
+
+  {(sku.silne?.length || sku.slabe?.length) && (
+    <div class="li-dve-sloupce">
+      {sku.silne?.length ? (
+        <div>
+          <h2>Silné stránky</h2>
+          <ul>{sku.silne.map((s) => <li>{s}</li>)}</ul>
+        </div>
+      ) : null}
+      {sku.slabe?.length ? (
+        <div>
+          <h2>Na co si dát pozor</h2>
+          <ul>{sku.slabe.map((s) => <li>{s}</li>)}</ul>
+        </div>
+      ) : null}
+    </div>
+  )}
+
+  {sku.kdy_ne && (
+    <>
+      <h2>Kdy ji nekupovat</h2>
+      <p>{sku.kdy_ne}</p>
+    </>
+  )}
 
   <h2>Kde koupit</h2>
 
@@ -148,10 +190,11 @@ const historie = getHistorieCen(sku.id);
   <h2>Co na stroji poběží</h2>
 
   <p>
-    Na {sku.pamet_gb} GB unified paměti běží <strong>Qwen3.8 Flash Next</strong> —
+    Na {sku.pamet_gb} GB unified paměti běží <a href="/modely/qwen3-8-flash-next/"><strong>Qwen3.8 Flash Next</strong></a> -
     jediný model katalogu. Rychlost a limity jsou stejné jako u ostatních
     variant rodiny, protože čip a paměť jsou shodné. Podrobnosti najdete
-    na stránce <a href={rodina.stranka}>{rodina.nazev}</a>.
+    na stránce <a href={rodina.stranka}>{rodina.nazev}</a> a v tématu
+    <a href="/temata/qwen3-8-flash-next/">co od modelu čekat</a>.
   </p>
 
   <h2>Další kroky</h2>
@@ -197,5 +240,10 @@ const historie = getHistorieCen(sku.id);
   .li-cena-velka__pozn {
     color: var(--sl-color-gray-3);
     font-size: var(--sl-text-sm);
+  }
+  .li-dve-sloupce {
+    display: grid;
+    gap: 1rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   }
 </style>
