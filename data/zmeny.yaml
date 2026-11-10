@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Kontaktní e-mail a sekce Chyby a opravy"
+  co_se_zmenilo: "Právní informace mají kontakt info@eshopino.cz a novou sekci Chyby a opravy s postupem, co poslat při nalezené chybě. Rozhodl provozovatel."
+  dotcene_stranky: [o-webu/pravni]
+  zdroj: https://www.localinference.cz/o-webu/pravni/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Čeština a provoz: druhá vlna prohloubení"
   co_se_zmenilo: "Dvanáct stránek dostalo praktické doplnění: desetiminutový test češtiny, výpočet stran v kontextu, šablona shrnutí, kapacita extrakce, měření kvality překladu a výpočet skóre. Provoz má prahy alertů, výpočet kapacity API, matici rizika aktualizací, síťovou topologii, role a orientační milníky AI Actu."
   dotcene_stranky: [temata/cestina, temata/cestina/jak-model-zvlada-cestinu, temata/cestina/shrnuti-dokumentu, temata/cestina/extrakce-dat, temata/cestina/preklad-a-korektura, temata/cestina/hodnoceni-kvality, temata/provoz, temata/provoz/api-server, temata/provoz/monitoring, temata/provoz/aktualizace, temata/provoz/bezpecnost-provozu, temata/provoz/gdpr-a-ai-act]

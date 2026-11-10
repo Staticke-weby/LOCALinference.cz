@@ -621,12 +621,12 @@ polozky:
     kde:
       - o-webu/pravni
     priorita: P0
-    stav: ceka-na-vas
+    stav: hotovo
     davka: 6
     hledat: "ESHOpino"
-    poznamka: null
-    zdroj: null
-    overeno: null
+    poznamka: "Doplněno 10. 11. 2026: info@eshopino.cz zveřejněno v právních informacích i v sekci Chyby a opravy. Použito jako kontakt provozovatele, ne podpora k nákupu."
+    zdroj: https://www.localinference.cz/o-webu/pravni/
+    overeno: 2026-11-10
 
   # --- Dávka 7: údržba ---------------------------------------------------
   - id: N01

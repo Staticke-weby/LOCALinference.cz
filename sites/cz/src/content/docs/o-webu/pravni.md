@@ -1,7 +1,7 @@
 ---
 title: "Právní informace"
 description: "Provozovatel LOCALinference, odpovědnost za obsah, autorská práva, affiliate odkazy a zpracování údajů. Právní informace k webu."
-last_verified: 2026-11-04
+last_verified: 2026-11-10
 sidebar:
   order: 3
 ---
@@ -13,6 +13,8 @@ Roháčova 145/14
 130 00 Praha 3
 
 IČO: 03223485 · DIČ: CZ03223485
+
+**Kontakt:** [info@eshopino.cz](mailto:info@eshopino.cz)
 
 :::note
 LOCALinference je **informační web**, ne zákaznická podpora. Neprodáváme
@@ -55,6 +57,13 @@ výslovně uvedeno.
 Obsah webu © ESHOpino s.r.o. Všechna práva vyhrazena. Přebírání celých
 textů bez souhlasu není dovoleno; krátké citace s odkazem na zdroj ano.
 
+## Chyby a opravy
+
+Když najdete chybu v čísle, zdroji nebo odkazu, napište na
+[info@eshopino.cz](mailto:info@eshopino.cz). Uveďte stránku, tvrzení
+a zdroj, který máte. Opravy zapisujeme do [novinek](/zdroje/novinky/)
+a u údaje měníme datum ověření.
+
 ## Měření návštěvnosti
 
 Návštěvnost měříme nástrojem **Umami** (navstevnost.pikapod.net). Skript
@@ -75,4 +84,4 @@ nepotřebujeme k němu cookie lištu.
 - [OpenWork.cz — právní informace](https://www.openwork.cz/o-webu/pravni/) — stejný provozovatel.
 - [Metodika](/o-webu/metodika/) — pravidla práce s daty.
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*
