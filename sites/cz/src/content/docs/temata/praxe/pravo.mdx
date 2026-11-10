@@ -1,0 +1,102 @@
+---
+title: "Lokální AI v právu: smlouvy, rešerše a mlčenlivost"
+description: "Jak použít lokální AI v právní praxi: shrnutí smluv, extrakce ustanovení, rešerše a rizika. Data, mlčenlivost a kontrola."
+last_verified: 2026-11-10
+sidebar:
+  label: Právo
+  order: 1
+---
+
+Právní praxe je pro lokální AI přirozená: hodně dokumentů, citlivá
+data a opakované úlohy. Zároveň je to oblast, kde chyba může mít
+vážné následky. Model proto není náhrada právníka; je to nástroj pro
+první průchod a kontrolu.
+
+## Rychlá odpověď
+
+- **Shrnutí a extrakce** jsou bezpečný start; **právní závěr** ne.
+- **Data nesmí opustit kancelář** — lokální box je výhoda.
+- **Každou citaci a ustanovení** kontrolujte proti zdroji.
+- **Mlčenlivost a odpovědnost** zůstávají na advokátovi.
+
+## Kde to dává smysl
+
+| Úloha | Co model dělá | Riziko |
+|---|---|---|
+| **Shrnutí smlouvy** | hlavní body, strany, termíny | vynechání pasáže |
+| **Extrakce ustanovení** | výpověď, sankce, cena | chybná citace |
+| **Due diligence** | přehled dokumentů | falešný závěr |
+| **Rešerše** | orientace v textu | vymyšlený zdroj |
+| **Návrh dopisu** | první verze | styl a fakta |
+| **Kontrola dodatku** | rozdíly proti verzi | přehlédnutá změna |
+
+## Workflow
+
+1. **Vymezte úlohu** — shrnutí, extrakce, nebo kontrola.
+2. **Vyberte dokumenty** a ověřte, že jsou platné.
+3. **Model přečte a navrhne** strukturovaný výstup.
+4. **Právník zkontroluje** citace a ustanovení.
+5. **Zapracujte** do dokumentu.
+6. **Zapište** verzi a zdroj.
+
+Model by neměl dostat neomezený archiv. RAG vybere relevantní části
+a [citace](/temata/rag/citace-a-hodnoceni/) ukážou zdroj.
+
+## Data a mlčenlivost
+
+- **Lokální box** snižuje riziko přenosu, ale neřeší oprávnění.
+- **Přístup** jen pro konkrétní lidi.
+- **Logy** mohou obsahovat citlivé údaje; omezte retenci.
+- **Zálohy** musí být šifrované.
+- **Mazání** musí zahrnout dokumenty, index i logy.
+- **Dodavatel** modelu a hardwaru musí mít jasné podmínky.
+
+## Rizika
+
+- **Vymyšlená judikatura** — model může citovat neexistující zdroj.
+- **Zastaralé právo** — model neví, co se změnilo.
+- **Špatný kontext** — RAG vybere nesprávný dokument.
+- **Chybná extrakce** — částka nebo lhůta.
+- **Mlčenlivost** — únik přes logy nebo agenta.
+- **Odpovědnost** — model ji nenese.
+
+## Příklad: kontrola dodatku
+
+Advokát dostane původní smlouvu a dodatek. Model porovná články,
+označí změny a upozorní na nové povinnosti. Právník zkontroluje
+citace a rozhodne, co je přijatelné. Model nenahrazuje výklad práva;
+jen zkracuje první průchod.
+
+## Co měřit
+
+- **Čas** na první průchod.
+- **Počet chyb** ve faktech a citacích.
+- **Počet dokumentů** zpracovaných za hodinu.
+- **Kolik výstupů** prošlo bez opravy.
+- **Spokojenost** právníka s prvním draftem.
+
+## Kdy to nepoužívat
+
+- **Právní závěr** bez kontroly.
+- **Soudní podání** bez revize.
+- **Citace** bez ověření.
+- **Data**, která nesmíte vůbec zpracovat.
+- **Rozhodnutí** s dopadem na práva lidí.
+
+## Kudy dál
+
+- [Shrnutí dokumentu](/temata/cestina/shrnuti-dokumentu/) — postup.
+- [Extrakce dat](/temata/cestina/extrakce-dat/) — pole a validace.
+- [RAG](/temata/rag/) — dokumenty a citace.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — data.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Lokální AI pro firmy](/temata/lokalni-ai-pro-firmy/) — rozhodnutí.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [GDPR — oficiální text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [AI Act — oficiální text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

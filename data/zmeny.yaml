@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Nový cluster: Praxe pro profese"
+  co_se_zmenilo: "Přidán hub /temata/praxe/ a čtyři profesní stránky: právo, účetnictví, výroba a vývojáři. Obsahují use cases, workflow, data, rizika, měření a odkazy na RAG, agenty a provoz."
+  dotcene_stranky: [temata/praxe, temata/praxe/pravo, temata/praxe/ucetnictvi, temata/praxe/vyroba, temata/praxe/vyvojari]
+  zdroj: https://www.localinference.cz/temata/praxe/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Nový cluster: Provoz a bezpečnost"
   co_se_zmenilo: "Přidán hub /temata/provoz/ a pět dceřiných stránek: API server, monitoring, aktualizace, bezpečnost provozu, GDPR a AI Act. Obsahují praktické checklisty, tabulky a odkazy na model, vLLM a právní texty."
   dotcene_stranky: [temata/provoz, temata/provoz/api-server, temata/provoz/monitoring, temata/provoz/aktualizace, temata/provoz/bezpecnost-provozu, temata/provoz/gdpr-a-ai-act]

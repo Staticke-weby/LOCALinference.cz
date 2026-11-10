@@ -1,0 +1,96 @@
+---
+title: "Lokální AI ve výrobě: manuály, dokumentace a offline provoz"
+description: "Jak použít lokální AI ve výrobě: technické manuály, dokumentace, hlášení a offline provoz. Data, bezpečnost a limity."
+last_verified: 2026-11-10
+sidebar:
+  label: Výroba
+  order: 3
+---
+
+Ve výrobě rozhoduje **dostupnost, přesnost a offline provoz**.
+Model, který běží na lince bez internetu a umí najít postup v manuálu,
+může ušetřit víc času než chat, který odpovídá na obecné otázky.
+Zároveň platí: chybný postup může být nebezpečný.
+
+## Rychlá odpověď
+
+- **Manuály a dokumentace** jsou nejlepší start.
+- **Offline provoz** je výhoda; data zůstávají v závodě.
+- **Každý postup** musí ověřit člověk, který ho zná.
+- **Verze dokumentu** je stejně důležitá jako odpověď.
+
+## Kde to dává smysl
+
+| Úloha | Co model dělá | Riziko |
+|---|---|---|
+| **Hledání v manuálu** | najde postup nebo díl | zastaralá verze |
+| **Shrnutí směny** | přehled hlášení | vynechání závady |
+| **Technická dokumentace** | návrh textu | nepřesný termín |
+| **Školení** | vysvětlení postupu | zjednodušení |
+| **Kontrola kvality** | přehled vad | falešný vzor |
+| **Objednávky a sklad** | extrakce položek | chybný kód |
+
+## Workflow
+
+1. **Vyberte dokument** a jeho platnou verzi.
+2. **Ověřte, že je v indexu** ta správná verze.
+3. **Model najde postup** a označí zdroj.
+4. **Mistr nebo technik zkontroluje.**
+5. **Výstup se použije** nebo se vrátí k opravě.
+6. **Zapište** dotaz a odpověď pro audit.
+
+## Data a offline provoz
+
+- **Lokální box** v závodě, bez závislosti na internetu.
+- **Dokumentace** v interním indexu, ne v cloudu.
+- **Oprávnění** podle role a směny.
+- **Zálohy** a obnova po výpadku.
+- **Logy** bez zbytečných osobních údajů.
+
+## Rizika
+
+- **Zastaralá dokumentace** — model odpoví podle staré verze.
+- **Špatný termín** — jiný díl nebo postup.
+- **Bezpečnost** — chybný postup může zranit.
+- **Chybějící kontext** — model nevidí stav linky.
+- **Přílišné zjednodušení** — návod vypadá jednodušší než realita.
+
+## Příklad: hledání postupu
+
+Technik se ptá na postup výměny dílu. Model najde platnou verzi
+manuálu a označí stránku. Technik postup ověří a provede. Když model
+najde starou verzi, musí to být vidět z metadat; jinak je odpověď
+nebezpečná.
+
+## Co měřit
+
+- **Čas hledání** v dokumentaci.
+- **Počet dotazů** na směnu.
+- **Kolik odpovědí** bylo správných.
+- **Kolik** se jich muselo opravit.
+- **Počet incidentů** spojených s dokumentací.
+
+## Kdy to nepoužívat
+
+- **Bezpečnostní postupy** bez ověření.
+- **Dokumentace** bez verzí a vlastníka.
+- **Stav linky** v reálném čase, který model nevidí.
+- **Nebezpečné operace** bez dohledu.
+- **Data**, která nesmíte zpracovat.
+
+## Kudy dál
+
+- [RAG](/temata/rag/) — dokumenty a citace.
+- [Shrnutí dokumentu](/temata/cestina/shrnuti-dokumentu/) — text.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — offline.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [DGX Spark](/zarizeni/dgx-spark/) — CUDA box.
+- [Strix Halo](/zarizeni/strix-halo/) — levnější box.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Metodika](/o-webu/metodika/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

@@ -1,0 +1,102 @@
+---
+title: "Lokální AI pro vývojáře: kód, testy a agenti"
+description: "Jak použít lokální AI ve vývoji: coding agent, review, testy, dokumentace a bezpečný sandbox. Co čekat od Qwen3.8 Flash Next."
+last_verified: 2026-11-10
+sidebar:
+  label: Vývojáři
+  order: 4
+---
+
+Vývojáři mají nejlepší podmínky pro lokální AI: jasná zpětná vazba
+(testy), dostupná data (repo) a kultura code review. Zároveň je to
+oblast, kde agent může snadno změnit víc, než měl. Proto sandbox
+a testy nejsou volitelné.
+
+## Rychlá odpověď
+
+- **Coding agent** je užitečný na testy, refaktoring a vysvětlení kódu.
+- **Qwen3.8 Flash Next** má silné coding benchmarky, ale nezná váš
+  projekt.
+- **Testy a review** jsou povinné; agent nenahrazuje odpovědnost.
+- **Sandbox** chrání repo, klíče a produkci.
+
+## Kde to dává smysl
+
+| Úloha | Co model dělá | Riziko |
+|---|---|---|
+| **Vysvětlení kódu** | popíše, co funkce dělá | neúplný kontext |
+| **Testy** | navrhne unit testy | špatné pokrytí |
+| **Refaktoring** | navrhne menší změnu | rozbití chování |
+| **Code review** | upozorní na problém | falešný poplach |
+| **Dokumentace** | návrh README | nepřesnost |
+| **Migrace** | návrh kroků | nevratná změna |
+
+## Workflow
+
+1. **Větev** — agent pracuje mimo main.
+2. **Kontext** — vyberte relevantní soubory.
+3. **Plán** — schvalte kroky.
+4. **Změna** — malý diff.
+5. **Testy** — v sandboxu.
+6. **Review** — člověk přečte diff.
+7. **Merge** — až po schválení.
+
+## Co dát agentovi
+
+- **čtení souborů** — orientace,
+- **git** — historie a diff,
+- **test runner** — ověření,
+- **shell** — build a lint, ale v sandboxu,
+- **issue tracker** — kontext.
+
+Nedávejte mu produkční klíče, databázi ani main větev.
+
+## Bezpečnost
+
+- **Sandbox** bez sítě, pokud možno.
+- **Read-only** repo, dokud agent nepotřebuje zápis.
+- **Žádné secrets** v prostředí.
+- **Limit** CPU, paměti a času.
+- **Kill switch**.
+- **Logy** každého příkazu.
+
+## Příklad: oprava testu
+
+Agent dostane selhávající test, přečte funkci a navrhne opravu.
+Spustí testy v sandboxu. Člověk přečte diff a schválí merge. Agent
+nemá přístup k produkčním klíčům ani k main větvi. To je běžný a
+bezpečný workflow.
+
+## Co měřit
+
+- **Počet přijatých změn** vs. odmítnutých.
+- **Čas** od zadání po merge.
+- **Chybovost** — kolik změn vrátilo testy.
+- **Velikost diffu**.
+- **Počet incidentů**.
+
+## Kdy to nepoužívat
+
+- **Produkční migrace** bez zálohy.
+- **Platební systém** bez schválení.
+- **Repo s tajemstvími** bez sandboxu.
+- **Kód, kterému nerozumíte.**
+- **Automatický merge** bez review.
+
+## Kudy dál
+
+- [Coding agent](/temata/agenti/coding-agent/) — workflow.
+- [MCP v praxi](/temata/agenti/mcp-v-praxi/) — nástroje.
+- [Function calling](/temata/agenti/function-calling-v-praxi/) — volání.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — ops.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [DGX Spark](/zarizeni/dgx-spark/) — CUDA box.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+- [Git — dokumentace](https://git-scm.com/doc)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

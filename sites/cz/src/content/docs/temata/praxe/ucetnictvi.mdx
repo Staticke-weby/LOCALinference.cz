@@ -1,0 +1,108 @@
+---
+title: "Lokální AI v účetnictví: faktury, DPH a audit"
+description: "Jak použít lokální AI v účetnictví: extrakce faktur, kontrola DPH, reporting a audit. Data, validace a rizika."
+last_verified: 2026-11-10
+sidebar:
+  label: Účetnictví
+  order: 2
+---
+
+Účetnictví je ideální pro lokální AI: mnoho faktur, opakované úlohy
+a citlivá data. Zároveň platí, že **číslo musí být správně**. Model
+může pomoct s prvním průchodem, ale validace a lidské schválení
+zůstávají.
+
+## Rychlá odpověď
+
+- **Extrakce faktur** je bezpečný start; **automatické zaúčtování**
+  ne.
+- **Každou částku, datum a IČO** kontrolujte proti dokladu.
+- **Lokální box** drží data u firmy, ale neřeší audit trail.
+- **Výstup musí být strukturovaný** a validovaný.
+
+## Kde to dává smysl
+
+| Úloha | Co model dělá | Riziko |
+|---|---|---|
+| **Extrakce faktur** | dodavatel, IČO, částka, DPH | chybná číslice |
+| **Kontrola dokladů** | chybějící pole, duplicity | falešná shoda |
+| **Příprava reportu** | souhrn z dat | špatný součet |
+| **Auditní podklady** | přehled dokumentů | chybějící důkaz |
+| **Komunikace s klientem** | návrh e-mailu | nesprávný tón |
+
+## Workflow
+
+1. **Příjem** — PDF, sken, e-mail.
+2. **Extrakce** — OCR a strukturovaná pole.
+3. **Validace** — IČO, DIČ, částky, DPH, data.
+4. **Kontrola** — člověk proti dokladu.
+5. **Zaúčtování** — až po schválení.
+6. **Archivace** — doklad, výstup, log.
+
+## Co validovat
+
+- **IČO** — 8 číslic a registr.
+- **DIČ** — prefix a formát.
+- **Datum** — vystavení, splatnost, DUZP.
+- **Částka** — základ, DPH, celkem.
+- **Sazba DPH** — odpovídá typu plnění.
+- **Měna** — CZK/EUR a kurz.
+- **Duplicita** — stejný doklad dvakrát.
+
+## Data a audit
+
+- **Doklady** mají retenční lhůty; nemažte svévolně.
+- **Logy** musí ukázat, kdo co změnil.
+- **Přístup** jen pro oprávněné osoby.
+- **Zálohy** a obnova.
+- **Oprávnění** k osobním údajům na dokladech.
+
+## Rizika
+
+- **Chybná číslice** — model přečte 1 000 jako 10 000.
+- **Záměna IČO/DIČ** — jiný údaj.
+- **Špatná sazba DPH.**
+- **Duplicitní platba.**
+- **Chybějící doklad** v reportu.
+- **Automatizace bez kontroly.**
+
+## Příklad: kontrola faktury
+
+Účetní nahraje fakturu. Model vytáhne dodavatele, IČO, částku a DPH.
+Validace odhalí, že součet nesedí. Účetní fakturu vrátí dodavateli.
+Bez validace by chyba prošla do zaúčtování. Model pomohl, ale
+nerozhodl.
+
+## Co měřit
+
+- **Počet faktur** za hodinu.
+- **Chybovost** po validaci.
+- **Kolik** dokladů projde bez opravy.
+- **Čas** na kontrolu.
+- **Počet duplicit** a chybějících polí.
+
+## Kdy to nepoužívat
+
+- **Automatické zaúčtování** bez člověka.
+- **Daňové přiznání** bez odborné kontroly.
+- **Nekvalitní skeny** bez OCR.
+- **Doklady** s nečitelnými částkami.
+- **Audit** bez zdrojových dokumentů.
+
+## Kudy dál
+
+- [Extrakce dat](/temata/cestina/extrakce-dat/) — JSON a validace.
+- [Shrnutí dokumentu](/temata/cestina/shrnuti-dokumentu/) — text.
+- [RAG](/temata/rag/) — dokumenty.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — data.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Lokální AI pro firmy](/temata/lokalni-ai-pro-firmy/) — rozhodnutí.
+
+## Zdroje
+
+- [Finanční správa — oficiální web](https://www.financnisprava.cz/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [GDPR — oficiální text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

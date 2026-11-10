@@ -238,3 +238,18 @@
     - /temata/provoz/gdpr-a-ai-act/
   chybi: "Chybí české případové studie provozu a incidentů."
   overeno: 2026-11-10
+
+- id: praxe
+  nazev: Praxe pro profese
+  hledany_vyraz: "lokální AI pro firmy podle profese"
+  popis: "Jak použít lokální AI v právu, účetnictví, výrobě a vývoji. Úlohy, workflow, data a rizika."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /temata/praxe/
+    - /temata/praxe/pravo/
+    - /temata/praxe/ucetnictvi/
+    - /temata/praxe/vyroba/
+    - /temata/praxe/vyvojari/
+  chybi: "Chybí české případové studie a měření přínosu v jednotlivých profesích."
+  overeno: 2026-11-10
