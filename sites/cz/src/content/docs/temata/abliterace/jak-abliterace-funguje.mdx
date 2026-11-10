@@ -1,0 +1,146 @@
+---
+title: "Jak abliterace funguje: směr odmítání a jeho cena"
+description: "Abliterace odstraní směr odmítání z aktivací modelu. Vysvětlíme diff-in-means, orthogonalizaci, LoRA i to, co se pokazí v kvalitě."
+last_verified: 2026-11-10
+sidebar:
+  label: Jak to funguje
+  order: 2
+---
+
+> **Toto je technické vysvětlení, ne recept.** Nepopisujeme kroky,
+> kterými se dá bezpečnost modelu obejít v produkci, ani konkrétní
+> škodlivé prompty.
+
+Abliterace vychází z pozorování, že odmítání není rozptýlené po
+celém modelu náhodně. U řady jazykových modelů se dá popsat jako
+**jeden směr v aktivacích**, který se aktivuje, když model vyhodnotí
+požadavek jako škodlivý. Když se ten směr potlačí, model přestane
+odmítat.
+
+## Rychlá odpověď
+
+- **Odmítání je naučené chování**, ne samostatný modul.
+- **Směr odmítání** je vektor v residual streamu; dá se najít
+  z rozdílu mezi škodlivými a benigními prompty.
+- **Metody**: diff-in-means, orthogonalizace, LoRA, automatické
+  hledání (Heretic).
+- **Znalost zůstává**, mění se ochota odpovědět.
+- **Cena** je kvalita, instrukce, nástroje a stabilita.
+
+## Alignment v kostce
+
+Model se nejdřív učí jazyk a svět (pretraining), potom následovat
+instrukce (SFT) a nakonec být užitečný a bezpečný (RLHF, DPO nebo
+podobné metody). Odmítání vzniká v poslední fázi: model dostane
+odměnu za to, že na škodlivý požadavek neodpoví.
+
+To má dva důsledky:
+
+1. **Odmítání je vrstva nad znalostí.** Model látku pořád umí.
+2. **Je citlivé na kontext a jazyk.** Stejný dotaz může být odmítnut
+   anglicky a přijat česky.
+
+## Směr odmítání
+
+Práce *Refusal in Language Models Is Mediated by a Single Direction*
+(Arditi et al., 2024) ukázala, že u některých modelů stačí najít
+jeden vektor a odečíst ho z aktivací, aby model přestal odmítat.
+Metoda:
+
+- vezměte sadu škodlivých a sadu benigních promptů,
+- spočítejte průměrné aktivace pro každou sadu,
+- rozdíl průměrů je kandidát na směr odmítání,
+- odečtěte ho z aktivací nebo z vah, které ho vytvářejí.
+
+Tomu se říká **diff-in-means**. U Qwen3.8 Flash Next se v praxi
+upravují attention output projekce a down projekce expertů, protože
+tudy směr prochází.
+
+## Metody abliterace
+
+| Metoda | Princip | Náročnost | Dopad na kvalitu |
+|---|---|---|---|
+| **Diff-in-means** | jeden směr z rozdílu průměrů | nízká | střední |
+| **Orthogonalizace** | odečtení směru z matic | střední | střední až vysoký |
+| **LoRA** | malý adaptér naučený na potlačení | střední | nižší, ale závisí na datech |
+| **Heretic** | automatické hledání parametrů proti odmítání | nízká až střední | proměnlivý |
+| **Více směrů** | rank-2 a vyšší | vysoká | vyšší zásah, nižší únik |
+
+**Heretic** je nástroj, který zkouší kombinace parametrů a měří
+kompromis mezi odmítáním a kvalitou. Výsledek je reprodukovatelný,
+ale pořád závisí na sadě promptů, kterou autor zvolil.
+
+## Proč to přežije kvantizaci
+
+Abliterace se dělá na plných vahách a výsledek se pak kvantizuje.
+Kvantizace může úpravu částečně smazat, zvlášť u 4bitových formátů.
+Někteří vydavatelé proto upravují váhy přímo na kvantizační mřížce
+a volí kódy, které aproximují upravenou hodnotu i původní. Tomu se
+říká **constrained requantization**.
+
+Bez toho se stane, že model odmítá dál, i když karta tvrdí opak.
+Proto je u hotových buildů důležité, aby vydavatel uvedl, na jaké
+kvantizaci odmítání měřil — na BF16, nebo na finálním NVFP4.
+
+## Co abliterace neudělá
+
+- **Neodstraní znalost.** Model pořád ví, jak něco udělat.
+- **Nepřidá schopnosti.** Benchmarky se nezlepší.
+- **Nezaručí odpověď.** Model může halucinovat dál.
+- **Neřeší právo.** Zákon nezmění.
+- **Nezachrání špatný model.** Slabý model zůstane slabý.
+
+## Vedlejší efekty
+
+| Oblast | Co se může pokazit | Jak se to pozná |
+|---|---|---|
+| **Obecná kvalita** | horší reasoning, delší odpovědi | benchmarky, české úlohy |
+| **Instrukce** | ignoruje formát nebo systémový prompt | testy formátu |
+| **Tool calling** | nevolá nástroje nebo posílá špatné argumenty | testovací nástroj |
+| **MTP** | nižší acceptance draftů | měření ve vLLM |
+| **Vision** | horší popis obrázků | testovací sada |
+| **Jazyk** | horší čeština než angličtina | paralelní sada |
+| **Stabilita** | opakování, rozpad u dlouhého kontextu | 32k a 128k testy |
+
+U Qwen3.8 Flash Next se upravují i projekce MTP, takže se může
+změnit rychlost spekulativního dekódování. To není důkaz kvality,
+jen jiné číslo.
+
+## Jak ověřit tvrzení vydavatele
+
+1. **Metoda a sada** — na čem se odmítání měřilo.
+2. **Před a po** — čísla pro základ i derivát.
+3. **Kvantizace** — BF16, nebo finální formát.
+4. **Kvalita** — alespoň jeden veřejný benchmark a česká sada.
+5. **Nástroje** — funkční test tool callingu.
+6. **Licence** — vydavatel i základní model.
+7. **Datum a revize** — jiná revize, jiné chování.
+
+Když chybí tři z těchto bodů, je to kandidát, ne hotový model.
+
+## Etická hranice
+
+Popis principu je v pořádku: čtenář má vědět, proč model odmítá a
+co se stane, když se to vypne. Návod na výrobu škodlivého modelu
+nebo na obcházení bezpečnosti konkrétní služby sem nepatří. Rozdíl
+je v tom, jestli text pomáhá porozumět, nebo pomáhá ublížit.
+
+## Kudy dál
+
+- [Odmítání](/temata/abliterace/odmitani/) — co všechno pokrývá.
+- [Provoz na 128 GB](/temata/abliterace/provoz-na-128-gb/) — buildy
+  a měření.
+- [Rizika a právo](/temata/abliterace/rizika-a-pravo/) — dopady.
+- [Kvantizace](/slovnik/software/kvantizace/) — co ztratíte.
+- [MTP](/slovnik/software/mtp/) — spekulativní dekódování.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Arditi et al. — Refusal direction](https://arxiv.org/abs/2406.11717) (2024)
+- [Heretic — nástroj](https://github.com/p-e-w/heretic)
+- [lflare — constrained requantization](https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated) — 10. 11. 2026
+- [DevelopingDad — metoda a měření](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated) — 10. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

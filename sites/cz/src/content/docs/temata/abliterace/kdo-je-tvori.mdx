@@ -1,0 +1,124 @@
+---
+title: "Kdo tvoří abliterované modely a jak poznat solidní"
+description: "Kdo abliterované modely vydává, co má mít model card, jak číst indexy a jaká je provenance vah. Bez doporučení konkrétního modelu."
+last_verified: 2026-11-10
+sidebar:
+  label: Kdo to tvoří
+  order: 5
+---
+
+> **Toto není doporučení.** Uvádíme příklady vydavatelů a kritéria,
+> ne žebříček. Odkaz na repozitář neznamená, že je model bezpečný
+> nebo vhodný.
+
+Abliterované modely nevznikají v laboratořích velkých firem. Vydávají
+je jednotlivci, malé týmy a komunitní nakladatelé, často během dnů
+po vydání základního modelu. Kvalita se proto hodně liší.
+
+## Rychlá odpověď
+
+- **Vydavatel není totéž co výrobce modelu.** Většina jen upraví
+  hotové váhy.
+- **Provenance je vše**: základ, revize, metoda, kvantizace.
+- **Indexy jsou katalog**, ne důkaz. Neověřují tvrzení.
+- **„Uncensored“ v názvu není technický údaj.**
+
+## Kdo to dělá
+
+| Typ vydavatele | Co dělá | Co hlídat |
+|---|---|---|
+| **Jednotlivec** | rychlé buildy, experimenty | dokumentace, licence |
+| **Malý tým** | konzistentní metodika, měření | revize, testy |
+| **Nakladatel kvantizací** | převádí cizí model do NVFP4/GGUF | zachování abliterace |
+| **Komunitní index** | katalog a metadata | neověřuje, jen sbírá |
+
+V praxi se role mísí: jeden vydavatel model abliteruje, druhý
+kvantizuje, třetí zabalí do kontejneru. U každého kroku se může
+něco ztratit.
+
+## Co má mít model card
+
+Solidní karta odpovídá na sedm otázek:
+
+1. **Základ** — přesná revize Qwen3.8 Flash Next.
+2. **Metoda** — diff-in-means, orthogonalizace, LoRA, Heretic.
+3. **Kde se upravovalo** — attention, experti, MTP.
+4. **Odmítání před a po** — sada, scorer, protokol.
+5. **Kvalita** — benchmarky a známé ztráty.
+6. **Kvantizace** — na čem se měřilo.
+7. **Licence** — vydavatel i základní model.
+
+Když některá chybí, je to kandidát. Když chybí tři, je to riziko.
+
+## Provenance v praxi
+
+Provenance znamená, že dohledáte cestu od základu k souboru:
+
+```
+Qwen/Qwen3.8-Flash-Next (revize A)
+  └─ nvidia/Qwen3.8-Flash-Next-FP4-Local (revize B)
+       └─ DevelopingDad/...-Abliterated (revize C)
+```
+
+U každého kroku má být vidět, co se změnilo a co zůstalo. Když
+karta řekne jen „based on Qwen“, provenance chybí.
+
+## Indexy a katalogy
+
+- [abliteratedmodels.org](https://www.abliteratedmodels.org/) —
+  metadata z Hugging Face API, metodika, filtrování.
+- [abliter.cn](https://abliter.cn/en/) — podobný katalog s formáty
+  a metodami.
+
+Oba sbírají veřejná metadata. **Neověřují**, jestli model opravdu
+dělá, co karta tvrdí. Berte je jako rozcestník, ne jako audit.
+
+## Varovné signály
+
+- **„Uncensored“ bez metody** — marketing.
+- **Chybí licence** nebo je v rozporu se základem.
+- **Žádná čísla odmítání** před a po.
+- **Tvrdí paritu bez konfigurace.**
+- **Gated repo bez vysvětlení**, kdo a proč ho vydal.
+- **Binárky místo vah** — nevíte, co obsahují.
+- **Agresivní název** místo technického popisu.
+
+## Příklad: čtyři role
+
+| Příklad | Role | Co je doložené |
+|---|---|---|
+| huihui-ai | abliterace základu | BF16 váhy, GGUF varianty |
+| OrcaRouter | abliterace + NVFP4 | 180B, 184 GB, karta s měřením |
+| lflare | úprava na kvantizační mřížce | CSF kontejner, měření kvality |
+| DevelopingDad | balíček pro DGX Spark | launcher, PLE z SSD, měření |
+
+Nejsou to doporučení. Jsou to příklady různých rolí, které musíte
+umět odlišit, když čtete kartu.
+
+## Kdy to nekupovat
+
+- Když karta neuvádí licenci.
+- Když nejsou čísla odmítání.
+- Když nevíte, na jaké kvantizaci se měřilo.
+- Když vydavatel míchá marketing a techniku.
+- Když model potřebuje víc paměti, než máte.
+
+## Kudy dál
+
+- [Abliterace](/temata/abliterace/) — co to je.
+- [Jak to funguje](/temata/abliterace/jak-abliterace-funguje/) —
+  technika.
+- [Provoz](/temata/abliterace/provoz-na-128-gb/) — buildy.
+- [Rizika a právo](/temata/abliterace/rizika-a-pravo/) — licence.
+- [Hugging Face](/slovnik/software/huggingface/) — jak číst karty.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [abliteratedmodels.org](https://www.abliteratedmodels.org/) — 10. 11. 2026
+- [abliter.cn](https://abliter.cn/en/) — 10. 11. 2026
+- [Hugging Face — model card](https://huggingface.co/docs/hub/model-cards)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

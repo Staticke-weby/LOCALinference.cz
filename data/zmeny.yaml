@@ -5,6 +5,13 @@
 # hreflang, menu, opravy odkazů) sem nepatří.
 
 - datum: 2026-11-10
+  typ: obsah
+  titulek: "Nový cluster: abliterované modely a odmítání"
+  co_se_zmenilo: "Přibyl cluster Abliterace: hub, stránky o odmítání, technice, provozu na 128 GB, rizicích a vydavatelích. Součástí je stránka abliterované varianty Qwen3.8 Flash Next s buildy pro DGX Spark, RTX Spark, Strix Halo a Mac, s n-gramy z SSD a s licenčními rozpory uvedenými tak, jak jsou."
+  dotcene_stranky: [temata/abliterace, temata/abliterace/odmitani, temata/abliterace/jak-abliterace-funguje, temata/abliterace/provoz-na-128-gb, temata/abliterace/rizika-a-pravo, temata/abliterace/kdo-je-tvori, modely/qwen3-8-flash-next-abliterated, modely/qwen3-8-flash-next, temata]
+  zdroj: https://www.localinference.cz/temata/abliterace/
+
+- datum: 2026-11-10
   typ: cena
   titulek: "ASUS GX10 4TB zlevněn na 227 990 Kč"
   co_se_zmenilo: "Cena ASUS Ascent GX10 4TB klesla z 229 990 na 227 990 Kč vč. DPH (-5 %). Ověřeno v prohlížeči na Alza.cz, dostupnost skladem 4 ks."

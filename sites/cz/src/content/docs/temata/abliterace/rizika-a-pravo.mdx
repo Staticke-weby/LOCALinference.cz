@@ -1,0 +1,162 @@
+---
+title: "Abliterované modely: rizika, odpovědnost a licence"
+description: "Co může abliterovaný model způsobit, kdo nese odpovědnost, co říká AI Act a GDPR a jak se rozcházejí licence vydavatelů."
+last_verified: 2026-11-10
+sidebar:
+  label: Rizika a právo
+  order: 4
+---
+
+> **Toto není právní rada.** Je to přehled rizik a otázek, které je
+> potřeba vyřešit před nasazením. Konkrétní případ konzultujte
+> s právníkem.
+
+Abliterace není jen technická úprava. Mění, jaké výstupy model
+vydá, a tím i riziko pro vás, vaše uživatele a lidi, o kterých
+model rozhoduje. Odpovědnost zůstává na provozovateli.
+
+## Rychlá odpověď
+
+- **Model nemá vůli ani úmysl.** Riziko vzniká u uživatele a
+  provozovatele.
+- **Největší riziko je kombinace s nástroji.** Agent může akci
+  provést, ne jen napsat text.
+- **Lokální provoz neznamená anonymitu ani soulad s GDPR.**
+- **Licence se liší build od buildu** a některé karty si odporují.
+
+## Co může model způsobit
+
+| Riziko | Jak vypadá | Kdo nese následek |
+|---|---|---|
+| **Nezákonný obsah** | návod, výroba, distribuce | provozovatel a uživatel |
+| **Ublížení na zdraví** | nebezpečná rada, postup | provozovatel |
+| **Dezinformace** | přesvědčivý smyšlený text | ten, kdo ho publikuje |
+| **Nenávist** | dehumanizace skupin | provozovatel |
+| **Soukromí** | složení osobních údajů | správce údajů |
+| **Škoda agentem** | e-mail, platba, smazání | provozovatel |
+| **Diskreditace** | text vydávaný za odborný | ten, kdo ho použije |
+
+Model sám nic nevykoná. Když ale dostane nástroje, může odeslat
+e-mail, zapsat do databáze nebo spustit příkaz. Tam riziko
+přestává být textové.
+
+## Schopnost versus záměr
+
+Abliterovaný model je **schopnější udělat škodu**, protože nemá
+zábrany. Není to ale „zlý model“. Rozdíl je v tom, že:
+
+- model nemá úmysl, jen pravděpodobnosti,
+- uživatel má úmysl a odpovědnost,
+- provozovatel má kontrolu a odpovědnost,
+- vydavatel vah má odpovědnost za to, co tvrdí.
+
+Když se tyto role pletou, vzniká dojem, že „to udělal model“.
+
+## Odpovědnost
+
+- **Provozovatel** rozhoduje o účelu, přístupu a nasazení.
+- **Uživatel** odpovídá za to, co s výstupem udělá.
+- **Vydavatel vah** odpovídá za popis modelu a licenci, ne za
+  vaše použití.
+- **Dodavatel hardwaru** neodpovídá za výstupy modelu.
+
+U agenta se přidává **schvalovatel akce**. Když agent odešle
+e-mail, odpovídá ten, kdo odeslání povolil, ne model.
+
+## AI Act
+
+Nařízení (EU) 2024/1689 zavádí povinnosti podle typu a rizika
+systému. Pro lokální model to znamená:
+
+- **klasifikovat účel** — co systém rozhoduje a o kom,
+- **dokumentovat** model, data a omezení,
+- **lidský dohled** u rozhodnutí s dopadem na práva lidí,
+- **transparentnost** vůči uživatelům,
+- **řízení rizik** a testování,
+- **incidenty** a reportování podle typu systému.
+
+Ne každý interní chatbot je high-risk. Nasazení v náboru,
+vzdělávání, zdravotnictví nebo v přístupu ke službám může být.
+Ověřte aktuální text a přílohy; výklad se může měnit.
+
+## GDPR
+
+Abliterace nemění povinnosti. Pořád platí:
+
+- **právní základ** zpracování,
+- **minimalizace** — neposílejte modelu, co nepotřebujete,
+- **retence** — jak dlouho držíte logy a výstupy,
+- **práva subjektů** — přístup, oprava, výmaz,
+- **zabezpečení** — přístup, šifrování, zálohy.
+
+Pozor na **logy**: mohou obsahovat celé prompty a osobní údaje.
+Když je vypnete, ztratíte audit; když je zapnete, zvyšujete
+riziko. Řešením je krátká retence a logování metadat, ne obsahu.
+
+## Licence: uveďme je tak, jak jsou
+
+| Model | Licence podle karty | Poznámka |
+|---|---|---|
+| Qwen3.8 Flash Next | Qwen Community License 1.0 | základ |
+| NVIDIA FP4-Local | NVIDIA Open Model Agreement | kvantizovaný základ |
+| DevelopingDad FP4-Local-Abliterated | NVIDIA Open Model + Qwen Community | dědí obě vrstvy |
+| lflare CSF-QAD-Abliterated | Qwen Community License 1.0 | dědí základ |
+| OrcaRouter Uncensored NVFP4 | karta uvádí Apache-2.0 | **rozpor** se základem Qwen Community |
+| huihui-ai abliterated | „other“ | konkrétní text v repozitáři |
+
+**Rozpor neřešíme.** Uvádíme, co tvrdí vydavatel, a co platí pro
+základní model. Kdo chce model nasadit komerčně, musí si licenci
+přečíst sám; my mu nemůžeme slíbit, že Apache-2.0 je správně.
+
+Základní pravidla Qwen Community License 1.0 zahrnují komerční
+použití, ale také podmínky pro služby a označení. Podrobnosti jsou
+v `LICENSE` u modelu.
+
+## Checklist před nasazením
+
+- [ ] Je jasný účel a kdo za něj odpovídá?
+- [ ] Je model vhodný pro tento účel, i když nemá zábrany?
+- [ ] Je licence vyřešená pro komerční použití?
+- [ ] Máme moderaci vstupu a výstupu?
+- [ ] Je člověk v kontrole u citlivých akcí?
+- [ ] Jsou logy bez zbytečných osobních údajů?
+- [ ] Umíme model zastavit a odvolat přístup?
+- [ ] Máme incidentní plán?
+- [ ] Je jasné, co je „není právní rada“?
+
+## Incident
+
+1. **Zastavte** model nebo agenta.
+2. **Odeberte** tokeny a přístupy.
+3. **Uložte** logy a zjistěte rozsah.
+4. **Opravte** příčinu a přidejte test.
+5. **Zvažte oznámení** podle GDPR a AI Act.
+6. **Zapište** ponaučení.
+
+## Kdy to nepoužívat
+
+- **Veřejná služba** bez moderace.
+- **Zdravotnictví, právo, HR** bez odborného dohledu.
+- **Rozhodování o lidech** bez lidské kontroly.
+- **Agent s produkčními klíči.**
+- **Když si nejste jisti licencí.**
+
+## Kudy dál
+
+- [Abliterace](/temata/abliterace/) — co to je.
+- [Provoz na 128 GB](/temata/abliterace/provoz-na-128-gb/) — buildy.
+- [GDPR a AI Act](/temata/provoz/gdpr-a-ai-act/) — provoz.
+- [Bezpečnost agenta](/temata/agenti/bezpecnost-agenta/) — nástroje.
+- [Licence generování](/generovani/licence/) — modely.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — obrana.
+
+## Zdroje
+
+- [AI Act — oficiální text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+- [GDPR — oficiální text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [Qwen Community License 1.0](https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/main/LICENSE)
+- [NVIDIA FP4-Local — karta](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local)
+- [OrcaRouter — karta](https://huggingface.co/orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

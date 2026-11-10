@@ -1,0 +1,143 @@
+---
+title: "Abliterované modely: co jsou a co od nich čekat"
+description: "Abliterace odstraní odmítání z modelu. Vysvětlíme, co se mění ve vahách, jaké to má následky, které buildy Qwen3.8 se vejdou na 128 GB a kde je limit."
+last_verified: 2026-11-10
+sidebar:
+  label: Abliterace
+  order: 13
+---
+
+> **Toto je vysvětlení, ne návod k obejití bezpečnostních opatření.**
+> Abliterovaný model nemá zábrany a odpovědnost za výstup nese ten,
+> kdo ho provozuje. Text není právní rada.
+
+**Abliterovaný model** je model, kterému byla z vah odstraněna
+schopnost odmítnout požadavek. Neznamená to, že je „chytrější“ nebo
+že umí víc. Znamená to, že na škodlivý požadavek odpoví místo toho,
+aby ho odmítl. Zbytek modelu zůstává stejný — stejná architektura,
+stejný počet parametrů, stejná znalost.
+
+## Rychlá odpověď
+
+- **Abliterace je úprava vah**, ne nový model. Počet parametrů se
+  nemění, takže se vejde do stejné paměti jako základ.
+- **Odmítání není jedna funkce.** Model ho má rozptýlené v mnoha
+  vrstvách; abliterace ho potlačí, ale neodstraní znalost.
+- **Cena je kvalita a bezpečnost.** Model může víc halucinovat,
+  hůř poslouchat instrukce a rozbít volání nástrojů.
+- **Na 128 GB to jde**, ale jen s buildem, který má správný formát
+  a umí držet n-gramy na SSD.
+
+## Co abliterace je a co není
+
+| Co si lidé myslí | Co to je ve skutečnosti |
+|---|---|
+| „Model bez cenzury“ | model bez trénovaného odmítání, ale pořád s předsudky a chybami |
+| „Umí víc“ | neumí; jen neodmítne |
+| „Je to nový model“ | je to stejný model s upravenými vahami |
+| „Je to bezpečné, když to běží lokálně“ | lokální provoz snižuje únik dat, ne riziko výstupu |
+| „Stačí změnit prompt“ | abliterace mění váhy, ne prompt |
+
+## Rozhodovací tabulka
+
+| Potřebujete | Základní model | Abliterovaný |
+|---|---|---|
+| Odpovědi na citlivé, ale legální otázky | někdy přehnaně odmítá | vhodnější |
+| Právní, zdravotní a finanční rady | odmítne nebo varuje | **nevhodné** |
+| Veřejný produkt nebo školu | **ano** | **ne** |
+| Výzkum odmítání a bezpečnosti | **ano** | **ano**, s dokumentací |
+| Komerční nasazení s odpovědností | **ano** | jen s moderací a smlouvou |
+| Obsah pro dospělé v legálním rámci | omezuje | vhodnější, ale regulované |
+
+## Jak se to pozná
+
+Solidní model card abliterovaného modelu uvádí:
+
+- **metodu** (diff-in-means, orthogonalizace, LoRA, Heretic),
+- **míru odmítnutí před a po** na konkrétní sadě,
+- **známé ztráty** (benchmarky, chování nástrojů),
+- **licenci** vydavatele i základního modelu,
+- **datum a revizi** základu.
+
+Když karta říká jen „uncensored“ a nic dalšího, je to marketing.
+Když neuvede licenci, je to riziko.
+
+## Co se mění ve vahách
+
+Model se učí odmítat v tréninku. Vznikne směr v aktivacích, který
+odpovídá „tohle ne“. Abliterace tento směr potlačí — typicky tak, že
+ho odečte z vah attention a expertních vrstev. Podrobně to popisuje
+[jak abliterace funguje](/temata/abliterace/jak-abliterace-funguje/).
+
+Důležité je, že **znalost zůstává**. Model pořád ví, jak něco udělat;
+jen to přestane odmítat. Proto je abliterace bezpečnostní problém,
+ne technický trik.
+
+## Kde to běží na 128 GB
+
+Abliterace nemění velikost modelu, takže platí stejná paměťová
+matematika jako u základu: Qwen3.8 Flash Next má 125B parametrů
+hlavního modelu, 6B aktivních, 51B n-gramovou tabulku a 4B MTP.
+V NVFP4 to je kolem 96 GiB vah.
+
+Rozhoduje ale **formát a načítání n-gramů**:
+
+| Zařízení | Build | Disk | N-gramy z SSD |
+|---|---|---:|---|
+| DGX Spark | DevelopingDad FP4-Local-Abliterated | 102 GB | ano |
+| DGX Spark | DevelopingDad Uncensored DGX-Spark | 184 GB | ano, mmap |
+| DGX / RTX Spark | lflare CSF-QAD-Abliterated | 103 GB | ano |
+| Strix Halo | huihui-ai GGUF (UD-IQ4_XS) | 94 GB | ne |
+| Mac | stejné GGUF přes Metal | 94–98 GB | ne |
+
+Podrobnosti, čísla a kritéria jsou v
+[provozu na 128 GB](/temata/abliterace/provoz-na-128-gb/).
+
+## Co to může způsobit
+
+- **Návod k nezákonnému jednání** — model nemá zábrany.
+- **Nebezpečná odborná rada** — medicínská, právní, technická.
+- **Dezinformace a nenávist** — model ochotně vygeneruje text.
+- **Únik soukromí** — doplní nebo složí osobní údaje.
+- **Škoda při agentním použití** — model může poslat e-mail nebo
+  zavolat nástroj, který nemá.
+
+Odpovědnost je vždy na provozovateli. Více v
+[rizicích a právu](/temata/abliterace/rizika-a-pravo/).
+
+## Kdy to nemá smysl
+
+- **Veřejná služba** bez moderace a lidského dohledu.
+- **Právní, zdravotní nebo personální rozhodnutí.**
+- **Když potřebujete spolehlivé tool calling** — abliterace ho může
+  rozbít.
+- **Když je cílem jen „obejít cenzuru“** — to není use case, to je
+  riziko.
+- **Když nemáte čas na testování** — kvalita se mění build od buildu.
+
+## Kudy dál
+
+- [Odmítání](/temata/abliterace/odmitani/) — co model odmítá a proč.
+- [Jak abliterace funguje](/temata/abliterace/jak-abliterace-funguje/) —
+  technika a vedlejší efekty.
+- [Provoz na 128 GB](/temata/abliterace/provoz-na-128-gb/) — buildy,
+  SSD a měření.
+- [Rizika a právo](/temata/abliterace/rizika-a-pravo/) — dopady
+  a odpovědnost.
+- [Kdo to tvoří](/temata/abliterace/kdo-je-tvori/) — vydavatelé
+  a provenance.
+- [Varianta Qwen3.8](/modely/qwen3-8-flash-next-abliterated/) — co je
+  doložené.
+- [Agenti](/temata/agenti/) — když model volá nástroje.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — obrana.
+
+## Zdroje
+
+- [Arditi et al. — Refusal direction](https://arxiv.org/abs/2406.11717) (2024)
+- [NVIDIA — Qwen3.8 Flash Next FP4-Local](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local) — PLE offload, 10. 11. 2026
+- [DevelopingDad — FP4-Local-Abliterated](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated) — měření vydavatele, 10. 11. 2026
+- [lflare — CSF-QAD-Abliterated](https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated) — měření vydavatele, 10. 11. 2026
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

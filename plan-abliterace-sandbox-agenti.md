@@ -1,6 +1,8 @@
 # Plán: abliterované modely, sandboxing agentů a běhové prostředí agentů
 
-*Verze 1.1 — 10. listopadu 2026*
+*Verze 1.2 — 10. listopadu 2026*
+
+**Stav:** celek A hotový (10. 11. 2026). Celky B a C zbývají.
 
 > Celkový stav a pořadí práce jsou v `plan-celkovy.md`. Tento soubor
 > drží podrobné osnovy a technická kritéria.

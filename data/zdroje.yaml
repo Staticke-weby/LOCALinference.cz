@@ -776,3 +776,91 @@
   posledni_kontrola: 2026-11-09
   stav: ok
   poznamka: "Komunitní recept pro DGX Spark a RTX Spark; 57 tok/s s DFlash2. Ověřovat, ne přebírat bez konfigurace."
+
+- id: arxiv-refusal-direction
+  nazev: "Arditi et al. — Refusal in LLMs Is Mediated by a Single Direction"
+  url: https://arxiv.org/abs/2406.11717
+  typ: html
+  co_sledujeme: [abliterace, odmítání, výzkum]
+  frekvence: ctvrtletne
+  priorita: stredni
+  posledni_kontrola: 2026-11-10
+  stav: ok
+  poznamka: "Teoretický základ abliterace; popisuje směr odmítání a jeho odečtení."
+
+- id: heretic
+  nazev: Heretic — automatická abliterace
+  url: https://github.com/p-e-w/heretic
+  typ: github
+  co_sledujeme: [abliterace, nastroje]
+  frekvence: mesicne
+  priorita: nizka
+  posledni_kontrola: 2026-11-10
+  stav: ok
+  poznamka: "Nástroj pro hledání parametrů abliterace; výsledky závisí na zvolené sadě promptů."
+
+- id: developingdad-fp4-abliterated
+  nazev: DevelopingDad — Qwen3.8 FP4-Local-Abliterated
+  url: https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated
+  typ: hf
+  co_sledujeme: [abliterace, nvfp4, ple, mereni, licence]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-10
+  stav: ok
+  poznamka: "Stejný layout jako NVIDIA FP4-Local; launcher s PLE z SSD; měření vydavatele 38,0/54,3 tok/s."
+
+- id: developingdad-dgx-spark-uncensored
+  nazev: DevelopingDad — Uncensored NVFP4 DGX-Spark
+  url: https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-Uncensored-NVFP4-DGX-Spark
+  typ: hf
+  co_sledujeme: [abliterace, nvfp4, ple, balicek]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-10
+  stav: ok
+  poznamka: "183,5 GB na disku, BF16 PLE mmap z úložiště, 100 GiB container."
+
+- id: lflare-csf-abliterated
+  nazev: lflare — NVFP4-CSF-QAD-Abliterated
+  url: https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated
+  typ: hf
+  co_sledujeme: [abliterace, nvfp4, csf, mereni]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-10
+  stav: ok
+  poznamka: "Úprava na kvantizační mřížce; PLE z SSD; GPQA 166/198 vs. 164/198 (vydavatel)."
+
+- id: orcarouter-uncensored-nvfp4
+  nazev: OrcaRouter — Qwen3.8 Uncensored NVFP4
+  url: https://huggingface.co/orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4
+  typ: hf
+  co_sledujeme: [abliterace, nvfp4, licence]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-10
+  stav: ok
+  poznamka: "183,5 GB; karta uvádí Apache-2.0, základ je Qwen Community License 1.0. Rozpor evidovat, neřešit."
+
+- id: abliteratedmodels
+  nazev: abliteratedmodels.org — index
+  url: https://www.abliteratedmodels.org/
+  typ: html
+  co_sledujeme: [abliterace, katalog, metodika]
+  frekvence: tydne
+  priorita: nizka
+  posledni_kontrola: 2026-11-10
+  stav: ok
+  poznamka: "Katalog z HF metadat; neověřuje tvrzení vydavatelů."
+
+- id: abliter-cn
+  nazev: abliter.cn — index
+  url: https://abliter.cn/en/
+  typ: html
+  co_sledujeme: [abliterace, katalog]
+  frekvence: tydne
+  priorita: nizka
+  posledni_kontrola: 2026-11-10
+  stav: ok
+  poznamka: "Druhý katalog abliterovaných modelů; ber jako rozcestník."

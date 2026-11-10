@@ -1,0 +1,147 @@
+---
+title: "Odmítání modelu: co to je a jaké oblasti pokrývá"
+description: "Odmítání je trénovaná reakce modelu na škodlivý požadavek. Vysvětlíme, co všechno pokrývá, jak se měří a co se změní po abliteraci."
+last_verified: 2026-11-10
+sidebar:
+  label: Odmítání
+  order: 1
+---
+
+> **Toto je vysvětlení, ne návod.** Neuvádíme prompty, kterými se
+> odmítání obchází, ani postupy pro škodlivé úlohy.
+
+**Odmítání** (refusal) je situace, kdy model neodpoví na požadavek
+podle zadání, ale místo toho ho odmítne, varuje nebo přesměruje.
+Není to chyba ani cenzura v právním smyslu: je to výsledek tréninku,
+který má zabránit škodě. Abliterace tento zvyk potlačí.
+
+## Rychlá odpověď
+
+- **Odmítnutí není jedno pravidlo.** Model ho má v mnoha vrstvách
+  a projeví se různě podle jazyka a kontextu.
+- **Odmítnutí se liší od varování.** Varování dá odpověď s rizikem;
+  odmítnutí ji nedá.
+- **Přemrštěné odmítání** je druhý problém: model odmítne i benigní
+  věc, protože si ji splete s rizikem.
+- **Abliterace snižuje odmítání**, ale neřeší, jestli je odpověď
+  správná nebo zákonná.
+
+## Čtyři reakce modelu
+
+| Reakce | Co model udělá | Příklad |
+|---|---|---|
+| **Odpověď** | splní zadání | vysvětlí postup |
+| **Varování** | odpoví, ale upozorní na riziko | „to je nebezpečné, ale princip je…“ |
+| **Přesměrování** | nabídne bezpečnější variantu | místo návodu nabídne prevenci |
+| **Odmítnutí** | neodpoví vůbec | „to nemohu“ |
+| **Selhání nástroje** | nástroj vrátí chybu | model nemá oprávnění |
+
+Abliterace míří hlavně na poslední dvě položky. Varování a
+přesměrování mohou zůstat, protože nejsou vždy vázaná na stejný
+směr.
+
+## Oblasti, které odmítání pokrývá
+
+Tabulka popisuje kategorie, ne konkrétní dotazy. U každé je důvod,
+proč ji výrobci řeší, a co hrozí, když se odmítání vypne.
+
+| Oblast | Proč se odmítá | Riziko po abliteraci |
+|---|---|---|
+| **Násilí a zbraně** | škoda na zdraví | návod k ublížení |
+| **Nezákonné jednání** | trestní odpovědnost | podpora trestné činnosti |
+| **Drogy** | zdraví a zákon | dávkování, výroba |
+| **Sebepoškozování** | ochrana života | eskalace krize |
+| **Sexuální obsah a nezletilí** | zákon a etika | závažná trestná činnost |
+| **Nenávist a dehumanizace** | ochrana skupin | šíření nenávisti |
+| **Soukromí a osobní údaje** | GDPR a důstojnost | doxxing, profilování |
+| **Zdraví a právo** | odborná odpovědnost | nebezpečná rada |
+| **Autorské právo** | licence a právo | plagiát, porušení |
+| **Kybernetická bezpečnost** | zneužití | útok, malware |
+| **Politická persuaze** | manipulace | dezinformace |
+| **Obcházení vlastních pravidel** | integrita systému | jailbreak, obcházení auditu |
+
+Kategorie se překrývají. Dotaz na „lék na předávkování“ je zdraví
+i bezpečnost; dotaz na „test zabezpečení“ je legitimní i rizikový
+podle kontextu.
+
+## Odmítnutí versus přemrštěné odmítání
+
+**Over-refusal** je opačný problém: model odmítne něco, co je
+legální a bezpečné. Typicky:
+
+- zdravotní edukace pro studenty,
+- bezpečnostní audit vlastního systému,
+- historický text s násilím,
+- fikce s konfliktem,
+- právní vysvětlení trestného činu.
+
+Když model odmítá příliš, lidé sahají po abliteraci. Je to
+pochopitelné, ale řešení má vedlejší účinky: spolu s přehnaným
+odmítáním zmizí i to užitečné.
+
+## Jak se odmítání měří
+
+Odmítání není binární vlastnost. Měří se na **sadě promptů** a
+s **protokolem**:
+
+1. **Sada** — kolik a jakých promptů, v jakém jazyce.
+2. **Kategorie** — benigní, hraniční, škodlivé.
+3. **Scorer** — kdo rozhodne, že šlo o odmítnutí (člověk, model,
+   pravidlo).
+4. **Míra odmítnutí** — podíl odmítnutých v každé kategorii.
+5. **Falešná odmítnutí** — benigní prompty, které model odmítl.
+
+Číslo bez protokolu nic neznamená. Když vydavatel uvede „0 %
+odmítnutí“, musí říct, na jaké sadě a jak se počítalo. Jinak to
+nejde srovnat.
+
+## Co se změní po abliteraci
+
+| Co | Co se stane |
+|---|---|
+| **Odmítání škodlivých dotazů** | výrazně klesne |
+| **Přemrštěné odmítání** | klesne také |
+| **Znalost** | zůstává |
+| **Kvalita odpovědí** | může klesnout, hlavně u složitých úloh |
+| **Instrukce a formát** | může se zhoršit |
+| **Tool calling** | může se rozbít, zvlášť po kvantizaci |
+| **Jazyk** | čeština může být horší než angličtina |
+
+## Česká specifika
+
+- **Bezpečnostní trénink je silnější v angličtině.** Český dotaz
+  může projít i u základního modelu, protože ho model nevyhodnotí
+  jako rizikový.
+- **Odmítnutí v češtině může být nekonzistentní** — jednou ano,
+  podruhé ne.
+- **Překlad mění kontext.** Doslovný překlad škodlivého dotazu
+  nemusí vypadat škodlivě.
+- **Lokální model nemá moderaci na vstupu.** Tu musíte přidat sami.
+
+## Kde je limit
+
+- **Odmítnutí není záruka bezpečnosti.** Model může odpovědět
+  i bez abliterace, když ho k tomu navedete kontextem.
+- **Abliterace neřeší zodpovědnost.** Ta zůstává na provozovateli.
+- **Měření je drahé** — kvalitní sada a scorer nejsou zdarma.
+- **Jazyk a kultura** se do sady musí promítnout, jinak číslo lže.
+
+## Kudy dál
+
+- [Jak abliterace funguje](/temata/abliterace/jak-abliterace-funguje/) —
+  technika.
+- [Rizika a právo](/temata/abliterace/rizika-a-pravo/) — dopady.
+- [Provoz na 128 GB](/temata/abliterace/provoz-na-128-gb/) — buildy.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — jiný druh
+  obcházení.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Bezpečnost agenta](/temata/agenti/bezpecnost-agenta/) — nástroje.
+
+## Zdroje
+
+- [Arditi et al. — Refusal direction](https://arxiv.org/abs/2406.11717)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

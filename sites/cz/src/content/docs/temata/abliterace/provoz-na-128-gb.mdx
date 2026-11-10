@@ -1,0 +1,156 @@
+---
+title: "Abliterovaný Qwen3.8 na 128 GB: buildy, SSD a parita"
+description: "Které abliterované buildy Qwen3.8 Flash Next se vejdou na 128 GB, jak fungují n-gramy z SSD, jak měřit paritu a kde je limit."
+last_verified: 2026-11-10
+sidebar:
+  label: Provoz na 128 GB
+  order: 3
+---
+
+> **Toto jsou převzatá měření a tvrzení vydavatelů, ne náš test.**
+> Konfigurace je u každého čísla; kde chybí, je to uvedené.
+
+Abliterace nemění počet parametrů, takže platí stejná paměťová
+matematika jako u základu. Rozdíl je v tom, jestli build umí držet
+**n-gramovou tabulku na SSD** — bez toho se některé balíčky na
+128 GB nevejdou, i když se jmenují NVFP4.
+
+## Rychlá odpověď
+
+- **Model má 125B hlavních parametrů, 6B aktivních, 51B n-gramů
+  a 4B MTP.** Abliterace to nemění.
+- **NVIDIA FP4-Local má ~96 GiB vah** a na DGX Sparku umí s PLE
+  offloadem obsloužit až 1M tokenů FP8 KV cache (tvrzení NVIDIA).
+- **Pro 128 GB rozhoduje PLE z SSD**, ne jen velikost souboru.
+- **Parita není automatická.** Musí se měřit stejný formát, engine
+  a konfigurace.
+
+## Paměťová matematika
+
+| Část | Parametry | Co to znamená |
+|---|---:|---|
+| Hlavní model | 125B | váhy a výpočet |
+| Aktivní na token | 6B | decode závisí na nich |
+| N-gramová tabulka | 51B | velká, ale lze ji držet na SSD |
+| MTP | 4B | spekulativní dekódování |
+
+V NVFP4 se celý model vejde do ~96 GiB. Zbytek 128 GB je na KV
+cache, aktivace, systém a režii kontejneru. Když se n-gramy
+odloží na disk, uvolní se místo pro delší kontext nebo víc
+souběžných požadavků.
+
+## Co znamená PLE z SSD
+
+NVIDIA používá proměnné:
+
+```bash
+export VLLM_PLE_TABLE_MEMORY="disk"
+export B12X_DISK_BACKEND="io_uring"
+export CUTE_DSL_ARCH="sm_121a"
+```
+
+`VLLM_PLE_TABLE_MEMORY=disk` drží n-gramovou tabulku na disku a
+mapuje ji do paměti. `io_uring` zajišťuje asynchronní čtení.
+Výsledek: váhy zůstanou v paměti, n-gramy se čtou z NVMe.
+
+**Co to vyžaduje:**
+
+- NVMe SSD, ne SATA a ne síťový disk.
+- Dost page cache; opakované n-gramy se drží v RAM.
+- Pinovaný kontejner s B12X jádry; stock vLLM tento checkpoint
+  nenačte.
+- Měření TTFT a stability decode, ne jen průměru.
+
+## Které buildy použít
+
+| Zařízení | Build | Disk | PLE z SSD | Poznámka |
+|---|---|---:|---|---|
+| DGX Spark | `DevelopingDad/...-FP4-Local-Abliterated` | 102 GB | ano | 104 GiB cap, MTP 4 drafty, FP8 KV |
+| DGX Spark | `DevelopingDad/...-Uncensored-DGX-Spark` | 184 GB | ano, mmap | BF16 PLE na disku, 100 GiB container |
+| DGX / RTX Spark | `lflare/...-CSF-QAD-Abliterated` | 103 GB | ano | Qwen licence, měřená shoda schopností |
+| Strix Halo | `huihui-ai/...-v2-GGUF` (UD-IQ4_XS) | 94 GB | ne | llama.cpp, Q8 KV |
+| Mac | stejné GGUF přes Metal | 94–98 GB | ne | MLX 4bit je těsné |
+
+**Nevhodné pro jeden 128GB box:** `orcarouter/...-NVFP4`
+(184 GB, bez veřejného launcheru s PLE), `mazinb/...`
+(186 GB, rozdělené experty), `huihui-ai/...-abliterated`
+(360 GB BF16).
+
+## Formáty a enginy
+
+| Formát | Kde běží | Výhoda | Nevýhoda |
+|---|---|---|---|
+| **NVFP4 + MXFP8** | DGX, RTX Spark, vLLM | nejrychlejší na Blackwellu | jen NVIDIA |
+| **NVFP4-CSF** | DGX, vLLM | menší váhy, stejný layout | potřebuje CSF reader |
+| **GGUF Q4/Q5** | Strix, Mac, CPU | přenosné | pomalejší, bez MTP |
+| **MLX 4bit** | Apple Silicon | nativní Metal | málo místa na kontext |
+
+Na Strix Halu a Macu NVFP4 neřešte. ROCm ani Metal ho nespustí;
+cesta je GGUF a llama.cpp, případně MLX.
+
+## Parita: jak ji měřit
+
+| Kritérium | Jak | Tolerance |
+|---|---|---|
+| Stejný základ | revize, tokenizer, MTP, vision | musí sedět |
+| Stejný formát | NVFP4, FP8 KV, engine a flags | musí sedět |
+| Parametry | safetensors total proti základu | musí sedět |
+| Decode | 8k a 32k, 1 stream, 3 běhy | ±5 % |
+| TTFT a prefill | stejné prompty | ±10 % |
+| Souběžnost | 4 požadavky | bez pádu a swapu |
+| Kvalita | veřejný benchmark + 20 českých úloh | bez propadu > 2 body |
+| Odmítání | 50 benigních + 50 škodlivých | odmítání klesne, benigní ne |
+
+**Doložená čísla k 10. 11. 2026 (tvrzení vydavatelů):**
+
+- DevelopingDad: **38,0 tok/s** próza a **54,3 tok/s** kód proti
+  **39,4 / 50,7** u základu. Odmítnutí 0/100 vývoj a 6/100 holdout
+  proti 99/100 a 100/100 u základu.
+- lflare CSF: GPQA **166/198** proti **164/198**, MTP acceptance
+  **59,5 %** proti **61,0 %**, odmítnutí 0/200 v protokolu A.
+
+Nezávislé měření chybí. Proto jsou to kandidáti, ne potvrzené
+náhrady.
+
+## Co měřit v praxi
+
+- **TTFT** na 8k, 32k a 128k — disk se projeví hlavně tady.
+- **Decode** po zahřátí a po 10 minutách.
+- **Page cache hit** a I/O wait.
+- **Teplotu a power limit** — abliterace nemění spotřebu.
+- **Tool calling** a MTP acceptance.
+- **Odmítání** na vlastní sadě, ne na cizí.
+
+## Kde je limit
+
+- **Disk není RAM.** Pomalé NVMe poznáte na TTFT a u dlouhých
+  promptů.
+- **Page cache se zaplní** a chování se může změnit.
+- **Kontejnerový cap** (100–104 GiB) je součást konfigurace;
+  nevypínejte ho bez měření.
+- **Windows ARM** dělí paměť jinak než Linux; PLE z SSD tam zatím
+  není doložené.
+- **Licence** se liší build od buildu; viz
+  [rizika a právo](/temata/abliterace/rizika-a-pravo/).
+
+## Kudy dál
+
+- [Abliterace](/temata/abliterace/) — co to je.
+- [Rizika a právo](/temata/abliterace/rizika-a-pravo/) — odpovědnost.
+- [Varianta modelu](/modely/qwen3-8-flash-next-abliterated/) — co je
+  doložené.
+- [NVFP4](/slovnik/software/nvfp4/) — formát.
+- [KV cache](/slovnik/pamet/kv-cache/) — co bere paměť.
+- [vLLM](/slovnik/software/vllm/) — engine.
+- [DGX Spark](/zarizeni/dgx-spark/) — hardware.
+- [RTX Spark mini](/zarizeni/rtx-spark-mini/) — hardware.
+
+## Zdroje
+
+- [NVIDIA — Qwen3.8 Flash Next FP4-Local](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local) — 10. 11. 2026
+- [DevelopingDad — FP4-Local-Abliterated](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated) — 10. 11. 2026
+- [DevelopingDad — Uncensored DGX-Spark](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-Uncensored-NVFP4-DGX-Spark) — 10. 11. 2026
+- [lflare — CSF-QAD-Abliterated](https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated) — 10. 11. 2026
+- [llama.cpp — dokumentace](https://github.com/ggml-org/llama.cpp)
+
+*Naposledy ověřeno: 10. 11. 2026.*

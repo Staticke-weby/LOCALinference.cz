@@ -26,6 +26,9 @@ davky:
   - id: 7
     nazev: "Průběžná údržba"
     cil: "Sledování nových modelů, runtime a zdrojů."
+  - id: 8
+    nazev: "Abliterace a bezpečnost"
+    cil: "Doložit paritu abliterovaného modelu, českou sadu odmítání a chování PLE z SSD."
 
 # Stránky, kde je [DOPLNIT] součást vysvětlení metodiky, ne skutečná mezera.
 ignorovat_stranky:
@@ -759,4 +762,64 @@ polozky:
     hledat: "Phoronix, Local LLM Benchmarks, Reddit r/LocalLLaMA, recenze 495"
     poznamka: "Zařízení je na trhu od září 2026. 11/2026 první komunitní test (Q6_K_XL, llama.cpp/ROCm, 192 GB): 19–20 tok/s krátký prompt, 14,8 při 32k, 4,6 při 249k. Sporné. Doplněno měření výrobce (Framework, 30. 9. 2026): DeepSeek V4.1 Flash Q2 ~14 tok/s, MiMo 16–18 tok/s při 0–64K; AMD uvádí 52,2 vs. 51,2 tok/s bez konfigurace. Nezávislý test Qwen3.8 stále chybí."
     zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next/discussions/84
+    overeno: 2026-11-10
+
+  # --- Dávka 8: abliterace ----------------------------------------------
+  - id: A01
+    oblast: data
+    titulek: "Abliterovaný Qwen3.8: nezávislá parita NVFP4"
+    co_chybi: "Parita abliterovaného NVFP4 proti NVIDIA FP4-Local je doložená jen měřením vydavatelů (DevelopingDad, lflare). Chybí nezávislý test na stejném zařízení a se stejnou konfigurací."
+    kde:
+      - temata/abliterace/provoz-na-128-gb
+      - modely/qwen3-8-flash-next-abliterated
+    priorita: P0
+    stav: otevreno
+    davka: 8
+    hledat: "nezavisle benchmarky, DGX Spark, llamaperf, Hugging Face discussions"
+    poznamka: "Vydavatelská čísla: DevelopingDad 38,0/54,3 tok/s proti 39,4/50,7; lflare GPQA 166/198 proti 164/198. Nezávislé měření chybí."
+    zdroj: https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated
+    overeno: 2026-11-10
+
+  - id: A04
+    oblast: data
+    titulek: "Česká sada pro měření odmítání"
+    co_chybi: "Nemáme veřejnou českou sadu 50 benigních a 50 škodlivých promptů se scorerem, takže čísla odmítání nejdou srovnat v češtině."
+    kde:
+      - temata/abliterace/odmitani
+      - temata/abliterace/provoz-na-128-gb
+    priorita: P1
+    stav: otevreno
+    davka: 8
+    hledat: "české safety benchmarky, akademické sady, OWASP"
+    poznamka: "Sada musí být bezpečná na zveřejnění a nesmí sloužit jako návod."
+    zdroj: null
+    overeno: null
+
+  - id: A05
+    oblast: mereni
+    titulek: "Vliv PLE z SSD na TTFT a decode"
+    co_chybi: "Chybí měření, jak se projeví n-gramy z SSD při 8k, 32k, 128k a 262k kontextu na 128GB boxu."
+    kde:
+      - temata/abliterace/provoz-na-128-gb
+    priorita: P1
+    stav: otevreno
+    davka: 8
+    hledat: "NVMe io_uring, vLLM PLE offload, DGX Spark"
+    poznamka: "NVIDIA udává 1M tokenů FP8 KV cache s offloadem; jde o tvrzení výrobce, ne o naše měření."
+    zdroj: https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local
+    overeno: 2026-11-10
+
+  - id: A06
+    oblast: mereni
+    titulek: "PLE z SSD na RTX Sparku"
+    co_chybi: "Není doložené, jestli Windows ARM port vLLM umí PLE z SSD a jak se chová dělení paměti mezi VRAM a OS RAM."
+    kde:
+      - temata/abliterace/provoz-na-128-gb
+      - modely/qwen3-8-flash-next-abliterated
+    priorita: P1
+    stav: otevreno
+    davka: 8
+    hledat: "vllm-for-rtx-spark, Windows ARM, NVIDIA forum"
+    poznamka: "Abliterovaný balíček pro RTX Spark s PLE z SSD zatím neexistuje; repacking mweinbach1 je neabliterovaný."
+    zdroj: https://github.com/devjeonghwan/vllm-for-rtx-spark
     overeno: 2026-11-10
