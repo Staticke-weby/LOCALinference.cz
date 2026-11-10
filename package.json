@@ -18,7 +18,9 @@
     "dev": "npm --prefix sites/cz run dev",
     "build": "npm run check && npm --prefix sites/cz run build && npm run check:odkazy",
     "check:odkazy": "node scripts/kontrola-odkazu.mjs",
-    "check:odkazy:en": "node scripts/kontrola-odkazu.mjs sites/eu/dist"
+    "check:odkazy:en": "node scripts/kontrola-odkazu.mjs sites/eu/dist",
+    "check:prolinkovani": "node scripts/kontrola-prolinkovani.mjs",
+    "check:prolinkovani:strict": "node scripts/kontrola-prolinkovani.mjs --strict"
   },
   "devDependencies": {
     "gray-matter": "^4.0.3",

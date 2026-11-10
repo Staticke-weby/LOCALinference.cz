@@ -404,3 +404,16 @@ použije se jen tam, kde se dotýká provozu (data, logy, odpovědnost).
 - 9. 11. ověřeny klíčové ceny: ASUS GX10 1TB 162 990 Kč, Acemagic A10A
   128GB/2TB 119 990 Kč, DGX Spark 4TB 218 990 Kč, ASUS ProArt P14 128GB
   125 990 Kč. Sedí se snapshotem.
+
+---
+
+## 2026-11-10 - Plan rozsireni temat a slovniku
+
+- Vytvoren plan-rozsireni-temat-slovniku.md: audit, sablony, plan po
+  strankach, novy cluster praxe/cestina/RAG/agenti/provoz, SEO a QA.
+- Novy nastroj 
+pm run check:prolinkovani cte hotove HTML a kontroluje
+  vstupni/vystupni odkazy, temata a slovnik. Baseline: 9 chyb (cena,
+  pro-firmy, windows, qwen, rtx, upscaling, wsl2).
+- Cil: temata 1 200-2 200 slov, slovnik 55-60 hesel, kazda stranka
+  prolinkovana; check:prolinkovani:strict zapnout po davce 0.

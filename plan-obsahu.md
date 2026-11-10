@@ -2,6 +2,11 @@
 
 *Verze 0.1 · 4. listopadu 2026*
 
+> **Aktuální rozšiřovací plán (10. 11. 2026):**
+> [`plan-rozsireni-temat-slovniku.md`](plan-rozsireni-temat-slovniku.md) —
+> hloubka témat, slovník, interní prolinkování a ověření
+> `npm run check:prolinkovani`.
+
 Pořadí je podle hodnoty pro čtenáře a podle toho, co je potřeba mít hotové,
 než se postaví web. Platí zásada: **obsah nejdřív jako Markdown, web až potom.**
 
