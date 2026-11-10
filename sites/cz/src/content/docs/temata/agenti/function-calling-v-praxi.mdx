@@ -1,0 +1,129 @@
+---
+title: "Function calling v praxi: schéma, parser a validace"
+description: "Jak v praxi zapnout tool calling u Qwen3.8 Flash Next, navrhnout schéma, ověřit argumenty a vyhnout se halucinovaným voláním."
+last_verified: 2026-11-10
+sidebar:
+  label: Function calling v praxi
+  order: 2
+---
+
+**Function calling** je schopnost modelu požádat o zavolání funkce.
+V praxi to znamená, že model vrátí strukturovaný požadavek a vaše
+aplikace ho provede. Rozhoduje návrh schématu, parser a validace,
+ne jen model.
+
+## Rychlá odpověď
+
+- **Model navrhne, aplikace provede.** Nikdy nenechte model volat
+  přímo bez validace.
+- **Schéma držte úzké** — méně polí, jasné typy, povinné údaje.
+- **Ve vLLM zapněte tool parser** a ověřte, že výstup je strukturovaný.
+- **Každé volání logujte** a u citlivých akcí vyžádejte potvrzení.
+
+## Schéma
+
+Dobré schéma:
+
+- **má málo polí**,
+- **používá enum** pro volby,
+- **označí povinná pole**,
+- **má limity** (délka, rozsah),
+- **neposkytuje** volný text tam, kde má být číslo.
+
+Příklad:
+
+```json
+{
+  "name": "read_file",
+  "description": "Přečte textový soubor v povoleném adresáři.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "path": { "type": "string" }
+    },
+    "required": ["path"]
+  }
+}
+```
+
+## vLLM
+
+Qwen3.8 Flash Next používá ve vLLM přepínače:
+
+```bash
+--enable-auto-tool-choice
+--tool-call-parser qwen3_coder
+```
+
+Bez parseru může model vrátit text, který vypadá jako JSON, ale není
+to strukturované volání. Ověřte to na jednoduchém nástroji.
+
+## Validace a retry
+
+1. **Zkontrolujte JSON** — parsovatelnost a typy.
+2. **Zkontrolujte povinná pole.**
+3. **Zkontrolujte rozsahy** — čísla, délky, enum.
+4. **Zkontrolujte oprávnění** — smí uživatel tuhle akci?
+5. **Při chybě** vraťte modelu konkrétní chybu a nechte ho opravit.
+6. **Po dvou chybách** se zeptejte člověka.
+
+## Tool choice
+
+- **Auto** — model se rozhodne, kdy nástroj použít.
+- **Required** — musí zavolat nástroj; hodí se pro extrakci.
+- **None** — nástroje jsou dostupné, ale model je nemá použít.
+
+Pro extrakci je `required` užitečné. Pro chat může být `auto`
+přirozenější.
+
+## Latence a kontext
+
+Každé volání je další kolo modelu. Historie a výstupy nástrojů rostou,
+takže:
+
+- **prefill** se prodlužuje,
+- **KV cache** zabírá víc paměti,
+- **celý úkol** může trvat minuty.
+
+U agenta proto omezujte počet kroků a velikost výstupů nástrojů.
+
+## Testování
+
+- **Správné volání** — model vybere nástroj a argumenty.
+- **Chybějící pole** — aplikace odmítne.
+- **Neexistující soubor** — nástroj vrátí chybu, model ji zpracuje.
+- **Neoprávněná akce** — aplikace odmítne.
+- **Injection v dokumentu** — model nesmí poslechnout.
+- **Dlouhý výstup** — musí se oříznout.
+
+## Příklad: extrakce faktury
+
+Model dostane nástroj `uloz_fakturu` se schématem pro dodavatele,
+IČO, částku a datum. Výstup se validuje; když chybí IČO, aplikace
+volání odmítne a vrátí modelu chybu. Model se zeptá nebo pole označí
+jako chybějící. Nikdy neuloží vymyšlené IČO.
+
+## Kdy to nedělat
+
+- Model má jen odpovídat textem.
+- Úloha jde bezpečně zvládnout skriptem.
+- Nemáte validaci a logy.
+- Akce je nevratná a bez potvrzení.
+
+## Kudy dál
+
+- [MCP v praxi](/temata/agenti/mcp-v-praxi/) — nástroje.
+- [Coding agent](/temata/agenti/coding-agent/) — práce s kódem.
+- [Bezpečnost agenta](/temata/agenti/bezpecnost-agenta/) — obrana.
+- [Function calling](/slovnik/software/function-calling/) — pojem.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — tool calling](https://docs.vllm.ai/en/latest/features/tool_calling.html)
+- [vLLM recipes — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

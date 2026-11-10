@@ -1,0 +1,119 @@
+---
+title: "Coding agent na 128 GB: co zvládne a jak ho hlídat"
+description: "Lokální coding agent umí číst repo, navrhovat změny a spouštět testy. Vysvětlíme workflow, sandbox, limity a kdy nepustit agenta k produkci."
+last_verified: 2026-11-10
+sidebar:
+  label: Coding agent
+  order: 3
+---
+
+**Coding agent** je model, který dostane úkol v repozitáři: najdi
+chybu, přidej test, uprav funkci. Umí číst soubory, navrhovat diff
+a spouštět příkazy. Na 128GB boxu to jde, ale bez sandboxu a testů
+je to riskantní.
+
+## Rychlá odpověď
+
+- **Agent není autopilot.** Navrhuje změny; člověk je schvaluje.
+- **Testy jsou pojistka.** Bez nich agent „opraví“ i to, co fungovalo.
+- **Sandbox a oprávnění** jsou povinné; repo obsahuje tajemství.
+- **Qwen3.8 Flash Next** má silné coding benchmarky, ale neznamená
+  to, že rozumí vašemu projektu.
+
+## Co agent umí
+
+- **Prohledat repo** a najít relevantní soubory.
+- **Přečíst kód** a vysvětlit, co dělá.
+- **Navrhnout změnu** nebo diff.
+- **Spustit testy** a číst výsledky.
+- **Opravit chybu** podle výstupu testů.
+- **Napsat dokumentaci** nebo commit message.
+
+## Workflow
+
+1. **Větev** — agent pracuje mimo main.
+2. **Kontext** — vyberterelevantní soubory, ne celé repo.
+3. **Plán** — nechte agenta napsat kroky a schvalte je.
+4. **Změna** — malý diff, ne přepis celého projektu.
+5. **Testy** — spusťte je v izolaci.
+6. **Kontrola** — přečtěte diff a spusťte review.
+7. **Merge** — až po lidském schválení.
+
+## Co dát agentovi
+
+| Nástroj | K čemu | Riziko |
+|---|---|---|
+| **čtení souborů** | orientace v repo | tajemství v `.env` |
+| **git** | historie, diff, větev | nechtěný push |
+| **test runner** | ověření změny | spuštění cizího kódu |
+| **shell** | build, lint | nebezpečné příkazy |
+| **issue tracker** | kontext úkolu | únik dat |
+
+Agent by neměl mít přístup k produkčním klíčům ani k produkční
+databázi.
+
+## Sandbox
+
+- **Kontejner nebo VM** bez sítě, pokud možno.
+- **Read-only** mount pro repo, pokud agent jen čte.
+- **Oddělený uživatel** bez práv root.
+- **Limit** CPU, paměti a času.
+- **Žádné secrets** v prostředí.
+- **Kill switch** — možnost okamžitě zastavit.
+
+## Testy a kvalita
+
+- **Unit testy** musí projít.
+- **Lint a typová kontrola** musí projít.
+- **Diff** musí být malý a srozumitelný.
+- **Chování** se nesmí změnit mimo zadání.
+- **Bezpečnost** — žádné nové závislosti bez schválení.
+
+## Česká specifika
+
+- **Komentáře a dokumentace** v češtině mohou být nekonzistentní.
+- **Kódovaní** — UTF-8 a diakritika v souborech.
+- **Názvy** — agent může „opravit“ české identifikátory.
+- **Testovací data** — česká jména a adresy.
+
+## Příklad: oprava testu
+
+Test selže na `null`. Agent dostane chybu, přečte funkci a navrhne
+ošetření. Spustí testy v sandboxu. Když projdou, člověk přečte diff
+a schválí merge. Agent nemá přístup k produkčním klíčům ani k main
+větvi; jinak by jedna chyba mohla skončit v nasazení.
+
+## Kdy agenta nepustit
+
+- **Produkční databáze** bez read-only režimu.
+- **Platební systémy** bez lidského schválení.
+- **Repozitáře s tajemstvími** bez sandboxu.
+- **Nevratné migrace** bez zálohy.
+- **Kód, kterému nerozumíte** — nemůžete zkontrolovat diff.
+
+## Měření
+
+- **Počet přijatých změn** vs. odmítnutých.
+- **Čas** od zadání po merge.
+- **Chybovost** — kolik změn vrátilo testy.
+- **Bezpečnostní incidenty** — pokusy o neoprávněný přístup.
+- **Kvalita diffu** — velikost a čitelnost.
+
+## Kudy dál
+
+- [MCP v praxi](/temata/agenti/mcp-v-praxi/) — nástroje.
+- [Function calling v praxi](/temata/agenti/function-calling-v-praxi/) —
+  volání.
+- [Bezpečnost agenta](/temata/agenti/bezpecnost-agenta/) — obrana.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+- [Agentní úlohy](/slovnik/software/agentni-ulohy/) — pojem.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — tool calling](https://docs.vllm.ai/en/latest/features/tool_calling.html)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Git — dokumentace](https://git-scm.com/doc)
+
+*Naposledy ověřeno: 10. 11. 2026.*

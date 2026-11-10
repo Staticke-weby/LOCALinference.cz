@@ -497,7 +497,7 @@ Pravidla:
 
 - [x] `/temata/cestina/` + 5 dceřiných stránek (10. 11. 2026).
 - [x] `/temata/rag/` + 5 dceřiných stránek (10. 11. 2026).
-- [ ] `/temata/agenti/` + 5 dceřiných stránek.
+- [x] `/temata/agenti/` + 5 dceřiných stránek (10. 11. 2026).
 - [ ] `/temata/provoz/` + 5 dceřiných stránek.
 - [ ] `/temata/praxe/` + 4 profese (právo, účetnictví, výroba, vývojáři).
 - [ ] 10 dalších hesel ve slovníku.

@@ -206,3 +206,19 @@
     - /temata/rag/opravneni-a-bezpecnost/
   chybi: "Chybí veřejné české testy retrieval kvality a případové studie."
   overeno: 2026-11-10
+
+- id: agenti
+  nazev: Agenti a automatizace
+  hledany_vyraz: "lokální AI agent"
+  popis: "Jak postavit lokálního agenta: MCP, function calling, coding agent, office automatizace a bezpečnost."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /temata/agenti/
+    - /temata/agenti/mcp-v-praxi/
+    - /temata/agenti/function-calling-v-praxi/
+    - /temata/agenti/coding-agent/
+    - /temata/agenti/office-automatizace/
+    - /temata/agenti/bezpecnost-agenta/
+  chybi: "Chybí veřejné testy úspěšnosti agentů na českých úlohách."
+  overeno: 2026-11-10

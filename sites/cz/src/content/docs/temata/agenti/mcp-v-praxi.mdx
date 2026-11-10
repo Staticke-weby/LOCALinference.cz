@@ -1,0 +1,104 @@
+---
+title: "MCP v praxi: jak připojit lokální model k nástrojům"
+description: "MCP propojí model se soubory, gitem nebo databází. Vysvětlíme architekturu, první server, oprávnění, testování a provoz."
+last_verified: 2026-11-10
+sidebar:
+  label: MCP v praxi
+  order: 1
+---
+
+**MCP** je praktický způsob, jak modelu nabídnout nástroje, aniž byste
+pro každou aplikaci psali vlastní integraci. Server nástroje popíše,
+klient je nabídne modelu a model o volání požádá. Zbytek je oprávnění
+a disciplína.
+
+## Rychlá odpověď
+
+- **MCP server = nabídka nástrojů.** Klient = aplikace, která model
+  spouští.
+- **Začněte read-only** serverem nad jedním adresářem.
+- **Oprávnění a sandbox** jsou důležitější než počet nástrojů.
+- **Testujte i útoky** — dokument s podvrženým pokynem.
+
+## Architektura
+
+| Část | Co dělá | Příklad |
+|---|---|---|
+| **Klient** | spouští model, přijímá volání | chat, IDE, agent |
+| **Server** | nabízí nástroje a data | soubory, git, DB |
+| **Model** | rozhoduje, co zavolat | Qwen3.8 Flash Next |
+| **Aplikace** | volání provede a vrátí výsledek | váš kód |
+
+Server může běžet lokálně (`stdio`) nebo jako síťová služba. Lokální
+varianta je pro citlivá data přirozenější.
+
+## První server
+
+Začněte jedním z těchto:
+
+- **soubory** — čtení v povoleném adresáři,
+- **git** — historie, diff, větve,
+- **SQLite** — dotazy nad jednou databází,
+- **dokumentace** — hledání v Markdownu.
+
+Nepřidávejte hned zápis, mazání a e-mail. Nejdřív ověřte, že model
+volá správné nástroje.
+
+## Oprávnění
+
+- **Allowlist adresářů** — jen konkrétní složka.
+- **Read-only** — žádný zápis, dokud nemáte jistotu.
+- **Žádné klíče v promptu** — tokeny patří do prostředí.
+- **Limity** — maximální počet volání a velikost výstupu.
+- **Logy** — kdo co zavolal.
+
+Server, který vidí celý disk, je zbytečně nebezpečný.
+
+## Testování
+
+1. **Seznam nástrojů** — model vidí jen povolené.
+2. **Čtení známého souboru** — vrátí správný obsah.
+3. **Pokus mimo allowlist** — musí selhat.
+4. **Dokument s injection** — model nesmí poslechnout.
+5. **Dlouhý výstup** — musí se oříznout.
+6. **Restart** — server se zotaví.
+
+## Provoz
+
+- **Verzujte konfiguraci** serveru.
+- **Logujte** každé volání a výsledek.
+- **Aktualizujte** server i klienta.
+- **Omezujte** počet nástrojů; méně je bezpečnější.
+- **Mějte kill switch** — možnost agenta zastavit.
+
+## Příklad: git server
+
+Agent dostane úkol „vysvětli, co změnil poslední commit“. MCP server
+nabídne nástroje `git_log` a `git_diff`, oba read-only. Model si vyžádá
+diff, přečte ho a odpoví. Nemá nástroj pro push ani pro přístup k
+produkční větvi. To je bezpečný starting point.
+
+## Kdy MCP nepotřebujete
+
+- Jeden skript, který běží jednou.
+- Chat bez nástrojů.
+- Úloha, kterou zvládne obyčejné API.
+- Nemáte čas řešit oprávnění a logy.
+
+## Kudy dál
+
+- [Function calling v praxi](/temata/agenti/function-calling-v-praxi/) —
+  jak model volá funkce.
+- [Bezpečnost agenta](/temata/agenti/bezpecnost-agenta/) — obrana.
+- [Coding agent](/temata/agenti/coding-agent/) — práce s kódem.
+- [MCP](/slovnik/software/mcp/) — základní pojem.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Model Context Protocol — dokumentace](https://modelcontextprotocol.io/)
+- [MCP — specifikace](https://modelcontextprotocol.io/specification)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

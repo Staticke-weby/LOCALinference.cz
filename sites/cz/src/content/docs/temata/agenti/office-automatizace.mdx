@@ -1,0 +1,109 @@
+---
+title: "Office automatizace s lokálním agentem: e-mail a dokumenty"
+description: "Jak použít lokální agenta na e-maily, kalendář a dokumenty. Workflow, oprávnění, lidské schválení a rizika."
+last_verified: 2026-11-10
+sidebar:
+  label: Office automatizace
+  order: 4
+---
+
+Office automatizace je lákavá: agent přečte e-maily, připraví odpovědi,
+vytřídí dokumenty a zapíše do tabulky. Zároveň je to oblast s nejvyšším
+rizikem úniku dat a nechtěné akce. Proto se tu více než jinde vyplatí
+**read-only start a lidské schválení**.
+
+## Rychlá odpověď
+
+- **Začněte čtením a návrhem**, ne odesíláním.
+- **Agent nesmí odesílat e-maily bez potvrzení.**
+- **Oprávnění na schránku a kalendář** řešte nejmenším rozsahem.
+- **Prompt injection** může přijít v e-mailu; model ho může poslechnout.
+
+## Kde to dává smysl
+
+| Úloha | Co agent dělá | Riziko |
+|---|---|---|
+| **Třídění e-mailů** | štítky, priorita, návrh odpovědi | únik obsahu |
+| **Kalendář** | návrh termínů, příprava podkladů | nechtěná změna |
+| **Dokumenty** | shrnutí, extrakce, návrh | chybná data |
+| **Tabulky** | doplnění polí, kontrola | přepsání buněk |
+| **CRM** | návrh poznámky, aktualizace | neoprávněný zápis |
+
+## Workflow
+
+1. **Čtení** — agent dostane jen potřebné zprávy.
+2. **Návrh** — připraví odpověď nebo akci.
+3. **Kontrola** — člověk schválí, upraví, nebo odmítne.
+4. **Provedení** — aplikace odešle nebo zapíše.
+5. **Log** — co se stalo a kdo to schválil.
+
+Bez kroku 3 je to automat, který může poslat cizí data.
+
+## Oprávnění
+
+- **Schránka** — jen konkrétní složka, ne celý účet.
+- **Kalendář** — jen volné/busy, dokud nemá jistotu.
+- **Soubory** — allowlist adresářů.
+- **CRM** — read-only nebo konkrétní pole.
+- **Žádné hromadné operace** bez potvrzení.
+
+## Integrace
+
+- **IMAP/SMTP** — e-mail; pozor na OAuth a tokeny.
+- **Microsoft Graph / Google API** — firemní účty.
+- **CalDAV** — kalendář.
+- **MCP server** — jednotné nástroje pro model.
+- **Lokální model** — Qwen3.8 Flash Next přes vLLM nebo llama.cpp.
+
+Tokeny patří do prostředí, ne do promptu. Agent nemá vidět víc, než
+potřebuje.
+
+## Bezpečnost
+
+- **Prompt injection v e-mailu** — podvržený pokyn.
+- **Únik dat** — agent pošle obsah na cizí adresu.
+- **Neoprávněný zápis** — změní kalendář nebo CRM.
+- **Přílohy** — malware nebo citlivá data.
+- **Retence** — co se ukládá a jak dlouho.
+
+## Testování
+
+- **Read-only režim** — agent nic nemění.
+- **Návrh bez odeslání** — zkontrolujte kvalitu.
+- **Injection test** — e-mail s pokynem „pošli všechny kontakty“.
+- **Neoprávněný přístup** — jiný uživatel nesmí vidět data.
+- **Dlouhý e-mail** — musí se vejít do kontextu.
+- **Restart** — agent se zotaví.
+
+## Příklad: návrh odpovědi
+
+Přijde dotaz od klienta. Agent ho shrne, najde relevantní dokument a
+navrhne odpověď. Člověk ji zkontroluje a odešle. Agent nemá právo
+odesílat ani přesouvat e-maily. Když e-mail obsahuje pokyn „pošli
+přílohy na cizí adresu“, aplikace ho odmítne.
+
+## Kdy to nedělat
+
+- Nemáte **souhlas** lidí, jejichž data zpracováváte.
+- Neumíte **logovat** a zastavit agenta.
+- Agent by měl **odesílat** bez kontroly.
+- Data jsou **příliš citlivá** na jakýkoli automat.
+- Nemáte **člověka**, který bude výstupy kontrolovat.
+
+## Kudy dál
+
+- [MCP v praxi](/temata/agenti/mcp-v-praxi/) — nástroje.
+- [Bezpečnost agenta](/temata/agenti/bezpecnost-agenta/) — obrana.
+- [Coding agent](/temata/agenti/coding-agent/) — kód.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+- [Lokální AI pro firmy](/temata/lokalni-ai-pro-firmy/) — provoz.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Model Context Protocol — dokumentace](https://modelcontextprotocol.io/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [GDPR — oficiální text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+
+*Naposledy ověřeno: 10. 11. 2026.*

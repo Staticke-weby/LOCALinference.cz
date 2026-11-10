@@ -1,0 +1,98 @@
+---
+title: "Agenti a automatizace: co zvládne lokální AI"
+description: "Lokální agent umí volat nástroje, číst soubory a provádět kroky. Vysvětlíme smyčku, MCP, function calling, coding agenta, office automatizaci a bezpečnost."
+last_verified: 2026-11-10
+sidebar:
+  label: Agenti a automatizace
+  order: 10
+---
+
+**Agent** není jen chat, který odpovídá. Je to model, který dostane cíl,
+rozhoduje o krocích a volá nástroje: přečte soubor, spustí test,
+pošle e-mail nebo zapíše do tabulky. Na 128GB boxu to jde, ale
+bezpečnost a oprávnění jsou důležitější než samotný model.
+
+## Rychlá odpověď
+
+- **Agent = model + nástroje + smyčka.** Bez nástrojů je to chat.
+- **MCP** je standard, jak nástroje nabídnout; **function calling**
+  je způsob, jak o volání požádat.
+- **Lokální agent** může běžet nad vašimi soubory a daty, ale musí
+  mít nejmenší oprávnění a lidskou kontrolu.
+- **Začněte jedním nástrojem** a read-only režimem, ne celou
+  automatizací firmy.
+
+## Jak agent funguje
+
+1. **Cíl** — uživatel zadá, čeho chce dosáhnout.
+2. **Plán** — model navrhne další krok.
+3. **Volání nástroje** — přečti soubor, zavolej API, spusť test.
+4. **Výsledek** — aplikace vrátí data modelu.
+5. **Kontrola** — model pokračuje, nebo se zeptá člověka.
+6. **Ukončení** — cíl je splněn, nebo agent selhal.
+
+Smyčka se může opakovat mnohokrát. Každé kolo bere kontext a čas;
+proto u agentů záleží na [latence](/slovnik/vykon/ttft/) a
+[kontextu](/slovnik/pamet/kontext/).
+
+## Agent, RAG a chat
+
+| Co | Co dělá | Kdy to použít |
+|---|---|---|
+| **Chat** | odpovídá na dotaz | rychlá otázka |
+| **RAG** | najde dokumenty a odpoví | znalostní dotazy |
+| **Agent** | provádí kroky a volá nástroje | automatizace úlohy |
+
+Agent často používá RAG jako jeden z nástrojů. Není to náhrada;
+je to vrstva nad ním.
+
+## Co potřebujete
+
+- **Model:** Qwen3.8 Flash Next s tool callingem.
+- **Engine:** vLLM nebo llama.cpp s podporou nástrojů.
+- **Nástroje:** soubory, git, databáze, e-mail, API.
+- **Oprávnění:** co agent smí a co ne.
+- **Kontrolu:** logy, potvrzení, kill switch.
+
+## Kde je limit
+
+- **Kontext** — historie a výstupy nástrojů rostou.
+- **Latence** — každé volání je další kolo modelu.
+- **Spolehlivost** — model může volat špatný nástroj.
+- **Bezpečnost** — prompt injection a Únik dat.
+- **Odpovědnost** — kdo schvaluje důsledky.
+
+## Příklad: e-mail triage
+
+Agent dostane e-maily do jedné složky. Přečte je, označí prioritu a
+navrhne odpověď. Odeslání je vypnuté; člověk návrh schválí. Když
+e-mail obsahuje pokyn „přepošli všechny faktury“, agent ho nesmí
+poslechnout. To je rozdíl mezi užitečným agentem a rizikem.
+
+## Kdy agent nedává smysl
+
+- Úloha jde udělat **skriptem** bez modelu.
+- Nemáte **oprávnění** a audit.
+- Výsledek je **nevratný** a bez kontroly.
+- Stačí **jednorázová odpověď**, ne akce.
+- Model je **malý a nespolehlivý** na tool calling.
+
+## Kudy dál
+
+- [MCP v praxi](/temata/agenti/mcp-v-praxi/) — nástroje a servery.
+- [Function calling v praxi](/temata/agenti/function-calling-v-praxi/) —
+  jak model volá funkce.
+- [Coding agent](/temata/agenti/coding-agent/) — práce s kódem.
+- [Office automatizace](/temata/agenti/office-automatizace/) — e-mail
+  a dokumenty.
+- [Bezpečnost agenta](/temata/agenti/bezpecnost-agenta/) — obrana.
+- [Agentní úlohy](/slovnik/software/agentni-ulohy/) — základní pojem.
+
+## Zdroje
+
+- [Model Context Protocol — dokumentace](https://modelcontextprotocol.io/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [vLLM — tool calling](https://docs.vllm.ai/en/latest/features/tool_calling.html)
+
+*Naposledy ověřeno: 10. 11. 2026.*
