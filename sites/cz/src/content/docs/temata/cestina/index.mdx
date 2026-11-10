@@ -1,0 +1,122 @@
+---
+title: "Čeština a lokální AI: co modely zvládnou"
+description: "Jak lokální modely zvládají češtinu, české dokumenty, shrnutí, extrakci a překlad. Co otestovat a kde je limit Qwen3.8 Flash Next."
+last_verified: 2026-11-10
+sidebar:
+  label: Čeština a dokumenty
+  order: 8
+---
+
+**Čeština** je pro lokální AI jiná než angličtina. Má bohatou
+morfologii, volný slovosled, diakritiku a formální i neformální
+rovinu. Model, který dobře odpovídá anglicky, nemusí být stejně dobrý
+na české smlouvy, faktury nebo e-maily. Tento hub shrnuje, co testovat
+a jak s českými dokumenty pracovat.
+
+## Rychlá odpověď
+
+- **Čeština není automaticky dobrá.** Qwen3.8 Flash Next je
+  multilingvní, ale veřejný český benchmark nemáme.
+- **Rozhoduje úloha, ne jazyk.** Shrnutí, extrakce a překlad mají
+  různá kritéria a různá rizika.
+- **Testujte na svých datech.** 20–50 úloh z praxe řekne víc než
+  jeden benchmark.
+
+## Co je v češtině jiné
+
+| Vlastnost | Proč to komplikuje práci |
+|---|---|
+| **Morfologie** | slova mají mnoho tvarů; model musí zvládnout skloňování a časování |
+| **Diakritika** | háčky a čárky mění význam i jména |
+| **Slovosled** | volný; důraz a význam se mění pořadím |
+| **Formálnost** | „ty“ vs. „vy“, úřední vs. běžný styl |
+| **Terminologie** | právní, lékařské a technické termíny nejsou jednotné |
+| **Čísla a kódy** | IČO, DIČ, datum, částka, číslo smlouvy |
+
+Model se to učí z dat. Když má českých dat málo, může být plynulý,
+ale nepřesný. Proto se u českých dokumentů vždy kontrolují fakta,
+čísla a citace.
+
+## Pět úloh, které má smysl řešit
+
+1. **[Shrnutí dokumentu](/temata/cestina/shrnuti-dokumentu/)** —
+   z dlouhého textu krátké a věrné shrnutí.
+2. **[Extrakce dat](/temata/cestina/extrakce-dat/)** — faktury,
+   smlouvy, formuláře do strukturovaných polí.
+3. **[Překlad a korektura](/temata/cestina/preklad-a-korektura/)** —
+   CZ→EN, EN→CZ, styl a terminologie.
+4. **[Hodnocení kvality](/temata/cestina/hodnoceni-kvality/)** — jak
+   změřit, že výstup je použitelný.
+5. **[Jak model zvládá češtinu](/temata/cestina/jak-model-zvlada-cestinu/)** —
+   co od něj čekat a kde selhává.
+
+## Co k tomu potřebujete
+
+- **Qwen3.8 Flash Next** na 128GB boxu — model, který zvládne
+  dokumenty i tool calling.
+- **Dost kontextu** — 32k pro běžné dokumenty, 128k pro delší.
+- **RAG** — pokud dokumentů přibývá a nechcete posílat všechno.
+- **Kontrolu** — člověk, který ověří fakta a čísla.
+- **Zápis konfigurace** — model, kvantizace, teplota, prompt.
+
+## Co víme a co ne
+
+**Víme:**
+
+- Qwen3.8 Flash Next je multimodální a multilingvní.
+- Model má 180B parametrů celkem a 6B aktivních.
+- Vision zvládne dokumenty a screenshoty.
+- Tool calling a strukturovaný výstup jsou podporované.
+
+**Nevíme:**
+
+- Jak přesně je na tom česká gramatika proti jiným modelům.
+- Jak si vede na českých právních a účetních dokumentech.
+- Jak se kvalita mění s kvantizací a délkou kontextu.
+
+Tyto věci se nedají vyčíst z model cardu. Musíte je otestovat na
+svých úlohách. Metodika je v [hodnocení kvality](/temata/cestina/hodnoceni-kvality/).
+
+## Jak začít
+
+1. **Vyberte jednu úlohu** — shrnutí, extrakce, překlad.
+2. **Vezměte 20–50 vzorků** z praxe, ne učebnicové texty.
+3. **Napište kritéria** a správné odpovědi.
+4. **Spusťte model** se stejnou kvantizací, kterou budete provozovat.
+5. **Zapište výsledky** a rozhodněte, zda pokračovat.
+
+## Kdy to nepoužívat
+
+- **Právní výklad** — model může napsat přesvědčivou, ale špatnou
+  odpověď.
+- **Lékařská diagnóza** — riziko je příliš vysoké.
+- **Finanční audit bez kontroly** — čísla se musí ověřit.
+- **Publikace bez korektury** — gramatika a styl potřebují člověka.
+- **Dokumenty, kterým nerozumíte** — nemůžete zkontrolovat výstup.
+
+## Kde je limit
+
+- **Dlouhý dokument** — model může vynechat důležitou pasáž.
+- **Čísla a kódy** — IČO, DIČ a částky je potřeba validovat.
+- **Právní a lékařský text** — chyba má následky; člověk musí
+  kontrolovat.
+- **Kvantizace** — 4bit může zhoršit drobné rozdíly.
+- **Kontext** — 262k je strop, ne doporučený provoz.
+
+## Kudy dál
+
+- [Shrnutí dokumentu](/temata/cestina/shrnuti-dokumentu/) — postup.
+- [Extrakce dat](/temata/cestina/extrakce-dat/) — faktury a formuláře.
+- [Překlad a korektura](/temata/cestina/preklad-a-korektura/) — styl.
+- [Hodnocení kvality](/temata/cestina/hodnoceni-kvality/) — jak měřit.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co model umí.
+- [RAG](/slovnik/software/rag/) — dokumenty v kontextu.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog — Qwen3.8-Flash-Next](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [Metodika](/o-webu/metodika/)
+- [Jak čteme data](/zaciname/jak-cteme-data/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

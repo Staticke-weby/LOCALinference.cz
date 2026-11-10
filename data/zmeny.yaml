@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Nový cluster: Čeština a dokumenty"
+  co_se_zmenilo: "Přidán hub /temata/cestina/ a pět dceřiných stránek: jak model zvládá češtinu, shrnutí dokumentu, extrakce dat, překlad a korektura, hodnocení kvality. Obsahují postupy, prompty, rubriky, česká specifika a odkazy na model, RAG a slovník."
+  dotcene_stranky: [temata/cestina, temata/cestina/jak-model-zvlada-cestinu, temata/cestina/shrnuti-dokumentu, temata/cestina/extrakce-dat, temata/cestina/preklad-a-korektura, temata/cestina/hodnoceni-kvality]
+  zdroj: https://www.localinference.cz/temata/cestina/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Druhá vlna témat: 1 500+ slov a přepis DGX, Strix, RTX"
   co_se_zmenilo: "Čtyři témata dorostla na 1 510–1 522 slov: 128 GB unified memory, cena lokální AI, lokální AI pro firmy a Qwen3.8 Flash Next. Témata DGX Spark, Strix Halo a RTX Spark jsou přepsaná na 1 181–1 290 slov: rozhodnutí, ceny, výkon, software, TCO, alternativy, otázky před koupí a měření po nasazení."
   dotcene_stranky: [temata/128gb-unified-memory, temata/cena-lokalni-ai, temata/lokalni-ai-pro-firmy, temata/qwen3-8-flash-next, temata/dgx-spark, temata/strix-halo, temata/rtx-spark]

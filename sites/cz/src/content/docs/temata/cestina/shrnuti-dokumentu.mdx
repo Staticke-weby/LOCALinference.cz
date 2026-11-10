@@ -1,0 +1,140 @@
+---
+title: "Shrnutí českého dokumentu lokálně: postup a limity"
+description: "Jak shrnout českou smlouvu, zprávu nebo zápis lokálním modelem. Postup, prompt, kontrola faktů a volba kontextu na 128 GB."
+last_verified: 2026-11-10
+sidebar:
+  label: Shrnutí dokumentu
+  order: 2
+---
+
+Shrnutí je nejčastější úloha, kterou lidé chtějí lokálně řešit. Je to
+ale také úloha, kde model nejčastěji „vypadá dobře“ a přitom vynechá
+důležitou větu. Český dokument navíc přidává skloňování, terminologii
+a formální styl.
+
+## Rychlá odpověď
+
+- **Krátký dokument** se vejde do kontextu; dlouhý je lepší shrnout
+  po částech.
+- **Vždy určete účel shrnutí** — pro koho, jak dlouhé, co musí
+  obsahovat.
+- **Fakta, čísla a jména kontrolujte** proti zdroji.
+- **128 GB stačí** na dokumenty i modely; limit je kontext a kvalita.
+
+## Postup
+
+1. **Vyberte dokument a účel.** Jiné shrnutí chce advokát, jiné
+   manažer a jiné zákazník.
+2. **Zkontrolujte kvalitu vstupu.** Sken bez OCR je horší než text.
+3. **Rozdělte text** na logické části — kapitoly, články, odstavce.
+4. **Shrňte každou část** s jasným zadáním a délkou.
+5. **Spojte dílčí shrnutí** a nechte model odstranit opakování.
+6. **Ověřte fakta** a doplňte citace na zdroj.
+
+U krátkého dokumentu můžete přeskočit dělení a shrnout ho najednou.
+U dlouhého je dělení bezpečnější.
+
+## Jaký kontext zvolit
+
+| Dokument | Kontext | Postup |
+|---|---|---|
+| Jedna stránka | 8k | jedno shrnutí |
+| Několik stran | 32k | jedno nebo dvě shrnutí |
+| Desítky stran | 128k | po kapitolách |
+| Stovky stran | RAG | chunking a výběr pasáží |
+
+Maximum 262k není doporučený provoz. Čím delší vstup, tím pomalejší
+[prefill](/slovnik/vykon/prefill/) a menší prostor pro další práci.
+
+## Prompt, který funguje
+
+Základní struktura:
+
+> Jsi asistent pro české dokumenty. Shrň text pro [čtenáře].
+> Výstup měj [délka] a obsahuj: hlavní rozhodnutí, strany, termíny,
+> částky a rizika. Neuváděj nic, co v textu není. U čísel a jmen
+> uveď, odkud pocházejí.
+
+Doplňte:
+
+- **formu** — odrážky, tabulka, e-mail,
+- **co nesmí** — domýšlet, měnit čísla, používat synonyma,
+- **co musí** — citovat stranu nebo odstavec,
+- **komu** — právník, vedení, klient.
+
+## Dlouhý dokument: dělení
+
+U dokumentu nad 32k tokenů nedělejte jedno shrnutí. Rozdělte ho na
+kapitoly nebo články a shrňte každý zvlášť. Pak:
+
+1. **Spojte dílčí shrnutí** do jednoho celku.
+2. **Odstraňte opakování** a sjednoťte styl.
+3. **Doplňte křížové odkazy** — „viz článek 5“.
+4. **Zkontrolujte, co vypadlo** — hlavně čísla a strany.
+
+Výsledek je delší než jedno „chytré“ shrnutí, ale je věrnější.
+
+## Příklad promptu pro smlouvu
+
+> Jsi asistent pro české smlouvy. Shrň tuto smlouvu pro manažera,
+> který nezná právní terminologii. Výstup: 8–12 odrážek. Uveď strany,
+> předmět, cenu, trvání, výpovědní lhůtu a sankce. Nic nedomýšlej;
+> když údaj chybí, napiš „v textu není“. U čísel uveď článek nebo
+> odstavec.
+
+Tím získáte strukturu, kterou můžete zkontrolovat.
+
+## Kontrola kvality
+
+- [ ] **Hlavní sdělení** je správné.
+- [ ] **Strany a jména** sedí.
+- [ ] **Čísla a data** sedí.
+- [ ] **Nic důležitého nechybí.**
+- [ ] **Nic navíc není vymyšlené.**
+- [ ] **Styl** odpovídá čtenáři.
+- [ ] **Citace** ukazují na zdroj.
+
+Když si nejste jisti, požádejte model o **výčet tvrzení s citací**
+a projděte je proti dokumentu.
+
+## Česká specifika
+
+- **Formální vs. neformální styl** — u úředního dokumentu „vy“.
+- **Terminologie** — „smluvní strana“, „zhotovitel“, „objednatel“.
+- **Skloňování** — jména a názvy musí zůstat správně.
+- **Čísla** — částky, IČO, DIČ, data; nikdy nezaokrouhlovat.
+- **Zkratky** — při prvním výskytu vysvětlit.
+
+## Co k tomu potřebujete
+
+- **Model:** Qwen3.8 Flash Next na 128GB boxu.
+- **Engine:** vLLM na DGX/RTX, llama.cpp na Strix/Mac.
+- **Kontext:** 32k pro běžné dokumenty, 128k pro delší.
+- **Kontrolu:** člověk, který zná dokument.
+
+## Kde je limit
+
+- **Dlouhý dokument** — model může vynechat pasáž.
+- **Sken bez OCR** — kvalita vstupu rozhoduje.
+- **Právní a lékařský text** — člověk je povinný.
+- **Kvantizace** — 4bit může zhoršit drobné rozdíly.
+- **Halucinace** — model může doplnit „logickou“ informaci, která
+  v textu není.
+
+## Kudy dál
+
+- [Extrakce dat](/temata/cestina/extrakce-dat/) — strukturovaná pole.
+- [Hodnocení kvality](/temata/cestina/hodnoceni-kvality/) — jak měřit.
+- [Jak zvládá češtinu](/temata/cestina/jak-model-zvlada-cestinu/) — limity.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Kontext](/slovnik/pamet/kontext/) — kolik se vejde.
+- [RAG](/slovnik/software/rag/) — dlouhé archivy.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

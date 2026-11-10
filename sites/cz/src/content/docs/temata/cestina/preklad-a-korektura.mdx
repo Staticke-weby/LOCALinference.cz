@@ -1,0 +1,140 @@
+---
+title: "Překlad a korektura češtiny lokálním modelem"
+description: "Jak lokálně překládat CZ→EN a EN→CZ, držet terminologii a korekturu. Postup, glosář, kontrola a kdy je lepší člověk."
+last_verified: 2026-11-10
+sidebar:
+  label: Překlad a korektura
+  order: 4
+---
+
+Překlad a korektura jsou pro lokální model dobře zvládnutelné úlohy,
+pokud máte **glosář**, **styl** a **kontrolu**. U krátkých textů
+často stačí jeden prompt; u delších dokumentů je potřeba postupovat
+po částech a hlídat konzistenci.
+
+## Rychlá odpověď
+
+- **Překlad není jen slovo za slovo.** Rozhoduje styl, termíny a
+  kontext.
+- **Glosář je základ** — bez něj model míchá synonyma.
+- **Korektura má být konzervativní** — neměnit fakta a jména.
+- **U právních a lékařských textů** je člověk povinný.
+
+## Postup překladu
+
+1. **Určete směr a účel** — CZ→EN, EN→CZ, marketing, právo, technika.
+2. **Vytvořte glosář** — klíčové termíny a jejich překlady.
+3. **Rozdělte text** na odstavce nebo sekce.
+4. **Přeložte po částech** se stejným glosářem a stylem.
+5. **Sjednoťte terminologii** v celém dokumentu.
+6. **Přečtěte jako celek** — plynulost a logika.
+
+## Styl a forma
+
+| Rozhodnutí | Co zvolit | Příklad |
+|---|---|---|
+| **Formálnost** | „vy“ pro úřady a klienty | „Vaše objednávka“ |
+| **Ty/vy** | jednotně v celém textu | nemíchat |
+| **Terminologie** | podle glosáře | „smluvní strana“ |
+| **Zkratky** | při prvním výskytu vysvětlit | „DPH (daň z přidané hodnoty)“ |
+| **Čísla** | české formátování | `10 000,50 Kč` |
+| **Datum** | jednotný formát | `10. 11. 2026` |
+
+## Korektura
+
+Korektura není přepis. Model má opravit:
+
+- gramatiku a diakritiku,
+- interpunkci,
+- slovosled,
+- opakování,
+- stylové neobratnosti.
+
+Nemá měnit:
+
+- fakta, čísla a jména,
+- právní význam,
+- citace,
+- strukturu dokumentu.
+
+Když si nejste jisti, požádejte o **výčet změn** a projděte je.
+
+## Glosář
+
+Glosář je tabulka:
+
+| Zdroj | Cíl | Poznámka |
+|---|---|---|
+| smluvní strana | contracting party | právo |
+| zhotovitel | contractor | právo |
+| objednatel | client | právo |
+| DPH | VAT | účetnictví |
+| výpovědní lhůta | notice period | právo |
+
+Bez glosáře model používá synonyma a dokument ztrácí konzistenci.
+
+## Glosář v praxi
+
+Glosář nepředávejte modelu jako dlouhý text. Vložte ho do system
+promptu nebo jako tabulku v každém kroku. U delších dokumentů
+používejte **stejný glosář** pro všechny části; jinak se termíny
+rozejdou.
+
+Když model termín nezná, ať ho **označí** a nevymýšlí překlad.
+Neznámý termín je lepší než špatný.
+
+## Kontrola konzistence
+
+- **Stejný termín** v celém dokumentu.
+- **Stejná forma** — „vy“ vs. „Vy“.
+- **Stejné názvy** firem a produktů.
+- **Stejné formátování** čísel a dat.
+- **Stejný tón** napříč sekcemi.
+
+Konzistenci hlídejte i u strojového překladu; model ji sám neudrží.
+
+## Jak hodnotit
+
+- **Věrnost** — nic důležitého nechybí a nic navíc není.
+- **Terminologie** — podle glosáře.
+- **Plynulost** — text zní přirozeně.
+- **Styl** — odpovídá účelu.
+- **Čísla a jména** — beze změny.
+- **Konzistence** — stejný termín v celém textu.
+
+U delších textů pomůže **zpětný překlad** a porovnání, ale není to
+důkaz. Nejlepší je člověk, který umí oba jazyky.
+
+## Kdy je lepší člověk
+
+- **Právní smlouvy** — význam a odpovědnost.
+- **Lékařské texty** — riziko je vysoké.
+- **Marketingové slogany** — kreativita a kontext.
+- **Texty s kulturou** — narážky, idiomy, humor.
+- **Publikace** — reputace.
+
+Model je dobrý první draft a pomocník, ne konečný překladatel.
+
+## Lokálně, nebo v cloudu
+
+Lokální překlad dává smysl u **citlivých dokumentů**, kde nechcete
+posílat text ven. Cloud může být lepší u **vzácných jazyků** a
+**kreativních** textů. Často se vyplatí kombinace: lokální draft,
+lidská finální úprava.
+
+## Kudy dál
+
+- [Jak zvládá češtinu](/temata/cestina/jak-model-zvlada-cestinu/) — limity.
+- [Shrnutí dokumentu](/temata/cestina/shrnuti-dokumentu/) — text.
+- [Hodnocení kvality](/temata/cestina/hodnoceni-kvality/) — jak měřit.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Kontext](/slovnik/pamet/kontext/) — dlouhé texty.
+- [RAG](/slovnik/software/rag/) — terminologie z dokumentů.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog — Qwen3.8-Flash-Next](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

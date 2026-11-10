@@ -1,0 +1,141 @@
+---
+title: "Hodnocení kvality českého modelu: jak měřit"
+description: "Jak otestovat, zda lokální model zvládá české úlohy. Sestavení testovací sady, rubrika, protokol a interpretace výsledků."
+last_verified: 2026-11-10
+sidebar:
+  label: Hodnocení kvality
+  order: 5
+---
+
+Bez vlastního testu nevíte, jestli model zvládá **vaše** české úlohy.
+Benchmark z model cardu je užitečný, ale neříká, jak si poradí
+s vašimi smlouvami, fakturami nebo e-maily. Hodnocení kvality je
+proto součást nasazení, ne akademická disciplína.
+
+## Rychlá odpověď
+
+- **20–50 úloh z praxe** je lepší než tisíce obecných.
+- **Rubrika a správné odpovědi** rozhodují; dojem nestačí.
+- **Stejný model, kvantizace a kontext** pro všechna měření.
+- **Výsledky ukládejte** — bez baseline se zlepšení nedá doložit.
+
+## Sestavení testovací sady
+
+Vyberte úlohy, které se opravdu dějí:
+
+| Typ | Počet | Co hodnotit |
+|---|---:|---|
+| Shrnutí | 5–10 | fakta, rozsah, styl |
+| Extrakce | 5–10 | přesnost polí, validace |
+| Odpověď z dokumentu | 5–10 | správná pasáž, citace |
+| Překlad | 5–10 | terminologie, plynulost |
+| Korespondence | 5–10 | tón, struktura, fakta |
+| Kód / příkazy | 3–5 | spustitelnost, bezpečnost |
+
+U každé úlohy napište:
+
+- **vstup** (text nebo dokument),
+- **očekávaný výstup** nebo kritéria,
+- **co je zakázané** (vymýšlet, měnit čísla),
+- **kdo je čtenář**.
+
+## Rubrika
+
+Pro každou úlohu měřte 0–2 body v kategoriích:
+
+| Kategorie | 0 | 1 | 2 |
+|---|---|---|---|
+| **Fakta** | chyba | částečně | správně |
+| **Čísla a data** | chyba | nejistota | správně |
+| **Citace** | chybí | částečná | přesná |
+| **Terminologie** | špatná | nekonzistentní | správná |
+| **Gramatika** | chyby | drobné | bez chyb |
+| **Forma** | nepoužitelná | úpravy | hotová |
+
+Součet pak převedete na procenta. Důležité je, že **0 znamená chybu**,
+ne „model se snažil“.
+
+## Protokol
+
+1. **Zmrazte konfiguraci** — model, kvantizaci, engine, kontext.
+2. **Nastavte teplotu 0** pro opakovatelnost; kreativní úlohy zvlášť.
+3. **Spusťte každou úlohu dvakrát** a sledujte stabilitu.
+4. **Zapište prompt** a případné system message.
+5. **Uložte surové výstupy** i skóre.
+6. **Opakujte po změně** modelu, kvantizace nebo promptu.
+
+## Co sledovat u češtiny
+
+- **Diakritika** ve jménech a názvech.
+- **Skloňování** u jmen a termínů.
+- **Formální rovina** — jednotné „vy“.
+- **Terminologie** — podle glosáře.
+- **Čísla a data** — české formátování.
+- **Délka** — model může „ukecat“ odpověď.
+
+## Příklad rubriky pro smlouvu
+
+| Kritérium | 0 bodů | 1 bod | 2 body |
+|---|---|---|---|
+| Strany | chybí | jedna | obě správně |
+| Předmět | chybí | obecně | přesně |
+| Cena | chybí/špatně | částečně | správně |
+| Trvání | chybí | přibližně | správně |
+| Výpověď | chybí | zmíněna | správně |
+| Rizika | chybí | obecně | konkrétně |
+
+Maximum 12 bodů. Pro nasazení si stanovte hranici, pod kterou výstup
+nepoužijete bez ruční opravy.
+
+## Jak zapsat výsledky
+
+- **Datum a verze modelu.**
+- **Kvantizace a engine.**
+- **Teplota a kontext.**
+- **Prompt a glosář.**
+- **Skóre po úlohách.**
+- **Poznámky k chybám.**
+
+Ukládejte do tabulky nebo Markdownu. Bez záznamu se test nedá
+zopakovat a změny se nedají vysvětlit.
+
+## Časté chyby hodnocení
+
+- **Testovat na tréninkových datech** — výsledek je nadhodnocený.
+- **Měnit víc věcí najednou** — nevíte, co pomohlo.
+- **Hodnotit jen jeden prompt** — náhoda.
+- **Srovnávat různou kvantizaci** — jiná čísla, jiná kvalita.
+- **Věřit jednomu benchmarku** — neříká, jak zvládne vaše úlohy.
+- **Neukládat výsledky** — nelze opakovat.
+
+## Kolik úloh stačí
+
+Pro orientaci **20–50 úloh**. Když se výsledky mezi úlohami hodně
+liší, přidejte další. Když jsou stabilní, stačí menší sada. Cílem
+není statistická publikace, ale rozhodnutí, zda model nasadit.
+
+## Kdy test opakovat
+
+- **Změna modelu** nebo verze.
+- **Změna kvantizace** — NVFP4 vs. FP8 vs. GGUF.
+- **Změna kontextu** — 32k vs. 128k.
+- **Změna promptu** nebo glosáře.
+- **Změna dokumentů** — nové typy smluv nebo faktur.
+
+## Kudy dál
+
+- [Jak zvládá češtinu](/temata/cestina/jak-model-zvlada-cestinu/) — co testovat.
+- [Shrnutí dokumentu](/temata/cestina/shrnuti-dokumentu/) — úloha.
+- [Extrakce dat](/temata/cestina/extrakce-dat/) — validace.
+- [Překlad a korektura](/temata/cestina/preklad-a-korektura/) — styl.
+- [Metodika](/o-webu/metodika/) — jak čteme data.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [Metodika](/o-webu/metodika/)
+- [Jak čteme data](/zaciname/jak-cteme-data/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

@@ -495,7 +495,7 @@ Pravidla:
 
 ### Dávka 2 — nové clustery (3–4 týdny)
 
-- [ ] `/temata/cestina/` + 5 dceřiných stránek.
+- [x] `/temata/cestina/` + 5 dceřiných stránek (10. 11. 2026).
 - [ ] `/temata/rag/` + 5 dceřiných stránek.
 - [ ] `/temata/agenti/` + 5 dceřiných stránek.
 - [ ] `/temata/provoz/` + 5 dceřiných stránek.

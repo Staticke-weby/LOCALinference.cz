@@ -1,0 +1,130 @@
+---
+title: "Jak model zvládá češtinu: co testovat a kde selhává"
+description: "Čeština má morfologii, diakritiku a formální roviny. Vysvětlíme, co u lokálního modelu testovat a proč benchmark nestačí."
+last_verified: 2026-11-10
+sidebar:
+  label: Jak zvládá češtinu
+  order: 1
+---
+
+**Čeština** není jen „angličtina s háčky“. Má bohatou morfologii,
+volný slovosled a silnou formální rovinu. Model, který plynule
+odpovídá anglicky, může v češtině vypadat dobře, ale plést jména,
+čísla a pády. Proto se kvalita nedá posoudit jedním dojmem.
+
+## Rychlá odpověď
+
+- **Plynulost ≠ přesnost.** Model může napsat hezkou českou větu
+  s nesprávným číslem nebo jménem.
+- **Čeština může být tokenově dražší** než angličtina; delší text
+  znamená víc tokenů a větší kontext.
+- **Testujte úlohy, ne jazyk obecně.** Shrnutí, extrakce a překlad
+  mají různá kritéria.
+
+## Tokenizace a diakritika
+
+Model nevidí písmena, ale tokeny. U češtiny se slova s diakritikou
+mohou rozdělit na víc částí než běžná anglická slova. To má dva
+důsledky:
+
+- **Delší vstup** — stejný text může zabrat víc tokenů.
+- **Větší kontext** — delší tokenové pole znamená větší KV cache
+  a pomalejší prefill.
+
+Přesný poměr závisí na tokenizeru. Když na něm záleží, změřte ho
+v enginu, ne odhadem.
+
+## Co hodnotit
+
+| Vlastnost | Co sledovat | Příklad chyby |
+|---|---|---|
+| **Plynulost** | přirozený slovosled, žádné anglicismy | „provést rozhodnutí“ místo „rozhodnout“ |
+| **Gramatika** | pády, rody, shoda | špatný pád u jména |
+| **Diakritika** | háčky a čárky ve jménech | „Řízení“ vs. „Rizeni“ |
+| **Terminologie** | právní, lékařské, technické termíny | „žaloba“ vs. „stížnost“ |
+| **Fakta** | čísla, data, jména, citace | špatná částka nebo IČO |
+| **Styl** | formální vs. neformální | „ty“ v úředním dopise |
+| **Konzistence** | stejný termín v celém textu | jednou „smlouva“, podruhé „kontrakt“ |
+
+## Co o tom víme
+
+Qwen3.8 Flash Next je multilingvní a multimodální model. Model card
+uvádí benchmarky pro angličtinu a kód, ale **veřejný český benchmark
+nemáme**. To neznamená, že je špatný — znamená to, že kvalitu musíte
+ověřit na svých datech.
+
+Pro českou kvalitu platí:
+
+- **Víc dat = lepší výsledek**, ale čeština je menšinový jazyk.
+- **Kvantizace může zhoršit drobné rozdíly** — čísla, jména, koncovky.
+- **Dlouhý kontext může zhoršit pozornost** — model může vynechat
+  pasáž uprostřed.
+- **Vision pomůže u skenů**, ale OCR kvalita rozhoduje.
+
+## Jak testovat
+
+1. **Vyberte 20–50 úloh** z praxe: shrnutí, extrakce, e-mail,
+   korektura, překlad, dotaz nad dokumentem.
+2. **Napište správné odpovědi** nebo kritéria. Ne jen „líbí/nelíbí“.
+3. **Použijte stejnou kvantizaci a kontext**, které budete provozovat.
+4. **Nastavte teplotu 0** pro opakovatelnost; kreativní úlohy zvlášť.
+5. **Sledujte čtyři věci:** fakta, čísla, citace, gramatiku.
+6. **Výsledek uložte** a opakujte po změně modelu nebo kvantizace.
+
+Podrobný postup je v [hodnocení kvality](/temata/cestina/hodnoceni-kvality/).
+
+## Tři úrovně testu
+
+| Úroveň | Co zjistíte | Náročnost |
+|---|---|---|
+| **Rychlý test** | 5 úloh, základní dojem | minuty |
+| **Pilotní test** | 20–50 úloh, rubrika | hodiny |
+| **Provozní test** | reálné dokumenty, týdny | průběžně |
+
+Pro nákup stačí pilotní test. Pro nasazení potřebujete provozní
+kontrolu, protože se mění dokumenty i model.
+
+## Jak číst výsledky
+
+- **Průměr nestačí** — podívejte se na nejhorší úlohy.
+- **Chyby ve faktech** jsou horší než stylistické.
+- **Stabilita** je důležitá; model by neměl jednou ano, podruhé ne.
+- **Kontext** měňte po jednom kroku, ne všechno najednou.
+- **Výsledek porovnejte s baseline** — člověk, cloud, starší model.
+
+## Kde čeština nejčastěji selhává
+
+- **Skloňování jmen a názvů** — model může použít špatný pád.
+- **Čísla a kódy** — IČO, DIČ, částky, data.
+- **Diakritika ve vlastních jménech** — může „opravit“ příjmení.
+- **Formální rovina** — míchá „ty“ a „vy“.
+- **Terminologie** — používá synonyma, která v právu nejsou synonyma.
+- **Dlouhé dokumenty** — vynechá nebo zkomolí pasáž.
+
+## Kdy je kvalita dost dobrá
+
+- **Interní shrnutí** — když člověk čte a kontroluje.
+- **Koncept e-mailu** — když ho před odesláním upravíte.
+- **Překlad pro orientaci** — když není určen k publikaci.
+- **Extrakce s validací** — když se čísla kontrolují proti zdroji.
+
+Naopak u právních dokumentů, lékařských záznamů a finančního
+reportingu je člověk povinný vždy.
+
+## Kudy dál
+
+- [Shrnutí dokumentu](/temata/cestina/shrnuti-dokumentu/) — postup.
+- [Extrakce dat](/temata/cestina/extrakce-dat/) — faktury a formuláře.
+- [Překlad a korektura](/temata/cestina/preklad-a-korektura/) — styl.
+- [Hodnocení kvality](/temata/cestina/hodnoceni-kvality/) — jak měřit.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Kontext](/slovnik/pamet/kontext/) — proč dlouhý text bolí.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog — Qwen3.8-Flash-Next](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

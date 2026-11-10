@@ -174,3 +174,19 @@
     - /zarizeni/srovnani/
   chybi: "Chybí měření 3D na DGX Sparku a RTX Sparku."
   overeno: 2026-11-05
+
+- id: cestina
+  nazev: Čeština a dokumenty
+  hledany_vyraz: "lokální AI čeština"
+  popis: "Jak lokální model zvládá češtinu, shrnutí, extrakci, překlad a hodnocení kvality."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /temata/cestina/
+    - /temata/cestina/jak-model-zvlada-cestinu/
+    - /temata/cestina/shrnuti-dokumentu/
+    - /temata/cestina/extrakce-dat/
+    - /temata/cestina/preklad-a-korektura/
+    - /temata/cestina/hodnoceni-kvality/
+  chybi: "Chybí veřejné české benchmarky a testy na reálných dokumentech."
+  overeno: 2026-11-10
