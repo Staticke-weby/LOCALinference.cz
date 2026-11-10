@@ -1,7 +1,7 @@
 ---
-title: "Co je vLLM a kdy se vyplatí na 128GB boxu"
-description: "vLLM je server pro provoz velkých modelů. Vysvětlíme, co dělá, proč zvládne víc uživatelů než llama.cpp a kdy je na 128 GB zbytečný."
-last_verified: 2026-11-04
+title: "vLLM: co to je a kdy se vyplatí na 128GB boxu"
+description: "vLLM je server pro jazykové modely. Vysvětlíme PagedAttention, continuous batching, kdy zvládne víc uživatelů a kdy je na 128 GB zbytečný."
+last_verified: 2026-11-10
 sidebar:
   label: vLLM
   order: 3
@@ -9,50 +9,108 @@ sidebar:
 
 **vLLM** je server pro provoz jazykových modelů. Na rozdíl od desktopové
 aplikace neobsluhuje jedno okno, ale rozhraní, na které se připojí víc
-lidí nebo programů najednou.
+lidí nebo programů najednou. Na 128GB boxu je to cesta, jak z jednoho
+stroje udělat malou interní službu.
 
-## K čemu to je
+## Rychlá odpověď
 
-Když model nainstalujete jen tak, každý dotaz čeká, až doběhne ten
-předchozí. vLLM z toho dělá frontu: dávkuje požadavky, sdílí paměť pro
-kontext a průběžně doplňuje nové odpovědi. Tomu se říká **continuous
-batching** a je to důvod, proč jeden box obslouží víc lidí.
+- **vLLM = produkční server**, ne chatovací aplikace. Dává OpenAI API,
+  frontu a správu paměti pro víc požadavků.
+- **Vyplatí se pro tým** nebo aplikaci, která posílá víc dotazů
+  souběžně. Pro jednoho uživatele je často zbytečný.
+- **Na 128 GB** se používá hlavně s NVFP4 na DGX Sparku a RTX Sparku;
+  na Strix Halu je to cesta pro trpělivé.
 
-Prakticky to znamená:
+## Co dělá
 
-- **API kompatibilní s OpenAI** — aplikace se připojí stejně jako
-  k cloudu, jen na jinou adresu.
-- **Vyšší propustnost** při souběžnosti, ne nutně vyšší rychlost
-  jednoho dotazu.
-- **NVFP4** na NVIDIA strojích — formát, který drží Qwen3.8 Flash Next
-  pod 128 GB.
+Když model spustíte jen tak, každý dotaz čeká, až doběhne ten předchozí.
+vLLM z toho dělá frontu: dávkuje požadavky, sdílí paměť pro kontext a
+průběžně doplňuje nové odpovědi. Tomu se říká **continuous batching**.
+Místo jednoho velkého batchu, který čeká na nejpomalejší odpověď, se
+nové požadavky přidávají průběžně.
+
+Druhá klíčová věc je **PagedAttention**. Kontext každého požadavku
+(model si ho pamatuje v [KV cache](/slovnik/pamet/kv-cache/)) se
+ukládá po stránkách, podobně jako operační paměť. Server tak nemusí
+držet velké souvislé bloky a lépe využije paměť, kterou má.
+
+Třetí je **prefix caching**: když víc dotazů začíná stejným textem
+(systémový prompt, návod, dokument), server si zpracovaný začátek
+nechá a znovu ho nepočítá. To zkracuje [prefill](/slovnik/vykon/prefill/)
+u opakovaných dotazů.
+
+## Co z toho plyne pro 128 GB
+
+Qwen3.8 Flash Next v NVFP4 má podle model cardu zhruba **101 GB**.
+Na 128GB boxu zbývá kolem **27 GB** na KV cache, aktivace a režii.
+To určuje, co vLLM zvládne:
+
+- **Jeden uživatel, 128k kontext** — pohodlně.
+- **Víc uživatelů, kratší kontext** — ano, ale každý požadavek bere
+  část KV cache.
+- **Víc uživatelů, 262k kontext** — jen velmi omezeně; dlouhý kontext
+  vytlačí ostatní.
+- **Dávky a agenti** — vLLM pomůže s frontou, ale fyziku paměti
+  neobejde.
+
+Přesná čísla závisí na kvantizaci KV cache, délce promptu a počtu
+souběžných požadavků. Proto se u vLLM nastavuje `max-model-len`,
+`max-num-seqs` a `gpu-memory-utilization`; nejsou to kosmetické
+parametry.
 
 ## Kde ho v katalogu potkáte
 
-- **DGX Spark** — oficiální recept pro Qwen3.8 Flash Next je pro vLLM.
+- **DGX Spark** — oficiální recept pro Qwen3.8 Flash Next je pro vLLM
+  s NVFP4 a MTP.
 - **RTX Spark notebook** — existuje komunitní port pro Windows ARM64.
 - **Strix Halo** — vLLM s ROCm funguje, ale je to cesta pro trpělivé.
 
+## Kdy se vyplatí
+
+| Situace | vLLM | llama.cpp / Ollama |
+|---|---|---|
+| Jeden uživatel, chat | zbytečný | **stačí** |
+| Tým 2–4 lidé | **ano** | omezeně |
+| Aplikace s frontou | **ano** | ne |
+| Dávkové zpracování | **ano** | ne |
+| Notebook na cestách | spíš ne | **ano** |
+| Měření a ladění | **ano** | **ano** |
+
 ## Kdy je zbytečný
 
-- Jste **jeden uživatel** a chcete jen chat. llama.cpp je jednodušší
-  a často stačí.
+- Jste **jeden uživatel** a chcete jen chat.
 - Nemáte **správu serveru** — vLLM je služba, kterou je potřeba hlídat.
 - Provozujete model na **notebooku na cestách**, kde se hodí jedno
   spuštění bez kontejneru.
+- Nechcete řešit **autentizaci, logy a aktualizace**.
+
+## Provozní minimum
+
+Když vLLM pustíte do sítě, potřebujete víc než `vllm serve`:
+
+- **autentizaci** nebo reverzní proxy s přihlášením,
+- **TLS** pokud jde mimo localhost,
+- **monitoring** tok/s, TTFT, fronty a paměti,
+- **logy** bez citlivých dat,
+- **plán aktualizací** a možnost vrátit předchozí verzi.
+
+Bez toho je to jen otevřený port s modelem. Návod na provoz a bezpečnost
+patří do připravované sekce Provoz.
 
 ## Kudy dál
 
 - [Co je llama.cpp](/slovnik/software/llamacpp/) — jednodušší varianta.
+- [Co je Ollama](/slovnik/software/ollama/) — nejrychlejší start.
 - [Návod pro DGX Spark](/navody/dgx-spark/) — vLLM krok za krokem.
 - [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — kdy se
   souběžnost vyplatí.
-- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+- [Co je NVFP4](/slovnik/software/nvfp4/) — formát pro 128 GB.
 
 ## Zdroje
 
 - [vLLM — dokumentace](https://docs.vllm.ai/)
+- [vLLM — PagedAttention paper](https://arxiv.org/abs/2309.06180)
 - [vLLM recipes — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
 - [GitHub — vLLM for RTX Spark](https://github.com/devjeonghwan/vllm-for-rtx-spark)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

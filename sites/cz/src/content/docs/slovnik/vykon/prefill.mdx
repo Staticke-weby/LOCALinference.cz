@@ -1,65 +1,118 @@
 ---
-title: "Co je prefill a proč dlouhý dokument zdržuje"
-description: "Prefill je zpracování vstupu před generováním odpovědi. Vysvětlíme, proč se měří v tok/s, proč je na 128 GB úzkým hrdlem a co ho zrychlí."
-last_verified: 2026-11-04
+title: "Prefill: co to je a proč dlouhý dokument zdržuje"
+description: "Prefill je fáze, kdy model přečte celé zadání. Vysvětlíme, proč rozhoduje o TTFT, proč je na Strix Halu úzkým hrdlem a co s tím udělat."
+last_verified: 2026-11-10
 sidebar:
   label: Prefill
   order: 2
 ---
 
-**Prefill** je fáze, kdy model přečte celé zadání. Probíhá před
-generováním odpovědi a je to důvod, proč dlouhý dokument zdržuje.
+**Prefill** je fáze, kdy model přečte celé zadání. Proběhne dřív, než
+začne generovat odpověď, a je hlavním důvodem, proč dlouhý dokument
+zdržuje. Když se ptáte „proč to trvá tak dlouho, než se objeví první
+slovo?“, odpověď se většinou jmenuje prefill.
+
+## Rychlá odpověď
+
+- **Prefill = čtení vstupu**, decode = psaní odpovědi. Jsou to dvě
+  různá čísla a dvě různá úzká hrdla.
+- **Prefill je výpočetně náročný**, decode je závislý na propustnosti
+  paměti. Proto může být box rychlý v generování a pomalý ve čtení
+  smlouvy.
+- **TTFT** (doba do prvního tokenu) je prefill plus fronta a síť.
+  Na dlouhém kontextu roste lineárně s délkou vstupu.
 
 ## Dvě fáze, dva různé výkony
 
-Každý dotaz má dvě části:
+| Fáze | Co se děje | Co ji brzdí | Měří se |
+|---|---|---|---|
+| **Prefill** | model zpracuje všechny tokeny zadání najednou | výpočetní výkon, softwarová optimalizace | tok/s vstupu |
+| **Decode** | model generuje odpověď token po tokenu | propustnost paměti, kvantizace | tok/s výstupu |
 
-1. **Prefill** — model zpracuje všechny tokeny vstupu najednou. Počítá
-   hodně, ale paměť čte postupně; měří se v **tok/s vstupu**.
-2. **Decode** — model generuje odpověď token po tokenu. Čte celé váhy
-   pro každý token; měří se v **tok/s výstupu**.
+Když prodejce řekne „70 tok/s“, obvykle myslí decode. O prefillu se
+nemluví, protože vypadá jako technikálie — přitom právě on rozhoduje,
+jestli se na dlouhý dokument čeká 15 sekund, nebo dvě minuty.
 
-Jsou to jiná čísla a jiná úzká hrdla. Prefill je náročný na výpočet,
-decode na propustnost paměti. Proto může být stroj rychlý v generování
-a pomalý ve čtení dokumentu.
+## Jak dlouho se čeká
 
-## Konkrétní čísla
+Základní vztah je jednoduchý:
 
-Na Strix Halu 128 GB se prefill pohybuje mezi **0,8 a 2,4 tis. tok/s**
-podle enginu a kvantizace. Z toho vychází [TTFT](/slovnik/vykon/ttft/):
+> **TTFT ≈ délka vstupu / prefill tok/s + fronta + síť**
 
-- 32k dokument: zhruba **16–40 s**,
-- 128k dokument: zhruba **67–166 s**.
+Na Strix Halu 128 GB se prefill podle veřejných měření pohybuje mezi
+**0,8 a 2,4 tis. tok/s** podle enginu a kvantizace. Z toho vychází
+orientační čekání:
 
-Čísla jsou převzatá z veřejných měření, ne naše. Konfigurace je
-v [datové kartě](/data/qwen3-8-flash-next-strix-halo/).
+| Vstup | Při 800 tok/s | Při 2 400 tok/s |
+|---|---:|---:|
+| 8k tokenů | ~10 s | ~3 s |
+| 32k tokenů | ~40 s | ~13 s |
+| 128k tokenů | ~160 s | ~53 s |
+
+Jsou to **výpočty z rozsahu měření**, ne záruka. Konkrétní čísla a
+konfigurace jsou v [datové kartě](/data/qwen3-8-flash-next-strix-halo/).
+Na DGX Sparku je prefill výrazně rychlejší, protože CUDA a vLLM jsou
+pro tento model optimalizované; na RTX Sparku záleží na verzi portu.
 
 ## Proč je prefill slabý na Strix Halu
 
 CUDA stroje mají prefill rychlejší, protože je pro ně optimalizovaný
 software. Na AMD se používá [ROCm](/slovnik/software/rocm/) nebo Vulkan
 a část optimalizací chybí. Není to chyba modelu — je to rozdíl
-v ekosystému.
+v ekosystému. Proto se u Strix Hala vyplatí kratší vstupy a trpělivost
+u dlouhých dokumentů.
+
+## Chunked prefill
+
+Některé servery umí prefill rozdělit na menší části a mezi nimi
+obsloužit jiné požadavky. Říká se tomu **chunked prefill**. Výhoda je
+nižší latence pro ostatní uživatele; nevýhoda je složitější nastavení
+a někdy nižší celková propustnost. U jednoho uživatele většinou nemá
+smysl; u týmu ano.
+
+## Kdy je prefill důležitější než decode
+
+- **RAG a dokumenty** — model nejdřív přečte několik stran kontextu.
+- **Smlouvy a dodatky** — dlouhý vstup, krátká odpověď.
+- **Agenti** — každý krok posílá historii a nástrojové výstupy znovu.
+- **Kód** — velký repozitář nebo diff je pro prefill těžší než odpověď.
+
+Naopak u krátkého chatu je prefill téměř neviditelný a řešíte hlavně
+decode.
 
 ## Co s tím
 
 - **Kratší vstup.** Místo celé smlouvy pošlete jen dotčenou část.
 - **Dávkování.** Několik krátkých dotazů je pro pocit rychlosti lepší
   než jeden obří.
+- **Prefix caching.** Když se dotazy opakují, server může znovu použít
+  už zpracovaný začátek kontextu. Podporuje ho vLLM i některé další
+  enginy.
 - **Počítejte s tím v procesu.** Když má model číst 50stránkový
   dokument, nastavte očekávání i uživatelům.
+
+## Časté mýty
+
+- **„Prefill je generování.“** Není. Generování je decode.
+- **„Více TFLOPS vždy zrychlí prefill.“** Zrychlí jen tehdy, když je
+  software opravdu využívá. U AMD je často limitem knihovna, ne čip.
+- **„Dlouhý kontext je zdarma.“** Není. Platíte ho pamětí na KV cache
+  i časem prefillu.
 
 ## Kudy dál
 
 - [Co je TTFT](/slovnik/vykon/ttft/) — jak prefill ovlivní čekání.
+- [Co je decode](/slovnik/vykon/decode/) — druhá fáze a její hrdlo.
 - [Roofline](/rychlost/roofline/) — proč je decode jiné hrdlo.
 - [Co je ROCm](/slovnik/software/rocm/) — proč je na AMD slabší.
-- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — souběžnost
+  a fronta.
 
 ## Zdroje
 
 - [vLLM — metrics](https://docs.vllm.ai/en/latest/design/metrics.html)
 - [Datová karta: Qwen3.8 Flash Next na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
 - [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

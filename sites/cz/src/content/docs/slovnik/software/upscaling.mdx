@@ -1,40 +1,109 @@
 ---
-title: "Co je upscaling a kdy zvyšovat rozlišení"
-description: "Upscaling zvětší obrázek. Vysvětlíme rozdíl mezi klasickým zvětšením a generativním domýšlením detailů a kdy se to hodí."
-last_verified: 2026-11-05
+title: "Upscaling: co to je a kdy zvětšit rozlišení"
+description: "Upscaling zvětší obrázek. Vysvětlíme rozdíl mezi klasickým a generativním zvětšením, kolik přidá pixelů a kdy si model vymýšlí detaily."
+last_verified: 2026-11-10
 sidebar:
   label: Upscaling
   order: 21
 ---
 
 **Upscaling** je zvětšení obrázku na vyšší rozlišení. Není to jen
-„roztažení pixelů“ — kvalitní upscaler doplní hrany a textury tak,
-aby výsledek vypadal ostře i po zvětšení.
+„roztažení pixelů“ — kvalitní upscaler doplní hrany a textury tak, aby
+výsledek vypadal ostře i po zvětšení. U lokální AI se používají dva
+zcela různé přístupy a pletou se spolu.
 
-## Dva druhy
+## Rychlá odpověď
 
-- **Klasický upscaler** (Real-ESRGAN, SwinIR) — učí se doplňovat
-  detaily z velkého množství obrázků. Je rychlý a nepřidává nový obsah.
-- **Generativní upscale** — model část obrazu překreslí. Umí dodat
-  detaily, ale může si vymyslet věci, které v předloze nebyly.
+- **Klasický upscaler** (Real-ESRGAN, SwinIR) obrázek zvětší a ostří;
+  nepřidává nový obsah.
+- **Generativní upscale** část obrazu překreslí; umí dodat detail, ale
+  může si vymyslet věci, které v předloze nebyly.
+- Pro produktovou fotku, tisk nebo důkazní materiál je bezpečnější
+  klasická cesta. Pro koncept, texturu nebo herní asset je použitelná
+  i generativní, ale s kontrolou.
 
-Pro produktovou fotku nebo tisk je bezpečnější klasický upscaler.
-Pro koncept nebo herní texturu je generativní cesta použitelná, ale
-výsledek se musí zkontrolovat.
+## Dva druhy upscalingu
+
+| Vlastnost | Klasický upscaler | Generativní upscale |
+|---|---|---|
+| Co dělá | zvětší a doostří | překreslí část obrazu |
+| Nový obsah | ne | ano, domýšlí detail |
+| Rychlost | vyšší | nižší, záleží na modelu |
+| Riziko | rozmazání, artefakty | změna textu, obličeje, loga |
+| Vhodné pro | produkt, tisk, důkaz | koncept, texturu, moodboard |
+
+Klasické modely se učí na dvojicích „malý → velký“ obrázek. Generativní
+přístup používá difuzní model, který na základě popisu a předlohy
+dokreslí, co by tam „mělo“ být. To je skvělé pro umění a špatné pro
+fakturu.
+
+## Kolik pixelů přidáte
+
+Rozlišení se počítá v pixelech, ne v centimetrech. Zdvojnásobení stran
+znamená **čtyřnásobek pixelů**:
+
+| Původní | Cíl | Pixelů navíc |
+|---|---|---|
+| 512 × 512 | 1024 × 1024 | 4× |
+| 1024 × 1024 | 2048 × 2048 | 4× |
+| 512 × 512 | 2048 × 2048 | 16× |
+| 1024 × 1024 | 4096 × 4096 | 16× |
+
+Čím větší násobek, tím víc musí model domýšlet a tím větší je riziko,
+že se změní důležité detaily. U 16× zvětšení už se nedá mluvit o
+„zvětšení fotky“ — je to spíš rekonstrukce.
 
 ## Kde to použít
 
 - **Tisk** — malý obrázek na plakát potřebuje víc pixelů.
-- **Herní textury** — dlaždice a sprity v vyšším rozlišení.
+- **Herní textury** — dlaždice a sprity ve vyšším rozlišení.
 - **Detail** — zvětšení výřezu pro kontrolu kvality.
 - **3D** — textura 1024 na 2048 pro bližší pohled.
+- **Archiv** — zlepšení starších fotek, ale s vědomím, že detaily
+  jsou domyšlené.
+
+## Pracovní postup
+
+1. **Začněte dobrým zdrojem.** Z rozbitého, rozmazaného obrázku
+   kvalitní nevznikne.
+2. **Ořízněte, co potřebujete.** Zvětšovat celou scénu kvůli jednomu
+   detailu je plýtvání pamětí.
+3. **Zvolte metodu.** Klasický upscaler pro věrnost, generativní pro
+   kreativní výstup.
+4. **Porovnejte s originálem.** U textu, obličejů a log zkontrolujte
+   doslova pixel po pixelu.
+5. **Uložte originál.** Nikdy nepřepisujte jediný zdrojový soubor.
+
+## Jak vybrat metodu
+
+| Cíl | Metoda | Proč |
+|---|---|---|
+| Zachovat věrnost | klasický upscaler | nepřidává nový obsah |
+| Zachránit starou fotku | klasický, případně jemný generativní | detaily se doplňují, ale nesmí změnit tvář |
+| Kreativní plakát | generativní | chceme nový detail a styl |
+| Herní textura | klasický nebo generativní podle stylu | důležitá je opakovatelnost a licence |
+| Text, logo, tabulka | žádný generativní | riziko změny znaků a čísel |
+
+V praxi se často kombinují: nejdřív klasický upscale, pak ruční retuš.
+Generativní model se používá až tam, kde je změna obsahu přijatelná.
 
 ## Kde je limit
 
 - **Vymyšlené detaily** — generativní upscale může změnit text nebo
   obličej.
-- **Zdroj musí být dobrý** — z rozbitého obrázku kvalitní nevznikne.
-- **Paměť** — velké rozlišení je náročné na [unified memory](/slovnik/pamet/unified-memory/).
+- **Zdroj musí být dobrý** — z 64 pixelů na tváři neuděláte portrét.
+- **Paměť** — velké rozlišení je náročné na [VRAM](/slovnik/pamet/vram/)
+  nebo [unified memory](/slovnik/pamet/unified-memory/). U 128GB boxu
+  nejste limitovaní velikostí paměti, ale časem a modelem.
+- **Licence** — u generativního upscalu platí licence modelu, ne jen
+  licence původní fotky.
+
+## Kdy to nemá smysl
+
+- **Důkazní a právní materiál** — domyšlený detail znehodnotí důkaz.
+- **Text a tabulky** — model může „opravit“ číslo, které bylo špatně.
+- **Zdroj je extrémně malý** — výsledek bude vypadat jako malba.
+- **Stačí vektor** — u log a ikon je lepší SVG než pixelový upscale.
 
 ## Kudy dál
 
@@ -42,10 +111,13 @@ výsledek se musí zkontrolovat.
 - [Inpainting](/slovnik/software/inpainting/) — úprava části.
 - [Herní prvky](/generovani/herni-prvky/) — textury a sprity.
 - [Recepty](/generovani/recepty/) — jak upscale spustit.
+- [VRAM](/slovnik/pamet/vram/) — proč u obrázků rozhoduje paměť.
 
 ## Zdroje
 
 - [ComfyUI — dokumentace](https://docs.comfy.org/)
 - [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN)
+- [SwinIR](https://github.com/JingyunLiang/SwinIR)
+- [Licence generativních modelů](/generovani/licence/)
 
-*Naposledy ověřeno: 5. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

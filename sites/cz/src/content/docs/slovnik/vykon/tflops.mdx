@@ -1,7 +1,7 @@
 ---
-title: "Co je TFLOPS a proč u lokální AI rozhoduje míň, než se zdá"
-description: "TFLOPS je výpočetní výkon čipu. Vysvětlíme, proč se u generování textu neuplatní, kdy naopak záleží a jak se liší od propustnosti paměti."
-last_verified: 2026-11-04
+title: "TFLOPS: co to je a proč u lokální AI rozhoduje míň, než se zdá"
+description: "TFLOPS je výpočetní výkon čipu. Vysvětlíme, proč u generování textu nestačí, kdy záleží a jak ho srovnat s propustností paměti."
+last_verified: 2026-11-10
 sidebar:
   label: TFLOPS
   order: 8
@@ -11,12 +11,22 @@ sidebar:
 sekundu. Je to klasické číslo výkonu grafických čipů — a u lokální AI
 zároveň nejčastěji zneužívané číslo v marketingu.
 
+## Rychlá odpověď
+
+- **TFLOPS měří výpočet**, ne rychlost generování textu. U decode
+  rozhoduje [propustnost paměti](/slovnik/vykon/propustnost-pameti/).
+- **Vyšší TFLOPS pomůže** u [prefillu](/slovnik/vykon/prefill/) dlouhého
+  dokumentu, u souběžnosti, vision a tréninku.
+- **Prodejce, který uvádí jen TFLOPS a ne tok/s**, vám neříká, jak
+  rychle model poběží.
+
 ## Proč nestačí
 
 Při [decode](/slovnik/vykon/decode/) model nepočítá mnoho, ale hodně
-čte. Úzkým hrdlem je [propustnost paměti](/slovnik/vykon/propustnost-pameti/),
-ne výpočetní výkon. Stroj s vyššími TFLOPS proto nemusí být rychlejší
-v tok/s.
+čte. Pro každý token musí přečíst váhy aktivních parametrů. Úzkým
+hrdlem je proto propustnost paměti, ne výpočetní výkon. Stroj
+s vyššími TFLOPS může být v tok/s pomalejší, pokud má slabší paměť
+nebo horší software.
 
 TFLOPS začne záležet ve chvíli, kdy je práce víc:
 
@@ -27,16 +37,54 @@ TFLOPS začne záležet ve chvíli, kdy je práce víc:
 - **Trénink a fine-tuning** — tam je výpočetní výkon klíčový. To ale
   není případ tohoto webu.
 
+## TFLOPS vs. roofline
+
+Základní kontrola je jednoduchá:
+
+> **teoretické tok/s ≈ propustnost paměti / bajty na token**
+
+Qwen3.8 Flash Next má **6B aktivních parametrů**. Při 4bitových
+vahách se na jeden token čte řádově **3 GB** (6 miliard × 0,5 B).
+DGX Spark má propustnost **273 GB/s**, takže teoretický strop vychází
+kolem **90 tok/s**. Reálná měření jsou **36–70 tok/s** podle
+konfigurace, enginu a MTP. Rozdíl je režie, kvantizace KV cache a to,
+že se nečte jen jeden ideální tensor.
+
+To je [výpočet](/rychlost/roofline/), ne měření. Ukazuje ale, proč
+nemá smysl čekat od vyšších TFLOPS zázrak: pokud je úzkým hrdlem
+paměť, výpočet navíc se neprojeví.
+
 ## Jak se TFLOPS udávají
 
 Výrobci uvádějí **špičkový** výkon pro určitou přesnost:
 
-- **FP32 / TF32** — klasické rozsahy, nižší čísla.
-- **FP16 / BF16** — obvyklý údaj pro AI.
-- **FP8 / FP4** — násobky díky menší přesnosti.
+| Přesnost | Co to znamená | Kde se používá |
+|---|---|---|
+| **FP32 / TF32** | klasické rozsahy, nižší čísla | vědecké výpočty, starší software |
+| **FP16 / BF16** | obvyklý údaj pro AI | trénink, inference |
+| **FP8** | poloviční šířka, vyšší propustnost | servery, H100 a novější |
+| **FP4 / NVFP4** | čtvrtinová šířka, násobky | Blackwell, DGX Spark |
 
 Čísla z různých přesností se nedají srovnávat. „1 PFLOP“ u DGX Sparku
 je údaj pro AI inference v nízké přesnosti, ne pro klasické výpočty.
+
+## Kdy TFLOPS opravdu rozhoduje
+
+- **Dlouhý prefill** — čím víc tokenů najednou, tím víc práce.
+- **Víc souběžných uživatelů** — dávkování zvyšuje nároky na výpočet.
+- **Vision a multimodální úlohy** — obrázky a video nejsou jen čtení vah.
+- **Fine-tuning** — jiná úloha než denní inference.
+
+## Jak číst marketing
+
+Když výrobce uvádí TFLOPS, zkontrolujte tři věci:
+
+1. **Přesnost** — FP4, FP8, FP16? Čísla nejsou srovnatelná.
+2. **Podmínky** — špičkový výkon při určité teplotě a příkonu, nebo
+   trvalý výkon?
+3. **Co k tomu dostanete** — software, podporu modelu a reálné tok/s.
+
+Bez těchto tří údajů je TFLOPS jen orientační číslo do marketingu.
 
 ## Co z toho plyne
 
@@ -45,16 +93,26 @@ je údaj pro AI inference v nízké přesnosti, ne pro klasické výpočty.
 - Pro **nákup** je TFLOPS poslední číslo, ne první.
 - Když prodejce uvádí jen TFLOPS a ne tok/s, ptejte se na tok/s.
 
+## Časté mýty
+
+- **„Více TFLOPS = rychlejší model.“** Ne u decode.
+- **„FP4 je vždy dvakrát rychlejší než FP8.“** Ne, záleží na hardwaru
+  a softwaru.
+- **„Číslo z datasheetu platí pro můj model.“** Ne, platí pro konkrétní
+  přesnost a často pro špičkový výkon.
+
 ## Kudy dál
 
 - [Co je propustnost paměti](/slovnik/vykon/propustnost-pameti/) — co rozhoduje.
 - [Co je decode](/slovnik/vykon/decode/) — fáze, kde se to projeví.
 - [Roofline](/rychlost/roofline/) — jak spočítat strop.
+- [Co je NVFP4](/slovnik/software/nvfp4/) — formát, který mění čísla.
 - [Slovník](/slovnik/) — všechny pojmy na jednom místě.
 
 ## Zdroje
 
 - [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
 - [Roofline](/rychlost/roofline/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

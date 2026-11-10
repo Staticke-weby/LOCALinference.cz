@@ -4,6 +4,13 @@
 # stránky a pojmy. Technické záznamy o stavbě webu (build, sitemap,
 # hreflang, menu, opravy odkazů) sem nepatří.
 
+- datum: 2026-11-10
+  typ: obsah
+  titulek: "Slovník: šest hesel rozšířeno na 600+ slov"
+  co_se_zmenilo: "Přepsáno a rozšířeno šest klíčových hesel: prefill, upscaling, ollama, vllm, huggingface a tflops. Mají novou strukturu, české příklady, tabulky, výpočty a silnější interní odkazy. Prefill a tflops nově vysvětlují vztah k TTFT a roofline; Hugging Face má přesný postup pro HF token a bezpečnost."
+  dotcene_stranky: [slovnik/vykon/prefill, slovnik/software/upscaling, slovnik/software/ollama, slovnik/software/vllm, slovnik/software/huggingface, slovnik/vykon/tflops]
+  zdroj: https://www.localinference.cz/slovnik/vykon/prefill/
+
 - datum: 2026-11-09
   typ: cena
   titulek: "Ceny Alza ověřeny 9. 11. 2026; MacBook Pro zlevnil"

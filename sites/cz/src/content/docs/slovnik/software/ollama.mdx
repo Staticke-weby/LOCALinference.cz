@@ -1,7 +1,7 @@
 ---
-title: "Co je Ollama a kdy je lepší sáhnout po llama.cpp"
-description: "Ollama je nejjednodušší cesta k lokálnímu modelu. Vysvětlíme, co dělá, kde má strop a kdy přejít na llama.cpp nebo vLLM."
-last_verified: 2026-11-04
+title: "Ollama: co to je a kdy přejít na llama.cpp nebo vLLM"
+description: "Ollama spustí model jedním příkazem. Vysvětlíme, co dělá pod kapotou, kdy je ideální, kde má strop a jak přejít na llama.cpp nebo vLLM."
+last_verified: 2026-11-10
 sidebar:
   label: Ollama
   order: 10
@@ -9,47 +9,119 @@ sidebar:
 
 **Ollama** je nástroj, který stáhne model a spustí ho jedním příkazem.
 Pod kapotou používá [llama.cpp](/slovnik/software/llamacpp/), ale
-schovává konfiguraci — což je jeho výhoda i limit.
+schovává konfiguraci — což je jeho výhoda i limit. Pro první seznámení
+je to nejrychlejší cesta k lokálnímu modelu.
 
-## K čemu to je
+## Rychlá odpověď
 
-Typický začátek:
+- **Ollama = nejjednodušší start.** Stáhne model, spustí server a dá
+  vám chat i API na localhostu.
+- **Hodí se pro jednoho uživatele** a rychlé testy, ne pro produkční
+  tým s frontou požadavků.
+- **Když potřebujete měřit nebo ladit**, přejděte na llama.cpp; když
+  potřebujete obsloužit víc lidí, na [vLLM](/slovnik/software/vllm/).
+
+## Co dělá pod kapotou
+
+Ollama je vrstva nad llama.cpp a formátem [GGUF](/slovnik/software/gguf/).
+Když spustíte:
 
 ```bash
 ollama run qwen3.8-flash-next
 ```
 
-Ollama se postará o stažení, uložení a spuštění. Otevře chat nebo
-rozhraní API na localhostu. Pro první seznámení je to nejrychlejší
-cesta.
+stane se přibližně toto:
+
+1. Ollama zjistí, jestli model už není stažený.
+2. Stáhne váhy z vlastního registru nebo z Hugging Face.
+3. Vybere kvantizaci a parametry, které považuje za vhodné.
+4. Spustí server a otevře chat nebo API.
+
+Server běží na `localhost:11434`. To je důležité: **rozhraní je ve
+výchozím stavu bez autentizace**. Kdo se dostane na váš počítač a port,
+může model používat. Nevystavujte ho do internetu bez reverzní proxy
+a přihlášení.
+
+## Kdy je Ollama ideální
+
+- **První spuštění** — chcete vidět odpověď do deseti minut.
+- **Jeden uživatel** — chat, psaní, shrnutí, experimenty.
+- **Notebook** — rychlé spuštění bez kontejneru a složité konfigurace.
+- **Test modelu** — než investujete čas do produkčního serveru.
 
 ## Kde má strop
 
 - **Méně kontroly** nad kvantizací, kontextem a parametry enginu.
-- **Optimalizace pro víc uživatelů** není tak dobrá jako u
-  [vLLM](/slovnik/software/vllm/).
-- **Měření** se hůř reprodukuje — nevidíte přesně, co se nastavilo.
+- **Optimalizace pro víc uživatelů** není tak dobrá jako u vLLM.
+- **Měření se hůř reprodukuje** — nevidíte přesně, co se nastavilo.
 - **Verze a tagy** se mohou chovat jinak, než čekáte.
+- **Bez autentizace** — výchozí API je pro localhost, ne pro tým.
+
+## Ollama, llama.cpp a vLLM
+
+| Co řešíte | Ollama | llama.cpp | vLLM |
+|---|---|---|---|
+| První spuštění | **nejjednodušší** | střední | složité |
+| Kontrola parametrů | nízká | **vysoká** | vysoká |
+| Jeden uživatel | **ano** | **ano** | přehnané |
+| Víc uživatelů | ne | omezeně | **ano** |
+| OpenAI API | ano | ano | **ano** |
+| Měření a reprodukce | slabší | **dobrá** | **dobrá** |
+| Provoz na notebooku | **ano** | **ano** | spíš ne |
+
+Tabulka není hodnocení „lepšího“ a „horšího“. Je to volba podle fáze:
+Ollama na začátek, llama.cpp na kontrolu, vLLM na tým.
+
+## Tagy a kvantizace
+
+Ollama nabízí model pod krátkým názvem a tagem, například
+`qwen3.8-flash-next:latest` nebo varianta s jinou kvantizací. Tag není
+kosmetika: určuje velikost souboru, nároky na paměť i kvalitu. Když
+výsledek neodpovídá návodu, první kontrola je `ollama list` a pohled
+na přesný tag.
+
+Některé tagy jsou experimentální nebo vznikly komunitně. Před použitím
+si přečtěte model card a zjistěte, z jakého základu a kvantizace
+vycházejí.
 
 ## Kdy přejít jinam
 
 - **Chcete měřit**: llama.cpp s explicitními parametry.
 - **Chcete obsloužit tým**: vLLM.
 - **Chcete maximální kontrolu**: llama.cpp nebo vLLM podle platformy.
+- **Chcete model automatizovat**: vLLM s OpenAI API a frontou.
 
-Ollama není „horší“ — je to jiný nástroj pro jinou fázi. Pro prvních
-pár dní je ideální; pro produkci se hodí vědět, co je pod kapotou.
+## Jak přejít
+
+1. **Zjistěte, jaký model a kvantizaci Ollama použila.** V chatu
+   vypište `ollama list` a podívejte se na tag.
+2. **Stáhněte stejný GGUF** z Hugging Face nebo Unsloth.
+3. **Spusťte llama.cpp** s explicitním kontextem, počtem vrstev a
+   dostupnou pamětí.
+4. **Změřte stejný prompt** jako v Ollamě. Bez stejné konfigurace
+   čísla nesrovnávejte.
+5. **Pro tým nasaďte vLLM** a nastavte autentizaci, logy a monitoring.
+
+## Časté chyby
+
+- **Vystavení portu 11434 do internetu** bez hesla.
+- **Srovnávání čísel** z Ollamy a vLLM bez stejné kvantizace a kontextu.
+- **Domněnka, že Ollama je „produkční server“** — není, je to start.
+- **Malý disk** — modely mají desítky GB a staré verze se hromadí.
 
 ## Kudy dál
 
 - [Co je llama.cpp](/slovnik/software/llamacpp/) — co Ollama používá.
 - [Co je vLLM](/slovnik/software/vllm/) — server pro víc lidí.
+- [Co je GGUF](/slovnik/software/gguf/) — formát modelu.
 - [Návod pro Strix Halo](/navody/strix-halo/) — první spuštění.
-- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — kdy přejít.
 
 ## Zdroje
 
 - [Ollama — dokumentace](https://docs.ollama.com/)
+- [Ollama — API](https://docs.ollama.com/api)
 - [llama.cpp](https://github.com/ggml-org/llama.cpp)
+- [Qwen3.8 Flash Next v Ollamě](https://ollama.com/library/qwen3.8-flash-next)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

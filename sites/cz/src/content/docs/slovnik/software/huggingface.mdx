@@ -1,7 +1,7 @@
 ---
-title: "Co je Hugging Face a jak si vytvořit token"
-description: "Hugging Face je místo, odkud se stahují modely. Vysvětlíme, jak funguje, k čemu je HF token, jak ho vytvořit a jak ho bezpečně použít."
-last_verified: 2026-11-04
+title: "Hugging Face a HF token: co to je a jak ho bezpečně použít"
+description: "Hugging Face je úložiště modelů. Vysvětlíme, jak najít správný model, k čemu je HF token, jak ho vytvořit a jak ho nezveřejnit."
+last_verified: 2026-11-10
 sidebar:
   label: Hugging Face
   order: 7
@@ -9,7 +9,18 @@ sidebar:
 
 **Hugging Face** (často jen „HF“) je největší veřejné úložiště modelů
 pro lokální AI. Když návod říká „stáhněte model“, většinou to znamená
-„stáhněte ho z Hugging Face“.
+„stáhněte ho z Hugging Face“. A když se objeví „HF token“, jde o
+přístupový klíč, který je potřeba chránit jako heslo.
+
+## Rychlá odpověď
+
+- **Model = repozitář** s váhami, konfigurací, tokenizerem a model
+  card. Vždy si přečtěte model card a licenci.
+- **HF token** potřebujete pro gated modely, vyšší limity, privátní
+  repozitáře nebo nástroje, které ho vyžadují. Pro běžné veřejné
+  modely často stačí stahovat bez něj.
+- **Token patří do proměnné prostředí**, ne do gitu, Markdownu ani
+  screenshotu. Pro stahování stačí právo Read.
 
 ## Jak to funguje
 
@@ -25,6 +36,23 @@ Hugging Face funguje jako GitHub pro modely:
 Pro vás je podstatné, že model je **jeden repozitář**, ne sbírka
 souborů z různých míst. Odkaz na model card je zároveň zdroj, který
 můžete ověřit.
+
+## Jak najít správný model
+
+Před stažením zkontrolujte pět věcí:
+
+| Co | Proč |
+|---|---|
+| **Název a verze** | jiná verze může mít jiné chování i licenci |
+| **Kvantizace** | NVFP4, FP8, GGUF Q4_K_M, MLX 4bit — liší se pamětí i kvalitou |
+| **Velikost** | musí se vejít do 128 GB včetně KV cache |
+| **Licence** | komerční použití, teritoriální omezení, povinnosti |
+| **Engine** | vLLM, llama.cpp, MLX — ne každý model jede všude |
+
+U Qwen3.8 Flash Next je kanonický zdroj
+[model card Qwen/Qwen3.8-Flash-Next](https://huggingface.co/Qwen/Qwen3.8-Flash-Next).
+Kvantizace od Unsloth nebo NVIDIA jsou odvozené repozitáře; vždy se
+ptejte, z jakého základu vznikly.
 
 ## K čemu je token
 
@@ -46,6 +74,9 @@ veřejného repozitáře ani do screenshotu.
 3. Klikněte na **Create new token**.
 4. Zvolte **Read** (pro stahování modelů stačí; zápis nepotřebujete).
 5. Token zkopírujte — zobrazí se jen jednou.
+
+Pro tým použijte organizační token s omezeným rozsahem a platností,
+ne svůj osobní token.
 
 ## Kde token použít
 
@@ -76,18 +107,30 @@ vkládat do příkazů ručně.
 - Když unikne, **okamžitě ho zrušte** v nastavení a vytvořte nový.
 - Nedávejte ho do Markdownu, do gitu ani do sdíleného skriptu.
 - Pro tým použijte organizační token s omezeným rozsahem, ne osobní.
+- Token v shellu může zůstat v historii; používejte `.env` nebo
+  správce tajemství.
+
+## Časté chyby
+
+- **401 Unauthorized** — token chybí, je expirovaný nebo nemá správné
+  oprávnění.
+- **Gated model** — musíte nejdřív na model cardu odsouhlasit licenci.
+- **Malý disk** — model má desítky GB a stažení se může přerušit.
+- **Špatná kvantizace** — stáhnete jinou velikost, než návod předpokládá.
+- **Token v gitu** — i smazaný commit může zůstat v historii.
 
 ## Kudy dál
 
 - [Návod pro DGX Spark](/navody/dgx-spark/) — kde se token používá.
 - [Co je GGUF](/slovnik/software/gguf/) — formát pro llama.cpp.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model card a licence.
-- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+- [Co je kvantizace](/slovnik/software/kvantizace/) — jak číst názvy souborů.
 
 ## Zdroje
 
 - [Hugging Face — dokumentace](https://huggingface.co/docs)
 - [Hugging Face — správa tokenů](https://huggingface.co/docs/hub/security-tokens)
 - [Hugging Face — model cards](https://huggingface.co/docs/hub/model-cards)
+- [Hugging Face — gated models](https://huggingface.co/docs/hub/models-gated)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*
