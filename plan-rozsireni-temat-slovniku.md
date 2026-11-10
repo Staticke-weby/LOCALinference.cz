@@ -475,10 +475,10 @@ Pravidla:
 ### Dávka 0 — základ (1 týden)
 
 - [x] Opravit 9 chyb z `check:prolinkovani` (hotovo 10. 11. 2026).
-- [ ] Přidat `check:prolinkovani` do dokumentace a později do CI.
-- [ ] Schválit šablonu tématu a slovníku.
+- [x] Přidat `check:prolinkovani` do dokumentace a do CI (10. 11. 2026: workflow spouští build, `check:odkazy` i `check:prolinkovani:strict`).
+- [x] Schválit šablonu tématu a slovníku (ověřeno praxí dávek 1–3, 10. 11. 2026).
 - [ ] Vytvořit obsahové briefy pro 6 prioritních témat.
-- [ ] Doplnit chybějící odkazy na model/zařízení u témat.
+- [x] Doplnit chybějící odkazy na model/zařízení u témat (strict audit 0 chyb, 10. 11. 2026).
 
 ### Dávka 1 — tenká témata (2–3 týdny)
 
@@ -513,11 +513,13 @@ Pravidla:
 
 ### Dávka 4 — důvěryhodnost a provoz (průběžně)
 
-- [ ] `/data/` rozšířit na databázi měření s filtry a grafy.
-- [ ] `/zdroje/` doplnit metodiku pro každý typ zdroje.
-- [ ] `/provoz/` zapojit do menu a prolinkovat.
+- [x] `/data/` rozšířit na databázi měření s filtry a grafy (10. 11. 2026: 23 měření, filtr podle zařízení, graf rozsahu decode).
+- [x] `/zdroje/` doplnit metodiku pro každý typ zdroje (10. 11. 2026: typy a váha zdrojů v `/zdroje/zdroje/` a `/o-webu/metodika/`).
+- [x] `/provoz/` zapojit do menu a prolinkovat (10. 11. 2026).
+- [x] Mac Studio a MacBook Pro rozšířeny na ~1 000 slov (10. 11. 2026).
+- [x] CTR úpravy slovníku: titulky začínající dotazem a česká synonyma (10. 11. 2026).
 - [ ] Měsíční kontrola Search Console a interních odkazů.
-- [ ] EN mutace po stabilizaci CZ.
+- [ ] EN mutace po stabilizaci CZ (čeká na I02: Pages a workflow v repu LOCALinference.eu).
 
 **Odhad náročnosti:** téma 1–2 dny, klíčové heslo 0,5–1 den, nový cluster 3–5 dní. Celkem 6–10 týdnů podle tempa a dostupnosti zdrojů.
 

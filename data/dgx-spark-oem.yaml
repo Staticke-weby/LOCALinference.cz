@@ -200,16 +200,16 @@
   vyrobce: ASUS
   pamet_gb: 128
   uloziste_gb: 4096
-  cena_czk_s_dph: 229990
-  cena_czk_bez_dph: 190074
-  sleva_procent: 4
+  cena_czk_s_dph: 227990
+  cena_czk_bez_dph: 188421
+  sleva_procent: 5
   dostupnost: "Skladem 4 ks"
   prodejce: Alza.cz
   objednaci_kod: NRn15004
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-10
   titulek: "ASUS Ascent GX10 4TB: cena, výkon a co na něm poběží"
-  description: "ASUS Ascent GX10 s GB10, 128 GB a 4 TB. Cena 229 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next v CUDA/vLLM."
+  description: "ASUS Ascent GX10 s GB10, 128 GB a 4 TB. Cena 227 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next v CUDA/vLLM."
   popis: "GB10 stroj s větším úložištěm pro modely a datasety. Stejný výkon jako 1TB varianta, ale 4 TB SSD. Pro ty, kdo chtějí CUDA a potřebují místo na víc modelů a záloh."
   pro_koho: "Pro vývojáře a malý tým, který chce CUDA stroj a potřebuje místo na víc modelů, datasetů a záloh."
   silne:
@@ -221,7 +221,7 @@
     - "Stejný výkon jako 1TB"
     - "Dostupnost se může měnit"
   kdy_ne: "Pokud stačí 1 TB a chcete ušetřit, nebo pokud potřebujete Windows a notebook."
-  poznamka: "Akční cena -4 %."
+  poznamka: "Akční cena -5 % (239 990 Kč před slevou)."
 
 - id: lenovo-thinkstation-pgx-4tb
   nazev: Lenovo ThinkStation PGX 4TB

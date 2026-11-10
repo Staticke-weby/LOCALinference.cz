@@ -84,7 +84,9 @@
     - datum: 2026-11-05
       cena_czk_s_dph: 229990
       dostupnost: "Skladem 4 ks"
-
+    - datum: 2026-11-10
+      cena_czk_s_dph: 227990
+      dostupnost: "Skladem 4 ks"
 - id: lenovo-thinkstation-pgx-4tb
   zaznamy:
     - datum: 2026-11-05

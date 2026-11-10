@@ -393,9 +393,9 @@ polozky:
     stav: prubezne
     davka: 4
     hledat: "Alza, CZC, TS Bohemia, Mironet, OEM"
-    poznamka: "Do tabulek jen koncová cena včetně DPH, bez sloupců bez DPH a dostupnost."
-    zdroj: null
-    overeno: null
+    poznamka: "Do tabulek jen koncová cena včetně DPH, bez sloupců bez DPH a dostupnost. 10. 11. 2026 ověřeno v prohlížeči na Alza.cz: Lenovo ThinkStation PGX 1TB 179 990 Kč, ASUS GX10 1TB 162 990 Kč, ASUS GX10 4TB 227 990 Kč, GIGABYTE AI TOP ATOM 4TB 179 990 Kč, DGX Spark 4TB 218 990 Kč, Acemagic A10A 119 990 Kč. U HP ZGX Nano a Acer Veriton RA110 zůstává jen dostupnost na objednávku."
+    zdroj: https://www.alza.cz/ai-pc/18907789.htm
+    overeno: 2026-11-10
 
   - id: C02
     oblast: ceny
@@ -424,9 +424,9 @@ polozky:
     stav: prubezne
     davka: 4
     hledat: "Microsoft, ASUS, HP, Lenovo, MSI, Dell, Alza"
-    poznamka: null
-    zdroj: null
-    overeno: null
+    poznamka: "10. 11. 2026 ověřeno na Alza.cz: ASUS ProArt P14 128GB/1TB 125 990 Kč (skladem), ProArt P16 a Surface Laptop Ultra 128GB v předprodeji, Lenovo Yoga 128GB jedna varianta skladem. Ceny 32GB a 64GB variant nejsou pro katalog relevantní."
+    zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm
+    overeno: 2026-11-10
 
   - id: C04
     oblast: ceny
@@ -470,9 +470,9 @@ polozky:
     stav: prubezne
     davka: 4
     hledat: "Apple CZ, Alza"
-    poznamka: "Dokud není potvrzeno, netvrdit „skladem“."
-    zdroj: null
-    overeno: null
+    poznamka: "10. 11. 2026 ověřeno v prohlížeči: Mac Studio 128GB/512GB (147 990 Kč) i 128GB/2TB (171 990 Kč) skladem > 5 ks. MacBook Pro 128GB je částečně nedostupný, cenu je potřeba ověřit před nákupem."
+    zdroj: https://www.alza.cz/mac-studio/18894763.htm
+    overeno: 2026-11-10
 
   # --- Dávka 5: obsah ----------------------------------------------------
   - id: O02

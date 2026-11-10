@@ -5,6 +5,34 @@
 # hreflang, menu, opravy odkazů) sem nepatří.
 
 - datum: 2026-11-10
+  typ: cena
+  titulek: "ASUS GX10 4TB zlevněn na 227 990 Kč"
+  co_se_zmenilo: "Cena ASUS Ascent GX10 4TB klesla z 229 990 na 227 990 Kč vč. DPH (-5 %). Ověřeno v prohlížeči na Alza.cz, dostupnost skladem 4 ks."
+  dotcene_stranky: [zarizeni/konfigurace/asus-ascent-gx10-4tb, zarizeni/srovnani]
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
+
+- datum: 2026-11-10
+  typ: obsah
+  titulek: "Data a měření: přehled všech 23 měření s filtrem a grafem"
+  co_se_zmenilo: "Stránka /data/ má tabulku všech měření s konfigurací, zdrojem a důvěryhodností, filtr podle zařízení a graf rozsahu decode. Přibylo vysvětlení, jak tabulku číst a co v ní není."
+  dotcene_stranky: [data, zdroje/mereni]
+  zdroj: https://www.localinference.cz/data/
+
+- datum: 2026-11-10
+  typ: obsah
+  titulek: "Mac Studio a MacBook Pro: ceny, výkon a rozhodnutí"
+  co_se_zmenilo: "Obě stránky mají ceny konfigurací k datu, naměřené tok/s, srovnání s jinými stroji, výpočet spotřeby u Mac Studia a vysvětlení, kdy je notebook lepší než box."
+  dotcene_stranky: [zarizeni/mac-studio, zarizeni/macbook-pro]
+  zdroj: https://www.localinference.cz/zarizeni/mac-studio/
+
+- datum: 2026-11-10
+  typ: obsah
+  titulek: "Slovník: titulky podle hledaných dotazů a česká synonyma"
+  co_se_zmenilo: "Pět hesel má titulek začínající hledaným výrazem (llama.cpp, WSL2, throttling, ROCm, STT). U VRAM, STT, upscalingu a kontextu je v první větě český ekvivalent: paměť grafické karty, přepis řeči, zvětšení rozlišení, kontextové okno."
+  dotcene_stranky: [slovnik/software/llamacpp, slovnik/software/wsl2, slovnik/provoz/throttling, slovnik/software/rocm, slovnik/software/stt, slovnik/pamet/vram, slovnik/software/upscaling, slovnik/pamet/kontext]
+  zdroj: https://www.localinference.cz/slovnik/
+
+- datum: 2026-11-10
   typ: obsah
   titulek: "Kontaktní e-mail a sekce Chyby a opravy"
   co_se_zmenilo: "Právní informace mají kontakt info@eshopino.cz a novou sekci Chyby a opravy s postupem, co poslat při nalezené chybě. Rozhodl provozovatel."

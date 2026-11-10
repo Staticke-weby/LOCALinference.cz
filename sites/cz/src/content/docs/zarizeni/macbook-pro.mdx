@@ -1,7 +1,7 @@
 ---
 title: "MacBook Pro 128 GB: lokální AI na cestách s MLX"
-description: "MacBook Pro s M5 Max a 128 GB paměti. Jak na něm běží Qwen3.8 Flash Next, co zvládne na baterii a kde ho brzdí throttling."
-last_verified: 2026-11-09
+description: "MacBook Pro s M5 Max a 128 GB paměti: cena od 177 739 Kč, výkon Qwen3.8, throttling, baterie a srovnání s Mac Studiem."
+last_verified: 2026-11-10
 sidebar:
   label: MacBook Pro
   order: 2
@@ -18,8 +18,16 @@ import GenerovaniNaZarizeni from '../../../components/GenerovaniNaZarizeni.astro
 na něm běží přes Metal a MLX, ale dlouhý běh narazí na teplo a baterii.
 Pro práci u klienta dobré; jako stálý server drahé.
 
-
 <RozcestnikZarizeni navod="/navody/mac/" />
+
+## Rychlá odpověď
+
+- **Cena:** od 177 739 Kč vč. DPH za 14" s 128 GB a 2TB SSD
+  (Alza, 9. 11. 2026).
+- **Rychlost:** stejný čip jako Mac Studio, tedy 24–31 tok/s podle
+  kontextu; v tenkém těle ale výkon po čase klesá.
+- **Pro koho:** práce u klienta, demo, cesty, záloha při výpadku proudu.
+- **Kde je limit:** throttling, výdrž baterie, cena a žádná CUDA.
 
 ## Rychlá fakta
 
@@ -54,6 +62,41 @@ na 64k kontextu. Rozdíl je v chlazení — v tenkém těle výkon po delším
 běhu klesne, takže počítejte se spodní hranicí. Měření pochází z Mac
 Studia, viz [měření](/zdroje/mereni/).
 
+**Co to znamená v praxi:** krátký dotaz u klienta je stejně rychlý
+jako na stole. Hodinový přepis nebo dávka generování narazí na
+[throttling](/slovnik/provoz/throttling/) a rychlost klesne. Na cestu
+si vezměte nabíječku; na baterii je výkon nižší.
+
+## Cena a konfigurace
+
+| Konfigurace | Cena vč. DPH | Poznámka |
+|---|---:|---|
+| 14" 128 GB / 2 TB | 177 739 Kč | nejnižší nalezená cena |
+| 16" 128 GB / 8 TB | 300 490 Kč | nejvyšší varianta |
+
+Proti Mac Studiu se stejnou pamětí a 2TB diskem (171 990 Kč) je
+14" MacBook Pro dražší o **5 749 Kč**. To je cena za mobilitu,
+displej a baterii — u Applu překvapivě malý rozdíl. Je to **výpočet**
+z cen k 9. 11. 2026, ne nabídka.
+
+Část variant bývá nedostupná a ceny se rychle mění. Před nákupem
+ověřte, že konfigurace má opravdu 128 GB; řada se prodává i s 36
+nebo 48 GB, což je na Qwen3.8 Flash Next málo.
+
+## Kdy notebook a kdy box
+
+| Situace | MacBook Pro | Mac Studio |
+|---|---|---|
+| Práce u klienta | **ano** | ne |
+| Demo a prezentace | **ano** | ne |
+| Stálý server pro tým | ne | **ano** |
+| Hodinová dávka | omezeně | **ano** |
+| Výpadek proudu | **ano** (baterie) | ne |
+| Cena za výkon | vyšší | **nižší** |
+
+Notebook není horší stroj, jen jiný kompromis. Pokud s ním nejezdíte,
+platíte za mobilitu, kterou nevyužijete.
+
 ## Kde je limit
 
 - **[Throttling](/slovnik/provoz/throttling/).** Tenké tělo a 128 GB
@@ -62,14 +105,7 @@ Studia, viz [měření](/zdroje/mereni/).
   s napájením.
 - **Cena.** 128GB konfigurace je nejdražší varianta řady.
 - **Opravitelnost.** Paměť je připájená.
-
-## Cena
-
-Česká cena 128GB konfigurace se mění podle akcí a dostupnosti. Při kontrole
-9. 11. 2026 byla nejnižší nalezená cena **177 739 Kč vč. DPH** za
-14" MacBook Pro s M5 Max, 128 GB a 2TB SSD; 16" varianta s 8TB SSD
-byla za 300 490 Kč. Část variant je nedostupná, cenu si před nákupem
-ověřte.
+- **Servis.** Oprava notebooku znamená delší odstávku než u boxu.
 
 ## Kde koupit
 
@@ -85,11 +121,13 @@ nedostupná. Cena od 177 739 Kč vč. DPH.
 - [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — Windows varianta.
 - [Co je unified memory](/slovnik/pamet/unified-memory/) — proč to na Macu funguje.
 - [Srovnání zařízení](/zarizeni/srovnani/) — všechny 128GB stroje.
+- [Box vs. notebook](/vyber/stolni-vs-notebook/) — rozhodnutí podle použití.
 
 ## Zdroje
 
 - [Apple — MacBook Pro specifikace](https://www.apple.com/macbook-pro/specs/)
 - [MLX — dokumentace](https://ml-explore.github.io/mlx/)
 - [llama.cpp — build pro Metal](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+- [oMLX — komunitní měření](https://omlx.ai/benchmarks/performance/7fpjs406)
 
-*Naposledy ověřeno: 9. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

@@ -25,3 +25,7 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: Kontrola interních odkazů
+        run: npm run check:odkazy
+      - name: Kontrola prolinkování
+        run: npm run check:prolinkovani:strict
