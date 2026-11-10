@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Časté dotazy: offline provoz, bezpečnost, 192 GB a dolaďování"
+  co_se_zmenilo: "FAQ má čtrnáct otázek: přibyl výpočet roční spotřeby z příkonu, odpověď o provozu bez internetu, o bezpečnosti proti cloudu, o strojích nad 128 GB a o dolaďování. Přidána rozhodovací tabulka podle potřeby."
+  dotcene_stranky: [zaciname/faq]
+  zdroj: https://www.localinference.cz/zaciname/faq/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Výběr: kapacita boxu, box vs. notebook a cena za ekosystém"
   co_se_zmenilo: "Tři stránky výběru dostaly výpočty a tabulky: kolik tok/s zbude na uživatele při souběžnosti, co znamená souběžný uživatel, srovnání boxu a notebooku včetně rozdílu cen u stejného čipu a přehled, za co se u 128GB strojů připlácí."
   dotcene_stranky: [vyber/kolik-uzivatelu, vyber/stolni-vs-notebook, vyber/bezpecna-volba]

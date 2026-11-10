@@ -7,7 +7,7 @@ sidebar:
   order: 5
 ---
 
-Deset otázek, které dostáváme nejčastěji. Odpovědi odkazují na
+Čtrnáct otázek, které dostáváme nejčastěji. Odpovědi odkazují na
 podrobnější stránky, kde je zdroj a datum.
 
 ## Stačí 64 GB paměti?
@@ -54,9 +54,50 @@ vyžaduje zvláštní licenci. Přehled je na [licencích](/generovani/licence/)
 
 ## Jak je to s elektřinou a hlukem?
 
-U části zařízení chybí veřejná měření příkonu a hluku v zátěži.
-Kde je máme, jsou u zařízení; kde ne, je to označené jako
-chybějící údaj. Provozní náklady jsou v [rozpočtu](/vyber/rozpocet/).
+Příkon záleží na stroji. DGX Spark má čip na 140 W a napájení
+240 W, RTX Spark notebook 45–80 W, Gorgon Halo 120 W provozně
+a až 160 W ve špičce. Z toho se dá spotřeba spočítat:
+
+```
+kWh za rok = příkon (kW) × hodiny denně × dny v roce
+```
+
+Příklad: 240 W a osm hodin denně po 250 pracovních dní je
+**480 kWh ročně**. To je **výpočet**, ne měření; výsledek vynásobte
+svou cenou za kWh. Hluk veřejně změřený pro většinu strojů nemáme,
+proto ho neuvádíme jako číslo.
+
+## Funguje to bez internetu?
+
+Ano, ale až po instalaci. Model a runtime se stahují jednou, potom
+stroj funguje bez připojení — to je hlavní důvod, proč lidé lokální
+AI chtějí. Pozor na dvě věci: některé nástroje volají domů kvůli
+licenci nebo telemetrii a aktualizace je potřeba plánovat ručně
+(viz [aktualizace](/temata/provoz/aktualizace/)).
+
+## Je lokální AI bezpečnější než cloud?
+
+Není to automatické. Data neopustí váš stroj, což je výhoda, ale
+zodpovědnost za oprávnění, logy a zálohy přechází na vás. U agentů
+se navíc přidává riziko [prompt injection](/slovnik/provoz/prompt-injection/)
+a u osobních údajů [GDPR](/temata/provoz/gdpr-a-ai-act/). Lokální
+provoz je jiný model rizika, ne nulové riziko.
+
+## Co když potřebuji víc než 128 GB?
+
+Existují 192GB stroje (Gorgon Halo) a 256GB varianty, ale nejsou
+běžně dostupné a u některých chybí nezávislé měření. Dva boxy
+propojené do poolu nedoporučujeme: tensor parallel mezi zařízeními
+přes síť je pomalý a parametry modelu se do paměti musí vejít celé.
+Podrobnosti jsou u [Gorgon Halo](/zarizeni/gorgon-halo/).
+
+## Můžu model doladit na svá data?
+
+Fine-tuning a trénink na tomto webu neřešíme. Pro většinu firemních
+úloh stačí [RAG](/temata/rag/) — model dostane relevantní dokumenty
+do kontextu a nemusíte nic trénovat. Když potřebujete vlastní styl
+nebo formát, existuje [LoRA](/slovnik/software/lora/), ale je to
+samostatný projekt s vlastními daty a vyhodnocením.
 
 ## Co když model nejde spustit?
 
@@ -76,6 +117,22 @@ kontrolujeme průběžně, zdroje týdně.
 Protože se na ně Qwen3.8 Flash Next nevejde celý. Web není katalog
 všeho, co existuje — je to průvodce tím, co na 128 GB dává smysl.
 Menší modely zmiňujeme jen jako varování nebo srovnání.
+
+## Rozhodovací tabulka
+
+| Potřebujete | Vezměte | Proč |
+|---|---|---|
+| Chat, dokumenty a RAG pro 2–4 lidi | [Strix Halo](/zarizeni/strix-halo/) | nejnižší cena za 128 GB |
+| Windows, CUDA a práci na jednom stroji | [RTX Spark](/zarizeni/rtx-spark-mini/) | plný Windows a ovladače |
+| Linux, vLLM a oficiální recepty | [DGX Spark](/zarizeni/dgx-spark/) | testovaný software |
+| Ticho a nízkou spotřebu | [Mac Studio](/zarizeni/mac-studio/) | MLX, žádná CUDA |
+| Práci na cestách | [MacBook Pro](/zarizeni/macbook-pro/) nebo [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) | baterie a mobilita |
+| Obrázky a 3D | jakýkoli 128GB stroj | rozhoduje čas, ne paměť |
+| Video | DGX Spark nebo RTX Spark | CUDA a NVFP4 |
+| Tým nad 4 lidi | dva boxy | kapacita se škáluje počtem |
+
+Podrobnosti jsou v [bezpečné volbě](/vyber/bezpecna-volba/) a
+[počtu uživatelů](/vyber/kolik-uzivatelu/).
 
 ## Zdroje
 
@@ -127,6 +184,38 @@ Menší modely zmiňujeme jen jako varování nebo srovnání.
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Záleží na licenci modelu. Z-Image, FLUX.2 klein, Wan 2.2 a TRELLIS.2 jsou bezpečné; Qwen Research a Tencent Hunyuan ne. Qwen3.8 Flash Next má Qwen Community License 1.0 - komerční použití ano, služba nebo AI pracovní asistent vyžaduje zvláštní licenci.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Funguje lokální AI bez internetu?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ano, po instalaci. Model a runtime se stahují jednou, potom stroj funguje bez připojení. Aktualizace a licence některých nástrojů ale vyžadují ruční správu.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Je lokální AI bezpečnější než cloud?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Data neopustí váš stroj, ale odpovědnost za oprávnění, logy a zálohy přechází na vás. U agentů se přidává riziko prompt injection a u osobních údajů GDPR. Lokální provoz je jiný model rizika, ne nulové riziko.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Co když potřebuji víc než 128 GB?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Existují 192GB a 256GB stroje, ale nejsou běžně dostupné a u některých chybí nezávislé měření. Propojení dvou boxů do poolu nedoporučujeme, protože tensor parallel přes síť je pomalý.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Můžu model doladit na svá data?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Fine-tuning na tomto webu neřešíme. Pro většinu firemních úloh stačí RAG: model dostane relevantní dokumenty do kontextu a nemusíte nic trénovat. Vlastní styl řeší LoRA, ale je to samostatný projekt.',
       },
     },
   ],
