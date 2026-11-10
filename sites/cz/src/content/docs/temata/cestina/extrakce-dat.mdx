@@ -111,6 +111,34 @@ nemusí hádat strukturu.
 - **Částky** — české formátování `10 000,50 Kč`.
 - **Datum** — české pořadí dne a měsíce.
 
+## Kolik faktur zvládne box
+
+Extrakce je krátká odpověď, takže ji brzdí hlavně decode. Ilustrativní
+**výpočet**: výstup s 400 tokeny při 50 tok/s je 8 sekund na fakturu.
+Dávka 200 faktur tak vyjde na **~27 minut** čistého generování.
+
+K tomu je potřeba připočítat OCR u skenů a lidskou kontrolu. Pokud
+kontrola trvá minutu na fakturu, je to 200 minut — **pětkrát víc než
+samotný model**. Proto se optimalizuje kontrola (validace, párování,
+fronta jen podezřelých), ne model.
+
+Čísla jsou **výpočet** s ukázkovými vstupy, ne měření. Při čtyřech
+uživatelích na jednom boxu klesne rychlost na uživatele zhruba
+čtvrtinově (viz [kapacita](/vyber/kolik-uzivatelu/)).
+
+## Kdy vision místo OCR
+
+| Situace | Volba | Proč |
+|---|---|---|
+| Stohovaný sken, tištěný text | OCR | levné a přesné |
+| Fotka faktury z mobilu | vision model | zvládne perspektivu |
+| Tabulka s mnoha sloupci | OCR s rozvržením | drží strukturu |
+| Rukopisné poznámky | vision + člověk | OCR selhává |
+| Jeden doklad denně | vision | nemá cenu stavět pipeline |
+
+Vision model je pohodlnější, ale u velkých objemů dražší a hůř se
+kontroluje. U archivů zůstaňte u OCR a vision použijte na výjimky.
+
 ## Rizika
 
 - **Halucinace** — model doplní chybějící IČO.

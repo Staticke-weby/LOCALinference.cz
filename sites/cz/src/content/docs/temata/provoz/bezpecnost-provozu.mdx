@@ -84,6 +84,38 @@ všechny faktury“. Aplikace nemá nástroj na hromadné přeposílání a
 odeslání vyžaduje potvrzení. Agent tedy nemůže akci provést. To je
 správné nastavení: omezit nástroj, ne spoléhat na prompt.
 
+## Síťová topologie
+
+Bezpečnost začíná tím, co je kam dostupné:
+
+| Vrstva | Dostupnost | Poznámka |
+|---|---|---|
+| **Model server** | jen `localhost` | port 8000 nevidí síť |
+| **Proxy** | interní síť, 443 | TLS a přihlášení |
+| **Aplikace** | podle rolí | žádný přímý přístup k modelu |
+| **Administrace** | VPN nebo bastion | nikdy z internetu |
+| **Odchozí síť** | jen povolené domény | agent nesmí všude |
+
+Agent, který má odchozí síť bez omezení, může data odeslat i bez
+toho, že by ho někdo napadl. Allowlist domén je stejně důležitý jako
+autentizace.
+
+## Otestujte obranu, ne jen nastavení
+
+- **Port z jiné sítě** — musí být nedostupný.
+- **Bez tokenu** — musí vrátit 401.
+- **Cizí dokument** — uživatel ho nesmí dostat ani v odpovědi.
+- **Injection v souboru** — agent nesmí provést akci.
+- **Odchozí spojení** na nepovolenou doménu — musí selhat.
+- **Obnova ze zálohy** — musí být vyzkoušená, ne jen popsaná.
+
+## Zálohy
+
+- **3 kopie** dat, **2 různá média**, **1 mimo lokalitu**.
+- **Šifrované** zálohy, klíč odděleně.
+- **Test obnovy** aspoň dvakrát ročně.
+- **Zálohovat i konfiguraci** a index, ne jen dokumenty.
+
 ## Checklist
 
 - [ ] Je model mimo veřejný internet?

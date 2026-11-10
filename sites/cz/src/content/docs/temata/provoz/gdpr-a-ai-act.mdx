@@ -80,6 +80,53 @@ v ordinaci, jde o zdravotní údaje: potřebuje právní základ, minimalizaci,
 retence, oprávnění a posouzení rizik. Lokální box je technická část,
 ne celé řešení.
 
+## Kdo je kdo
+
+U lokální AI se role pletou. Rozhoduje, kdo určuje účel a kdo má
+přístup k datům:
+
+| Role | Kdo to je | Co z toho plyne |
+|---|---|---|
+| **Správce** | vaše firma | účel, základ, práva subjektů |
+| **Zpracovatel** | ten, kdo data zpracovává pro vás | smlouva a pokyny |
+| **Dodavatel vah** | výrobce modelu | často **není** zpracovatel |
+| **Dodavatel infrastruktury** | cloud, pokud ho používáte | zpracovatel |
+| **DPO** | pověřenec pro ochranu údajů | dohled a poradenství |
+
+Model stažený z Hugging Face a spuštěný na vašem boxu neznamená, že
+výrobce vidí vaše data. Zpracovatelem se stává až ten, kdo k datům
+má přístup — typicky provozovatel cloudu nebo externí správce.
+
+## AI Act: orientační milníky
+
+Povinnosti se zavádějí postupně. Podle nařízení (EU) 2024/1689 se
+obvykle uvádějí tyto milníky:
+
+| Datum | Co začíná platit |
+|---|---|
+| 1. 8. 2024 | nařízení vstoupilo v účinnost |
+| 2. 2. 2025 | zákazy některých praktik |
+| 2. 8. 2025 | povinnosti pro obecné modely (GPAI) |
+| 2. 8. 2026 | vybrané high-risk systémy (příloha III) |
+| 2. 8. 2027 | high-risk v regulovaných produktech (příloha I) |
+
+Termíny se mohou měnit novelami. Před rozhodnutím ověřte aktuální
+konsolidované znění a přílohy; tento přehled není právní rada.
+
+## Žádost o výmaz v praxi
+
+U RAG a logů nestačí smazat dokument. Postup:
+
+1. **Dokument** — originál v úložišti.
+2. **Vektory** — chunky v indexu.
+3. **Cache** — prefix cache a dočasné soubory.
+4. **Logy** — pokud obsahují text nebo identifikátory.
+5. **Zálohy** — podle retenčního plánu; potvrďte, kdy zmizí.
+6. **Potvrzení** — zapište, kdo a kdy výmaz provedl.
+
+Bez kroků 2 a 3 zůstane text „živý“ v odpovědích, i když soubor
+zmizel. To je častý nález při kontrole.
+
 ## Checklist
 
 - [ ] Máme právní základ?

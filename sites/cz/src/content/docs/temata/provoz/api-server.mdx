@@ -77,6 +77,52 @@ a přihlášení. Klient dostane API klíč s limitem. Požadavky jdou na
 `/v1/chat/completions`. Port 8000 není dostupný z jiné sítě. To je
 základ, ke kterému se přidává monitoring a logy.
 
+## Jak vypadá požadavek
+
+Klient posílá OpenAI-kompatibilní JSON:
+
+```bash
+curl https://ai.firma.local/v1/chat/completions \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen3.8-flash-next",
+    "messages": [{"role": "user", "content": "Shrň tento dokument…"}],
+    "max_tokens": 800,
+    "stream": true
+  }'
+```
+
+`stream: true` znamená, že odpověď teče po tokenech. Pro chat je to
+lepší pocit; pro dávkové zpracování stačí celá odpověď najednou
+a jednodušší logování.
+
+## Kolik požadavků zvládne
+
+Kapacita se počítá z agregátu, ne z počtu lidí. Ilustrativní
+**výpočet** při ~100 tok/s agregátu a průměrné odpovědi 400 tokenů:
+
+```
+požadavků za sekundu ≈ 100 / 400 = 0,25
+požadavků za minutu ≈ 15
+```
+
+To je teoretický strop při nepřetržitém generování. Reálně počítejte
+s polovinou kvůli prefillu, frontě a pauzám mezi dotazy. Pro tým
+do čtyř lidí to stačí; pro víc boxů je potřeba fronta v proxy
+(viz [kapacita](/vyber/kolik-uzivatelu/)).
+
+## Časté chyby
+
+| Problém | Příčina | Řešení |
+|---|---|---|
+| `401 Unauthorized` | chybí nebo expiroval token | rotace klíčů, jasná chyba |
+| `413 Payload Too Large` | limit body size v proxy | zvýšit limit, oříznout prompt |
+| `504 Gateway Timeout` | proxy timeout kratší než odpověď | prodloužit timeout |
+| Odpověď chodí po částech | `stream: true` | klient musí číst stream |
+| Model neodpovídá | port není dostupný | health check a logy |
+| Padá při souběhu | málo KV cache | omezit `max-num-seqs` |
+
 ## Checklist
 
 - [ ] Model neposlouchá na veřejné IP.

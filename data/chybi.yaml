@@ -212,12 +212,12 @@ polozky:
       - zarizeni/rtx-spark-notebook
       - temata/rtx-spark
     priorita: P0
-    stav: otevreno
+    stav: prubezne
     davka: 2
     hledat: "NVIDIA forum, llamaperf, Reddit, GitHub benchmarky"
-    poznamka: null
+    poznamka: "K 10. 11. 2026 zkontrolováno NVIDIA fórum, HF diskuse, r/LocalLLaMA a llamaperf: veřejné měření Qwen3.8 na mini neexistuje. Čísla z notebooku (stejný N1X) nepřenášíme kvůli jinému chlazení a power limitu. Na stránce je postup, jak si měření udělat (llama-bench, konfigurace, co zapsat)."
     zdroj: null
-    overeno: null
+    overeno: 2026-11-10
 
   - id: D02
     oblast: data
@@ -754,9 +754,9 @@ polozky:
       - zarizeni/gorgon-halo
       - zarizeni/srovnani
     priorita: P1
-    stav: otevreno
+    stav: prubezne
     davka: 2
     hledat: "Phoronix, Local LLM Benchmarks, Reddit r/LocalLLaMA, recenze 495"
-    poznamka: "Zařízení je na trhu od září 2026. 11/2026 první komunitní test (Q6_K_XL, llama.cpp/ROCm, 192 GB): 19–20 tok/s krátký prompt, 14,8 při 32k, 4,6 při 249k. Sporné; potřebujeme nezávislé měření."
+    poznamka: "Zařízení je na trhu od září 2026. 11/2026 první komunitní test (Q6_K_XL, llama.cpp/ROCm, 192 GB): 19–20 tok/s krátký prompt, 14,8 při 32k, 4,6 při 249k. Sporné. Doplněno měření výrobce (Framework, 30. 9. 2026): DeepSeek V4.1 Flash Q2 ~14 tok/s, MiMo 16–18 tok/s při 0–64K; AMD uvádí 52,2 vs. 51,2 tok/s bez konfigurace. Nezávislý test Qwen3.8 stále chybí."
     zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next/discussions/84
-    overeno: 2026-11-09
+    overeno: 2026-11-10

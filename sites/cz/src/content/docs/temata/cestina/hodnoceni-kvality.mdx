@@ -99,6 +99,37 @@ nepoužijete bez ruční opravy.
 Ukládejte do tabulky nebo Markdownu. Bez záznamu se test nedá
 zopakovat a změny se nedají vysvětlit.
 
+## Výpočet skóre a prahu
+
+Rubrika dá body, ale rozhodnutí potřebuje číslo. Ilustrativní
+**výpočet** pro 30 úloh se šesti kategoriemi po 0–2 bodech:
+
+```
+maximum = 30 úloh × 6 kategorií × 2 body = 360
+skóre = získané body / 360
+```
+
+Příklad: 300 bodů je 83 %. To samo o sobě neříká, jestli model
+nasadit. Rozhoduje **rozložení**: když všech 60 ztracených bodů padne
+na „čísla a data“, je 83 % nebezpečných. Když na „styl“, je to
+použitelné s korekturou.
+
+Praktický práh se stanovuje podle rizika:
+
+| Úloha | Práh | Co při nesplnění |
+|---|---:|---|
+| Interní shrnutí | 75 % | kontrola každého výstupu |
+| Extrakce polí | 95 % u čísel | jiný model, nebo ručně |
+| Odpověď z dokumentu | 90 % u citací | RAG, nebo ručně |
+| Překlad k publikaci | 95 % | člověk |
+
+## Kolik to zabere
+
+Pro 30 úloh a dvě opakování: 60 generování, každé v řádu sekund až
+minut, plus ruční hodnocení. Reálně **půl dne až den** práce, když
+máte kritéria předem. Bez kritérií se to protáhne, protože se
+u každé úlohy rozhoduje znovu, co je správně.
+
 ## Časté chyby hodnocení
 
 - **Testovat na tréninkových datech** — výsledek je nadhodnocený.

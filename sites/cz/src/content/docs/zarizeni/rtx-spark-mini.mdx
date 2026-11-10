@@ -1,7 +1,7 @@
 ---
 title: "RTX Spark mini 128 GB: cena, výkon a Qwen3.8 Flash Next"
 description: "128 GB unified paměti, 300 GB/s a CUDA. Co víme o RTX Spark mini, jak se liší od notebooku a proč zatím chybí měření."
-last_verified: 2026-11-04
+last_verified: 2026-11-10
 sidebar:
   label: RTX Spark mini
   order: 6
@@ -77,6 +77,35 @@ Konkrétní čísla proto `[DOPLNIT: měření]`.
 | Prefill | [DOPLNIT] | [DOPLNIT] |
 | Pohodlná souběžnost | [DOPLNIT] | [DOPLNIT] |
 
+## Jak si rychlost změřit sám
+
+Veřejné číslo chybí, ale majitel mini si ho může změřit za půl hodiny.
+Stačí [llama.cpp](/slovnik/software/llamacpp/) s ARM64 buildem a CUDA:
+
+```powershell
+llama-bench -m qwen3.8-flash-next-Q4_K_M.gguf -p 512 -n 128 -r 3
+llama-bench -m qwen3.8-flash-next-Q4_K_M.gguf -p 32768 -n 128 -r 1
+```
+
+První příkaz měří krátký kontext (prefill 512 tokenů, generování 128),
+druhý dlouhý. Pro TTFT a souběžnost použijte `llama-server` a změřte
+čas do prvního tokenu při 1, 2 a 4 požadavcích.
+
+Zapište vždy:
+
+| Údaj | Proč |
+|---|---|
+| model a kvantizace | jiná kvantizace, jiná čísla |
+| verze llama.cpp a CUDA | výkon se mezi buildy mění |
+| kontext (`-c`) | delší kontext zpomaluje prefill |
+| počet vrstev na GPU | musí být všechny |
+| teplota a power limit | throttling zkreslí výsledek |
+| opakování | alespoň 3 běhy |
+
+Výsledek zveřejněte v diskusi k modelu na Hugging Face s celou
+konfigurací. Číslo bez konfigurace se nedá srovnat a do katalogu
+nepatří.
+
 ## Srovnání s notebookem
 
 <TabulkaZarizeni filtr={["rtx-spark-mini", "rtx-spark-notebook"]} />
@@ -130,4 +159,4 @@ V českém maloobchodě se neprodává. Kategorie AI počítačů na Alza.cz je 
 - [XDA — CUDA na Windows on Arm je verze 1](https://www.xda-developers.com/things-nobody-tells-you-before-buying-an-rtx-spark-laptop)
 - [NeoTeo — jak Windows dělí unified paměť](https://www.neoteo.com/en/nvidia-rtx-spark-review-how-windows-divides-unified-memory)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

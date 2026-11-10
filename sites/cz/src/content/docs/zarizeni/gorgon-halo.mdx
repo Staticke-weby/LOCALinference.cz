@@ -1,7 +1,7 @@
 ---
 title: "Gorgon Halo 192 GB: prostor pro Qwen3.8 Flash Next, ne pro obří modely"
 description: "192 GB unified paměti znamená delší kontext a víc souběžných požadavků pro Qwen3.8 Flash Next. Obří modely v Q2 patří do serverovny."
-last_verified: 2026-11-09
+last_verified: 2026-11-10
 sidebar:
   label: Gorgon Halo 192 GB
   order: 5
@@ -97,6 +97,24 @@ agentní práci a reasoning modely ne. Model, který „dlouho přemýšlí“,
 vygeneruje tisíce tokenů, než se dostane k odpovědi; při 15 tok/s to
 jsou minuty čekání.
 
+## Co víme o rychlosti k 10. 11. 2026
+
+| Zdroj | Co naměřil | Typ | Váha |
+|---|---|---|---|
+| Framework, 30. 9. 2026 | DeepSeek V4.1 Flash Q2 ~14 tok/s, MiMo 16–18 tok/s při 0–64K | výrobce | konfigurace popsaná, nezávisle neověřené |
+| Komunitní test na HF | Qwen3.8 Q6_K_XL 19–20 tok/s krátce, 4,6 tok/s na 249K | komunita | sporné, konfigurace zpochybněna |
+| AMD (prezentace) | 52,2 tok/s vs. 51,2 tok/s na Strix Halu | výrobce | model a konfigurace neuvedeny |
+
+Nezávislé měření Qwen3.8 Flash Next na 495 stále chybí. Proto
+v tabulce výše zůstává `[DOPLNIT]` a číslo 19–20 tok/s bereme jako
+spodní mez, ne jako vlastnost čipu. Rozdíl mezi 20 a 50 tok/s je
+rozdíl mezi nepoužitelným a použitelným agentem.
+
+**Co by mezeru uzavřelo:** test s uvedeným modelem, kvantizací,
+engine, kontextem a souběžností, ideálně od laboratoře, která měří
+i Strix Halo stejnou metodou. Do té doby platí, že 192 GB je
+kapacita, ne zrychlení.
+
 ## Kdy má smysl a kdy ne
 
 | Situace | Doporučení |
@@ -139,7 +157,8 @@ jsou minuty čekání.
 
 - [AMD Ryzen AI Max+ PRO 495](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html)
 - [Framework — What 192GB changes for local AI](https://frame.work/blog/what-192gb-changes-for-local-ai-on-the-framework-desktop) (30. 9. 2026)
+- [Local LLM Benchmarks — křivky podle kontextu](https://local-llm-benchmarks.dev/speed)
 - [VideoCardz — první Gorgon Halo PC, 7 399 USD](https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory) (28. 9. 2026)
 - [VideoCardz — BOSGAME M5 Max 192 GB za 6 199 USD](https://videocardz.com/newz/bosgame-m5-max-with-192gb-ram-launches-at-6199-over-1100-cheaper-than-amd-ryzen-ai-halo) (4. 11. 2026)
 
-*Naposledy ověřeno: 9. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

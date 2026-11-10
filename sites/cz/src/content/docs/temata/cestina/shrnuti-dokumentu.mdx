@@ -84,6 +84,47 @@ Výsledek je delší než jedno „chytré“ shrnutí, ale je věrnější.
 
 Tím získáte strukturu, kterou můžete zkontrolovat.
 
+## Kolik stran se vejde do kontextu
+
+Kontext se počítá v tokenech, ne ve stranách. Orientační **výpočet**
+pro češtinu: při 3,5–4 znacích na token se do 32k kontextu vejde
+zhruba 112–128 tisíc znaků, tedy **60–70 stran** běžného textu.
+Do 128k se vejde čtyřikrát tolik, do 262k osmkrát.
+
+Jsou to **výpočty** s uvedeným poměrem, ne měření konkrétního
+tokenizeru. Skutečný poměr si ověřte v enginu. Zároveň platí, že
+**vejít se neznamená zvládnout**: u delšího vstupu roste riziko
+[context rotu](/slovnik/pamet/context-rot/) a model může vynechat
+pasáž uprostřed.
+
+## Šablona výstupu
+
+Shrnutí je použitelné jen tehdy, když má pevnou strukturu. Osvědčená
+šablona pro smlouvu:
+
+```markdown
+## Strany
+- objednatel: …
+- zhotovitel: …
+
+## Předmět a cena
+- předmět: …
+- cena: … (článek X)
+
+## Trvání a ukončení
+- účinnost: …
+- výpovědní lhůta: …
+
+## Rizika a sankce
+- …
+
+## Co v dokumentu není
+- …
+```
+
+Sekce „co v dokumentu není“ je důležitější, než vypadá. Nutí model
+přiznat mezery místo domýšlení a vám dává místo, kde chybu odhalíte.
+
 ## Kontrola kvality
 
 - [ ] **Hlavní sdělení** je správné.

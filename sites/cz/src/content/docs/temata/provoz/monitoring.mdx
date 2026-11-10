@@ -84,6 +84,42 @@ fronta delší než 10 po dobu pěti minut. To znamená, že model nestíhá
 nebo někdo poslal příliš dlouhý kontext. Bez baseline byste nevěděli,
 jestli je 10 „hodně“.
 
+## Prahy a alerty v praxi
+
+Alert má být vázaný na dopad, ne na číslo. Praktická tabulka:
+
+| Signál | Varování | Kritické | Co udělat |
+|---|---|---|---|
+| TTFT | 2× baseline | 5× baseline | zkontrolovat frontu a kontext |
+| Fronta | > 5 požadavků 5 min | > 15 požadavků | omezit souběžnost |
+| Decode | −20 % proti baseline | −50 % | teplota, throttling, verze |
+| Volná paměť | < 15 % | < 5 % | omezit kontext nebo batch |
+| Chybovost | > 2 % | > 10 % | restart, rollback |
+| Teplota | 85 °C | 95 °C | chlazení, power limit |
+
+Čísla jsou **orientační**; baseline si změřte sami. Alert, který se
+spustí každý den a nic neznamená, přestane lidé zajímat — a pak
+přehlédnou ten skutečný.
+
+## Kolik místa zaberou logy
+
+Logování je levné, dokud se nezačne ukládat celý prompt. Ilustrativní
+**výpočet**: záznam bez obsahu má kolem 500 bajtů. Při 5 000
+požadavcích denně je to **2,5 MB denně**, tedy ~75 MB za měsíc.
+Když přidáte celé prompty a odpovědi, může to být stokrát víc.
+
+Držte proto dvě úrovně: **metriky a metadata** dlouho, **obsah**
+krátce nebo vůbec. Do logů nepatří klíče ani celé osobní údaje.
+
+## Co nedělat
+
+- **Alerty bez baseline** — budete ladit práh místo provozu.
+- **Dashboard bez vlastníka** — nikdo se na něj nedívá.
+- **Logovat vše** — růst nákladů a riziko úniku.
+- **Měřit jen průměr** — p95 odhalí problémy, které průměr schová.
+- **Zapomenout na throttling** — výkon klesne, ale chybovost zůstane
+  nulová.
+
 ## Checklist
 
 - [ ] Jsou metriky dostupné?

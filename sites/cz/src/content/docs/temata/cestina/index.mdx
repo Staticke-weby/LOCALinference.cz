@@ -50,6 +50,32 @@ ale nepřesný. Proto se u českých dokumentů vždy kontrolují fakta,
 5. **[Jak model zvládá češtinu](/temata/cestina/jak-model-zvlada-cestinu/)** —
    co od něj čekat a kde selhává.
 
+## Testovací sada podle úloh
+
+Než začnete, rozhodněte, co je pro vás „dobré“. Různé úlohy mají
+různá kritéria i různou cenu chyby:
+
+| Úloha | Vzorků | Co musí projít | Cena chyby |
+|---|---:|---|---|
+| Shrnutí | 10 | fakta, čísla, nic navíc | střední |
+| Extrakce | 10 | každé pole proti zdroji | vysoká |
+| Překlad | 10 | glosář a význam | střední |
+| Korespondence | 5 | tón a fakta | nízká |
+| Dotaz nad dokumentem | 10 | správná pasáž a citace | vysoká |
+
+Celkem 45 úloh. To je rozsah, který zvládne jeden člověk za den
+a který už ukáže, jestli model na vaše dokumenty stačí.
+
+## Ekonomika testu
+
+Ilustrativní **výpočet**: 45 úloh, každá dvě generování a tři minuty
+na hodnocení = zhruba **4,5 hodiny práce**. Proti tomu stojí riziko,
+že nasadíte model, který v pěti procentech případů zamění částku.
+
+Když jedna chybná faktura znamená hodinu opravy a máte 500 faktur
+měsíčně, pět procent je 25 oprav — tedy 25 hodin. Test za půl dne
+se vrátí první měsíc.
+
 ## Co k tomu potřebujete
 
 - **Qwen3.8 Flash Next** na 128GB boxu — model, který zvládne

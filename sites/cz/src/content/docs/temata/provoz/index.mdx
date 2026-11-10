@@ -90,6 +90,32 @@ a přihlášení. Monitoring hlídá TTFT a frontu. Aktualizace se testují
 na stagingu. Logy jdou do firemního úložiště. To je minimální provoz,
 který zvládne jeden správce.
 
+## Role a odpovědnosti
+
+Provoz bez vlastníka skončí u prvního incidentu. Minimální rozdělení
+u malé firmy:
+
+| Role | Co drží | Jak často |
+|---|---|---|
+| **Správce boxu** | instalace, aktualizace, zálohy | průběžně |
+| **Vlastník aplikace** | přístupy, prompty, kvalita | průběžně |
+| **Bezpečnost** | síť, logy, incidenty | měsíčně |
+| **Právní/DPO** | GDPR, dokumentace | při změně |
+| **Uživatelé** | kontrola výstupů | denně |
+
+Jedna osoba může mít víc rolí, ale musí být jasné, kdo rozhoduje
+při výpadku a kdo schvaluje nové uživatele.
+
+## Prvních 30 dní provozu
+
+1. **Týden 1** — postavte API za proxy, zapište verze a baseline.
+2. **Týden 2** — monitoring, alerty a zálohy; otestujte obnovu.
+3. **Týden 3** — oprávnění, logy a test injection scénáře.
+4. **Týden 4** — dokumentace, incidentní plán a školení uživatelů.
+
+Co se neudělá první měsíc, se většinou neudělá nikdy. Provoz, který
+nemá baseline a alerty, se ladí podle stížností.
+
 ## Kdy to nepoužívat
 
 - Jeden uživatel a jednorázový test — stačí llama.cpp.

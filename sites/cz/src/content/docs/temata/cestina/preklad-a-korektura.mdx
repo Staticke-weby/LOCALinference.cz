@@ -105,6 +105,38 @@ Konzistenci hlídejte i u strojového překladu; model ji sám neudrží.
 U delších textů pomůže **zpětný překlad** a porovnání, ale není to
 důkaz. Nejlepší je člověk, který umí oba jazyky.
 
+## Jak měřit kvalitu překladu
+
+Dojem nestačí, protože špatný překlad zní plynule. Vezměte 30–50 vět
+a počítejte **věty bez chyby**:
+
+```
+skóre = věty bez chyby / všechny věty
+```
+
+Chyby rozdělte do kategorií, protože se opravují jinak:
+
+| Kategorie | Příklad | Kdo opraví |
+|---|---|---|
+| **Význam** | záměna „výpověď“ a „odstoupení“ | překladatel |
+| **Terminologie** | jiný termín než v glosáři | glosář |
+| **Čísla a data** | 10 000 → 1 000 | kontrola proti zdroji |
+| **Gramatika** | pád nebo shoda | korektura |
+| **Styl** | ty/vy, formalita | úprava promptu |
+
+Když jsou chyby hlavně v terminologii, pomůže glosář. Když ve významu,
+model na daný obor nestačí. Je to **výpočet** z ručně označených vět,
+ne automatické skóre.
+
+## Dávkový překlad
+
+U delších dokumentů počítejte s délkou odpovědi: 10stranný dokument
+má zhruba 25–30 tisíc znaků, tedy 7–9 tisíc tokenů. Při 50 tok/s je
+to **2,5–3 minuty** čistého generování na jednu verzi.
+
+K tomu patří kontrola a druhá verze po korektuře. Překlad dvou
+takových dokumentů denně je reálný; kniha najednou ne.
+
 ## Kdy je lepší člověk
 
 - **Právní smlouvy** — význam a odpovědnost.

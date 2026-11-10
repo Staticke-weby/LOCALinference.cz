@@ -6,6 +6,20 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Čeština a provoz: druhá vlna prohloubení"
+  co_se_zmenilo: "Dvanáct stránek dostalo praktické doplnění: desetiminutový test češtiny, výpočet stran v kontextu, šablona shrnutí, kapacita extrakce, měření kvality překladu a výpočet skóre. Provoz má prahy alertů, výpočet kapacity API, matici rizika aktualizací, síťovou topologii, role a orientační milníky AI Actu."
+  dotcene_stranky: [temata/cestina, temata/cestina/jak-model-zvlada-cestinu, temata/cestina/shrnuti-dokumentu, temata/cestina/extrakce-dat, temata/cestina/preklad-a-korektura, temata/cestina/hodnoceni-kvality, temata/provoz, temata/provoz/api-server, temata/provoz/monitoring, temata/provoz/aktualizace, temata/provoz/bezpecnost-provozu, temata/provoz/gdpr-a-ai-act]
+  zdroj: https://www.localinference.cz/temata/cestina/
+
+- datum: 2026-11-10
+  typ: mereni
+  titulek: "Gorgon Halo: měření výrobce a postup pro RTX Spark mini"
+  co_se_zmenilo: "Na stránce Gorgon Halo je tabulka známých měření k datu: Framework (DeepSeek V4.1 Flash Q2 ~14 tok/s, MiMo 16–18), sporný komunitní test Qwen3.8 a tvrzení AMD bez konfigurace. Přibyl odkaz na Local LLM Benchmarks. U RTX Spark mini je postup, jak si rychlost změřit (llama-bench, co zapsat), protože veřejné číslo chybí."
+  dotcene_stranky: [zarizeni/gorgon-halo, zarizeni/rtx-spark-mini]
+  zdroj: https://www.localinference.cz/zarizeni/gorgon-halo/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Recepty na generování: jednotná struktura a licence"
   co_se_zmenilo: "Čtyři recepty mají stejnou strukturu: potřeby, instalace, ověření GPU, první obrázek, licence, limity a řešení problémů. Přibyla tabulka požadavků na platformu, přehled licencí generativních modelů včetně použitelnosti v ČR a sekce Kde je limit u Windows, macOS a Linuxu."
   dotcene_stranky: [generovani/recepty, generovani/recepty/windows, generovani/recepty/macos, generovani/recepty/dgx-os, generovani/recepty/linux]

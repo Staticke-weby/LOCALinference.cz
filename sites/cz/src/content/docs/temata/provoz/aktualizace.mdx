@@ -78,6 +78,32 @@ v produkci agent přestane volat nástroj. Rollback na předchozí image
 a konfiguraci vrátí provoz do stavu před aktualizací. Bez pinované
 verze byste nevěděli, kam se vrátit.
 
+## Matice rizika
+
+Ne každá aktualizace je stejně nebezpečná. Rozhodujte podle toho, co
+se mění:
+
+| Co aktualizujete | Riziko | Test | Rollback |
+|---|---|---|---|
+| Model (nová revize) | vysoké | kvalita a tool calling | předchozí revize |
+| Engine (vLLM, llama.cpp) | vysoké | API, výkon, paměť | předchozí image |
+| Ovladač CUDA/ROCm | střední | výkon, stabilita | předchozí ovladač |
+| OS | vysoké | vše | snapshot |
+| Konfigurace promptu | nízké | 20 úloh | git |
+| Vektorový index | střední | Recall@5 | přegenerování |
+
+Čím blíž je vrstva modelu, tím horší je rollback. U modelu se proto
+měsíce pinuje revize a mění se vědomě, ne při každém vydání.
+
+## Kdy aktualizovat hned
+
+- **Bezpečnostní oprava** ovladače nebo enginu.
+- **Kritická chyba**, která se vás týká.
+- **Nekompatibilita** s novým klientem nebo API.
+
+Naopak „vyšla nová verze“ není důvod. Provoz, který funguje, nemá
+smysl měnit v pátek odpoledne.
+
 ## Checklist
 
 - [ ] Jsou verze pinované?
