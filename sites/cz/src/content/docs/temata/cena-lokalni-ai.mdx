@@ -1,7 +1,7 @@
 ---
-title: "Kolik stojí lokální AI v roce 2026"
-description: "Ceny 128GB AI boxů v Kč a USD: Strix Halo, DGX Spark, RTX Spark. Co je v ceně, co se platí zvlášť a kdy je lokální AI levnější než cloud."
-last_verified: 2026-11-04
+title: "Kolik stojí lokální AI v roce 2026: ceny, provoz a TCO"
+description: "Ceny 128GB a 192GB AI strojů v Kč a USD, co se platí zvlášť a jak spočítat, kdy se lokální AI vyplatí proti cloudu."
+last_verified: 2026-11-10
 sidebar:
   label: Cena lokální AI
   order: 2
@@ -9,50 +9,162 @@ sidebar:
 
 import AlzaCena from '../../../components/AlzaCena.astro';
 
-Ceny 128GB boxů se v ČR pohybují od **119 990 Kč** do **167 767 Kč**
-včetně DPH. Za tuto cenu dostanete stroj, na kterém poběží
-**Qwen3.8 Flash Next**. Není to cena za model ani za uživatele.
+Ceny hotových 128GB strojů se v ČR pohybují od **119 990 Kč** do
+**249 990 Kč** včetně DPH. Za tuto cenu dostanete stroj, na kterém
+poběží [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/). Není to cena
+za model ani za uživatele — a není to konečná cena provozu.
 
-## Ceny 128GB boxů v Kč
+## Rychlá odpověď
 
-| Zařízení | Cena vč. DPH | Poznámka |
-|---|---|---|
-| Strix Halo 128 GB | 119 990 Kč | Acemagic A10A, Acer Veriton RA110 |
-| RTX Spark notebook 128 GB | 125 990–167 767 Kč | ASUS, Lenovo, MSI, Surface |
-| RTX Spark mini 128 GB | ≈ 130 550 Kč (odhad) | česká cena `[DOPLNIT]` |
-| DGX Spark 128 GB | 162 990–249 990 Kč
+- **Nejlevnější 128GB box** je dnes Strix Halo za 119 990 Kč vč. DPH.
+- **CUDA a DGX OS** začínají na 162 990 Kč; notebook s Windows od
+  125 990 Kč.
+- **Provoz není jen elektřina.** Počítejte správu, zálohy, záruku a
+  čas, který někdo stráví údržbou.
+- **Lokální AI se vyplatí při pravidelném vytížení**, ne při nárazovém
+  použití. Rozhoduje objem práce, ne cena hardwaru.
 
-<AlzaCena kategorie="boxy" text="Ceny v kategorii AI počítače" /> | ASUS GX10 až Lenovo PGX |
+## Ceny podle zařízení
 
-V USA jsou ceny 3 449–6 950 USD (75–151 tis. Kč, odhad). Česká cena je vyšší kvůli DPH, dopravě
-a marži; není to přepočet US ceny.
+Ceny jsou české maloobchodní, včetně DPH, k datu ověření. US ceny
+jsou uvedené v závorce jako list price bez DPH a dopravy.
 
-## Co se platí zvlášť
+| Zařízení | Česká cena | US list | Pro koho |
+|---|---|---|---|
+| [Strix Halo 128 GB](/zarizeni/strix-halo/) | 119 990 Kč | od 3 449 USD | nejnižší cena, Windows/Linux, ROCm |
+| [RTX Spark notebook 128 GB](/zarizeni/rtx-spark-notebook/) | 125 990–167 767 Kč | 5 899,99–6 999 USD | mobilita, Windows, CUDA |
+| [DGX Spark 128 GB](/zarizeni/dgx-spark/) | 162 990–249 990 Kč | 6 950 USD | CUDA, Linux, vLLM, tým |
+| [Mac Studio 128 GB](/zarizeni/mac-studio/) | 147 990–171 990 Kč | 128GB varianta se v US neuvádí | MLX, tiché studio |
+| [MacBook Pro 128 GB](/zarizeni/macbook-pro/) | 177 739–300 490 Kč | 128GB varianta se v US neuvádí | mobilita, macOS, MLX |
+| [Gorgon Halo 192 GB](/zarizeni/gorgon-halo/) | česká cena není | 6 199–7 499 USD | 192 GB pro delší kontext |
 
-- **Elektřina** — podle příkonu a vytížení.
-- **Správa** — aktualizace, monitoring, zálohy.
-- **Adaptér** u některých notebooků.
-- **Rozšířená záruka** a servis.
+Česká cena není přepočet US ceny. Obsahuje DPH, dopravu a marži;
+u některých modelů se navíc liší konfigurace. RTX Spark mini českou
+cenu zatím nemáme; v US začíná na 5 999 USD.
+
+## Co je v ceně a co ne
+
+V ceně boxu je obvykle:
+
+- počítač, paměť a SSD,
+- operační systém podle varianty,
+- základní záruka,
+- napájecí kabel.
+
+Zvlášť se platí:
+
+- **adaptér** u některých notebooků,
+- **rozšířená záruka** a on-site servis,
+- **další SSD** nebo zálohy,
+- **UPS** a síťové prvky,
+- **správa** — aktualizace, monitoring, zálohy,
+- **elektřina** podle příkonu a vytížení.
+
+## Provoz: co opravdu platíte
+
+Celkové náklady (TCO) na tři roky se skládají z:
+
+> **TCO = cena stroje + elektřina + správa + zálohy + záruka − zbytková hodnota**
+
+### Elektřina
+
+Vzorec je jednoduchý:
+
+> **kWh za rok = příkon W × hodiny denně × dny v roce / 1000**
+
+| Příkon | 4 h/den | 8 h/den | 24/7 |
+|---|---:|---:|---:|
+| 100 W | 146 kWh | 292 kWh | 876 kWh |
+| 150 W | 219 kWh | 438 kWh | 1 314 kWh |
+| 250 W | 365 kWh | 730 kWh | 2 190 kWh |
+
+Kolik to stojí, závisí na vaší ceně za kWh. Dosazení zvládne
+[kalkulačka](/rychlost/kalkulacka/) nebo jednoduchá tabulka; cena
+elektřiny se mění a není součástí ceny stroje.
+
+### Správa a zálohy
+
+I lokální box je služba:
+
+- aktualizace enginu a modelu,
+- monitoring místa, teplot a fronty,
+- zálohy konfigurace a dokumentů,
+- řešení incidentů,
+- plán obnovy po výpadku.
+
+Když to nikdo nedělá, dřív nebo později narazíte na zaplněný disk,
+rozbitý update nebo nefunkční API. Náklady na správu jsou reálné,
+i když nejsou na faktuře za hardware.
 
 ## Kdy je lokální AI levnější
 
-Když stroj vytížíte každý den a ušetříte cloudové tokeny. Když ho
-používáte nárazově, může být cloud levnější. Rozhoduje objem práce,
-ne cena hardwaru. Pomůže [kalkulačka](/rychlost/kalkulacka/), model
-[Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) a vysvětlení
-[kvantizace](/slovnik/software/kvantizace/) a [tok/s](/slovnik/vykon/tok-s/).
+Lokální AI dává ekonomický smysl, když:
 
-## Co chybí
+- stroj vytížíte **pravidelně**, ne jednou za měsíc,
+- máte **citlivá data**, u kterých je cloud riziko,
+- platíte za **dlouhodobý provoz**, ne za jednorázový experiment,
+- zvládnete **1–4 uživatele** na jeden box.
 
-- Česká cena RTX Spark mini.
-- Provozní náklady (elektřina, správa) pro konkrétní nasazení.
+Cloud může být levnější, když:
+
+- potřebujete **špičkovou kvalitu** nebo největší model,
+- objem práce je **malý a nárazový**,
+- nemáte člověka na správu,
+- potřebujete **globální dostupnost** a škálování.
+
+Rozhodnutí není „local vs. cloud“ jako náboženství. Často dává smysl
+kombinace: citlivé úlohy lokálně, nejtěžší reasoning v cloudu.
+
+## Jak spočítat break-even
+
+Potřebujete tři vstupy:
+
+1. **Cena stroje** — z tabulky výše.
+2. **Roční provoz** — elektřina + správa + zálohy.
+3. **Měsíční útrata za cloud** — dosaďte svou skutečnou fakturu.
+
+Pak:
+
+> **měsíce do break-even = (cena stroje + 3 × roční provoz) / měsíční cloud**
+
+Když je výsledek menší než 36 měsíců, lokální stroj se při stejném
+objemu práce vyplatí. Když je větší, cloud je pořád levnější — nebo
+jste si jisti, že cena cloudu poroste.
+
+## Jak ušetřit bez ztráty použitelnosti
+
+- **128 GB místo 192 GB**, pokud nepotřebujete delší kontext.
+- **Jeden stroj pro tým** místo jednoho na osobu.
+- **1 TB SSD** místo 4 TB, pokud modely stahujete postupně.
+- **Kvantizace** místo vyšší přesnosti, když kvalita drží.
+- **Kratší kontext** a RAG místo posílání celých dokumentů.
+
+## Na co si dát pozor
+
+- **Cena paměti** se mění; u LPDDR5X a SSD se může rychle zvednout.
+- **Dostupnost** je u některých variant horší než cena.
+- **Záruka** a servis se liší podle výrobce.
+- **Příkon a hluk** mohou rozhodnout v kanceláři víc než tok/s.
+- **Affiliate odkazy** nemění pořadí; ceny ověřujte u prodejce.
+
+<AlzaCena kategorie="boxy" text="Ceny v kategorii AI počítače" />
+
+## Kudy dál
+
+- [Výběr podle rozpočtu](/vyber/rozpocet/) — co za kterou cenu.
+- [Srovnání zařízení](/zarizeni/srovnani/) — parametry vedle sebe.
+- [Kalkulačka](/rychlost/kalkulacka/) — jak dlouho se čeká.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co na stroji poběží.
+- [Power limit](/slovnik/provoz/power-limit/) — jak příkon mění hluk a teplotu.
+- [Kvantizace](/slovnik/software/kvantizace/) — jak ušetřit paměť.
 
 ## Zdroje
 
-- [Výběr podle rozpočtu](/vyber/rozpocet/)
-- [Srovnání zařízení](/zarizeni/srovnani/)
-- [DGX Spark OEM](/zarizeni/dgx-spark/)
-- [Strix Halo OEM](/zarizeni/strix-halo/)
-- [RTX Spark notebook OEM](/zarizeni/rtx-spark-notebook/)
+- [Alza.cz — AI počítače](https://www.alza.cz/ai-pc/18907789.htm)
+- [Alza.cz — RTX Spark notebooky](https://www.alza.cz/notebooky-rtx-spark/18924563.htm)
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [Microsoft — Surface Laptop Ultra](https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8)
+- [Apple — Mac Studio](https://www.apple.com/mac-studio/specs/)
+- [AMD — Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-max-300-series/amd-ryzen-ai-max-plus-395.html)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

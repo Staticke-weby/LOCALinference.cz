@@ -1,7 +1,7 @@
 ---
-title: "Qwen3.8 Flash Next na 128 GB: výkon a provoz"
-description: "Jak běží Qwen3.8 Flash Next na 128GB boxech, kolik potřebuje paměti, jaké má kvantizace a jaký software ho provozuje."
-last_verified: 2026-11-04
+title: "Qwen3.8 Flash Next na 128 GB: výkon, čeština a provoz"
+description: "Qwen3.8 Flash Next: 180B parametrů, 6B aktivních, 262k kontext a vision. Co umí, kolik potřebuje paměti a jak rychle běží na 128 GB."
+last_verified: 2026-11-10
 sidebar:
   label: Qwen3.8 na 128 GB
   order: 6
@@ -9,46 +9,157 @@ sidebar:
 
 import AlzaCena from '../../../components/AlzaCena.astro';
 
-Qwen3.8 Flash Next je **jediný model katalogu**. Má 176B parametrů
+Qwen3.8 Flash Next je **jediný model katalogu**. Má 180B parametrů
 celkem a 6B aktivních, takže se vejde do 128 GB a běží rychlostí,
-kterou člověk pohodlně čte.
+kterou člověk pohodlně čte. Není to nejlepší model světa — je to
+model, u kterého dává smysl provozovat lokální AI na jednom boxu.
+
+## Rychlá odpověď
+
+- **180B celkem, 6B aktivních.** MoE architektura šetří výpočet, ne
+  paměť: váhy se musí načíst celé.
+- **262k nativní kontext, 128k doporučený provoz.** Maximum není cíl.
+- **Vision, tool calling a silný kód.** Na 128 GB zvládne dokumenty,
+  e-maily, RAG i jednodušší agenty.
+- **Čeština je otevřená otázka.** Veřejný český benchmark nemáme;
+  kvalitu si musíte otestovat na svých úlohách.
+
+## Architektura bez žargonu
+
+| Část | Co dělá | Praktický dopad |
+|---|---|---|
+| **MoE, 512 expertů** | na token se aktivuje 10 routed + 1 shared | rychlost menšího modelu, paměť velkého |
+| **Gated DeltaNet + QSA** | hybridní pozornost pro dlouhý kontext | nižší náklady na dlouhé dokumenty |
+| **N-gram embedding** | 51B parametrů v lookup tabulce | vyšší kapacita bez velkého výpočtu |
+| **MTP** | predikuje víc tokenů dopředu | zrychlení decode, závisí na enginu |
+| **Vision encoder** | zpracování obrázků | dokumenty, screenshoty, tabulky |
+
+Model je postavený na architektuře, která má být základem Qwen4.
+Pro uživatele to znamená: nový model, ne jen větší verze staršího.
+
+## Co umí
+
+Podle model cardu a Qwen blogu:
+
+| Úloha | Výsledek |
+|---|---|
+| Agentic coding DeepSWE 1.1 | 58,7 |
+| SWE-bench Pro | 62,5 |
+| SWE-bench Multilingual | 81,0 |
+| Toolathlon Verified | 73,5 |
+| CoWorkBench | 73,9 |
+| GPQA Diamond | 91,7 |
+| IFBench | 81,3 |
+| LiveCodeBench v6 | 91,9 |
+| HLE | 35,9 |
+
+Čísla jsou převzatá, ne naše. Srovnávat je potřeba se stejnou verzí
+modelu a stejným harnessem; model card to uvádí.
+
+## Čeština: co víme a co ne
+
+Model je multilingvní, ale to není totéž jako dobrá čeština na vašich
+úkolech. Veřejný český benchmark pro Qwen3.8 Flash Next nemáme.
+Proto netvrdíme, že je „nejlepší pro češtinu“.
+
+Co s tím:
+
+1. Vezměte **20–50 vlastních úloh** — shrnutí, extrakce, e-mail,
+   korektura, překlad.
+2. Projděte je na stejném modelu a kvantizaci, kterou budete provozovat.
+3. Sledujte **fakta, čísla, citace a gramatiku**.
+4. Výsledek zapište; bez baseline se kvalita nedá porovnat.
+
+Pro české smlouvy a tabulky počítejte s kontrolou. Pro běžný text
+bývá kvalita použitelná, ale záleží na kvantizaci a kontextu.
 
 ## Kolik potřebuje paměti
 
-| Kvantizace | Váhy | Zařízení |
-|---|---|---|
-| NVFP4 | ~101 GB | DGX Spark, vLLM |
-| GGUF Q4_K_M | ~95 GB | llama.cpp, Strix Halo |
+| Kvantizace | Váhy | Zařízení | Poznámka |
+|---|---:|---|---|
+| NVFP4 | ~101 GB | DGX Spark, vLLM | ověřený výchozí bod |
+| FP8 | ~176 GB | větší NVIDIA/AMD | na 128 GB se nevejde s kontextem |
+| GGUF Q4_K_M | ~95 GB | llama.cpp, Strix Halo | kompromis kvalita/paměť |
+| MLX 4bit | ~88 GB | Mac Studio, MacBook Pro | Apple Silicon |
 
-Na 128 GB zbývá zhruba 27 GB na KV cache a aktivace. To stačí na
-128k kontext, ne na mnoho dlouhých streamů najednou.
+Na 128 GB zbývá zhruba 27 GB na [KV cache](/slovnik/pamet/kv-cache/)
+a aktivace. To stačí na 128k kontext, ne na mnoho dlouhých streamů
+najednou.
+
+## Kontext: maximum není doporučení
+
+- **128k** — doporučený provozní bod pro dokumenty a RAG.
+- **262k** — nativní maximum; kvalita a rychlost klesají.
+- **1M** — s YaRN, na 128GB boxu nepraktické.
+
+Delší kontext znamená pomalejší [prefill](/slovnik/vykon/prefill/) a
+menší souběžnost. Maximum je strop, ne cíl.
 
 ## Jak rychle běží
 
 Veřejná měření: **36–65 tok/s** na [DGX Sparku](/zarizeni/dgx-spark/),
 **36–79 tok/s** na [Strix Halu](/zarizeni/strix-halo/) a **35–70 tok/s**
 na [RTX Spark notebooku](/zarizeni/rtx-spark-notebook/). Čísla závisí
-na kvantizaci, enginu a kontextu.
+na kvantizaci, enginu, kontextu a MTP.
+
+Pro plánování berte **spodní hranici**, ne maximum. Optimalizovaný
+recept na DGX Sparku umí ~69 tok/s, ale není to výchozí stav.
 
 ## Software
 
-- **vLLM** — produkční server, NVFP4, MTP.
-- **llama.cpp** — GGUF, Vulkan/CUDA, vision přes mmproj.
-- **Ollama** — experimentální tag `qwen3.8-flash-next`.
+| Engine | K čemu | Poznámka |
+|---|---|---|
+| [vLLM](/slovnik/software/vllm/) | produkční server, OpenAI API | NVFP4, MTP, souběžnost |
+| [llama.cpp](/slovnik/software/llamacpp/) | lokální server, GGUF | Vulkan/CUDA, vision přes mmproj |
+| [Ollama](/slovnik/software/ollama/) | nejjednodušší start | experimentální tag, méně kontroly |
 
-## Co chybí
+Na DGX Sparku je oficiální cesta vLLM s NVFP4. Na Strix Halu je
+realističtější llama.cpp a GGUF. Na Macu MLX.
 
-- Provozní měření na 128k (rychlost i kvalita).
-- České testy a vision testy.
-- Souběžnost 4+.
+## Kde je limit
+
+- **Dlouhý kontext** — 262k je strop, ne denní provoz.
+- **Souběžnost** — jeden box pro 1–4 lidi, ne pro tým 20.
+- **Dense modely** — 70B se na 128 GB nevejde v použitelné kvalitě.
+- **Halucinace** — u faktů a citací kontrolujte zdroj.
+- **Vision** — dokumenty a screenshoty ano, ale kvalita se liší.
+- **Čeština** — bez vlastního testu ji nepovažujte za hotovou.
+
+## Licence
+
+Model je pod **Qwen Community License 1.0**, ne Apache-2.0. Komerční
+použití je zdarma; nad 100 milionů měsíčních uživatelů nebo 20 milionů
+USD měsíčního obratu je nutné uvést název modelu a nabízení modelu
+jako služby nebo jako samostatného AI pracovního asistenta vyžaduje
+zvláštní licenci. Pro interní nasazení v malé firmě se nic nemění.
+
+## Kdy sáhnout jinam
+
+Jen jako varování, ne doporučení:
+
+- **Dense 27B** — menší a někdy kvalitní, ale na složité agentní úlohy
+  nestačí.
+- **Dense 70B** — na 128 GB se nevejde v použitelné kvalitě.
+- **300B+ MoE v Q2** — technicky se může vejít, ale rychlost a kvalita
+  na desku nestačí. Patří do serverovny.
+
+## Kudy dál
+
+- [Model page](/modely/qwen3-8-flash-next/) — specifikace a měření.
+- [128 GB unified memory](/temata/128gb-unified-memory/) — proč je to minimum.
+- [Data: Qwen3.8 na Strix Halo](/data/qwen3-8-flash-next-strix-halo/) — rozpětí měření.
+- [KV cache](/slovnik/pamet/kv-cache/) — co bere kontext.
+- [NVFP4](/slovnik/software/nvfp4/) — formát pro DGX Spark.
+- [Všechna měření](/zdroje/mereni/) — tabulka s konfigurací.
 
 <AlzaCena kategorie="boxy" text="Ceny 128GB boxů na Alze" />
 
 ## Zdroje
 
-- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
-- [Návod pro DGX Spark](/navody/dgx-spark/)
-- [Data: Qwen3.8 na Strix Halo](/data/qwen3-8-flash-next-strix-halo/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog — Qwen3.8-Flash-Next](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [vLLM recipes — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+- [Unsloth — Qwen3.8 Flash Next](https://unsloth.ai/docs/models/qwen3.8-next)
 - [Všechna měření](/zdroje/mereni/)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

@@ -482,10 +482,11 @@ Pravidla:
 
 ### Dávka 1 — tenká témata (2–3 týdny)
 
-- [ ] `/temata/128gb-unified-memory/` — 1 600 slov.
-- [ ] `/temata/cena-lokalni-ai/` — 2 200 slov.
-- [ ] `/temata/lokalni-ai-pro-firmy/` — 2 200 slov.
-- [ ] `/temata/qwen3-8-flash-next/` — 1 800 slov.
+- [x] `/temata/128gb-unified-memory/` — první vlna 856 slov (10. 11. 2026).
+- [x] `/temata/cena-lokalni-ai/` — první vlna 926 slov (10. 11. 2026).
+- [x] `/temata/lokalni-ai-pro-firmy/` — první vlna 1 075 slov (10. 11. 2026).
+- [x] `/temata/qwen3-8-flash-next/` — první vlna 908 slov (10. 11. 2026).
+- [ ] Druhá vlna: doplnit tato čtyři témata na 1 500–2 200 slov podle zadání výše.
 - [ ] `/temata/strix-halo/`, `/temata/rtx-spark/`, `/temata/dgx-spark/` — 1 400 každá.
 - [x] 10 hesel ve slovníku na 578–672 slov: `prefill`, `upscaling`, `ollama`, `vllm`, `huggingface`, `tflops`, `vram`, `kontext`, `nvfp4`, `cuda` (10. 11. 2026).
 - [x] `kv-cache` rozšířena na 830 slov a doplněna diagramem (10. 11. 2026).

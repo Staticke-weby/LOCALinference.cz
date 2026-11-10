@@ -1,9 +1,9 @@
 ---
-title: "Lokální AI: kdy se vyplatí"
-description: "Kdy má lokální AI smysl, kolik stojí 128GB box a jaké úlohy zvládne Qwen3.8 Flash Next. Bez marketingových slibů."
-last_verified: 2026-11-04
+title: "Lokální AI pro firmy: kdy se vyplatí a jak začít"
+description: "Kdy má lokální AI smysl, jaké úlohy zvládne, jak udělat pilot, kolik stojí provoz a na co si dát pozor z pohledu dat a bezpečnosti."
+last_verified: 2026-11-10
 sidebar:
-  label: Lokální AI a jeho přínos
+  label: Lokální AI pro firmy
   order: 1
 ---
 
@@ -12,21 +12,119 @@ import AlzaCena from '../../../components/AlzaCena.astro';
 Lokální AI dává firmě smysl ve chvíli, kdy **data nesmí opustit firmu**,
 **náklady mají být předvídatelné** a úlohy jsou opakované. Typicky
 shrnování smluv, interní dotazy, kontrola kódu, e-maily a dokumenty.
+Není to náhrada cloudu za každou cenu — je to jiný nástroj pro jiné
+úlohy.
+
+## Rychlá odpověď
+
+- **Začněte jedním procesem**, ne „AI pro celou firmu“.
+- **128GB box za 119 990 Kč** zvládne Qwen3.8 Flash Next pro 1–4 lidi.
+- **Pilot za 4 týdny** rozhodne víc než půl roku prezentací.
+- **Lokální neznamená automaticky bezpečné.** Oprávnění, logy a
+  lidská kontrola zůstávají na vás.
 
 ## Kdy má lokální AI smysl
 
 - Máte **1–4 lidi**, kteří denně pracují s dokumenty nebo kódem.
 - Data jsou citlivá a cloud je pro vás riziko.
 - Chcete platit za stroj, ne za každý token.
+- Úloha je **opakovaná** a dá se popsat.
 - Stačí vám **Qwen3.8 Flash Next** na 128 GB, ne špičkový frontier model.
+- Jste ochotni řešit **správu, zálohy a aktualizace**.
+
+## Kdy to nemá smysl
+
+- Máte **málo práce** nebo jednorázový projekt.
+- Potřebujete **nejvyšší reasoning** nebo největší model.
+- Nemáte nikoho, kdo bude box spravovat.
+- Potřebujete **globální dostupnost** a škálování přes noc.
+- Data jsou veřejná a cloud vám nevadí.
+
+## Kde to použít
+
+| Oblast | Typická úloha | Co hlídat |
+|---|---|---|
+| **Právo** | shrnutí smluv, hledání v judikatuře, kontrola dodatků | citace, přesnost, mlčenlivost |
+| **Účetnictví** | extrakce faktur, kontrola dokladů, reporting | čísla, DPH, audit trail |
+| **Výroba** | manuály, technická dokumentace, kontrolní postupy | offline provoz, verze dokumentů |
+| **Zdravotnictví** | dokumentace, kódování, interní předpisy | citlivá data, AI Act, odpovědnost |
+| **Školy** | materiály, testy, výtahy z textů | autorská práva, souhlasy |
+| **Marketing** | copy, obrázky, video, překlady | licence, pravdivost, značka |
+| **Vývoj** | coding agent, review, testy, dokumentace | sandbox, přístup k repu |
+| **Veřejná správa** | dotazy nad dokumenty, formuláře, archiv | GDPR, spisová služba, audit |
+
+Pro každou oblast platí: **model je jen část**. Víc práce je s daty,
+oprávněními a kontrolou kvality.
+
+## Pilot za 4 týdny
+
+1. **Týden 1 — proces a data.** Vyberte jednu úlohu, která se opakuje
+   aspoň několikrát týdně. Sepište vstupy, výstupy a kdo je kontroluje.
+2. **Týden 2 — baseline.** Změřte, jak dlouho úloha trvá dnes a kolik
+   chyb vzniká. Bez baseline nejde přínos doložit.
+3. **Týden 3 — test.** Nasaďte model na 20–50 vzorcích. Porovnejte
+   kvalitu, čas a chyby. Zapište konfiguraci.
+4. **Týden 4 — vyhodnocení.** Rozhodněte, zda pokračovat, změnit
+   proces, nebo projekt zastavit. Výsledek není „líbí/nelíbí“, ale
+   čísla a rizika.
+
+Do pilotu nepatří celá firma, všechny dokumenty a všechny nástroje.
+Začněte jednou úlohou, jedním boxem a jedním člověkem odpovědným za
+výsledek.
+
+## Make or buy
+
+| Varianta | Výhody | Nevýhody |
+|---|---|---|
+| **Lokální box** | data u vás, předvídatelné náklady | správa, omezený výkon, pořízení |
+| **Cloud API** | kvalita, škálování, nulová správa | cena za token, data u providera |
+| **Dodavatel řešení** | hotový proces, podpora | lock-in, cena, závislost |
+| **Kombinace** | citlivé lokálně, těžké v cloudu | složitější architektura |
+
+Pro malou firmu je často nejlepší kombinace: lokální box na dokumenty
+a rutinní úlohy, cloud na nejtěžší reasoning a špičky.
 
 ## Kolik to stojí
 
 České ceny 128GB boxů začínají na **119 990 Kč vč. DPH** (Strix Halo)
 a pokračují k **162 990 Kč** (DGX Spark OEM). Notebooky začínají na
-**125 990 Kč**. Podrobnosti jsou v [ceně lokální AI](/temata/cena-lokalni-ai/).
+**125 990 Kč**. K tomu připočítejte elektřinu, správu, zálohy a záruku.
 
-<AlzaCena kategorie="boxy" text="Co to stojí na Alze" />
+Podrobný rozklad je v [ceně lokální AI](/temata/cena-lokalni-ai/).
+Pro hrubý ROI použijte:
+
+> **roční přínos = ušetřený čas × hodinová cena práce − roční provoz**
+> **návratnost = cena stroje / roční přínos**
+
+Čísla dosaďte svá; obecné „ušetříme 30 %“ není důkaz.
+
+## Který stroj zvolit
+
+| Potřeba | Zařízení | Proč |
+|---|---|---|
+| nejnižší cena | [Strix Halo](/zarizeni/strix-halo/) | 119 990 Kč, Windows/Linux |
+| CUDA a Linux | [DGX Spark](/zarizeni/dgx-spark/) | vLLM, NVFP4, DGX OS |
+| Windows a mobilita | [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) | CUDA na Windows ARM64 |
+| Apple a MLX | [Mac Studio](/zarizeni/mac-studio/) | tiché studio, 614 GB/s |
+| delší kontext | [Gorgon Halo](/zarizeni/gorgon-halo/) | 192 GB, ale vyšší cena |
+
+Konkrétní varianty a ceny jsou ve [srovnání zařízení](/zarizeni/srovnani/).
+
+## Bezpečnost a právo
+
+Lokální provoz **není automaticky v souladu s GDPR**. Potřebujete:
+
+- **právní základ** pro zpracování osobních údajů,
+- **oprávnění** k dokumentům a modelům,
+- **logy** o tom, kdo co zadal a co model vygeneroval,
+- **retence** a možnost smazat data,
+- **posouzení rizik** u agentů a nástrojů,
+- **smlouvy** s dodavateli hardwaru a softwaru,
+- **AI Act** podle typu nasazení a rizikové třídy.
+
+U citlivých úloh nestačí říct „běží to lokálně“. Musíte umět doložit,
+kdo měl přístup, co se uložilo a jak se to maže. Právní texty berte
+jako orientaci, ne jako právní radu.
 
 ## Na co si dát pozor
 
@@ -36,20 +134,50 @@ a pokračují k **162 990 Kč** (DGX Spark OEM). Notebooky začínají na
   a [vektorová databáze](/slovnik/software/vektorova-databaze/) pro
   hledání, [MCP](/slovnik/software/mcp/) pro nástroje a
   [agentní úlohy](/slovnik/software/agentni-ulohy/) s lidskou kontrolou.
-- **Někdo to musí spravovat.** Aktualizace, monitoring a zálohy jsou práce.
-- **Jeden box obslouží 1–4 lidi.** Pro víc se přidává box, ne dražší stroj.
-  Konkrétní stroje a jejich limity jsou ve [srovnání zařízení](/zarizeni/srovnani/).
+- **Prompt injection** — dokument nebo nástroj může modelu podstrčit
+  pokyn. Řešte oprávnění, sandbox a potvrzení u citlivých akcí.
+- **Někdo to musí spravovat.** Aktualizace, monitoring a zálohy jsou
+  práce, ne jednorázový úkol.
+- **Jeden box obslouží 1–4 lidi.** Pro víc se přidává box, ne dražší
+  stroj. Konkrétní limity jsou ve [srovnání](/zarizeni/srovnani/).
+
+## Pořízení: 10 otázek na dodavatele
+
+1. Jaká je přesná konfigurace a jak dlouho je skladem?
+2. Je cena vč. DPH, dopravy a adaptéru?
+3. Jaká je záruka a co znamená on-site servis?
+4. Kdo instaluje ovladače a runtime?
+5. Jak se aktualizuje firmware a software?
+6. Jaké jsou limity počtu uživatelů a kontextu?
+7. Jak se řeší zálohy a obnova?
+8. Co se stane při výpadku internetu?
+9. Kdo má přístup k datům a logům?
+10. Jaké jsou podmínky vrácení a servisu?
 
 ## Co chybí
 
 - Případové studie českých firem a měření přínosu.
 - České testy Qwen3.8 Flash Next na reálných úlohách.
+- Veřejná data o provozních nákladech.
+
+<AlzaCena kategorie="boxy" text="Co to stojí na Alze" />
+
+## Kudy dál
+
+- [Cena lokální AI](/temata/cena-lokalni-ai/) — rozklad nákladů.
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — souběžnost.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — co model umí.
+- [RAG](/slovnik/software/rag/) — dokumenty v kontextu.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — bezpečnost.
+- [Srovnání zařízení](/zarizeni/srovnani/) — který stroj vybrat.
 
 ## Zdroje
 
-- [Co je lokální AI](/zaciname/co-je-lokalni-ai/)
-- [Výběr podle rozpočtu](/vyber/rozpocet/)
-- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/)
-- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [Alza.cz — AI počítače](https://www.alza.cz/ai-pc/18907789.htm)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [GDPR — oficiální text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [AI Act — oficiální text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

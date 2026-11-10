@@ -1,7 +1,7 @@
 ---
 title: "128 GB unified memory: proč je minimum pro lokální AI"
-description: "Proč 128 GB unified paměti stačí na Qwen3.8 Flash Next, jak souvisí s kontextem a proč menší zařízení do katalogu nepatří."
-last_verified: 2026-11-04
+description: "Proč 128 GB unified paměti stačí na Qwen3.8 Flash Next, co se do ní vejde, jak souvisí s kontextem a proč 64 GB nestačí."
+last_verified: 2026-11-10
 sidebar:
   label: 128 GB paměti
   order: 7
@@ -9,36 +9,137 @@ sidebar:
 
 import AlzaCena from '../../../components/AlzaCena.astro';
 
-**128 GB unified paměti** je minimum pro Qwen3.8 Flash Next. Model má
-přes 100 GB vah a potřebuje místo na KV cache. Menší zařízení se do
-katalogu nezařazují, protože model na nich neběží v použitelné kvalitě.
+**128 GB unified paměti** je dnes minimum pro Qwen3.8 Flash Next
+v použitelné kvalitě. Model má přes 100 GB vah a k tomu potřebuje
+místo na [KV cache](/slovnik/pamet/kv-cache/). Menší zařízení se do
+katalogu nezařazují, protože model na nich buď neběží, nebo běží
+v kvantizaci, která už není použitelná pro práci.
 
-## Proč 128 GB
+## Rychlá odpověď
 
-- **Váhy:** Qwen3.8 Flash Next v NVFP4 má ~101 GB.
-- **KV cache:** roste s kontextem; na 128k je potřeba několik GB.
-- **Režie:** systém, ovladače a runtime.
-- **Rezerva:** na krátké a střední kontexty, ne na mnoho streamů.
+- **128 GB = váhy + KV cache + režie.** Samotné váhy v NVFP4 mají
+  ~101 GB; zbytek je na kontext, aktivace a systém.
+- **64 GB nestačí** na Qwen3.8 Flash Next v rozumné kvantizaci.
+- **192 GB není o rychlosti.** Je to prostor pro delší kontext a víc
+  souběžných požadavků, ne pro obří modely.
 
-## Co to znamená pro kontext
+## Proč zrovna 128 GB
 
-128k kontext se vejde, ale je to strop pro pohodlný provoz. 262k je
-maximum modelu, ne doporučený bod. Čím delší kontext, tím méně místa
-zbývá na souběžnost.
+Rozpočet paměti se skládá z několika vrstev:
 
-## Kde je limit
+| Položka | Co to je | Orientačně |
+|---|---|---|
+| **Váhy modelu** | samotný model v NVFP4 | ~101 GB |
+| **KV cache** | paměť pro přečtený kontext | jednotky GB podle délky |
+| **Aktivace a workspace** | dočasné výpočty při běhu | jednotky GB |
+| **Systém a runtime** | OS, ovladače, engine | jednotky GB |
+| **Rezerva** | aby box nezamrzl při špičce | několik GB |
 
-- **Souběžnost 4+** — `[DOPLNIT]`, chybí měření.
-- **Dlouhý kontext** — kvalita a rychlost klesají.
-- **Větší model** — na 128 GB se nevejde.
+Součet se musí vejít do 128 GB. Když dáte modelu 128k kontext a
+čtyři uživatele, rezerva mizí. Proto se u 128GB boxu bavíme o tom,
+kolik paměti zůstane **po** načtení modelu — ne o tom, jestli se
+model „vejde“.
 
-<AlzaCena kategorie="boxy" text="Ceny boxů na Alze" />
+## Co se do 128 GB vejde
+
+- **Qwen3.8 Flash Next** v NVFP4 nebo GGUF Q4 — ano, to je základ.
+- **Menší modely** pro specializované úlohy — ano, pokud jim dáte
+  dost místa na kontext.
+- **Generativní modely** na obrázky, audio nebo 3D — ano, ale jeden
+  model v paměti najednou.
+- **Dense model 70B** — ne v použitelné kvalitě a rychlosti.
+- **300B+ model v Q2** — technicky se může vejít, ale kvalita a
+  rychlost na desku nestačí. Patří do serverovny.
+
+## 64, 128 a 192 GB
+
+| Paměť | Co umožní | Kde je limit |
+|---|---|---|
+| **64 GB** | menší modely, ne Q38FN v použitelné kvalitě | na katalogový model málo |
+| **128 GB** | Q38FN, 128k kontext, 1–4 uživatelé | delší kontext a víc lidí naráží |
+| **192 GB** | delší kontext, víc souběžných požadavků | pořád neobslouží obří modely rychle |
+
+192 GB není „lepší verze 128 GB“ za každou cenu. Je to jiný kompromis:
+více paměti za vyšší cenu a často stejnou propustnost. Pro Q38FN
+znamená hlavně delší kontext a rezervu, ne vyšší tok/s.
+
+## Unified memory: výhoda i limit
+
+U DGX Sparku, RTX Sparku, Strix Halu a Macu je paměť **společná**
+pro procesor i grafiku. Model tedy nemusí procházet přes 16GB kartu;
+může využít desítky GB. To je důvod, proč na těchto strojích běží
+model, který by se na běžnou kartu nevešel.
+
+Má to ale dva důsledky:
+
+- **Propustnost se sdílí.** Když model běží, bere paměťovou šířku
+  i zbytek systému.
+- **Systém potřebuje rezervu.** Část paměti zůstává pro OS a aplikace;
+  u některých strojů se navíc nastavuje UMA/VRAM split v BIOSu.
+
+## Kontext a souběžnost
+
+| Provoz | Co se stane |
+|---|---|
+| 32k, jeden uživatel | bezpečné, zbyde rezerva |
+| 128k, jeden uživatel | doporučený strop pro pohodlnou práci |
+| 262k, jeden uživatel | maximum modelu, ne denní provoz |
+| 128k, čtyři uživatelé | každý bere KV cache; může dojít |
+| 262k, čtyři uživatelé | na 128 GB nerealistické |
+
+Čím delší kontext, tím pomalejší [prefill](/slovnik/vykon/prefill/)
+a tím méně místa na další požadavky. Maximum z datasheetu je strop,
+ne doporučený provoz.
+
+## Které zařízení
+
+| Zařízení | Od | Pro koho |
+|---|---|---|
+| [Strix Halo](/zarizeni/strix-halo/) | 119 990 Kč | nejnižší cena, Windows/Linux, ROCm |
+| [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) | 125 990 Kč | mobilita, Windows, CUDA |
+| [DGX Spark](/zarizeni/dgx-spark/) | 162 990 Kč | CUDA, Linux, vLLM, tým |
+| [Mac Studio](/zarizeni/mac-studio/) | 147 990 Kč | MLX, tiché studio, Apple |
+| [Gorgon Halo](/zarizeni/gorgon-halo/) | 6 199 USD | 192 GB pro delší kontext |
+
+Ceny jsou české maloobchodní, vč. DPH, k datu ověření. US ceny a
+podrobnosti jsou v [ceně lokální AI](/temata/cena-lokalni-ai/).
+
+## Kdy 128 GB nestačí
+
+- **20+ uživatelů** — potřebujete víc boxů nebo server.
+- **Trvale 262k kontext** — KV cache vytlačí souběžnost.
+- **Dense 70B+** — nevejde se v použitelné kvalitě.
+- **Víc modelů najednou** — každý drží vlastní váhy.
+- **Nejvyšší kvalita bez kompromisu** — sáhněte po cloudu nebo
+  větším stroji.
+
+## Časté mýty
+
+- **„128 GB = 128 GB VRAM.“** U unified memory je to jeden pool;
+  záleží, kolik z něj vezme systém a model.
+- **„Víc paměti = víc tok/s.“** Rychlost určuje propustnost a počet
+  aktivních parametrů.
+- **„Unified memory lze rozšířit.“** U těchto zařízení je připájená.
+- **„Stačí se podívat na velikost vah.“** Musíte počítat KV cache
+  a režii.
+
+<AlzaCena kategorie="boxy" text="Ceny 128GB boxů na Alze" />
+
+## Kudy dál
+
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — kolik potřebuje.
+- [Srovnání zařízení](/zarizeni/srovnani/) — všechny stroje vedle sebe.
+- [KV cache](/slovnik/pamet/kv-cache/) — co bere kontext.
+- [Kontext](/slovnik/pamet/kontext/) — maximum vs. provoz.
+- [Kvantizace](/slovnik/software/kvantizace/) — co ztratíte zmenšením.
+- [Roofline](/rychlost/roofline/) — proč je rychlost daná pamětí.
 
 ## Zdroje
 
-- [Srovnání zařízení](/zarizeni/srovnani/)
-- [Jak funguje lokální AI](/zaciname/jak-to-funguje/)
-- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
-- [Roofline](/rychlost/roofline/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM recipes — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [AMD — Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-max-300-series/amd-ryzen-ai-max-plus-395.html)
+- [Apple — Mac Studio specifikace](https://www.apple.com/mac-studio/specs/)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

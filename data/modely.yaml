@@ -9,7 +9,7 @@
   nazev: Qwen3.8 Flash Next
   vyrobce: Qwen
   architektura: MoE
-  parametry_celkem_b: 176
+  parametry_celkem_b: 180
   parametry_aktivni_b: 6
   kontext:
     max: 262144

@@ -5,6 +5,21 @@
 # hreflang, menu, opravy odkazů) sem nepatří.
 
 - datum: 2026-11-10
+  typ: model
+  titulek: "Oprava celkového počtu parametrů: 180B, ne 176B"
+  co_se_zmenilo: "Model card uvádí 125B hlavní model + 51B N-gram embedding + 4B MTP = 180B parametrů. Web dosud uváděl 176B, tedy součet bez MTP. Opraveno na stránce modelu, v tématech, návodech, slovníku a v datovém modelu. FP8 váhy zůstávají ~176 GB podle skutečného checkpointu."
+  dotcene_stranky: [modely/qwen3-8-flash-next, modely/proc-moe, temata/qwen3-8-flash-next, zaciname/co-je-lokalni-ai, zaciname/jak-to-funguje, navody/dgx-spark, navody/strix-halo, slovnik/software/kvantizace, slovnik/software/nvfp4]
+  zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next
+
+- datum: 2026-11-10
+  typ: obsah
+  titulek: "První velká vlna témat: 128 GB, cena, firmy a Qwen3.8"
+  co_se_zmenilo: "Čtyři tenká témata jsou přepsaná a výrazně rozšířená: 128 GB unified memory, cena lokální AI, lokální AI pro firmy a Qwen3.8 Flash Next. Přibyly tabulky, výpočty, rozhodovací kritéria, české příklady, rizika a interní odkazy. Stránky mají nově 856–1 075 slov místo 173–240."
+  dotcene_stranky: [temata/128gb-unified-memory, temata/cena-lokalni-ai, temata/lokalni-ai-pro-firmy, temata/qwen3-8-flash-next]
+  zdroj: https://www.localinference.cz/temata/128gb-unified-memory/
+
+
+- datum: 2026-11-10
   typ: obsah
   titulek: "Slovník: MCP, function calling, embeddingy, vektorová databáze a prompt injection"
   co_se_zmenilo: "Přidáno pět nových hesel pro agenty a RAG: MCP, function calling, embeddingy, vektorová databáze a prompt injection. Každé má definici, český příklad, tabulku nebo postup, rizika a odkazy. Heslo KV cache je rozšířené na 830 slov a spolu s prefillem má inline SVG diagram."

@@ -25,12 +25,12 @@ Když pochopíte tyto tři věci, přestanou být čísla v tabulkách záhadou.
 
 ## Model a váhy: jak funguje lokální AI
 
-Když se řekne „model má 176 miliard parametrů“, znamená to, že v souboru
-je 176 miliard čísel. Ta čísla se nazývají **váhy**. Určují, jak model
+Když se řekne „model má 180 miliard parametrů“, znamená to, že v souboru
+je 180 miliard čísel. Ta čísla se nazývají **váhy**. Určují, jak model
 reaguje na vstup. Samotný soubor tedy není program — je to obrovská
 natrénovaná tabulka.
 
-Qwen3.8 Flash Next má 176 miliard parametrů celkem. Kdyby byl uložený
+Qwen3.8 Flash Next má 180 miliard parametrů celkem. Kdyby byl uložený
 v plné přesnosti (16 bitů na parametr), vážil by přes 350 GB. To se na
 běžné zařízení nevejde. Proto se používá kvantizace.
 
@@ -40,10 +40,10 @@ běžné zařízení nevejde. Proto se používá kvantizace.
 Místo 16 bitů třeba 4 bity. Model je pak menší a rychleji se čte z paměti,
 ale může mírně ztratit kvalitu.
 
-| Formát | Přibližně bitů na parametr | Velikost 176B modelu | Kde se používá |
+| Formát | Přibližně bitů na parametr | Velikost 180B modelu | Kde se používá |
 |---|---|---|---|
-| FP16 | 16 | ~352 GB | trénink, servery |
-| FP8 | 8 | ~176 GB | NVIDIA, větší stroje |
+| FP16 | 16 | ~360 GB | trénink, servery |
+| FP8 | 8 | ~180 GB | NVIDIA, větší stroje |
 | NVFP4 | ~4,25–4,5 | ~101 GB | DGX Spark, vLLM |
 | GGUF Q4 | ~4,5 | ~90–100 GB | llama.cpp, Strix Halo |
 

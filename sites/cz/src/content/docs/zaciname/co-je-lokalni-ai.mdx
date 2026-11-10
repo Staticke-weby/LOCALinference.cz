@@ -73,7 +73,7 @@ reporty se liší podle enginu a nastavení.
 <details>
 <summary>Pro technické čtenáře: proč to běží na 128 GB</summary>
 
-Model má 176 miliard parametrů celkem, ale na každý token aktivuje jen
+Model má 180 miliard parametrů celkem, ale na každý token aktivuje jen
 6 miliard. Díky tomu se vejde do 128 GB paměti. Čísla pocházejí z Qwen
 blogu a vLLM recipe; jde o konkrétní konfiguraci NVFP4 s MTP, ne
 o univerzální benchmark.
@@ -141,7 +141,7 @@ Je to jiný nástroj: pomalejší, menší, ale pod vaší kontrolou.
 
 Na **128 GB** je rozumné minimum **Qwen3.8 Flash Next**. Proč?
 
-- 176B parametrů celkem dá dostatečnou kapacitu na běžné úkoly
+- 180B parametrů celkem dá dostatečnou kapacitu na běžné úkoly
   ([model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)).
 - 6B aktivních parametrů drží rychlost kolem 70 tokenů za sekundu
   ([Qwen blog](https://qwen.ai/blog?id=qwen3.8-flash-next)).
