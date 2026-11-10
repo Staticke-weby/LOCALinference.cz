@@ -1,0 +1,118 @@
+---
+title: "Embeddingy v praxi: jak vybrat model pro české hledání"
+description: "Jak vybrat embedding model pro RAG v češtině, jak měřit kvalitu hledání a kdy kombinovat vektory s plnotextovým hledáním."
+last_verified: 2026-11-10
+sidebar:
+  label: Embeddingy v praxi
+  order: 3
+---
+
+Embedding model rozhoduje, jestli RAG **najde správný chunk**. Není to
+chat model a nepotřebuje 128 GB. Je to malý model, který z textu udělá
+vektor. Špatný výběr se projeví jako „RAG nereaguje na moje dotazy“,
+i když je pipeline technicky v pořádku.
+
+## Rychlá odpověď
+
+- **Vyberte model podle jazyka a úlohy**, ne podle velikosti.
+- **Čeština potřebuje multilingvní nebo český model**; anglický model
+  může fungovat, ale kvalita se liší.
+- **Testujte na 20 dotazech** a sledujte, jestli je správný chunk
+  v top 3–5.
+- **Když změníte model nebo chunking, přegenerujte index.**
+
+## Co model dělá
+
+Model převede text na vektor. Podobné texty mají blízké vektory.
+Podobnost se často měří kosinusovou podobností. Model má:
+
+- **maximální délku vstupu** — delší text se zkrátí nebo rozdělí,
+- **dimenzi vektoru** — ovlivní místo a rychlost,
+- **jazyk** — některé modely jsou anglické, jiné multilingvní,
+- **licenci** — komerční použití.
+
+Konkrétní model záleží na datech. Pro české dokumenty hledejte
+multilingvní model a otestujte ho na svých dotazech.
+
+## Jak vybírat
+
+| Kritérium | Co zkontrolovat |
+|---|---|
+| **Jazyk** | čeština, angličtina, mix |
+| **Délka vstupu** | vejde se chunk? |
+| **Dimenze** | místo a rychlost |
+| **Licence** | komerční použití |
+| **Rychlost** | CPU vs. GPU |
+| **Kvalita** | test na vašich datech |
+
+Kvalita z benchmarku je orientační. Rozhoduje test na vašem oboru.
+
+## Testování
+
+1. Vezměte **20 dotazů**, na které znáte odpověď.
+2. Pro každý dotaz zjistěte, jestli je správný chunk v top 3–5.
+3. Když ne, zkuste jiný model nebo jiné chunky.
+4. Zapište výsledky a porovnejte.
+5. Teprve potom řešte databázi a produkci.
+
+## Hybridní hledání
+
+Vektorové hledání je dobré na význam, slabší na přesné kódy a čísla.
+Proto se často kombinuje s **plnotextovým hledáním**:
+
+- **vektory** — „výpovědní lhůta“ najde i „smlouvu lze vypovědět“,
+- **fulltext** — najde přesné IČO, číslo smlouvy, kód,
+- **reranker** — přerovná výsledky podle relevance.
+
+Hybrid je bezpečnější pro české dokumenty s čísly a zkratkami.
+
+## Česká specifika
+
+- **Diakritika** — model by ji měl zachovat.
+- **Skloňování** — dotaz a dokument mohou mít jiný tvar.
+- **Složená slova** — čeština tvoří dlouhé výrazy.
+- **Míchání jazyků** — některé dokumenty jsou česko-anglické.
+- **Zkratky** — IČO, DIČ, DPH; testujte je zvlášť.
+
+## Příklad: dotaz
+
+Uživatel se ptá „může dodavatel ukončit smlouvu bez výpovědi?“.
+Vektorové hledání najde článek, který mluví o „okamžitém odstoupení“.
+Plnotextové hledání by hledalo „výpověď“ a mohlo minout. Kombinace
+obou přístupů je bezpečnější.
+
+## Kdy přegenerovat index
+
+- **Změna embedding modelu.**
+- **Změna chunkingu.**
+- **Změna dokumentu.**
+- **Změna metadat nebo oprávnění.**
+- **Změna jazykové verze.**
+
+Index není zdroj pravdy. Zdrojové dokumenty ano.
+
+## Kde je limit
+
+- **Model nerozumí oboru** — testujte na svých datech.
+- **Chunk je moc velký/malý** — viz [chunking](/temata/rag/chunking/).
+- **Přesné kódy** — vektory nejsou ideální.
+- **Aktuálnost** — starý index vrací staré odpovědi.
+- **Oprávnění** — model neřeší, kdo co smí vidět.
+
+## Kudy dál
+
+- [Chunking](/temata/rag/chunking/) — jak dělit text.
+- [PDF a skeny](/temata/rag/pdf-a-skeny/) — jak dostat text.
+- [Citace a hodnocení](/temata/rag/citace-a-hodnoceni/) — jak ověřit.
+- [RAG](/temata/rag/) — celý pipeline.
+- [Embeddingy](/slovnik/software/embeddingy/) — základní pojem.
+- [Vektorová databáze](/slovnik/software/vektorova-databaze/) — kam ukládat.
+
+## Zdroje
+
+- [Sentence Transformers — dokumentace](https://www.sbert.net/)
+- [MTEB — benchmark embedding modelů](https://huggingface.co/spaces/mteb/leaderboard)
+- [Qdrant — dokumentace](https://qdrant.tech/documentation/)
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+
+*Naposledy ověřeno: 10. 11. 2026.*

@@ -1,0 +1,120 @@
+---
+title: "PDF a skeny pro RAG: jak dostat český text"
+description: "Jak zpracovat PDF, skeny a tabulky pro RAG. Textová vrstva, OCR, diakritika, kontrola kvality a česká specifika."
+last_verified: 2026-11-10
+sidebar:
+  label: PDF a skeny
+  order: 1
+---
+
+Než se model může ptát nad dokumentem, musí být dokument **čitelný**.
+U PDF a skenů to není samozřejmost. Špatně převedený text se pak
+v RAG chová jako špatný dokument: hledá se v něm, ale odpovědi jsou
+nesprávné.
+
+## Rychlá odpověď
+
+- **Nejdřív zjistěte, jestli PDF obsahuje textovou vrstvu.** Když ano,
+  OCR nepotřebujete.
+- **Sken bez textu potřebuje OCR**; kvalita OCR rozhoduje o všem
+  dalším.
+- **Čeština a diakritika** jsou citlivé; zkontrolujte je ručně.
+- **Tabulky a formuláře** se často rozpadnou; nechte je jako metadata
+  nebo zpracujte zvlášť.
+
+## Typy dokumentů
+
+| Typ | Co obsahuje | Postup |
+|---|---|---|
+| **Textové PDF** | textovou vrstvu | extrakce bez OCR |
+| **Skenované PDF** | obrázky stránek | OCR |
+| **DOCX** | strukturovaný text | převod na text/Markdown |
+| **E-mail** | tělo + přílohy | extrakce těla a příloh |
+| **Fotka dokumentu** | obrázek | OCR nebo vision model |
+| **Tabulka** | mřížka | extrakce do CSV/JSON |
+
+## Pipeline
+
+1. **Detekce textu** — zkuste extrakci; pokud vrátí málo znaků, jde
+   o sken.
+2. **OCR** — použijte český jazykový model, ne jen angličtinu.
+3. **Čištění** — odstraňte hlavičky, patičky a opakující se text.
+4. **Kontrola diakritiky** — háčky a čárky musí zůstat.
+5. **Rozdělení** na sekce nebo stránky.
+6. **Metadata** — název, datum, oddělení, oprávnění.
+7. **Kontrola** — vzorek porovnejte s originálem.
+
+## Česká specifika
+
+- **Diakritika** — „řízení“ a „rizeni“ jsou jiná slova.
+- **Skeny a razítka** — OCR může přehlédnout razítko nebo podpis.
+- **Tabulky** — české formátování čísel a data.
+- **Zkratky** — IČO, DIČ, DPH; nesmí se ztratit.
+- **Více jazyků** — některé dokumenty míchají češtinu a angličtinu.
+
+## Kvalita OCR
+
+Kontrolujte:
+
+- [ ] **Diakritika** je správně.
+- [ ] **Čísla** sedí s originálem.
+- [ ] **Tabulky** mají správné sloupce.
+- [ ] **Hlavičky a patičky** nejsou v textu mnohokrát.
+- [ ] **Přehozované znaky** — `0` vs. `O`, `1` vs. `l`.
+- [ ] **Chybějící stránky** — hlavně u skenů.
+
+Když je OCR špatné, lepší je dokument znovu naskenovat než opravovat
+text po celém archivu.
+
+## Nástroje
+
+- **pypdf** — základní extrakce textu z PDF.
+- **pdfplumber** — tabulky a rozvržení.
+- **Tesseract** — OCR s českým jazykovým modelem.
+- **PaddleOCR** — alternativa pro složitější skeny.
+- **Qwen3.8 vision** — kontrola nebo extrakce z obrázku.
+
+Konkrétní volba závisí na typu dokumentů. U tabulek je lepší
+pdfplumber než univerzální OCR.
+
+## Co ukládat
+
+- **Původní soubor** — zdroj pravdy.
+- **Extrahovaný text** — pro hledání.
+- **Metadata** — datum, oddělení, oprávnění.
+- **Hash** — pro ověření, že se dokument nezměnil.
+- **Stav** — nový, zpracovaný, neplatný.
+
+## Příklad: faktura ze skenu
+
+Naskenovaná faktura nemá textovou vrstvu. OCR přečte dodavatele,
+IČO, částku a datum, ale může splést `0` a `O`. Před uložením do RAG
+se čísla porovnají s originálem a uloží se i metadata (rok, oddělení,
+stav). Když OCR selže, dokument se označí jako nezpracovaný, ne jako
+„prázdný“.
+
+## Kde je limit
+
+- **Nekvalitní sken** — z rozmazaného textu kvalitní OCR nevznikne.
+- **Rukopis** — OCR je nespolehlivé.
+- **Složité tabulky** — často je lepší ruční kontrola.
+- **Staré dokumenty** — jiné fonty a formáty.
+- **Oprávnění** — text se nesmí dostat tam, kam nemá.
+
+## Kudy dál
+
+- [Chunking](/temata/rag/chunking/) — jak text dělit.
+- [Embeddingy v praxi](/temata/rag/embeddingy-v-praxi/) — jak hledat.
+- [Oprávnění a bezpečnost](/temata/rag/opravneni-a-bezpecnost/) — kdo co vidí.
+- [RAG](/temata/rag/) — celý pipeline.
+- [Vision](/slovnik/software/vision/) — co umí model z obrázku.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [pypdf — dokumentace](https://pypdf.readthedocs.io/)
+- [pdfplumber — dokumentace](https://github.com/jsvine/pdfplumber)
+- [Tesseract — dokumentace](https://tesseract-ocr.github.io/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

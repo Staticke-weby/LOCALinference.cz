@@ -1,0 +1,121 @@
+---
+title: "Citace a hodnocení RAG: jak poznat, že odpověď sedí"
+description: "RAG musí umět doložit odpověď. Vysvětlíme citace, metadata, retrieval metriky a hodnocení věrnosti na českých dokumentech."
+last_verified: 2026-11-10
+sidebar:
+  label: Citace a hodnocení
+  order: 4
+---
+
+RAG bez citací je jen chat, který si hraje na znalost dokumentů.
+Citace jsou důkaz, že odpověď pochází z vašich dat, a zároveň nástroj,
+jak odhalit halucinaci. Hodnocení pak říká, jestli RAG funguje jako
+celek, ne jen jestli model umí mluvit česky.
+
+## Rychlá odpověď
+
+- **Každá odpověď má mít zdroj** — dokument, stranu nebo sekci.
+- **Citace se generuje z metadat**, ne z modelu.
+- **Hodnoťte retrieval i odpověď zvlášť.** Špatný retrieval se nedá
+  zachránit dobrým modelem.
+- **Bez rubriky a baseline** se kvalita nedá zlepšovat.
+
+## Citace
+
+Ke každému chunku ukládejte:
+
+- **dokument** a **stranu**,
+- **sekci** nebo **článek**,
+- **datum** a **verzi**,
+- **hash** dokumentu.
+
+Odpověď pak cituje:
+
+> Podle smlouvy č. 123, článek 5, strana 3: výpovědní lhůta je dva
+> měsíce.
+
+Model může citaci zkazit. Proto se **citace skládá z metadat** a
+model pouze vybírá, ke kterému chunku se váže. Když model vymyslí
+stranu, je to chyba, ne „kreativita“.
+
+## Retrieval metriky
+
+| Metrika | Co říká | Kdy ji použít |
+|---|---|---|
+| **Recall@k** | byl správný chunk v top k? | základní test hledání |
+| **Precision@k** | kolik z top k bylo relevantních? | kvalita rankingu |
+| **MRR** | jak vysoko byl první správný výsledek? | pořadí |
+| **Hit rate** | našel se vůbec? | rychlý test |
+
+Pro praxi často stačí **Recall@5** a ruční kontrola. Čísla bez
+kontextu neříkají, jestli je RAG použitelný.
+
+## Hodnocení odpovědi
+
+| Kritérium | Co sledovat |
+|---|---|
+| **Věrnost** | odpověď odpovídá citovanému chunku |
+| **Úplnost** | nic důležitého nechybí |
+| **Citace** | ukazuje na správný dokument a stranu |
+| **Čísla** | částky, data a kódy sedí |
+| **Čeština** | gramatika a terminologie |
+| **Odmítnutí** | když odpověď není v datech, model to řekne |
+
+Model by měl umět říct **„v dokumentech to není“**. Když to neumí,
+RAG není bezpečný.
+
+## Příklad: odpověď s citací
+
+> Podle smlouvy č. 123, článek 5, strana 3, je výpovědní lhůta dva
+> měsíce. V dokumentu není uvedena možnost okamžitého ukončení.
+
+Tato odpověď je užitečná, protože přiznává, co v dokumentu není.
+Když model místo toho vymyslí článek 9, je to chyba citace.
+
+## Rubrika
+
+| Kritérium | 0 | 1 | 2 |
+|---|---|---|---|
+| Věrnost | vymyšlené | částečné | přesné |
+| Citace | chybí | špatná | správná |
+| Úplnost | chybí | část | vše |
+| Čísla | chyba | nejistota | správně |
+| Čeština | chyby | drobné | bez chyb |
+
+Maximum 10 bodů. Pro produkci si stanovte hranici, pod kterou
+odpověď neodejdete bez kontroly.
+
+## Česká specifika
+
+- **Diakritika** v citacích a jménech.
+- **Skloňování** — citace musí být přesná.
+- **Čísla** — české formátování.
+- **Zkratky** — IČO, DIČ, DPH.
+- **Dlouhé dokumenty** — model může citovat špatnou stranu.
+
+## Časté chyby
+
+- **Citace jen na dokument**, ne na stranu.
+- **Model vymýšlí citace.**
+- **Chunk bez metadat.**
+- **Hodnocení jen podle dojmu.**
+- **Testování na stejných datech jako vývoj.**
+- **Žádná baseline** — nevíte, co se zlepšilo.
+
+## Kudy dál
+
+- [Chunking](/temata/rag/chunking/) — metadata a dělení.
+- [Embeddingy v praxi](/temata/rag/embeddingy-v-praxi/) — hledání.
+- [Oprávnění a bezpečnost](/temata/rag/opravneni-a-bezpecnost/) — kdo co vidí.
+- [RAG](/temata/rag/) — celý pipeline.
+- [Hodnocení kvality](/temata/cestina/hodnoceni-kvality/) — české úlohy.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+- [RAGAS — arXiv](https://arxiv.org/abs/2309.15217)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

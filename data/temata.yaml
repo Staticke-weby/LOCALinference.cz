@@ -190,3 +190,19 @@
     - /temata/cestina/hodnoceni-kvality/
   chybi: "Chybí veřejné české benchmarky a testy na reálných dokumentech."
   overeno: 2026-11-10
+
+- id: rag
+  nazev: RAG a firemní dokumenty
+  hledany_vyraz: "RAG firemní dokumenty"
+  popis: "Jak propojit lokální model s firemními dokumenty: PDF, chunking, embeddingy, citace a oprávnění."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /temata/rag/
+    - /temata/rag/pdf-a-skeny/
+    - /temata/rag/chunking/
+    - /temata/rag/embeddingy-v-praxi/
+    - /temata/rag/citace-a-hodnoceni/
+    - /temata/rag/opravneni-a-bezpecnost/
+  chybi: "Chybí veřejné české testy retrieval kvality a případové studie."
+  overeno: 2026-11-10

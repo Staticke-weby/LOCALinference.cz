@@ -1,0 +1,117 @@
+---
+title: "RAG a firemní dokumenty: jak na lokální AI"
+description: "RAG propojí lokální model s firemními dokumenty. Vysvětlíme pipeline, PDF a skeny, chunking, embeddingy, citace, oprávnění a kdy se to vyplatí."
+last_verified: 2026-11-10
+sidebar:
+  label: RAG a dokumenty
+  order: 9
+---
+
+**RAG** (Retrieval-Augmented Generation) znamená, že model nedostane
+celý archiv, ale jen Relevantní části, které se k dotazu našly. Je to
+nejčastější způsob, jak dostat firemní dokumenty do lokální AI, aniž
+by se vše posílalo do kontextu nebo do cloudu.
+
+## Rychlá odpověď
+
+- **RAG = hledání + generování.** Nejprve se najdou relevantní
+  dokumenty, pak je model přečte a odpoví.
+- **Hodí se od stovek dokumentů výš**, kdy už nestačí posílat celý
+  text do kontextu.
+- **Není to magie.** Kvalita závisí na datech, chuncích, embeddingu
+  a kontrole. Špatný RAG je horší než obyčejné hledání.
+
+## Jak RAG funguje
+
+1. **Dokumenty** se načtou z disků, e-mailu nebo systému.
+2. **Text se rozdělí** na chunky (odstavce, stránky, sekce).
+3. **Embedding model** z každého chunku udělá vektor.
+4. **Vektorová databáze** vektory uloží a umí najít podobné.
+5. **Dotaz** se převede na vektor a najde top-K chunků.
+6. **Chat model** dostane chunky a odpoví s citacemi.
+7. **Kontrola** ověří, že odpověď odpovídá zdroji.
+
+Bez RAG posíláte celý dokument; s RAG posíláte jen to, co je
+relevantní. To šetří kontext, paměť i čas.
+
+## RAG vs. dlouhý kontext
+
+| Situace | RAG | Dlouhý kontext |
+|---|---|---|
+| Mnoho dokumentů | **ano** | drahé a pomalé |
+| Jeden velký dokument | někdy | **ano** |
+| Časté dotazy nad stejnými daty | **ano** | zbytečné |
+| Přesné citace | **ano** | horší |
+| Jednoduché nasazení | složitější | **jednodušší** |
+
+Dlouhý kontext a RAG se nevylučují. Často se kombinují: RAG vybere
+dokument, dlouhý kontext přečte celou smlouvu.
+
+## Co je potřeba
+
+- **Model:** Qwen3.8 Flash Next na 128GB boxu.
+- **Embedding model:** menší model pro vektory.
+- **Vektorová databáze:** FAISS, Chroma, Qdrant, pgvector.
+- **Ingest:** PDF, DOCX, e-maily, skeny.
+- **Kontrola:** člověk, který ověří odpověď a citaci.
+
+## Co RAG neřeší
+
+- **Špatná data.** Když je dokument neplatný, RAG ho najde.
+- **Oprávnění.** Musíte je vynutit v aplikaci, ne v modelu.
+- **Halucinace.** Model může i s kontextem vymyslet odpověď.
+- **Kvalitu modelu.** RAG nepřidá reasoning, který model nemá.
+- **Právní odpovědnost.** Ta zůstává na firmě.
+
+## Příklad: smlouvy ve firmě
+
+Firma má 2 000 smluv v PDF. RAG je rozdělí po článcích, uloží metadata
+(rok, oddělení, protistrana) a při dotazu „jaká je výpovědní lhůta
+u dodavatele X“ najde relevantní články. Model odpoví s citací
+konkrétní smlouvy a strany. Právník pak ověří jen vybrané pasáže
+místo celého archivu.
+
+## Kde je limit
+
+- **Chunking** — špatné dělení ztrácí souvislosti.
+- **Embedding** — česká a vícejazyčná kvalita se liší.
+- **Aktuálnost** — změna dokumentu znamená nový embedding.
+- **Oprávnění** — kdo smí vidět který dokument.
+- **Kontext** — do modelu se vejde jen několik chunků.
+- **Provoz** — ingestion, zálohy, monitoring, mazání.
+
+## Kolik to stojí
+
+RAG na 128GB boxu nepotřebuje další hardware. Náklady jsou:
+
+- **čas na přípravu dat** — největší položka,
+- **embedding model** — malý, často na CPU,
+- **vektorová databáze** — místo na disku a RAM,
+- **správa** — aktualizace, zálohy, oprávnění.
+
+Podrobný rozklad je v [ceně lokální AI](/temata/cena-lokalni-ai/).
+
+## Kdy RAG nedává smysl
+
+- Máte **jeden dokument**, který se vejde do kontextu.
+- Hledáte **přesný kód nebo číslo** — plnotextové hledání je lepší.
+- Data jsou **veřejná** a cloud vám nevadí.
+- Nemáte **člověka na kontrolu** a údržbu.
+
+## Kudy dál
+
+- [PDF a skeny](/temata/rag/pdf-a-skeny/) — jak dostat text.
+- [Chunking](/temata/rag/chunking/) — jak dělit dokumenty.
+- [Embeddingy v praxi](/temata/rag/embeddingy-v-praxi/) — jak hledat.
+- [Citace a hodnocení](/temata/rag/citace-a-hodnoceni/) — jak ověřit.
+- [Oprávnění a bezpečnost](/temata/rag/opravneni-a-bezpecnost/) — kdo co vidí.
+- [RAG ve slovníku](/slovnik/software/rag/) — základní pojem.
+
+## Zdroje
+
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

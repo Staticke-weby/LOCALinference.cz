@@ -1,0 +1,113 @@
+---
+title: "Chunking: jak dělit české dokumenty pro RAG"
+description: "Chunking rozhoduje, co RAG najde. Vysvětlíme velikost chunků, překryv, dělení podle struktury a česká specifika."
+last_verified: 2026-11-10
+sidebar:
+  label: Chunking
+  order: 2
+---
+
+**Chunking** je rozdělení dokumentu na menší části, které se ukládají
+do vektorové databáze. Je to nejvlivnější a nejčastěji podceňované
+rozhodnutí v RAG. Špatný chunk ztratí souvislost; příliš velký chunk
+zaplaví kontext.
+
+## Rychlá odpověď
+
+- **Chunk je jednotka hledání**, ne jednotka modelu.
+- **Menší chunky** najdou přesněji, ale ztrácí kontext.
+- **Větší chunky** drží souvislost, ale zabírají kontext a hůř se
+  rankují.
+- **Dělení podle struktury** (nadpisy, odstavce, články) je lepší než
+  na pevný počet znaků.
+
+## Jak velký chunk
+
+| Velikost | Výhoda | Nevýhoda |
+|---|---|---|
+| **malý** (1–2 odstavce) | přesné hledání | ztráta kontextu |
+| **střední** (sekce) | kompromis | záleží na dokumentu |
+| **velký** (kapitola) | souvislost | horší rankování, dražší |
+
+Neexistuje univerzální číslo. U smluv se hodí články, u manuálů
+sekce, u e-mailů jednotlivé zprávy. Testujte na svých dotazech.
+
+## Překryv
+
+Překryv (overlap) znamená, že se sousední chunky částečně překrývají.
+Pomáhá, když odpověď leží na hranici. Nevýhoda je větší index a
+duplicitní výsledky. U českých textů stačí malý překryv; u tabulek
+spíš žádný.
+
+## Dělení podle struktury
+
+- **Nadpisy** — chunk respektuje kapitolu.
+- **Odstavce** — přirozená hranice.
+- **Články smlouvy** — číslované sekce.
+- **Tabulky** — samostatný chunk s hlavičkou.
+- **Seznamy** — pokud možno pohromadě.
+
+Naivní dělení po 1 000 znacích může rozseknout větu nebo tabulku.
+Struktura dokumentu je lepší signál než délka.
+
+## Metadata
+
+Ke každému chunku přidejte:
+
+- **dokument** a **stranu**,
+- **sekci** nebo **článek**,
+- **datum** a **verzi**,
+- **oddělení** a **oprávnění**,
+- **hash** dokumentu.
+
+Bez metadat nejde filtrovat ani citovat. „Našlo se to“ nestačí;
+musíte vědět odkud.
+
+## Česká specifika
+
+- **Diakritika** — chunk musí zachovat háčky a čárky.
+- **Skloňování** — hledaný výraz může mít jiný tvar.
+- **Složené věty** — dělení uprostřed věty škodí.
+- **Tabulky** — české formátování čísel a data.
+- **Zkratky** — IČO, DIČ, DPH musí zůstat ve stejném chunku.
+
+## Příklad: smlouva
+
+Smlouva má články 1–12. Chunk podle článku je lepší než chunk po
+1 000 znacích: každý článek drží pohromadě a metadata nesou číslo
+článku. U tabulky s cenami vytvořte samostatný chunk s hlavičkou,
+aby se sloupce nerozpadly.
+
+## Jak hodnotit chunking
+
+1. Vezměte **20 dotazů**, na které znáte odpověď.
+2. Zjistěte, jestli se správný chunk objevil v **top 3–5**.
+3. Když ne, podívejte se, jestli byl chunk příliš malý/velký.
+4. Zkuste jiné dělení a porovnejte.
+5. Výsledek zapište; bez baseline se změny nedají hodnotit.
+
+## Časté chyby
+
+- **Pevná délka bez ohledu na strukturu.**
+- **Příliš malé chunky** — model ztratí souvislost.
+- **Příliš velké chunky** — kontext se zaplaví.
+- **Žádná metadata** — nelze citovat ani filtrovat.
+- **Duplicity** — stejný text v deseti chuncích.
+- **Tabulky rozseknuté** na nesmyslné části.
+
+## Kudy dál
+
+- [PDF a skeny](/temata/rag/pdf-a-skeny/) — jak dostat text.
+- [Embeddingy v praxi](/temata/rag/embeddingy-v-praxi/) — jak hledat.
+- [Citace a hodnocení](/temata/rag/citace-a-hodnoceni/) — jak ověřit.
+- [RAG](/temata/rag/) — celý pipeline.
+- [Embeddingy](/slovnik/software/embeddingy/) — co je vektor.
+- [Vektorová databáze](/slovnik/software/vektorova-databaze/) — kam ukládat.
+
+## Zdroje
+
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

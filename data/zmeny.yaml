@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Nový cluster: RAG a firemní dokumenty"
+  co_se_zmenilo: "Přidán hub /temata/rag/ a pět dceřiných stránek: PDF a skeny, chunking, embeddingy v praxi, citace a hodnocení, oprávnění a bezpečnost. Obsahují pipeline, tabulky, české příklady, rubriky a odkazy na model, slovník a provoz."
+  dotcene_stranky: [temata/rag, temata/rag/pdf-a-skeny, temata/rag/chunking, temata/rag/embeddingy-v-praxi, temata/rag/citace-a-hodnoceni, temata/rag/opravneni-a-bezpecnost]
+  zdroj: https://www.localinference.cz/temata/rag/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Nový cluster: Čeština a dokumenty"
   co_se_zmenilo: "Přidán hub /temata/cestina/ a pět dceřiných stránek: jak model zvládá češtinu, shrnutí dokumentu, extrakce dat, překlad a korektura, hodnocení kvality. Obsahují postupy, prompty, rubriky, česká specifika a odkazy na model, RAG a slovník."
   dotcene_stranky: [temata/cestina, temata/cestina/jak-model-zvlada-cestinu, temata/cestina/shrnuti-dokumentu, temata/cestina/extrakce-dat, temata/cestina/preklad-a-korektura, temata/cestina/hodnoceni-kvality]
