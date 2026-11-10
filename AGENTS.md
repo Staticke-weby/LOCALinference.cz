@@ -358,6 +358,13 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
   nebo skutečný screenshot, pokud je nezbytný.
 - Odkazy mimo web vždy `target="_blank"` + `rel="noopener noreferrer"`
   (v Markdownu řeší `rehype-external-links`).
+- **Odkazy na model weights (Hugging Face)** jsou povolené jen
+  informativně: odkaz na model card, ne na přímé stahování, bez
+  affiliate a bez doporučení. U každého musí být vymezení
+  odpovědnosti — web váhy nehostuje, neověřuje jejich obsah ani
+  bezpečnost a za použití odpovídá provozovatel. U abliterovaných
+  modelů navíc věta, že model nemá zábrany. Datum kontroly odkazu
+  patří do zdrojů.
 - **Slovník je samostatná kategorie** `/slovnik/` se skupinami (výkon,
   software, paměť, provoz). Každý pojem má vlastní stránku. Pojmy se
   prolinkují automaticky: první výskyt na stránce dostane odkaz

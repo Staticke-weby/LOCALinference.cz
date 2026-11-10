@@ -1,6 +1,9 @@
 # Plán: abliterované modely, sandboxing agentů a běhové prostředí agentů
 
-*Verze 1.0 — 10. listopadu 2026*
+*Verze 1.1 — 10. listopadu 2026*
+
+> Celkový stav a pořadí práce jsou v `plan-celkovy.md`. Tento soubor
+> drží podrobné osnovy a technická kritéria.
 
 **Cíl:** doplnit tři obsahové celky, které na webu chybí a které čtenáři
 hledají jinde než v obecných AI magazínech:
@@ -26,7 +29,7 @@ pravidla: žádná vlastní měření, každé číslo se zdrojem a datem,
 | Má abliterace být cluster, nebo jeden článek? | **Cluster**: hub + 4 dceřiné stránky + 1 stránka variantu modelu. Téma má právní, technickou i provozní rovinu. |
 | Má se přidat abliterovaná varianta Q38FN? | **Ano, ale jako `status: draft`**, dokud neexistuje veřejné měření parity. Stránka nesmí tvrdit „běží stejně dobře“, jen doložit, co je změřené. |
 | Sandboxing a harnessy jako clustery? | **Ne.** Jeden dlouhý článek (3 500–4 500 slov) pro každý. Jsou to průřezová témata, ne rodiny stránek. |
-| Odkazy na Hugging Face s abliterovanými váhami? | **Ano, informativně**, bez affiliate, s upozorněním, že web váhy nehostuje ani nedoporučuje. |
+| Odkazy na Hugging Face s abliterovanými váhami? | **Ano, informativně**, s vymezením odpovědnosti, bez affiliate a bez doporučení (rozhodnuto 10. 11. 2026; pravidla v `plan-celkovy.md` 9.1). |
 | Právní kontrola? | **Povinná před publikací** obou částí A. Není to právní rada, ale riziko je vyšší než u běžných témat. |
 
 **Odhad:** 4–6 dní na celek A, 2–3 dny na B, 2–3 dny na C, 1–2 dny QA
@@ -519,7 +522,8 @@ záznam, jen `[DOPLNIT]` a registr.
    modelu, nebo jen jako sekci v clusteru?** Doporučení: samostatná
    stránka ve stavu draft, indexovat až po paritě.
 2. **Smí web odkazovat přímo na HF repozitáře s váhami?**
-   Doporučení: ano, informativně, bez doporučení a bez affiliate.
+   **Rozhodnuto: ano**, s vymezením odpovědnosti, bez doporučení
+   a bez affiliate. Pravidla jsou v `plan-celkovy.md` 9.1.
 3. **Kdo udělá právní review?** Bez něj nedoporučuji publikovat
    `/rizika-a-pravo/`.
 4. **Má se „uncensored“ objevit v názvu stránky?** Doporučení:
