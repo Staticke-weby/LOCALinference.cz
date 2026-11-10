@@ -1,7 +1,7 @@
 ---
 title: "AI box vs. AI notebook: kde má model běžet"
-description: "Stolní box nebo notebook se 128 GB? Rozhoduje stálý výkon, hluk, mobilita a cena. Praktické srovnání pro každého, kdo vybírá."
-last_verified: 2026-11-04
+description: "Stolní box nebo notebook se 128 GB? Rozhoduje stálý výkon, hluk, mobilita a cena. Praktické srovnání včetně příkladu cen."
+last_verified: 2026-11-10
 sidebar:
   label: Box vs. notebook
   order: 2
@@ -10,6 +10,14 @@ sidebar:
 Stejný model, stejná paměť — a přesto jiná zkušenost. Rozdíl mezi
 [AI boxem](/zarizeni/ai-boxy/) a [AI notebookem](/zarizeni/ai-notebooky/)
 není v tom, co model umí, ale jak dlouho to umí.
+
+## Rychlá odpověď
+
+- **Box** pro stálý výkon, tým a ticho; **notebook** pro cesty a demo.
+- **Krátký dotaz** zvládne obojí stejně; rozdíl přijde po minutách.
+- **Paměť je připájená** u obojího, takže se rozhoduje jednou provždy.
+- **Notebook není dražší proto, že je menší** — připlácíte za mobilitu,
+  displej a baterii.
 
 ## Rozhoduje způsob použití
 
@@ -22,6 +30,19 @@ není v tom, co model umí, ale jak dlouho to umí.
 | Ticho v kanceláři | box (větší chladič) |
 | Výpadek proudu nesmí zastavit práci | notebook (baterie) |
 
+## Parametry vedle sebe
+
+| Parametr | AI box | AI notebook |
+|---|---|---|
+| **Výkon krátce** | stejný čip, stejně rychlý | stejný čip, stejně rychlý |
+| **Výkon po hodině** | drží víc | klesá kvůli throttlingu |
+| **Hluk** | nižší, větší chladič | vyšší pod zátěží |
+| **Mobilita** | žádná | hlavní důvod koupě |
+| **Baterie** | ne | ano, hodiny práce |
+| **Rozšíření paměti** | ne | ne |
+| **Servis** | snadnější | složitější a dražší |
+| **Cena za stejnou paměť** | nižší | vyšší |
+
 ## Kdy vyhrává notebook
 
 Pro práci, kdy u stroje sedíte a odpověď potřebujete hned, je notebook
@@ -29,8 +50,20 @@ Pro práci, kdy u stroje sedíte a odpověď potřebujete hned, je notebook
 baterii a model běží na `localhost`. Odpadá nastavování serveru,
 otevírání portů a zabezpečení sítě — konfigurace je v jednom zařízení.
 
+Notebook se hodí i na **demo u klienta**: vytáhnete stroj, spustíte
+model a nic neřešíte. To je situace, kdy se cena za mobilitu vrací
+nejrychleji.
+
 Cena za to je throttling a menší chladič. Kdo potřebuje stálý výkon
 pro tým, sáhne po boxu.
+
+## Kdy vyhrává box
+
+- **Tým 2–4 lidé** přes síť — box je server, notebook není.
+- **Dlouhé dávky** — přepis hodin záznamu, generování stovek obrázků.
+- **Ticho** — v kanceláři je rozdíl znát.
+- **Nižší cena** za stejnou paměť a snadnější servis.
+- **Možnost nechat běžet 24/7** bez rizika, že ho někdo odnese.
 
 ## Výkon: burst vs. sustained
 
@@ -38,20 +71,53 @@ Notebook zvládne krátký dotaz stejně rychle jako box. Po deseti
 minutách provozu ale narazí na [throttling](/slovnik/provoz/throttling/)
 a výkon klesne. Box má větší chladič, takže drží výkon déle.
 
-Rozdíl bývá **10–30 %** podle konstrukce a okolní teploty. U
-notebooku se k tomu přidá hluk ventilátoru.
+Rozdíl mezi krátkým a ustáleným výkonem bývá **10–30 %** podle
+konstrukce a okolní teploty; u notebooků víc, u stolních boxů míň.
+U notebooku se k tomu přidá hluk ventilátoru.
+
+Pro měření to znamená jediné: **ptejte se, jak dlouho test běžel**.
+Číslo z třicetisekundového benchmarku a číslo z hodinové dávky nejsou
+totéž.
+
+## Příklad: stejný čip, dvě podoby
+
+Apple prodává Mac Studio a MacBook Pro se stejným čipem M5 Max
+a stejnou 128GB unified pamětí. Na Alze stál 9. 11. 2026:
+
+| Konfigurace | Cena vč. DPH |
+|---|---:|
+| Mac Studio 128 GB / 2 TB | 171 990 Kč |
+| MacBook Pro 14" 128 GB / 2 TB | 177 739 Kč |
+
+Rozdíl je **5 749 Kč** — to je cena za mobilitu, displej a baterii.
+Není to málo, ale ani to není dvojnásobek.
+
+Je to **výpočet** z veřejných cen k datu, ne cenová prognóza. Ceny se
+mění; aktuální jsou na stránkách [Mac Studio](/zarizeni/mac-studio/)
+a [MacBook Pro](/zarizeni/macbook-pro/).
 
 ## Cena a opravitelnost
 
 - **Box** je za stejnou paměť levnější a líp se chladí.
 - **Notebook** připlácí za mobilitu, displej a baterii.
 - **Ani jedno** nejde rozšířit — paměť je připájená.
+- **Servis notebooku** znamená víc rozebírání a delší odstávku.
 
 ## Co si pohlídat
 
 - **Power limit** — u notebooku rozhoduje o hluku a výdrži.
 - **Systém** — Windows 11, macOS, Linux; podle software, který chcete.
 - **Záruka a servis** — u dražších strojů se vyplatí on-site.
+- **Chlazení** — box v polici bez průvanu se přehřeje stejně jako
+  notebook na dece.
+- **Porty a síť** — pro tým potřebujete ethernet, ne Wi-Fi.
+
+## Kdy to nepoužívat
+
+- **Notebook jako server pro tým** — throttling a výpadky.
+- **Box na cesty** — přenosná varianta existuje právě proto.
+- **Notebook bez zapojené nabíječky** — výkon je nižší.
+- **Box v hlučné dílně** — prach a teplota zkracují životnost.
 
 ## Kudy dál
 
@@ -59,10 +125,13 @@ notebooku se k tomu přidá hluk ventilátoru.
 - [Co je AI notebook](/zarizeni/ai-notebooky/) — přenosná varianta.
 - [Srovnání zařízení](/zarizeni/srovnani/) — konkrétní modely a ceny.
 - [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — kapacita.
+- [Throttling](/slovnik/provoz/throttling/) — proč výkon klesá.
 
 ## Zdroje
 
-- [Co je throttling](/slovnik/provoz/throttling/) — proč výkon klesá.
+- [Apple — Mac Studio specifikace](https://www.apple.com/mac-studio/specs/)
+- [Apple — MacBook Pro specifikace](https://www.apple.com/macbook-pro/specs/)
+- Alza.cz — ceny Mac Studio a MacBook Pro, ověřeno 9. 11. 2026 (odkazy na kategorii jsou u [Mac Studio](/zarizeni/mac-studio/) a [MacBook Pro](/zarizeni/macbook-pro/)).
 - [Metodika](/o-webu/metodika/) — jak čteme měření.
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

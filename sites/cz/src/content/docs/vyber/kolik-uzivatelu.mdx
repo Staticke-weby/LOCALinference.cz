@@ -1,7 +1,7 @@
 ---
 title: "Kolik uživatelů zvládne jeden 128GB box"
-description: "Jeden malý AI box obslouží zhruba 1–4 souběžné uživatele. Pro víc lidí se škáluje počtem boxů, ne dražším strojem."
-last_verified: 2026-11-04
+description: "Jeden malý AI box obslouží zhruba 1–4 souběžné uživatele. Pro víc lidí se škáluje počtem boxů, ne dražším strojem. Výpočty a tabulky."
+last_verified: 2026-11-10
 sidebar:
   label: Kolik uživatelů
   order: 3
@@ -9,6 +9,14 @@ sidebar:
 
 Cíl projektu jsou **malé 128GB boxy za dosažitelnou cenu**. Pro víc
 uživatelů se škáluje **počtem boxů**, ne nákupem dražšího stroje.
+
+## Rychlá odpověď
+
+- **1–4 souběžní uživatelé** na jeden 128GB box.
+- **Víc lidí** řešte dalším boxem, ne dražším modelem.
+- **Fronta a priority** patří do gatewaye před boxy.
+- **Rozhoduje vzorec použití**, ne počet zaměstnanců: kdo posílá
+  dávky, zabere box víc než deset lidí v chatu.
 
 ## Kolik uživatelů zvládne 128GB AI box
 
@@ -24,7 +32,61 @@ Veřejné měření na DGX Sparku ukazuje čtyři smíšené requesty s agregát
 To je single-stream měření, ne produkční záruka; v provozu počítejte
 s rezervou.
 
-## Škálování lokální AI počtem boxů
+## Co znamená „souběžný uživatel“
+
+Nejčastější chyba je počítat všechny lidi ve firmě. Souběžnost je
+počet požadavků, které běží **v jednu chvíli**, ne počet účtů.
+
+| Vzorec použití | Typická souběžnost | Co box zatíží |
+|---|---|---|
+| Chat a hledání v dokumentech | 10–20 % lidí | krátké požadavky, hodně TTFT |
+| RAG nad firemními dokumenty | 5–10 % lidí | delší prefill, více tokenů |
+| Kódovací agent | 1–2 požadavky | dlouhé kontexty a myšlenky |
+| Dávkové zpracování | 1 úloha, ale plná | nepřetržitý výkon |
+
+Deset lidí v kanceláři, kteří se ptají občas, tedy neznamená deset
+souběžných požadavků. Jeden analytik, který pustí noční dávku na
+tisíc dokumentů, znamená víc práce než celá kancelář.
+
+## Výpočet: kolik tok/s zbude na uživatele
+
+Z naměřených ~100 tok/s agregátu při čtyřech požadavcích vychází
+**výpočet** průměru:
+
+| Souběžné požadavky | Agregát | Na požadavek |
+|---:|---:|---:|
+| 1 | ~100 tok/s | ~100 tok/s |
+| 2 | ~100 tok/s | ~50 tok/s |
+| 4 | ~100 tok/s | ~25 tok/s |
+
+Je to zjednodušení: agregát není konstantní a při vyšší souběžnosti
+roste i TTFT. Pro praxi ale platí, že **čtyři lidé najednou znamenají
+zhruba čtvrtinu rychlosti na hlavu**. Pokud je pro vás 25 tok/s málo,
+není řešením větší model, ale druhý box.
+
+Pro pohodlnou práci s agentem, který generuje dlouhé odpovědi, je
+25 tok/s na uživatele spíš minimum. Pro chat a hledání v dokumentech
+to stačí.
+
+## Jak souběžnost omezuje paměť
+
+Každý běžící požadavek drží svůj [KV cache](/slovnik/pamet/kv-cache/).
+Platí přibližně:
+
+```
+KV cache ≈ 2 × vrstvy × KV hlavy × dimenze × bajty × tokeny
+```
+
+Zjednodušeně: **dvojnásobný kontext znamená dvojnásobnou KV cache**
+a čtyři požadavky místo jednoho znamenají čtyřikrát víc cache.
+Do 128 GB se musí vejít váhy modelu, KV cache i rezerva pro systém.
+
+Proto se v [vLLM](/slovnik/software/vllm/) nastavuje `max-num-seqs`
+a `max-num-batched-tokens`. Když je nastavíte vysoko, box začne
+odmítat nebo zpomalovat dřív, než čekáte. Podrobnosti jsou u
+[batch size](/slovnik/vykon/batch-size/).
+
+## Škálování počtem boxů
 
 | Uživatelé | Boxy | Poznámka |
 |---|---|---|
@@ -38,16 +100,47 @@ s rezervou.
 Nekupujte dražší stroj jen proto, že má víc paměti — pokud se do něj
 nevejde výrazně větší model, nepřinese to víc uživatelů.
 
-## Co u škálování lokální AI nefunguje
+## Rozhodovací tabulka podle využití
+
+| Situace | Kolik boxů | Proč |
+|---|---|---|
+| 3 lidé, chat a překlady | 1 | špičky zvládne fronta |
+| 8 lidí, RAG nad smlouvami | 2 | delší kontexty, výpadek |
+| Vývojářský tým s agenty | 1–2 | agent drží kontext dlouho |
+| Noční dávky nad archivem | 1 + plán | dávka nesmí blokovat den |
+| 20 lidí, celofiremní | 5 | kapacita i redundance |
+
+## Jak měřit, že to ještě stačí
+
+- **TTFT p50 a p95** — čekání na první token.
+- **Doba ve frontě** — kolik požadavků čeká.
+- **Vytížení slotů** — podíl času, kdy je slot obsazený.
+- **Agregát a tok/s na požadavek**.
+- **Chyby a timeouty** při špičce.
+
+Bez těchto čísel se rozhodujete podle dojmu. Metriky a jejich sběr
+jsou v [monitoringu](/temata/provoz/monitoring/).
+
+## Co u škálování nefunguje
 
 - **Jeden velký stroj pro 20 lidí** — drahé a zbytečné.
 - **Větší model jako náhrada kapacity** — kvalita není kapacita.
 - **Fronta v model serveru** — vzniká prioritní inverze napříč boxy.
+- **Sdílený box pro dávky i denní práci** — dávka sežere kapacitu.
+
+## Kdy to nepoužívat
+
+- **Jeden uživatel** — souběžnost neřešte, stačí llama.cpp.
+- **Nepravidelné použití** — box bude většinu dne prázdný.
+- **Citlivá data bez oprávnění** — kapacita není hlavní problém.
+- **Když neznáte vzorec použití** — nejdřív změřte měsíc provozu.
 
 ## Kudy dál
 
 - [Výběr podle rozpočtu](/vyber/rozpocet/) — co za co dostanete.
 - [Srovnání zařízení](/zarizeni/srovnani/) — 128GB boxy.
+- [Monitoring](/temata/provoz/monitoring/) — jak měřit provoz.
+- [Souběžnost](/slovnik/vykon/soubeznost/) — co to je.
 - [Jak čteme data](/zaciname/jak-cteme-data/) — souběžnost a TTFT.
 - [Metodika](/o-webu/metodika/) — proč neodhadujeme.
 
@@ -57,4 +150,4 @@ nevejde výrazně větší model, nepřinese to víc uživatelů.
 - [vLLM documentation](https://docs.vllm.ai/)
 - [NVIDIA DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

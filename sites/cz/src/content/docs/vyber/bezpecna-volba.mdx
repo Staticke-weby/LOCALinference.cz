@@ -1,7 +1,7 @@
 ---
 title: "Bezpečná volba: jaký 128GB stroj nekoupit zbytečně drahý"
-description: "Kdy stačí nejlevnější 128GB box, co připlácíte u DGX Sparku a proč se vyplatí koupit míň stroje. Rozhodovací tabulka podle Windows, Linuxu a ceny."
-last_verified: 2026-11-06
+description: "Kdy stačí nejlevnější 128GB box, co připlácíte u DGX Sparku a proč se vyplatí koupit míň stroje. Rozhodovací tabulka a ceny k datu."
+last_verified: 2026-11-10
 sidebar:
   label: Bezpečná volba
   order: 4
@@ -10,6 +10,13 @@ sidebar:
 Nejdražší stroj není automaticky nejlepší volba. U lokální AI platí
 skoro vždy: **stejný model běží na všech 128GB zařízeních srovnatelně**
 a rozdíl je v ekosystému, ne ve výkonu.
+
+## Rychlá odpověď
+
+- **Nejlevnější rozumná volba** je Strix Halo: 119 990 Kč vč. DPH.
+- **Připlácíte za ekosystém**, ne za rychlost modelu.
+- **128 GB je minimum**; menší stroj model neudrží.
+- **Kupujte podle runtime**, který umíte obsluhovat.
 
 ## Co je bezpečné minimum
 
@@ -20,6 +27,25 @@ a rozdíl je v ekosystému, ne ve výkonu.
   dělat plynule. Podrobnosti v [metodice](/o-webu/metodika/).
 - **Záruka a servis** — u stroje za statisíce není detail.
 
+## Kolik co stojí
+
+Ceny jsou koncové včetně DPH, ověřené 9. 11. 2026 u českého
+prodejce. Mění se, proto je berte jako orientaci a aktuální hledejte
+na stránce zařízení.
+
+| Zařízení | Cena od | Za co se připlácí |
+|---|---:|---|
+| [Strix Halo](/zarizeni/strix-halo/) | 119 990 Kč | ROCm, nejnižší cena |
+| [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) | 125 990 Kč | mobilita, Windows on Arm |
+| [Mac Studio](/zarizeni/mac-studio/) | 147 990 Kč | ticho, MLX, macOS |
+| [DGX Spark](/zarizeni/dgx-spark/) | 162 990 Kč | CUDA, oficiální recepty |
+
+Rozdíl mezi nejlevnějším a nejdražším strojem je **43 000 Kč**. Za to
+dostanete hlavně software: CUDA, kontejnery a recepty, které někdo
+testoval. Když počítáte na tři roky provozu, je to zhruba
+**14 000 Kč ročně** — což je méně, než stojí den vývojářova času
+stráveného laděním ovladačů. To je **výpočet**, ne cenová nabídka.
+
 ## Kde se připlácí zbytečně
 
 - **Vyšší třída čipu** — u stejné paměti přinese jednotky procent.
@@ -28,6 +54,7 @@ a rozdíl je v ekosystému, ne ve výkonu.
 - **Notebook, který nikdy neopustí kancelář** — platíte za mobilitu,
   kterou nepoužijete.
 - **Serverové funkce** (clustering, správa flotily) u jednoho boxu.
+- **Druhý stroj „pro jistotu“** — místo něj řešte zálohu konfigurace.
 
 ## Kde se naopak nevyplácí šetřit
 
@@ -35,6 +62,7 @@ a rozdíl je v ekosystému, ne ve výkonu.
 - **Chlazení** — tichý stroj, který drží výkon, je pro práci důležitější
   než papírové tok/s.
 - **Podpora** — když stroj spadne, chcete vědět, komu zavolat.
+- **Disk** — model se načítá z NVMe; pomalý disk prodlužuje každý start.
 
 ## Doporučená cesta
 
@@ -46,6 +74,7 @@ pracovat a jaký runtime potřebujete rozjet.
 | Windows a jeden stroj na práci i AI | **RTX Spark 128 GB** | plný Windows, CUDA a ovladače; vLLM běží přes komunitní port |
 | Linux, vLLM a nejmíň překvapení | **DGX Spark** | oficiální recepty a DGX OS; druhý systém ale řešíte vy |
 | Nejnižší cenu za 128 GB | **Strix Halo** | chat, RAG a kód; slabší prefill a NPU mimo hlavní cestu |
+| Ticho a nízkou spotřebu | **Mac Studio** | MLX, pasivní chlazení, žádná CUDA |
 
 Dvě věci, aby to nebylo naivní doporučení:
 
@@ -62,7 +91,25 @@ Dvě věci, aby to nebylo naivní doporučení:
 2. Kolik lidí to použije? Do čtyř jeden box; víc se řeší počtem boxů.
 3. Potřebujete přenášet? Ano → notebook. Ne → box.
 4. Potřebujete CUDA? Ano → RTX Spark (Windows) nebo DGX Spark
-   (Linux). Ne → Strix Halo.
+   (Linux). Ne → Strix Halo nebo Mac Studio.
+
+## Typické chyby při nákupu
+
+- **Koupit podle jednoho benchmarku** — číslo z 30 sekund neplatí
+  pro hodinovou dávku.
+- **Počítat s rozšířením paměti** — u všech těchto strojů je připájená.
+- **Vzít největší disk** a pak zjistit, že chybí na data.
+- **Koupit notebook jako server** — throttling a výpadky.
+- **Zapomenout na elektřinu a hluk** — box v kanceláři je slyšet.
+- **Nezjistit servis** — u dovozových OEM boxů může být dlouhý.
+
+## Kdy to nepoužívat
+
+- **Jeden občasný dotaz denně** — cloud nebo menší model vyjde lépe.
+- **Citlivá data bez oprávnění** — technika to nevyřeší.
+- **Tým nad 20 lidí** — potřebujete víc boxů a správu, ne jeden dražší.
+- **Když neznáte runtime** — nejdřív si vyzkoušejte software na tom,
+  co máte.
 
 ## Kudy dál
 
@@ -70,10 +117,13 @@ Dvě věci, aby to nebylo naivní doporučení:
 - [Box vs. notebook](/vyber/stolni-vs-notebook/) — forma podle použití.
 - [Srovnání zařízení](/zarizeni/srovnani/) — konkrétní modely.
 - [Kolik uživatelů](/vyber/kolik-uzivatelu/) — kapacita týmu.
+- [Provoz a bezpečnost](/temata/provoz/) — co obnáší správa.
 
 ## Zdroje
 
 - [Metodika](/o-webu/metodika/) — jak čteme data.
-- [Srovnání zařízení](/zarizeni/srovnani/)
+- [Srovnání zařízení](/zarizeni/srovnani/) — ceny a specifikace.
+- [Alza.cz — AI počítače](https://www.alza.cz/ai-pc/18907789.htm) — ceny ověřeny 9. 11. 2026.
+- [Alza.cz — RTX Spark notebooky](https://www.alza.cz/notebooky-rtx-spark/18924563.htm) — ceny ověřeny 9. 11. 2026.
 
-*Naposledy ověřeno: 6. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

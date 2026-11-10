@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Výběr: kapacita boxu, box vs. notebook a cena za ekosystém"
+  co_se_zmenilo: "Tři stránky výběru dostaly výpočty a tabulky: kolik tok/s zbude na uživatele při souběžnosti, co znamená souběžný uživatel, srovnání boxu a notebooku včetně rozdílu cen u stejného čipu a přehled, za co se u 128GB strojů připlácí."
+  dotcene_stranky: [vyber/kolik-uzivatelu, vyber/stolni-vs-notebook, vyber/bezpecna-volba]
+  zdroj: https://www.localinference.cz/vyber/kolik-uzivatelu/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Nová stránka: řešení problémů pro všechny platformy"
   co_se_zmenilo: "Přibyla stránka s tabulkami příznaků a příčin: model se nespustí, běží na CPU, padá na paměť, přehřívá se, odpovídá špatně. Obsahuje rozhodovací strom, kontroly GPU pro NVIDIA, AMD a Apple a odkazy z návodů i receptů."
   dotcene_stranky: [temata/provoz/reseni-problemu, temata/provoz, temata, zaciname/faq, navody/dgx-spark, navody/strix-halo, navody/rtx-spark, navody/mac, generovani/recepty/windows, generovani/recepty/macos, generovani/recepty/linux, generovani/recepty/dgx-os]
