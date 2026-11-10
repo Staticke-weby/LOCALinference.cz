@@ -110,6 +110,9 @@ Toto je nejdůležitější pravidlo projektu.
   jeden nezávislý nebo více komunitních; `nizka` = jediný komunitní nebo
   výrobcem udávaný údaj. Ke každému klíčovému číslu uveď `duveryhodnost`.
   Když 2+ zdroje nejsou, aktivně je hledej; nespoléhej na jeden.
+- **Licence odvozenin:** uveď licenci, kterou uvádí vydavatel, i licenci
+  základního modelu. Když se rozcházejí, popiš obě a rozdíl; nevybírej
+  „lepší“ variantu a netvrď, že rozpor je vyřešený.
 - **Triangulace:** u klíčového čísla uveď, kolik zdrojů se shoduje a co
   z toho plyne. Jeden zdroj není důkaz, i když je oficiální.
 - **Normalizace:** při srovnání ukazuj **raw** i podmínky, za kterých bylo

@@ -30,7 +30,7 @@ pravidla: žádná vlastní měření, každé číslo se zdrojem a datem,
 | Má se přidat abliterovaná varianta Q38FN? | **Ano, ale jako `status: draft`**, dokud neexistuje veřejné měření parity. Stránka nesmí tvrdit „běží stejně dobře“, jen doložit, co je změřené. |
 | Sandboxing a harnessy jako clustery? | **Ne.** Jeden dlouhý článek (3 500–4 500 slov) pro každý. Jsou to průřezová témata, ne rodiny stránek. |
 | Odkazy na Hugging Face s abliterovanými váhami? | **Ano, informativně**, s vymezením odpovědnosti, bez affiliate a bez doporučení (rozhodnuto 10. 11. 2026; pravidla v `plan-celkovy.md` 9.1). |
-| Právní kontrola? | **Povinná před publikací** obou částí A. Není to právní rada, ale riziko je vyšší než u běžných témat. |
+| Právní kontrola? | **Nebude.** Text musí být věcný, zodpovědný a s vymezením odpovědnosti; rozhodl provozovatel 10. 11. 2026. |
 
 **Odhad:** 4–6 dní na celek A, 2–3 dny na B, 2–3 dny na C, 1–2 dny QA
 a prolinkování. Celkem 9–14 pracovních dnů při soustředěné práci.
@@ -76,8 +76,10 @@ a prolinkování. Celkem 9–14 pracovních dnů při soustředěné práci.
   (Qwen Community License 1.0). Někteří vydavatelé uvádějí
   Apache-2.0; to je **rozpor, který musíme ověřit**, ne převzít.
 
-**Akce:** zapsat právní review jako položku `P0` do `data/chybi.yaml`
-s odkazem na AI Act a Qwen LICENSE.
+**Akce:** právní review se **nedělá** (rozhodnutí 10. 11. 2026).
+Místo toho platí: věcný popis, žádné návody, jasné „není právní
+rada“, vymezení odpovědnosti a licence uvedené tak, jak je uvádí
+vydavatel i základní model — i když se rozcházejí.
 
 ---
 
@@ -283,7 +285,7 @@ chybí nezávislé měření a česká sada (A01, A04).
 - AI Act (EU) 2024/1689, GDPR.
 
 **Mezery k založení:** parita NVFP4 (P0), česká sada pro odmítání
-(P1), právní review (P0), licence odvozenin (P0), kvalitativní
+(P1), licence odvozenin (P1, jen doložit, ne řešit), kvalitativní
 srovnání po abliteraci (P1), chování PLE z SSD při dlouhém kontextu
 (P1), PLE z SSD na RTX Sparku (P1).
 
@@ -442,8 +444,8 @@ nezávislý test.
 | ID | Priorita | Co chybí |
 |---|---|---|
 | A01 | P0 | Parita abliterovaného NVFP4 proti základu na 128GB boxu |
-| A02 | P0 | Právní review publikace o abliteraci (AI Act, české právo) |
-| A03 | P0 | Licence odvozenin Qwen3.8 (QCL vs. Apache-2.0) |
+| A02 | — | Právní review — **nebude**, rozhodnuto 10. 11. 2026 |
+| A03 | P1 | Licence odvozenin — uvést všechny verze a rozpor popsat, neřešit |
 | A04 | P1 | Česká sada pro měření odmítání (50+50 promptů) |
 | A05 | P1 | Vliv PLE z SSD na TTFT a decode při 32k/128k/262k |
 | A06 | P1 | PLE z SSD na RTX Sparku (Windows ARM, dělení paměti) |
@@ -505,7 +507,7 @@ záznam, jen `[DOPLNIT]` a registr.
 
 - [ ] Každá stránka má zdroje, datum a `last_verified`.
 - [ ] Žádné `[DOPLNIT]` bez položky v registru.
-- [ ] Žádné tvrzení o paritě bez měření.
+- [ ] Žádné tvrzení o paritě bez měření a konfigurace.
 - [ ] Každá stránka celku A má redakční upozornění.
 - [ ] Model varianta má `status: draft`, dokud není důkaz.
 - [ ] Sandbox i harness mají rozhodovací tabulku a „kdy to

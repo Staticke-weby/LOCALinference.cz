@@ -153,6 +153,16 @@ decode při 32k/128k/262k.
   proti 61,0 %, odmítnutí 0/200 v protokolu A.
 - Nezávislé měření chybí. Proto stránka variantu zůstává draft.
 
+**Rozhodnutí k právu a licencím (10. 11. 2026):**
+
+- **Právní review se neprovádí.** Text musí být věcný, zodpovědný,
+  s jasným „není právní rada“ a vymezením odpovědnosti. Riziko nese
+  provozovatel webu.
+- **Licence se uvádějí tak, jak je uvádí vydavatel i základní model.**
+  Když se rozcházejí (Qwen Community vs. NVIDIA Open Model vs.
+  Apache-2.0), popíšou se obě strany a rozdíl; nevybírá se „lepší“
+  licence a netvrdí se, že rozpor je vyřešený.
+
 ### 2.6 Rizika, právo a licence
 
 - **Co může model způsobit:** nezákonný obsah, návod k ublížení,
@@ -180,8 +190,8 @@ decode při 32k/128k/262k.
 | ID | Priorita | Co chybí |
 |---|---|---|
 | A01 | P0 | nezávislá parita abliterovaného NVFP4 |
-| A02 | P0 | právní review publikace |
-| A03 | P0 | licence odvozenin (Qwen vs. NVIDIA vs. Apache) |
+| A02 | — | **uzavřeno rozhodnutím:** právní review se nedělá; text musí být věcný, zodpovědný a s vymezením odpovědnosti |
+| A03 | — | **uzavřeno rozhodnutím:** licence se uvádějí tak, jak je uvádí vydavatel i základní model; rozpor se popíše, nevybírá |
 | A04 | P1 | česká sada 50+50 promptů na odmítání |
 | A05 | P1 | vliv PLE z SSD na TTFT a decode |
 | A06 | P1 | PLE z SSD na RTX Sparku (Windows ARM) |
@@ -311,7 +321,7 @@ MausBot, Hermes, Goose, Claude Code.
 
 | Fáze | Co | Dny |
 |---|---|---:|
-| 1 | A02, A03, A01: právo, licence, parita | 1–2 |
+| 1 | A01, A03: parita a licence (bez právního review) | 1–2 |
 | 2 | Hub + odmítání | 1 |
 | 3 | Technika + kdo tvoří | 1–2 |
 | 4 | Provoz + PLE z SSD + protokol | 1–2 |
@@ -336,14 +346,16 @@ D11, D12) jsou otevřené, dokud se neobjeví veřejný zdroj.
       nepoužívat“.
 - [ ] Odkazy na váhy jsou bez affiliate a s upozorněním.
 - [ ] `check`, `check:odkazy` a `check:prolinkovani:strict` procházejí.
+- [ ] Licence uvedené tak, jak je uvádí vydavatel i základní model.
 - [ ] Právní review hotový (A02).
 
 ---
 
 ## 9. Rozhodnutí, která potřebuju
 
-1. **Kdo udělá právní review** (A02). Bez něj nelze publikovat
-   `/rizika-a-pravo/`.
+1. **Právní review: nebude.** Rozhodnuto 10. 11. 2026. Text musí
+   být věcný a zodpovědný, s upozorněním „není právní rada“.
+   Odpovědnost nese provozovatel.
 2. **Odkazy na HF s váhami: schváleno.** Web může odkazovat na
    veřejné repozitáře, ale vždy s vymezením odpovědnosti a bez
    doporučení. Pravidla jsou v 9.1.
