@@ -1,7 +1,7 @@
 ---
 title: "Lokální AI na video: co zvládne 128 GB"
 description: "Generování videa na 128GB zařízeních: Wan 2.2, LTX-2.5 a HunyuanVideo, reálné časy na Strix Halu, RTX Sparku a Macu, licence a limity."
-last_verified: 2026-11-05
+last_verified: 2026-11-10
 sidebar:
   order: 10
 ---
@@ -9,6 +9,14 @@ sidebar:
 Video je nejnáročnější část lokální generativní AI. Počítejte
 s **minutami na klip**, ne sekundami. Na 128GB stroji to jde, ale je
 to dávková práce, ne interaktivní hraní.
+
+## Rychlá odpověď
+
+- **Počítejte minuty na klip**, ne sekundy.
+- **Wan 2.2** je bezpečná licence; **LTX-2.5** umí zvuk; **Hunyuan**
+  v ČR nepoužijte.
+- **Krátký klip** (3–5 s) je základ; dlouhé video se skládá.
+- **128 GB stačí**, ale teplota a čas jsou limit.
 
 ## Co dnes jde
 
@@ -42,6 +50,56 @@ to dávková práce, ne interaktivní hraní.
 Jsou to **převzatá měření**, ne náš test. Strix Halo a Mac měří
 jiné rozlišení než RTX Spark, takže čísla nejsou přímé srovnání.
 
+## Jak to funguje
+
+Video model je stejně jako obrázkový **difuzní**, ale nepočítá jeden
+obrázek. Počítá celou sekvenci snímků najednou, aby mezi nimi držel
+pohyb. Proto jsou nároky na paměť a čas vyšší řádově, ne o pár procent.
+
+- **Počet snímků** — 5 s při 24 fps je 120 snímků; číslo v tabulkách
+  (41, 61, 121) odpovídá délce klipu.
+- **3D VAE** — komprimuje snímky do latentu; čím víc snímků, tím víc
+  paměti.
+- **Text encoder** — čte prompt, u velkých modelů desítky GB.
+- **Decode** — rozpakování latentu na pixely je u videa často
+  nejdražší část.
+
+Z toho plyne praktické pravidlo: **zkracujte klip, ne rozlišení**.
+Čtyřsekundový klip ve 720p je použitelnější než dvacetisekundový
+v 360p, protože kvalita po přeškálování nevznikne.
+
+## Kolik paměti to vezme
+
+| Model | Nároky | Poznámka |
+|---|---|---|
+| Wan 2.2 A14B | desítky GB | aktivní 14 mld. parametrů |
+| LTX-2.5 | desítky GB | umí zvuk |
+| HunyuanVideo 1.5 | desítky GB | mimo EU |
+
+Na 128 GB se vejde i s rezervou pro KV cache a text encoder, což je
+hlavní rozdíl proti 16–24GB kartě: tam se část modelu odkládá do
+systémové paměti a čas roste násobně. Zároveň ale platí, že paměť
+není jediný limit — u videa rozhoduje výpočetní výkon, protože se
+počítá mnoho snímků.
+
+## Kolik to zabere času
+
+Tady je potřeba počítat v hodinách, ne v sekundách. Příklad: třicet
+sekund výsledného videa při 24 fps je 720 snímků. Dělí se na klipy
+po pěti sekundách, tedy šest klipů. Na Strix Halu s LTX2 při
+~10 min na klip:
+
+| Fáze | Výpočet | Čas |
+|---|---|---:|
+| První průchod, 6 klipů | 6 × 10 min | ~60 min |
+| Opravy a varianty, 3× | 3 × 60 min | ~3 h |
+| Finální běh ve vyšším rozlišení | 6 × 2× | ~2 h |
+
+To je **výpočet** z naměřeného času na klip, ne další měření. Skutečný
+projekt s pěti záběry a střihem se proto snadno dostane na jeden
+pracovní den strojového času. Pokud potřebujete hotové video dnes,
+lokální generování není správná cesta.
+
 ## Licence
 
 - **Wan 2.2** — Apache-2.0, komerčně bez podmínek.
@@ -54,6 +112,58 @@ jiné rozlišení než RTX Spark, takže čísla nejsou přímé srovnání.
 - **Přesnost pohybu** — ruce a předměty se rozpadají.
 - **Čas** — pětisekundový klip mohou být minuty.
 - **Teplota** — dlouhý běh narazí na [throttling](/slovnik/provoz/throttling/).
+
+## Jak vybrat model
+
+| Model | Silná stránka | Slabina | Licence |
+|---|---|---|---|
+| **Wan 2.2** | kvalita, Apache-2.0 | pomalý | Apache-2.0 |
+| **LTX-2.5** | rychlost, zvuk | licence do 10M USD | LTX Community |
+| **HunyuanVideo 1.5** | kvalita | mimo EU | Tencent Community |
+
+Pro firmu je Wan 2.2 nejbezpečnější. LTX-2.5 použijte, když potřebujete
+zvuk a splňujete licenci.
+
+## Pracovní postup
+
+1. **Scénář** — 3–5 sekund, jasný pohyb.
+2. **Keyframe** — obrázek pro image-to-video.
+3. **Klip** — krátký, nízké rozlišení, méně kroků.
+4. **Kontrola** — pohyb, ruce, artefakty.
+5. **Finální verze** — vyšší rozlišení a kroky.
+6. **Střih** — spojení klipů, zvuk, titulky.
+
+## Co ovlivní čas
+
+- **Rozlišení** — 720p vs. 1080p.
+- **Počet snímků** — 41 vs. 121.
+- **Kroky** — 4 vs. 20.
+- **Model** — 5B vs. 22B.
+- **Teplota** — throttling prodlouží běh.
+
+## Časté chyby
+
+- **Dlouhý klip na první pokus** — nejdřív krátký.
+- **Příliš složitý pohyb** — model ho nezvládne.
+- **Konzistence postavy** — mezi záběry se rozpadá.
+- **Zvuk** — ne každý model ho umí.
+- **Licence Hunyuan** — v ČR nepoužitelné.
+
+## Co měřit
+
+- **Čas na 5s klip** při vašem rozlišení.
+- **Počet použitelných** klipů z 5.
+- **Teplota** a throttling.
+- **Kvalita pohybu** a rukou.
+- **Spotřeba** při dlouhém běhu.
+
+## Kdy to nepoužívat
+
+- **Dlouhé video** bez střihu.
+- **Přesná fyziika** a sport.
+- **Komerční projekt** bez licence.
+- **Rychlá odpověď** — video je dávková práce.
+- **Slabý notebook** bez chlazení.
 
 ## Kudy dál
 

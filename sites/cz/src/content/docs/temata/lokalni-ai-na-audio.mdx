@@ -1,7 +1,7 @@
 ---
 title: "Lokální AI na audio: řeč a klonování hlasu na 128 GB"
 description: "Text-to-speech a klonování hlasu na 128GB zařízeních: Kokoro, VoxCPM2 a Qwen3-TTS, licence, etika a co od lokálního hlasu čekat."
-last_verified: 2026-11-05
+last_verified: 2026-11-10
 sidebar:
   order: 11
 ---
@@ -9,6 +9,14 @@ sidebar:
 Audio je nejlevnější část lokální generativní AI. Malé modely běží
 i na procesoru a na 128GB stroji nezaberou skoro nic. Na rozdíl od
 videa nebo 3D tu jde o sekundy, ne minuty.
+
+## Rychlá odpověď
+
+- **Audio je nejlevnější**: malé modely běží i na CPU.
+- **Kokoro** je nejrychlejší start; **VoxCPM2** a **Qwen3-TTS**
+  umí klonování.
+- **Čeština** záleží na modelu; testujte přízvuk a jména.
+- **Klonujte jen se souhlasem**; licence zakazují impersonaci.
 
 ## Co dnes jde
 
@@ -42,6 +50,49 @@ Výrobce VoxCPM2 udává RTF kolem **0,3 na RTX 4090**, což je jiné
 zařízení než náš katalog. Menší modely jako Kokoro zvládne
 i procesor; u nich je úzkým místem délka textu, ne GPU.
 
+## Jak to funguje
+
+TTS není jeden model, ale řetěz:
+
+1. **Normalizace textu** — čísla, zkratky, datum se přepíšou na slova.
+2. **Fonémy** — text se převede na hlásky; tady vzniká česká
+   výslovnost.
+3. **Akustický model** — z hlásek udělá zvukovou reprezentaci.
+4. **Vocoder** — převede ji na vzorky; 24 kHz stačí na řeč, 48 kHz
+   je lepší pro hudbu a střih.
+
+Klonování přidává ještě **embedding hlasu** z ukázky. Kvalita klonu
+proto nezávisí jen na modelu, ale hlavně na nahrávce: čistý
+mikrofon, bez ozvěny, bez hudby v pozadí.
+
+## Kolik paměti to vezme
+
+| Model | Parametry | Paměť |
+|---|---:|---|
+| Kokoro 82M | 0,08 mld. | zlomek GB |
+| VoxCPM2 | ~2 mld. | jednotky GB |
+| Qwen3-TTS | řádově miliardy | jednotky GB |
+
+Pro audio je 128 GB výrazně víc, než potřebujete. Smysl to dává jen
+tehdy, když na stejném stroji běží i model pro překlad, kontrolu nebo
+přepis. Samotné TTS by zvládl i malý počítač.
+
+## Kolik to zabere času
+
+Pomocí RTF se čas spočítá snadno: **RTF 0,3** znamená, že minuta řeči
+se generuje tři desetiny minuty, tedy osmnáct sekund.
+
+| Délka řeči | Výpočet při RTF 0,3 | Čas |
+|---|---:|---:|
+| 1 minuta | 0,3 × 60 s | ~18 s |
+| 10 minut | 0,3 × 600 s | ~3 min |
+| 60 minut | 0,3 × 3 600 s | ~18 min |
+
+Je to **výpočet** z výrobcem udávaného RTF na RTX 4090, ne měření
+na našich zařízeních. Na procesoru bude RTF vyšší, u Kokora naopak
+velmi nízké, protože model je malý. Pro praxi platí: hodinová
+audiokniha je otázka desítek minut, ne dnů.
+
 ## Licence a etika
 
 - **Kokoro, VoxCPM2, Qwen3-TTS, Chatterbox, Ming-3.0** — komerčně použitelné.
@@ -56,6 +107,90 @@ i procesor; u nich je úzkým místem délka textu, ne GPU.
 - **Čeština** — záleží na modelu; u některých je cizí přízvuk znát.
 - **Dlouhý text** — dělí se na odstavce, jinak se rozpadá intonace.
 - **Výslovnost jmen** — často je potřeba ruční korekce.
+
+## STT a TTS
+
+| Směr | Co dělá | Příklad |
+|---|---|---|
+| **STT** | řeč → text | přepis meetingu |
+| **TTS** | text → řeč | narace, dabing |
+| **Klonování** | nový hlas z ukázky | dabing, obsah |
+| **Překlad** | jazyk → jazyk | titulky |
+
+STT a TTS se často kombinují: přepiš, přelož, namluv.
+
+## Jak vybrat model
+
+| Model | Silná stránka | Licence |
+|---|---|---|
+| **Kokoro 82M** | rychlost, CPU | Apache-2.0 |
+| **VoxCPM2** | 48 kHz, 30 jazyků | Apache-2.0 |
+| **Qwen3-TTS** | klonování, 10 jazyků | Apache-2.0 |
+| **Chatterbox / Ming-3.0** | kvalita | MIT |
+
+Pro začátek Kokoro; pro klonování VoxCPM2 nebo Qwen3-TTS.
+
+## Pracovní postup
+
+### Narace
+
+1. Rozdělte text na odstavce.
+2. Zvolte hlas a tempo.
+3. Vygenerujte po částech.
+4. Zkontrolujte výslovnost jmen a čísel.
+5. Spojte a sjednoťte hlasitost (normalizace).
+
+### Dabing
+
+1. Přepište řeč (STT).
+2. Přeložte s glosářem.
+3. Namluvte nový hlas.
+4. Zachovejte časování.
+5. Zkontrolujte, zda sedí ret.
+
+## Česká specifika
+
+- **Přízvuk** — u některých modelů cizí.
+- **Jména** — výslovnost je potřeba opravit.
+- **Čísla** — „2026“ může číst špatně.
+- **Formálnost** — tón hlasu.
+- **Dlouhý text** — intonace se rozpadá.
+
+## Časté chyby
+
+- **Klonování bez souhlasu** — etický a právní problém.
+- **Dlouhý text najednou** — rozpad intonace.
+- **Ignorování licencí** — některé modely zakazují impersonaci.
+- **Špatné mikrofonní nahrávky** — kvalita klonu klesá.
+- **Nekontrolovaná jména** — špatná výslovnost.
+
+## Jak zlepšit výslovnost
+
+- **Přepište problematická slova foneticky** — jména, zkratky, cizí
+  názvy.
+- **Dělejte pauzy mezi větami**, ne uvnitř věty; intonace se pak
+  nerozpadá.
+- **Držte jeden hlas** pro celou sérii; mezi běhy se může mírně
+  změnit.
+- **Glosář** pro značky a produkty, které se nesmí číst doslova.
+- **Poslouchejte celý výstup**, ne jen první větu — chyby bývají
+  uprostřed.
+
+## Co měřit
+
+- **RTF** — poměr času generování k délce řeči.
+- **Kvalita** poslechem.
+- **Přesnost** u STT (WER).
+- **Rychlost** na CPU vs. GPU.
+- **Spotřeba** u dlouhé narace.
+
+## Kdy to nepoužívat
+
+- **Právní výpověď** bez lidské kontroly.
+- **Klonování bez svolení.**
+- **Hudba** — TTS není hudební model.
+- **Dabing bez práv** k původnímu záznamu.
+- **Když stačí text.**
 
 ## Kudy dál
 

@@ -1,7 +1,7 @@
 ---
 title: "Lokální AI na 3D: model z fotky na 128 GB"
 description: "Image-to-3D na 128GB zařízeních: TRELLIS.2, Pixal3D a Hunyuan3D, reálné časy na Strix Halu a Macu, formát GLB, PBR a licence."
-last_verified: 2026-11-05
+last_verified: 2026-11-10
 sidebar:
   order: 12
 ---
@@ -10,12 +10,25 @@ Z jedné fotky vznikne 3D model s texturou. Není to náhrada modeláře,
 ale na prototyp, pozadí do hry nebo produktový náhled to dnes stačí.
 Na 128GB stroji jde o minuty, ne hodiny.
 
+## Rychlá odpověď
+
+- **Začněte TRELLIS.2** — MIT licence, PBR textura, běží na CUDA,
+  ROCm i MPS.
+- **Počítejte minuty**: 512 px za ~2 minuty, 1024 px za ~6–7 minut
+  na Strix Halu.
+- **Jedna fotka nestačí na věrný model**; ze tří až čtyř pohledů je
+  výsledek výrazně lepší.
+- **Výstup není hotový asset** — chybí retopologie, měřítko a často
+  i správná zadní strana.
+
 ## Co dnes jde
 
 - **Mesh s PBR** — barva, drsnost, kovovost; výstup GLB.
 - **Více pohledů** — z několika fotek je model věrnější.
 - **Rozdělení na části** — některé modely umí samostatné komponenty.
 - **Retopologie** — hrubý mesh je potřeba zjednodušit pro hru.
+- **Textura z fotky** — model přenese barvu z předlohy, ne jen
+  vymyslí průměrnou barvu materiálu.
 
 ## Která zařízení to zvládnou
 
@@ -27,6 +40,28 @@ Na 128GB stroji jde o minuty, ne hodiny.
 | [Strix Halo](/zarizeni/strix-halo/) | nejlevnější 128 GB | ROCm, TRELLIS.2 změřený |
 | [Mac Studio](/zarizeni/mac-studio/) | tichý | MPS, minuty na model |
 | [MacBook Pro](/zarizeni/macbook-pro/) | na cesty | MPS, minuty na model |
+
+Zajímavé je, že 3D je nejméně náročná generativní úloha. TRELLIS.2
+potřebuje 16–24 GB paměti, takže na 128GB boxu běží s velkou rezervou
+a vedle něj zvládnete ještě obrázky nebo model pro text. Důvod je
+jednoduchý: model je malý (kolem 4 mld. parametrů) a výstupem je
+geometrie, ne dlouhá sekvence tokenů.
+
+## Jak vybrat model
+
+| Model | Silná stránka | Slabina | Licence |
+|---|---|---|---|
+| **TRELLIS.2** | PBR, až 1536³, stabilní | pomalejší při vysokém rozlišení | MIT |
+| **Pixal3D** | věrnost předloze | méně rozšířený, málo měření | MIT |
+| **TripoSR** | velmi rychlý hrubý mesh | bez PBR, nízká kvalita | MIT |
+| **Hunyuan3D 2.x** | kvalita, hodně návodů | licence vylučuje EU | Tencent Community |
+
+Pro firmu v ČR jsou použitelné první tři. Hunyuan3D má nejvíc
+komunitních návodů, ale jeho licence vylučuje EU, UK a Jižní Koreu —
+v českém provozu ho proto vynechte, i když by technicky fungoval.
+
+TripoSR berte jako náhled: z fotky udělá tvar během sekund a hodí se
+na blokování scény, ne na finální asset.
 
 ## Jak rychle
 
@@ -40,21 +75,106 @@ Jsou to **převzatá měření**, ne náš test. Strix Halo je měřený na
 Windows s ROCm, Mac na MPS. Pro DGX Spark a RTX Spark veřejné číslo
 nemáme; na DGX Sparku je postup v oficiálním NVIDIA playbooku.
 
+Co z toho plyne pro praxi: **512 px je pracovní rozlišení**, 1024 px
+je finální. Na 512 px stihnete za hodinu dvacet až třicet iterací,
+což je zhruba tempo, jakým se dá ladit tvar. Na 1024 px už jen
+potvrzujete, že vybraná varianta vypadá dobře.
+
+Rozdíl mezi Strix Halem a M4 Pro není v kvalitě, ale v čase. Mac
+s 24 GB paměti je navíc na hraně: TRELLIS.2 se vejde, ale na delší
+dávku už nezbývá místo. Mac Studio s 128 GB je v tomhle ohledu
+bezpečnější než notebook.
+
+## Pracovní postup
+
+1. **Vstupní fotka** — ostrá, rovnoměrně osvětlená, objekt celý
+   v záběru.
+2. **Odstranění pozadí** — bez něj model počítá i stůl a stěnu.
+3. **Jeden nebo více pohledů** — u symetrických věcí stačí jeden,
+   u členitých se hodí tři až čtyři.
+4. **Mesh při 512 px** — rychlé iterace, výběr varianty.
+5. **Textura a PBR** — base color, metallic, roughness.
+6. **Finální běh při 1024 px** — jen pro vybranou variantu.
+7. **Retopologie a měřítko** — v Blenderu nebo podobném nástroji.
+8. **Export GLB** — geometrie, materiály i textury v jednom souboru.
+
+Krok 2 a 7 jsou ruční a zaberou víc času než samotné generování.
+Počítejte, že z hodiny práce je generování deset až patnáct minut
+a zbytek je příprava vstupu a úprava výstupu.
+
 ## Formát a kvalita
 
 - **GLB** — geometrie, materiály i textury v jednom souboru.
 - **PBR** — base color, metallic, roughness; model vypadá správně
-  pod světlem.
-- **Topologie** — výstup není připravený na animaci, často je potřeba
-  retopologie.
+  pod světlem. Podrobněji v [PBR](/slovnik/software/pbr/).
+- **Topologie** — výstup je hustý trojúhelníkový mesh, ne připravená
+  síť pro animaci. Retopologie je nutná, pokud chcete model rigovat.
 - **Měřítko** — GLB nemá reálné rozměry, nastavuje se ručně.
+- **UV mapy** — textura bývá „napečená“ do atlasu; při úpravách
+  geometrie se rozpadne.
+
+## Kolik to zabere času a peněz
+
+Generování je u 3D nejmenší položka. Celková kalkulace pro jeden
+použitelný asset:
+
+| Fáze | Čas | Kdo to dělá |
+|---|---|---|
+| Příprava fotky a pozadí | 5–10 min | člověk |
+| Generování 512 px, 3 varianty | 6 min | stroj |
+| Výběr a finální běh 1024 px | 7 min | stroj |
+| Retopologie a měřítko | 20–60 min | člověk |
+| Kontrola textury a export | 10 min | člověk |
+
+Stroj tedy stráví prací kolem čtvrt hodiny, člověk kolem hodiny.
+Úspora není v tom, že by model udělal asset sám, ale v tom, že
+nevzniká první hrubý tvar ručně. U desítek props do hry je to
+rozdíl, u jednoho hrdiny příběhu ne.
+
+Spotřeba při těchto časech není téma: 128GB box jede na plný
+výkon několik minut, ne hodiny. Hlučnost a [throttling](/slovnik/provoz/throttling/)
+se projeví až u dávek desítek modelů za sebou.
+
+## Časté chyby
+
+- **Fotka s pozadím** — model vymodeluje i stůl.
+- **Jen jeden pohled u členitého objektu** — zadní strana je hádaná.
+- **Rovnou 1024 px** — zbytečně dlouhé iterace.
+- **Animace bez retopologie** — mesh se při pohybu rozpadá.
+- **Průhledné a tenké objekty** — sklo, dráty, látka.
+- **Ignorování licence** — Hunyuan3D v ČR nepoužitelné.
+- **Měřítko z fotky** — foťák nezná vzdálenost, rozměry se musí
+  zadat ručně.
+
+## Co měřit
+
+- **Čas na model** při 512 a 1024 px.
+- **Počet použitelných** modelů z pěti pokusů.
+- **Věrnost zadní strany** — porovnejte s reálným objektem.
+- **Kvalita textury** pod světlem, ne na bílém pozadí.
+- **Náklady na retopologii** — kolik minut zabere dodělání.
+- **Teplota** a stabilita u dávky.
+
+## Kdy to nepoužívat
+
+- **Precizní technické modely** — součástky, díly, měřítko.
+- **Animovaná postava** bez retopologie a riggingu.
+- **Průhledné a odrazivé objekty** — sklo, kovy s leskem.
+- **Právně závazný model** — výstup není důkaz ani měření.
+- **Když stačí 2D náhled** — obrázek je levnější.
 
 ## Licence
 
 - **TRELLIS.2** — MIT, komerčně bez podmínek.
 - **Pixal3D** — MIT, komerčně použitelné; dílčí komponenty mohou mít
-  vlastní licenci.
-- **Hunyuan3D 2.0** — komunitní licence vylučuje EU, v ČR nepoužitelné.
+  vlastní licenci, projděte NOTICE v repozitáři.
+- **TripoSR** — MIT.
+- **Hunyuan3D 2.x** — komunitní licence vylučuje EU, v ČR nepoužitelné.
+
+Licence se vždy vztahuje na model, ne na výstup. Vygenerovaný mesh
+můžete použít komerčně, pokud licence modelu neříká jinak; u MIT to
+řešit nemusíte. Pozor ale na vstupní fotku — práva k předloze má
+její autor.
 
 ## Kde je limit
 
@@ -62,6 +182,7 @@ nemáme; na DGX Sparku je postup v oficiálním NVIDIA playbooku.
 - **Tenké a průhledné věci** — dráty, sklo, látka.
 - **Topologie** — výstup není připravený pro animaci.
 - **Textury** — vygenerovaná textura bývá plošší než skutečná.
+- **Drobné nápisy** — text na modelu se rozpadá.
 
 ## Kudy dál
 
@@ -70,6 +191,7 @@ nemáme; na DGX Sparku je postup v oficiálním NVIDIA playbooku.
 - [PBR](/slovnik/software/pbr/) — co znamenají materiálové mapy.
 - [Licence](/generovani/licence/) — co smíte použít komerčně.
 - [Recepty](/generovani/recepty/) — ComfyUI na vaší platformě.
+- [Obrázky](/temata/lokalni-ai-na-obrazky/) — kvalitní vstupní fotka.
 
 ## Zdroje
 
@@ -77,5 +199,7 @@ nemáme; na DGX Sparku je postup v oficiálním NVIDIA playbooku.
 - [trellis-mac — TRELLIS.2 na Apple Silicon](https://github.com/shivampkumar/trellis-mac)
 - [kroqueta-s — TRELLIS.2 na Strix Halu](https://github.com/kroqueta-s/trellis-strix-halo)
 - [Pixal3D](https://github.com/TencentARC/Pixal3D)
+- [TripoSR](https://github.com/VAST-AI-Research/TripoSR)
+- [Hunyuan3D 2.x — licence](https://huggingface.co/tencent/Hunyuan3D-2)
 
-*Naposledy ověřeno: 5. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

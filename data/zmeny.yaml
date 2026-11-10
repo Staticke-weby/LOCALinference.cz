@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Generování: obrázky, video, audio a 3D do hloubky"
+  co_se_zmenilo: "Čtyři témata o generování dostala rozšířenou strukturu: rychlá odpověď, výběr modelu, pracovní postup, kolik paměti a času, česká specifika, časté chyby, co měřit a kdy to nepoužívat. Přibyly výpočty dávek a vysvětlení, jak difuze, TTS řetěz a image-to-3D fungují."
+  dotcene_stranky: [temata/lokalni-ai-na-obrazky, temata/lokalni-ai-na-video, temata/lokalni-ai-na-audio, temata/lokalni-ai-na-3d]
+  zdroj: https://www.localinference.cz/temata/lokalni-ai-na-3d/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Slovník: 10 nových hesel a tři diagramy"
   co_se_zmenilo: "Přidáno deset hesel: structured output, reranker, OCR, prefix caching, PagedAttention, RoPE a YaRN, context rot, MLX, batch size a reasoning. Do roofline, MoE a RAG přibyly inline SVG diagramy. Nové pojmy jsou v automatickém prolinkování."
   dotcene_stranky: [slovnik/software/structured-output, slovnik/software/reranker, slovnik/software/ocr, slovnik/pamet/prefix-caching, slovnik/pamet/paged-attention, slovnik/pamet/rope-yarn, slovnik/pamet/context-rot, slovnik/software/mlx, slovnik/vykon/batch-size, slovnik/software/reasoning, rychlost/roofline, modely/proc-moe, temata/rag]

@@ -1,7 +1,7 @@
 ---
 title: "Lokální AI na obrázky: co zvládne 128 GB"
 description: "Generování obrázků na 128GB zařízeních: Z-Image, FLUX a Qwen-Image, reálné časy na DGX Sparku, RTX Sparku, Strix Halu a Macu, licence a limity."
-last_verified: 2026-11-05
+last_verified: 2026-11-10
 sidebar:
   order: 9
 ---
@@ -9,6 +9,13 @@ sidebar:
 Obrázky jsou nejzralejší část lokální generativní AI. Na 128GB stroji
 dnes vznikne fotorealistická scéna za sekundy až desítky sekund a
 plakát s textem za pár desítek sekund.
+
+## Rychlá odpověď
+
+- **Nejrychlejší start:** FLUX.2 klein 4B nebo Z-Image-Turbo.
+- **Kvalita a text:** Qwen-Image 2.1, ale licence je nekomerční.
+- **Licence pro firmu:** Z-Image-Turbo a FLUX.2 klein (Apache-2.0).
+- **128 GB stačí**; rozhoduje čas, licence a kvalita textu.
 
 ## Co dnes jde
 
@@ -42,6 +49,56 @@ Jsou to **převzatá měření**, ne náš test. Podmínky se liší, proto
 čísla nejsou přímé srovnání. Z-Image na RTX Sparku při 8 krocích
 veřejné číslo nemá.
 
+## Jak to funguje
+
+Obrázkové modely jsou **difuzní**: začnou šumem a v několika krocích
+ho postupně mění na obrázek. Počet kroků je proto hlavní páka na čas.
+Princip vysvětluje [difuze](/slovnik/software/difuze/).
+
+- **Text encoder** přečte prompt a udělá z něj vektor.
+- **Difuzní model** odšumuje latentní obraz.
+- **VAE** převede latent na pixely.
+- **Turbo a klein varianty** potřebují 4–8 kroků, klasické 20–30.
+
+Na 128 GB je celý model v paměti i s text encoderem a VAE. Nedochází
+k přepínání mezi pamětí a diskem, což je u menších karet běžné a
+výrazně to zpomaluje.
+
+## Kolik paměti to vezme
+
+| Model | Hrubý odhad vah | Rezerva pro 128 GB |
+|---|---:|---|
+| FLUX.2 klein 4B | jednotky GB | velká |
+| Z-Image-Turbo | jednotky GB | velká |
+| Qwen-Image 2.1 | nižší desítky GB | dostatečná |
+| FLUX.2 dev | desítky GB | dostatečná |
+
+Přesná čísla závisí na kvantizaci a na tom, zda běží model ve FP8,
+nebo v BF16. Rozdíl proti [VRAM](/slovnik/pamet/vram/) na běžné
+kartě je zásadní: 16GB karta musí část modelu odkládat, 128GB box
+ne. Proto je u velkých modelů rozdíl v čase větší než odpovídá
+poměru hrubého výkonu.
+
+## Kolik to zabere času
+
+Nejde o jeden obrázek, ale o dávku. Kdo generuje obsah pro web,
+potřebuje desítky variant a vybírá. Modelový příklad na DGX Sparku
+s FLUX.2 klein při 3,1 s na obrázek:
+
+| Úloha | Počet obrázků | Čistý čas |
+|---|---|---:|
+| Náhled kompozice | 8 | ~25 s |
+| Výběr pro článek | 40 | ~2 min |
+| Sada pro kampaň | 200 | ~10 min |
+
+K tomu je potřeba připočítat přípravu promptů, výběr a retuše.
+U skutečné zakázky je generování menšina práce; většinu času zabere
+rozhodování, který obrázek je použitelný.
+
+Čísla v tabulce jsou **výpočet** z naměřených 3,1 s na obrázek, ne
+další měření. Nezahrnují načtení modelu (desítky sekund při prvním
+běhu) ani čekání ve frontě, když na stroji pracuje víc lidí.
+
 ## Licence
 
 - **Z-Image-Turbo a FLUX.2 klein** — Apache-2.0, komerčně bez podmínek.
@@ -57,6 +114,60 @@ Podrobnosti jsou na stránce [licence](/generovani/licence/).
 - **Ruce a anatomické detaily** — pořád místy chybují.
 - **Konzistence postavy** — bez referencí se mezi obrázky rozpadá.
 - **Čeština v obraze** — slabší než angličtina.
+
+## Jak vybrat model
+
+| Model | Silná stránka | Slabina | Licence |
+|---|---|---|---|
+| **FLUX.2 klein 4B** | rychlost, interaktivní náhledy | drobný text | Apache-2.0 |
+| **Z-Image-Turbo** | kompromis kvalita/čas | text v obraze | Apache-2.0 |
+| **Qwen-Image 2.1** | typografie, průhledné PNG | pomalejší, nekomerční | Qwen Research |
+| **FLUX.2 dev** | nejvyšší kvalita | pomalý, nekomerční | FLUX non-commercial |
+
+Pro firmu začněte Apache-2.0 modely. Qwen-Image použijte, jen když
+vám licence nevadí.
+
+## Pracovní postup
+
+1. **Prompt** — scéna, styl, světlo, formát.
+2. **Negativní prompt** — co nechcete (text, ruce, artefakty).
+3. **Kroky** — méně pro turbo, více pro kvalitu.
+4. **Seed** — pro opakování stejné kompozice.
+5. **Varianty** — 4–8 obrazů, pak vyberte.
+6. **Upscale** — až po výběru, ne u všech.
+
+## Co ovlivní čas
+
+- **Rozlišení** — 2048² je násobně dražší než 1024².
+- **Počet kroků** — 4 vs. 20 je velký rozdíl.
+- **Model** — 4B vs. 32B.
+- **Batch** — víc obrázků najednou.
+- **První běh** — načtení modelu a kompilace.
+
+## Časté chyby
+
+- **Příliš dlouhý prompt** — model ztratí hlavní motiv.
+- **Text v obraze** — čeština je slabší než angličtina.
+- **Ruce a detaily** — pořád se kazí.
+- **Konzistence postavy** — bez referencí se rozpadá.
+- **Upscale všeho** — zbytečně prodlužuje práci.
+- **Ignorování licence** — u Qwen-Image a FLUX dev.
+
+## Co měřit
+
+- **Čas na 1024²** při vašich krocích.
+- **Počet použitelných** obrázků z 8.
+- **Kvalita textu** a rukou.
+- **Spotřeba** a teplota při dávce.
+- **Kolik** obrázků projde bez retuše.
+
+## Kdy to nepoužívat
+
+- **Přesná typografie** — lepší je vektor nebo sazba.
+- **Právní důkaz** — generovaný obrázek není důkaz.
+- **Fotka konkrétního člověka** bez souhlasu.
+- **Komerční projekt** s nekomerční licencí.
+- **Rychlá interaktivní práce** na slabém stroji.
 
 ## Kudy dál
 

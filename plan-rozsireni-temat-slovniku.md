@@ -505,7 +505,7 @@ Pravidla:
 
 ### Dávka 3 — generování a doplnění (3–4 týdny)
 
-- [ ] Obrázky, video, audio, 3D na 1 000–1 400 slov.
+- [x] Obrázky, video, audio, 3D na 1 000–1 400 slov (10. 11. 2026).
 - [ ] Recepty na generování: chybějící kroky, časy, VRAM, licence.
 - [ ] Zbývající hesla slovníku.
 - [ ] Troubleshooting tabulky pro Windows, DGX OS, Strix Halo, macOS.
