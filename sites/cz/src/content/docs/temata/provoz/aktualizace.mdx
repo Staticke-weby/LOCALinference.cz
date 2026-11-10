@@ -1,0 +1,116 @@
+---
+title: "Aktualizace lokální AI: verze, test a rollback"
+description: "Jak aktualizovat model, engine a ovladače bez výpadku. Pinované verze, testovací prostředí, zálohy a rollback."
+last_verified: 2026-11-10
+sidebar:
+  label: Aktualizace
+  order: 3
+---
+
+Lokální AI se mění: nové verze vLLM, llama.cpp, ovladačů a modelů.
+Aktualizace může zlepšit rychlost, ale také rozbít API nebo změnit
+chování. Bez pinovaných verzí a rollbacku se z provozu stane
+experiment.
+
+## Rychlá odpověď
+
+- **Pinujte verze** modelu, enginu, ovladačů a konfigurace.
+- **Testujte ve stagingu**, ne na produkci.
+- **Mějte rollback** a zálohu konfigurace.
+- **Zapisujte změny** a důvod.
+
+## Co pinovat
+
+| Co | Proč |
+|---|---|
+| **Model** | jiná revize může mít jiné chování |
+| **Kvantizace** | NVFP4/FP8/GGUF se liší |
+| **Engine** | vLLM/llama.cpp verze mění API |
+| **Ovladače** | CUDA/ROCm ovlivní výkon |
+| **OS** | DGX OS, Ubuntu, Windows |
+| **Konfigurace** | teplota, kontext, MTP, KV cache |
+
+Pinujte konkrétní revizi nebo tag, ne „latest“.
+
+## Postup aktualizace
+
+1. **Přečtěte changelog** a známé problémy.
+2. **Zálohujte** konfiguraci a data.
+3. **Nasaďte do stagingu** se stejnou konfigurací.
+4. **Spusťte testy** — API, kvalita, výkon, paměť.
+5. **Porovnejte s baseline.**
+6. **Nasaďte na produkci** v okně s nízkým provozem.
+7. **Sledujte** metriky a chyby.
+8. **Při problému rollback.**
+
+## Testy
+
+- **Health check** a základní prompt.
+- **Tool calling** a parser.
+- **Dlouhý kontext** a KV cache.
+- **Souběžnost** 2–4 požadavky.
+- **Kvalita** na vašich úlohách.
+- **Paměť** a teplota.
+
+Bez testů je aktualizace jen naděje.
+
+## Zálohy
+
+- **Konfigurace** — YAML, příkazy, proměnné.
+- **Model** — revize a hash; samotné váhy se dají stáhnout.
+- **Data** — dokumenty, index, databáze.
+- **Logy** — pro audit.
+- **Postup obnovy** — vyzkoušený, ne jen popsaný.
+
+## Rollback
+
+- **Předchozí image** nebo binárka.
+- **Předchozí revize modelu.**
+- **Předchozí konfigurace.**
+- **Ověření**, že API a data fungují.
+
+Rollback musí být rychlý. Když trvá hodiny, není to rollback.
+
+## Příklad: rollback
+
+Nová verze vLLM zhorší tool calling. Ve stagingu testy projdou, ale
+v produkci agent přestane volat nástroj. Rollback na předchozí image
+a konfiguraci vrátí provoz do stavu před aktualizací. Bez pinované
+verze byste nevěděli, kam se vrátit.
+
+## Checklist
+
+- [ ] Jsou verze pinované?
+- [ ] Je staging?
+- [ ] Jsou testy?
+- [ ] Je záloha?
+- [ ] Je rollback?
+- [ ] Je changelog?
+- [ ] Je okno nasazení?
+- [ ] Je monitoring?
+
+## Kdy neaktualizovat
+
+- Před důležitým provozem.
+- Bez zálohy a rollbacku.
+- Bez testů.
+- Když changelog neznáte.
+- Když nemáte čas řešit problémy.
+
+## Kudy dál
+
+- [API server](/temata/provoz/api-server/) — přístup.
+- [Monitoring](/temata/provoz/monitoring/) — metriky.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — obrana.
+- [vLLM](/slovnik/software/vllm/) — engine.
+- [llama.cpp](/slovnik/software/llamacpp/) — engine.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [vLLM — releases](https://github.com/vllm-project/vllm/releases)
+- [llama.cpp — releases](https://github.com/ggml-org/llama.cpp/releases)
+- [NVIDIA — DGX Spark dokumentace](https://docs.nvidia.com/dgx/dgx-spark/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Naposledy ověřeno: 10. 11. 2026.*

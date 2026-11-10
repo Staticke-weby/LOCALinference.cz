@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Nový cluster: Provoz a bezpečnost"
+  co_se_zmenilo: "Přidán hub /temata/provoz/ a pět dceřiných stránek: API server, monitoring, aktualizace, bezpečnost provozu, GDPR a AI Act. Obsahují praktické checklisty, tabulky a odkazy na model, vLLM a právní texty."
+  dotcene_stranky: [temata/provoz, temata/provoz/api-server, temata/provoz/monitoring, temata/provoz/aktualizace, temata/provoz/bezpecnost-provozu, temata/provoz/gdpr-a-ai-act]
+  zdroj: https://www.localinference.cz/temata/provoz/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Nový cluster: Agenti a automatizace"
   co_se_zmenilo: "Přidán hub /temata/agenti/ a pět dceřiných stránek: MCP v praxi, function calling v praxi, coding agent, office automatizace a bezpečnost agenta. Obsahují workflow, oprávnění, sandbox, testování a české příklady."
   dotcene_stranky: [temata/agenti, temata/agenti/mcp-v-praxi, temata/agenti/function-calling-v-praxi, temata/agenti/coding-agent, temata/agenti/office-automatizace, temata/agenti/bezpecnost-agenta]

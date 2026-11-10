@@ -1,0 +1,114 @@
+---
+title: "API server pro lokální AI: přístup, TLS a limity"
+description: "Jak bezpečně vystavit lokální model jako API pro tým. Reverzní proxy, autentizace, TLS, rate limit a health check."
+last_verified: 2026-11-10
+sidebar:
+  label: API server
+  order: 1
+---
+
+Model spuštěný v terminálu je dobrý na test. Pro tým potřebujete
+**API server**, ke kterému se připojí aplikace, a **vrstvu přístupu**,
+která rozhodne, kdo může co volat. Otevřený port s modelem je pozvánka
+pro každého v síti.
+
+## Rychlá odpověď
+
+- **Nevystavujte model přímo do internetu.** Použijte reverzní proxy.
+- **Autentizace je povinná**, i v lokální síti.
+- **TLS** řeší odposlech; bez něj neposílejte citlivá data.
+- **Rate limit a health check** jsou součást provozu, ne bonus.
+
+## Architektura
+
+| Vrstva | Co dělá | Příklad |
+|---|---|---|
+| **Model server** | inference a OpenAI API | vLLM, llama.cpp |
+| **Reverzní proxy** | TLS, auth, limit | Caddy, Nginx |
+| **Aplikace** | chat, RAG, agent | interní nástroj |
+| **Monitoring** | metriky a logy | Prometheus, logy |
+
+Model server poslouchejte na `localhost` nebo interní síti, ne na
+veřejné IP.
+
+## Autentizace
+
+Možnosti:
+
+- **API key** — jednoduché, ale musí se rotovat.
+- **Session** — pro lidi, ne pro aplikace.
+- **OIDC / SSO** — pro firmu.
+- **Proxy auth** — proxy ověří a předá identitu.
+
+Klíč nikdy nedávejte do promptu ani do veřejného klienta. Pro tým
+použijte společný účet s rotací, ne osobní tokeny.
+
+## TLS a proxy
+
+- **TLS** na proxy, ne na model serveru.
+- **HTTP/2** a komprese podle potřeby.
+- **Timeout** delší než nejdelší odpověď.
+- **Max body size** kvůli velkým promptům.
+- **Health check** na `/health` nebo ekvivalent.
+
+## Rate limit
+
+- **Počet požadavků** na uživatele.
+- **Počet tokenů** na požadavek.
+- **Souběžnost** podle paměti.
+- **Fronta** s timeoutem.
+
+Bez limitu jeden uživatel vytlačí ostatní z KV cache.
+
+## Logy
+
+- **Kdo** volal.
+- **Kdy** a s jakým modelem.
+- **Kolik tokenů**.
+- **Latence** a chyby.
+- **Bez obsahu** citlivých promptů, pokud to není nutné.
+
+Logy musí mít retenci a přístupová práva.
+
+## Příklad: interní endpoint
+
+Model běží na `localhost:8000`. Proxy na `ai.firma.local` řeší TLS
+a přihlášení. Klient dostane API klíč s limitem. Požadavky jdou na
+`/v1/chat/completions`. Port 8000 není dostupný z jiné sítě. To je
+základ, ke kterému se přidává monitoring a logy.
+
+## Checklist
+
+- [ ] Model neposlouchá na veřejné IP.
+- [ ] Proxy řeší TLS.
+- [ ] Autentizace je zapnutá.
+- [ ] Rate limit je nastavený.
+- [ ] Health check funguje.
+- [ ] Logy jsou bez tajemství.
+- [ ] Je plán rotace klíčů.
+- [ ] Je kill switch.
+
+## Kdy to nepotřebujete
+
+- Jeden uživatel na localhostu.
+- Krátký test bez sítě.
+- Model neobsahuje citlivá data.
+- Nemáte tým ani aplikaci.
+
+## Kudy dál
+
+- [Monitoring](/temata/provoz/monitoring/) — metriky.
+- [Aktualizace](/temata/provoz/aktualizace/) — verze.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — obrana.
+- [vLLM](/slovnik/software/vllm/) — server.
+- [Lokální AI pro firmy](/temata/lokalni-ai-pro-firmy/) — provoz.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+- [Caddy — dokumentace](https://caddyserver.com/docs/)
+- [Nginx — dokumentace](https://nginx.org/en/docs/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

@@ -1,0 +1,120 @@
+---
+title: "Monitoring lokální AI: co měřit a kdy bít na poplach"
+description: "Jak monitorovat lokální model: tok/s, TTFT, frontu, KV cache, paměť, teplotu a chyby. Praktické metriky a checklist."
+last_verified: 2026-11-10
+sidebar:
+  label: Monitoring
+  order: 2
+---
+
+Monitoring není jen graf. Je to způsob, jak zjistit, že model
+**zpomaluje**, **dochází paměť** nebo **někdo poslal příliš velký
+požadavek** — dřív, než si toho všimnou uživatelé.
+
+## Rychlá odpověď
+
+- **Sledujte tok/s, TTFT, frontu a paměť.** To jsou čtyři základní
+  čísla.
+- **Přidejte teplotu a throttling** u notebooků a malých boxů.
+- **Logujte chyby** a restarty.
+- **Alerty nastavte podle baseline**, ne podle pocitu.
+
+## Co měřit
+
+| Metrika | Proč | Kdy je problém |
+|---|---|---|
+| **Decode tok/s** | rychlost odpovědi | dlouhodobý pokles |
+| **TTFT** | čekání na první token | růst s kontextem/frontou |
+| **Prefill tok/s** | čtení dokumentu | pokles po updatu |
+| **Fronta** | kolik lidí čeká | trvale roste |
+| **KV cache** | paměť pro kontext | blíží se limitu |
+| **GPU/RAM** | celková paměť | OOM nebo swap |
+| **Teplota** | throttling | vysoká v zátěži |
+| **Chyby** | stabilita | 5xx, timeouty |
+
+## Jak to sbírat
+
+- **vLLM** má metriky a Prometheus endpoint; použijte oficiální
+  dokumentaci.
+- **llama.cpp server** loguje požadavky a rychlosti.
+- **NVIDIA:** `nvidia-smi` nebo DCGM.
+- **AMD:** `rocm-smi`.
+- **Systém:** CPU, RAM, disk, síť.
+
+Metriky ukládejte s časem a modelem, jinak se nedají srovnávat.
+
+## Baseline
+
+Nejdřív změřte **normální stav**:
+
+- jeden uživatel, krátký prompt,
+- jeden uživatel, 32k dokument,
+- čtyři uživatelé, krátké prompty,
+- dlouhý běh (hodiny).
+
+Teprve pak nastavte alerty. Bez baseline nevíte, co je „pomalé“.
+
+## Alerty
+
+- **TTFT** nad váš limit po dobu několika minut.
+- **Fronta** roste a nevyprázdní se.
+- **Paměť** pod bezpečnou rezervou.
+- **Teplota** vede k throttlingu.
+- **Chybovost** nad běžnou úrovní.
+- **Restart** modelu nebo serveru.
+
+Alerty posílejte do e-mailu, chatu nebo ticketu. Nestačí dashboard,
+který nikdo neotevře.
+
+## Logy
+
+- **Kdo** a **kdy**.
+- **Model** a **verze**.
+- **Délka promptu** a odpovědi.
+- **Latence**.
+- **Chyba** bez tajemství.
+
+Logy musí mít retenci a přístupová práva. Mohou obsahovat osobní
+údaje.
+
+## Příklad: alert na frontu
+
+Normálně jsou ve frontě 0–2 požadavky. Alert se spustí, když je
+fronta delší než 10 po dobu pěti minut. To znamená, že model nestíhá
+nebo někdo poslal příliš dlouhý kontext. Bez baseline byste nevěděli,
+jestli je 10 „hodně“.
+
+## Checklist
+
+- [ ] Jsou metriky dostupné?
+- [ ] Je baseline?
+- [ ] Jsou alerty?
+- [ ] Jsou logy bez tajemství?
+- [ ] Je retence?
+- [ ] Je dashboard?
+- [ ] Je plán reakce na incident?
+
+## Kdy to nepotřebujete
+
+- Jeden uživatel a krátký test.
+- Model neobsluhuje nikoho dalšího.
+- Nemáte produkční data.
+- Stačí vám log z terminálu.
+
+## Kudy dál
+
+- [API server](/temata/provoz/api-server/) — přístup.
+- [Aktualizace](/temata/provoz/aktualizace/) — verze.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — obrana.
+- [vLLM](/slovnik/software/vllm/) — metriky.
+- [TTFT](/slovnik/vykon/ttft/) — čekání.
+- [Kolik uživatelů zvládne box](/vyber/kolik-uzivatelu/) — souběžnost.
+
+## Zdroje
+
+- [vLLM — metrics](https://docs.vllm.ai/en/latest/design/metrics.html)
+- [Prometheus — dokumentace](https://prometheus.io/docs/)
+- [NVIDIA — nvidia-smi](https://developer.nvidia.com/nvidia-system-management-interface)
+- [AMD — rocm-smi](https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

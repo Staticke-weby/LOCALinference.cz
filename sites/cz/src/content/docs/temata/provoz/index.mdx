@@ -1,0 +1,116 @@
+---
+title: "Provoz lokální AI: server, monitoring a bezpečnost"
+description: "Jak provozovat lokální AI pro tým: API server, autentizace, monitoring, aktualizace, bezpečnost, GDPR a AI Act."
+last_verified: 2026-11-10
+sidebar:
+  label: Provoz a bezpečnost
+  order: 11
+---
+
+Lokální AI není jen „spustit model“. Když ji používá víc lidí nebo
+firma, potřebujete **server, přístup, monitoring, aktualizace a
+bezpečnost**. Tento cluster shrnuje minimum, které by měl mít každý
+provoz na 128GB boxu.
+
+## Rychlá odpověď
+
+- **API server** — vLLM nebo llama.cpp, ne chat v terminálu.
+- **Autentizace** — kdokoli na portu nesmí používat model.
+- **Monitoring** — tok/s, TTFT, fronta, paměť, chyby.
+- **Aktualizace** — pinované verze a plán obnovy.
+- **Bezpečnost** — oprávnění, logy, prompt injection, GDPR.
+
+## Co je potřeba
+
+| Vrstva | Minimum |
+|---|---|
+| **Model** | Qwen3.8 Flash Next |
+| **Engine** | vLLM (tým) / llama.cpp (jeden uživatel) |
+| **Přístup** | reverzní proxy, TLS, přihlášení |
+| **Monitoring** | metriky a logy |
+| **Zálohy** | konfigurace a data |
+| **Dokumentace** | kdo co spravuje |
+
+## API server
+
+Model by neměl běžet jako otevřený port. Potřebujete:
+
+- **OpenAI kompatibilní API** — pro aplikace a klienty.
+- **Autentizaci** — token, session nebo proxy.
+- **TLS** — pokud jde mimo localhost.
+- **Rate limit** — ochrana proti přetížení.
+- **Logy** — kdo a co poslal.
+
+Podrobnosti jsou v [API serveru](/temata/provoz/api-server/).
+
+## Monitoring
+
+Sledujte:
+
+- **tok/s** a **TTFT**,
+- **frontu** a počet požadavků,
+- **paměť** a KV cache,
+- **teplotu** a throttling,
+- **chyby** a restarty.
+
+Bez metrik nepoznáte, že model zpomaluje nebo dochází paměť.
+Podrobnosti jsou v [monitoringu](/temata/provoz/monitoring/).
+
+## Aktualizace
+
+- **Pinujte verze** modelu, enginu a ovladačů.
+- **Testujte** novou verzi před nasazením.
+- **Mějte rollback** na předchozí verzi.
+- **Zálohujte** konfiguraci.
+- **Zapisujte změny** do changelogu.
+
+Podrobnosti jsou v [aktualizacích](/temata/provoz/aktualizace/).
+
+## Bezpečnost
+
+- **Nejmenší oprávnění** pro uživatele i agenty.
+- **Prompt injection** — dokument nebo nástroj může model ovlivnit.
+- **Logy** bez citlivých dat.
+- **Oddělení** testovacího a produkčního prostředí.
+- **Kill switch** — možnost zastavit model nebo agenta.
+
+Podrobnosti jsou v [bezpečnosti provozu](/temata/provoz/bezpecnost-provozu/).
+
+## GDPR a AI Act
+
+Lokální provoz **není automaticky v souladu**. Potřebujete právní
+základ, oprávnění, retenci, dokumentaci a posouzení rizik. U agnetů
+a citlivých dat je to složitější. Podrobnosti jsou v
+[GDPR a AI Act](/temata/provoz/gdpr-a-ai-act/).
+
+## Příklad: malý tým
+
+Čtyři lidé, jeden DGX Spark, vLLM na interní síti. Proxy řeší TLS
+a přihlášení. Monitoring hlídá TTFT a frontu. Aktualizace se testují
+na stagingu. Logy jdou do firemního úložiště. To je minimální provoz,
+který zvládne jeden správce.
+
+## Kdy to nepoužívat
+
+- Jeden uživatel a jednorázový test — stačí llama.cpp.
+- Data jsou veřejná a model nic nemění.
+- Nemáte nikoho, kdo bude provoz spravovat.
+- Nemáte oprávnění a audit.
+
+## Kudy dál
+
+- [API server](/temata/provoz/api-server/) — přístup a API.
+- [Monitoring](/temata/provoz/monitoring/) — metriky.
+- [Aktualizace](/temata/provoz/aktualizace/) — verze a rollback.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — obrana.
+- [GDPR a AI Act](/temata/provoz/gdpr-a-ai-act/) — právo.
+- [Lokální AI pro firmy](/temata/lokalni-ai-pro-firmy/) — rozhodnutí.
+
+## Zdroje
+
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [GDPR — oficiální text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [AI Act — oficiální text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+
+*Naposledy ověřeno: 10. 11. 2026.*

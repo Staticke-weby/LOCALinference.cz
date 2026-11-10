@@ -222,3 +222,19 @@
     - /temata/agenti/bezpecnost-agenta/
   chybi: "Chybí veřejné testy úspěšnosti agentů na českých úlohách."
   overeno: 2026-11-10
+
+- id: provoz
+  nazev: Provoz a bezpečnost
+  hledany_vyraz: "provoz lokální AI"
+  popis: "Jak provozovat lokální AI: API server, monitoring, aktualizace, bezpečnost, GDPR a AI Act."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /temata/provoz/
+    - /temata/provoz/api-server/
+    - /temata/provoz/monitoring/
+    - /temata/provoz/aktualizace/
+    - /temata/provoz/bezpecnost-provozu/
+    - /temata/provoz/gdpr-a-ai-act/
+  chybi: "Chybí české případové studie provozu a incidentů."
+  overeno: 2026-11-10

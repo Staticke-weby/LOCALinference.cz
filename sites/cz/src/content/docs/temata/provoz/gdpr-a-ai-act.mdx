@@ -1,0 +1,118 @@
+---
+title: "GDPR a AI Act pro lokální AI: co hlídat"
+description: "Lokální AI a právo: právní základ, minimalizace, retence, DPIA, AI Act a dokumentace. Praktický checklist, ne právní rada."
+last_verified: 2026-11-10
+sidebar:
+  label: GDPR a AI Act
+  order: 5
+---
+
+Lokální provoz znamená, že data neposíláte do cloudu. **Neznamená
+to ale, že se na vás nevztahuje GDPR nebo AI Act.** Osobní údaje
+zpracováváte i na vlastním boxu a model může být součástí systému,
+který právo reguluje.
+
+> Toto je praktický přehled, ne právní rada. Konkrétní nasazení
+> konzultujte s právníkem nebo DPO.
+
+## Rychlá odpověď
+
+- **Lokální ≠ bez regulace.** GDPR platí i pro data na vašem disku.
+- **Právní základ** a **minimalizace** jsou první otázky.
+- **AI Act** záleží na typu nasazení a riziku; ne každý model je
+  „high-risk“.
+- **Dokumentace, logy a lidský dohled** jsou praktické povinnosti.
+
+## GDPR
+
+| Otázka | Co potřebujete |
+|---|---|
+| **Právní základ** | souhlas, smlouva, oprávněný zájem… |
+| **Minimalizace** | jen data, která potřebujete |
+| **Retence** | jak dlouho a proč |
+| **Přístup** | kdo vidí co |
+| **Práva subjektů** | přístup, oprava, výmaz |
+| **Zpracovatel** | kdo data zpracovává |
+| **DPIA** | u rizikového zpracování |
+| **Zabezpečení** | technická a organizační opatření |
+
+Lokální box je nástroj zpracování. Pořád potřebujete účel, základ
+a pravidla.
+
+## AI Act
+
+AI Act zavádí povinnosti podle **typu a rizika** systému. Pro
+lokální AI to znamená:
+
+- **klasifikovat** Use case a riziko,
+- **dokumentovat** model, data a účel,
+- **lidský dohled** u citlivých rozhodnutí,
+- **transparentnost** vůči uživatelům,
+- **řízení rizik** a testování,
+- **incidenty** a reportování podle typu systému.
+
+Ne každý interní chatbot je high-risk. Ale lékařské, HR nebo
+hodnotící nasazení může být. Ověřte aktuální text a přílohy.
+
+## Lokální specifika
+
+- **Data zůstávají**, ale mohou být v logech, indexu a zálohách.
+- **Model** může být od třetí strany; licence a podmínky platí.
+- **Agent** může data odeslat nástrojem, i když model běží lokálně.
+- **Prompt injection** může obejít vaše pravidla.
+- **Mazání** musí zahrnout dokumenty, vektory i logy.
+
+## Dokumentace
+
+- **Účel** a právní základ.
+- **Kategorie dat** a subjektů.
+- **Model** a verze.
+- **Architektura** a toky dat.
+- **Oprávnění** a role.
+- **Retence** a mazání.
+- **Testy** a incidenty.
+- **Lidský dohled**.
+
+## Příklad: lékařská ordinace
+
+Ordinace chce lokální model na přepis poznámek. I když data zůstávají
+v ordinaci, jde o zdravotní údaje: potřebuje právní základ, minimalizaci,
+retence, oprávnění a posouzení rizik. Lokální box je technická část,
+ne celé řešení.
+
+## Checklist
+
+- [ ] Máme právní základ?
+- [ ] Minimalizujeme data?
+- [ ] Víme, kde všude data jsou?
+- [ ] Jde data smazat?
+- [ ] Máme dokumentaci?
+- [ ] Máme lidský dohled?
+- [ ] Máme posouzení rizik?
+- [ ] Máme incidentní plán?
+
+## Kdy zavolat právníka
+
+- Zpracováváte **osobní údaje** ve větším rozsahu.
+- Nasazujete v **zdravotnictví, HR nebo financích**.
+- Agent **rozhoduje** nebo doporučuje s dopadem na lidi.
+- Data jsou **zvláštní kategorie**.
+- Nevíte, jestli jste high-risk.
+
+## Kudy dál
+
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — technika.
+- [API server](/temata/provoz/api-server/) — přístup.
+- [Monitoring](/temata/provoz/monitoring/) — logy.
+- [Lokální AI pro firmy](/temata/lokalni-ai-pro-firmy/) — rozhodnutí.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+- [RAG oprávnění](/temata/rag/opravneni-a-bezpecnost/) — dokumenty.
+
+## Zdroje
+
+- [GDPR — oficiální text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [AI Act — oficiální text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+- [NIST — AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Naposledy ověřeno: 10. 11. 2026.*
