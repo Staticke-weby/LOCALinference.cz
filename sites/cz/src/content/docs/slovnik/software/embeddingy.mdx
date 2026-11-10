@@ -1,0 +1,115 @@
+---
+title: "Embeddingy: co to je a jak hledat v dokumentech"
+description: "Embedding je číselný vektor významu textu. Vysvětlíme, jak funguje hledání, jak zapadá do RAG a co znamená pro 128GB box."
+last_verified: 2026-11-10
+sidebar:
+  label: Embeddingy
+  order: 25
+---
+
+**Embedding** je číselný vektor, který reprezentuje význam textu.
+Podobné texty mají podobné vektory, i když nepoužívají stejná slova.
+Díky tomu lze hledat „smlouva o dílo“ a najít dokument, který mluví
+o „zhotoviteli a objednateli“, aniž by obsahoval přesnou frázi.
+
+## Rychlá odpověď
+
+- **Embedding = převod textu na vektor.** Model z věty udělá stovky
+  nebo tisíce čísel.
+- **Používá se pro sémantické hledání** a [RAG](/slovnik/software/rag/):
+  najdi relevantní části dokumentu, které se mají dostat do kontextu.
+- **Není to chat model.** Embedding model je menší a běží i na CPU;
+  na 128GB boxu ho lze provozovat vedle Qwen3.8.
+
+## Jak to funguje
+
+Text se rozdělí na části (chunky), každý chunk se převede na vektor
+a uloží se do [vektorové databáze](/slovnik/software/vektorova-databaze/).
+Při dotazu se převede dotaz na vektor a najdou se nejbližší chunky.
+
+Podobnost se často měří **kosinusovou podobností**: čím blíž jsou
+vektory, tím podobnější význam. Není to magie — záleží na modelu,
+jazyce a kvalitě chunků.
+
+## Jak zapadá do RAG
+
+1. **Dokument** se rozdělí na odstavce nebo stránky.
+2. **Embedding model** z každé části udělá vektor.
+3. **Vektorová databáze** vektory uloží a umí najít nejbližší.
+4. **Dotaz** se převede na vektor a najde top-K chunků.
+5. **Chat model** dostane vybrané chunky a odpovídá s citacemi.
+
+Bez embeddingů byste museli posílat celý dokument nebo hledat jen
+podle klíčových slov. S nimi posíláte jen relevantní části.
+
+## Na 128GB boxu
+
+- **Embedding model je malý** — často stovky MB až jednotky GB.
+- **Může běžet na CPU** — pro menší objemy nemusí konkurovat
+  Qwen3.8 o GPU.
+- **Dávkové zpracování** je efektivnější než jeden dokument po druhém.
+- **Paměť** — vektory a index zabírají místo; u velkých archivů
+  sledujte RAM i disk.
+
+Qwen3.8 Flash Next není embedding model. Pro hledání se používá
+samostatný model; někteří provideři nabízejí obojí, ale nejsou to
+stejné váhy.
+
+## Embeddingy vs. plnotextové hledání
+
+| Co | Embeddingy | Plnotextové hledání |
+|---|---|---|
+| Princip | význam | přesná slova |
+| Najde synonyma | ano | ne |
+| Najde přesný kód | hůř | **ano** |
+| Vysvětlitelnost | nižší | **vyšší** |
+| Česká morfologie | záleží na modelu | záleží na stemmeru |
+
+V praxi se často kombinují: nejdřív plnotextový filtr, pak embeddingy,
+případně reranker.
+
+## Český příklad
+
+Dotaz „jaká je výpovědní lhůta“ nemusí obsahovat slovo „lhůta“
+přesně. Embedding najde pasáž „smlouvu lze vypovědět ke konci
+kalendářního měsíce“, protože význam je blízký. Model pak odpoví
+s citací smlouvy. Když se ptáte na konkrétní číslo, jako je IČO,
+je lepší plnotextové hledání; embeddingy na přesné identifikátory
+nejsou spolehlivé.
+
+## Kde je limit
+
+- **Chunking** — špatně rozdělený dokument ztrácí souvislosti.
+- **Model** — česká a vícejazyčná kvalita se liší; testujte na svých
+  datech.
+- **Aktuálnost** — když se dokument změní, musí se znovu embeddovat.
+- **Citace** — embedding najde chunk, ale odpověď musí uvést zdroj.
+- **Bezpečnost** — do indexu se mohou dostat citlivá data; řešte
+  oprávnění a mazání.
+
+## Jak začít
+
+1. Vyberte **jeden dokument** a ručně ho rozdělte na smysluplné části.
+2. Otestujte **10 dotazů**, na které znáte odpověď.
+3. Změřte, jestli se správný chunk objevil v top 3–5.
+4. Teprve potom řešte databázi a automatizaci.
+5. Výsledky a konfiguraci zapište, ať se dají opakovat.
+
+## Kudy dál
+
+- [RAG](/slovnik/software/rag/) — celý postup.
+- [Vektorová databáze](/slovnik/software/vektorova-databaze/) — kam
+  vektory uložit.
+- [Kontext](/slovnik/pamet/kontext/) — kolik chunků se vejde.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko
+  dokumentů v kontextu.
+- [Hugging Face](/slovnik/software/huggingface/) — kde hledat modely.
+
+## Zdroje
+
+- [Sentence Transformers — dokumentace](https://www.sbert.net/)
+- [MTEB — benchmark embedding modelů](https://huggingface.co/spaces/mteb/leaderboard)
+- [Qdrant — dokumentace](https://qdrant.tech/documentation/)
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+
+*Naposledy ověřeno: 10. 11. 2026.*

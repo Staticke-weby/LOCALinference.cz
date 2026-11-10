@@ -11,6 +11,27 @@ sidebar:
 pro už přečtený text. Bez ní by musel celý kontext počítat znovu při
 každém tokenu — s ní stačí dopočítat jen nový kus.
 
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:760px" viewBox="0 0 720 180" role="img" aria-labelledby="kv-cache-diagram-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="kv-cache-diagram-title">Kontext se ukládá do KV cache a paměť roste s délkou</title>
+    <rect x="10" y="55" width="180" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="100" y="85" text-anchor="middle" fill="currentColor" font-size="15">tokeny kontextu</text>
+    <text x="100" y="106" text-anchor="middle" fill="currentColor" font-size="12">zadání + odpověď</text>
+    <line x1="190" y1="90" x2="260" y2="90" stroke="currentColor" stroke-width="1.5" />
+    <polygon points="260,85 270,90 260,95" fill="currentColor" />
+    <rect x="270" y="45" width="180" height="90" rx="8" fill="none" stroke="currentColor" />
+    <text x="360" y="80" text-anchor="middle" fill="currentColor" font-size="15">KV cache</text>
+    <text x="360" y="102" text-anchor="middle" fill="currentColor" font-size="12">klíče a hodnoty</text>
+    <line x1="450" y1="90" x2="520" y2="90" stroke="currentColor" stroke-width="1.5" />
+    <polygon points="520,85 530,90 520,95" fill="currentColor" />
+    <rect x="530" y="45" width="180" height="90" rx="8" fill="none" stroke="currentColor" />
+    <text x="620" y="80" text-anchor="middle" fill="currentColor" font-size="15">paměť roste</text>
+    <text x="620" y="102" text-anchor="middle" fill="currentColor" font-size="12">s délkou a souběžností</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">Čím delší kontext a víc souběžných dotazů, tím větší KV cache.</figcaption>
+</figure>
+
+
 ## Proč to existuje
 
 Když model generuje odpověď, potřebuje vědět, co bylo v zadání.

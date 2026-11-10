@@ -1,0 +1,107 @@
+---
+title: "Vektorová databáze: co to je a kdy ji potřebujete"
+description: "Vektorová databáze ukládá embeddingy a hledá nejbližší význam. Vysvětlíme, kdy ji použít, jaké jsou možnosti a co hlídat na 128GB boxu."
+last_verified: 2026-11-10
+sidebar:
+  label: Vektorová databáze
+  order: 26
+---
+
+**Vektorová databáze** ukládá [embeddingy](/slovnik/software/embeddingy/)
+a umí rychle najít vektory nejbližší dotazu. Je to součást RAG:
+dokumenty se převedou na vektory, uloží se do databáze a při dotazu
+se hledá relevantní část, která se pošle modelu.
+
+## Rychlá odpověď
+
+- **Není to chat model ani náhrada modelu.** Je to úložiště a index
+  pro vektory a metadata.
+- **Vyplatí se od stovek dokumentů výš**, kdy už nestačí posílat celý
+  text do kontextu.
+- **Na 128GB boxu** zvládnete menší až střední kolekci i na CPU;
+  záleží na počtu chunků, dimenzi a tom, jak často se mění.
+
+## Co v ní je
+
+Kromě vektoru se ukládají i **metadata**: název dokumentu, stránka,
+oddělení, datum, oprávnění. Metadata umožňují filtrovat a mazat.
+Bez nich najdete „něco podobného“, ale ne „smlouvu z roku 2025 pro
+oddělení nákupu“.
+
+## Jak se hledá
+
+1. Dotaz se převede na vektor stejným embedding modelem.
+2. Databáze najde **nejbližší vektory** (aproximované hledání).
+3. Výsledky se seřadí, případně přefiltrují podle metadat.
+4. Vybrané chunky se pošlou modelu jako kontext.
+
+U malých kolekcí stačí přesné hledání; u větších se používají
+aproximované indexy (HNSW, IVF a podobně), které jsou rychlejší,
+ale mohou minout některé výsledky.
+
+## Možnosti
+
+| Nástroj | Forma | Kdy se hodí |
+|---|---|---|
+| **FAISS** | knihovna | lokální experimenty, plná kontrola |
+| **Chroma** | embedded/server | rychlý start, menší projekty |
+| **Qdrant** | server | produkce, filtrování, tým |
+| **pgvector** | rozšíření PostgreSQL | už máte Postgres a transakce |
+| **LanceDB** | embedded | lokální data, jednoduché nasazení |
+
+Tabulka není žebříček. Volba závisí na tom, jestli chcete knihovnu,
+nebo službu, kdo bude data spravovat a jak řešíte zálohy.
+
+## Na 128GB boxu
+
+- **Vektory v RAM** — menší kolekce se vejdou do paměti; u velkých
+  archivů počítejte s místem na index.
+- **CPU stačí** — embedding i hledání nemusí běžet na GPU, ale
+  u velkých dávek se GPU hodí.
+- **Disk** — index a původní dokumenty zabírají místo; plánujte
+  zálohy.
+- **Souběžnost** — dotaz do databáze je rychlý, ale model pak stejně
+  čte vybrané chunky; limituje vás kontext, ne databáze.
+
+## Český příklad
+
+Firma má 2 000 PDF: smlouvy, faktury a interní postupy. Do metadat
+uloží oddělení, rok a typ dokumentu. Dotaz „jaká je výpovědní lhůta
+u dodavatele“ najde relevantní smlouvy, filtr omezí výsledek na
+platné dokumenty a model odpoví s citací konkrétní stránky. Bez
+metadat by se do kontextu dostaly i neplatné nebo cizí dokumenty.
+
+## Kdy ji nepotřebujete
+
+- Máte **jeden dokument** a vejde se do kontextu.
+- Hledáte **přesný kód nebo číslo** — plnotextové hledání je lepší.
+- Máte **méně než sto krátkých textů** — vystačíte s polem v paměti.
+- Nechcete řešit **aktualizace a mazání** — čím víc dat, tím víc
+  údržby.
+
+## Co hlídat
+
+- **Aktuálnost** — změna dokumentu znamená nový embedding.
+- **Mazání** — GDPR a citlivá data musí jít smazat i z indexu.
+- **Oprávnění** — kdo smí vidět který dokument; metadata nestačí,
+  pokud je aplikace nevynucuje.
+- **Kvalita chunků** — databáze najde to, co do ní uložíte.
+- **Zálohy** — index není zdroj pravdy; zdrojové dokumenty ano.
+
+## Kudy dál
+
+- [Embeddingy](/slovnik/software/embeddingy/) — jak vzniká vektor.
+- [RAG](/slovnik/software/rag/) — celý postup.
+- [Kontext](/slovnik/pamet/kontext/) — kolik výsledků se vejde.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko
+  dokumentů v kontextu.
+- [Hugging Face](/slovnik/software/huggingface/) — modely a licence.
+
+## Zdroje
+
+- [FAISS — dokumentace](https://faiss.ai/)
+- [Qdrant — dokumentace](https://qdrant.tech/documentation/)
+- [pgvector — GitHub](https://github.com/pgvector/pgvector)
+- [Chroma — dokumentace](https://docs.trychroma.com/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

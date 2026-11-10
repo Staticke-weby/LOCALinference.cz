@@ -22,6 +22,32 @@ slovo?“, odpověď se většinou jmenuje prefill.
 - **TTFT** (doba do prvního tokenu) je prefill plus fronta a síť.
   Na dlouhém kontextu roste lineárně s délkou vstupu.
 
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:760px" viewBox="0 0 760 170" role="img" aria-labelledby="prefill-diagram-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="prefill-diagram-title">Zadání se nejdřív zpracuje v prefillu, pak začne decode</title>
+    <rect x="10" y="55" width="150" height="65" rx="8" fill="none" stroke="currentColor" />
+    <text x="85" y="83" text-anchor="middle" fill="currentColor" font-size="14">zadání</text>
+    <text x="85" y="102" text-anchor="middle" fill="currentColor" font-size="12">dlouhý dokument</text>
+    <line x1="160" y1="87" x2="220" y2="87" stroke="currentColor" stroke-width="1.5" />
+    <polygon points="220,82 230,87 220,92" fill="currentColor" />
+    <rect x="230" y="45" width="170" height="85" rx="8" fill="none" stroke="currentColor" />
+    <text x="315" y="77" text-anchor="middle" fill="currentColor" font-size="14">prefill</text>
+    <text x="315" y="98" text-anchor="middle" fill="currentColor" font-size="12">čte celý vstup</text>
+    <line x1="400" y1="87" x2="460" y2="87" stroke="currentColor" stroke-width="1.5" />
+    <polygon points="460,82 470,87 460,92" fill="currentColor" />
+    <rect x="470" y="45" width="150" height="85" rx="8" fill="none" stroke="currentColor" />
+    <text x="545" y="77" text-anchor="middle" fill="currentColor" font-size="14">první token</text>
+    <text x="545" y="98" text-anchor="middle" fill="currentColor" font-size="12">TTFT</text>
+    <line x1="620" y1="87" x2="670" y2="87" stroke="currentColor" stroke-width="1.5" />
+    <polygon points="670,82 680,87 670,92" fill="currentColor" />
+    <rect x="680" y="55" width="70" height="65" rx="8" fill="none" stroke="currentColor" />
+    <text x="715" y="83" text-anchor="middle" fill="currentColor" font-size="14">decode</text>
+    <text x="715" y="102" text-anchor="middle" fill="currentColor" font-size="12">tokeny</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">Prefill určuje, jak dlouho se čeká na první token. Decode určuje, jak rychle přibývá odpověď.</figcaption>
+</figure>
+
+
 ## Dvě fáze, dva různé výkony
 
 | Fáze | Co se děje | Co ji brzdí | Měří se |

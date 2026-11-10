@@ -60,8 +60,8 @@ Nový nástroj `npm run check:prolinkovani` čte **hotové HTML**, ne jen Markdo
 
 **Baseline k 10. 11. 2026:**
 
-- 129 obsahových stránek v dist (3 staré OEM URL jsou redirecty, audit je přeskakuje).
-- 12 témat, 36 slovních hesel.
+- 134 obsahových stránek v dist (3 staré OEM URL jsou redirecty, audit je přeskakuje).
+- 12 témat, 41 slovních hesel (po dávce 1).
 - **Výchozí stav: 9 chyb.** Po dávce 0 (10. 11. 2026) je stav **0 chyb, 0 varování**:
   - `/temata/cena-lokalni-ai/` — doplněn model a dva pojmy.
   - `/temata/lokalni-ai-pro-firmy/` — doplněno zařízení a dva pojmy.
@@ -310,7 +310,7 @@ Cíl: **500–900 slov** u klíčových pojmů, **350–500** u okrajových.
 
 ### 7.1 Současný stav
 
-36 hesel, 202–366 slov. Nejsou špatná, ale většina je jen definice. Chybí příklad na 128GB stroji, číslo, mýtus a vztahy.
+Původně 36 hesel, 202–366 slov. Po dávce 1 je jich 41; nejsou špatná, ale většina byla jen definice. Chybí příklad na 128GB stroji, číslo, mýtus a vztahy.
 
 ### 7.2 Prioritní hesla
 
@@ -489,8 +489,8 @@ Pravidla:
 - [ ] `/temata/strix-halo/`, `/temata/rtx-spark/`, `/temata/dgx-spark/` — 1 400 každá.
 - [x] 10 hesel ve slovníku na 578–672 slov: `prefill`, `upscaling`, `ollama`, `vllm`, `huggingface`, `tflops`, `vram`, `kontext`, `nvfp4`, `cuda` (10. 11. 2026).
 - [x] Konfigurační stránky Acemagic A10A, ASUS GX10 1TB/4TB a Acer RA110: vlastní titulek, popis, pro koho, silné stránky, slabiny a kdy nekupovat (10. 11. 2026).
-- [ ] 5 nových hesel z oblasti agentů/RAG.
-- [ ] 2 diagramy (KV cache, prefill/decode).
+- [x] 5 nových hesel z oblasti agentů/RAG: MCP, function calling, embeddingy, vektorová databáze, prompt injection (10. 11. 2026).
+- [x] 2 diagramy: KV cache a prefill/decode (10. 11. 2026).
 
 ### Dávka 2 — nové clustery (3–4 týdny)
 
@@ -577,8 +577,8 @@ Pravidla:
 4. Přepsat `/temata/lokalni-ai-pro-firmy/`.
 5. Přepsat `/temata/qwen3-8-flash-next/`.
 6. Rozšířit 10 klíčových hesel slovníku (hotovo 10. 11. 2026: prefill, upscaling, ollama, vllm, huggingface, tflops, vram, kontext, nvfp4, cuda).
-7. Přidat 5 nových hesel (MCP, function calling, embeddingy, vektorová DB, prompt injection).
-8. Přidat 2 diagramy (KV cache, prefill/decode).
+7. Přidat 5 nových hesel (MCP, function calling, embeddingy, vektorová DB, prompt injection) — hotovo 10. 11. 2026.
+8. Přidat 2 diagramy (KV cache, prefill/decode) — hotovo 10. 11. 2026.
 9. Spustit `check:prolinkovani:strict` a zapnout do CI.
 10. Zapsat první dávku do changelogu a ověřit live.
 

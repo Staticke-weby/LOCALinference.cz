@@ -106,6 +106,11 @@ function rehypeSlovnik() {
     { re: /\bupscal\w*/gi, url: '/slovnik/software/upscaling/', slug: 'software/upscaling' },
     { re: /\bVRAM\b/g, url: '/slovnik/pamet/vram/', slug: 'pamet/vram' },
     { re: /\bSTT\b/g, url: '/slovnik/software/stt/', slug: 'software/stt' },
+    { re: /\bMCP\b/g, url: '/slovnik/software/mcp/', slug: 'software/mcp' },
+    { re: /\b(?:function|tool) calling\b/gi, url: '/slovnik/software/function-calling/', slug: 'software/function-calling' },
+    { re: /\bembedding\w*/gi, url: '/slovnik/software/embeddingy/', slug: 'software/embeddingy' },
+    { re: /\bvektorov\w*\s+datab\w*/gi, url: '/slovnik/software/vektorova-databaze/', slug: 'software/vektorova-databaze' },
+    { re: /\bprompt injection\b/gi, url: '/slovnik/provoz/prompt-injection/', slug: 'provoz/prompt-injection' },
   ];
 
   const SKIP_PARENTS = new Set(['a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']);

@@ -1,0 +1,115 @@
+---
+title: "MCP: co to je a jak propojí model s nástroji"
+description: "MCP je otevřený protokol pro připojení modelu k nástrojům a datům. Vysvětlíme, jak funguje, k čemu je na 128GB boxu a kde je riziko."
+last_verified: 2026-11-10
+sidebar:
+  label: MCP
+  order: 23
+---
+
+**MCP** (Model Context Protocol) je otevřený protokol, který propojuje
+jazykový model s nástroji, soubory a databázemi. Není to model ani
+server pro inference — je to způsob, jak modelu říct: „tady máš
+nástroj, tímhle ho zavolej a tady je výsledek“.
+
+## Rychlá odpověď
+
+- **MCP = standard pro nástroje a data.** Místo vlastní integrace
+  použijete společný protokol.
+- **Model běží dál lokálně**, MCP server může být také lokální.
+  Data tak nemusí opustit stroj.
+- **Není to bezpečnostní záruka.** Co MCP server dovolí, to model
+  může udělat; oprávnění a sandbox řešte zvlášť.
+
+## Jak to funguje
+
+MCP má dvě strany:
+
+- **Klient** — aplikace, která model spouští (chat, IDE, agent).
+- **Server** — nabízí nástroje, zdroje nebo šablony promptů.
+
+Komunikace probíhá přes JSON-RPC. Server může běžet jako lokální
+proces (`stdio`) nebo jako síťová služba. Model dostane seznam
+nástrojů a jejich schémat; když je potřebuje, požádá o zavolání.
+Aplikace zavolání provede a výsledek vrátí modelu.
+
+Typické příklady serverů:
+
+- **soubory** — čtení a zápis v povoleném adresáři,
+- **git** — historie, diff, větve,
+- **databáze** — dotazy nad interními daty,
+- **dokumentace** — hledání ve firemních dokumentech,
+- **nástroje** — kalendář, e-mail, ticketing.
+
+## Proč to dává smysl na 128 GB
+
+Lokální box je zajímavý tím, že data zůstávají u vás. MCP tomu
+pomáhá: model i nástroje mohou běžet na stejném stroji a ven jde
+jen to, co sami povolíte. Pro firmu je to silnější argument než
+„model je v cloudu, ale slibuje, že data neukládá“.
+
+Na 128GB boxu typicky kombinujete:
+
+- **Qwen3.8 Flash Next** jako model,
+- **vLLM** nebo llama.cpp jako engine,
+- **MCP server** pro soubory, git nebo dokumentaci,
+- **agentní aplikaci**, která to celé řídí.
+
+## MCP, function calling a RAG
+
+| Co | Co řeší | Kdo to zastřešuje |
+|---|---|---|
+| **Function calling** | model umí požádat o zavolání funkce | model + aplikace |
+| **MCP** | standard, jak nástroje nabídnout a zavolat | klient + server |
+| **RAG** | jak dostat relevantní text do kontextu | aplikace + databáze |
+
+MCP není náhrada RAG. RAG řeší „co má model vidět“, MCP řeší „co má
+model umět udělat“. Často se používají spolu: MCP server zpřístupní
+dokumenty, RAG z nich vybere relevantní část.
+
+## Kde je riziko
+
+- **Prompt injection** — dokument nebo výstup nástroje může obsahovat
+  skrytý pokyn. Model ho může poslechnout.
+- **Příliš široká oprávnění** — server s přístupem k celému disku je
+  zbytečně nebezpečný.
+- **Zápisové operace** — mazání, odesílání e-mailů a platby potřebují
+  lidské potvrzení.
+- **Únik dat** — nástroj může poslat data do externí služby, i když
+  model běží lokálně.
+
+## Jak začít bezpečně
+
+1. Začněte **read-only** serverem nad jedním adresářem.
+2. Povolte jen **konkrétní nástroje**, ne celý souborový systém.
+3. Zapište každé volání do logu.
+4. U zápisu a odesílání vyžadujte **potvrzení člověkem**.
+5. Otestujte, co se stane, když dokument obsahuje podvržený pokyn.
+
+## Kdy MCP nepotřebujete
+
+- Jeden chat nad jedním dokumentem.
+- Ruční kopírování textu do promptu.
+- Úloha, kterou zvládne jednoduchý skript bez modelu.
+
+MCP dává smysl ve chvíli, kdy chcete opakovat stejné operace a mít
+je popsané jednou, ne v každé aplikaci znovu.
+
+## Kudy dál
+
+- [Function calling](/slovnik/software/function-calling/) — jak model
+  volá nástroje.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — co může
+  pokazit výstup nástroje.
+- [Agentní úlohy](/slovnik/software/agentni-ulohy/) — proč u nich
+  záleží latence a kontext.
+- [RAG](/slovnik/software/rag/) — jak dostat dokumenty do kontextu.
+- [Co je vLLM](/slovnik/software/vllm/) — server, který model obsluhuje.
+
+## Zdroje
+
+- [Model Context Protocol — dokumentace](https://modelcontextprotocol.io/)
+- [MCP — specifikace](https://modelcontextprotocol.io/specification)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Naposledy ověřeno: 10. 11. 2026.*

@@ -6,6 +6,13 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Slovník: MCP, function calling, embeddingy, vektorová databáze a prompt injection"
+  co_se_zmenilo: "Přidáno pět nových hesel pro agenty a RAG: MCP, function calling, embeddingy, vektorová databáze a prompt injection. Každé má definici, český příklad, tabulku nebo postup, rizika a odkazy. Do hesel KV cache a prefill přibyly inline SVG diagramy."
+  dotcene_stranky: [slovnik/software/mcp, slovnik/software/function-calling, slovnik/software/embeddingy, slovnik/software/vektorova-databaze, slovnik/provoz/prompt-injection, slovnik/pamet/kv-cache, slovnik/vykon/prefill]
+  zdroj: https://www.localinference.cz/slovnik/software/mcp/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Slovník: VRAM, kontext, NVFP4 a CUDA; konfigurace Acemagic, GX10 a RA110"
   co_se_zmenilo: "Čtyři klíčová hesla slovníku jsou rozšířená na 578–672 slov: VRAM, kontext, NVFP4 a CUDA. Přibyly tabulky, výpočty, české příklady a bezpečnostní upozornění. Konfigurační stránky Acemagic A10A, ASUS GX10 1TB/4TB a Acer Veriton RA110 mají vlastní titulek, popis, sekci pro koho, silné stránky, slabiny a kdy je nekupovat."
   dotcene_stranky: [slovnik/pamet/vram, slovnik/pamet/kontext, slovnik/software/nvfp4, slovnik/software/cuda, zarizeni/konfigurace/acemagic-a10a-128-2tb, zarizeni/konfigurace/asus-ascent-gx10-1tb, zarizeni/konfigurace/asus-ascent-gx10-4tb, zarizeni/konfigurace/acer-veriton-ra110-128-2tb]
