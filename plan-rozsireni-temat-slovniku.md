@@ -62,19 +62,19 @@ Nový nástroj `npm run check:prolinkovani` čte **hotové HTML**, ne jen Markdo
 
 - 129 obsahových stránek v dist (3 staré OEM URL jsou redirecty, audit je přeskakuje).
 - 12 témat, 36 slovních hesel.
-- **9 chyb:**
-  - `/temata/cena-lokalni-ai/` — jen 1 odkaz na slovník, žádný na model.
-  - `/temata/lokalni-ai-pro-firmy/` — jen 1 odkaz na slovník, žádný na zařízení.
-  - `/temata/lokalni-ai-na-windows-11/` — žádný odkaz na model.
-  - `/temata/qwen3-8-flash-next/` — žádný odkaz na zařízení.
-  - `/temata/rtx-spark/` — žádný odkaz na model.
-  - `/slovnik/software/upscaling/` — žádný vstupní odkaz z tématu, zařízení nebo návodu.
-  - `/slovnik/software/wsl2/` — žádný vstupní odkaz z tématu, zařízení nebo návodu.
+- **Výchozí stav: 9 chyb.** Po dávce 0 (10. 11. 2026) je stav **0 chyb, 0 varování**:
+  - `/temata/cena-lokalni-ai/` — doplněn model a dva pojmy.
+  - `/temata/lokalni-ai-pro-firmy/` — doplněno zařízení a dva pojmy.
+  - `/temata/lokalni-ai-na-windows-11/` — doplněn model, WSL2 a odkazy.
+  - `/temata/qwen3-8-flash-next/` — doplněna tři zařízení.
+  - `/temata/rtx-spark/` — doplněn model.
+  - `/slovnik/software/upscaling/` — doplněn vstup z tématu obrázky.
+  - `/slovnik/software/wsl2/` — doplněn vstup z tématu Windows.
 - 0 stránek bez odchozího odkazu.
 - Pouze homepage nemá vstupní odkaz z obsahu — to je v pořádku, je v navigaci.
 - 25 konfigurací má 1 vstupní odkaz ze stránky zařízení — to je přijatelné, ale ideální je přidat odkaz i ze srovnání.
 
-**Co to znamená:** web není rozbitý, ale má slepá místa. Témata o zařízeních nevedou na model, obchodní témata nevedou na konkrétní stroj a dva pojmy ve slovníku nemají žádný vstup. To se opraví v dávce 0.
+**Co to znamená:** web není rozbitý, ale měl slepá místa. Témata o zařízeních nevedla na model, obchodní témata nevedla na konkrétní stroj a dva pojmy ve slovníku neměly žádný vstup. Dávka 0 to opravila; nové stránky musí stejný standard udržet.
 
 ---
 
@@ -411,7 +411,7 @@ Pravidla:
 - každé slovo ve slovníku má ≥1 vstup z tématu/zařízení/návodu,
 - index témat odkazuje na všechna témata.
 
-**Baseline:** 9 chyb. Dávka 0 je opraví. Potom se `--strict` zapne do CI.
+**Stav:** výchozí baseline 9 chyb byl opraven v dávce 0 (10. 11. 2026). `check:prolinkovani` je nyní 0 chyb, 0 varování; `--strict` se zapne do CI.
 
 ---
 
@@ -474,7 +474,7 @@ Pravidla:
 
 ### Dávka 0 — základ (1 týden)
 
-- [ ] Opravit 9 chyb z `check:prolinkovani`.
+- [x] Opravit 9 chyb z `check:prolinkovani` (hotovo 10. 11. 2026).
 - [ ] Přidat `check:prolinkovani` do dokumentace a později do CI.
 - [ ] Schválit šablonu tématu a slovníku.
 - [ ] Vytvořit obsahové briefy pro 6 prioritních témat.
@@ -570,7 +570,7 @@ Pravidla:
 
 ## 13. Prvních 10 kroků
 
-1. Opravit 9 chyb z baseline auditu.
+1. Opravit 9 chyb z baseline auditu (hotovo 10. 11. 2026).
 2. Přepsat `/temata/128gb-unified-memory/`.
 3. Přepsat `/temata/cena-lokalni-ai/`.
 4. Přepsat `/temata/lokalni-ai-pro-firmy/`.
@@ -580,6 +580,49 @@ Pravidla:
 8. Přidat 2 diagramy (KV cache, prefill/decode).
 9. Spustit `check:prolinkovani:strict` a zapnout do CI.
 10. Zapsat první dávku do changelogu a ověřit live.
+
+---
+
+## 14. Search Console — první data (10. 11. 2026)
+
+Za první dny: **52 dotazů, 94 zobrazení, 1 proklik**. Na závěry je to málo, ale směr je jasný.
+
+### 14.1 Co data říkají
+
+| Typ dotazu | Příklady | Pozice | Co to znamená |
+|---|---|---:|---|
+| Produktové SKU | `acemagic a10a ryzen ai max+ 395`, `gx10-gg0003bn`, `ra110` | 2–10 | **konfigurační stránky jsou nejsilnější aktivum**; jediný klik vznikl tady |
+| Slovníkové | `co je vram`, `upscaling`, `co je kontext`, `co je ollama`, `stt`, `nvfp4`, `cuda`, `prefill`, `hf token`, `vllm`, `llamacpp`, `wsl2`, `throttling`, `rocm`, `tflops` | 2–10 | stránky už rankují, ale jsou krátké a málo přesvědčivé; 0 % CTR |
+| Cenové | `dgx spark cena`, `amd strix halo cena`, `rtx spark cena` | 5–10 | cena je na stránce, ale ne v první obrazovce ani ve snippetu |
+| Mac | `128gb mac studio`, `mac studio 128gb`, `macbook pro 128 gb` | 9–11 | stránky Maců jsou tenké (483–517 slov) |
+| Široké | `dgx spark`, `nvidia dgx spark`, `amd strix halo` | 23–54 | head termy jsou konkurenční; nehonit je přímo |
+| Anglické | `ai box computer`, `do local ai models use tokens`, `rtx spark specifications` | 11–91 | příležitost pro EN mutaci, ne pro CZ prioritu |
+| Brand | `local inference lab` | 74 | pravděpodobně jiný web; neřešit |
+
+### 14.2 Prioritizace podle dat
+
+Pořadí se mění: **slovník a konfigurace mají přednost před novými tématy.**
+
+1. **Slovník s pozicí ≤10 a 0 % CTR:** `prefill` (2), `hf token`/`hugging` (4), `upscaling` (6,3), `ollama` (6), `vllm` (6), `tflops` (5), `nvfp4` (7,5), `cuda` (9), `llamacpp` (9), `wsl2` (9), `throttling` (8), `rocm` (9), `vram` (9,6), `kontext` (10,2), `stt` (9).
+2. **Konfigurační stránky:** Acemagic A10A, ASUS GX10 1TB/4TB, Acer RA110. Přidat unikátní H1, cenu, dostupnost, „co na tom poběží“, FAQ a odkazy na zařízení.
+3. **Cenové stránky zařízení:** DGX Spark, Strix Halo, RTX Spark, Mac Studio, MacBook Pro. Cena a dostupnost do první obrazovky, tabulka variant, FAQ.
+4. **Široké head termy** až po posílení dlouhého ocasu a interních odkazů.
+
+### 14.3 Rychlé úpravy pro CTR
+
+- `title` začíná hledaným výrazem, ne „Co je…“.
+- První odstavec odpovídá na dotaz jednou větou.
+- Do první obrazovky cena, dostupnost nebo konkrétní číslo.
+- Přidat české synonymum: VRAM = paměť grafické karty; STT = přepis řeči; upscaling = zvětšení obrázku; kontext = kontextové okno.
+- FAQ 3–5 skutečných otázek, ne umělé.
+- U zařízení zvážit `Product`/`Offer` strukturovaná data, jen pokud cena a dostupnost sedí.
+
+### 14.4 Jak data vyhodnocovat
+
+- Sledovat týdně, ale nevyvozovat závěry z 1–7 zobrazení.
+- Zapisovat změny title/description a obsah do changelogu, aby se daly párovat s CTR.
+- Po 4–6 týdnech vyhodnotit: které stránky se posunuly, které mají stále 0 % CTR, které dotazy přibyly.
+- Cílem není optimalizovat na jeden dotaz, ale na téma a jeho dlouhý ocas.
 
 ---
 

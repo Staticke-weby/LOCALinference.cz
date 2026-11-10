@@ -417,3 +417,13 @@ pm run check:prolinkovani cte hotove HTML a kontroluje
   pro-firmy, windows, qwen, rtx, upscaling, wsl2).
 - Cil: temata 1 200-2 200 slov, slovnik 55-60 hesel, kazda stranka
   prolinkovana; check:prolinkovani:strict zapnout po davce 0.
+
+---
+
+## 2026-11-10 - Search Console: prvni dotazy
+
+- 52 dotazu, 94 zobrazeni, 1 proklik. Zatim jen smer, ne statistika.
+- Nejsilnejsi je konfiguracni stranka Acemagic A10A (pozice 3,8, CTR 20 %).
+- Slovnikove dotazy rankuji 2-10, ale maji 0 % CTR; stranky jsou kratke.
+- Priorita se meni: slovnik a konfigurace prvni, pak cenove stranky zarizeni.
+- Davka 0 hotova: check:prolinkovani ma 0 chyb a 0 varovani.
