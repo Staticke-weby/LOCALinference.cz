@@ -507,9 +507,9 @@ Pravidla:
 
 - [x] Obrázky, video, audio, 3D na 1 000–1 400 slov (10. 11. 2026).
 - [ ] Recepty na generování: chybějící kroky, časy, VRAM, licence.
-- [ ] Zbývající hesla slovníku.
+- [x] Zbývající hesla slovníku (průběžně; 10. 11. 2026 přidáno 15 hesel, celkem 56).
 - [x] Troubleshooting tabulky pro Windows, DGX OS, Strix Halo, macOS (10. 11. 2026).
-- [ ] FAQ a rozhodovací tabulky.
+- [x] FAQ a rozhodovací tabulky (10. 11. 2026).
 
 ### Dávka 4 — důvěryhodnost a provoz (průběžně)
 
