@@ -215,28 +215,44 @@ NVIDIA NVFP4 na 128GB zařízeních.
 „kandidát“, vysvětlit, kde se rozchází, a nedoporučit nasazení.
 Nikdy nezaokrouhlit „skoro stejné“ na „stejné“.
 
-### 2.5 Které buildy se vejdou na 128 GB (k 10. 11. 2026)
+### 2.5 Které buildy fungují s n-gramy z SSD (k 10. 11. 2026)
 
-Filtr byl: stejná architektura jako základní Qwen3.8 Flash Next
-(180B celkem, MTP i vision), 4bitový formát a **váhy do ~105 GB**,
-aby zbylo místo na KV cache. Větší buildy se na jeden 128GB box
-nevejdou, i když se jmenují „NVFP4“.
+Klíčové kritérium není velikost na disku, ale jestli runtime umí držet
+**n-gramovou (PLE) tabulku na SSD** a mapovat ji do paměti. NVIDIA to
+u základního FP4-Local dělá přes `VLLM_PLE_TABLE_MEMORY=disk` a
+`B12X_DISK_BACKEND=io_uring`; s offloadem udává na DGX Sparku
+**1M tokenů FP8 KV cache**, bez něj méně.
 
-| Zařízení | Doporučený build | Váhy na disku | Formát | Poznámka |
+| Zařízení | Build | Disk | PLE z SSD | Poznámka |
 |---|---|---:|---|---|
-| **DGX Spark** | `DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated` | 102,3 GB | NVFP4 + MXFP8 | stejný základ jako `nvidia/...-FP4-Local`; launcher s 104 GiB capem, MTP 4 drafty, FP8 KV; naměřeno 38,0 tok/s próza a 54,3 kód proti 39,4 / 50,7 u základu (vydavatel) |
-| **RTX Spark mini/notebook** | stejné váhy DevelopingDad | 102,3 GB | NVFP4 | launcher je DGX-specifický; na Windows ARM je potřeba vLLM port. Windows dělí paměť na VRAM a OS RAM, takže repacking může být nutný (viz `mweinbach1/...-rtx-spark`, 98,7 GiB, ale neabliterovaný) |
-| **Strix Halo** | `huihui-ai/Huihui-Qwen3.8-Flash-Next-abliterated-v2-GGUF` (UD-IQ4_XS) nebo `mradermacher/...-i1-GGUF` (IQ4_XS) | 93,6 / 97,5 GB | GGUF | NVFP4 na ROCm ne; llama.cpp, Q8 KV cache; zbývá ~30 GB na kontext |
-| **Mac Studio / MacBook Pro** | stejné GGUF přes Metal | 93,6–97,5 GB | GGUF | MLX 4bit `grant-ai/...-MTPLX-4bit` má 115,1 GB, na 128 GB Mac zůstává jen ~13 GB — rizikové |
-| **Gorgon Halo 192 GB** | `lflare/...-CSF-QAD-Abliterated` | 102,8 GB | NVFP4-CSF | 183,5GB buildy (OrcaRouter, DevelopingDad DGX balíček) se vejdou, ale nenechají rozumnou KV cache |
+| **DGX Spark** | `DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated` | 102,3 GB | **ano**, launcher | stejný layout jako NVIDIA FP4-Local; 104 GiB cap; MTP 4 drafty; naměřeno 38,0/54,3 tok/s proti 39,4/50,7 u základu (vydavatel) |
+| **DGX Spark** | `DevelopingDad/Qwen3.8-Flash-Next-Uncensored-NVFP4-DGX-Spark` | 183,5 GB | **ano**, mmap + paralelní čtení | BF16 PLE shard zůstává na disku; 100 GiB container bez swapu; runtime vLLM 0.30.0 |
+| **DGX Spark / RTX Spark** | `lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated` | 102,8 GB | **ano**, `VLLM_PLE_TABLE_MEMORY=disk` | Qwen Community License; měřená shoda schopností s rodičem; vision BF16 |
+| **RTX Spark mini/notebook** | váhy DevelopingDad + vLLM ARM64 port | 102,3 GB | **neověřeno** | launcher je DGX-specifický; Windows dělí paměť, repacking může být nutný |
+| **Strix Halo** | `huihui-ai/...-abliterated-v2-GGUF` (UD-IQ4_XS) | 93,6 GB | ne (GGUF) | llama.cpp, Q8 KV; NVFP4 na ROCm ne |
+| **Strix Halo** | `mradermacher/...-i1-GGUF` (IQ4_XS) | 97,5 GB | ne (GGUF) | imatrix kalibrace |
+| **Mac Studio / MacBook Pro** | stejné GGUF přes Metal | 93,6–97,5 GB | ne (GGUF) | MLX 4bit 115,1 GB je na 128 GB těsné |
 
-**Co se na 128 GB nevejde:**
+**Co je potřeba pro PLE z SSD:**
 
-- `orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4` — 183,5 GB
-  (n-gram tabulky zůstaly v BF16).
-- `DevelopingDad/...-DGX-Spark` — 183,5 GB, určeno pro dva Sparky.
-- `mazinb/...-NVFP4` — 186,4 GB, rozdělené experty.
-- `huihui-ai/...-abliterated` — 360 GB BF16, nutná vlastní kvantizace.
+- **NVMe**, ne SATA a už vůbec ne síťový disk. io_uring potřebuje
+  dostatečnou hloubku fronty a nízkou latenci.
+- **Dost page cache** — opakované n-gramy se drží v RAM; čím
+  rozmanitější text, tím víc čtení z disku.
+- **Konkrétní kontejner a verze vLLM** — základ vyžaduje B12X build;
+  stock vLLM tento checkpoint nenačte.
+- **Měřit TTFT a stabilitu decode**, ne jen průměr. Pomalý disk se
+  projeví hlavně na začátku a u dlouhých promptů.
+
+**Co se na 128 GB nevejde ani s PLE z SSD:**
+
+- `huihui-ai/...-abliterated` — 360 GB BF16; bez vlastní kvantizace
+  a konfigurace PLE to není turnkey.
+- `mazinb/...-NVFP4` — 186,4 GB rozdělené experty; způsob načítání
+  není popsaný, bereme jako neověřené.
+- `orcarouter/...-NVFP4` — 183,5 GB; originál nemá veřejně popsaný
+  launcher s PLE z SSD. Použijte DevelopingDad repack, který stejné
+  váhy servíruje s mmap PLE.
 
 **Licence:** DevelopingDad dědí **NVIDIA Open Model Agreement**
 (přes FP4-Local base) a Qwen Community License; lflare a OrcaRouter
@@ -265,7 +281,8 @@ chybí nezávislé měření a česká sada (A01, A04).
 
 **Mezery k založení:** parita NVFP4 (P0), česká sada pro odmítání
 (P1), právní review (P0), licence odvozenin (P0), kvalitativní
-srovnání po abliteraci (P1).
+srovnání po abliteraci (P1), chování PLE z SSD při dlouhém kontextu
+(P1), PLE z SSD na RTX Sparku (P1).
 
 ---
 
@@ -425,6 +442,8 @@ nezávislý test.
 | A02 | P0 | Právní review publikace o abliteraci (AI Act, české právo) |
 | A03 | P0 | Licence odvozenin Qwen3.8 (QCL vs. Apache-2.0) |
 | A04 | P1 | Česká sada pro měření odmítání (50+50 promptů) |
+| A05 | P1 | Vliv PLE z SSD na TTFT a decode při 32k/128k/262k |
+| A06 | P1 | PLE z SSD na RTX Sparku (Windows ARM, dělení paměti) |
 | B01 | P1 | Měření režie sandboxů (start, RAM, latence) |
 | C01 | P1 | Ověřené srovnání harnessů (licence, defaulty, gate) |
 
