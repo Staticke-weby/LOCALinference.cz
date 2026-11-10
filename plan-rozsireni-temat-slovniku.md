@@ -516,7 +516,7 @@ Pravidla:
 - [x] `/data/` rozšířit na databázi měření s filtry a grafy (10. 11. 2026: 23 měření, filtr podle zařízení, graf rozsahu decode).
 - [x] `/zdroje/` doplnit metodiku pro každý typ zdroje (10. 11. 2026: typy a váha zdrojů v `/zdroje/zdroje/` a `/o-webu/metodika/`).
 - [x] `/provoz/` zapojit do menu a prolinkovat (10. 11. 2026).
-- [x] Mac Studio a MacBook Pro rozšířeny na ~1 000 slov (10. 11. 2026).
+- [x] Mac Studio a MacBook Pro rozšířeny na 850 a 722 slov (10. 11. 2026).
 - [x] CTR úpravy slovníku: titulky začínající dotazem a česká synonyma (10. 11. 2026).
 - [ ] Měsíční kontrola Search Console a interních odkazů.
 - [ ] EN mutace po stabilizaci CZ (čeká na I02: Pages a workflow v repu LOCALinference.eu).
