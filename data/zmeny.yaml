@@ -7,7 +7,7 @@
 - datum: 2026-11-10
   typ: obsah
   titulek: "Slovník: MCP, function calling, embeddingy, vektorová databáze a prompt injection"
-  co_se_zmenilo: "Přidáno pět nových hesel pro agenty a RAG: MCP, function calling, embeddingy, vektorová databáze a prompt injection. Každé má definici, český příklad, tabulku nebo postup, rizika a odkazy. Do hesel KV cache a prefill přibyly inline SVG diagramy."
+  co_se_zmenilo: "Přidáno pět nových hesel pro agenty a RAG: MCP, function calling, embeddingy, vektorová databáze a prompt injection. Každé má definici, český příklad, tabulku nebo postup, rizika a odkazy. Heslo KV cache je rozšířené na 830 slov a spolu s prefillem má inline SVG diagram."
   dotcene_stranky: [slovnik/software/mcp, slovnik/software/function-calling, slovnik/software/embeddingy, slovnik/software/vektorova-databaze, slovnik/provoz/prompt-injection, slovnik/pamet/kv-cache, slovnik/vykon/prefill]
   zdroj: https://www.localinference.cz/slovnik/software/mcp/
 

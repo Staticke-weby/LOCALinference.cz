@@ -488,6 +488,7 @@ Pravidla:
 - [ ] `/temata/qwen3-8-flash-next/` — 1 800 slov.
 - [ ] `/temata/strix-halo/`, `/temata/rtx-spark/`, `/temata/dgx-spark/` — 1 400 každá.
 - [x] 10 hesel ve slovníku na 578–672 slov: `prefill`, `upscaling`, `ollama`, `vllm`, `huggingface`, `tflops`, `vram`, `kontext`, `nvfp4`, `cuda` (10. 11. 2026).
+- [x] `kv-cache` rozšířena na 830 slov a doplněna diagramem (10. 11. 2026).
 - [x] Konfigurační stránky Acemagic A10A, ASUS GX10 1TB/4TB a Acer RA110: vlastní titulek, popis, pro koho, silné stránky, slabiny a kdy nekupovat (10. 11. 2026).
 - [x] 5 nových hesel z oblasti agentů/RAG: MCP, function calling, embeddingy, vektorová databáze, prompt injection (10. 11. 2026).
 - [x] 2 diagramy: KV cache a prefill/decode (10. 11. 2026).

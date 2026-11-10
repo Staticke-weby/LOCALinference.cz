@@ -1,7 +1,7 @@
 ---
-title: "Co je KV cache a proč bere paměť kontextu"
-description: "KV cache je paměť, kterou si model drží pro kontext. Vysvětlíme, proč roste s délkou dotazu a proč kvůli ní ubývá souběžnost."
-last_verified: 2026-11-04
+title: "KV cache: co to je a proč bere paměť kontextu"
+description: "KV cache je paměť, kterou si model drží pro kontext. Vysvětlíme, proč roste s délkou dotazu, jak se kvantizuje a proč kvůli ní ubývá souběžnost."
+last_verified: 2026-11-10
 sidebar:
   label: KV cache
   order: 1
@@ -31,41 +31,91 @@ každém tokenu — s ní stačí dopočítat jen nový kus.
   <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">Čím delší kontext a víc souběžných dotazů, tím větší KV cache.</figcaption>
 </figure>
 
+## Rychlá odpověď
+
+- **KV cache = pracovní paměť pro přečtený kontext.** Umožňuje
+  generovat další tokeny bez přepočítávání celé historie.
+- **Roste s délkou kontextu a počtem souběžných požadavků.** Je to
+  druhý největší nárok po samotných vahách modelu.
+- **Dá se kvantizovat** (FP8, Q8_0), ale může mírně změnit kvalitu.
+  Na 128GB boxu je to nástroj, jak udržet delší kontext nebo víc lidí.
 
 ## Proč to existuje
 
 Když model generuje odpověď, potřebuje vědět, co bylo v zadání.
 U transformeru to znamená držet si klíče a hodnoty pozornosti
 (odtud „KV“) pro každý token kontextu. Čím delší kontext, tím víc
-těchto hodnot.
+těchto hodnot. Bez cache by se při každém novém tokenu přepočítával
+celý dosavadní text, což by bylo pomalé a drahé.
 
 ## Kolik to bere
 
 Paměť pro KV cache roste **lineárně s délkou kontextu** a s počtem
-souběžných dotazů. Na 128GB boxu je to druhý největší nárok po
-samotných vahách modelu.
+souběžných dotazů. Záleží také na počtu vrstev, hlav, dimenzi a typu
+dat (FP16, FP8, Q8_0).
 
-Praktický důsledek: model se sám vejde, ale při 128k kontextu a čtyřech
-lidech už paměť dojde. Proto se [souběžnost](/slovnik/vykon/soubeznost/)
-řeší počtem boxů, ne delším kontextem.
+U Qwen3.8 Flash Next v NVFP4 zabírají váhy zhruba **101 GB**. Na
+128GB boxu zbývá kolem **27 GB** na KV cache, aktivace a režii.
+To stačí na 128k kontext, ale ne na mnoho dlouhých dotazů najednou.
+
+| Provoz | Co se stane |
+|---|---|
+| 32k, jeden uživatel | bezpečné, zbyde místo |
+| 128k, jeden uživatel | vejde se, ale ubývá rezerva |
+| 128k, čtyři uživatelé | každý bere vlastní cache; může dojít |
+| 262k, jeden uživatel | strop, ne denní provoz |
+
+Přesná čísla závisí na konfiguraci. Proto se u vLLM nastavuje
+`max-model-len`, `max-num-seqs` a kvantizace KV cache.
+
+## Kvantizace KV cache
+
+KV cache lze ukládat v menší přesnosti:
+
+- **FP16/BF16** — výchozí, nejvyšší kvalita, největší paměť.
+- **FP8** — poloviční paměť, malý vliv na kvalitu; běžné u vLLM.
+- **Q8_0** — kompromis v llama.cpp.
+- **Q4** — výrazná úspora, ale vyšší riziko zhoršení kvality.
+
+Kvantizace KV cache je jiná než kvantizace vah. Můžete mít NVFP4 váhy
+a FP8 cache; každé má jiný vliv.
+
+## Souběžnost a PagedAttention
+
+Každý požadavek má vlastní KV cache. Když jich běží víc, paměť se
+sčítá. [vLLM](/slovnik/software/vllm/) řeší správu po stránkách
+(PagedAttention), takže nemusí držet velké souvislé bloky a lépe
+využívá paměť. Prefix caching zase umožní znovu použít už zpracovaný
+začátek kontextu, když se dotazy opakují.
 
 ## Co s tím
 
 - **Kratší kontext** uvolní paměť pro další dotazy.
-- **Kvantizace KV cache** (např. FP8) zmenší nároky, ale může mírně
-  změnit kvalitu.
+- **Kvantizace KV cache** zmenší nároky, ale ověřte kvalitu.
+- **Omezujte souběžnost** podle toho, kolik paměti zbývá.
 - **Restart** po dlouhém běhu pomůže, když se paměť neuklidila.
+
+## Časté mýty
+
+- **„KV cache je totéž co kontext.“** Kontext je text; KV cache je
+  jeho vnitřní reprezentace v paměti.
+- **„Větší kontext je vždy lepší.“** Bere paměť a zpomaluje prefill.
+- **„Kvantizace cache je zdarma.“** Může mírně zhoršit kvalitu,
+  zvláště u dlouhých a přesných úloh.
 
 ## Kudy dál
 
+- [Co je kontext](/slovnik/pamet/kontext/) — co se do okna vejde.
 - [Co je souběžnost](/slovnik/vykon/soubeznost/) — proč paměť omezuje počet lidí.
 - [Jak to funguje](/zaciname/jak-to-funguje/) — kontext a paměť v souvislostech.
 - [128 GB unified memory](/temata/128gb-unified-memory/) — proč je to minimum.
-- [Slovník](/slovnik/) — všechny pojmy na jednom místě.
+- [vLLM](/slovnik/software/vllm/) — PagedAttention a správa paměti.
 
 ## Zdroje
 
 - [vLLM — PagedAttention](https://docs.vllm.ai/en/latest/design/kernel/paged_attention.html)
+- [vLLM — dokumentace](https://docs.vllm.ai/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
 - [Jak to funguje](/zaciname/jak-to-funguje/)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*
