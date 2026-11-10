@@ -75,6 +75,44 @@ jen zkracuje první průchod.
 - **Kolik výstupů** prošlo bez opravy.
 - **Spokojenost** právníka s prvním draftem.
 
+## Kolik času to ušetří
+
+Právní práce je plná prvního čtení. Ilustrativní **výpočet** pro
+due diligence se 200 dokumenty:
+
+| Fáze | Ručně | S modelem |
+|---|---|---|
+| První průchod, 200 dokumentů | 15 min × 200 = 50 h | 3 min × 200 = 10 h |
+| Kontrola citací | součástí | 5 min × 200 = 16,7 h |
+| Celkem | ~50 h | ~26,7 h |
+
+Čísla jsou **výpočet** s ukázkovými vstupy, ne měření. Ukazují jediné:
+model nezkrátí kontrolu, ale zkrátí první průchod. Kdo kontrolu vynechá,
+neušetří nic — jen přesune riziko.
+
+## Jak to zavést
+
+1. **Vyberte jednu agendu** — shrnutí smluv, nebo kontrola dodatků.
+2. **Vezměte 20 dokumentů** a ručně zapište, co má výstup obsahovat.
+3. **Nastavte strukturovaný výstup** — pole, ne volný text.
+4. **Zkontrolujte 20 výstupů** proti originálu a zapište chyby.
+5. **Teprve potom** pusťte model na větší objem, stále s kontrolou.
+6. **Zaveďte logování** — kdo, kdy, jaký dokument, jaká verze.
+
+Advokát, který neumí vysvětlit, odkud model vzal citaci, by ji neměl
+použít. Proto je [RAG s citacemi](/temata/rag/citace-a-hodnoceni/)
+podmínkou, ne vylepšením.
+
+## Typické chyby
+
+| Chyba | Proč vzniká | Jak se jí vyhnout |
+|---|---|---|
+| Model cituje neexistující judikaturu | nemá přístup k databázi | zakázat volné citace, ověřovat |
+| Shrnutí vynechá výjimku | dlouhý dokument, krátký výstup | výstup po článcích, ne najednou |
+| Stará verze smlouvy | špatný index | metadata s verzí a platností |
+| Chybná částka | OCR nebo přepis | validace proti dokladu |
+| Únik do logů | loguje se celý text | logovat ID a metadata, ne obsah |
+
 ## Kdy to nepoužívat
 
 - **Právní závěr** bez kontroly.

@@ -93,6 +93,32 @@ odpověď neodejdete bez kontroly.
 - **Zkratky** — IČO, DIČ, DPH.
 - **Dlouhé dokumenty** — model může citovat špatnou stranu.
 
+## Jak citace vynutit
+
+Nejde o to model poprosit, ale nastavit formát. Dvě cesty:
+
+- **Structured output** — odpověď má pole `odpoved` a `citace`, kde
+  citace odkazuje na ID chunku. Model nemůže vrátit volný text.
+- **Postprocessing** — aplikace vezme ID chunků, které se skutečně
+  použily, a doplní dokument, stranu a datum z metadat.
+
+Druhá cesta je bezpečnější: i když model uvede špatné ID, aplikace
+pozná, že neexistuje, a odpověď odmítne. Podrobnosti jsou u
+[structured output](/slovnik/software/structured-output/).
+
+## Kolik odpovědí kontrolovat
+
+Rubrika je užitečná jen tehdy, když se podle ní opravdu hodnotí.
+Praktický postup při každé změně:
+
+1. **20–30 odpovědí** na otázky z provozu, ne vymyšlené.
+2. **Všechna odmítnutí** — model musí umět říct „není v datech“.
+3. **Všechny odpovědi s čísly** — částky, data, IČO.
+4. **Jeden uživatel bez oprávnění** — nesmí dostat cizí dokument.
+
+Když se skóre mezi verzemi liší o bod, je to šum. Rozhodujte podle
+opakovaného měření, ne jednoho dojmu.
+
 ## Časté chyby
 
 - **Citace jen na dokument**, ne na stranu.

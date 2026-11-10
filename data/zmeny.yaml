@@ -6,6 +6,20 @@
 
 - datum: 2026-11-10
   typ: obsah
+  titulek: "Recepty na generování: jednotná struktura a licence"
+  co_se_zmenilo: "Čtyři recepty mají stejnou strukturu: potřeby, instalace, ověření GPU, první obrázek, licence, limity a řešení problémů. Přibyla tabulka požadavků na platformu, přehled licencí generativních modelů včetně použitelnosti v ČR a sekce Kde je limit u Windows, macOS a Linuxu."
+  dotcene_stranky: [generovani/recepty, generovani/recepty/windows, generovani/recepty/macos, generovani/recepty/dgx-os, generovani/recepty/linux]
+  zdroj: https://www.localinference.cz/generovani/recepty/
+
+- datum: 2026-11-10
+  typ: obsah
+  titulek: "Clustery RAG, agenti a praxe: druhá vlna prohloubení"
+  co_se_zmenilo: "Patnáct stránek dostalo provozní hloubku: výpočty velikosti indexu a kontextu, rozhodovací tabulky, jak zavést projekt, typické chyby a měření. RAG má nově projekt v pěti krocích a provozní checklist, agenti výpočet kroků a tokenů, praxe ekonomiku a plán prvního měsíce."
+  dotcene_stranky: [temata/rag, temata/rag/pdf-a-skeny, temata/rag/chunking, temata/rag/embeddingy-v-praxi, temata/rag/citace-a-hodnoceni, temata/rag/opravneni-a-bezpecnost, temata/agenti, temata/agenti/mcp-v-praxi, temata/agenti/function-calling-v-praxi, temata/agenti/coding-agent, temata/agenti/office-automatizace, temata/agenti/bezpecnost-agenta, temata/praxe, temata/praxe/pravo, temata/praxe/ucetnictvi, temata/praxe/vyroba, temata/praxe/vyvojari]
+  zdroj: https://www.localinference.cz/temata/rag/
+
+- datum: 2026-11-10
+  typ: obsah
   titulek: "Slovník: chat template, teplota, flash attention, GTT a offload"
   co_se_zmenilo: "Pět nových hesel: chat template (proč model ignoruje systémový prompt), teplota a vzorkování (kdy nulu a kdy tvořivost), flash attention (co zrychlí u dlouhého kontextu), GTT (paměť graficky na Strix Halu) a offload (proč velký model na malé kartě běží pomalu). Všechna jsou v automatickém prolinkování."
   dotcene_stranky: [slovnik/software/chat-template, slovnik/software/teplota-vzorkovani, slovnik/software/flash-attention, slovnik/pamet/gtt, slovnik/pamet/offload]

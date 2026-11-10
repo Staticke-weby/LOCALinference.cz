@@ -103,6 +103,54 @@ IČO, částku a datum. Výstup se validuje; když chybí IČO, aplikace
 volání odmítne a vrátí modelu chybu. Model se zeptá nebo pole označí
 jako chybějící. Nikdy neuloží vymyšlené IČO.
 
+## Jak vypadá odpověď modelu
+
+Model nevolá funkci přímo, vrací požadavek:
+
+```json
+{
+  "tool_calls": [
+    {
+      "name": "read_file",
+      "arguments": { "path": "smlouvy/2026/ramcova-smlouva.pdf" }
+    }
+  ]
+}
+```
+
+Aplikace ověří oprávnění, zavolá funkci a vrátí výsledek jako další
+zprávu. Teprve pak model pokračuje. Když odpověď obsahuje `content`
+místo `tool_calls`, model nástroj nezavolal — často proto, že chybí
+parser nebo je špatně popsaný nástroj.
+
+## Kolik kroků agent zvládne
+
+Každý krok přidá do kontextu výstup nástroje. Ilustrativní **výpočet**:
+pět kroků po 1 500 tokenech výstupu je 7 500 tokenů navíc, k tomu
+systémový prompt, historie a schémata. Na 32k kontextu to znamená,
+že po šesti až osmi krocích dochází místo.
+
+Proto se v praxi nastavuje:
+
+- **maximální počet kroků** (např. 10) a jasná chyba, když se vyčerpá,
+- **limit velikosti výstupu nástroje**, aby jeden výsledek nesežral
+  celý kontext,
+- **shrnutí historie** u dlouhých úloh.
+
+Agent, který běží 40 kroků, není důkaz kvality. Často je to známka,
+že se zacyklil.
+
+## Časté chyby
+
+| Chyba | Projev | Oprava |
+|---|---|---|
+| Popis nástroje je vágní | model volá špatný nástroj | napsat, kdy nástroj použít a kdy ne |
+| Schéma povoluje volný text | argumenty nejdou parsovat | omezit typy a použít enum |
+| Chybí `required` | prázdné argumenty | označit povinná pole |
+| Aplikace nevaliduje | uloží vymyšlené IČO | validace a návrat chyby modelu |
+| Výstup nástroje je obrovský | kontext se zaplaví | oříznout, stránkovat |
+| Akce bez potvrzení | nevratný zápis | potvrzení člověkem |
+
 ## Kdy to nedělat
 
 - Model má jen odpovídat textem.

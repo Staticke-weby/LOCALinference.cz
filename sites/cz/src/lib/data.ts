@@ -148,6 +148,7 @@ export type GenerativniModel = {
   vyrobce: string;
   licence: string;
   komercni: 'ano' | 'ne' | 'podminky';
+  eu_pouzitelne?: boolean;
   parametry_b?: number | null;
   naroky: string;
   runtime: string[];

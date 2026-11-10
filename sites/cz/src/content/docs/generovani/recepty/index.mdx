@@ -1,11 +1,13 @@
 ---
 title: "Lokální AI na každé platformě: recepty pro Windows, macOS, DGX OS a Linux"
-description: "Jak spustit ComfyUI na každé platformě: Windows, macOS, DGX OS a Linux s NVIDIA i AMD Strix Halo. Co je potřeba, co to umí a kde jsou limity."
-last_verified: 2026-11-05
+description: "Jak spustit ComfyUI na každé platformě: Windows, macOS, DGX OS a Linux s NVIDIA i AMD Strix Halo. Stejná struktura, jiné kroky, časy a licence."
+last_verified: 2026-11-10
 sidebar:
   label: Recepty
   order: 10
 ---
+
+import TabulkaLicenci from '../../../../components/TabulkaLicenci.astro';
 
 Stejný model, stejný workflow, jiná cesta k němu. ComfyUI je jeden
 program, ale na každé platformě se instaluje jinak, používá jiný
@@ -13,6 +15,24 @@ akcelerátor a **neumí totéž**.
 
 Tahle část proto není o modelech, ale o **prostředí**: co nainstalovat,
 čím ověřit, že běží GPU, a co na dané platformě nebude fungovat.
+Všechny čtyři recepty mají stejnou strukturu, takže se dají číst
+vedle sebe: potřeby → instalace → ověření → první obrázek → licence →
+limity → řešení problémů.
+
+## Co budete potřebovat
+
+| Platforma | Instalace | Disk na první test | Paměť | Ověření GPU |
+|---|---|---:|---:|---|
+| **Windows 11 x64** | Comfy Desktop | ~20 GB | 16 GB+ VRAM | `nvidia-smi` |
+| **Windows 11 Arm** | Comfy Desktop ARM64 | ~20 GB | 128 GB unified | `nvidia-smi` |
+| **macOS** | Comfy Desktop | ~20 GB | 32 GB+ unified | `mps.is_available()` |
+| **DGX OS** | host Python / kontejner | ~30 GB | 128 GB unified | `nvidia-smi` |
+| **Linux + NVIDIA** | ruční instalace | ~30 GB | 16 GB+ VRAM | `nvidia-smi` |
+| **Linux + Strix Halo** | ruční instalace + ROCm | ~30 GB | 128 GB unified | `rocminfo` |
+
+Čísla u disku jsou orientační: samotná instalace ComfyUI má jednotky
+GB, zbytek jsou modely. Video a 3D potřebují násobně víc (u DGX OS
+až 200 GB na všechny tiery).
 
 ## Platformy přehledně
 
@@ -81,6 +101,24 @@ Video na RTX Sparku a Macu je nezávislé měření Principled Technologies
 na předprodukčních strojích. Nejde o stejnou konfiguraci jako čísla
 u Strix Halu a Macu výše.
 
+## Licence: co smíte použít
+
+Platforma licenci nemění. Model, který je nekomerční, zůstane
+nekomerční na Windows i na Macu. Rozdíl je jen v tom, které modely
+na dané platformě vůbec rozjedete.
+
+<TabulkaLicenci />
+
+Tři pravidla, která platí pro všechny recepty:
+
+- **Apache-2.0 a MIT** jsou bezpečná volba pro firmu: Z-Image-Turbo,
+  FLUX.2 klein, Wan 2.2, TRELLIS.2, Kokoro a Whisper.
+- **Nekomerční licence** (Qwen Research, FLUX non-commercial,
+  CC-BY-NC) znamenají, že výstup nesmíte použít v zakázce.
+- **Tencent Hunyuan** má licenci, která vylučuje EU — v ČR ho proto
+  nepoužívejte, i když ho návody doporučují. Podrobnosti jsou
+  v [licencích](/generovani/licence/).
+
 ## Co si odnést
 
 - **Windows x64 s NVIDIA** je nejjednodušší cesta k celé sadě.
@@ -97,4 +135,4 @@ u Strix Halu a Macu výše.
 - [NVIDIA — ComfyUI playbook pro DGX Spark](https://build.nvidia.com/spark/comfyui)
 - [LocalAgentBoard — měření na DGX Spark](https://localagentboard.com/images)
 
-*Naposledy ověřeno: 5. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

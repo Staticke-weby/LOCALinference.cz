@@ -78,6 +78,52 @@ nabídne nástroje `git_log` a `git_diff`, oba read-only. Model si vyžádá
 diff, přečte ho a odpoví. Nemá nástroj pro push ani pro přístup k
 produkční větvi. To je bezpečný starting point.
 
+## Jak vypadá jedno volání
+
+1. Uživatel napíše úkol.
+2. Klient pošle modelu zprávu a **seznam nástrojů** se schématy.
+3. Model vrátí požadavek na volání (`tool`, argumenty).
+4. **Aplikace** volání provede — ne model.
+5. Výsledek se vrátí modelu jako další zpráva.
+6. Model odpoví, nebo požádá o další volání.
+
+Klíčové je, že **model nic nevykonává**. Kdyby vykonával, nemohli
+byste nic omezit. Veškerá bezpečnost je v krocích 4 a 5.
+
+## Kolik nástrojů je moc
+
+Každý nástroj je popis se schématem, který letí v **každém** požadavku.
+Když jich máte padesát, model jich půlku ignoruje a zbytek plete.
+
+Ilustrativní **výpočet**: nástroj s popisem a schématem zabere
+kolem 200 tokenů; dvacet nástrojů je 4 000 tokenů, které se posílají
+při každém dotazu a zabírají kontext. Čísla se liší podle schématu,
+ale princip platí: **méně nástrojů = přesnější volání a levnější
+provoz**.
+
+Pro začátek stačí 3–5 nástrojů, které pokryjí jeden pracovní postup.
+
+## Když model volá špatný nástroj
+
+| Příznak | Příčina | Co udělat |
+|---|---|---|
+| Volá nástroj, který neexistuje | slabý popis nebo halucinace | zpřesnit popis, omezit počet |
+| Plete dva podobné nástroje | překrývající se názvy | sloučit je, nebo přejmenovat |
+| Posílá prázdné argumenty | chybí povinná pole ve schématu | označit `required` |
+| Volá pořád dokola | nemá výsledek nebo signál konce | omezit počet volání |
+| Odpoví bez volání | úkol je popsaný jako chat | upravit systémový prompt |
+| Volá se špatnými daty | žádná validace v aplikaci | validovat a vrátit chybu modelu |
+
+Chybu nikdy neřešte tím, že dáte modelu víc nástrojů. Většinou
+pomůže míň nástrojů a lepší popis.
+
+## Nasazení pro tým
+
+`stdio` server je vázaný na jednu aplikaci a jednoho uživatele. Pro
+tým potřebujete síťový server s autentizací, jinak se oprávnění
+obchází. Platí stejná pravidla jako u [API serveru](/temata/provoz/api-server/):
+TLS, token, logy a rate limit.
+
 ## Kdy MCP nepotřebujete
 
 - Jeden skript, který běží jednou.

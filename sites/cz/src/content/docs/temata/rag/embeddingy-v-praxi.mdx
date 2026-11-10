@@ -81,7 +81,38 @@ Vektorové hledání najde článek, který mluví o „okamžitém odstoupení�
 Plnotextové hledání by hledalo „výpověď“ a mohlo minout. Kombinace
 obou přístupů je bezpečnější.
 
+## Kolik místa index zabere
+
+Vektory nejsou velké, ale u velkého archivu se to sčítá:
+
+```
+velikost ≈ počet chunků × dimenze × bajty na číslo
+```
+
+| Dimenze | 1 000 chunků | 50 000 chunků |
+|---:|---:|---:|
+| 768 (float32) | ~3 MB | ~154 MB |
+| 1 024 (float32) | ~4 MB | ~205 MB |
+| 1 536 (float32) | ~6 MB | ~307 MB |
+
+Je to **výpočet** při 4 bajtech na číslo. V praxi se používá
+float16 nebo binární vektory, které zaberou méně. Texty a metadata
+bývají větší než samotné vektory.
+
+## Jak testovat výběr modelu
+
+1. Připravte **20–30 dotazů** z reálného provozu.
+2. U každého zapište, který dokument a chunk je správná odpověď.
+3. Projděte top 5 výsledků a označte, jestli tam správný chunk je.
+4. Spočítejte **Recall@5** — podíl dotazů, kde se to povedlo.
+5. Zopakujte s jiným modelem nebo chunkingem.
+
+Bez této sady se rozhodujete podle dojmu. Když Recall@5 vyjde
+vysoko a odpovědi jsou pořád špatné, problém není v embeddingu,
+ale v modelu nebo v [chunkingu](/temata/rag/chunking/).
+
 ## Kdy přegenerovat index
+
 
 - **Změna embedding modelu.**
 - **Změna chunkingu.**

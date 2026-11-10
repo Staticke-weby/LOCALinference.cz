@@ -75,6 +75,42 @@ bezpečný workflow.
 - **Velikost diffu**.
 - **Počet incidentů**.
 
+## Jak to zavést v týmu
+
+1. **Vyberte jednu úlohu** — testy, review, nebo dokumentace.
+2. **Nastavte sandbox** s read-only repem a bez sítí.
+3. **Změřte baseline** — kolik času úloha zabere dnes.
+4. **Pusťte agenta na 10 úloh** a vše projděte review.
+5. **Zaveďte pravidla** — malý diff, testy, žádný merge bez člověka.
+6. **Teprve potom** přidejte další nástroje nebo uživatele.
+
+Tým, který začne agentem na celý backlog, obvykle skončí u hromady
+nepřehledných diffů. Jeden dobře zvládnutý typ úlohy je lepší.
+
+## Kolik to ušetří
+
+Ilustrativní **výpočet** pro tým, který dělá 40 malých změn týdně:
+
+| Fáze | Ručně | S agentem |
+|---|---|---|
+| Napsání změny | 30 min × 40 = 20 h | 10 min × 40 = 6,7 h |
+| Review a opravy | 10 min × 40 = 6,7 h | 15 min × 40 = 10 h |
+| Celkem | ~26,7 h | ~16,7 h |
+
+Čísla jsou **výpočet** s ukázkovými vstupy, ne měření. Ukazují typický
+kompromis: agent zkrátí psaní, ale přidá práci na review. U složitých
+změn se poměr obrací a agent se nevyplatí.
+
+## Typické chyby
+
+| Chyba | Proč vzniká | Jak se jí vyhnout |
+|---|---|---|
+| Agent „opraví“ fungující kód | nemá testy | testy před změnou |
+| Obrovský diff | agent přepíše víc | omezit rozsah zadáním |
+| Nová závislost | model navrhne knihovnu | zákaz závislostí bez schválení |
+| Tajemství v kontextu | `.env` v repu | vyloučit soubory, rotovat klíče |
+| Falešné review | model schválí sám sebe | review dělá člověk |
+
 ## Kdy to nepoužívat
 
 - **Produkční migrace** bez zálohy.

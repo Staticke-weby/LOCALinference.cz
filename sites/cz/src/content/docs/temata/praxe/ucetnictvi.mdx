@@ -81,6 +81,42 @@ nerozhodl.
 - **Čas** na kontrolu.
 - **Počet duplicit** a chybějících polí.
 
+## Kolik času to ušetří
+
+Ilustrativní **výpočet** pro 500 faktur měsíčně:
+
+| Fáze | Ručně | S modelem |
+|---|---|---|
+| Přečtení a přepis, 500 faktur | 3 min × 500 = 25 h | 40 s × 500 = 5,6 h |
+| Kontrola proti dokladu | součástí | 1 min × 500 = 8,3 h |
+| Celkem | ~25 h | ~13,9 h |
+
+Jsou to **výpočet** s ukázkovými vstupy, ne měření vaší firmy. Pointa
+je v poměru: model zkrátí přepis, ale kontrolu ne. Když je kontrola
+stejně drahá jako přepis, úspora je malá.
+
+## Jak to zavést
+
+1. **Vyberte jeden typ dokladu** — tuzemské faktury, ne všechny najednou.
+2. **Definujte pole** a jejich validaci (IČO, částky, DUZP).
+3. **Připravte 50 faktur** včetně problematických (sken, cizí měna).
+4. **Změřte chybovost** před a po kontrole.
+5. **Zaveďte stav** — nový, extrahovaný, zkontrolovaný, zaúčtovaný.
+6. **Teprve potom** rozšiřujte na další typy dokladů.
+
+Automatické zaúčtování bez člověka je poslední krok, ne první. I když
+model pracuje spolehlivě, odpovědnost za účetnictví nese firma.
+
+## Typické chyby
+
+| Chyba | Proč vzniká | Jak se jí vyhnout |
+|---|---|---|
+| Záměna IČO a DIČ | podobné formáty | validace obou polí zvlášť |
+| Špatná sazba DPH | model nezná typ plnění | číselník sazeb a kontrola |
+| Duplicitní platba | stejná faktura ve dvou formátech | hash a párování |
+| Chybějící DUZP | pole není ve schématu | povinné pole a validace |
+| Přepsaná částka | OCR | kontrola součtu proti dokladu |
+
 ## Kdy to nepoužívat
 
 - **Automatické zaúčtování** bez člověka.

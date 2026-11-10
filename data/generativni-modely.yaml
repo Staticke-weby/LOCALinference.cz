@@ -64,6 +64,7 @@
   kategorie: obrazky
   vyrobce: Tencent
   licence: Tencent Hunyuan Community (mimo EU/UK/KR)
+  eu_pouzitelne: false
   komercni: ne
   parametry_b: 80
   naroky: "multi-GPU, desítky GB"
@@ -120,6 +121,7 @@
   kategorie: video
   vyrobce: Tencent
   licence: Tencent Hunyuan Community (mimo EU/UK/KR)
+  eu_pouzitelne: false
   komercni: ne
   parametry_b: 8.3
   naroky: "14 GB s offloadem, 720p"
@@ -176,6 +178,7 @@
   kategorie: rozhybani
   vyrobce: Tencent
   licence: Tencent Hunyuan Community (mimo EU/UK/KR)
+  eu_pouzitelne: false
   komercni: ne
   parametry_b: 8.3
   naroky: "14–24 GB"
@@ -358,6 +361,7 @@
   kategorie: 3d
   vyrobce: Tencent
   licence: Tencent Hunyuan Community (mimo EU/UK/KR)
+  eu_pouzitelne: false
   komercni: ne
   parametry_b: null
   naroky: "8–24 GB VRAM"

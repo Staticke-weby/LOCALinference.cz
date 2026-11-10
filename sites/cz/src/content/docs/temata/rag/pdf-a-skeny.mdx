@@ -93,6 +93,46 @@ se čísla porovnají s originálem a uloží se i metadata (rok, oddělení,
 stav). Když OCR selže, dokument se označí jako nezpracovaný, ne jako
 „prázdný“.
 
+## Rozhodovací tabulka: OCR, vision, nebo ručně
+
+| Situace | Volba | Proč |
+|---|---|---|
+| PDF s textovou vrstvou | přímá extrakce | nejrychlejší a nejpřesnější |
+| Čistý sken, tištěný text | OCR s českým modelem | spolehlivé a levné |
+| Sken s tabulkou | pdfplumber nebo OCR s rozvržením | drží sloupce |
+| Fotka dokumentu, dobré světlo | OCR nebo vision model | záleží na úhlu |
+| Rukopis, razítka, podpisy | ruční kontrola | OCR je nespolehlivé |
+| Jeden list, potřebujete obsah | vision model | nemusíte řešit pipeline |
+
+Vision model se hodí na jednotlivosti, ne na archiv. U tisíců stran
+je OCR levnější a lépe se kontroluje.
+
+## Kolik místa index zabere
+
+Velikost vektorového indexu se dá spočítat předem:
+
+```
+velikost ≈ počet chunků × dimenze × bajty na číslo
+```
+
+Příklad: 50 000 chunků, model s 1 024 dimenzemi a 4 bajty na číslo
+(float32) znamená **205 MB** jen pro vektory. K tomu text chunků,
+metadata a původní soubory. Je to **výpočet**, ne měření; u float16
+je polovina, u binárních vektorů ještě méně.
+
+Pro 128GB box to není problém. Důležité je, že index zůstává
+v paměti i při dotazech, takže se počítá do rezervy vedle modelu
+a [KV cache](/slovnik/pamet/kv-cache/).
+
+## Časté chyby
+
+- **OCR bez českého modelu** — diakritika se rozsype.
+- **Extrakce i tam, kde je textová vrstva** — zbytečná práce a chyby.
+- **Tabulky jako souvislý text** — sloupce se pomíchají.
+- **Hlavičky na každé straně** — v indexu jsou tisíckrát.
+- **Žádná kontrola vzorku** — chyba se objeví až v odpovědích.
+- **Smazání originálu** — bez něj nelze ověřit, co bylo v dokumentu.
+
 ## Kde je limit
 
 - **Nekvalitní sken** — z rozmazaného textu kvalitní OCR nevznikne.

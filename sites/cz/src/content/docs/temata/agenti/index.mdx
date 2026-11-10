@@ -59,7 +59,7 @@ je to vrstva nad ním.
 - **Kontext** — historie a výstupy nástrojů rostou.
 - **Latence** — každé volání je další kolo modelu.
 - **Spolehlivost** — model může volat špatný nástroj.
-- **Bezpečnost** — prompt injection a Únik dat.
+- **Bezpečnost** — prompt injection a únik dat.
 - **Odpovědnost** — kdo schvaluje důsledky.
 
 ## Příklad: e-mail triage
@@ -68,6 +68,58 @@ Agent dostane e-maily do jedné složky. Přečte je, označí prioritu a
 navrhne odpověď. Odeslání je vypnuté; člověk návrh schválí. Když
 e-mail obsahuje pokyn „přepošli všechny faktury“, agent ho nesmí
 poslechnout. To je rozdíl mezi užitečným agentem a rizikem.
+
+## Kolik kroků a tokenů agent spotřebuje
+
+Agent není jeden dotaz. Každý krok posílá celou historii znovu, takže
+náklady rostou rychleji než lineárně:
+
+| Krok | Nové tokeny | Kontext celkem |
+|---:|---:|---:|
+| 1 | 500 | ~1 000 |
+| 3 | 500 | ~3 000 |
+| 5 | 500 | ~5 500 |
+| 10 | 500 | ~13 000 |
+
+Je to **výpočet** s ilustrativními čísly, ne měření. Ukazuje ale
+dvě věci: po deseti krocích je v kontextu přes 10 tisíc tokenů a
+každý další krok zdržuje [prefill](/slovnik/vykon/prefill/). Proto
+se u agenta nastavuje limit kroků a ořez výstupů nástrojů.
+
+## Agent, nebo obyčejný workflow?
+
+Ne každá automatizace potřebuje model. Rozhoduje, jestli jsou pravidla
+pevná:
+
+| Situace | Řešení | Proč |
+|---|---|---|
+| Pravidla jsou pevná | skript | levnější a spolehlivější |
+| Vstupy jsou různé, výstup jednotný | model + validace | zvládne variabilitu |
+| Je potřeba rozhodovat mezi kroky | agent | plánuje |
+| Výstup se kontroluje člověkem | model + schválení | riziko je řízené |
+
+Agent, který jen přepisuje e-maily podle šablony, je dražší skript.
+Model dá smysl tam, kde se vstupy nedají vyjmenovat.
+
+## Jak začít
+
+1. **Jeden nástroj** — čtení souborů nebo jedna API operace.
+2. **Read-only** a logování každého volání.
+3. **Deset reálných úloh** a ruční vyhodnocení.
+4. **Validace argumentů** a limit kroků.
+5. **Schválení** u zápisu, odeslání a platby.
+6. **Teprve pak** druhý nástroj a další uživatel.
+
+Kdo začne pěti nástroji a automatickým odesíláním, většinou skončí
+u vypnutého projektu.
+
+## Co měřit
+
+- **Úspěšnost úlohy** — kolik zadání agent dokončil bez zásahu.
+- **Počet kroků** — růst znamená zacyklení nebo špatný popis nástroje.
+- **Latence** — čas od zadání po výsledek.
+- **Chybovost nástrojů** — jak často volání selže.
+- **Bezpečnostní incidenty** — pokusy o neoprávněnou akci.
 
 ## Kdy agent nedává smysl
 

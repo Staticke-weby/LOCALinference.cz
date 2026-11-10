@@ -121,6 +121,36 @@ RAG na 128GB boxu nepotřebuje další hardware. Náklady jsou:
 
 Podrobný rozklad je v [ceně lokální AI](/temata/cena-lokalni-ai/).
 
+## Typický projekt v pěti krocích
+
+RAG se nedá koupit, musí se postavit. Pořadí kroků rozhoduje o tom,
+jestli projekt skončí u dema, nebo v provozu:
+
+1. **Vyberte 50 dokumentů** a 20 dotazů, na které znáte odpověď.
+   Tohle je testovací sada, bez ní nemá smysl nic ladit.
+2. **Zpracujte text** — extrakce, OCR, metadata. Kvalita vstupu
+   rozhoduje o všem dalším (viz [PDF a skeny](/temata/rag/pdf-a-skeny/)).
+3. **Rozdělte a zaindexujte** — chunking podle struktury, embedding
+   model, vektorová databáze ([chunking](/temata/rag/chunking/)).
+4. **Zapojte model a citace** — odpověď musí ukázat dokument
+   a stranu, ne jen tvrdit, že to ví.
+5. **Změřte a teprve pak rozšiřujte** — Recall@5, věrnost, odmítnutí
+   ([citace a hodnocení](/temata/rag/citace-a-hodnoceni/)).
+
+Nejčastější selhání je přeskočit krok 1 a 5: tým nasadí RAG na celý
+archiv, nikdo nezměří kvalitu a po měsíci se nedá poznat, co se
+zlepšilo.
+
+## Co hlídat v provozu
+
+- **Nové dokumenty** — bez ingestu RAG odpovídá ze starých dat.
+- **Smazané dokumenty** — musí zmizet i vektory.
+- **Změněné dokumenty** — nová verze potřebuje nový embedding.
+- **Oprávnění** — filtr musí platit při každém dotazu.
+- **Kvalita** — průběžný vzorek odpovědí, ne jednorázový test.
+- **Náklady na kontext** — víc chunků znamená delší prefill
+  a pomalejší [TTFT](/slovnik/vykon/ttft/).
+
 ## Kdy RAG nedává smysl
 
 - Máte **jeden dokument**, který se vejde do kontextu.

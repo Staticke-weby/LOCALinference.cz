@@ -86,6 +86,49 @@ aby se sloupce nerozpadly.
 4. Zkuste jiné dělení a porovnejte.
 5. Výsledek zapište; bez baseline se změny nedají hodnotit.
 
+## Kolik chunků z dokumentu vznikne
+
+Počet chunků se dá spočítat ještě před indexací:
+
+```
+počet ≈ délka dokumentu / (velikost chunku − překryv)
+```
+
+Příklad: 100stránkové PDF má při 2 000 znacích na stranu zhruba
+200 000 znaků. Při chunku 1 500 znaků a překryvu 150 znaků vychází
+**přibližně 148 chunků**. Je to **výpočet**, ne měření; skutečný
+počet závisí na dělení podle struktury.
+
+Proč to řešit: počet chunků určuje velikost indexu, cenu hledání
+a kolik kandidátů se vejde do kontextu. U 10 000 dokumentů už rozdíl
+mezi 1 500 a 3 000 znaky znamená tisíce chunků navíc.
+
+## Volba podle typu dokumentu
+
+| Dokument | Dělení | Proč |
+|---|---|---|
+| Smlouva | články | číslování a odstavce |
+| Manuál | sekce a podsekce | návaznost kroků |
+| E-mail | jednotlivé zprávy | konverzace po vláknech |
+| Tabulka | list nebo blok s hlavičkou | drží sloupce |
+| Web | nadpisy H2/H3 | struktura stránky |
+| Zápis z porady | odstavce a rozhodnutí | témata se střídají |
+
+Když dokument strukturu nemá, teprve pak použijte dělení podle
+délky — a s překryvem, který zachová větu celou.
+
+## Kolik kontextu chunky zaberou
+
+RAG neposílá celý dokument, ale několik chunků. Orientační **výpočet**:
+5 chunků po 1 500 znacích je 7 500 znaků. Při zhruba 3,5 znacích na
+token (čeština je hutnější než angličtina) to je kolem **2 100 tokenů**
+jen pro kontext. K tomu systémový prompt, otázka a historie.
+
+Z toho plyne kompromis: víc chunků zlepší šanci, že odpověď v kontextu
+je, ale prodlouží [prefill](/slovnik/vykon/prefill/) a zabere místo
+v [KV cache](/slovnik/pamet/kv-cache/). Typický provozní bod je
+3–8 chunků, ne 50.
+
 ## Časté chyby
 
 - **Pevná délka bez ohledu na strukturu.**

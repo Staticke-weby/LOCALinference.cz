@@ -118,6 +118,24 @@ dává 1024² za 7,5 s při 8 krocích — Windows verze ale může být jiná.
 na RTX Sparku **97,6 s** na klip (NVFP4). Stejný test na MacBooku Pro
 M5 Pro dal 530 s. Jde o nezávislé měření Principled Technologies.
 
+## Licence
+
+Licence se řídí modelem, ne platformou. Na Windows i na RTX Sparku
+platí stejná pravidla jako jinde: **Z-Image-Turbo, FLUX.2 klein
+a Wan 2.2 jsou Apache-2.0** a pro firmu bezpečné; Qwen-Image 2.1
+a FLUX.2 dev jsou nekomerční; HunyuanImage a HunyuanVideo vylučují
+EU. Přehled všech modelů je v [receptech](/generovani/recepty/#licence-co-smíte-použít)
+a podrobnosti v [licencích](/generovani/licence/).
+
+## Kde je limit
+
+- **Windows on Arm je beta.** ComfyUI na RTX Sparku běží na nočním
+  PyTorchi; část nodes se nenainstaluje.
+- **Sdílená paměť.** 128 GB je společná pro systém i GPU, takže
+  velký model bere rezervu systému.
+- **Jeden uživatel.** ComfyUI nemá autentizaci ani frontu pro tým.
+- **Video a 3D závisí na nodech.** Ne všechny mají ARM64 build.
+
 ## Když to nefunguje
 
 | Příznak | Příčina | Co udělat |
@@ -146,4 +164,4 @@ pro všechny platformy.
 - [NVIDIA — RTX Spark: kompatibilita aplikací](https://nvidia.custhelp.com/app/answers/detail/a_id/5931/)
 - [NVIDIA — RTX Spark: začátky vývoje](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976)
 
-*Naposledy ověřeno: 5. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*

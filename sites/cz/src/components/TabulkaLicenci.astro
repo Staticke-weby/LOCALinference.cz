@@ -1,0 +1,71 @@
+---
+import { getGenerativniModely, type GenerativniModel } from '../lib/data';
+
+interface Props {
+  skupina?: 'vse' | 'obrazky' | 'video' | '3d' | 'audio';
+}
+
+const { skupina = 'vse' } = Astro.props;
+
+const skupiny: Record<string, GenerativniModel['kategorie'][]> = {
+  obrazky: ['obrazky', 'uprava-obrazku'],
+  video: ['video', 'uprava-videa', 'rozhybani'],
+  '3d': ['3d', 'herni-prvky'],
+  audio: ['audio', 'preklady'],
+};
+
+const modely = getGenerativniModely().filter((m) =>
+  skupina === 'vse' ? true : skupiny[skupina]?.includes(m.kategorie),
+);
+
+const komercniLabel: Record<string, string> = {
+  ano: 'ano',
+  ne: 'ne',
+  podminky: 'podmínky',
+};
+
+const euLabel = (m: GenerativniModel) => (m.eu_pouzitelne === false ? 'ne' : 'ano');
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Licence</th>
+        <th>Komerční</th>
+        <th>V ČR</th>
+        <th>Nároky</th>
+      </tr>
+    </thead>
+    <tbody>
+      {modely.map((m) => (
+        <tr>
+          <td>
+            <a href={m.zdroj} target="_blank" rel="noopener noreferrer">{m.nazev}</a>
+            <span class="li-pozn"> · {m.vyrobce}</span>
+          </td>
+          <td>{m.licence}</td>
+          <td class:list={{ 'li-ne': m.komercni === 'ne' }}>{komercniLabel[m.komercni]}</td>
+          <td class:list={{ 'li-ne': euLabel(m) === 'ne' }}>{euLabel(m)}</td>
+          <td>{m.naroky}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<ul class="li-pozn">
+  <li><strong>Komerční</strong> = smíte výstup použít v komerčním projektu.</li>
+  <li><strong>V ČR</strong> = licence model neomezuje na území; u modelů s výjimkou EU ji použít nelze.</li>
+  <li>Licence se vždycky vztahuje na model, ne na výstup.</li>
+</ul>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+  .li-ne {
+    color: var(--sl-color-red-high);
+  }
+</style>

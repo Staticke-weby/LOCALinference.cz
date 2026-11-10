@@ -91,6 +91,36 @@ vůbec nevrátí. Kdyby filtr chyběl, model by mohl odpovědět z
 dokumentu, který uživatel nesmí vidět. Oprávnění tedy není věc
 promptu, ale aplikace.
 
+## Matice přístupů
+
+Než začnete indexovat, napište si, kdo co smí vidět. Tabulka vám
+ušetří debaty později:
+
+| Role | Smlouvy | Personalistika | Marketing | Manuály |
+|---|---|---|---|---|
+| Vedení | vše | souhrny | ano | ano |
+| Právo | ano | ne | ne | ano |
+| Účetnictví | faktury | ne | ne | ne |
+| Marketing | ne | ne | ano | ano |
+| Externista | jen své | ne | jen své | ne |
+
+Tahle matice se musí promítnout do metadat a do filtru při hledání.
+Když ji nemáte, oprávnění skončí u dobré vůle.
+
+## Co dělat při incidentu
+
+Když se objeví dokument, který někdo vidět neměl:
+
+1. **Zastavte přístup** ke zdroji nebo celému RAG.
+2. **Zjistěte rozsah** — které chunky, kterým uživatelům, kdy.
+3. **Smažte vektory** i text a ověřte, že zmizely z indexu.
+4. **Zkontrolujte logy** a zapište, co se stalo.
+5. **Opravte filtr** a přidejte negativní test.
+6. **Rozhodněte o oznámení** podle [GDPR](/temata/provoz/gdpr-a-ai-act/).
+
+Incident není jen technická chyba. Pokud šlo o osobní údaje, běží
+lhůty a povinnosti, které nesouvisí s IT.
+
 ## Checklist
 
 - [ ] Má každý dokument vlastníka a citlivost?

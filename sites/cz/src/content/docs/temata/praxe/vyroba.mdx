@@ -70,6 +70,40 @@ nebezpečná.
 - **Kolik** se jich muselo opravit.
 - **Počet incidentů** spojených s dokumentací.
 
+## Jak to zavést v závodě
+
+1. **Vyberte dokumentaci**, která je platná a udržovaná. Manuál bez
+   vlastníka je horší než žádný.
+2. **Označte verze** a platnost — metadata musí obsahovat stroj,
+   model linky a datum účinnosti.
+3. **Nainstalujte box lokálně** a nastavte aktualizace přes interní
+   síť, ne přes internet.
+4. **Otestujte na deseti dotazech** od techniků, ne od IT.
+5. **Zaveďte zpětnou vazbu** — tlačítko „nesprávná odpověď“ u každého
+   výstupu.
+6. **Školte obsluhu** — model je nástroj, ne autorita.
+
+Offline provoz znamená, že model nevidí aktuální stav linky. Na dotaz
+„co se pokazilo“ musí odpovídat z dokumentace a logů, ne z domněnek.
+
+## Kolik to ušetří
+
+Hledání v papírovém manuálu nebo v PDF zabere minuty. Ilustrativní
+**výpočet**: 20 dotazů na směnu, každý o 5 minut kratší díky rychlému
+nalezení — to je 100 minut, tedy přes hodinu a půl na směnu. Je to
+**výpočet** s ukázkovými vstupy, ne měření; skutečný přínos závisí
+na tom, jak často technici dokumentaci opravdu potřebují.
+
+## Typické chyby
+
+| Chyba | Proč vzniká | Jak se jí vyhnout |
+|---|---|---|
+| Odpověď ze staré verze | v indexu je víc verzí | filtrovat podle platnosti |
+| Model vymyslí díl | chybí katalog součástek | napojit katalog, ne jen text |
+| Zjednodušený postup | model zkracuje | výstup po krocích, kontrola mistra |
+| Chybí kontext linky | model nevidí senzory | doplnit data z MES |
+| Nikdo neaktualizuje | není vlastník | určit odpovědnou roli |
+
 ## Kdy to nepoužívat
 
 - **Bezpečnostní postupy** bez ověření.

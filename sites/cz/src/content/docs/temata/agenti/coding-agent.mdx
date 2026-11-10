@@ -32,7 +32,7 @@ je to riskantní.
 ## Workflow
 
 1. **Větev** — agent pracuje mimo main.
-2. **Kontext** — vyberterelevantní soubory, ne celé repo.
+2. **Kontext** — vyberte relevantní soubory, ne celé repo.
 3. **Plán** — nechte agenta napsat kroky a schvalte je.
 4. **Změna** — malý diff, ne přepis celého projektu.
 5. **Testy** — spusťte je v izolaci.
@@ -61,6 +61,42 @@ databázi.
 - **Žádné secrets** v prostředí.
 - **Kill switch** — možnost okamžitě zastavit.
 
+## Jak rychlý je agent v praxi
+
+Coding agent není jeden dotaz, ale série kroků. Každý krok znamená
+generování stovek tokenů. Při 25 tok/s na uživatele (čtyři lidé na
+boxu, viz [kapacita](/vyber/kolik-uzivatelu/)) vychází:
+
+| Krok | Tokenů | Čas |
+|---|---:|---:|
+| Návrh plánu | 300 | ~12 s |
+| Diff jedné funkce | 600 | ~24 s |
+| Oprava podle testů | 400 | ~16 s |
+| Celý úkol, 8 kroků | ~4 000 | ~2,7 min |
+
+Je to **výpočet** z rychlosti, ne měření konkrétního agenta. Skutečný
+úkol bývá delší, protože se čte kontext a opakují testy. Pro srovnání:
+cloudový agent odpovídá v sekundách, lokální v desítkách sekund —
+rozdíl je v [decode](/slovnik/vykon/decode/), ne v kvalitě návrhu.
+
+To není důvod lokální agent odmítnout. U úloh, které běží na pozadí
+(napiš testy, projdi lint), je pár minut jedno. U interaktivního
+ladění je to znát.
+
+## Kolik kódu dát do kontextu
+
+Celé repo se do kontextu nevejde a ani to nemá smysl. Praktický
+postup:
+
+- **Začněte chybou** — stack trace nebo popis, ne „projdi projekt“.
+- **Přidejte 3–5 souborů**, které chyba zmiňuje.
+- **Doplňte test**, který selhává.
+- **Zbytek nechte na nástrojích** — agent si soubor načte, když ho
+  potřebuje.
+
+Čím méně kontextu, tím rychlejší [prefill](/slovnik/vykon/prefill/)
+a tím méně šumu pro model.
+
 ## Testy a kvalita
 
 - **Unit testy** musí projít.
@@ -72,7 +108,7 @@ databázi.
 ## Česká specifika
 
 - **Komentáře a dokumentace** v češtině mohou být nekonzistentní.
-- **Kódovaní** — UTF-8 a diakritika v souborech.
+- **Kódování** — UTF-8 a diakritika v souborech.
 - **Názvy** — agent může „opravit“ české identifikátory.
 - **Testovací data** — česká jména a adresy.
 

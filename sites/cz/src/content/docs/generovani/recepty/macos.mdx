@@ -117,6 +117,23 @@ Video je měřené na **MacBooku Pro M5 Max 128 GB** přes MLX, 3D na
 v 480p přes hodinu. Pro RTX Spark a Strix Halo platí čísla
 v jejich receptech.
 
+## Licence
+
+Licence zůstává stejná jako na jiných platformách: **Z-Image-Turbo
+a FLUX.2 klein jsou Apache-2.0**, Qwen-Image 2.1 je nekomerční
+a HunyuanImage vylučuje EU. Mac nic z toho nemění — mění jen to,
+které modely rozjedete. Přehled je v
+[receptech](/generovani/recepty/#licence-co-smíte-použít), podrobnosti
+v [licencích](/generovani/licence/).
+
+## Kde je limit
+
+- **Žádné CUDA.** SageAttention, FlashAttention ani TensorRT na Macu
+  neběží; CUDA-specifické nodes nefungují.
+- **Video je pomalé.** Minuty až desítky minut na klip.
+- **Paměť je připájená.** 64 GB je na velké modely těsné.
+- **Jeden uživatel.** ComfyUI není server pro tým.
+
 ## Když to nefunguje
 
 | Příznak | Příčina | Co udělat |
@@ -146,4 +163,4 @@ pro všechny platformy.
 - [mlx-video](https://github.com/Blaizzy/mlx-video)
 - [Draw Things](https://drawthings.ai/)
 
-*Naposledy ověřeno: 5. 11. 2026.*
+*Naposledy ověřeno: 10. 11. 2026.*
