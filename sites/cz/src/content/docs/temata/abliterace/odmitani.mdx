@@ -1,7 +1,7 @@
 ---
 title: "Odmítání modelu: co to je a jaké oblasti pokrývá"
 description: "Odmítání je trénovaná reakce modelu na škodlivý požadavek. Vysvětlíme, co všechno pokrývá, jak se měří a co se změní po abliteraci."
-last_verified: 2026-11-10
+last_verified: 2026-11-11
 sidebar:
   label: Odmítání
   order: 1
@@ -118,6 +118,46 @@ nejde srovnat.
   nemusí vypadat škodlivě.
 - **Lokální model nemá moderaci na vstupu.** Tu musíte přidat sami.
 
+## Tři české situace
+
+Odmítání se v češtině projeví jinak než v angličtině. Tři příklady,
+kde je rozhodnutí na hraně:
+
+| Situace | Co je správně | Co se často stane |
+|---|---|---|
+| **Historik píše o válečných zločinech** | vysvětlit kontext a fakta | model odmítne kvůli násilí |
+| **IT tým testuje vlastní systém** | popsat metodu a rozsah | model odmítne jako „hacking“ |
+| **Lékařská osvěta o předávkování** | uvést prevenci a pomoc | model odmítne jako návod |
+
+Ve všech třech případech je odmítnutí **přehnané**: dotaz je
+legitimní a odpověď má veřejný prospěch. Abliterace takové
+odmítnutí odstraní — ale spolu s ním i to oprávněné.
+
+## Jak testovat v provozu
+
+Nestačí jednorázový test před nasazením. Odmítání se mění s
+promptem, kontextem a jazykem. Praktický postup:
+
+1. **Sada 20 dotazů** z vašeho provozu, polovina benigních.
+2. **Druhá sada 20** hraničních, kde chcete odpověď s varováním.
+3. **Třetí sada 20** jasně škodlivých, kde chcete odmítnout.
+4. **Protokol** — kdo hodnotí a podle čeho.
+5. **Měsíční opakování** po každé změně modelu nebo promptu.
+6. **Log** — které dotazy se změnily a proč.
+
+Když benigní sada odmítá víc než 10 %, model je pro váš provoz
+nepohodlný. Když škodlivá sada neodmítá vůbec, máte abliterovaný
+model a musíte to vědět.
+
+## Časté chyby
+
+- **Hodnotit podle dojmu** — jeden dotaz není měření.
+- **Míchat jazyky** — český výsledek neplatí pro angličtinu.
+- **Testovat jen na veřejných sadách** — model je může znát.
+- **Nezapisovat protokol** — číslo bez něj nelze srovnat.
+- **Zaměnit odmítnutí s chybou nástroje** — není to totéž.
+- **Vypnout moderaci** po abliteraci — riziko zůstává.
+
 ## Kde je limit
 
 - **Odmítnutí není záruka bezpečnosti.** Model může odpovědět
@@ -144,4 +184,4 @@ nejde srovnat.
 - [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
 - [Metodika](/o-webu/metodika/)
 
-*Naposledy ověřeno: 10. 11. 2026.*
+*Naposledy ověřeno: 11. 11. 2026.*

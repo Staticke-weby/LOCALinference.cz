@@ -1,7 +1,7 @@
 ---
 title: "Abliterovaný Qwen3.8 na 128 GB: buildy, SSD a parita"
 description: "Které abliterované buildy Qwen3.8 Flash Next se vejdou na 128 GB, jak fungují n-gramy z SSD, jak měřit paritu a kde je limit."
-last_verified: 2026-11-10
+last_verified: 2026-11-11
 sidebar:
   label: Provoz na 128 GB
   order: 3
@@ -60,6 +60,60 @@ Výsledek: váhy zůstanou v paměti, n-gramy se čtou z NVMe.
 - Pinovaný kontejner s B12X jádry; stock vLLM tento checkpoint
   nenačte.
 - Měření TTFT a stability decode, ne jen průměru.
+
+## Konkrétní spuštění
+
+Každý build má vlastní cestu. Dvě, které jsou veřejně popsané:
+
+**NVIDIA FP4-Local a odvozeniny (B12X kontejner):**
+
+```bash
+export VLLM_PLE_TABLE_MEMORY="disk"
+export B12X_DISK_BACKEND="io_uring"
+export CUTE_DSL_ARCH="sm_121a"
+
+vllm serve <repo> --quantization modelopt_mixed \
+  --tensor-parallel-size 1 --dtype bfloat16 \
+  --moe-backend b12x --linear-backend b12x
+```
+
+**DevelopingDad balíček (DGX Spark):**
+
+```bash
+hf download DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated \
+  --local-dir ./qwen-abliterated
+bash ./qwen-abliterated/serve-spark.sh ./qwen-abliterated
+```
+
+Launcher sám nastaví kontejner, PLE z SSD a limity. Nespouštějte
+model přes stock vLLM nebo Transformers; tento checkpoint vyžaduje
+B12X jádra.
+
+Příkazy jsou **zkrácené**. Úplný seznam flagů je v model cardu
+konkrétního buildu; vynechaný flag může znamenat jiné chování nebo
+pád.
+
+## První běh a co čekat
+
+- **Stažení** je velké (102–184 GB) a závisí na lince.
+- **První start** kompiluje jádra a načítá PLE; může trvat déle
+  než další běhy.
+- **TTFT** je první, co disk ovlivní. Měřte ho zvlášť.
+- **Page cache** se zahřívá; po pár dotazech se stejnými prefixy
+  může být rychlejší.
+- **Teplota** a power limit se nemění; abliterace neznamená vyšší
+  spotřebu.
+
+## Časté chyby
+
+| Problém | Příčina | Řešení |
+|---|---|---|
+| OOM při startu | PLE v RAM, velký kontext | `VLLM_PLE_TABLE_MEMORY=disk` |
+| Pomalý první token | disk nebo studená cache | NVMe, zahřátí, menší prompt |
+| Model odmítá dál | abliterace na BF16, ne na NVFP4 | jiný build, měřit na finálním formátu |
+| Rozbité tool calling | agresivní edit | jiný build, test nástrojů |
+| Container padá | jiný než B12X image | pinovaný image z karty |
+| Disk se zahřívá | dlouhé čtení PLE | chlazení, jiný filesystém |
 
 ## Které buildy použít
 
@@ -153,4 +207,4 @@ náhrady.
 - [lflare — CSF-QAD-Abliterated](https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated) — 10. 11. 2026
 - [llama.cpp — dokumentace](https://github.com/ggml-org/llama.cpp)
 
-*Naposledy ověřeno: 10. 11. 2026.*
+*Naposledy ověřeno: 11. 11. 2026.*

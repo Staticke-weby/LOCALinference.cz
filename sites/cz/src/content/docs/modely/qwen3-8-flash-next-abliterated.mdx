@@ -1,7 +1,7 @@
 ---
 title: "Qwen3.8 Flash Next abliterated: co je doložené"
 description: "Abliterovaná varianta Qwen3.8 Flash Next: které buildy mají stejné parametry, vejdou se na 128 GB s n-gramy z SSD a co tvrdí měření vydavatelů."
-last_verified: 2026-11-10
+last_verified: 2026-11-11
 sidebar:
   label: Qwen3.8 abliterated
   order: 3
@@ -114,6 +114,48 @@ Kdo model nasazuje komerčně, musí si licenci přečíst sám.
 
 Když některý bod chybí, je to kandidát.
 
+## Co znamená „stejný počet parametrů“
+
+Model má 180B parametrů celkem: 125B hlavních, 51B n-gramových a
+4B MTP. V safetensors u 4bitového balení se ale uvádí jiné číslo
+(96 486 615 005), protože váhy jsou zabalené. **Rozhoduje shoda
+se základnou**, ne absolutní hodnota.
+
+| Build | Safetensors total | Shoda se základem |
+|---|---:|---|
+| NVIDIA FP4-Local | 96 486 615 005 | referenční |
+| DevelopingDad FP4-Local-Abliterated | 96 486 615 005 | **ano** |
+| lflare CSF-QAD | 96 637 001 693 | blízko, jiné balení |
+| OrcaRouter NVFP4 | 180B (BF16 PLE) | jiné balení, 184 GB |
+
+Když se číslo výrazně liší, je to jiný formát nebo jiná část
+modelu — ne „jiný model“.
+
+## Kdy paritu čekat a kdy ne
+
+| Situace | Parita je pravděpodobná | Proč |
+|---|---|---|
+| Krátký chat, 8k | ano | stejný výpočet |
+| Kód a delší odpovědi | spíš ano | stejné váhy |
+| Dlouhý kontext 128k+ | ne nutně | KV cache a pozornost |
+| Tool calling | riziko | změna projekcí |
+| Vision | riziko | jiné vrstvy |
+| České úlohy | nezměřeno | chybí sada |
+
+Parita není vlastnost modelu, ale **výsledek měření** na konkrétní
+úloze. Proto ji nelze slíbit obecně.
+
+## Rozhodovací tabulka
+
+| Potřebujete | Základní Qwen3.8 | Abliterovaná varianta |
+|---|---|---|
+| Bezpečné, předvídatelné odpovědi | **ano** | ne |
+| Odpovědi na citlivé, ale legální otázky | někdy odmítne | **ano** |
+| Tool calling a formát | **ano** | jen po testu |
+| Veřejná služba | **ano** | ne |
+| Výzkum odmítání | **ano** | **ano** |
+| Komerční nasazení | **ano** | jen s moderací |
+
 ## Kdy to nepoužívat
 
 - **Veřejná služba** bez moderace.
@@ -143,4 +185,4 @@ Když některý bod chybí, je to kandidát.
 - [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
 - [Metodika](/o-webu/metodika/)
 
-*Naposledy ověřeno: 10. 11. 2026.*
+*Naposledy ověřeno: 11. 11. 2026.*

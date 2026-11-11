@@ -1,7 +1,7 @@
 ---
 title: "Jak abliterace funguje: směr odmítání a jeho cena"
 description: "Abliterace odstraní směr odmítání z aktivací modelu. Vysvětlíme diff-in-means, orthogonalizaci, LoRA i to, co se pokazí v kvalitě."
-last_verified: 2026-11-10
+last_verified: 2026-11-11
 sidebar:
   label: Jak to funguje
   order: 2
@@ -118,6 +118,45 @@ jen jiné číslo.
 
 Když chybí tři z těchto bodů, je to kandidát, ne hotový model.
 
+## Jeden směr, nebo víc
+
+U některých modelů stačí jeden směr (rank-1). Jindy zůstane
+„zbytkové“ odmítání, hlavně když model přemýšlí nebo používá
+nástroje. Pak se odečítá víc směrů (rank-2 a vyšší).
+
+Vydavatel lflare to popisuje konkrétně: první verze dosáhla
+0 % odmítnutí s vypnutým myšlením, ale s myšlením zapnutým pořád
+odmítala. Druhá verze odečetla rozsah obou směrů a odmítání zmizelo
+i tam. Je to **tvrzení vydavatele** na jeho sadě, ne obecné pravidlo.
+
+Vyšší rank znamená větší zásah do vah a větší riziko vedlejších
+efektů. Není to „lepší abliterace“, je to jiný kompromis.
+
+## Proč se to pokazí
+
+| Příčina | Co se stane | Jak se pozná |
+|---|---|---|
+| **Příliš agresivní edit** | model ztratí část instrukcí | ignoruje formát, opakuje |
+| **Kvantizační mřížka** | úprava se smaže | odmítání se vrátí po NVFP4 |
+| **MTP projekce** | nižší acceptance draftů | pomalejší decode |
+| **Jazyk** | čeština je horší než angličtina | rozdíl v testech |
+| **Dlouhý kontext** | rozpad pozornosti | chyby uprostřed textu |
+| **Vision** | horší popis obrázků | testovací sada |
+
+Když se odmítání po kvantizaci vrátí, není to „špatný model“, ale
+špatně provedená abliterace. Solidní vydavatel to přizná a změří
+na finálním formátu.
+
+## Jak poznat špatnou abliteraci
+
+- **Karta neuvádí metodu** ani rozsah zásahu.
+- **Čísla odmítání chybí** nebo jsou jen „0 %“ bez sady.
+- **Kvalita se neměřila** na finální kvantizaci.
+- **Tool calling se netestoval.**
+- **Licence je v rozporu** se základem a karta to neřeší.
+- **Model odmítá i benigní věci** — možná je to jiný problém než
+  odmítání.
+
 ## Etická hranice
 
 Popis principu je v pořádku: čtenář má vědět, proč model odmítá a
@@ -143,4 +182,4 @@ je v tom, jestli text pomáhá porozumět, nebo pomáhá ublížit.
 - [DevelopingDad — metoda a měření](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated) — 10. 11. 2026
 - [Metodika](/o-webu/metodika/)
 
-*Naposledy ověřeno: 10. 11. 2026.*
+*Naposledy ověřeno: 11. 11. 2026.*

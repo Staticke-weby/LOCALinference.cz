@@ -1,7 +1,7 @@
 ---
 title: "Kdo tvoří abliterované modely a jak poznat solidní"
 description: "Kdo abliterované modely vydává, co má mít model card, jak číst indexy a jaká je provenance vah. Bez doporučení konkrétního modelu."
-last_verified: 2026-11-10
+last_verified: 2026-11-11
 sidebar:
   label: Kdo to tvoří
   order: 5
@@ -73,6 +73,42 @@ karta řekne jen „based on Qwen“, provenance chybí.
 Oba sbírají veřejná metadata. **Neověřují**, jestli model opravdu
 dělá, co karta tvrdí. Berte je jako rozcestník, ne jako audit.
 
+## Jak vzniká build
+
+Typická cesta od základu k hotovému repozitáři:
+
+1. **Základ** — stáhne se přesná revize Qwen3.8.
+2. **Abliterace** — výpočet směru a úprava vah.
+3. **Kvantizace** — NVFP4, GGUF nebo MLX, často s testem, jestli
+   úprava přežila.
+4. **Balíček** — kontejner, launcher, konfigurace PLE a MTP.
+5. **Dokumentace** — metoda, čísla, licence, datum.
+
+Každý krok může výsledek změnit. Když karta přeskočí krok 3,
+nevíte, jestli model po kvantizaci ještě odmítá méně.
+
+## Jak si ověřit repozitář
+
+- [ ] Je uvedená přesná revize základu?
+- [ ] Je popsaná metoda a rozsah zásahu?
+- [ ] Jsou čísla odmítání před a po?
+- [ ] Je uvedeno, na jaké kvantizaci se měřilo?
+- [ ] Je vidět licence vydavatele i základu?
+- [ ] Je v repu konfigurace pro engine, který používáte?
+- [ ] Je datum a verze?
+
+Když chybí víc než dvě položky, berte model jako experiment.
+
+## Časté chyby vydavatelů
+
+| Chyba | Následek |
+|---|---|
+| Abliterace na BF16, prodej NVFP4 bez testu | odmítání se vrátí |
+| Chybí launcher pro konkrétní hardware | model nejde spustit |
+| Neuvedená kvantizace u čísel | čísla nelze srovnat |
+| Slib „stejný jako základ“ bez měření | nedůvěryhodné |
+| Licence opsaná ze základu bez vysvětlení | právní riziko |
+
 ## Varovné signály
 
 - **„Uncensored“ bez metody** — marketing.
@@ -121,4 +157,4 @@ umět odlišit, když čtete kartu.
 - [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
 - [Metodika](/o-webu/metodika/)
 
-*Naposledy ověřeno: 10. 11. 2026.*
+*Naposledy ověřeno: 11. 11. 2026.*

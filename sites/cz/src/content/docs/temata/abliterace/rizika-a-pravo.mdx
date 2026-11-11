@@ -1,7 +1,7 @@
 ---
 title: "Abliterované modely: rizika, odpovědnost a licence"
 description: "Co může abliterovaný model způsobit, kdo nese odpovědnost, co říká AI Act a GDPR a jak se rozcházejí licence vydavatelů."
-last_verified: 2026-11-10
+last_verified: 2026-11-11
 sidebar:
   label: Rizika a právo
   order: 4
@@ -112,6 +112,40 @@ Základní pravidla Qwen Community License 1.0 zahrnují komerční
 použití, ale také podmínky pro služby a označení. Podrobnosti jsou
 v `LICENSE` u modelu.
 
+## Matice rizik podle použití
+
+| Použití | Vhodnost | Co musí být |
+|---|---|---|
+| **Interní výzkum a testování** | vhodné | dokumentace, izolace, žádná produkční data |
+| **Kreativní psaní pro dospělé** | podmíněně | věková kontrola, moderace, právní rámec |
+| **Zákaznická podpora** | podmíněně | moderace výstupu, lidský dohled, logy |
+| **HR a nábor** | **nevhodné** | rozhoduje o lidech, high-risk |
+| **Zdravotnictví a právo** | **nevhodné** | odborná odpovědnost |
+| **Veřejná služba** | **nevhodné** | transparentnost a ochrana uživatelů |
+
+„Podmíněně“ znamená, že model nesmí být jediná vrstva. Musí být
+moderace, člověk a možnost zastavit provoz.
+
+## Co dělat při zneužití
+
+- **Detekce** — vzory opakovaných dotazů, stížnosti, logy.
+- **Zastavení** — okamžité vypnutí modelu nebo konkrétního účtu.
+- **Důkazy** — uložit logy, ale bez zbytečných osobních údajů.
+- **Oznámení** — podle povahy a podle GDPR/AI Act.
+- **Náprava** — moderace, omezení, školení.
+- **Záznam** — co se stalo a co se změnilo.
+
+Když zneužití znamená nezákonný obsah, nestačí ho smazat. Je
+potřeba vyhodnotit oznamovací povinnost.
+
+## Kdy je lepší základní model
+
+- Když potřebujete **spolehlivé nástroje** a formát.
+- Když jde o **veřejnou službu**.
+- Když nemáte **moderaci**.
+- Když je riziko **vyšší než přínos**.
+- Když si nejste jisti **licencí**.
+
 ## Checklist před nasazením
 
 - [ ] Je jasný účel a kdo za něj odpovídá?
@@ -159,4 +193,4 @@ v `LICENSE` u modelu.
 - [OrcaRouter — karta](https://huggingface.co/orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4)
 - [Metodika](/o-webu/metodika/)
 
-*Naposledy ověřeno: 10. 11. 2026.*
+*Naposledy ověřeno: 11. 11. 2026.*
