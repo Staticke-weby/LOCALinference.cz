@@ -49,8 +49,8 @@ export B12X_DISK_BACKEND="io_uring"
 export CUTE_DSL_ARCH="sm_121a"
 ```
 
-`VLLM_PLE_TABLE_MEMORY=disk` drží n-gramovou tabulku na disku a
-mapuje ji do paměti. `io_uring` zajišťuje asynchronní čtení.
+`VLLM_PLE_TABLE_MEMORY=disk` drží [n-gramovou tabulku](/slovnik/pamet/ngram-embeddings/)
+na disku a mapuje ji do paměti. `io_uring` zajišťuje asynchronní čtení.
 Výsledek: váhy zůstanou v paměti, n-gramy se čtou z NVMe.
 
 **Co to vyžaduje:**

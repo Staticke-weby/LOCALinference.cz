@@ -1,0 +1,91 @@
+---
+title: "Abliterace: co to je a proč model přestane odmítat"
+description: "Abliterace odstraní z modelu směr odmítání. Vysvětlíme, co se mění ve vahách, co to udělá s kvalitou a proč to na 128 GB není zdarma."
+last_verified: 2026-11-11
+sidebar:
+  label: Abliterace
+  order: 36
+---
+
+**Abliterace** je úprava vah modelu, která potlačí jeho naučené
+odmítání. Model pořád zná látku, ale přestane říkat „to nemohu“.
+Není to nový model ani přepínač v promptu; je to trvalý zásah do
+souboru vah.
+
+## Rychlá odpověď
+
+- **Abliterace ≠ jailbreak.** Jailbreak je trik v dotazu; abliterace
+  je změna modelu.
+- **Počet parametrů zůstává.** Model se vejde do stejné paměti.
+- **Cena je kvalita a bezpečnost**, ne velikost.
+- **Na 128 GB to jde**, ale záleží na formátu a na tom, zda jde
+  n-gramová tabulka na SSD.
+
+## Jak to funguje
+
+Model se učí odmítat v poslední fázi tréninku. Vznikne směr
+v aktivacích, který odpovídá „tohle je škodlivé“. Abliterace ten
+směr potlačí — typicky odečtením z attention a expertních vrstev.
+Podrobně to popisuje
+[jak abliterace funguje](/temata/abliterace/jak-abliterace-funguje/).
+
+Metody:
+
+| Metoda | Co dělá |
+|---|---|
+| **diff-in-means** | najde směr z rozdílu průměrů |
+| **orthogonalizace** | odečte směr z matic |
+| **LoRA** | naučí malý adaptér potlačení |
+| **Heretic** | automaticky hledá parametry |
+
+## Co to udělá s modelem
+
+- **Odmítání klesne**, často na jednotky procent.
+- **Přemrštěné odmítání** klesne také.
+- **Kvalita** může klesnout u složitých úloh.
+- **Tool calling** se může rozbít.
+- **MTP** může mít nižší acceptance.
+- **Znalost** zůstává; model pořád ví, jak co udělat.
+
+## Na 128 GB
+
+Abliterace nemění velikost. Qwen3.8 Flash Next má 125B hlavních
+parametrů, 6B aktivních, 51B n-gramů a 4B MTP. V NVFP4 je to
+kolem 96 GiB. Rozhoduje formát a načtení
+[n-gramové tabulky](/slovnik/pamet/ngram-embeddings/): s PLE na
+SSD se vejde i delší kontext.
+
+## Mýty
+
+- **„Je to stejný model bez zábran.“** Není; mění se chování
+  a může se zhoršit kvalita.
+- **„Abliterace maže znalost.“** Nemaže, jen potlačí odmítnutí.
+- **„Stačí změnit prompt.“** To je jailbreak, ne abliterace.
+- **„Lokálně je to bez rizika.“** Riziko výstupu zůstává.
+
+## Kdy to neřešit
+
+- Když potřebujete předvídatelné a bezpečné odpovědi.
+- Když jde o veřejnou službu nebo práci s lidmi.
+- Když model neumí tool calling a potřebujete nástroje.
+- Když si nejste jisti licencí odvozeniny.
+
+## Kudy dál
+
+- [Abliterované modely](/temata/abliterace/) — cluster.
+- [Odmítání](/temata/abliterace/odmitani/) — co se vypíná.
+- [Jak to funguje](/temata/abliterace/jak-abliterace-funguje/) —
+  technika.
+- [Provoz na 128 GB](/temata/abliterace/provoz-na-128-gb/) — buildy.
+- [Rizika a právo](/temata/abliterace/rizika-a-pravo/) — licence.
+- [Kvantizace](/slovnik/software/kvantizace/) — co ztratíte.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Arditi et al. — Refusal direction](https://arxiv.org/abs/2406.11717)
+- [Heretic](https://github.com/p-e-w/heretic)
+- [DevelopingDad — abliterated build](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

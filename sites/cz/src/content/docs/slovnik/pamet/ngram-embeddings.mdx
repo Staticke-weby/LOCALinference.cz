@@ -1,0 +1,94 @@
+---
+title: "N-gramová tabulka (PLE): proč bere 48 GB a jak ji dostat na SSD"
+description: "Qwen3.8 Flash Next má 51B n-gramovou tabulku. Vysvětlíme, co dělá, proč se nevejde do 128 GB a jak funguje načítání z NVMe."
+last_verified: 2026-11-11
+sidebar:
+  label: N-gramová tabulka
+  order: 9
+---
+
+**N-gramová tabulka** (PLE, per-layer embeddings) je velká lookup
+tabulka, ze které model bere vektory pro krátké posloupnosti tokenů.
+U Qwen3.8 Flash Next má 51B parametrů a v FP8 zabírá přibližně
+**47,7 GiB**. Není to výpočet jako váhy expertů; je to hlavně
+paměť a čtení.
+
+## Rychlá odpověď
+
+- **51B parametrů** jen pro n-gramy.
+- **~47,7 GiB v FP8**, v BF16 zhruba dvojnásobek.
+- **Token se dotkne jen 16 řádků** — zbytek tabulky je studený.
+- **Proto ji lze držet na NVMe** a mapovat do paměti.
+
+## Co to dělá
+
+Model potřebuje vědět, jaké slovo nebo fráze spolu souvisí. N-gramová
+tabulka je slovník vektorů pro krátké posloupnosti; model z ní
+při každém tokenu přečte několik řádků a přidá je do reprezentace.
+Není to „paměť konverzace“ a není to
+[KV cache](/slovnik/pamet/kv-cache/).
+
+## Proč je to problém na 128 GB
+
+Qwen3.8 v NVFP4 má kolem 96 GiB vah. Když se k tomu přidá 48 GiB
+tabulky v paměti, na kontext nezbyde. Proto se používá:
+
+- **FP8 tabulka** místo BF16 — polovina místa,
+- **mmap z NVMe** — tabulka zůstane na disku a čte se po řádcích,
+- **page cache** — horké n-gramy zůstanou v RAM.
+
+## Jak to funguje v praxi
+
+1. Tabulka leží v souboru na NVMe.
+2. Engine zmapuje soubor a při tokenu přečte potřebné řádky.
+3. Kernel drží horké stránky v page cache.
+4. Studené čtení jde na disk; teplé je z paměti.
+
+**Cena:** teplá cache je skoro zdarma, studená bolí. V benchmarku
+vLLM bylo PLE z disku o ~8 % pomalejší při jednom streamu a o ~17 %
+při 32; TTFT zůstalo stejné. Cold cache spadla na polovinu.
+
+## Čísla, která se hodí znát
+
+| Veličina | Hodnota |
+|---|---:|
+| Parametry tabulky | 51B |
+| FP8 velikost | ~47,7 GiB |
+| Řádků na token | ~16 |
+| Bajtů na řádek | ~160 |
+| Čtení na token | ~2,5 KB |
+
+## Mýty
+
+- **„Je to součást KV cache.“** Není; KV cache je pro kontext,
+  PLE pro n-gramy.
+- **„Když se vejde model, vejde se i tabulka.“** Ne vždy; proto
+  existuje offload.
+- **„Disk je vždycky pomalý.“** Horká cache je rychlá; problém je
+  první čtení a studený start.
+
+## Kdy to neřešit
+
+- Když máte model, který n-gramovou tabulku nemá.
+- Když provozujete malý model, který se vejde celý.
+- Když nemáte NVMe a síťový disk.
+- Když stačí kratší kontext a menší model.
+
+## Kudy dál
+
+- [Provoz abliterovaného Qwen3.8](/temata/abliterace/provoz-na-128-gb/) —
+  buildy a PLE z SSD.
+- [KV cache](/slovnik/pamet/kv-cache/) — jiný druh paměti.
+- [Kontext](/slovnik/pamet/kontext/) — co se vejde.
+- [NVFP4](/slovnik/software/nvfp4/) — formát vah.
+- [vLLM](/slovnik/software/vllm/) — engine.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [vLLM — disk-backed PLE](https://github.com/vllm-project/vllm/pull/54070) — 11. 11. 2026
+- [tonyd2wild — PLE z NVMe](https://github.com/tonyd2wild/Qwen3.8-Flash-Next-NVFP4-DGX-Spark) — 11. 11. 2026
+- [NVIDIA — FP4-Local](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

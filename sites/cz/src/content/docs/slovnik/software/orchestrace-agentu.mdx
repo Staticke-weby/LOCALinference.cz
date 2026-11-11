@@ -1,0 +1,74 @@
+---
+title: "Orchestrace agentů: jak běží víc agentů najednou"
+description: "Orchestrace rozděluje práci mezi víc agentů, drží worktrees a předává výsledky. Vysvětlíme primitiva, rizika a kdy to nemá smysl."
+last_verified: 2026-11-11
+sidebar:
+  label: Orchestrace agentů
+  order: 38
+---
+
+**Orchestrace agentů** znamená, že jeden proces nebo člověk řídí víc
+agentů: rozdělí úlohu, spustí je v oddělených pracovních kopiích a
+posbírá výsledky. Bez orchestrace si agenti přepisují soubory a
+nedá se zjistit, co vlastně udělali.
+
+## Rychlá odpověď
+
+- **Orchestrace není model.** Je to správa běhů.
+- **Worktree na úlohu** je minimum pro paralelní práci.
+- **Koordinátor** rozděluje práci a kontroluje výsledky.
+- **Příklad:** Herdr; agenti mohou být pi, omp nebo OpenCode.
+
+## Tři primitiva
+
+| Pojem | Co to je |
+|---|---|
+| **Workspace** | jeden projekt nebo úloha |
+| **Pane** | skutečný shell pro agenta nebo test |
+| **Worktree** | izolovaná kopie repa pro jednu úlohu |
+
+Pane bez worktree izoluje jen proces, ne soubory. Dva agenti ve
+stejném repu si konkurují; dva agenti ve dvou worktree ne.
+
+## Jak to vypadá
+
+1. Koordinátor dostane cíl.
+2. Rozdělí ho na části.
+3. Každému agentovi dá vlastní worktree a brief.
+4. Sleduje stav a výsledky.
+5. Výsledky reviewuje a merguje.
+6. Worktrees ukliďe.
+
+## Rizika
+
+- **Kolize** — dva agenti v jednom worktree.
+- **Kontext** — každý agent má vlastní, takže se nedomluví sám.
+- **Náklady** — víc běhů znamená víc tokenů a času.
+- **Kontrola** — víc výsledků znamená víc review.
+- **Bezpečnost** — orchestrátor může spustit cokoli; potřebuje
+  oprávnění a [sandbox](/temata/provoz/sandbox-agentu/).
+
+## Kdy to nemá smysl
+
+- Když máte jednu úlohu a jednoho agenta.
+- Když nemáte testy, podle kterých výsledek poznáte.
+- Když nemáte čas uklízet worktrees.
+- Když agenti potřebují sdílet kontext.
+
+## Kudy dál
+
+- [Herdr](/temata/agenti/nastroje/herdr/) — orchestrace.
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) —
+  přehled vrstev.
+- [Agentní harness](/slovnik/software/agent-harness/) — smyčka.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+- [Souběžnost](/slovnik/vykon/soubeznost/) — kapacita.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Herdr](https://herdr.dev/) — 11. 11. 2026
+- [Herdr — orchestration skill](https://github.com/aerain/herdr-agent-orchestration) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

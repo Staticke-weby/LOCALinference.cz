@@ -128,6 +128,12 @@ function rehypeSlovnik() {
     { re: /\bflash attention\b/gi, url: '/slovnik/software/flash-attention/', slug: 'software/flash-attention' },
     { re: /\bGTT\b/g, url: '/slovnik/pamet/gtt/', slug: 'pamet/gtt' },
     { re: /\boffload\w*/gi, url: '/slovnik/pamet/offload/', slug: 'pamet/offload' },
+    { re: /\babliterac\w*/gi, url: '/slovnik/software/abliterace/', slug: 'software/abliterace' },
+    { re: /\babliterovan\w*/gi, url: '/slovnik/software/abliterace/', slug: 'software/abliterace' },
+    { re: /\bn-gramov\w* tabulk\w*/gi, url: '/slovnik/pamet/ngram-embeddings/', slug: 'pamet/ngram-embeddings' },
+    { re: /\bPLE\b/g, url: '/slovnik/pamet/ngram-embeddings/', slug: 'pamet/ngram-embeddings' },
+    { re: /\bagentní harness\b/gi, url: '/slovnik/software/agent-harness/', slug: 'software/agent-harness' },
+    { re: /\borchestrace agentů\b/gi, url: '/slovnik/software/orchestrace-agentu/', slug: 'software/orchestrace-agentu' },
   ];
 
   const SKIP_PARENTS = new Set(['a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']);

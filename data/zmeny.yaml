@@ -5,6 +5,13 @@
 # hreflang, menu, opravy odkazů) sem nepatří.
 
 - datum: 2026-11-11
+  typ: obsah
+  titulek: "Slovník: abliterace, n-gramová tabulka, harness a orchestrace"
+  co_se_zmenilo: "Přibyly čtyři pojmy: abliterace, n-gramová tabulka (PLE), agentní harness a orchestrace agentů. Všechny jsou v automatickém prolinkování a odkazují na nové clustery."
+  dotcene_stranky: [slovnik/software/abliterace, slovnik/pamet/ngram-embeddings, slovnik/software/agent-harness, slovnik/software/orchestrace-agentu]
+  zdroj: https://www.localinference.cz/slovnik/software/abliterace/
+
+- datum: 2026-11-11
   typ: mereni
   titulek: "Abliterovaný Qwen3.8: další veřejné buildy a PLE z SSD"
   co_se_zmenilo: "Na stránce provozu jsou nová komunitní měření: Chompa1422 42,13/72,45 tok/s, tonyd2wild 43,9 tok/s s PLE z NVMe, gorbatjovy FP8 PLE se 125,9 GiB a 2,2M tokeny KV na dvou Sparkách. Přibyl benchmark ceny PLE z disku (−8 % při jednom streamu, −17 % při 32, cold cache −50 %) a postup pro RTX Spark: port vLLM umí NVMe PLE cache, 96/32 split a 53,2 tok/s v komunitním testu. Čísla jsou označená jako měření vydavatelů, ne parita."

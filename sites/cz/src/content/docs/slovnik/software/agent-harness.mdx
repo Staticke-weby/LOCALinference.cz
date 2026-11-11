@@ -1,0 +1,83 @@
+---
+title: "Agentní harness: co to je a proč rozhoduje o chování agenta"
+description: "Harness vede smyčku agenta, volá nástroje a hlídá kontext. Vysvětlíme rozdíl od modelu a enginu a proč na něm záleží víc než na počtu funkcí."
+last_verified: 2026-11-11
+sidebar:
+  label: Agentní harness
+  order: 37
+---
+
+**Agentní harness** je program, který vede smyčku mezi modelem a
+nástroji. Model rozhodne, co udělat; harness to provede, vrátí
+výsledek a pošle další požadavek. Bez harnesse je model jen chat.
+
+## Rychlá odpověď
+
+- **Model generuje, harness koná.**
+- **Harness určuje, co agent smí** a kdy se ptá člověka.
+- **Kvalita tool callingu** je věc modelu i harnesse.
+- **Příklad:** pi, omp, OpenCode; workspace je OpenChamber.
+
+## Vrstvy
+
+| Vrstva | Co dělá |
+|---|---|
+| **Model** | generuje tokeny |
+| **Engine** | obsluhuje model a API |
+| **Harness** | smyčka, nástroje, kontext |
+| **Workspace** | přehled session a diffů |
+| **Nástroj** | konkrétní akce |
+
+Záměna těchto vrstev je nejčastější zdroj zklamání. „Model je pomalý“
+může být engine; „agent neposlouchá“ může být harness nebo template.
+
+## Co harness dělá
+
+1. Sestaví systémový prompt a schémata nástrojů.
+2. Pošle požadavek modelu.
+3. Přečte odpověď nebo požadavek na nástroj.
+4. Ověří argumenty a zavolá nástroj.
+5. Výsledek přidá do kontextu.
+6. Opakuje, dokud není hotovo nebo nedojde limit.
+
+## Co ho odlišuje
+
+- **Schvalování** — zda se ptá před akcí.
+- **Nástroje** — co všechno umí a jak je omezuje.
+- **Kontext** — jak ořezává historii a výstupy.
+- **Lokální endpoint** — zda umí OpenAI kompatibilní API.
+- **Logy** — zda víte, co se stalo.
+
+## Na 128 GB
+
+Harness běží na CPU a bere stovky MB až jednotky GB. Nekonkuruje
+modelu o GPU, ale může konkurovat o CPU a disk. Důležitější je,
+že každý krok posílá celou historii; harness, který neřeže výstupy,
+zaplní [kontext](/slovnik/pamet/kontext/) rychle.
+
+## Kdy to nepotřebujete
+
+- Když chcete jen chat.
+- Když stačí jednorázový skript.
+- Když model neumí tool calling.
+- Když nemáte čas řešit oprávnění.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) —
+  přehled harnessů.
+- [pi](/temata/agenti/nastroje/pi/) — minimální harness.
+- [omp](/temata/agenti/nastroje/omp/) — harness s LSP.
+- [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
+  harness a workspace.
+- [Function calling](/slovnik/software/function-calling/) — volání.
+- [MCP](/slovnik/software/mcp/) — nástroje.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [pi — dokumentace](https://github.com/earendil-works/pi) — 11. 11. 2026
+- [OpenCode — dokumentace](https://opencode.ai/docs/) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*
