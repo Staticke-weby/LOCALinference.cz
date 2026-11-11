@@ -238,38 +238,70 @@ Wasmtime, OWASP LLM Top 10, NIST AI RMF.
 ## 4. Nová část C — kde provozovat agenty
 
 **URL:** `/temata/agenti/kde-provozovat-agenty/`
-**Rozsah:** 3 500–4 500 slov, jeden článek.
+**Rozsah:** 3 500–4 000 slov, jeden článek.
 
-### Taxonomie
+### Taxonomie (čtyři vrstvy)
 
-| Vrstva | Co to je | Příklady |
+| Vrstva | Co to je | Nástroje |
 |---|---|---|
-| CLI harness | agent v terminálu nad repem | Claude Code, Codex CLI, Gemini CLI, OpenCode |
-| Gateway / messaging | agent na serveru, dosažitelný z chatů | OpenClaw, Hermes Agent |
-| Desktop GUI | aplikace s boty a schvalováním | MausBot, Goose, Claude Cowork |
-| IDE | agent v editoru | Cursor, rozšíření VS Code |
-| Cloud sandbox | agent v hostovaném VM | E2B, Daytona, Box |
-| GUI agent | ovládá obrazovku | UI-TARS, Agent S, Agent Zero |
+| Terminálový harness | agent v terminálu nad repem | pi, omp, OpenCode |
+| Desktopový workspace | aplikace pro session a review | OpenChamber, MausBot |
+| Gateway / messaging | agent na serveru, dosažitelný z chatů | OpenClaw, Hermes |
+| Orchestrace | správa více agentů a worktrees | Herdr |
 
-### Co musí článek říct
+**Vynecháno:** nástroje velkých poskytovatelů (Claude Code, Codex CLI,
+Gemini CLI, Claude Cowork, Grok Bot), T3 Code, VS Code a všechna
+editorová rozšíření (Cline, Roo Code, Continue), Cursor, Windsurf, Zed,
+tmux a Zellij, computer-use agenti (UI-TARS, Agent S, Agent Zero),
+cloudové sandboxy (E2B, Daytona, Box) a frameworky (LangChain, CrewAI).
 
-- Rozdíl mezi modelem, enginem a harnessem.
-- Lokální model jako OpenAI kompatibilní backend: tool calling,
-  kontext, limit kroků.
-- **OpenClaw**: gateway, výchozí oprávnění shellu, licence
-  k ověření (GitHub uvádí MIT, vendorská stránka Apache-2.0).
-- **MausBot**: desktop harness s approval gate, Apache-2.0;
-  tvrzení výrobce označit jako tvrzení.
-- Hermes, Goose, Claude Cowork, CLI agenti: krátké profily.
-- Srovnávací tabulka: licence, platforma, approval gate, lokální
-  model, síťová expozice, vhodnost pro 128 GB.
-- Rozhodovací strom a náklady na režii.
-- Bezpečnostní minimum: localhost, tokeny, allowlist, žádné
-  veřejné porty.
-- Kdy to nepoužívat.
+Důvod: článek je o **nezávislých nástrojích, které jde připojit
+k lokálnímu modelu**, ne o ekosystému velkých poskytovatelů, editorech
+nebo infrastruktuře bez vazby na model.
 
-**Pozor:** MausBot je vendor srovnávacích stránek. Jeho tvrzení
-o konkurenci bereme jako `vyrobce`/`komunita`, ne nezávislý test.
+### Struktura
+
+1. Rychlá odpověď.
+2. Co je harness a co není.
+3. Čtyři vrstvy + diagram.
+4. Co musí nástroj umět s lokálním modelem.
+5. Terminálové harnessy: pi, omp, OpenCode.
+6. Desktopový workspace: OpenChamber a MausBot.
+7. Gateway: OpenClaw a Hermes.
+8. Orchestrace: Herdr.
+9. Srovnávací tabulka.
+10. Rozhodovací strom.
+11. Režie a náklady.
+12. Bezpečnostní minimum.
+13. Kdy to nepoužívat.
+14. Kudy dál a zdroje.
+
+### Podstránky (mimo menu)
+
+- `/temata/agenti/nastroje/pi/`
+- `/temata/agenti/nastroje/omp/`
+- `/temata/agenti/nastroje/opencode-a-openchamber/`
+- `/temata/agenti/nastroje/mausbot/`
+- `/temata/agenti/nastroje/openclaw/`
+- `/temata/agenti/nastroje/hermes/`
+- `/temata/agenti/nastroje/herdr/`
+
+Každá 600–900 slov: co to je, licence, připojení lokálního modelu,
+instalace, workflow, limity, bezpečnost, kdy to nepoužít, zdroje.
+Do menu se nezařazují; odkazuje na ně pilíř a tabulka.
+
+**MausBot:** desktop harness s approval kartami, Apache-2.0,
+harness na `127.0.0.1`, lokální endpoint přes OpenAI kompatibilní
+API. Ověřit, které enginy lokální endpoint podporují, a uvést
+platformy včetně omezení na Ubuntu (Xorg, ne Wayland).
+
+**Hermes:** self-hosted asistent a gateway, MIT; plnohodnotná
+podstránka, ne jen řádek v tabulce. Ověřit dokumentaci k lokálnímu
+modelu, schvalování příkazů, kanály, platformy a licenci.
+
+**Pozor:** u OpenClaw ověřit licenci (GitHub uvádí MIT, vendorská
+stránka Apache-2.0) a výchozí oprávnění shellu. U každého nástroje
+uvést datum posledního release a stav k datu.
 
 ---
 

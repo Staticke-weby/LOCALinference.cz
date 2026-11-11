@@ -360,14 +360,17 @@ zastaral. Jeden článek s jasnou taxonomií a datem je udržitelnější.
 
 ### Taxonomie (tabulka)
 
-| Vrstva | Co to je | Příklady |
+| Vrstva | Co to je | Nástroje |
 |---|---|---|
-| **CLI harness** | agent v terminálu nad repem | Claude Code, Codex CLI, Gemini CLI, OpenCode |
-| **Gateway / messaging** | agent na serveru, dosažitelný z chatů | OpenClaw, Hermes Agent |
-| **Desktop GUI** | aplikace s boty a schvalováním | MausBot, Goose, Claude Cowork |
-| **IDE** | agent uvnitř editoru | Cursor, VS Code rozšíření |
-| **Cloud sandbox** | agent v hostovaném VM | E2B, Daytona, Box |
-| **GUI agent** | ovládá obrazovku | UI-TARS, Agent S, Agent Zero |
+| **Terminálový harness** | agent v terminálu nad repem | pi, omp, OpenCode |
+| **Desktopový workspace** | aplikace pro session a review | OpenChamber, MausBot |
+| **Gateway / messaging** | agent na serveru, dosažitelný z chatů | OpenClaw, Hermes |
+| **Orchestrace** | správa více agentů a worktrees | Herdr |
+
+**Vynecháno:** nástroje velkých poskytovatelů (Claude Code, Codex CLI,
+Gemini CLI, Claude Cowork, Grok Bot), T3 Code, VS Code a všechna
+editorová rozšíření, Cursor, Windsurf, Zed, tmux, Zellij, computer-use
+agenti, cloudové sandboxy a frameworky.
 
 ### Osnova
 
@@ -376,18 +379,17 @@ zastaral. Jeden článek s jasnou taxonomií a datem je udržitelnější.
 2. **Co je harness** a jak se liší od modelu a od enginu.
 3. **Lokální model jako backend**: OpenAI kompatibilní endpoint,
    tool calling, kontext, limit kroků.
-4. **OpenClaw**: co je, jak se provozuje, jaké má defaulty a kde
-   je riziko otevřeného gatewaye. Ověřit licenci z GitHubu
-   (zdroje se rozcházejí: MIT vs. Apache-2.0).
-5. **MausBot**: desktop harness s approval gate, Apache-2.0,
-   tvrzení výrobce označit jako tvrzení.
-6. **Hermes, Goose, Claude Cowork, Codex/Claude CLI**: krátké
-   profily, jen doložené vlastnosti.
-7. **Srovnávací tabulka**: licence, platforma, approval gate,
+4. **pi, omp, OpenCode**: terminálové harnessy a lokální endpoint.
+5. **OpenChamber a MausBot**: desktopové workspace, approval gate
+   a připojení lokálního modelu.
+6. **OpenClaw a Hermes**: gateway; Hermes má vlastní podstránku,
+   ne jen řádek v tabulce.
+7. **Herdr**: orchestrace, worktrees a CLI.
+8. **Srovnávací tabulka**: licence, platforma, approval gate,
    lokální model, síťová expozice, vhodnost pro 128GB box.
-8. **Rozhodovací strom**: jeden uživatel / tým / server / GUI.
-9. **Kolik to stojí**: režie harnessu, tokeny na systémový prompt,
-   počet kroků, latence při 25 tok/s.
+9. **Rozhodovací strom**: jeden uživatel / tým / server.
+10. **Kolik to stojí**: režie harnessu, tokeny na systémový prompt,
+    počet kroků, latence při 25 tok/s.
 10. **Bezpečnostní minimum**: localhost, tokeny, allowlist,
     žádné veřejné porty, logy.
 11. **Kdy to nepoužívat**: když stačí chat, když nemáte čas na
