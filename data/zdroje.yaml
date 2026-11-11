@@ -942,6 +942,28 @@
   stav: ok
   poznamka: "Self-hosted asistent; OpenAI kompatibilní endpoint; minimum 64k kontextu."
 
+- id: hermes-desktop
+  nazev: Hermes Desktop — Local Models
+  url: https://hermes-agent.nousresearch.com/docs/user-guide/local-models
+  typ: html
+  co_sledujeme: [desktop, llama.cpp, lokalni_model, releases]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "Jednoklikový llama.cpp, katalog s fit kontrolou, 64k minimum, idle unload."
+
+- id: lm-studio
+  nazev: LM Studio — server a API
+  url: https://lmstudio.ai/docs/developer/core/server
+  typ: html
+  co_sledujeme: [server, tool_use, mcp, releases]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "OpenAI server na :1234, tool use, MCP od 0.4.0; není harness."
+
 - id: herdr
   nazev: Herdr
   url: https://herdr.dev/

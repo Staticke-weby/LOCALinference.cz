@@ -107,6 +107,36 @@
   zdroj: https://hermes-agent.nousresearch.com/docs/
   overeno: 2026-11-11
 
+- id: hermes-desktop
+  nazev: Hermes Desktop
+  vrstva: desktop
+  licence: MIT
+  platformy: [macOS, Windows, Linux]
+  gui: ano
+  approval: volitelne
+  lokalni_model: ano
+  mcp: ano
+  sitova_expozice: localhost
+  stranka: /temata/agenti/nastroje/hermes-desktop/
+  poznamka: "Desktop s jednoklikovým llama.cpp: katalog, fit podle paměti, 64k minimum, idle unload."
+  zdroj: https://hermes-agent.nousresearch.com/docs/user-guide/local-models
+  overeno: 2026-11-11
+
+- id: lm-studio
+  nazev: LM Studio
+  vrstva: runtime
+  licence: proprietární (zdarma)
+  platformy: [macOS, Windows, Linux]
+  gui: ano
+  approval: ne
+  lokalni_model: ano
+  mcp: ano
+  sitova_expozice: localhost
+  stranka: /temata/agenti/nastroje/lm-studio/
+  poznamka: "Desktop model runner a OpenAI server na :1234; není agentní harness."
+  zdroj: https://lmstudio.ai/docs/developer/core/server
+  overeno: 2026-11-11
+
 - id: herdr
   nazev: Herdr
   vrstva: orchestrace

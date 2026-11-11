@@ -227,6 +227,8 @@
     - /temata/agenti/nastroje/mausbot/
     - /temata/agenti/nastroje/openclaw/
     - /temata/agenti/nastroje/hermes/
+    - /temata/agenti/nastroje/hermes-desktop/
+    - /temata/agenti/nastroje/lm-studio/
     - /temata/agenti/nastroje/herdr/
   chybi: "Chybí veřejné testy úspěšnosti agentů na českých úlohách."
   overeno: 2026-11-10

@@ -1,0 +1,75 @@
+---
+title: "AI workspace: vizuální vrstva nad agentem"
+description: "AI workspace ukazuje session, diffy a worktrees agenta. Vysvětlíme, co to je, jak se liší od IDE a kdy se vyplatí."
+last_verified: 2026-11-11
+sidebar:
+  label: AI workspace
+  order: 39
+---
+
+**AI workspace** je aplikace, která zobrazuje práci agenta: chat,
+diffy, terminál, session a historii. Není to model ani harness;
+je to **kontrolní místo**, kde vidíte, co agent udělal, a
+rozhodujete, co se stane dál.
+
+## Rychlá odpověď
+
+- **Workspace ≠ IDE.** Neupravuje kód, jen ukazuje změny.
+- **Workspace ≠ harness.** Smyčku vede harness; workspace ji
+  zobrazuje.
+- **Přínos:** přehled, review, práce z víc zařízení.
+- **Příklad:** OpenChamber nad OpenCode.
+
+## Co workspace umí
+
+- **Session** — historie konverzací a běhů.
+- **Diff** — co se změnilo a kde.
+- **Worktrees** — paralelní úlohy v izolaci.
+- **Review** — schválení, komentáře, merge.
+- **Vzdálený přístup** — web, mobil, relay.
+- **Náklady** — tokeny a spotřeba.
+
+## Jak se liší od IDE
+
+| Co | AI workspace | IDE |
+|---|---|---|
+| Účel | řídit agenta | editovat kód |
+| Výstup | diff a review | soubory a build |
+| Práce agenta | vidíte a schvalujete | spouštíte v terminálu |
+| IDE integrace | volitelná | základ |
+
+Workspace se používá **vedle** editoru, ne místo něj.
+
+## Kdy se vyplatí
+
+- Když agent mění víc souborů a chcete vidět diff.
+- Když běží víc agentů nebo modelů.
+- Když pracujete z notebooku i z telefonu.
+- Když potřebujete historii a audit.
+
+## Kdy ne
+
+- Když stačí terminál a jeden příkaz.
+- Když agent jen odpovídá textem.
+- Když nemáte čas na další vrstvu.
+- Když jde o jednorázový skript.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) —
+  přehled vrstev.
+- [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
+  příklad.
+- [Agentní harness](/slovnik/software/agent-harness/) — smyčka.
+- [Orchestrace agentů](/slovnik/software/orchestrace-agentu/) —
+  víc agentů.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [OpenChamber](https://github.com/openchamber/openchamber) — 11. 11. 2026
+- [OpenChamber — dokumentace](https://docs.openchamber.dev/) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

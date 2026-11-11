@@ -134,6 +134,7 @@ function rehypeSlovnik() {
     { re: /\bPLE\b/g, url: '/slovnik/pamet/ngram-embeddings/', slug: 'pamet/ngram-embeddings' },
     { re: /\bagentní harness\b/gi, url: '/slovnik/software/agent-harness/', slug: 'software/agent-harness' },
     { re: /\borchestrace agentů\b/gi, url: '/slovnik/software/orchestrace-agentu/', slug: 'software/orchestrace-agentu' },
+    { re: /\bAI workspace\b/gi, url: '/slovnik/software/ai-workspace/', slug: 'software/ai-workspace' },
   ];
 
   const SKIP_PARENTS = new Set(['a', 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
@@ -393,7 +394,63 @@ export default defineConfig({
         },
         {
           label: 'Témata',
-          items: [{ autogenerate: { directory: 'temata' } }],
+          items: [
+            { label: 'Přehled témat', link: '/temata/' },
+            {
+              label: 'Cena a výběr',
+              items: [
+                { label: 'Cena lokální AI', link: '/temata/cena-lokalni-ai/' },
+                { label: '128 GB paměti', link: '/temata/128gb-unified-memory/' },
+                { label: 'Lokální AI pro firmy', link: '/temata/lokalni-ai-pro-firmy/' },
+              ],
+            },
+            {
+              label: 'Zařízení',
+              items: [
+                { label: 'DGX Spark', link: '/temata/dgx-spark/' },
+                { label: 'Strix Halo', link: '/temata/strix-halo/' },
+                { label: 'RTX Spark', link: '/temata/rtx-spark/' },
+              ],
+            },
+            { label: 'Qwen3.8 na 128 GB', link: '/temata/qwen3-8-flash-next/' },
+            {
+              label: 'Windows 11',
+              link: '/temata/lokalni-ai-na-windows-11/',
+            },
+            {
+              label: 'Generování',
+              items: [
+                { label: 'Obrázky', link: '/temata/lokalni-ai-na-obrazky/' },
+                { label: 'Video', link: '/temata/lokalni-ai-na-video/' },
+                { label: 'Audio', link: '/temata/lokalni-ai-na-audio/' },
+                { label: '3D', link: '/temata/lokalni-ai-na-3d/' },
+              ],
+            },
+            {
+              label: 'Abliterace',
+              items: [{ autogenerate: { directory: 'temata/abliterace' } }],
+            },
+            {
+              label: 'Agenti a automatizace',
+              items: [{ autogenerate: { directory: 'temata/agenti' } }],
+            },
+            {
+              label: 'Čeština a dokumenty',
+              items: [{ autogenerate: { directory: 'temata/cestina' } }],
+            },
+            {
+              label: 'RAG a dokumenty',
+              items: [{ autogenerate: { directory: 'temata/rag' } }],
+            },
+            {
+              label: 'Provoz a bezpečnost',
+              items: [{ autogenerate: { directory: 'temata/provoz' } }],
+            },
+            {
+              label: 'Praxe pro profese',
+              items: [{ autogenerate: { directory: 'temata/praxe' } }],
+            },
+          ],
         },
         {
           label: 'Zdroje',

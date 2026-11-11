@@ -1,0 +1,119 @@
+---
+title: "LM Studio: lokální server a GUI pro modely"
+description: "LM Studio spustí lokální model a nabídne OpenAI kompatibilní server na :1234. Vysvětlíme, k čemu je, jak ho připojit k agentovi a kde je limit."
+last_verified: 2026-11-11
+sidebar:
+  hidden: true
+---
+
+**LM Studio** je desktopová aplikace pro stahování, spouštění a
+testování lokálních modelů. Není to agentní harness; je to
+**model runner a chat**, který umí vystavit OpenAI kompatibilní
+server, na který se připojí agent.
+
+## Rychlá odpověď
+
+- **GUI pro modely** — GGUF i MLX, stahování a ladění.
+- **Server na `http://localhost:1234/v1`** s OpenAI API.
+- **Tool use a MCP** — model musí umět tool calling.
+- **Není harness** — sám nevede smyčku ani neschvaluje akce.
+- **Výchozí bez autentizace** — jen localhost.
+
+## Co to je
+
+LM Studio je aplikace pro macOS, Windows a Linux. Umožňuje:
+
+- procházet a stahovat modely,
+- spustit chat s lokálním modelem,
+- nastavit kontext a parametry,
+- spustit REST server pro aplikace a agenty,
+- sledovat využití paměti a rychlost.
+
+Pro agenta je důležitá poslední část: server, který mluví
+OpenAI protokolem.
+
+## Připojení k agentovi
+
+1. V LM Studio otevřete **Developer** a zapněte server.
+2. Ověřte `http://localhost:1234/v1/models`.
+3. V agentovi (pi, omp, OpenCode, Hermes) zadejte base URL
+   `http://localhost:1234/v1` a model ID.
+4. Otestujte tool calling na jednom nástroji.
+
+```bash
+lms server start
+```
+
+Server startuje i z CLI. Výchozí port je 1234.
+
+## Endpointy
+
+| Endpoint | K čemu |
+|---|---|
+| `/v1/chat/completions` | chat a tool calling |
+| `/v1/responses` | stavové odpovědi a MCP |
+| `/v1/embeddings` | embeddingy pro RAG |
+| `/v1/models` | seznam modelů |
+| `/api/v1/*` | nativní správa modelů |
+
+LM Studio nabízí i Anthropic kompatibilní endpoint, takže se dá
+připojit i klient, který čeká Claude formát.
+
+## Tool use a MCP
+
+- **Native tool use** — model má v aplikaci ikonu kladívka a jeho
+  chat template umí tools.
+- **Default tool use** — LM Studio se snaží formát převést, ale
+  kvalita je nižší.
+- **MCP** — od verze 0.4.0, vzdálené MCP jen s výslovným
+  povolením.
+
+Když model tool calling neumí, agent dostane text místo volání.
+To je nejčastější důvod, proč „agent v LM Studio nefunguje“.
+
+## Bezpečnost
+
+- **Bez autentizace** ve výchozím stavu; server poslouchá jen
+  localhost.
+- **Síťové vystavení** jen s tokenem a firewallem.
+- **Nástroje** mohou sahat na soubory; omezit MCP a tools.
+- **Logy** mohou obsahovat citlivé prompty.
+
+## Limity
+
+- **Není harness.** Nemá smyčku, schvalování ani práci s repo.
+- **Jeden stroj.** Není to server pro tým.
+- **GUI zátěž.** Aplikace běží pořád, i když jen servíruje.
+- **Model musí umět tools.** Jinak agent jen chatuje.
+
+## Kdy to nepoužít
+
+- Když chcete agenta, který sám edituje repo.
+- Když potřebujete týmový server a oprávnění.
+- Když model neumí tool calling.
+- Když chcete jen příkazovou řádku.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) —
+  přehled.
+- [pi](/temata/agenti/nastroje/pi/) — agent, který se připojí.
+- [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
+  harness a workspace.
+- [Hermes Desktop](/temata/agenti/nastroje/hermes-desktop/) — jiný
+  runner s llama.cpp.
+- [omp](/temata/agenti/nastroje/omp/) — agent s LSP.
+- [MausBot](/temata/agenti/nastroje/mausbot/) — desktop s kartami.
+- [OpenClaw](/temata/agenti/nastroje/openclaw/) — gateway.
+- [Ollama](/slovnik/software/ollama/) — alternativa.
+- [Function calling](/slovnik/software/function-calling/) — tools.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [LM Studio — server](https://lmstudio.ai/docs/developer/core/server) — 11. 11. 2026
+- [LM Studio — OpenAI kompatibilita](https://lmstudio.ai/docs/developer/openai-compat) — 11. 11. 2026
+- [LM Studio — tool use](https://lmstudio.ai/docs/developer/openai-compat/tools) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

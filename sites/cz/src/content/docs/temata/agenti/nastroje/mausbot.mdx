@@ -87,6 +87,33 @@ Pro citlivé úlohy nechte bota na localhostu a bez cloudového
 počítače. Pro práci přes noc je cloud volba, ale data opouštějí
 stroj.
 
+## MausBot vs. cloudoví agenti
+
+MausBot se často srovnává s „always-on“ agenty, kteří běží v cloudu.
+Nejsou to stejné produkty:
+
+| Nástroj | Kde běží | Lokální model | Schválení | Data |
+|---|---|---|---|---|
+| **OpenAI Dots** | cloud computer | ne | pravidla a potvrzení | v cloudu |
+| **Grok Bot** | cloud (xAI) | ne | omezené | v cloudu |
+| **Meta Muse** | cloud VM | ne | omezené | v cloudu |
+| **Bops (Orgo)** | cloud computer | ne | neuvedeno | v cloudu |
+| **OpenClaw** | váš stroj | ano | volitelné | lokálně |
+| **Hermes** | váš stroj | ano | volitelné | lokálně |
+| **MausBot** | váš stroj | ano | vždy karta | lokálně |
+
+**Co tím MausBot nahrazuje:** cloudového agenta, který má přístup
+k vašim aplikacím a počítači. Výhoda je, že model i session
+zůstávají u vás a každá riziková akce jde přes kartu.
+
+**Co nenahrazuje:** tisíce integrací a cloudový počítač, který
+běží, i když zavřete notebook. Dots má přes 4 000 aplikací;
+MausBot má vlastní katalog a lokální harness.
+
+Pro firmu, která nechce data posílat do cloudu, je to rozumný
+kompromis. Pro někoho, kdo chce agenta 24/7 bez zapnutého stroje,
+je cloud lepší.
+
 ## Limity
 
 - **Desktop only.** Není to server pro tým.
@@ -117,6 +144,9 @@ stroj.
 - [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) — přehled.
 - [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
   alternativa.
+- [pi](/temata/agenti/nastroje/pi/) — minimální harness.
+- [omp](/temata/agenti/nastroje/omp/) — harness s LSP.
+- [Hermes](/temata/agenti/nastroje/hermes/) — gateway.
 - [OpenClaw](/temata/agenti/nastroje/openclaw/) — gateway.
 - [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
 - [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
@@ -126,6 +156,10 @@ stroj.
 
 - [MausBot](https://mausbot.com/) — 11. 11. 2026
 - [MausBot — AI agent, který ovládá počítač](https://mausbot.com/blog/ai-agent-that-controls-your-computer) — 11. 11. 2026
+- [OpenAI — Introducing dots](https://openai.com/index/introducing-dots/) — 11. 11. 2026
+- [OpenAI — Dots dostupnost](https://help.openai.com/en/articles/20001530-getting-started-with-your-dot) — 11. 11. 2026
+- [TechCrunch — Dots a cena Pro](https://techcrunch.com/2026/10/26/how-openai-turned-its-coding-tools-into-dots-an-always-on-personal-assistant/) — 11. 11. 2026
+- [The Verge — Dots vs. Muse](https://www.theverge.com/ai-artificial-intelligence/1002033/openai-dots-launch-muse-competitor) — 11. 11. 2026
 - [Metodika](/o-webu/metodika/)
 
 *Naposledy ověřeno: 11. 11. 2026.*

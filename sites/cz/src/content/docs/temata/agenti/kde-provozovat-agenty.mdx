@@ -38,6 +38,24 @@ Harness není model a není engine. Když se rozhoduje o rychlosti,
 rozhoduje model a engine. Když se rozhoduje o tom, co agent umí
 a co smí, rozhoduje harness.
 
+## Co je AI workspace
+
+**AI workspace** je vizuální vrstva nad harnessem: session, diffy,
+worktrees, historie, review a vzdálený přístup. Není to IDE a
+není to model. Je to místo, kde agentovu práci vidíte a schvalujete.
+
+Příkladem je [OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/):
+běží nad OpenCode, ukazuje multi-run, worktrees a diffy. Podrobně
+pojem vysvětluje [AI workspace ve slovníku](/slovnik/software/ai-workspace/).
+
+Workspace dává smysl, když:
+- chcete vidět, co agent změnil, než to mergujete,
+- běží víc agentů nebo modelů paralelně,
+- pracujete z víc zařízení,
+- potřebujete review a schvalování v jednom místě.
+
+Nedává smysl, když chcete jen rychlý příkaz v terminálu.
+
 ## Čtyři vrstvy, kde agent běží
 
 <figure style="margin:1.2rem 0">
@@ -182,6 +200,19 @@ v [podstránce omp](/temata/agenti/nastroje/omp/).
 Open-source terminálový coding agent, na kterém stojí OpenChamber.
 Podporuje providers včetně lokálních endpointů. Podrobnosti
 v [podstránce OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/).
+
+## Model runnery
+
+Ne každý nástroj je harness. **LM Studio** a **Hermes Desktop**
+dávají model a OpenAI server, ale nevedou smyčku samy.
+
+- [LM Studio](/temata/agenti/nastroje/lm-studio/) — GUI, server
+  na `:1234`, tool use a MCP; agent se k němu připojí.
+- [Hermes Desktop](/temata/agenti/nastroje/hermes-desktop/) —
+  jednoklikový llama.cpp, katalog modelů a 64k minimum.
+
+Když chcete agenta, potřebujete ještě harness. Když chcete jen
+lokální API pro svůj kód, stačí runner.
 
 ## Desktopové workspace
 

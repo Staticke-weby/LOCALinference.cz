@@ -394,7 +394,7 @@ export function getGenerativniModely(kategorie?: GenerativniModel['kategorie']):
 export type AgentNastroj = {
   id: string;
   nazev: string;
-  vrstva: 'terminal' | 'desktop' | 'gateway' | 'orchestrace';
+  vrstva: 'terminal' | 'desktop' | 'gateway' | 'orchestrace' | 'runtime';
   licence: string;
   platformy: string[];
   gui: string;

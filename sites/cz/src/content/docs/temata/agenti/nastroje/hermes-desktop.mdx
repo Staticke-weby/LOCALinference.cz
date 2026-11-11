@@ -1,0 +1,124 @@
+---
+title: "Hermes Desktop: lokální model na jeden klik"
+description: "Hermes Desktop spravuje llama.cpp, stahuje modely podle paměti a drží 64k kontext. Vysvětlíme, co dělá, kde je limit a kdy se hodí."
+last_verified: 2026-11-11
+sidebar:
+  hidden: true
+---
+
+**Hermes Desktop** je desktopová aplikace od Nous Research, která
+k sobě přidává správu lokálních modelů. Nemusíte řešit llama.cpp,
+kvantizaci ani počet vrstev na GPU: vyberete model a Hermes
+připraví engine i kontext.
+
+## Rychlá odpověď
+
+- **Jednoklikový llama.cpp** pro macOS, Windows a Linux.
+- **Katalog s fit kontrolou** — zelená/žlutá/červená podle paměti.
+- **Minimum 64k kontextu** pro agentní práci.
+- **Idle model se uvolní po 15 minutách.**
+- **Lokální je jen inference**; web, kanály a MCP mohou jít ven.
+
+## Co to je
+
+Hermes Desktop je GUI nad agentem Hermes. Přidává:
+
+- instalaci a update llama.cpp,
+- katalog modelů s výběrem kvantizace,
+- správu paměti a kontextu,
+- start/stop serveru s aplikací,
+- přepnutí zpět na cloudový provider jedním klikem.
+
+Není to nový model. Je to způsob, jak lokální model rozjet bez
+ruční konfigurace.
+
+## Jak to funguje
+
+1. **Settings → Providers → Local Models.**
+2. **Install runtime** — stáhne oficiální llama.cpp pro hardware.
+3. **Vyberte model** z katalogu; Hermes ukáže, zda se vejde.
+4. **Download** — model se stáhne a ověří.
+5. **Use** — nové chaty běží lokálně.
+
+Server se spouští a zastavuje s aplikací a přežije restart.
+`--local` odemkne Local Models i na platformách, kde nejsou
+vidět ve výchozím stavu.
+
+## Výběr modelu a paměť
+
+- **Zelená** — model se vejde celý do GPU/unified paměti.
+- **Žlutá** — část půjde do systémové RAM, pomalejší.
+- **Červená** — nevejde se; Hermes ho nenabídne jako doporučený.
+- **Pod 4 bit** Hermes nechce jít; kvalita je podle něj příliš
+  špatná.
+- **Doporučení** míří na model, který dá alespoň 20 tok/s a 64k
+  kontext.
+
+Když model potřebuje víc, než je v GPU, Hermes odkládá nejdřív
+expertní váhy, nikdy attention cache. Kontext roste za běhu, dokud
+se vejde; pak se historie komprimuje.
+
+## Platformy a backendy
+
+| Platforma | Backend |
+|---|---|
+| **macOS** | Metal nebo CPU |
+| **Windows** | CUDA (NVIDIA), Vulkan (x64) nebo CPU |
+| **Linux** | CUDA (x64/arm64, driver 13), Vulkan, CPU; HIP volitelně |
+
+Když už máte vlastní `llama-server`, Hermes ho na `:8080`
+detekuje a použije. Jiné porty se dají přidat do
+`local_runtime.detect_ports`.
+
+## Co zůstává na síti
+
+Lokální model neznamená offline agent. Podle dokumentace:
+
+- **inference** je lokální,
+- **session, paměť a skilly** jsou v `~/.hermes`,
+- **web a browser** jdou přes síť,
+- **Telegram a další kanály** jdou přes platformu,
+- **vzdálené MCP** je síťové volání.
+
+Když chcete opravdu offline, vypněte tyhle nástroje.
+
+## Limity
+
+- **Jen modely, které se vejdou.** U 128 GB je to menší model
+  než Qwen3.8 Flash Next, pokud nepočítáte s offloadem.
+- **64k minimum** — menší kontext Hermes odmítne.
+- **Méně kontroly** než u ručního llama.cpp; některé knobs
+  nejsou.
+- **Desktop only** — není to server pro tým.
+- **Mladý projekt** — chování se mění.
+
+## Kdy to nepoužít
+
+- Když potřebujete přesně ladit kvantizaci a KV cache.
+- Když chcete Qwen3.8 Flash Next na 128 GB v NVFP4; to je jiná
+  cesta.
+- Když provozujete agenta pro tým na serveru.
+- Když chcete úplně offline bez síťových nástrojů.
+
+## Kudy dál
+
+- [Hermes](/temata/agenti/nastroje/hermes/) — agent a gateway.
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) —
+  přehled.
+- [LM Studio](/temata/agenti/nastroje/lm-studio/) — jiný runner.
+- [pi](/temata/agenti/nastroje/pi/) — agent do terminálu.
+- [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
+  harness a workspace.
+- [Herdr](/temata/agenti/nastroje/herdr/) — orchestrace.
+- [OpenClaw](/temata/agenti/nastroje/openclaw/) — gateway.
+- [llama.cpp](/slovnik/software/llamacpp/) — engine.
+- [Kontext](/slovnik/pamet/kontext/) — proč 64k.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Hermes — Local Models](https://hermes-agent.nousresearch.com/docs/user-guide/local-models) — 11. 11. 2026
+- [Hermes — lokální LLM na Macu](https://hermes-agent.nousresearch.com/docs/guides/local-llm-on-mac) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*
