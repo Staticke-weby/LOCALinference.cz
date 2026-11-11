@@ -11,9 +11,12 @@ Tohle je nejjednodušší varianta, která nepotřebuje PAT ani deploy key:
 - Repo `LOCALinference.eu` obsahuje **jen workflow a CNAME**, žádný zdroj.
 - Workflow v `.eu` si při buildu stáhne **veřejný** repo `.cz`, postaví
   `sites/eu` a nasadí výstup na vlastní GitHub Pages.
-- Spouští se **denně** a ručně. Žádný secret, žádný cross-repo push.
-- Když je potřeba okamžité nasazení, lze přidat `repository_dispatch`
-  z `.cz`; to je volitelné a není podmínkou.
+- Spouští se **každou hodinu**, při pushi do `.eu` a ručně. Hodinový běh
+  ale nejdřív porovná HEAD `.cz` s posledním nasazeným SHA (cache
+  `cz-sha-<sha>`). Když se nic nezměnilo, build i deploy se přeskočí;
+  job trvá sekundy. Ruční spuštění stav ignoruje a nasadí vždy.
+- Žádný secret, žádný cross-repo push. Když je potřeba okamžité
+  nasazení, stačí ruční běh v Actions.
 
 ```yaml
 # .github/workflows/deploy.yml v repu LOCALinference.eu
