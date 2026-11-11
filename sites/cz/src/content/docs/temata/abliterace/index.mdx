@@ -146,6 +146,30 @@ Je to další vrstva rizika, kterou musíte zvládnout jinde.
 | Nulová moderace | „vždyť je to lokální“ | moderace vstupu i výstupu |
 | Provoz bez logů | snaha o soukromí | logovat metadata, ne obsah |
 
+## Časté dotazy
+
+**Je abliterace legální?**
+Samotná úprava vah legální je; odpovědnost vzniká použitím. Záleží
+na licenci modelu a na tom, co s výstupem uděláte. Text není
+právní rada.
+
+**Veřejná verze se vejde na 128 GB?**
+Ano, pokud má ~102 GB a n-gramy jdou na SSD. Buildy s 184 GB se
+na jeden box nevejdou, i když se jmenují NVFP4.
+
+**Který build pro RTX Spark?**
+Stejný FP4-Local layout jako DevelopingDad; port vLLM umí NVMe
+PLE cache. Abliterovaný build na RTX Sparku ale zatím nikdo
+veřejně nezměřil.
+
+**Zlepší to češtinu?**
+Ne. Abliterace mění odmítání, ne jazykovou kvalitu. České úlohy
+se musí testovat zvlášť.
+
+**Můžu se vrátit k základnímu modelu?**
+Ano, jsou to jiné váhy. Stačí si držet oba checkpointy a vědět,
+který engine a config patří ke kterému.
+
 ## Kdy to nemá smysl
 
 - **Veřejná služba** bez moderace a lidského dohledu.

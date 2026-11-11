@@ -6,6 +6,13 @@
 
 - datum: 2026-11-11
   typ: obsah
+  titulek: "Abliterace: časté dotazy a role vydavatelů"
+  co_se_zmenilo: "Hub abliterace má pět častých dotazů (legalita, paměť, RTX Spark, čeština, návrat k základu). Stránka o vydavatelích přidala tabulku rolí a vodítko, jak poznat přebalený build. Modelová stránka má FAQ k parametrům, KV cache, vLLM a licencím."
+  dotcene_stranky: [temata/abliterace, temata/abliterace/kdo-je-tvori, modely/qwen3-8-flash-next-abliterated]
+  zdroj: https://www.localinference.cz/temata/abliterace/
+
+- datum: 2026-11-11
+  typ: obsah
   titulek: "Slovník: abliterace, n-gramová tabulka, harness a orchestrace"
   co_se_zmenilo: "Přibyly čtyři pojmy: abliterace, n-gramová tabulka (PLE), agentní harness a orchestrace agentů. Všechny jsou v automatickém prolinkování a odkazují na nové clustery."
   dotcene_stranky: [slovnik/software/abliterace, slovnik/pamet/ngram-embeddings, slovnik/software/agent-harness, slovnik/software/orchestrace-agentu]

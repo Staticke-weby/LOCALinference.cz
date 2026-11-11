@@ -109,6 +109,31 @@ Když chybí víc než dvě položky, berte model jako experiment.
 | Slib „stejný jako základ“ bez měření | nedůvěryhodné |
 | Licence opsaná ze základu bez vysvětlení | právní riziko |
 
+## Kdo je kdo
+
+| Role | Co dělá | Odpovídá za |
+|---|---|---|
+| **Výrobce základu** | trénuje Qwen3.8 | architekturu a licenci |
+| **Kvantizér** | převádí do NVFP4/GGUF | formát a čísla |
+| **Abliterátor** | odstraňuje odmítání | metodu a měření |
+| **Balíčkář** | launcher, kontejner, PLE | že to jde spustit |
+| **Index** | katalog a metadata | nic z toho neověřuje |
+
+Jeden subjekt může dělat víc rolí. Když karta říká „od X“, je
+potřeba zjistit, kterou roli X vlastně měl.
+
+## Jak poznat přebalený build
+
+- **Zmizel původní model card** a zůstal jen název.
+- **Chybí revize základu** nebo metoda.
+- **Čísla se opakují** z jiného repa beze změny.
+- **Launcher je z jiného hardwaru** a nikdo to neříká.
+- **Licence je „other“** bez odkazu na text.
+- **Datum je staré**, ale název slibuje novinku.
+
+Přebalený build není podvod automaticky. Je to ale něco jiného
+než původní práce a karta to má přiznat.
+
 ## Varovné signály
 
 - **„Uncensored“ bez metody** — marketing.

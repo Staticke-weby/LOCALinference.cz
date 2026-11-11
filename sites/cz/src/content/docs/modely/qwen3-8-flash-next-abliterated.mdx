@@ -163,6 +163,29 @@ Parita není vlastnost modelu, ale **výsledek měření** na konkrétní
 | Výzkum odmítání | **ano** | **ano** |
 | Komerční nasazení | **ano** | jen s moderací |
 
+## Časté dotazy
+
+**Má stejné parametry jako základ?**
+Ano, abliterace nemění architekturu. V safetensors se číslo liší
+podle zabalení, ale layout je stejný jako NVIDIA FP4-Local.
+
+**Veřejná verze se vejde i s KV cache?**
+S 102 GB váhami a PLE na SSD ano; na 32k kontext zbývá řádově
+desetitisíce tokenů KV cache. S 184GB buildem na jednom boxu ne.
+
+**Funguje s vLLM?**
+Ano, ale potřebuje správný kontejner a flags. Stock vLLM tento
+checkpoint nenačte.
+
+**Můžu použít základní model pro srovnání?**
+Ano, to je správný postup: stejný engine, stejný kontext, stejné
+prompty. Bez toho paritu nezměříte.
+
+**Je to komerčně použitelné?**
+Záleží na licenci. DevelopingDad dědí NVIDIA Open Model Agreement
+a Qwen Community; lflare Qwen Community; OrcaRouter uvádí
+Apache-2.0 v rozporu se základem.
+
 ## Kdy to nepoužívat
 
 - **Veřejná služba** bez moderace.
