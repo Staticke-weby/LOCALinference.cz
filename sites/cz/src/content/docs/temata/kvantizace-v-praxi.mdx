@@ -44,6 +44,37 @@ Ilustrativní **výpočet**: 180B model v 4 bitech je ~90 GB,
 v 8 bitech ~180 GB. Reálná velikost je vyšší kvůli skalám,
 embeddingům a KV cache.
 
+## Příklad: Qwen3.8 Flash Next na 128 GB
+
+Qwen3.8 Flash Next má 180 miliard parametrů celkem a 6 miliard
+aktivních na token (MoE). Katalog uvádí u jednotlivých formátů
+tyto velikosti vah:
+
+| Formát | Váhy | Vejde se na 128 GB? |
+|---|---:|---|
+| NVFP4 | 101 GB | ano, zůstane ~27 GB |
+| GGUF Q4_K_M | 95 GB | ano, zůstane ~33 GB |
+| MLX 4bit | 88 GB | ano, zůstane ~40 GB |
+| FP8 | 176 GB | ne |
+
+Zbylá paměť není volná: část zabere systém, zbytek KV cache pro
+kontext. Proto se u 128GB stroje počítá s NVFP4 nebo Q4, ne
+s FP8. Čísla jsou z katalogu modelu, ne naše měření.
+
+## KV cache a kontext
+
+Kvantizace vah je jen polovina rovnice. KV cache roste s délkou
+kontextu a počtem souběžných požadavků. Když ji zmenšíte (např.
+FP8 cache místo BF16), ušetříte paměť, ale můžete ztratit
+přesnost na dlouhém kontextu.
+
+Postup je proto postupný:
+
+1. **Změřte** rychlost a kvalitu s výchozí cache.
+2. **Zkraťte kontext** na doporučený provozní bod.
+3. **Teprve pak** zvažte kvantizaci cache.
+4. **Ověřte** na dlouhém kontextu, ne jen na krátkém promptu.
+
 ## Jak vybrat
 
 1. **Začněte na 4 bitech** — NVFP4 nebo Q4.
@@ -60,6 +91,31 @@ embeddingům a KV cache.
 - **Rychlost** — decode a TTFT.
 - **Paměť** — co zbylo na KV cache.
 - **Stabilita** — dlouhý běh.
+
+## Co se rozbije první
+
+Kvantizace nezhoršuje všechno stejně. Typicky se první projeví:
+
+- **Dlouhý kontext** — model ztrácí nit dřív než v BF16.
+- **Tool calling** — častěji vymyslí parametr nebo vynechá pole.
+- **Čeština** — diakritika a skloňování u vzácných slov.
+- **Matematika a kód** — chyby v delších krocích.
+- **Odmítání** — hranice se mohou posunout.
+
+Proto se kvalita neměří jedním benchmarkem, ale sadou úloh,
+které odpovídají vaší práci.
+
+## Formát podle enginu
+
+| Engine | Rozumný formát | Poznámka |
+|---|---|---|
+| vLLM na NVIDIA | NVFP4, FP8 | podle generace GPU |
+| llama.cpp | GGUF Q4/Q5/Q6 | přenosné, CPU i GPU |
+| MLX | MLX 4bit | Apple Silicon |
+| SGLang | FP8, někdy NVFP4 | podle verze a receptu |
+
+Když formát neodpovídá enginu, model nepoběží nebo poběží
+pomalu. Recept výrobce je výchozí bod, ne univerzální pravda.
 
 ## Časté chyby
 

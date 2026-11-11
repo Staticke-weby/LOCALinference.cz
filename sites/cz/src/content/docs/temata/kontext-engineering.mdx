@@ -32,6 +32,22 @@ rozpočet tokenů a pořadí, které rozhoduje o kvalitě.
 
 Součet se musí vejít do okna a nechat místo na odpověď.
 
+## Systémový prompt
+
+Dobrý systémový prompt je krátký, konkrétní a nemění se každý
+den. Šablona, která se osvědčuje:
+
+```text
+Jsi asistent pro české smlouvy.
+Odpovídej česky, stručně, s odkazem na číslo článku.
+Když v textu odpověď není, napiš "nenalezeno".
+Nehádej a nevyplňuj chybějící údaje.
+```
+
+Pravidla „odkaz na článek“ a „nenalezeno“ jsou důležitější než
+dlouhý popis osobnosti. Ušetříte stovky tokenů a dostanete
+ověřitelné odpovědi.
+
 ## Pořadí a pozornost
 
 Model není dokonalý čtenář. Informace na začátku a na konci
@@ -53,6 +69,47 @@ textu se najdou lépe než uprostřed. Proto:
 Komprimace má cenu: ztrácíte detail. Dělejte ji, až když kontext
 opravdu přetéká, a měřte, co se ztratilo.
 
+## Příklad: smlouva a otázka
+
+Řekněme, že řešíte jednu smlouvu a chcete z ní pět odpovědí.
+Naivní postup pošle celý dokument při každém dotazu. Lepší:
+
+| Krok | Co poslat | Proč |
+|---|---|---|
+| 1 | otázku a osnovu smlouvy | model ví, kde hledat |
+| 2 | jen relevantní oddíly | méně šumu |
+| 3 | citaci a číslo článku | ověřitelnost |
+| 4 | krátké shrnutí předchozích odpovědí | návaznost |
+
+Model tak dostane tisíce tokenů místo stovek tisíc. Odpověď se
+dá dohledat podle čísla článku a vy nemusíte platit za celý
+dokument pětkrát.
+
+## Rozpočet kontextu
+
+Qwen3.8 Flash Next má nativní maximum **262 144 tokenů** a
+doporučený provozní bod **131 072 tokenů** (128K). Maximum je
+strop, ne cíl — kvalita i rychlost jsou na kratším kontextu lepší.
+
+Ilustrativní **výpočet** pro 128K okno:
+
+| Položka | Tokeny |
+|---|---:|
+| systémový prompt | 1 500 |
+| schémata nástrojů | 2 000 |
+| dokumenty | 80 000 |
+| historie | 10 000 |
+| otázka | 300 |
+| rezerva na odpověď | 8 000 |
+| **celkem** | **~102 000** |
+
+Do 131 072 se to vejde i s rezervou. Když dokumenty narostou na
+150 000 tokenů, už se nevejdou a musí se vybírat nebo komprimovat.
+
+Přepočet slov na tokeny závisí na tokenizeru. U češtiny bývá
+jeden token zhruba na půl až dvě třetiny slova; přesné číslo si
+ověřte tokenizerem modelu, ne odhadem.
+
 ## Jak to měřit
 
 1. **Baseline** — 20 úloh s aktuálním kontextem.
@@ -60,6 +117,17 @@ opravdu přetéká, a měřte, co se ztratilo.
 3. **Kvalita** — správnost, citace, odmítnutí.
 4. **Cena a latence** — tokeny a TTFT.
 5. **Zápis** — co se změnilo a proč.
+
+## Časté chyby
+
+| Chyba | Proč vzniká | Jak se jí vyhnout |
+|---|---|---|
+| Celý dokument při každém dotazu | pohodlí | vybírat chunky |
+| Systémový prompt na 5 000 tokenů | „ať je vše pokryté“ | 500–2 000 stačí |
+| Historie bez stropu | agent si pamatuje vše | shrnovat po N krocích |
+| Otázka na začátku | lidský zvyk | otázku na konec |
+| Dlouhý text bez struktury | kopírování z PDF | nadpisy a citace |
+| Komprimace bez měření | „ušetříme“ | nejdřív baseline |
 
 ## Kdy to neřešit
 

@@ -6,6 +6,20 @@
 
 - datum: 2026-11-11
   typ: obsah
+  titulek: "Hloubka osmi nových témat: příklady, výpočty a časté chyby"
+  co_se_zmenilo: "Paměť agenta, Návrh nástrojů, Model routing, Observability, Zálohy a obnova, Context engineering, Kvantizace v praxi a Elektřina, hluk a teplo dostaly konkrétní příklady, ilustrativní výpočty a tabulky častých chyb. Délka 620–700 slov na stránku."
+  dotcene_stranky: [temata/agenti/pamet-agenta, temata/agenti/navrh-nastroju, temata/provoz/model-routing, temata/provoz/observability, temata/provoz/zalohy-a-obnova, temata/kontext-engineering, temata/kvantizace-v-praxi, temata/elektrina-hluk-teplo]
+  zdroj: https://www.localinference.cz/temata/
+
+- datum: 2026-11-11
+  typ: zdroj
+  titulek: "Registr zdrojů: VideoCardz Gorgon Halo a NVIDIA forum recept"
+  co_se_zmenilo: "Dva zdroje používané u Gorgon Hala a DGX Sparku jsou nově v registru data/zdroje.yaml s datem kontroly."
+  dotcene_stranky: [zarizeni/gorgon-halo, data]
+  zdroj: https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory
+
+- datum: 2026-11-11
+  typ: obsah
   titulek: "Osm nových témat: paměť, nástroje, routing, observability, kontext, kvantizace, zálohy, elektřina"
   co_se_zmenilo: "Přibyly stránky Paměť agenta, Návrh nástrojů, Model routing, Observability, Context engineering, Kvantizace v praxi, Zálohy a obnova a Elektřina, hluk a teplo. Homepage má nové boxy pro agenty, abliteraci, češtinu, RAG, provoz a praxi."
   dotcene_stranky: [temata/agenti/pamet-agenta, temata/agenti/navrh-nastroju, temata/provoz/model-routing, temata/provoz/observability, temata/provoz/zalohy-a-obnova, temata/kontext-engineering, temata/kvantizace-v-praxi, temata/elektrina-hluk-teplo, index]

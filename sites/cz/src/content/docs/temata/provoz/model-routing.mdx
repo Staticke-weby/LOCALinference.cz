@@ -62,6 +62,89 @@ konfigurace je v jejich dokumentaci.
 5. **Měřte** kvalitu a cenu podle cesty.
 6. **Revize** při každé změně modelu.
 
+## Příklad: právní kancelář
+
+- **Smlouvy a spisy** — vždy lokálně, nikdy cloud.
+- **Veřejné předpisy** — lokálně, případně cloud pro rešerši.
+- **Kreativní návrh** — lokální draft, cloud jen po odstranění
+  osobních údajů.
+- **Fallback** — když lokální model timeoutuje, úloha se **zastaví**
+  a čeká na člověka; nejde automaticky do cloudu.
+
+Klíčové je, že fallback není výchozí. U citlivých dat je lepší
+selhat než poslat text ven.
+
+## Příklad konfigurace
+
+Pravidla držte v aplikaci, ne v promptu. Zjednodušeně:
+
+```yaml
+routing:
+  default: local-qwen38
+  fallback: null          # u citlivých dat žádný
+  pravidla:
+    - kdyz: "data == verejna"
+      model: local-qwen38
+    - kdyz: "data == interni"
+      model: local-qwen38
+      fallback: cloud-only-po-schvaleni
+    - kdyz: "data == citliva"
+      model: local-qwen38
+      fallback: stop
+  log:
+    model: true
+    cesta: true
+    tokeny: true
+```
+
+`fallback: stop` znamená, že se úloha zastaví a čeká na člověka.
+Je to bezpečnější než tichý přepis do cloudu.
+
+## Escalation v praxi
+
+Menší model může požádat o větší, ale jen v rámci povolených
+cest. Příklad: lokální model si není jistý extrakcí z tabulky a
+vrátí `needs_escalation`. Aplikace pak:
+
+1. zkontroluje, že úloha není citlivá,
+2. požádá o schválení, pokud jde ven,
+3. pošle stejný vstup většímu modelu,
+4. zaloguje oba modely a výsledek.
+
+Bez kroků 1–2 je escalation nejrychlejší cesta k úniku dat.
+
+## Jak routing měřit
+
+| Metrika | Co říká |
+|---|---|
+| **Podíl lokálně** | kolik úloh zůstalo doma |
+| **Fallback rate** | jak často se přepíná |
+| **Kvalita podle cesty** | kde model selhává |
+| **Cena na úlohu** | lokální vs. cloud |
+| **Latence** | jak dlouho se čeká |
+| **Úniky** | kolik citlivých úloh šlo ven |
+
+Bez těchto čísel je routing jen dojem. Měřte po cestách, ne
+globálně.
+
+## Časté chyby
+
+- **Automatický fallback u citlivých dat.**
+- **Routing podle nálady**, ne podle pravidel.
+- **Chybí log modelu** u odpovědi.
+- **Dva modely bez společného testu.**
+- **Pravidla v promptu**, ne v aplikaci.
+
+## Co routing nevyřeší
+
+- **Kvalitu modelu** — špatný model neopraví cesta.
+- **Kontext** — dlouhý dokument se nevejde ani do cloudu zdarma.
+- **Síť** — výpadek internetu zastaví fallback.
+- **Oprávnění** — routing není náhrada přístupové kontroly.
+- **Cenu** — fallback může být dražší než lokální provoz.
+
+Routing je dopravní značení, ne motor.
+
 ## Kdy to neřešit
 
 - Jeden model a jedna úloha.

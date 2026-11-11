@@ -73,6 +73,62 @@ se podle nich rozhoduje.
 - **Náklady** — velká paměť se posílá v každém dotazu.
 - **Falešná jistota** — agent cituje vlastní poznámku jako zdroj.
 
+## Příklad: faktury
+
+Agent zpracovává faktury a má si pamatovat dodavatele. Do paměti
+patří jen to, co se používá:
+
+```json
+{
+  "dodavatel": "Example s.r.o.",
+  "ico": "12345678",
+  "kod": "DOD-001",
+  "posledni_faktura": "2026-11-01"
+}
+```
+
+Ne celé PDF. Když přijde nová faktura, agent najde dodavatele
+podle IČO a doplní ho. Když se IČO změní, novější záznam přepíše
+starší a změní se i `posledni_faktura`.
+
+Paměť se načítá po částech: pro každou fakturu stačí jeden
+záznam, ne celý seznam. Tím zůstává kontext malý.
+
+## Časté chyby
+
+| Chyba | Proč vzniká | Jak se jí vyhnout |
+|---|---|---|
+| Ukládání celých dokumentů | „ať to mám po ruce“ | ukládat pole a odkazy |
+| Paměť bez mazání | nikdo to neřeší | retence a právo na výmaz |
+| Dvě pravdy | stará a nová session | novější přepíše starší |
+| Paměť v promptu | pohodlí | načítat jen relevantní část |
+| Otrava z dokumentu | injection | označit zdroj a ověřit |
+
+## Paměť versus RAG
+
+Obě věci ukládají text mimo kontext, ale slouží jinému účelu.
+
+| | Paměť | RAG |
+|---|---|---|
+| **Obsah** | fakta a rozhodnutí | dokumenty |
+| **Kdo to píše** | agent nebo uživatel | ingest z archivů |
+| **Velikost** | malá, jednotky kB | velká, GB |
+| **Aktuálnost** | mění se často | mění se při ingestu |
+| **Riziko** | otrava a neplatná pravda | špatný chunk a citace |
+
+Paměť se hodí na „co víme o projektu“, RAG na „co stojí
+v dokumentu“. Když paměť začne obsahovat celé dokumenty, je to
+špatně navržený RAG.
+
+## Kdo paměť vlastní
+
+- **Uživatel** musí vidět, co si agent pamatuje.
+- **Uživatel** musí mít možnost záznam smazat.
+- **Tým** musí vědět, kdo za obsah odpovídá.
+- **Audit** musí ukázat, kdy záznam vznikl a z čeho.
+
+Bez vlastníka se paměť stane skladištěm neověřených tvrzení.
+
 ## Kdy paměť neřešit
 
 - Jednorázový úkol.

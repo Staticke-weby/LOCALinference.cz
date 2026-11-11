@@ -91,6 +91,35 @@ a klient je předá modelu. Platí stejná pravidla:
 MCP není bezpečnostní vrstva. Je to protokol; oprávnění řeší
 server a aplikace.
 
+## Špatný a dobrý popis
+
+Porovnejte dvě verze stejného nástroje:
+
+```text
+# špatně
+name: process
+description: Provede operaci se souborem.
+
+# dobře
+name: read_text_file
+description: Přečte UTF-8 textový soubor v adresáři projektu.
+  Použij, když potřebuješ obsah souboru. Nepoužívej pro PDF
+  ani binární soubory; na ty použij extract_pdf.
+```
+
+Druhá verze říká, co nástroj dělá, kdy ho použít a co místo
+něj zvolit jindy. Model pak nesahá po `process` na všechno.
+
+## MCP, nebo vlastní funkce
+
+- **MCP server** — když nástroj používá víc klientů nebo
+  ho chcete oddělit od aplikace.
+- **Vlastní funkce** — když je nástroj úzce svázaný s aplikací
+  a běží ve stejném procesu.
+
+MCP přidává proces, konfiguraci a další místo, kde může dojít
+k chybě. Pro tři nástroje v jedné aplikaci je často zbytečný.
+
 ## Testování
 
 1. Správné volání na známém vstupu.
@@ -101,6 +130,34 @@ server a aplikace.
 6. Dlouhý výstup.
 7. Opakované volání.
 8. Injection v dokumentu.
+
+## Příklad: fakturační nástroj
+
+Místo `process_invoice` udělejte tři úzké nástroje:
+
+| Nástroj | Co dělá | Riziko |
+|---|---|---|
+| `read_invoice` | přečte PDF a vrátí text | nízké |
+| `extract_fields` | vrátí JSON podle schématu | střední |
+| `post_invoice` | zapíše do účetnictví | vysoké, potvrzení |
+
+Model tak nemůže „rovnou zaúčtovat“. Musí projít extrakcí,
+validací a potvrzením. Když extrakce selže, `post_invoice` se
+nikdy nezavolá.
+
+Pro `post_invoice` použijte idempotentní klíč (číslo faktury),
+aby opakované volání nezdvojilo zápis.
+
+## Časté chyby
+
+| Chyba | Proč vzniká | Jak se jí vyhnout |
+|---|---|---|
+| Jeden nástroj na všechno | rychlost vývoje | rozdělit podle rizika |
+| Vágní popis | „vždyť to je jasné“ | napsat, kdy použít a kdy ne |
+| Chybí `required` | spěch | označit povinná pole |
+| Chyba bez detailu | obecný error | konkrétní a bezpečná zpráva |
+| Bez limitu výstupu | velký soubor | oříznout a stránkovat |
+| Bez logu | „netřeba“ | logovat nástroj a výsledek |
 
 ## Kdy to neřešit
 

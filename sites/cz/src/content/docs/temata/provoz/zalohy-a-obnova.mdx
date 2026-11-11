@@ -49,6 +49,18 @@ Z nich plyne frekvence záloh a způsob obnovy. U malého týmu
 Šifrujte zálohy a klíč držte odděleně. Záloha s klíčem na stejném
 disku není záloha.
 
+## Offsite bez cloudu
+
+Offsite neznamená jen cloud. Možnosti:
+
+- **Disk u kolegy** v jiné budově, šifrovaný.
+- **Trezor nebo trezorová skříň** proti požáru.
+- **Druhá pobočka** s vlastním serverem.
+- **Cloudové úložiště** s vlastním klíčem.
+
+Podstatné je, že kopie přežije výpadek lokality. Disk ve stejné
+místnosti jako stroj není offsite, i když je na jiném médiu.
+
 ## Obnova
 
 1. **Nový stroj nebo čistý disk.**
@@ -61,6 +73,31 @@ disku není záloha.
 
 Když obnova trvá déle než RTO, záloha nestačí.
 
+## Co není záloha
+
+- **RAID** chrání proti selhání disku, ne proti smazání.
+- **Snapshots** na stejném poli zmizí s polem.
+- **Synchronizace** do cloudu smaže i smazané.
+- **Kopie modelu** neobsahuje konfiguraci ani index.
+- **Export z aplikace** často neobsahuje oprávnění.
+
+Záloha je kopie, ze které umíte obnovit **celý stav**, ne jen
+jeden soubor.
+
+## Test obnovy
+
+Checklist, který má projít aspoň jednou za čtvrt roku:
+
+1. Vyberte náhodný soubor z minulé zálohy.
+2. Obnovte ho na čistý stroj.
+3. Porovnejte hash s produkcí.
+4. Spusťte engine s obnovenou konfigurací.
+5. Položte 20 dotazů z baseline.
+6. Změřte čas od začátku do prvního správného výsledku.
+7. Zapište výsledek a co nefungovalo.
+
+Když test neprojde, záloha je jen domněnka.
+
 ## Rizika
 
 - **Neotestovaná záloha** — nefunguje.
@@ -68,6 +105,43 @@ Když obnova trvá déle než RTO, záloha nestačí.
 - **Index bez dokumentů** — nelze ověřit.
 - **Logy s osobními údaji** — riziko při obnově.
 - **Jeden disk** — žádná redundance.
+
+## Příklad: selhání disku
+
+Večer odejde NVMe s dokumenty a indexem. Co se stane:
+
+1. **Ráno** se zjistí, že stroj nenaběhne.
+2. **Obnova** začne z offsite zálohy z minulé noci.
+3. **Engine a model** se nainstalují znovu (model se stáhne).
+4. **Dokumenty** se obnoví za hodinu.
+5. **Index** se přestaví nebo obnoví ze zálohy.
+6. **Test** na 20 dotazech projde.
+7. **Zápis** do incidentu.
+
+Bez testu obnovy by se na chybějící index přišlo až po nasazení.
+
+## Kolik místa to zabere
+
+Ilustrativní **výpočet** pro 1 TB archiv:
+
+| Položka | GB |
+|---|---:|
+| dokumenty | 300 |
+| index a vektory | 20 |
+| sessions a paměť | 5 |
+| konfigurace | 1 |
+| **denní přírůstek** | **~0,5** |
+
+Tři verze denních změn jsou jednotky GB. Zálohovat celý model
+nemá smysl; stačí hash a odkaz.
+
+## Časté chyby
+
+- **Záloha jen na stejném disku.**
+- **Klíč ke šifře u zálohy.**
+- **Netestovaná obnova.**
+- **Záloha bez dokumentů** (jen index).
+- **Logy s osobními údaji** v záloze.
 
 ## Kdy to neřešit
 

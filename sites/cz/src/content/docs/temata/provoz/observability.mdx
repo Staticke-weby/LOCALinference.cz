@@ -62,6 +62,41 @@ Retence má být krátká a přístup omezený. Logy jsou důkaz i riziko.
 Nepotřebujete celý stack. Stačí trace ID, tabulka kroků a
 schvalovatel.
 
+## Minimální implementace
+
+Celý stack nepotřebujete. Stačí tabulka:
+
+```sql
+CREATE TABLE krok (
+  trace_id   TEXT NOT NULL,
+  span_id    TEXT NOT NULL,
+  krok       INTEGER NOT NULL,
+  typ        TEXT NOT NULL,   -- model | nastroj | schvaleni
+  nazev      TEXT NOT NULL,
+  stav       TEXT NOT NULL,   -- ok | chyba | ceká
+  tokeny_in  INTEGER,
+  tokeny_out INTEGER,
+  latence_ms INTEGER,
+  schvalil   TEXT,
+  cas        TEXT NOT NULL
+);
+```
+
+Nad ní dva dotazy: „ukaž trace“ a „kolik tokenů za den podle
+modelu“. Víc malý tým na začátku nepotřebuje.
+
+## Retence
+
+| Data | Doporučená retence | Proč |
+|---|---|---|
+| trace metadata | 90 dní | ladění a incidenty |
+| tokeny a cena | 1 rok | rozpočet |
+| argumenty nástrojů | 30 dní, hash | riziko obsahu |
+| prompty | hodiny až dny | citlivý obsah |
+| schválení | 1 rok | audit |
+
+Retence se nastavuje před nasazením, ne po prvním incidentu.
+
 ## Co dělat s daty
 
 - **Incident** — najít trace a zjistit rozsah.
@@ -69,6 +104,53 @@ schvalovatel.
 - **Cena** — který nástroj nebo model ji zvyšuje.
 - **Kvalita** — kde agent selhává.
 - **Audit** — kdo co povolil.
+
+## Příklad: trace jednoho úkolu
+
+```
+trace 7f3a
+  span 1: model, 1 200 tokenů, 2,1 s
+  span 2: read_invoice, 0,3 s, ok
+  span 3: model, 800 tokenů, 1,4 s
+  span 4: extract_fields, 0,2 s, validace ok
+  span 5: post_invoice, čeká na schválení
+  event: schválil user@firma, 10:42
+  span 6: post_invoice, 0,1 s, ok
+```
+
+Z trace je vidět, který krok byl pomalý, kolik stál tokenů a kdo
+akci povolil. Bez trace zůstane jen „agent to udělal“.
+
+## Kolik místa to zabere
+
+Ilustrativní **výpočet**: jeden trace s pěti spany a metadaty má
+kolem 10 kB. Při 1 000 úlohách denně je to **10 MB denně**, tedy
+~300 MB za měsíc. Když ukládáte celé prompty, může to být
+stokrát víc.
+
+Proto se obsah ukládá krátce a metadata déle. Retence je
+součást návrhu, ne úklid později.
+
+## Časté chyby
+
+- **Logovat jen chyby** — chybí úspěšné kroky.
+- **Trace bez ID** — kroky nejdou spojit.
+- **Celé prompty v logu** — riziko a objem.
+- **Chybí schvalovatel** — audit neprojde.
+- **Metriky bez kontextu** — nevíte, které úloze patří.
+
+## Alerty
+
+Neposílejte člověku každou chybu. Alert má smysl, když:
+
+- **selhání opakovaně** ve stejné úloze,
+- **cena** za den přesáhne limit,
+- **schválení** visí déle než hodinu,
+- **model** vrací prázdné odpovědi,
+- **disku** dochází místo.
+
+Každý alert má mít vlastníka a postup. Alert bez postupu je jen
+další nepřečtená zpráva.
 
 ## Kdy to neřešit
 

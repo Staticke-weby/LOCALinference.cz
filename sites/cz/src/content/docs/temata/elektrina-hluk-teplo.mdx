@@ -65,6 +65,20 @@ Proto neuvádíme dB. Co víme:
 Hluk je **D12** v registru mezer. Až se objeví veřejné měření,
 doplníme ho.
 
+## Jak si hluk změřit sám
+
+Veřejné dB nemáme, ale změřit si ho můžete telefonem:
+
+1. **Stroj na pracovní místo**, ne do skříně.
+2. **Mobil 1 m od stroje**, ve výšce ucha.
+3. **Měřte v idle**, při běžné zátěži a po 15 minutách.
+4. **Zapište i okolní hluk** před zapnutím.
+5. **Porovnejte s hovorem** — běžná kancelář je kolem 40 dB.
+
+Aplikace v telefonu nejsou kalibrované, ale na srovnání dvou
+strojů ve stejné místnosti stačí. Číslo z telefonu neuvádějte
+jako přesné.
+
 ## Teplo a throttling
 
 - **Watty se mění na teplo** — 1 W ≈ 3,41 BTU/h.
@@ -83,6 +97,35 @@ porucha; je to ochrana čipu.
 - **U notebooku měřte výkon na baterii i na nabíječce.**
 - **Nezakrývejte větrání.**
 - **U dávkových úloh plánujte pauzy.**
+
+## Příklad: dva boxy v kanceláři
+
+Malá firma má dva 128GB boxy po 140 W a jede 8 hodin denně,
+250 dní v roce.
+
+Ilustrativní **výpočet**:
+
+```
+0,14 kW × 8 h × 250 dní × 2 stroje = 560 kWh za rok
+```
+
+To je zhruba jako jedna lednice navíc. Cena závisí na tarifu;
+vynásobte 560 svou sazbou za kWh. U notebooků na 60 W jsou to
+přibližně **240 kWh**, tedy méně než polovina.
+
+Rozdíl mezi 140 W a 240 W není v řádu stovek korun, ale
+v teple v místnosti. Dva boxy po 240 W už topí jako malý
+radiátor a v létě je to znát.
+
+## Časté chyby
+
+| Chyba | Proč vzniká | Jak se jí vyhnout |
+|---|---|---|
+| Počítat jen špičku | „výkon je 240 W“ | brát průměr v zátěži |
+| Ignorovat režim idle | stroj běží celý den | změřit wall meterem |
+| Srovnávat bez DPH a tarifu | různé ceny | počítat s koncovou cenou |
+| Podcenit teplo | „to se uchladí“ | počítat BTU/h |
+| Stroj ve skříni | „aby nebyl slyšet“ | nechat průtok vzduchu |
 
 ## Kdy to neřešit
 
