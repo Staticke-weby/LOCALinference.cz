@@ -6,6 +6,13 @@
 
 - datum: 2026-11-11
   typ: obsah
+  titulek: "Nový článek: sandboxing agentů"
+  co_se_zmenilo: "Přibyl dlouhý článek o izolaci agentů: model hrozeb, čtyři vrstvy, kontejner vs. gVisor vs. microVM vs. WASM, soubory, síť, tokeny, schvalování, limity, logy, testy obrany, výpočty režie a český příklad s fakturami."
+  dotcene_stranky: [temata/provoz/sandbox-agentu, temata/provoz, temata/agenti]
+  zdroj: https://www.localinference.cz/temata/provoz/sandbox-agentu/
+
+- datum: 2026-11-11
+  typ: obsah
   titulek: "Abliterace: druhá vlna praxe, rizik a parity"
   co_se_zmenilo: "Cluster dostal praktické doplnění: rozdíl abliterace, jailbreaku a fine-tune, tři české situace s přehnaným odmítnutím, testování odmítání v provozu, rank-1 vs. rank-2, matici rizik podle použití, ověření repozitáře a vysvětlení, proč se počet parametrů v safetensors liší od 180B."
   dotcene_stranky: [temata/abliterace, temata/abliterace/odmitani, temata/abliterace/jak-abliterace-funguje, temata/abliterace/provoz-na-128-gb, temata/abliterace/rizika-a-pravo, temata/abliterace/kdo-je-tvori, modely/qwen3-8-flash-next-abliterated]

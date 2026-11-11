@@ -1,10 +1,10 @@
 # Celkový plán webu LOCALinference
 
-*Verze 2.1 — 10. listopadu 2026*
+*Verze 2.2 — 11. listopadu 2026*
 
-**Stav:** celek A (abliterace) je napsaný a publikovaný. Celky B
-(sandboxing) a C (běhové prostředí agentů) zbývají. Datové mezery
-A01, A04, A05 a A06 jsou otevřené.
+**Stav:** celek A (abliterace) a celek B (sandboxing agentů) jsou
+napsané a publikované. Zbývá celek C (běhové prostředí agentů).
+Datové mezery A01, A04, A05 a A06 jsou otevřené.
 
 Tento dokument je **hlavní přehled**: co je hotové, co zbývá ze
 starého plánu a co obsahuje nová část o abliterovaných modelech,
