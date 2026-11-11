@@ -5,6 +5,13 @@
 # hreflang, menu, opravy odkazů) sem nepatří.
 
 - datum: 2026-11-11
+  typ: mereni
+  titulek: "Abliterovaný Qwen3.8: další veřejné buildy a PLE z SSD"
+  co_se_zmenilo: "Na stránce provozu jsou nová komunitní měření: Chompa1422 42,13/72,45 tok/s, tonyd2wild 43,9 tok/s s PLE z NVMe, gorbatjovy FP8 PLE se 125,9 GiB a 2,2M tokeny KV na dvou Sparkách. Čísla jsou označená jako měření vydavatelů, ne parita."
+  dotcene_stranky: [temata/abliterace/provoz-na-128-gb, modely/qwen3-8-flash-next-abliterated]
+  zdroj: https://www.localinference.cz/temata/abliterace/provoz-na-128-gb/
+
+- datum: 2026-11-11
   typ: obsah
   titulek: "Agenti: druhá vlna prohloubení provozu"
   co_se_zmenilo: "Pilíř o provozu agentů dostal rozpočet kontextu a tool callingu, tabulku poruch vrstev, česká specifika a checklist. Podstránky pi, omp, OpenCode/OpenChamber, MausBot, OpenClaw, Hermes a Herdr mají nové sekce: srovnání pi vs. omp, LSP a subagenti, multi-run a remote access, approval karty, kanály a skilly, worktrees a CLI."

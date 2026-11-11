@@ -952,3 +952,36 @@
   posledni_kontrola: 2026-11-11
   stav: ok
   poznamka: "AI-first multiplexer a orchestrátor; model řeší agent."
+
+- id: chompa-ab
+  nazev: Chompa1422 — Qwen3.8 NVFP4 Abliterated
+  url: https://huggingface.co/Chompa1422/Qwen3.8-Flash-Next-NVFP4-Abliterated
+  typ: hf
+  co_sledujeme: [abliterace, nvfp4, mereni]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "Jeden DGX Spark, TensorFold; 42,13/72,45 tok/s, bez srovnání se základem."
+
+- id: tonyd2wild-ple
+  nazev: tonyd2wild — NVFP4 na jednom DGX Spark
+  url: https://github.com/tonyd2wild/Qwen3.8-Flash-Next-NVFP4-DGX-Spark
+  typ: github
+  co_sledujeme: [ple, ssd, mereni]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "PLE z NVMe, ~76 GiB resident, 43,9 tok/s median, 262k kontext."
+
+- id: gorbatjovy-ple-fp8
+  nazev: gorbatjovy — PLE FP8 pro 2× DGX Spark
+  url: https://huggingface.co/gorbatjovy/qwen3.8-flash-next-abliterated-NVFP4-plefp8
+  typ: hf
+  co_sledujeme: [ple, fp8, pamet, mereni]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "173,6 → 125,9 GiB, KV 2,2M tokenů na 2× Spark; kvalita KL 0,0018."

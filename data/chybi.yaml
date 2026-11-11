@@ -773,12 +773,12 @@ polozky:
       - temata/abliterace/provoz-na-128-gb
       - modely/qwen3-8-flash-next-abliterated
     priorita: P0
-    stav: otevreno
+    stav: prubezne
     davka: 8
     hledat: "nezavisle benchmarky, DGX Spark, llamaperf, Hugging Face discussions"
-    poznamka: "Vydavatelská čísla: DevelopingDad 38,0/54,3 tok/s proti 39,4/50,7; lflare GPQA 166/198 proti 164/198. Nezávislé měření chybí."
+    poznamka: "Vydavatelská čísla: DevelopingDad 38,0/54,3 tok/s proti 39,4/50,7; lflare GPQA 166/198 proti 164/198; Chompa1422 42,13/72,45 bez srovnání se základem; tonyd2wild měří základ 43,9 tok/s s PLE z NVMe. Nezávislý test stále chybí."
     zdroj: https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated
-    overeno: 2026-11-10
+    overeno: 2026-11-11
 
   - id: A04
     oblast: data
@@ -802,12 +802,12 @@ polozky:
     kde:
       - temata/abliterace/provoz-na-128-gb
     priorita: P1
-    stav: otevreno
+    stav: prubezne
     davka: 8
     hledat: "NVMe io_uring, vLLM PLE offload, DGX Spark"
-    poznamka: "NVIDIA udává 1M tokenů FP8 KV cache s offloadem; jde o tvrzení výrobce, ne o naše měření."
-    zdroj: https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local
-    overeno: 2026-11-10
+    poznamka: "NVIDIA udává 1M tokenů FP8 KV cache s offloadem; jde o tvrzení výrobce. Komunitní důkazy: tonyd2wild drží 47,68 GiB PLE na NVMe, ~76 GiB resident, 43,9 tok/s, 262k; gorbatjovy FP8 PLE 173,6→125,9 GiB, KV 2,2M tokenů na 2× Spark. Chybí měření 8k/32k/128k/262k na jednom boxu."
+    zdroj: https://github.com/tonyd2wild/Qwen3.8-Flash-Next-NVFP4-DGX-Spark
+    overeno: 2026-11-11
 
   - id: A06
     oblast: mereni

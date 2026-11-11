@@ -166,6 +166,35 @@ cesta je GGUF a llama.cpp, případně MLX.
 Nezávislé měření chybí. Proto jsou to kandidáti, ne potvrzené
 náhrady.
 
+## Co ukazují komunitní buildy (11. 11. 2026)
+
+Kromě DevelopingDad existují další veřejné buildy. Čísla nejsou
+srovnatelná, protože používají jiný runtime a protokol:
+
+| Build | Co naměřil | Kontext |
+|---|---|---|
+| **DevelopingDad FP4-Local-Abliterated** | 38,0 próza / 54,3 kód; 0/100 a 6/100 odmítnutí | 1× DGX Spark, B12X, MTP4, FP8 KV |
+| **Chompa1422 NVFP4-Abliterated** | 42,13 próza / 72,45 kód; TTFT 0,105/0,134 s | 1× DGX Spark, TensorFold, bez srovnání se základem |
+| **tonyd2wild (základ NVIDIA)** | 43,9 tok/s median ze 40 promptů; PLE z NVMe | 1× DGX Spark, ~76 GiB resident, 262k |
+| **gorbatjovy (abliterated, PLE FP8)** | 42,8–54,9 tok/s; KV 2,2M tokenů | 2× DGX Spark, TP2, 125,9 GiB checkpoint |
+
+**Co z toho plyne:**
+
+- **PLE z SSD funguje.** tonyd2wild drží 47,68 GiB FP8 n-gramovou
+  tabulku na NVMe a zbytek (~76 GiB) v paměti; na jeden Spark se
+  tak vejde 262k kontext.
+- **FP8 PLE místo BF16 ušetří ~48 GiB** (173,6 → 125,9 GiB) a
+  kvalitu to podle vydavatele nezmění (KL 0,0018, shoda prvního
+  tokenu 100 % na 80 promptech).
+- **Čísla nejsou parita.** Chompa1422 nemá srovnání se základem;
+  tonyd2wild měří základ, ne abliterovanou verzi. DevelopingDad
+  měří obojí, ale na své sadě a svém launcheru.
+- **Dva Sparky nejsou jeden box.** dealignai a Jiunsong staví na
+  2× DGX Spark; na 128 GB se to nepočítá jako jedno zařízení.
+
+Všechna čísla jsou **měření vydavatelů**, ne nezávislý test. Proto
+zůstává A01 otevřené.
+
 ## Co měřit v praxi
 
 - **TTFT** na 8k, 32k a 128k — disk se projeví hlavně tady.
@@ -205,6 +234,9 @@ náhrady.
 - [DevelopingDad — FP4-Local-Abliterated](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated) — 10. 11. 2026
 - [DevelopingDad — Uncensored DGX-Spark](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-Uncensored-NVFP4-DGX-Spark) — 10. 11. 2026
 - [lflare — CSF-QAD-Abliterated](https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated) — 10. 11. 2026
+- [Chompa1422 — NVFP4 Abliterated](https://huggingface.co/Chompa1422/Qwen3.8-Flash-Next-NVFP4-Abliterated) — 11. 11. 2026
+- [tonyd2wild — NVFP4 na jednom DGX Spark](https://github.com/tonyd2wild/Qwen3.8-Flash-Next-NVFP4-DGX-Spark) — 11. 11. 2026
+- [gorbatjovy — PLE FP8](https://huggingface.co/gorbatjovy/qwen3.8-flash-next-abliterated-NVFP4-plefp8) — 11. 11. 2026
 - [llama.cpp — dokumentace](https://github.com/ggml-org/llama.cpp)
 
 *Naposledy ověřeno: 11. 11. 2026.*
