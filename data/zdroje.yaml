@@ -864,3 +864,91 @@
   posledni_kontrola: 2026-11-10
   stav: ok
   poznamka: "Druhý katalog abliterovaných modelů; ber jako rozcestník."
+
+- id: pi-agent
+  nazev: pi — coding agent
+  url: https://github.com/earendil-works/pi
+  typ: github
+  co_sledujeme: [harness, lokalni_model, releases]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "Terminálový harness; llama.cpp router a OpenAI endpointy."
+
+- id: omp-agent
+  nazev: oh my pi (omp)
+  url: https://github.com/can1357/oh-my-pi
+  typ: github
+  co_sledujeme: [harness, lsp, dap, releases]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "Fork pi; LSP, DAP, subagenti; lokální providery."
+
+- id: opencode
+  nazev: OpenCode
+  url: https://opencode.ai/docs/
+  typ: html
+  co_sledujeme: [harness, providery, releases]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "Terminálový agent; základ OpenChamber."
+
+- id: openchamber
+  nazev: OpenChamber
+  url: https://github.com/openchamber/openchamber
+  typ: github
+  co_sledujeme: [workspace, opencode, releases]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "MIT workspace nad OpenCode; desktop, web, mobil."
+
+- id: mausbot
+  nazev: MausBot
+  url: https://mausbot.com/
+  typ: html
+  co_sledujeme: [desktop, approval, lokalni_model]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "Desktop harness s approval kartami; lokální endpoint; vendor srovnání brát jako tvrzení."
+
+- id: openclaw
+  nazev: OpenClaw
+  url: https://github.com/openclaw/openclaw
+  typ: github
+  co_sledujeme: [gateway, bezpecnost, licence, releases]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "Self-hosted gateway; výchozí exec full; licence MIT vs. Apache rozpor."
+
+- id: hermes-agent
+  nazev: Hermes Agent
+  url: https://hermes-agent.nousresearch.com/docs/
+  typ: html
+  co_sledujeme: [gateway, lokalni_model, kanaly, releases]
+  frekvence: tydne
+  priorita: vysoka
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "Self-hosted asistent; OpenAI kompatibilní endpoint; minimum 64k kontextu."
+
+- id: herdr
+  nazev: Herdr
+  url: https://herdr.dev/
+  typ: html
+  co_sledujeme: [orchestrace, worktrees, releases]
+  frekvence: mesicne
+  priorita: stredni
+  posledni_kontrola: 2026-11-11
+  stav: ok
+  poznamka: "AI-first multiplexer a orchestrátor; model řeší agent."

@@ -1,0 +1,145 @@
+---
+title: "pi: minimální agent do terminálu s lokálním modelem"
+description: "pi je malý coding agent pro terminál. Připojíte ho k llama.cpp routeru, Ollama nebo vLLM a rozšíříte podle sebe. Instalace, config a limity."
+last_verified: 2026-11-11
+sidebar:
+  hidden: true
+---
+
+**pi** je minimalistický agentní harness pro terminál. Neřeší GUI
+ani týmovou správu; řeší smyčku, nástroje a session. Díky tomu se
+snadno připojí k lokálnímu modelu a snadno se rozšíří.
+
+## Rychlá odpověď
+
+- **MIT, terminál, macOS/Linux/Windows.** Node 22.19+.
+- **Lokální model:** llama.cpp router, Ollama, LM Studio, vLLM
+  přes `models.json`.
+- **Silná stránka:** jednoduchost a rozšiřitelnost.
+- **Slabina:** žádné GUI, žádná týmová správa, schvalování záleží
+  na konfiguraci.
+
+## Co to je
+
+pi je agent, který v projektu čte soubory, navrhuje změny, spouští
+příkazy a čte výsledky. Umí interaktivní režim, print/JSON výstup,
+RPC a TypeScript SDK. Používá se i jako základ dalších nástrojů
+(například OpenClaw nebo omp).
+
+## Připojení lokálního modelu
+
+**llama.cpp router** je nejpřímější cesta:
+
+```bash
+llama-server \
+  --models-dir ~/models \
+  --no-models-autoload \
+  --jinja \
+  --host 127.0.0.1 \
+  --port 8080 \
+  -ngl 999 \
+  -c 32768
+```
+
+Pak v pi:
+
+```text
+/login llama.cpp
+/llama
+/model
+```
+
+`--jinja` zapíná chat template a tool calling. Bez něj model
+nebude volat nástroje správně. `--models-dir` ukáže na složku
+s GGUF soubory; `--no-models-autoload` drží načítání pod kontrolou.
+
+**Ollama nebo vLLM** přes `models.json`:
+
+```json
+{
+  "providers": {
+    "ollama": {
+      "baseUrl": "http://localhost:11434/v1",
+      "api": "openai-completions",
+      "apiKey": "ollama",
+      "models": [{ "id": "qwen3.5:27b" }]
+    }
+  }
+}
+```
+
+Klíč `apiKey` je u Ollamy formální; server ho ignoruje. U vLLM
+použijte skutečný token, pokud ho server vyžaduje.
+
+## Instalace
+
+```bash
+curl -fsSL https://pi.dev/install.sh | sh
+```
+
+Na Windows PowerShell:
+
+```powershell
+powershell -c "irm https://pi.dev/install.ps1 | iex"
+```
+
+Nebo přes npm: `npm install -g --ignore-scripts @earendil-works/pi-coding-agent`.
+Instalátor pinuje závislosti; npm ne.
+
+## Workflow
+
+1. `cd` do projektu a spusťte `pi`.
+2. `/model` vybere model, `/thinking` úroveň přemýšlení.
+3. Agent čte soubory a navrhuje změny.
+4. Výsledek zkontrolujete a případně vrátíte.
+5. Session se ukládá; lze pokračovat později.
+
+Pro skriptování použijte print nebo JSON režim; pro integraci
+do aplikace SDK.
+
+## Rozšíření
+
+- **MCP a Codemode** — nástroje z vnějších serverů.
+- **Extensions** — vlastní nástroje a providery.
+- **Skills a prompt templates** — opakované postupy.
+- **Packages** — sdílení přes npm nebo git.
+
+## Limity
+
+- **Terminál.** Žádný vizuální diff ani přehled session.
+- **Schvalování.** Ověřte, jak přesně řeší potvrzení příkazů;
+  minimalistický harness spoléhá na to, co model udělá.
+- **Model.** Kvalita tool callingu je na modelu, ne na pi.
+- **Kontext.** Dlouhé session se musí vejít do okna modelu.
+
+## Bezpečnost
+
+pi běží jako vy a má přístup k souborům i shellu. Před použitím
+na cizím projektu zvažte kontejner nebo [sandbox](/temata/provoz/sandbox-agentu/).
+Do promptu nedávejte tokeny a klíče.
+
+## Kdy to nepoužít
+
+- Když chcete GUI a schvalovací karty.
+- Když potřebujete týmovou správu a audit.
+- Když model neumí tool calling.
+- Když chcete jen chat.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) — přehled.
+- [omp](/temata/agenti/nastroje/omp/) — fork s LSP a subagenty.
+- [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
+  workspace.
+- [llama.cpp](/slovnik/software/llamacpp/) — engine.
+- [Function calling](/slovnik/software/function-calling/) — nástroje.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [pi — GitHub](https://github.com/earendil-works/pi) — 11. 11. 2026
+- [pi — llama.cpp](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/llama-cpp.md) — 11. 11. 2026
+- [pi — modely](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/models.md) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

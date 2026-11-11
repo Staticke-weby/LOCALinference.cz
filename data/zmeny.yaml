@@ -6,6 +6,13 @@
 
 - datum: 2026-11-11
   typ: obsah
+  titulek: "Nový článek: kde provozovat lokální agenty"
+  co_se_zmenilo: "Přibyl pilíř o harnessech, workspace, gateway a orchestraci a sedm podstránek: pi, omp, OpenCode a OpenChamber, MausBot, OpenClaw, Hermes a Herdr. Každá popisuje připojení lokálního modelu, instalaci, limity a bezpečnost. Podstránky nejsou v menu, odkazuje na ně pilíř a tabulka."
+  dotcene_stranky: [temata/agenti/kde-provozovat-agenty, temata/agenti/nastroje/pi, temata/agenti/nastroje/omp, temata/agenti/nastroje/opencode-a-openchamber, temata/agenti/nastroje/mausbot, temata/agenti/nastroje/openclaw, temata/agenti/nastroje/hermes, temata/agenti/nastroje/herdr, temata/agenti]
+  zdroj: https://www.localinference.cz/temata/agenti/kde-provozovat-agenty/
+
+- datum: 2026-11-11
+  typ: obsah
   titulek: "Nový článek: sandboxing agentů"
   co_se_zmenilo: "Přibyl dlouhý článek o izolaci agentů: model hrozeb, čtyři vrstvy, kontejner vs. gVisor vs. microVM vs. WASM, soubory, síť, tokeny, schvalování, limity, logy, testy obrany, výpočty režie a český příklad s fakturami."
   dotcene_stranky: [temata/provoz/sandbox-agentu, temata/provoz, temata/agenti]

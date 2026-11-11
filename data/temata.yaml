@@ -220,6 +220,14 @@
     - /temata/agenti/coding-agent/
     - /temata/agenti/office-automatizace/
     - /temata/agenti/bezpecnost-agenta/
+    - /temata/agenti/kde-provozovat-agenty/
+    - /temata/agenti/nastroje/pi/
+    - /temata/agenti/nastroje/omp/
+    - /temata/agenti/nastroje/opencode-a-openchamber/
+    - /temata/agenti/nastroje/mausbot/
+    - /temata/agenti/nastroje/openclaw/
+    - /temata/agenti/nastroje/hermes/
+    - /temata/agenti/nastroje/herdr/
   chybi: "Chybí veřejné testy úspěšnosti agentů na českých úlohách."
   overeno: 2026-11-10
 

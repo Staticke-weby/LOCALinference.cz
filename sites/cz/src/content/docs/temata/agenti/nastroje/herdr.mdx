@@ -1,0 +1,112 @@
+---
+title: "Herdr: orchestrace více lokálních agentů v terminálu"
+description: "Herdr je AI-first multiplexer a orchestrátor. Drží workspaces, panes a agenty, umí worktrees a CLI. Sám model neřeší, spouští pi, omp nebo OpenCode."
+last_verified: 2026-11-11
+sidebar:
+  hidden: true
+---
+
+**Herdr** je terminálový multiplexer a orchestrátor pro coding
+agenty. Není to harness ani model; je to vrstva, která spouští
+víc agentů, předává jim úkoly a drží session. Lokální model řeší
+agent, kterého Herdr spustí.
+
+## Rychlá odpověď
+
+- **Apache-2.0, macOS/Linux, Windows v preview.**
+- **Není model layer.** Lokální model závisí na agentovi.
+- **Workspaces, panes, agents** — tři primitiva.
+- **Worktrees** pro izolaci paralelních úloh.
+- **CLI a socket API** pro skriptování a orchestrace.
+
+## Co to je
+
+Herdr vypadá jako tmux, ale rozumí agentům. Místo slepého
+terminálu ví, jestli agent pracuje, čeká nebo selhal. Můžete mu
+poslat prompt, počkat na výsledek a přečíst odpověď — z CLI nebo
+z jiného agenta.
+
+Tři primitiva:
+
+| Pojem | Co to je |
+|---|---|
+| **Workspace** | jeden projekt nebo úloha |
+| **Pane** | skutečný shell pro agenta, test nebo server |
+| **Agent** | rozpoznaný proces, který Herdr umí adresovat |
+
+## Připojení lokálního modelu
+
+Herdr sám model nevybírá. Spustíte v něm agenta, který lokální
+model umí:
+
+- [pi](/temata/agenti/nastroje/pi/) s llama.cpp routerem,
+- [omp](/temata/agenti/nastroje/omp/) s Ollama nebo vLLM,
+- [OpenCode](/temata/agenti/nastroje/opencode-a-openchamber/) s
+  OpenAI kompatibilním endpointem.
+
+Tím se Herdr stává orchestrací lokálních agentů, ne dalším
+modelem.
+
+## Instalace
+
+1. Nainstalujte Herdr podle dokumentace.
+2. Otevřete workspace v projektu.
+3. Spusťte agenta v pane.
+4. Ověřte, že Herdr agenta rozpozná a vidí jeho stav.
+5. Přidejte druhý pane nebo worktree.
+
+Příkazy se mohou mezi verzemi měnit; používejte dokumentaci
+konkrétní verze.
+
+## Workflow
+
+1. Vytvořte workspace pro úlohu.
+2. Spusťte agenta a zadejte cíl.
+3. Agent běží v pane; Herdr sleduje stav.
+4. Pomocníka spustíte v dalším pane nebo worktree.
+5. Výsledek vrátíte hlavnímu agentovi.
+6. Hotové panes zavřete; worktrees ukliďte.
+
+Pro paralelní práci je klíčové, že každý agent má vlastní
+worktree. Jinak si agenti si přepíšou soubory.
+
+## Limity
+
+- **Žádná izolace.** Herdr je multiplexer, ne sandbox; agenti
+  běží jako vy. Na rizikový kód použijte kontejner.
+- **Žádný model layer.** Když agent lokální model neumí, Herdr
+  to nespraví.
+- **Windows preview.** Na Windows může být chování jiné.
+- **Složitost.** Víc agentů znamená víc session a víc úklidu.
+
+## Bezpečnost
+
+- **Agenti dědí vaše oprávnění.** Nevkládejte produkční klíče.
+- **Worktree není sandbox.** Chrání soubory, ne systém.
+- **Příkazy z CLI** mohou ovlivnit běžící agenty.
+- **Logy** a výstupy mohou obsahovat citlivá data.
+
+## Kdy to nepoužít
+
+- Když máte jednoho agenta a jednu úlohu.
+- Když chcete bezpečnostní izolaci — použijte sandbox.
+- Když nemáte čas uklízet worktrees.
+- Když agent neumí lokální model.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) — přehled.
+- [pi](/temata/agenti/nastroje/pi/) — agent pro Herdr.
+- [omp](/temata/agenti/nastroje/omp/) — agent s LSP.
+- [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
+  agent a workspace.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Herdr](https://herdr.dev/) — 11. 11. 2026
+- [Herdr — orchestration skill](https://github.com/aerain/herdr-agent-orchestration) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

@@ -1,0 +1,111 @@
+---
+title: "MausBot: desktop agent se schvalováním a lokálním modelem"
+description: "MausBot je open-source desktop harness s approval kartami. Připojí lokální model přes OpenAI kompatibilní endpoint a běží na localhostu."
+last_verified: 2026-11-11
+sidebar:
+  hidden: true
+---
+
+**MausBot** je open-source desktop aplikace, ve které každý chat
+je jeden agent. Před spuštěním příkazu nebo úpravou souboru se
+zeptá kartou Allow/Deny. Harness poslouchá jen na `127.0.0.1`
+a data drží lokálně.
+
+## Rychlá odpověď
+
+- **Apache-2.0, desktop pro macOS, Windows a Ubuntu.**
+- **Lokální model:** přes OpenAI kompatibilní endpoint.
+- **Schvalování:** každá riziková akce jako karta.
+- **Síť:** harness na `127.0.0.1`, žádný otevřený port.
+- **Pozor:** Ubuntu vyžaduje Xorg; Wayland není podporovaný.
+
+## Co to je
+
+MausBot je vrstva nad agentními CLI a zároveň vlastní harness.
+Vytvoříte bota, dáte mu model, apps a počítač. Když chce spustit
+shell, upravit soubor nebo se na něco zeptat, objeví se karta
+v chatu. Vy potvrdíte, odmítnete, nebo odpovíte.
+
+Na rozdíl od terminálového harnesse je tady **schvalování vidět**.
+To je hlavní přínos: agent nepracuje potichu.
+
+## Připojení lokálního modelu
+
+MausBot umí OpenAI kompatibilní endpoint, takže k němu připojíte:
+
+- **Ollama** — `http://localhost:11434/v1`,
+- **vLLM** — `http://localhost:8000/v1`,
+- **LM Studio** — jeho lokální endpoint,
+- **llama.cpp server** — s `--jinja`.
+
+Postup je v nastavení enginu: zvolte OpenAI kompatibilní provider,
+zadejte base URL, klíč (u lokálních často prázdný) a model ID.
+Přesné položky se mohou mezi verzemi lišit; ověřte je v dokumentaci.
+
+Podle dokumentace MausBot spouští i CLI enginy; lokální endpoint
+je cesta, jak se vyhnout cloudu. Ověřte, které enginy vaše verze
+podporuje.
+
+## Instalace
+
+1. Stáhněte desktop aplikaci pro svou platformu.
+2. Projděte onboarding a přihlaste se k enginu, který chcete.
+3. Vytvořte bota a vyberte model.
+4. Přidejte apps nebo počítač, ke kterému má přístup.
+
+Data a klíče jsou v `~/.openmausbot`. Na Ubuntu je potřeba Xorg;
+Wayland je vypnutý.
+
+## Workflow
+
+1. Bot dostane úkol v chatu.
+2. Navrhne akci; objeví se karta.
+3. Potvrdíte nebo odmítnete.
+4. Bot pokračuje a výsledek zapíše.
+5. Session zůstává v aplikaci; můžete se vrátit.
+
+Rutiny umí spustit bota naplánovaně nebo z webhooku. I tam platí,
+že riziková akce čeká na kartu.
+
+## Limity
+
+- **Desktop only.** Není to server pro tým.
+- **Platformy.** Ubuntu s Xorg; Wayland ne.
+- **Enginy.** Lokální endpoint musí být kompatibilní; ne každý
+  engine umí tool calling.
+- **Vendor materiály.** MausBot má vlastní srovnávací stránky;
+  tvrzení o konkurenci berte jako tvrzení výrobce.
+
+## Bezpečnost
+
+- **Localhost.** Harness není na veřejném portu.
+- **Schvalování.** Rizikové akce vždy kartou.
+- **OAuth tokeny.** Scoped, ne hesla.
+- **Data.** Sessions a klíče lokálně; zálohujte je.
+- **Agenti.** Bot může ovládat počítač; nechte mu jen to, co
+  potřebuje.
+
+## Kdy to nepoužít
+
+- Když chcete agenta na serveru pro tým.
+- Když potřebujete Wayland.
+- Když model neumí tool calling.
+- Když chcete jen chat bez akcí.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) — přehled.
+- [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
+  alternativa.
+- [OpenClaw](/temata/agenti/nastroje/openclaw/) — gateway.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [MausBot](https://mausbot.com/) — 11. 11. 2026
+- [MausBot — AI agent, který ovládá počítač](https://mausbot.com/blog/ai-agent-that-controls-your-computer) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

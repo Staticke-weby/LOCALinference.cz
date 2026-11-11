@@ -1,0 +1,68 @@
+---
+import { getAgentNastroje, formatDatum, type AgentNastroj } from '../lib/data';
+
+const nastroje = getAgentNastroje();
+
+const vrstvaLabel: Record<AgentNastroj['vrstva'], string> = {
+  terminal: 'terminál',
+  desktop: 'desktop',
+  gateway: 'gateway',
+  orchestrace: 'orchestrace',
+};
+
+const approvalLabel: Record<AgentNastroj['approval'], string> = {
+  vzdy: 'vždy',
+  volitelne: 'volitelně',
+  ne: 'ne',
+  neuvedeno: 'neuvedeno',
+  podle_agenta: 'podle agenta',
+};
+---
+
+<div class="li-tabulka-obal">
+  <table class="li-tabulka">
+    <thead>
+      <tr>
+        <th>Nástroj</th>
+        <th>Vrstva</th>
+        <th>Licence</th>
+        <th>Platformy</th>
+        <th>GUI</th>
+        <th>Schválení</th>
+        <th>Lokální model</th>
+        <th>Síť</th>
+        <th>MCP</th>
+      </tr>
+    </thead>
+    <tbody>
+      {nastroje.map((n) => (
+        <tr>
+          <td>
+            <a href={n.stranka}>{n.nazev}</a>
+            <span class="li-pozn"> · {formatDatum(n.overeno)}</span>
+          </td>
+          <td>{vrstvaLabel[n.vrstva]}</td>
+          <td>{n.licence}</td>
+          <td>{n.platformy.join(', ')}</td>
+          <td>{n.gui}</td>
+          <td>{approvalLabel[n.approval]}</td>
+          <td>{n.lokalni_model}</td>
+          <td>{n.sitova_expozice}</td>
+          <td>{n.mcp}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<ul class="li-pozn">
+  <li><strong>Schválení</strong> = zda nástroj ukáže akci před provedením.</li>
+  <li><strong>Síť</strong> = kde nástroj poslouchá; <code>localhost</code> je bezpečnější než otevřený port.</li>
+  <li>Údaje jsou z dokumentace k 11. 11. 2026; u každého nástroje může být jiná verze.</li>
+</ul>
+
+<style>
+  .li-tabulka-obal {
+    overflow-x: auto;
+  }
+</style>

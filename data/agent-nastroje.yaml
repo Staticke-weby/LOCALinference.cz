@@ -1,0 +1,123 @@
+# Nástroje pro běh lokálních agentů. Jen nezávislé, lokálně použitelné.
+# `vrstva`: terminal | desktop | gateway | orchestrace
+# `approval`: vzdy | volitelne | ne | neuvedeno | podle_agenta
+
+- id: pi
+  nazev: pi
+  vrstva: terminal
+  licence: MIT
+  platformy: [macOS, Linux, Windows]
+  gui: ne
+  approval: neuvedeno
+  lokalni_model: ano
+  mcp: ano
+  sitova_expozice: localhost
+  stranka: /temata/agenti/nastroje/pi/
+  poznamka: "Minimalistický terminálový harness; llama.cpp router, Ollama, vLLM přes models.json."
+  zdroj: https://github.com/earendil-works/pi
+  overeno: 2026-11-11
+
+- id: omp
+  nazev: omp (oh my pi)
+  vrstva: terminal
+  licence: MIT
+  platformy: [macOS, Linux, Windows]
+  gui: ne
+  approval: neuvedeno
+  lokalni_model: ano
+  mcp: ano
+  sitova_expozice: localhost
+  stranka: /temata/agenti/nastroje/omp/
+  poznamka: "Fork pi; LSP, DAP, subagenti, hash-anchored edits; vyžaduje Bun."
+  zdroj: https://github.com/can1357/oh-my-pi
+  overeno: 2026-11-11
+
+- id: opencode
+  nazev: OpenCode
+  vrstva: terminal
+  licence: MIT
+  platformy: [macOS, Linux, Windows]
+  gui: ne
+  approval: volitelne
+  lokalni_model: ano
+  mcp: ano
+  sitova_expozice: localhost
+  stranka: /temata/agenti/nastroje/opencode-a-openchamber/
+  poznamka: "Terminálový coding agent; providery včetně lokálních endpointů."
+  zdroj: https://opencode.ai/docs/
+  overeno: 2026-11-11
+
+- id: openchamber
+  nazev: OpenChamber
+  vrstva: desktop
+  licence: MIT
+  platformy: [macOS, Windows, Linux, Web, iOS, Android]
+  gui: ano
+  approval: volitelne
+  lokalni_model: ano
+  mcp: ano
+  sitova_expozice: localhost
+  stranka: /temata/agenti/nastroje/opencode-a-openchamber/
+  poznamka: "Workspace nad OpenCode; multi-run, worktrees, goals, remote relay."
+  zdroj: https://github.com/openchamber/openchamber
+  overeno: 2026-11-11
+
+- id: mausbot
+  nazev: MausBot
+  vrstva: desktop
+  licence: Apache-2.0
+  platformy: [macOS, Windows, Ubuntu]
+  gui: ano
+  approval: vzdy
+  lokalni_model: ano
+  mcp: neuvedeno
+  sitova_expozice: localhost
+  stranka: /temata/agenti/nastroje/mausbot/
+  poznamka: "Desktop harness s approval kartami; lokální endpoint přes OpenAI kompatibilní API; Ubuntu vyžaduje Xorg."
+  zdroj: https://mausbot.com/
+  overeno: 2026-11-11
+
+- id: openclaw
+  nazev: OpenClaw
+  vrstva: gateway
+  licence: MIT (GitHub) / Apache-2.0 (vendor)
+  platformy: [macOS, Linux, Windows]
+  gui: control-ui
+  approval: volitelne
+  lokalni_model: ano
+  mcp: ano
+  sitova_expozice: port
+  stranka: /temata/agenti/nastroje/openclaw/
+  poznamka: "Gateway s kanály a skilly; výchozí exec full je riziko; licenci ověřit."
+  zdroj: https://github.com/openclaw/openclaw
+  overeno: 2026-11-11
+
+- id: hermes
+  nazev: Hermes Agent
+  vrstva: gateway
+  licence: MIT
+  platformy: [Linux, macOS, WSL2, Windows]
+  gui: desktop-preview
+  approval: volitelne
+  lokalni_model: ano
+  mcp: ano
+  sitova_expozice: port
+  stranka: /temata/agenti/nastroje/hermes/
+  poznamka: "Self-hosted asistent a gateway; libovolný OpenAI kompatibilní endpoint, minimum 64k kontextu."
+  zdroj: https://hermes-agent.nousresearch.com/docs/
+  overeno: 2026-11-11
+
+- id: herdr
+  nazev: Herdr
+  vrstva: orchestrace
+  licence: Apache-2.0
+  platformy: [macOS, Linux, Windows]
+  gui: ano
+  approval: podle_agenta
+  lokalni_model: podle_agenta
+  mcp: ne
+  sitova_expozice: localhost
+  stranka: /temata/agenti/nastroje/herdr/
+  poznamka: "AI-first multiplexer a orchestrátor; worktrees, panes, CLI a socket."
+  zdroj: https://herdr.dev/
+  overeno: 2026-11-11

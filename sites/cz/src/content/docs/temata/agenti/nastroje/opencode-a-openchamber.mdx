@@ -1,0 +1,113 @@
+---
+title: "OpenCode a OpenChamber: harness a workspace pro lokální agenty"
+description: "OpenCode je terminálový agent, OpenChamber je jeho vizuální workspace. Jak je spojit s lokálním modelem, co umí a kde je limit."
+last_verified: 2026-11-11
+sidebar:
+  hidden: true
+---
+
+**OpenCode** je open-source coding agent pro terminál. **OpenChamber**
+je workspace, který nad ním staví session, diffy, worktrees a
+vzdálený přístup. Dohromady tvoří jednu z nejpraktičtějších cest
+k lokálnímu agentovi s přehledem.
+
+## Rychlá odpověď
+
+- **OpenCode** je harness; **OpenChamber** je UI a správa session.
+- **Lokální model** se nastavuje v OpenCode, ne v OpenChamber.
+- **OpenChamber** je MIT, desktop/web/mobil, multi-run a worktrees.
+- **Silná stránka:** přehled a review; **slabina:** další vrstva
+  a rychlý vývoj.
+
+## Co je co
+
+| Část | Role | Licence |
+|---|---|---|
+| **OpenCode** | agent, nástroje, providers | MIT |
+| **OpenChamber** | workspace, session, review | MIT |
+
+OpenChamber není náhrada OpenCode. Je to klient, který čte
+session a posílá prompt; provider a klíče zůstávají v OpenCode.
+
+## Připojení lokálního modelu
+
+1. Nainstalujte OpenCode a nastavte providera s OpenAI
+   kompatibilním endpointem (Ollama, vLLM, LM Studio, llama.cpp).
+2. Ověřte tool calling na jednoduchém nástroji.
+3. Spusťte OpenChamber; výchozí desktop instalace si nese vlastní
+   OpenCode.
+4. V OpenChamber vyberte projekt a model, který OpenCode nabízí.
+
+Konkrétní config je v dokumentaci OpenCode. Platí stejná pravidla
+jako jinde: `--jinja` u llama.cpp, správný model ID, dost kontextu.
+
+## Instalace
+
+**Desktop:** stáhněte OpenChamber z GitHub Releases. Obsahuje
+OpenCode, takže není potřeba nic dalšího.
+
+**Web/PWA:** potřebuje OpenCode a Node 24.14+:
+
+```bash
+curl -fsSL https://openchamber.dev/install | bash
+openchamber --ui-password zvolte-heslo
+```
+
+**OpenCode samotné** nainstalujete podle jeho dokumentace; používá
+se v terminálu.
+
+## Workflow
+
+1. Otevřete projekt v OpenChamber.
+2. Zadejte úkol; agent běží v OpenCode.
+3. Sledujte tool output a diff.
+4. U velké změny použijte Changes Walkthrough.
+5. U rizikové akce potvrďte nebo odmítněte.
+6. Výsledek commitněte nebo otevřete PR.
+
+**Multi-run** pošle stejný prompt víc modelům, každému do vlastního
+worktree. **Session Goals** drží agenta u cíle, dokud ho nesplní
+nebo nedojde limit.
+
+## Limity
+
+- **OpenChamber není harness.** Když OpenCode neumí providera,
+  OpenChamber to nespraví.
+- **Rychlý vývoj.** Menší verze se mohou chovat jinak.
+- **Remote access.** Relay a tunely jsou pohodlné, ale musí mít
+  heslo a oprávnění.
+- **Kontext.** Dlouhé session jsou drahé jako jinde.
+
+## Bezpečnost
+
+- **Localhost** pro lokální použití; remote jen s heslem a ideálně
+  relayem.
+- **Tokeny** v OpenCode, ne v promptu.
+- **Schvalování** u zápisu a odeslání.
+- **Logy** a přístup k session chraňte; obsahují kód i kontext.
+
+## Kdy to nepoužít
+
+- Když chcete jen terminál a nechcete další vrstvu.
+- Když potřebujete stabilní Enterprise produkt.
+- Když nemáte vyřešené providery v OpenCode.
+- Když jde o jednorázový skript.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) — přehled.
+- [pi](/temata/agenti/nastroje/pi/) — minimální alternativa.
+- [omp](/temata/agenti/nastroje/omp/) — alternativa s LSP.
+- [MausBot](/temata/agenti/nastroje/mausbot/) — desktop s kartami.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+- [MCP](/slovnik/software/mcp/) — nástroje.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [OpenCode — dokumentace](https://opencode.ai/docs/) — 11. 11. 2026
+- [OpenChamber — GitHub](https://github.com/openchamber/openchamber) — 11. 11. 2026
+- [OpenChamber — dokumentace](https://docs.openchamber.dev/) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

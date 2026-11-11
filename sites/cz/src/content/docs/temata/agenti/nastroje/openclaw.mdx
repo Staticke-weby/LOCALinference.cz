@@ -1,0 +1,96 @@
+---
+title: "OpenClaw: gateway pro lokální agenty z chatů"
+description: "OpenClaw je self-hosted gateway, který zpřístupní agenta z Telegramu, Slacku a dalších kanálů. Lokální model, oprávnění a bezpečnostní rizika."
+last_verified: 2026-11-11
+sidebar:
+  hidden: true
+---
+
+**OpenClaw** je gateway, která spojí agenta s chatovacími kanály.
+Agent běží na vašem stroji, vy s ním mluvíte z Telegramu nebo
+Slacku. Umí lokální modely, ale výchozí nastavení je benevolentní.
+
+## Rychlá odpověď
+
+- **Self-hosted gateway**, ne model ani harness.
+- **Lokální model:** Ollama nebo OpenAI kompatibilní endpoint.
+- **Kanály:** Telegram, Slack, Discord a další.
+- **Riziko:** výchozí exec je plný; gateway nesmí být veřejná.
+- **Licence:** GitHub uvádí MIT, vendorská stránka Apache-2.0 —
+  rozpor.
+
+## Co to je
+
+OpenClaw je daemon, který drží jednoho nebo víc agentů a nabízí
+je přes messaging. Přidává skilly, MCP konektory a správu session.
+Není to náhrada terminálového harnesse; je to vrstva, jak se
+k harnessu dostat z telefonu.
+
+## Připojení lokálního modelu
+
+1. Nainstalujte OpenClaw a projděte onboarding.
+2. V nastavení providera zvolte Ollama nebo vlastní OpenAI
+   kompatibilní endpoint.
+3. Ověřte, že model umí tool calling.
+4. Otestujte jednoduchý nástroj z chatu.
+
+Konkrétní klíče configu se mění podle verze; ověřte je v
+dokumentaci. Pro lokální model platí stejná pravidla: správný
+model ID, dost kontextu a zapnutý tool parser.
+
+## Instalace
+
+OpenClaw se instaluje jako CLI/daemon na macOS, Linux nebo Windows.
+Po instalaci projděte onboarding, připojte kanál a nastavte
+providera. Gateway ve výchozím stavu poslouchá na portu; pokud
+ji nepotřebujete z jiného stroje, nechte ji na localhostu.
+
+## Workflow
+
+1. Agent dostane úkol z chatu.
+2. Použije nástroje a skilly.
+3. Výsledek pošle zpět do kanálu.
+4. U rizikové akce může čekat na potvrzení, pokud to zapnete.
+
+Skilly z ClawHub rozšiřují schopnosti; každý skill je ale kód,
+který agentovi dáváte. Instalujte jen ověřené.
+
+## Limity
+
+- **Bezpečnostní defaulty.** Podle dokumentace a recenzí je
+  výchozí shell plný; zapněte ask mode a omezit nástroje.
+- **Síťová expozice.** Gateway na veřejném portu je pozvánka.
+- **Kanály.** Tokeny do Telegramu a dalších služeb chraňte.
+- **Model.** Lokální model nemusí zvládnout složité skilly.
+
+## Bezpečnost
+
+- **Localhost** nebo VPN; nikdy ne přímý internet.
+- **Ask mode** u shellu a zápisu.
+- **Allowlist** nástrojů a skillů.
+- **Logy** a rate limit.
+- **Prompt injection** může přijít zprávou v chatu.
+
+## Kdy to nepoužít
+
+- Když chcete agenta jen na svém notebooku.
+- Když nemáte čas hlídat gateway.
+- Když potřebujete týmovou správu a audit.
+- Když model neumí tool calling.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) — přehled.
+- [Hermes](/temata/agenti/nastroje/hermes/) — alternativa.
+- [MausBot](/temata/agenti/nastroje/mausbot/) — desktop.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [OpenClaw — GitHub](https://github.com/openclaw/openclaw) — 11. 11. 2026
+- [OpenClaw — dokumentace](https://docs.openclaw.ai/) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

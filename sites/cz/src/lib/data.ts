@@ -391,6 +391,27 @@ export function getGenerativniModely(kategorie?: GenerativniModel['kategorie']):
   return kategorie ? vse.filter((m) => m.kategorie === kategorie) : vse;
 }
 
+export type AgentNastroj = {
+  id: string;
+  nazev: string;
+  vrstva: 'terminal' | 'desktop' | 'gateway' | 'orchestrace';
+  licence: string;
+  platformy: string[];
+  gui: string;
+  approval: 'vzdy' | 'volitelne' | 'ne' | 'neuvedeno' | 'podle_agenta';
+  lokalni_model: string;
+  mcp: string;
+  sitova_expozice: string;
+  stranka: string;
+  poznamka?: string;
+  zdroj: string;
+  overeno: string | Date;
+};
+
+export function getAgentNastroje(): AgentNastroj[] {
+  return load<AgentNastroj[]>('agent-nastroje.yaml') ?? [];
+}
+
 export type GenerovaniZarizeni = {
   zarizeni: string;
   poznamka?: string;

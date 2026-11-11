@@ -1,0 +1,130 @@
+---
+title: "Hermes: self-hosted agent a gateway s lokálním modelem"
+description: "Hermes Agent od Nous Research je self-hosted asistent s kanály a schvalováním. Připojí Ollama, vLLM i llama.cpp a vyžaduje 64k kontextu."
+last_verified: 2026-11-11
+sidebar:
+  hidden: true
+---
+
+**Hermes Agent** je self-hosted asistent a gateway od Nous
+Research. Na rozdíl od jednoduchého harnesse řeší i paměť, skilly,
+kanály a dlouhodobé session. Umí libovolný OpenAI kompatibilní
+endpoint, takže lokální model je první třída.
+
+## Rychlá odpověď
+
+- **MIT, self-hosted, macOS/Linux/WSL2.**
+- **Lokální model:** Ollama, vLLM, llama.cpp, SGLang, LocalAI.
+- **Minimum 64k kontextu** pro agentní práci s nástroji.
+- **Kanály:** Telegram, Discord, Slack, WhatsApp, Signal, e-mail.
+- **Schvalování:** příkazy a akce lze potvrzovat.
+
+## Co to je
+
+Hermes je agent, který běží na vašem stroji nebo serveru, pamatuje
+si kontext mezi session a umí se ozvat přes messaging. Přidává
+skilly, delegování a práci s nástroji. Konfigurace je v
+`~/.hermes/config.yaml`; data zůstávají lokálně.
+
+Není to jen chat. Hermes umí spouštět příkazy, editovat soubory
+a prohlížet web — proto potřebuje oprávnění a dohled.
+
+## Připojení lokálního modelu
+
+**Ollama:**
+
+```bash
+ollama serve
+```
+
+Pak:
+
+```text
+hermes model
+# Custom endpoint
+# URL: http://localhost:11434/v1
+# klíč: nechat prázdné
+# model: qwen3.5:27b
+# context: 64000
+```
+
+**vLLM nebo llama.cpp:**
+
+```yaml
+# ~/.hermes/config.yaml
+model:
+  default: "qwen3.8-flash-next"
+  provider: "custom"
+  base_url: "http://127.0.0.1:8000/v1"
+```
+
+Pro llama.cpp použijte `--jinja`, aby fungoval chat template a
+tool calling. U vLLM zkontrolujte `--max-model-len` a KV cache.
+
+**Pozor na kontext:** Hermes odmítne méně než 64 000 tokenů,
+protože systémový prompt, schémata nástrojů a historie potřebují
+místo. U Ollamy se výchozí kontext liší podle paměti; nastavte
+`OLLAMA_CONTEXT_LENGTH=64000`.
+
+## Instalace
+
+1. Nainstalujte Hermes podle dokumentace.
+2. Spusťte `hermes setup` nebo `hermes model`.
+3. Zvolte custom endpoint a zadejte URL, klíč a model.
+4. Ověřte tool calling na jednoduchém úkolu.
+5. Volitelně připojte kanál (Telegram, Discord…).
+
+Desktop preview umí spravovat lokální llama.cpp server včetně
+stažení modelu a nastavení kontextu.
+
+## Workflow
+
+1. Zadáte cíl v terminálu nebo v kanálu.
+2. Hermes naplánuje kroky a použije nástroje.
+3. Rizikové akce čekají na potvrzení.
+4. Výsledek se zapíše do session a paměti.
+5. Můžete pokračovat později nebo z jiného zařízení.
+
+Paměť a skilly jsou užitečné u dlouhých projektů; zároveň
+znamenají, že agent drží víc kontextu, než byste čekali.
+
+## Limity
+
+- **64k minimum.** Menší kontext nefunguje spolehlivě.
+- **Lokální model.** Kvalita tool callingu rozhoduje o všem.
+- **Kanály.** Gateway musí být zabezpečená.
+- **Mladý projekt.** Chování se mezi verzemi mění.
+- **Konfigurace.** Více vrstev než u jednoduchého harnesse.
+
+## Bezpečnost
+
+- **Gateway** nikdy ne na veřejném internetu bez proxy a hesla.
+- **Tokeny kanálů** chraňte; jsou to přístupy do vašich účtů.
+- **Schvalování** u shellu, zápisu a odeslání.
+- **Paměť** může obsahovat citlivá data; omezte retenci.
+- **Prompt injection** může přijít zprávou nebo dokumentem.
+
+## Kdy to nepoužít
+
+- Když chcete jen rychlý coding agent v terminálu.
+- Když máte model s kontextem pod 64k.
+- Když nechcete řešit gateway a kanály.
+- Když potřebujete striktně lokální provoz bez messagingu.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) — přehled.
+- [OpenClaw](/temata/agenti/nastroje/openclaw/) — alternativa.
+- [MausBot](/temata/agenti/nastroje/mausbot/) — desktop.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+- [Kontext](/slovnik/pamet/kontext/) — proč 64k.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Hermes Agent — dokumentace](https://hermes-agent.nousresearch.com/docs/) — 11. 11. 2026
+- [Hermes — poskytovatelé a lokální endpointy](https://hermes-agent.nousresearch.com/docs/integrations/providers) — 11. 11. 2026
+- [Hermes — Ollama setup](https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

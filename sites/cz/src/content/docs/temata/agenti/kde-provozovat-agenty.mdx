@@ -1,0 +1,350 @@
+---
+title: "Kde provozovat agenty: harnessy, workspace a gateway"
+description: "Přehled nezávislých nástrojů pro běh lokálních agentů: pi, omp, OpenCode, OpenChamber, MausBot, OpenClaw, Hermes a Herdr. Bez velkých poskytovatelů."
+last_verified: 2026-11-11
+sidebar:
+  label: Kde provozovat agenty
+  order: 6
+---
+
+import TabulkaNastroju from '../../../../components/TabulkaNastroju.astro';
+
+Agent není jen model. Je to **model + nástroje + smyčka + prostředí**.
+Tento článek řeší poslední část: kde agent běží, kdo schvaluje jeho
+akce a jak se připojí k lokálnímu modelu. Neřeší, v čem se edituje
+kód, a neporovnává nástroje velkých poskytovatelů.
+
+## Rychlá odpověď
+
+- **Harness je program, který vede smyčku.** Model rozhoduje, harness
+  provádí.
+- **Terminál** je nejrychlejší cesta: pi, omp, OpenCode.
+- **Desktop** dává přehled a schvalování: OpenChamber, MausBot.
+- **Gateway** pustí agenta z chatů: OpenClaw, Hermes.
+- **Orchestrace** řeší víc agentů najednou: Herdr.
+- **Lokální model** připojíte přes OpenAI kompatibilní endpoint.
+
+## Co je harness a co není
+
+| Vrstva | Co dělá | Příklad |
+|---|---|---|
+| **Model** | generuje tokeny | Qwen3.8 Flash Next |
+| **Engine** | obsluhuje model a API | vLLM, llama.cpp |
+| **Harness** | vede smyčku a volá nástroje | pi, omp, OpenCode |
+| **Workspace** | ukazuje session a diff | OpenChamber |
+| **Nástroj** | čte soubor, spouští test | funkce nebo MCP server |
+
+Harness není model a není engine. Když se rozhoduje o rychlosti,
+rozhoduje model a engine. Když se rozhoduje o tom, co agent umí
+a co smí, rozhoduje harness.
+
+## Čtyři vrstvy, kde agent běží
+
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:760px" viewBox="0 0 760 220" role="img" aria-labelledby="vrstvy-agenta" xmlns="http://www.w3.org/2000/svg">
+    <title id="vrstvy-agenta">Čtyři vrstvy běhu agenta</title>
+    <rect x="20" y="70" width="150" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="95" y="98" text-anchor="middle" fill="currentColor" font-size="13">terminál</text>
+    <text x="95" y="117" text-anchor="middle" fill="currentColor" font-size="11">pi, omp, OpenCode</text>
+    <rect x="200" y="70" width="150" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="275" y="98" text-anchor="middle" fill="currentColor" font-size="13">desktop</text>
+    <text x="275" y="117" text-anchor="middle" fill="currentColor" font-size="11">OpenChamber, MausBot</text>
+    <rect x="380" y="70" width="150" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="455" y="98" text-anchor="middle" fill="currentColor" font-size="13">gateway</text>
+    <text x="455" y="117" text-anchor="middle" fill="currentColor" font-size="11">OpenClaw, Hermes</text>
+    <rect x="560" y="70" width="150" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="635" y="98" text-anchor="middle" fill="currentColor" font-size="13">orchestrace</text>
+    <text x="635" y="117" text-anchor="middle" fill="currentColor" font-size="11">Herdr</text>
+    <line x1="170" y1="105" x2="200" y2="105" stroke="currentColor" /><polygon points="200,101 208,105 200,109" fill="currentColor" />
+    <line x1="350" y1="105" x2="380" y2="105" stroke="currentColor" /><polygon points="380,101 388,105 380,109" fill="currentColor" />
+    <line x1="530" y1="105" x2="560" y2="105" stroke="currentColor" /><polygon points="560,101 568,105 560,109" fill="currentColor" />
+    <text x="380" y="35" text-anchor="middle" fill="currentColor" font-size="12">od jednoho člověka po tým</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">Vrstvy se doplňují: terminál pro rychlost, desktop pro přehled, gateway pro vzdálený přístup, orchestrace pro víc agentů.</figcaption>
+</figure>
+
+Nejde o žebříček. Jde o to, kde agent poběží a kdo uvidí jeho
+akce. Často se kombinují: terminálový harness v Herdru, gateway
+nad ním, desktop pro review.
+
+## Co musí nástroj umět s lokálním modelem
+
+- **OpenAI kompatibilní endpoint** — `/v1/chat/completions`.
+- **Tool calling** — model musí umět vrátit strukturované volání.
+- **Kontext** — systémový prompt, schémata a historie se musí vejít.
+- **Streaming** — jinak čekáte na celou odpověď.
+- **MCP nebo vlastní nástroje** — podle úlohy.
+- **Logy a schválení** — kdo co spustil.
+
+Když nástroj umí jen chat a ne tool calling, je to chat, ne agent.
+Když neumí připojit lokální endpoint, do tohoto článku nepatří.
+
+## Lokální endpoint v praxi
+
+Většina harnessů mluví OpenAI protokolem. Stačí jim base URL,
+klíč a model ID:
+
+**Ollama:**
+
+```text
+base URL: http://localhost:11434/v1
+model: qwen3.5:27b
+klíč: nechat prázdné
+```
+
+**vLLM:**
+
+```bash
+vllm serve Qwen/Qwen3.8-Flash-Next \
+  --port 8000 --max-model-len 32768
+```
+
+```text
+base URL: http://127.0.0.1:8000/v1
+model: Qwen/Qwen3.8-Flash-Next
+```
+
+**llama.cpp:**
+
+```bash
+llama-server -m model.gguf --jinja \
+  --host 127.0.0.1 --port 8080 -ngl 999 -c 32768
+```
+
+`--jinja` je důležitý: bez něj model nedostane správný chat
+template a tool calling se rozpadne. U všech tří platí, že model
+musí tool calling opravdu umět; ne každý GGUF ho má.
+
+## Jak vypadá smyčka
+
+1. Harness pošle modelu systémový prompt, historii a schémata
+   nástrojů.
+2. Model vrátí odpověď, nebo požadavek na nástroj.
+3. Harness ověří argumenty a zavolá nástroj.
+4. Výsledek přidá do kontextu a pošle modelu.
+5. Krok se opakuje, dokud model neodpoví nebo nedojde limit.
+
+Každý krok posílá celou historii znovu. Proto je kontext drahý a
+proto se vyplatí ořezávat výstupy nástrojů. Harness, který
+posílá 20 nástrojů a celý log, spotřebuje tisíce tokenů ještě
+před první užitečnou větou.
+
+## Terminálové harnessy
+
+### pi
+
+Minimalistický agent v terminálu, MIT, od Earendil Works. Umí
+llama.cpp router, Ollama, LM Studio, vLLM i SGLang přes
+`models.json`. Silný je v jednoduchosti: snadno se rozšíří a dá se
+použít i jako SDK. Podrobnosti v [podstránce pi](/temata/agenti/nastroje/pi/).
+
+### omp
+
+Fork pi od Can Bölüka, MIT, s Rustovým jádrem. Přidává LSP, DAP
+(debugger), subagenty, hash-anchored edits a desítky providerů.
+Běží nativně na macOS, Linuxu i Windows, vyžaduje Bun. Podrobnosti
+v [podstránce omp](/temata/agenti/nastroje/omp/).
+
+### OpenCode
+
+Open-source terminálový coding agent, na kterém stojí OpenChamber.
+Podporuje providers včetně lokálních endpointů. Podrobnosti
+v [podstránce OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/).
+
+## Desktopové workspace
+
+### OpenChamber
+
+MIT workspace nad OpenCode. Desktop, web a mobil; multi-run nad
+více modely, worktrees, goals, review diffů a remote relay.
+Desktop si nese vlastní OpenCode, takže se nic dalšího neinstaluje.
+Lokální model jde přes OpenCode. Podrobnosti v
+[podstránce OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/).
+
+### MausBot
+
+Desktop harness s approval kartami, Apache-2.0. Harness poslouchá
+na `127.0.0.1`, sessions a klíče drží lokálně. Lokální model
+připojí přes OpenAI kompatibilní endpoint. Na Ubuntu vyžaduje
+Xorg, Wayland ne. Podrobnosti v
+[podstránce MausBot](/temata/agenti/nastroje/mausbot/).
+
+## Gateway
+
+### OpenClaw
+
+Gateway, který zpřístupní agenta z chatů. Umí lokální Ollama
+a OpenAI endpoint. Výchozí nastavení shellu je benevolentní;
+licence se v dokumentaci rozchází (MIT vs. Apache-2.0). Podrobnosti
+v [podstránce OpenClaw](/temata/agenti/nastroje/openclaw/).
+
+### Hermes
+
+Self-hosted asistent a gateway od Nous Research. Připojí libovolný
+OpenAI kompatibilní endpoint, včetně Ollama, vLLM a llama.cpp.
+Pro agentní práci vyžaduje aspoň 64k kontextu. Má desktop preview,
+kanály a schvalování příkazů. Podrobnosti v
+[podstránce Hermes](/temata/agenti/nastroje/hermes/).
+
+## Orchestrace
+
+**Herdr** je AI-first multiplexer a orchestrátor. Drží workspaces,
+pane a agenty, umí worktrees a CLI/socket API. Sám model neřeší;
+spouští pi, omp, OpenCode nebo jiné agenty. Podrobnosti v
+[podstránce Herdr](/temata/agenti/nastroje/herdr/).
+
+## Schvalování a oprávnění
+
+Harness se liší hlavně v tom, co udělá **bez ptaní**. Tři vzory:
+
+| Vzor | Co se stane | Kde |
+|---|---|---|
+| **Bez schválení** | agent spustí, co chce | terminál, důvěryhodný projekt |
+| **Schválení u rizika** | shell, zápis, odeslání | desktop, gateway |
+| **Schválení vždy** | každá akce | produkce, cizí data |
+
+Pro lokální vývoj v soukromém repu je první vzor přijatelný.
+Pro agenta, který vidí firemní dokumenty, je minimum druhý.
+Třetí je pro platby a hromadné operace.
+
+Oprávnění nejsou totéž co schválení. Token může být úzký, ale
+agent ho použije na něco, co jste nečekali. Proto platí:
+**nejmenší token, nejmenší nástroj, nejmenší adresář.**
+
+## Srovnávací tabulka
+
+<TabulkaNastroju />
+
+## Rozhodovací strom
+
+1. **Jeden člověk, jeden projekt** → pi nebo omp v terminálu.
+2. **Chci vidět diff a schvalovat** → OpenChamber nebo MausBot.
+3. **Chci agenta z telefonu** → OpenClaw nebo Hermes.
+4. **Mám víc agentů a worktrees** → Herdr.
+5. **Chci jen chat** → žádný harness, stačí model.
+
+Začněte jednou vrstvou. Kombinace přidávejte, až když víte, co
+vám chybí.
+
+## Režie a náklady
+
+**Tokeny** (ilustrativní výpočet): systémový prompt 1 500 tokenů,
+schémata nástrojů 2 000, historie 1 500 — každý krok posílá
+~5 000 tokenů. Osm kroků je 40 000 tokenů kontextu, i když
+odpovědi mají jen 3 200 tokenů.
+
+**Čas** (ilustrativní výpočet): 8 kroků × 400 tokenů při 25 tok/s
+= 128 s čistého generování. K tomu čtení souborů a testy. Harness
+s velkým systémovým promptem přidá sekundy na každý krok.
+
+**Paměť:** harness běží na CPU a bere stovky MB až jednotky GB.
+Model a KV cache jsou oddělené. Na 128GB boxu to znamená, že
+harness nekonkuruje modelu o GPU, ale může konkurovat o CPU a disk.
+
+## Český příklad: faktury
+
+Firma chce agenta na extrakci faktur. Postup:
+
+1. **Harness:** OpenCode nebo pi v kontejneru bez sítě.
+2. **Model:** Qwen3.8 Flash Next přes vLLM na 128GB boxu.
+3. **Nástroje:** čtení PDF, OCR, zápis JSON.
+4. **Oprávnění:** read-only vstup, výstup do jednoho adresáře.
+5. **Schválení:** zápis do účetnictví kartou.
+6. **Logy:** kdo, kdy, který dokument, jaký výsledek.
+
+Agent nemá síť, takže injection v PDF nemá kam utéct. Nemá
+produkční token, takže nemůže zaúčtovat sám. Když model selže,
+člověk to vidí na kartě a opraví.
+
+## Časté chyby
+
+| Chyba | Proč vzniká | Jak se jí vyhnout |
+|---|---|---|
+| Harness bez tool callingu | „vždyť to je chat“ | ověřit parser a model |
+| Příliš mnoho nástrojů | snaha o univerzálnost | 3–5 nástrojů na úlohu |
+| Celý log v kontextu | debugging | ořezávat výstupy |
+| Agent s osobním tokenem | pohodlí | scoped servisní účet |
+| Gateway na veřejném portu | „jen na chvíli“ | localhost nebo VPN |
+| Žádný limit kroků | „agent to zvládne“ | 10–20 kroků |
+| Testování jen anglicky | model je silnější | česká sada |
+
+## Bezpečnostní minimum
+
+- **Localhost** — gateway ani harness nemá být na veřejném portu.
+- **Tokeny** — krátké, úzké, mimo prompt.
+- **Schválení** — u zápisu, odeslání a platby.
+- **Allowlist nástrojů** — agent vidí jen to, co potřebuje.
+- **Logy** — kdo, co, s jakým výsledkem.
+- **Kill switch** — okamžité zastavení.
+
+Podrobně to rozebírá [sandbox agentů](/temata/provoz/sandbox-agentu/).
+
+## Kdy použít kterou vrstvu
+
+| Situace | Vrstva | Proč |
+|---|---|---|
+| Sólový vývojář, jeden repo | terminál | nejrychlejší |
+| Návrh změn a review diffu | desktop | přehled a karty |
+| Agent z telefonu | gateway | kanály |
+| Víc úloh paralelně | orchestrace | worktrees |
+| Tým 3–5 lidí | gateway + desktop | přístup a přehled |
+| Citlivá data | terminál v sandboxu | nejmenší povrch |
+
+Kombinace nejsou zbytečné, ale mají cenu: každá vrstva přidává
+konfiguraci, logy a místo, kde se může pokazit.
+
+## Provoz a údržba
+
+- **Pinujte verze.** Harness, model i engine se mění.
+- **Aktualizujte po testu.** Nová verze může změnit tool calling.
+- **Sledujte tokeny a chyby.** Nárůst znamená smyčku nebo
+  špatný popis nástroje.
+- **Zálohujte konfiguraci** a sessions, které potřebujete.
+- **Měňte jednu věc najednou.** Model, harness a prompt zároveň
+  nejde vyhodnotit.
+- **Revize každé tři měsíce.** Nástroje v tomto článku jsou
+  mladé; co platilo v listopadu, nemusí platit na jaře.
+
+## Co tu nenajdete
+
+Tento článek je o **běhu agenta**, ne o editorech, pluginech do
+editorů, cloudu ani o nástrojích velkých poskytovatelů. Ty jsou
+jiná kategorie a mají jiná pravidla. Pokud je používáte, tento
+text vám je nevyvrátí; jen říká, že lokální cesta jde i bez nich.
+
+## Kdy to nepoužívat
+
+- **Když stačí chat** — harness je zbytečná vrstva.
+- **Když nemáte čas na údržbu** — nástroje se mění po měsících.
+- **Když agent potřebuje produkční klíče** — nejdřív oprávnění.
+- **Když nástroj neumí lokální endpoint** — nepatří sem.
+- **Když chcete jen „AI v editoru“** — to je jiná kategorie.
+
+## Kudy dál
+
+- [Agenti](/temata/agenti/) — co agent je.
+- [pi](/temata/agenti/nastroje/pi/) — minimální harness.
+- [omp](/temata/agenti/nastroje/omp/) — harness s LSP a subagenty.
+- [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
+  harness a workspace.
+- [MausBot](/temata/agenti/nastroje/mausbot/) — approval karty.
+- [OpenClaw](/temata/agenti/nastroje/openclaw/) — gateway.
+- [Hermes](/temata/agenti/nastroje/hermes/) — self-hosted asistent.
+- [Herdr](/temata/agenti/nastroje/herdr/) — orchestrace.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+- [MCP](/slovnik/software/mcp/) — nástroje.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [pi — dokumentace](https://github.com/earendil-works/pi)
+- [omp — dokumentace](https://github.com/can1357/oh-my-pi)
+- [OpenCode](https://opencode.ai/docs/)
+- [OpenChamber](https://github.com/openchamber/openchamber)
+- [MausBot](https://mausbot.com/)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Hermes Agent — dokumentace](https://hermes-agent.nousresearch.com/docs/)
+- [Herdr](https://herdr.dev/)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

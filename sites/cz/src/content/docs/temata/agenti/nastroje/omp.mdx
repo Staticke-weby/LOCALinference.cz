@@ -1,0 +1,113 @@
+---
+title: "omp: terminálový agent s LSP, debuggerem a subagenty"
+description: "oh my pi (omp) je fork pi s LSP, DAP, subagenty a lokálními providery. Instalace, připojení Ollama nebo llama.cpp a kde je limit."
+last_verified: 2026-11-11
+sidebar:
+  hidden: true
+---
+
+**omp** (oh my pi) je terminálový coding agent, který vznikl jako
+fork **pi**. Přidává LSP, debugger, subagenty a hash-anchored
+edits. Zůstává open source a umí lokální modely.
+
+## Rychlá odpověď
+
+- **MIT, terminál, macOS/Linux/Windows.** Vyžaduje Bun 1.3.14+.
+- **Lokální model:** Ollama, LM Studio, llama.cpp, vLLM.
+- **Silná stránka:** LSP a DAP v terminálu, subagenti, worktrees.
+- **Slabina:** mladý projekt, hodně možností, rychlý vývoj.
+
+## Co to je
+
+omp rozšiřuje pi o věci, které obvykle řeší IDE:
+
+- **LSP** — diagnostika, symboly, rename napříč projektem.
+- **DAP** — připojení skutečného debuggeru.
+- **Subagenti** — rozdělení práce na víc běhů.
+- **Hash-anchored edits** — úprava podle hashů řádků, méně
+  nepovedených patchů.
+- **Worktrees** — izolace paralelních úloh.
+
+Není to náhrada IDE. Je to agent, který se chová víc jako IDE.
+
+## Připojení lokálního modelu
+
+Podle dokumentace a recenzí funguje stejná cesta jako u pi:
+
+- **Ollama** na `http://localhost:11434/v1`,
+- **LM Studio** na svém OpenAI endpointu,
+- **llama.cpp server** s `--jinja`,
+- **vLLM** s OpenAI API.
+
+Konfigurace je v `~/.omp/agent/models.yml` (models) a
+`~/.omp/agent/settings.yml` (nástroje a chování). Přesné položky
+se mohou mezi verzemi změnit; ověřte je proti aktuální dokumentaci.
+
+Pro lokální model platí: čím lepší tool calling, tím méně
+opravných smyček. omp umí model vyměnit uprostřed session.
+
+## Instalace
+
+```bash
+curl -fsSL https://omp.sh/install | sh
+```
+
+Homebrew: `brew install can1357/tap/omp`. Přes Bun:
+`bun install -g @oh-my-pi/pi-coding-agent`. Windows PowerShell:
+`irm https://omp.sh/install.ps1 | iex`.
+
+Po instalaci spusťte `omp` v projektu. Doporučené je doplnit
+shell completions.
+
+## Workflow
+
+1. `cd` do projektu a spusťte `omp`.
+2. `/login` vybere providera, `/model` model.
+3. Agent čte repo, používá LSP a navrhuje změny.
+4. Subagenti řeší části úlohy paralelně.
+5. `review` nebo ruční kontrola diffu.
+6. Worktree izoluje rizikové změny.
+
+Pro orchestraci víc agentů se omp často kombinuje s
+[Herdr](/temata/agenti/nastroje/herdr/).
+
+## Limity
+
+- **Bun.** Bez něj instalace neprojde.
+- **Mladý projekt.** Chování a config se mění.
+- **Příliš možností.** Některé volby je potřeba vypnout, jinak
+  agent dělá víc, než chcete.
+- **LSP závisí na jazyce.** Pro každý jazyk potřebujete server.
+- **Model.** Lokální model nemusí zvládnout složité refaktoringy.
+
+## Bezpečnost
+
+omp spouští příkazy a edituje soubory jako vy. Subagenti a
+worktrees pomáhají s izolací, ale nejsou bezpečnostní hranice.
+Na nedůvěryhodný kód použijte [sandbox](/temata/provoz/sandbox-agentu/).
+
+## Kdy to nepoužít
+
+- Když chcete jednoduchý nástroj bez konfigurace.
+- Když nemáte Bun a nechcete ho instalovat.
+- Když potřebujete stabilní API dlouhodobě.
+- Když model neumí tool calling.
+
+## Kudy dál
+
+- [Kde provozovat agenty](/temata/agenti/kde-provozovat-agenty/) — přehled.
+- [pi](/temata/agenti/nastroje/pi/) — základ, ze kterého omp vychází.
+- [OpenCode a OpenChamber](/temata/agenti/nastroje/opencode-a-openchamber/) —
+  workspace.
+- [Herdr](/temata/agenti/nastroje/herdr/) — orchestrace.
+- [MCP](/slovnik/software/mcp/) — nástroje.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [omp — GitHub](https://github.com/can1357/oh-my-pi) — 11. 11. 2026
+- [omp — dokumentace](https://omp.sh/) — 11. 11. 2026
+- [pi — GitHub](https://github.com/earendil-works/pi) — 11. 11. 2026
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*
