@@ -1,0 +1,96 @@
+---
+title: "Kvantizace v praxi: Q4, FP8, NVFP4 a co si vybrat"
+description: "Kvantizace zmenší model, ale mění kvalitu i rychlost. Vysvětlíme formáty, výpočet paměti, jak vybrat a co měřit před nasazením."
+last_verified: 2026-11-11
+sidebar:
+  label: Kvantizace v praxi
+  order: 2
+---
+
+**Kvantizace** zmenší váhy modelu tím, že je uloží s menší
+přesností. Model se vejde do paměti a běží rychleji, ale může
+ztratit kvalitu. Rozhoduje formát, bitová hloubka a to, jak
+citlivé vrstvy zůstanou ve vyšší přesnosti.
+
+## Rychlá odpověď
+
+- **Méně bitů = méně paměti**, ale větší ztráta.
+- **4 bity** jsou dnes praktické pro velké modely.
+- **NVFP4** je NVIDIA formát pro Blackwell; jinde neběží.
+- **GGUF** je přenosný, **FP8** je kompromis.
+- **Vždy měřte** kvalitu proti základu.
+
+## Formáty
+
+| Formát | Kde běží | Výhoda | Nevýhoda |
+|---|---|---|---|
+| **NVFP4** | DGX, RTX Spark | rychlý na Blackwellu | jen NVIDIA |
+| **FP8** | CUDA, někdy ROCm | kvalita blízko BF16 | větší než 4bit |
+| **GGUF Q4/Q5/Q6** | llama.cpp, CPU, Mac | přenosné | pomalejší |
+| **EXL3** | CUDA | rychlé | užší podpora |
+| **MLX 4bit** | Apple Silicon | nativní | jen Mac |
+
+## Výpočet paměti
+
+```
+velikost ≈ parametry × bajty na parametr
+```
+
+- **4 bit** ≈ 0,5 B/parametr,
+- **8 bit** ≈ 1 B/parametr,
+- **BF16** ≈ 2 B/parametr.
+
+Ilustrativní **výpočet**: 180B model v 4 bitech je ~90 GB,
+v 8 bitech ~180 GB. Reálná velikost je vyšší kvůli skalám,
+embeddingům a KV cache.
+
+## Jak vybrat
+
+1. **Začněte na 4 bitech** — NVFP4 nebo Q4.
+2. **Změřte kvalitu** na svých úlohách.
+3. **Když nestačí**, zkuste 6–8 bitů.
+4. **Sledujte paměť** — vyšší přesnost znamená méně kontextu.
+5. **Neměňte vše najednou** — jeden krok, jedno měření.
+
+## Co měřit
+
+- **Správnost** na 20–50 úlohách.
+- **Čeština** — diakritika, skloňování.
+- **Tool calling** — volá nástroje správně?
+- **Rychlost** — decode a TTFT.
+- **Paměť** — co zbylo na KV cache.
+- **Stabilita** — dlouhý běh.
+
+## Časté chyby
+
+- **Srovnávat různé kvantizace** bez stejného kontextu.
+- **Věřit jednomu benchmarku.**
+- **Kvantizovat i citlivé vrstvy** bez testu.
+- **Zapomenout na KV cache** — ta se nekvantizuje vždy.
+- **Měnit model i kvantizaci zároveň.**
+
+## Kdy to neřešit
+
+- Malý model, který se vejde v BF16.
+- Když je kvalita kritická a paměť stačí.
+- Když nemáte testovací sadu.
+- Když výrobce dodává jen jeden formát.
+
+## Kudy dál
+
+- [Kvantizace](/slovnik/software/kvantizace/) — pojem.
+- [NVFP4](/slovnik/software/nvfp4/) — NVIDIA formát.
+- [GGUF](/slovnik/software/gguf/) — přenosný formát.
+- [Abliterace a NVFP4](/temata/abliterace/provoz-na-128-gb/) —
+  praktický příklad.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+- [Roofline](/rychlost/roofline/) — strop rychlosti.
+
+## Zdroje
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — quantization](https://docs.vllm.ai/en/latest/features/quantization/index.html)
+- [llama.cpp — GGUF](https://github.com/ggml-org/llama.cpp)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

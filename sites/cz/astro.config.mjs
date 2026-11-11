@@ -413,6 +413,9 @@ export default defineConfig({
               ],
             },
             { label: 'Qwen3.8 na 128 GB', link: '/temata/qwen3-8-flash-next/' },
+            { label: 'Context engineering', link: '/temata/kontext-engineering/' },
+            { label: 'Kvantizace v praxi', link: '/temata/kvantizace-v-praxi/' },
+            { label: 'Elektřina, hluk a teplo', link: '/temata/elektrina-hluk-teplo/' },
             {
               label: 'Windows 11',
               link: '/temata/lokalni-ai-na-windows-11/',

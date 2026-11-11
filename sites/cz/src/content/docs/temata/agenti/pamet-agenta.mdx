@@ -1,0 +1,98 @@
+---
+title: "Paměť agenta: co si má pamatovat a co zapomenout"
+description: "Agent má kontext, session a dlouhodobou paměť. Vysvětlíme, co ukládat, jak to dělat lokálně, jak řešit zapomínání a kde je riziko."
+last_verified: 2026-11-11
+sidebar:
+  label: Paměť agenta
+  order: 6
+---
+
+**Paměť agenta** není totéž co kontext. Kontext je pracovní okno
+jednoho dotazu; paměť přežívá mezi dotazy a session. Když ji
+nemá, agent se každý den ptá na totéž. Když ji má špatně, roste
+cena, zpoždění a riziko, že si pamatuje neplatné věci.
+
+## Rychlá odpověď
+
+- **Kontext ≠ paměť.** Kontext se do okna musí vejít; paměť je
+  úložiště mimo něj.
+- **Tři vrstvy:** session, shrnutí a dlouhodobá paměť.
+- **Méně je víc.** Ukládejte fakta a rozhodnutí, ne celé texty.
+- **Paměť se musí mazat.** Retence a oprávnění platí i pro ni.
+
+## Tři vrstvy paměti
+
+| Vrstva | Co drží | Kde žije | Kdy se použije |
+|---|---|---|---|
+| **Kontext** | aktuální dotaz a historie | v modelu | každý dotaz |
+| **Session** | průběh úlohy | aplikace | během práce |
+| **Dlouhodobá** | fakta, rozhodnutí, preference | soubor nebo DB | na začátku nové session |
+
+Kontext je drahý a omezený. Session je levná, ale krátká.
+Dlouhodobá paměť je nejcennější a nejrizikovější.
+
+## Co si pamatovat
+
+- **Rozhodnutí** — „používáme vLLM, ne Ollama“.
+- **Fakta o projektu** — cesty, názvy, verze.
+- **Preference** — styl, formát, jazyk.
+- **Otevřené úkoly** — co zbývá.
+- **Odkazy** — kde je dokument nebo issue.
+
+Co si **nepamatovat**: celé dokumenty, citlivé údaje, dočasné
+hodnoty a všechno, co jde snadno znovu odvodit.
+
+## Jak to udělat lokálně
+
+1. **Soubor na projekt** — `AGENTS.md` nebo `memory.md` v repo.
+2. **Databáze** — SQLite pro fakta a úkoly.
+3. **Vektorové úložiště** — pro delší poznámky a dokumenty.
+4. **Shrnutí** — starší session se zkrátí na pár bodů.
+5. **Načtení** — na začátku session se vloží jen relevantní část.
+
+Mnoho harnessů umí `AGENTS.md` načíst automaticky. Je to
+nejjednodušší paměť, která funguje i bez databáze.
+
+## Zapomínání a retence
+
+- **Stárnutí** — staré položky se mažou nebo snižují váhu.
+- **Konsolidace** — opakovaná fakta se sloučí.
+- **Konflikt** — novější rozhodnutí přepíše starší.
+- **Mazání** — uživatel musí mít právo paměť smazat.
+- **Audit** — kdo co uložil a proč.
+
+Paměť bez mazání je dluh. Časem obsahuje neplatné věci a agent
+se podle nich rozhoduje.
+
+## Rizika
+
+- **Otrava paměti** — dokument nebo uživatel vloží falešné
+  „fakt“.
+- **Soukromí** — paměť může obsahovat osobní údaje.
+- **Nekonzistence** — dvě session si pamatují opak.
+- **Náklady** — velká paměť se posílá v každém dotazu.
+- **Falešná jistota** — agent cituje vlastní poznámku jako zdroj.
+
+## Kdy paměť neřešit
+
+- Jednorázový úkol.
+- Chat bez opakování.
+- Když stačí kontext do 32k.
+- Když nemáte čas na údržbu a mazání.
+
+## Kudy dál
+
+- [Agenti](/temata/agenti/) — cluster.
+- [Návrh nástrojů](/temata/agenti/navrh-nastroju/) — co agent smí.
+- [Kontext](/slovnik/pamet/kontext/) — pracovní okno.
+- [Context rot](/slovnik/pamet/context-rot/) — když je textu moc.
+- [RAG](/temata/rag/) — dokumenty místo paměti.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+
+## Zdroje
+
+- [MemGPT — arXiv](https://arxiv.org/abs/2310.08560)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

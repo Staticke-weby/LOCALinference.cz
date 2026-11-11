@@ -1,0 +1,95 @@
+---
+title: "Observability agenta: trace, tokeny a audit"
+description: "Monitoring ukáže, že model běží. Observability ukáže, co agent udělal. Vysvětlíme trace, logy, tokeny, schválení a retenci."
+last_verified: 2026-11-11
+sidebar:
+  label: Observability
+  order: 9
+---
+
+**Observability** je schopnost zpětně zjistit, co agent udělal a
+proč. Monitoring odpovídá na „běží to?“, observability na „který
+nástroj, s jakými daty a kdo to schválil?“. U agenta je to
+rozdíl mezi metrikou a důkazem.
+
+## Rychlá odpověď
+
+- **Monitoring = zdraví.** Observability = průběh.
+- **Trace** spojí jeden úkol do jednoho záznamu.
+- **Tokeny a cena** patří k sobě.
+- **Schválení** musí být v logu, ne jen v UI.
+
+## Co sledovat
+
+| Signál | Proč |
+|---|---|
+| **Trace ID** | spojí kroky jednoho úkolu |
+| **Nástroj a argumenty** | co agent zavolal |
+| **Výsledek** | úspěch, chyba, odmítnutí |
+| **Tokeny** | cena a kontext |
+| **Latence** | kde se čeká |
+| **Schvalovatel** | kdo akci povolil |
+| **Model a verze** | reprodukce |
+
+## Trace v praxi
+
+1. Uživatel zadá úkol; vznikne trace ID.
+2. Každý krok modelu je span.
+3. Každé volání nástroje je span s argumenty.
+4. Schválení je událost ve trace.
+5. Výsledek se zapíše na konci.
+
+Trace se ukládá bez citlivého obsahu. Argumenty lze hashovat;
+text se ukládá jen tam, kde je to nutné a povolené.
+
+## Logy versus obsah
+
+- **Metadata** — déle, jsou levná.
+- **Argumenty** — hash nebo krátký výřez.
+- **Obsah promptu** — krátce nebo vůbec.
+- **Tokeny a cena** — vždy.
+- **Chyby** — bez tajemství.
+
+Retence má být krátká a přístup omezený. Logy jsou důkaz i riziko.
+
+## Nástroje
+
+- **OpenTelemetry** — standard pro trace a metriky.
+- **Prometheus** — metriky.
+- **Loki nebo Elastic** — logy.
+- **Vlastní tabulka** — pro malý tým často stačí.
+
+Nepotřebujete celý stack. Stačí trace ID, tabulka kroků a
+schvalovatel.
+
+## Co dělat s daty
+
+- **Incident** — najít trace a zjistit rozsah.
+- **Ladění** — který krok je pomalý.
+- **Cena** — který nástroj nebo model ji zvyšuje.
+- **Kvalita** — kde agent selhává.
+- **Audit** — kdo co povolil.
+
+## Kdy to neřešit
+
+- Jeden uživatel a jeden skript.
+- Žádná citlivá data.
+- Krátký test.
+- Když nemáte čas logy číst.
+
+## Kudy dál
+
+- [Provoz](/temata/provoz/) — cluster.
+- [Monitoring](/temata/provoz/monitoring/) — metriky.
+- [Model routing](/temata/provoz/model-routing/) — kdo odpověděl.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+- [API server](/temata/provoz/api-server/) — přístup.
+- [Prompt injection](/slovnik/provoz/prompt-injection/) — riziko.
+
+## Zdroje
+
+- [OpenTelemetry](https://opentelemetry.io/docs/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

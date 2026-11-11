@@ -1,0 +1,94 @@
+---
+title: "Zálohy a obnova lokální AI: co se nesmí ztratit"
+description: "Záloha modelu je to nejmenší. Vysvětlíme, co zálohovat u lokální AI, jak testovat obnovu, jaké jsou RPO/RTO a kde je riziko."
+last_verified: 2026-11-11
+sidebar:
+  label: Zálohy a obnova
+  order: 10
+---
+
+**Zálohy** u lokální AI nejsou kopie modelu. Model se dá stáhnout
+znovu. Ztratí se konfigurace, index, sessions, interní dokumenty
+a logy. Proto se zálohuje **stav**, ne váhy.
+
+## Rychlá odpověď
+
+- **Model znovu stáhnete**, konfiguraci ne.
+- **3-2-1** — tři kopie, dvě média, jedna mimo lokalitu.
+- **Test obnovy** je důležitější než záloha.
+- **RPO/RTO** určete podle toho, co si můžete dovolit ztratit.
+
+## Co zálohovat
+
+| Co | Proč | Jak často |
+|---|---|---|
+| **Konfigurace** | engine, model, flags | při změně |
+| **Dokumenty** | zdroj pravdy pro RAG | denně |
+| **Index** | dá se přestavět, ale draho | týdně |
+| **Sessions a paměť** | kontext agenta | denně |
+| **Logy** | audit a incidenty | podle retence |
+| **Zálohy samotné** | test obnovy | měsíčně |
+
+Váhy modelu se zálohovat nemusí, pokud máte rychlý internet a
+věříte zdroji. Když ne, uložte hash a revizi.
+
+## RPO a RTO
+
+- **RPO** — kolik dat si můžete dovolit ztratit (např. 1 den).
+- **RTO** — za jak dlouho musí provoz běžet (např. 4 hodiny).
+
+Z nich plyne frekvence záloh a způsob obnovy. U malého týmu
+často stačí denní záloha dokumentů a týdenní konfigurace.
+
+## 3-2-1 v praxi
+
+- **3 kopie** — produkce, lokální záloha, offsite.
+- **2 média** — disk a pásky nebo cloud.
+- **1 mimo lokalitu** — proti požáru a krádeži.
+
+Šifrujte zálohy a klíč držte odděleně. Záloha s klíčem na stejném
+disku není záloha.
+
+## Obnova
+
+1. **Nový stroj nebo čistý disk.**
+2. **Nainstalujte engine a ovladače.**
+3. **Obnovte konfiguraci.**
+4. **Stáhněte model** nebo obnovte z kopie.
+5. **Obnovte dokumenty a index.**
+6. **Otestujte dotaz** a porovnejte s baseline.
+7. **Zapište čas obnovy.**
+
+Když obnova trvá déle než RTO, záloha nestačí.
+
+## Rizika
+
+- **Neotestovaná záloha** — nefunguje.
+- **Šifrovaná záloha bez klíče** — nepoužitelná.
+- **Index bez dokumentů** — nelze ověřit.
+- **Logy s osobními údaji** — riziko při obnově.
+- **Jeden disk** — žádná redundance.
+
+## Kdy to neřešit
+
+- Jednorázový test.
+- Žádná produkční data.
+- Model i data jsou veřejná.
+- Když nemáte kam zálohovat.
+
+## Kudy dál
+
+- [Provoz](/temata/provoz/) — cluster.
+- [Aktualizace](/temata/provoz/aktualizace/) — rollback.
+- [Monitoring](/temata/provoz/monitoring/) — co sledovat.
+- [Observability](/temata/provoz/observability/) — trace.
+- [Bezpečnost provozu](/temata/provoz/bezpecnost-provozu/) — obrana.
+- [RAG](/temata/rag/) — dokumenty a index.
+
+## Zdroje
+
+- [NIST — SP 800-34 (obnova)](https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

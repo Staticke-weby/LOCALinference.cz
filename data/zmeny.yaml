@@ -6,6 +6,13 @@
 
 - datum: 2026-11-11
   typ: obsah
+  titulek: "Osm nových témat: paměť, nástroje, routing, observability, kontext, kvantizace, zálohy, elektřina"
+  co_se_zmenilo: "Přibyly stránky Paměť agenta, Návrh nástrojů, Model routing, Observability, Context engineering, Kvantizace v praxi, Zálohy a obnova a Elektřina, hluk a teplo. Homepage má nové boxy pro agenty, abliteraci, češtinu, RAG, provoz a praxi."
+  dotcene_stranky: [temata/agenti/pamet-agenta, temata/agenti/navrh-nastroju, temata/provoz/model-routing, temata/provoz/observability, temata/provoz/zalohy-a-obnova, temata/kontext-engineering, temata/kvantizace-v-praxi, temata/elektrina-hluk-teplo, index]
+  zdroj: https://www.localinference.cz/temata/
+
+- datum: 2026-11-11
+  typ: obsah
   titulek: "Agenti: Hermes Desktop, LM Studio, AI workspace a MausBot vs. cloud"
   co_se_zmenilo: "Přibyly podstránky Hermes Desktop (jednoklikový llama.cpp, 64k minimum, fit podle paměti) a LM Studio (OpenAI server na :1234, tool use, MCP). Pilíř vysvětluje AI workspace jako vrstvu nad harnessem, slovník má heslo AI workspace. MausBot má srovnání s cloudovými agenty (OpenAI Dots, Grok Bot, Meta Muse, Bops) a vysvětlení, co nahrazuje a co ne."
   dotcene_stranky: [temata/agenti/kde-provozovat-agenty, temata/agenti/nastroje/hermes-desktop, temata/agenti/nastroje/lm-studio, temata/agenti/nastroje/mausbot, slovnik/software/ai-workspace, temata/agenti]

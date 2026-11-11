@@ -1,0 +1,87 @@
+---
+title: "Model routing: lokální model, cloud a fallback"
+description: "Routing posílá úlohy tam, kde dávají smysl: lokálně, do cloudu, nebo na záložní model. Vysvětlíme pravidla, rizika a kdy to nemá smysl."
+last_verified: 2026-11-11
+sidebar:
+  label: Model routing
+  order: 8
+---
+
+**Model routing** rozhoduje, který model úlohu dostane. Může to
+být lokální Qwen3.8, menší model na jednoduché úkoly, nebo
+cloudový model jako záloha. Cílem není „chytrý“ routing, ale
+předvídatelné chování a jasná pravidla.
+
+## Rychlá odpověď
+
+- **Routing je politika**, ne model.
+- **Lokální první** pro citlivá data a offline provoz.
+- **Cloud jako fallback** pro úlohy, které lokální model nezvládne.
+- **Každé pravidlo musí mít log** a možnost vypnout.
+
+## Podle čeho routovat
+
+| Signál | Lokálně | Cloud |
+|---|---|---|
+| **Citlivost dat** | vždy | nikdy |
+| **Offline** | vždy | nelze |
+| **Složitost úlohy** | běžná | extrémní |
+| **Latence** | předvídatelná | závisí na síti |
+| **Cena** | fixní hardware | za tokeny |
+| **Kvalita** | dobrá na 128 GB | vyšší strop |
+
+Routing nemá hádat. Když nevíte, kam úlohu zařadit, patří
+lokálně a s ručním schválením.
+
+## Vzory
+
+- **Local-first** — primární lokální, cloudová záloha při chybě.
+- **Task-based** — extrakce lokálně, kreativa v cloudu.
+- **Fallback** — při timeoutu nebo chybě jiný model.
+- **Escalation** — malý model požádá o větší.
+- **A/B** — stejná úloha dvěma modelům, výběr člověkem.
+
+OpenClaw i Hermes podporují fallback a výběr modelu; konkrétní
+konfigurace je v jejich dokumentaci.
+
+## Rizika
+
+- **Únik dat** — routing může poslat citlivý text ven.
+- **Nekonzistence** — dva modely odpovídají jinak.
+- **Složitost** — více cest, více chyb.
+- **Cena** — fallback může být dražší než lokální provoz.
+- **Latence** — síť a fronta u cloudu.
+- **Audit** — musí být vidět, který model odpověděl.
+
+## Jak to nastavit
+
+1. **Klasifikujte data** — veřejná, interní, citlivá.
+2. **Definujte pravidla** — co nikdy nesmí ven.
+3. **Nastavte fallback** — jen pro povolené úlohy.
+4. **Logujte model** u každé odpovědi.
+5. **Měřte** kvalitu a cenu podle cesty.
+6. **Revize** při každé změně modelu.
+
+## Kdy to neřešit
+
+- Jeden model a jedna úloha.
+- Všechna data jsou veřejná.
+- Nemáte logging.
+- Nemáte čas na údržbu pravidel.
+
+## Kudy dál
+
+- [Provoz](/temata/provoz/) — cluster.
+- [Observability](/temata/provoz/observability/) — jak to měřit.
+- [API server](/temata/provoz/api-server/) — přístup.
+- [Monitoring](/temata/provoz/monitoring/) — metriky.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — lokální model.
+- [OpenClaw](/temata/agenti/nastroje/openclaw/) — gateway.
+
+## Zdroje
+
+- [OpenClaw — model providers](https://docs.openclaw.ai/concepts/model-providers)
+- [Hermes — provideři](https://hermes-agent.nousresearch.com/docs/integrations/providers)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

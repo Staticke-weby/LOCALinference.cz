@@ -2,7 +2,7 @@
 title: "Lokální AI na 128 GB: co poběží a co to stojí"
 description: "AI-ready notebooky a 128GB boxy pro Qwen3.8 Flash Next: co na nich poběží, jak rychle, co to stojí a kde jsou limity. Data se zdrojem a datem."
 template: splash
-last_verified: 2026-11-04
+last_verified: 2026-11-11
 hero:
   title: Lokální AI, na kterou se můžete spolehnout
   tagline: AI-ready notebooky se 128 GB paměti pro Qwen3.8 Flash Next. Přenosné, na baterii, vše v jednom — model běží na localhostu, bez serveru a bez nastavování sítě.
@@ -44,17 +44,47 @@ import rtxspark from '../../assets/rtx-spark.jpg';
   <LinkCard
     title="Zařízení a ceny"
     href="/zarizeni/srovnani/"
-    description="Sedm hotových strojů se 128 GB a víc, jejich ceny v Kč a co na nich poběží."
+    description="Hotové 128GB stroje, ceny v Kč a co na nich poběží. Včetně Maců a Gorgon Halu."
   />
   <LinkCard
     title="Qwen3.8 Flash Next"
     href="/modely/qwen3-8-flash-next/"
-    description="Jediný model katalogu: co zvládne, kolik potřebuje paměti a kde je limit."
+    description="Jediný model katalogu: paměť, kontext, rychlost a licence."
+  />
+  <LinkCard
+    title="Agenti a nástroje"
+    href="/temata/agenti/"
+    description="Harnessy, workspace, gateway a orchestrace. Kde agent běží a kdo schvaluje akce."
+  />
+  <LinkCard
+    title="Abliterace"
+    href="/temata/abliterace/"
+    description="Co je odmítání, jak se odstraňuje, co to udělá s kvalitou a které buildy se vejdou na 128 GB."
+  />
+  <LinkCard
+    title="Čeština a dokumenty"
+    href="/temata/cestina/"
+    description="Shrnutí, extrakce, překlad a hodnocení kvality na českých dokumentech."
+  />
+  <LinkCard
+    title="RAG a dokumenty"
+    href="/temata/rag/"
+    description="PDF, chunking, embeddingy, citace a oprávnění pro firemní archiv."
+  />
+  <LinkCard
+    title="Provoz a bezpečnost"
+    href="/temata/provoz/"
+    description="API server, monitoring, aktualizace, sandbox agentů, GDPR a AI Act."
   />
   <LinkCard
     title="Generování"
     href="/generovani/"
     description="Obrázky, video, audio a 3D. Co poběží na 128 GB a jak dlouho to potrvá."
+  />
+  <LinkCard
+    title="Praxe pro profese"
+    href="/temata/praxe/"
+    description="Právo, účetnictví, výroba a vývojáři. Konkrétní úlohy, data a rizika."
   />
   <LinkCard
     title="Návody krok za krokem"
@@ -64,12 +94,7 @@ import rtxspark from '../../assets/rtx-spark.jpg';
   <LinkCard
     title="Výběr a rozpočet"
     href="/vyber/rozpocet/"
-    description="Podle čeho vybrat stroj, kolik stojí a kdy se to vyplatí."
-  />
-  <LinkCard
-    title="Kolik unese tým"
-    href="/vyber/kolik-uzivatelu/"
-    description="Jeden box pro jednoho až čtyři lidi. Pro víc se přidává další box."
+    description="Kolik co stojí, box vs. notebook a kolik lidí jeden stroj unese."
   />
   <LinkCard
     title="Jak to funguje"
@@ -79,17 +104,7 @@ import rtxspark from '../../assets/rtx-spark.jpg';
   <LinkCard
     title="Slovník"
     href="/slovnik/"
-    description="CUDA, TTFT, kvantizace i throttling — každý pojem na vlastní stránce."
-  />
-  <LinkCard
-    title="Témata"
-    href="/temata/"
-    description="Rozcestník podle toho, co lidé hledají: ceny, zařízení, model, generování."
-  />
-  <LinkCard
-    title="Rychlost a měření"
-    href="/rychlost/roofline/"
-    description="Roofline, kalkulačka a naměřené hodnoty s konfigurací."
+    description="CUDA, TTFT, abliterace, PLE i throttling — každý pojem na vlastní stránce."
   />
   <LinkCard
     title="Zdroje a metodika"

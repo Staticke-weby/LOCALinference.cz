@@ -1,0 +1,86 @@
+---
+title: "Context engineering: co poslat modelu a v jakém pořadí"
+description: "Kontext je pracovní okno. Vysvětlíme, jak skládat systémový prompt, nástroje, dokumenty a historii, kdy komprimovat a jak to měřit."
+last_verified: 2026-11-11
+sidebar:
+  label: Context engineering
+  order: 1
+---
+
+**Context engineering** je disciplína skládání toho, co model
+v daném dotazu vidí: systémový prompt, nástroje, dokumenty,
+historii a otázku. Není to jen „napsat lepší prompt“. Je to
+rozpočet tokenů a pořadí, které rozhoduje o kvalitě.
+
+## Rychlá odpověď
+
+- **Kontext je omezený rozpočet.** Každá část něco stojí.
+- **Pořadí rozhoduje.** Uprostřed dlouhého textu se informace
+  ztrácí.
+- **Méně je víc.** Relevantní chunk porazí celý dokument.
+- **Komprimujte až po měření**, ne preventivně.
+
+## Co jde do kontextu
+
+| Část | Typicky tokenů | Co dělat |
+|---|---:|---|
+| systémový prompt | 500–2 000 | krátký a konkrétní |
+| schémata nástrojů | 1 000–3 000 | méně nástrojů |
+| dokumenty | 2 000–20 000 | jen relevantní chunky |
+| historie | 0–20 000 | shrnout staré |
+| otázka | 50–500 | jasně |
+
+Součet se musí vejít do okna a nechat místo na odpověď.
+
+## Pořadí a pozornost
+
+Model není dokonalý čtenář. Informace na začátku a na konci
+textu se najdou lépe než uprostřed. Proto:
+
+- **klíčové instrukce nahoru**,
+- **citace a zdroje k chunkům**,
+- **nejrelevantnější dokument první**,
+- **otázku na konec**,
+- **dlouhý text rozdělit**.
+
+## Komprimace
+
+- **Shrnutí historie** po každých N krocích.
+- **Ořez výstupů nástrojů** — stačí prvních pár kB.
+- **Deduplikace** stejných chunků.
+- **Přesun do paměti** — co nepotřebujete hned.
+
+Komprimace má cenu: ztrácíte detail. Dělejte ji, až když kontext
+opravdu přetéká, a měřte, co se ztratilo.
+
+## Jak to měřit
+
+1. **Baseline** — 20 úloh s aktuálním kontextem.
+2. **Změna jedné věci** — pořadí, počet chunků, délka promptu.
+3. **Kvalita** — správnost, citace, odmítnutí.
+4. **Cena a latence** — tokeny a TTFT.
+5. **Zápis** — co se změnilo a proč.
+
+## Kdy to neřešit
+
+- Krátký chat do 8k.
+- Jedna úloha a jeden dokument.
+- Když model stejně selhává na kvalitě.
+- Když nemáte testovací sadu.
+
+## Kudy dál
+
+- [Kontext](/slovnik/pamet/kontext/) — co to je.
+- [Context rot](/slovnik/pamet/context-rot/) — proč delší škodí.
+- [RAG](/temata/rag/) — výběr dokumentů.
+- [Paměť agenta](/temata/agenti/pamet-agenta/) — co zůstává.
+- [Čeština a dokumenty](/temata/cestina/) — české texty.
+- [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — model.
+
+## Zdroje
+
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

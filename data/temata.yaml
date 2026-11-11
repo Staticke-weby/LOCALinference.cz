@@ -230,6 +230,8 @@
     - /temata/agenti/nastroje/hermes-desktop/
     - /temata/agenti/nastroje/lm-studio/
     - /temata/agenti/nastroje/herdr/
+    - /temata/agenti/pamet-agenta/
+    - /temata/agenti/navrh-nastroju/
   chybi: "Chybí veřejné testy úspěšnosti agentů na českých úlohách."
   overeno: 2026-11-10
 
@@ -248,6 +250,9 @@
     - /temata/provoz/gdpr-a-ai-act/
     - /temata/provoz/reseni-problemu/
     - /temata/provoz/sandbox-agentu/
+    - /temata/provoz/model-routing/
+    - /temata/provoz/observability/
+    - /temata/provoz/zalohy-a-obnova/
   chybi: "Chybí české případové studie provozu a incidentů."
   overeno: 2026-11-10
 
@@ -282,3 +287,36 @@
     - /modely/qwen3-8-flash-next-abliterated/
   chybi: "Nezávislé měření parity abliterovaného NVFP4 a česká sada pro měření odmítání."
   overeno: 2026-11-10
+
+- id: kontext-engineering
+  nazev: Context engineering
+  hledany_vyraz: "context engineering"
+  popis: "Jak skládat systémový prompt, nástroje, dokumenty a historii do kontextu a jak to měřit."
+  priorita: stredni
+  stav: hotovo
+  stranky:
+    - /temata/kontext-engineering/
+  chybi: "Chybí české příklady rozpočtu kontextu pro konkrétní modely."
+  overeno: 2026-11-11
+
+- id: kvantizace-v-praxi
+  nazev: Kvantizace v praxi
+  hledany_vyraz: "kvantizace modelu"
+  popis: "Q4, FP8, NVFP4 a GGUF: jak vybrat kvantizaci, kolik paměti ušetří a co měřit."
+  priorita: vysoka
+  stav: hotovo
+  stranky:
+    - /temata/kvantizace-v-praxi/
+  chybi: "Chybí české srovnání kvality kvantizací na stejných úlohách."
+  overeno: 2026-11-11
+
+- id: elektrina-hluk-teplo
+  nazev: Elektřina, hluk a teplo
+  hledany_vyraz: "kolik spotřebuje lokální AI"
+  popis: "Příkon 128GB strojů, roční spotřeba, chybějící měření hluku a vliv tepla na výkon."
+  priorita: stredni
+  stav: hotovo
+  stranky:
+    - /temata/elektrina-hluk-teplo/
+  chybi: "Chybí veřejné měření hluku v zátěži (D12) a příkon Strix Hala."
+  overeno: 2026-11-11

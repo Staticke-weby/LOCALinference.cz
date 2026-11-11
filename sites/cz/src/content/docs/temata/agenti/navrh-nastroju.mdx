@@ -1,0 +1,129 @@
+---
+title: "Návrh nástrojů pro agenta: schéma, chyby a oprávnění"
+description: "Dobrý nástroj má úzké schéma, jasný popis a validaci. Vysvětlíme, jak navrhnout MCP server nebo funkci, které model skutečně použije."
+last_verified: 2026-11-11
+sidebar:
+  label: Návrh nástrojů
+  order: 7
+---
+
+**Návrh nástroje** rozhoduje, jestli agent udělá správnou věc.
+Model vidí jen název, popis a schéma; když jsou vágní, volá
+špatně. Nástroj není skript pro člověka, je to rozhraní pro model.
+
+## Rychlá odpověď
+
+- **Málo nástrojů, jasné názvy.** 3–5 na úlohu.
+- **Schéma úzké** — typy, enum, povinná pole.
+- **Chyba musí být srozumitelná** a bezpečná.
+- **Oprávnění a validace jsou v aplikaci**, ne v promptu.
+
+## Anatomie nástroje
+
+| Část | Co musí říct |
+|---|---|
+| **Název** | sloveso a objekt: `read_file`, `search_invoices` |
+| **Popis** | kdy použít a kdy ne |
+| **Parametry** | typy, rozsahy, povinnost |
+| **Výstup** | struktura a limity |
+| **Chyby** | co znamenají a co s nimi |
+
+Popis „provede operaci“ je k ničemu. Popis „přečte textový
+soubor v povoleném adresáři; použij, když potřebuješ obsah
+souboru“ modelu pomůže.
+
+## Schéma v praxi
+
+```json
+{
+  "name": "read_file",
+  "description": "Přečte textový soubor v adresáři projektu. Nepoužívej pro binární soubory.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "description": "Relativní cesta v projektu"
+      }
+    },
+    "required": ["path"],
+    "additionalProperties": false
+  }
+}
+```
+
+`additionalProperties: false` zabrání modelu posílat vymyšlené
+parametry. Enum používejte pro volby, ne volný text.
+
+## Chyby a idempotence
+
+- **Konkrétní chyba** — „soubor neexistuje“, ne „error 500“.
+- **Bezpečná chyba** — neprozradí interní cesty ani klíče.
+- **Idempotence** — opakované volání nesmí zdvojit platbu.
+- **Dry-run** — akce se dá vyzkoušet bez následku.
+- **Timeout** — nástroj nesmí viset věčně.
+
+Když model dostane nejasnou chybu, zkusí to znovu a jinak. Když
+dostane přesnou, opraví argument.
+
+## Oprávnění
+
+- **Allowlist adresářů** — nástroj vidí jen projekt.
+- **Read-only** pro čtení.
+- **Scoped token** pro zápis.
+- **Potvrzení** u odeslání a platby.
+- **Limit** počtu volání.
+
+Nástroj, který umí všechno, je horší než tři úzké. Model se
+v širokém rozhraní ztratí a vy nemáte jak omezit následek.
+
+## MCP server
+
+MCP je standard, jak nástroje nabídnout. Server popíše nástroje
+a klient je předá modelu. Platí stejná pravidla:
+
+- **malý počet nástrojů**,
+- **validace na serveru**,
+- **žádné klíče v popisu**,
+- **logy každého volání**,
+- **sandbox** pro soubory a síť.
+
+MCP není bezpečnostní vrstva. Je to protokol; oprávnění řeší
+server a aplikace.
+
+## Testování
+
+1. Správné volání na známém vstupu.
+2. Chybějící parametr.
+3. Neplatný typ.
+4. Cesta mimo allowlist.
+5. Neexistující soubor.
+6. Dlouhý výstup.
+7. Opakované volání.
+8. Injection v dokumentu.
+
+## Kdy to neřešit
+
+- Když agent jen odpovídá textem.
+- Když stačí jeden skript.
+- Když nemáte čas na validaci.
+- Když nástroj sahá na produkční data bez oprávnění.
+
+## Kudy dál
+
+- [Agenti](/temata/agenti/) — cluster.
+- [MCP v praxi](/temata/agenti/mcp-v-praxi/) — protokol.
+- [Function calling](/temata/agenti/function-calling-v-praxi/) —
+  volání.
+- [Paměť agenta](/temata/agenti/pamet-agenta/) — co si drží.
+- [MCP](/slovnik/software/mcp/) — pojem.
+- [Sandbox agentů](/temata/provoz/sandbox-agentu/) — izolace.
+
+## Zdroje
+
+- [MCP — specifikace](https://modelcontextprotocol.io/specification)
+- [JSON Schema](https://json-schema.org/)
+- [vLLM — tool calling](https://docs.vllm.ai/en/latest/features/tool_calling.html)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*

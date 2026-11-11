@@ -1,0 +1,110 @@
+---
+title: "Elektřina, hluk a teplo: co lokální AI spotřebuje"
+description: "Kolik wattů berou 128GB stroje, jak spočítat roční spotřebu, proč chybí měření hluku a jak teplo ovlivní throttling."
+last_verified: 2026-11-11
+sidebar:
+  label: Elektřina, hluk a teplo
+  order: 3
+---
+
+**Elektřina** je u lokální AI malá položka proti ceně stroje,
+ale u celodenního provozu ji neignorujte. **Hluk** rozhoduje o
+tom, jestli stroj může stát v kanceláři. **Teplo** rozhoduje,
+jestli si stroj udrží výkon.
+
+## Rychlá odpověď
+
+- **Příkon závisí na stroji:** 45–80 W notebook, 120–240 W box.
+- **Roční spotřebu spočítáte z wattů a hodin.**
+- **Hluk veřejně změřený nemáme** — neuvádíme vymyšlené dB.
+- **Teplo = throttling**, ne porucha.
+
+## Příkon známých strojů
+
+| Zařízení | Příkon | Poznámka |
+|---|---:|---|
+| DGX Spark | 140 W čip | napájení 240 W |
+| RTX Spark mini | 140 W | stolní |
+| RTX Spark notebook | 45–80 W | podle režimu |
+| Gorgon Halo | 120 W | špička 160 W |
+| Strix Halo | neuvedeno | výrobci se liší |
+| Mac Studio | max. 480 W | strop napájení |
+| MacBook Pro | neuvedeno | podle konfigurace |
+
+Čísla jsou z dokumentace výrobců, ne naše měření. U Strix Hala
+a MacBooku chybí veřejný údaj pro zátěž.
+
+## Výpočet spotřeby
+
+```
+kWh za rok = příkon (kW) × hodiny denně × dny v roce
+```
+
+Ilustrativní **výpočet** při 8 hodinách a 250 dnech:
+
+| Příkon | kWh/rok |
+|---:|---:|
+| 80 W | 160 |
+| 120 W | 240 |
+| 140 W | 280 |
+| 240 W | 480 |
+
+Cenu získáte vynásobením svou sazbou za kWh. Neuvádíme ji, protože
+se mění podle dodavatele a tarifu.
+
+## Hluk
+
+Veřejné měření hluku v zátěži pro většinu těchto strojů nemáme.
+Proto neuvádíme dB. Co víme:
+
+- **Notebook** má menší chladič a vyšší otáčky.
+- **Box** má větší chladič a bývá tišší.
+- **Mac Studio** je pasivní, hluk minimální.
+- **DGX Spark** má aktivní chlazení, konkrétní dB chybí.
+
+Hluk je **D12** v registru mezer. Až se objeví veřejné měření,
+doplníme ho.
+
+## Teplo a throttling
+
+- **Watty se mění na teplo** — 1 W ≈ 3,41 BTU/h.
+- **240 W** je zhruba **820 BTU/h**.
+- **Malá místnost** se zahřeje; v létě to znamená vyšší teplotu
+  a throttling.
+- **Prašný filtr** snižuje průtok vzduchu.
+
+Throttling se projeví poklesem tok/s po minutách. Není to
+porucha; je to ochrana čipu.
+
+## Co s tím
+
+- **Dejte stroj na místo s průvanem**, ne do skříně.
+- **Počítejte s teplem v létě.**
+- **U notebooku měřte výkon na baterii i na nabíječce.**
+- **Nezakrývejte větrání.**
+- **U dávkových úloh plánujte pauzy.**
+
+## Kdy to neřešit
+
+- Krátký test.
+- Stroj v chladné serverovně.
+- Když je cena elektřiny v rozpočtu zanedbatelná.
+- Když výrobce udává jen maximum a vy nejedete na plno.
+
+## Kudy dál
+
+- [Throttling](/slovnik/provoz/throttling/) — proč výkon klesá.
+- [Power limit](/slovnik/provoz/power-limit/) — strop příkonu.
+- [Cena lokální AI](/temata/cena-lokalni-ai/) — celkové náklady.
+- [DGX Spark](/zarizeni/dgx-spark/) — hardware.
+- [Mac Studio](/zarizeni/mac-studio/) — tichý stroj.
+- [Provoz](/temata/provoz/) — cluster.
+
+## Zdroje
+
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [AMD — Ryzen AI Max+ PRO 495](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html)
+- [Apple — Mac Studio](https://www.apple.com/mac-studio/specs/)
+- [Metodika](/o-webu/metodika/)
+
+*Naposledy ověřeno: 11. 11. 2026.*
