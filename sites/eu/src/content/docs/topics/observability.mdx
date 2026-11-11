@@ -1,0 +1,145 @@
+---
+title: "Agent observability: traces, tokens and audit"
+description: "Monitoring shows the model is running. Observability shows what the agent did. Traces, logs, token counts, approvals and retention."
+last_verified: 2026-11-11
+---
+
+**Observability** is the ability to find out afterwards what the agent
+did and why. Monitoring answers "is it running?"; observability
+answers "which tool, with what data, and who approved it?". For an
+agent, that is the difference between a metric and evidence.
+
+## Short answer
+
+- **Monitoring is health.** Observability is the run itself.
+- **A trace ties one task into one record.**
+- **Tokens and cost belong together.**
+- **Approvals must be in the log**, not only in the UI.
+
+## What to track
+
+| Signal | Why |
+|---|---|
+| **Trace ID** | ties the steps of one task together |
+| **Tool and arguments** | what the agent called |
+| **Result** | success, error, refusal |
+| **Tokens** | cost and context |
+| **Latency** | where the waiting happens |
+| **Approver** | who allowed the action |
+| **Model and version** | reproducibility |
+
+## A trace in practice
+
+```
+trace 7f3a
+  span 1: model, 1,200 tokens, 2.1 s
+  span 2: read_invoice, 0.3 s, ok
+  span 3: model, 800 tokens, 1.4 s
+  span 4: extract_fields, 0.2 s, validation ok
+  span 5: post_invoice, waiting for approval
+  event: approved by user@company, 10:42
+  span 6: post_invoice, 0.1 s, ok
+```
+
+The trace shows which step was slow, how many tokens it cost and who
+allowed the action. Without it you only know "the agent did it".
+
+## Logs versus content
+
+- **Metadata** — keep longer, it is cheap.
+- **Arguments** — a hash or a short excerpt.
+- **Prompt content** — briefly or not at all.
+- **Tokens and cost** — always.
+- **Errors** — without secrets.
+
+Retention should be short and access restricted. Logs are both
+evidence and risk.
+
+## A minimal implementation
+
+You do not need a full stack. A table is enough:
+
+```sql
+CREATE TABLE step (
+  trace_id   TEXT NOT NULL,
+  span_id    TEXT NOT NULL,
+  step_no    INTEGER NOT NULL,
+  kind       TEXT NOT NULL,   -- model | tool | approval
+  name       TEXT NOT NULL,
+  state      TEXT NOT NULL,   -- ok | error | waiting
+  tokens_in  INTEGER,
+  tokens_out INTEGER,
+  latency_ms INTEGER,
+  approved_by TEXT,
+  at         TEXT NOT NULL
+);
+```
+
+Two queries on top: "show the trace" and "tokens per day by model".
+A small team does not need more at the start.
+
+## Retention
+
+| Data | Suggested retention | Why |
+|---|---|---|
+| trace metadata | 90 days | debugging and incidents |
+| tokens and cost | 1 year | budget |
+| tool arguments | 30 days, hash | content risk |
+| prompts | hours to days | sensitive content |
+| approvals | 1 year | audit |
+
+Retention is set before deployment, not after the first incident.
+
+## How much space it takes
+
+An illustrative **calculation**: one trace with five spans and
+metadata is around 10 kB. At 1,000 tasks a day that is **10 MB a
+day**, roughly 300 MB a month. If you store whole prompts, it can be
+a hundred times more.
+
+That is why content is kept briefly and metadata longer. Retention is
+part of the design, not the clean-up afterwards.
+
+## Alerts
+
+Do not page a human for every error. An alert makes sense when:
+
+- **failures repeat** in the same task,
+- **daily cost** passes a limit,
+- **an approval** waits more than an hour,
+- **the model** returns empty answers,
+- **the disk** is running out.
+
+Every alert needs an owner and a procedure. An alert without a
+procedure is just another unread message.
+
+## Common mistakes
+
+- **Logging only errors** — successful steps are missing.
+- **Traces without IDs** — steps cannot be joined.
+- **Full prompts in the log** — risk and volume.
+- **No approver** — the audit fails.
+- **Metrics without context** — you do not know which task they belong to.
+
+## When not to bother
+
+- One user and one script.
+- No sensitive data.
+- A short test.
+- When nobody has time to read the logs.
+
+## Where next
+
+- [Topics](/topics/) — overview.
+- [Model routing](/topics/model-routing/) — which model answered.
+- [Agent memory](/topics/agent-memory/) — what the agent keeps.
+- [How we read data](/getting-started/how-we-read-data/) — our data rules.
+- [Methodology](/about/methodology/) — how we treat sources.
+
+## Sources
+
+- [OpenTelemetry](https://opentelemetry.io/docs/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

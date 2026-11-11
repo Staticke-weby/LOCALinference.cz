@@ -1,15 +1,15 @@
 ---
 title: "Qwen3.8 Flash Next on 128 GB: specs and limits"
-description: "Qwen3.8 Flash Next: 125B MoE with 6B active parameters, 262K context, Qwen Community License. What fits on a 128GB device and where it falls short."
+description: "Qwen3.8 Flash Next: 180B MoE with 6B active parameters, 262K context, Qwen Community License. What fits on a 128GB device and where it falls short."
 last_verified: 2026-11-09
 ---
 
 import TabulkaModeluEn from '../../../components/TabulkaModeluEn.astro';
 
 **Qwen3.8 Flash Next** is the model this catalogue is built around.
-It is a sparse mixture-of-experts model: 125 billion parameters in the
-main model, only **6 billion active per token**. That is what makes it
-practical on a single 128GB machine.
+It is a sparse mixture-of-experts model: **180 billion parameters** in
+total (125B main, 51B N-gram, 4B MTP), only **6 billion active per
+token**. That is what makes it practical on a single 128GB machine.
 
 <TabulkaModeluEn />
 

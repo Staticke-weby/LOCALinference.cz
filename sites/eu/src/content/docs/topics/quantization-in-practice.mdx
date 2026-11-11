@@ -1,0 +1,150 @@
+---
+title: "Quantization in practice: Q4, FP8, NVFP4 and how to choose"
+description: "Quantization shrinks a model but changes quality and speed. Formats, memory maths, how to choose and what to measure before deployment."
+last_verified: 2026-11-11
+---
+
+**Quantization** shrinks a model by storing its weights at lower
+precision. The model fits into memory and runs faster, but it can lose
+quality. The format, the bit depth and which layers stay at higher
+precision all matter.
+
+## Short answer
+
+- **Fewer bits means less memory**, but more loss.
+- **4 bits** is the practical default for large models today.
+- **NVFP4** is NVIDIA's format for Blackwell; it does not run
+  elsewhere.
+- **GGUF** is portable, **FP8** is a compromise.
+- **Always measure** quality against the baseline.
+
+## Formats
+
+| Format | Runs on | Advantage | Drawback |
+|---|---|---|---|
+| **NVFP4** | DGX, RTX Spark | fast on Blackwell | NVIDIA only |
+| **FP8** | CUDA, sometimes ROCm | quality close to BF16 | larger than 4-bit |
+| **GGUF Q4/Q5/Q6** | llama.cpp, CPU, Mac | portable | slower |
+| **EXL3** | CUDA | fast | narrower support |
+| **MLX 4-bit** | Apple Silicon | native | Mac only |
+
+## Memory maths
+
+```
+size ≈ parameters × bytes per parameter
+```
+
+- **4 bits** ≈ 0.5 B per parameter,
+- **8 bits** ≈ 1 B per parameter,
+- **BF16** ≈ 2 B per parameter.
+
+An illustrative **calculation**: a 180B model at 4 bits is about
+90 GB, at 8 bits about 180 GB. The real size is higher because of
+scales, embeddings and KV cache.
+
+## Example: Qwen3.8 Flash Next on 128 GB
+
+Qwen3.8 Flash Next has 180 billion parameters in total and 6 billion
+active per token (MoE). The catalogue lists these weight sizes:
+
+| Format | Weights | Fits in 128 GB? |
+|---|---:|---|
+| NVFP4 | 101 GB | yes, about 27 GB left |
+| GGUF Q4_K_M | 95 GB | yes, about 33 GB left |
+| MLX 4-bit | 88 GB | yes, about 40 GB left |
+| FP8 | 176 GB | no |
+
+The remaining memory is not free: part goes to the system, the rest
+to the KV cache for context. That is why a 128GB machine is paired
+with NVFP4 or Q4, not FP8. The figures come from the model
+catalogue, not from our own measurements.
+
+## KV cache and context
+
+Weight quantization is only half of the equation. The KV cache grows
+with context length and the number of concurrent requests. Shrinking
+it (for example FP8 cache instead of BF16) saves memory but may cost
+accuracy on long context.
+
+So the order is gradual:
+
+1. **Measure** speed and quality with the default cache.
+2. **Shorten the context** to the recommended operating point.
+3. **Only then** consider quantizing the cache.
+4. **Verify** on long context, not just a short prompt.
+
+## What breaks first
+
+Quantization does not degrade everything equally. Typically you see:
+
+- **Long context** — the model loses the thread sooner than in BF16.
+- **Tool calling** — it invents a parameter or omits a field.
+- **Rare languages** — accuracy on uncommon words and grammar.
+- **Maths and code** — errors in longer chains of steps.
+- **Refusals** — the boundary can move.
+
+So quality is measured on a set of tasks that match your work, not on
+one benchmark.
+
+## Format by engine
+
+| Engine | Sensible format | Note |
+|---|---|---|
+| vLLM on NVIDIA | NVFP4, FP8 | depends on the GPU generation |
+| llama.cpp | GGUF Q4/Q5/Q6 | portable, CPU and GPU |
+| MLX | MLX 4-bit | Apple Silicon |
+| SGLang | FP8, sometimes NVFP4 | depends on version and recipe |
+
+When the format does not match the engine, the model either does not
+run or runs slowly. The vendor recipe is a starting point, not a
+universal truth.
+
+## How to choose
+
+1. **Start at 4 bits** — NVFP4 or Q4.
+2. **Measure quality** on your own tasks.
+3. **If it is not enough**, try 6–8 bits.
+4. **Watch memory** — higher precision means less context.
+5. **Change one thing at a time.**
+
+## What to measure
+
+- **Correctness** on 20–50 tasks.
+- **English and other languages** — spelling, grammar, terminology.
+- **Tool calling** — does it call tools correctly?
+- **Speed** — decode and TTFT.
+- **Memory** — what is left for the KV cache.
+- **Stability** — a long run.
+
+## Common mistakes
+
+- **Comparing different quantizations** without the same context.
+- **Trusting one benchmark.**
+- **Quantizing sensitive layers** without a test.
+- **Forgetting the KV cache** — it is not always quantized.
+- **Changing the model and the quantization at once.**
+
+## When not to bother
+
+- A small model that fits in BF16.
+- When quality is critical and memory is sufficient.
+- When there is no test set.
+- When the vendor ships only one format.
+
+## Where next
+
+- [Topics](/topics/) — overview.
+- [Quantization](/dictionary/software/quantization/) — the term.
+- [NVFP4](/dictionary/software/nvfp4/) — NVIDIA's format.
+- [GGUF](/dictionary/software/gguf/) — the portable format.
+- [Model](/models/qwen3-8-flash-next/) — what runs on 128 GB.
+- [Roofline](/speed/roofline/) — the speed ceiling.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — quantization](https://docs.vllm.ai/en/latest/features/quantization/index.html)
+- [llama.cpp — GGUF](https://github.com/ggml-org/llama.cpp)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

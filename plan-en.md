@@ -225,3 +225,25 @@ rozdíl je povolený, chybějící stránka ne.
 
 *Stav k 5. 11. 2026. Plán se plní po dávkách; CZ zůstává zdrojem
 pravdy a EN se z něj replikuje.*
+
+## Stav k 11. 11. 2026
+
+CZ vyrostlo na **186 stránek**, EN má **112**. Chybí **74**:
+
+| Sekce | Chybí | Co |
+|---|---:|---|
+| Témata | 47 | abliterace (6), agenti (16), čeština (6), RAG (6), provoz (8), praxe (5) |
+| Slovník | 26 | nová hesla od 9. 11. (kontext, MCP, abliterace, orchestrace…) |
+| Model | 1 | abliterovaná varianta Qwen3.8 |
+
+Hotovo v dávce 11. 11.: osm nových témat jako plné EN články
+(context engineering, quantization in practice, electricity/noise/heat,
+agent memory, tool design, model routing, observability, backups and
+recovery) a oprava 180B parametrů na čtyřech místech EN.
+
+`scripts/parita.mjs` se opravil: dřív počítal dynamické stuby témat
+a slovníku jako hotové stránky, takže hlásil 185/186. Teď kontroluje
+skutečné EN soubory a `data/en/*.yaml`, takže čísla odpovídají webu.
+
+Další dávky: slovník (26 hesel), abliterace (6+1), agenti (16),
+čeština a RAG (12), provoz (8), praxe (5).

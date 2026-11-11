@@ -1,0 +1,160 @@
+---
+title: "Backups and recovery for local AI"
+description: "Backing up the model is the smallest part. What to back up, how to test a restore, what RPO and RTO mean and where the risk is."
+last_verified: 2026-11-11
+---
+
+**Backups** for local AI are not a copy of the model. The model can be
+downloaded again. What gets lost is the configuration, the index, the
+sessions, the internal documents and the logs. So you back up
+**state**, not weights.
+
+## Short answer
+
+- **The model can be downloaded again**, the configuration cannot.
+- **3-2-1** — three copies, two media, one off site.
+- **A restore test** matters more than the backup.
+- **RPO and RTO** follow from what you can afford to lose.
+
+## What to back up
+
+| Item | Why | How often |
+|---|---|---|
+| **Configuration** | engine, model, flags | on change |
+| **Documents** | the source of truth for RAG | daily |
+| **Index** | rebuildable, but expensive | weekly |
+| **Sessions and memory** | the agent's context | daily |
+| **Logs** | audit and incidents | per retention |
+| **The backups themselves** | restore test | monthly |
+
+Model weights do not need a backup if you have fast internet and
+trust the source. If not, keep the hash and the revision.
+
+## RPO and RTO
+
+- **RPO** — how much data you can afford to lose (for example a day).
+- **RTO** — how quickly the service must be running again (for
+  example four hours).
+
+They set the backup frequency and the restore method. For a small
+team, a daily backup of documents and a weekly backup of configuration
+is often enough.
+
+## 3-2-1 in practice
+
+- **3 copies** — production, local backup, off site.
+- **2 media** — disk and tape or cloud.
+- **1 off site** — against fire and theft.
+
+Encrypt backups and keep the key separately. A backup with the key on
+the same disk is not a backup.
+
+## What is not a backup
+
+- **RAID** protects against a disk failure, not deletion.
+- **Snapshots** on the same array disappear with the array.
+- **Sync to the cloud** deletes what you delete.
+- **A copy of the model** has no configuration or index.
+- **An application export** often misses permissions.
+
+A backup is a copy you can restore the **whole state** from, not just
+one file.
+
+## Off site without the cloud
+
+Off site does not have to mean a cloud provider:
+
+- **A disk at a colleague's office** in another building, encrypted.
+- **A safe or fireproof cabinet**.
+- **A second site** with its own server.
+- **Cloud storage** with your own key.
+
+What matters is that the copy survives the loss of the site. A disk in
+the same room as the machine is not off site, even on different media.
+
+## Restore
+
+1. **A new machine or a clean disk.**
+2. **Install the engine and drivers.**
+3. **Restore the configuration.**
+4. **Download the model** or restore it from a copy.
+5. **Restore documents and the index.**
+6. **Run a test query** and compare with the baseline.
+7. **Record the restore time.**
+
+When a restore takes longer than the RTO, the backup is not enough.
+
+## Restore test
+
+A checklist to run at least once a quarter:
+
+1. Pick a random file from last night's backup.
+2. Restore it onto a clean machine.
+3. Compare the hash with production.
+4. Start the engine with the restored configuration.
+5. Ask 20 questions from the baseline.
+6. Measure the time to the first correct result.
+7. Write down the result and what did not work.
+
+If the test fails, the backup is only an assumption.
+
+## Example: a disk failure
+
+One evening the NVMe with documents and the index dies. What happens:
+
+1. **In the morning** the machine will not start.
+2. **Recovery** starts from last night's off-site backup.
+3. **Engine and model** are installed again (the model downloads).
+4. **Documents** are restored within an hour.
+5. **The index** is rebuilt or restored from the backup.
+6. **A test** on 20 queries passes.
+7. **An incident note** is written.
+
+Without a restore test, a missing index would only be found after
+deployment.
+
+## How much space it takes
+
+An illustrative **calculation** for a 1 TB archive:
+
+| Item | GB |
+|---|---:|
+| documents | 300 |
+| index and vectors | 20 |
+| sessions and memory | 5 |
+| configuration | 1 |
+| **daily change** | **~0.5** |
+
+Three versions of daily changes are a few GB. Backing up the whole
+model makes no sense; a hash and a link are enough.
+
+## Common mistakes
+
+- **A backup on the same disk.**
+- **The encryption key next to the backup.**
+- **An untested restore.**
+- **A backup without documents** (index only).
+- **Logs with personal data** inside the backup.
+
+## When not to bother
+
+- A one-off test.
+- No production data.
+- The model and the data are public.
+- When there is nowhere to back up to.
+
+## Where next
+
+- [Topics](/topics/) — overview.
+- [Observability](/topics/observability/) — traces and audit.
+- [RAG](/dictionary/software/rag/) — documents and the index.
+- [Devices](/devices/compare/) — what the hardware holds.
+- [Sources: what we do not know](/sources/what-we-dont-know/) — open gaps.
+
+## Sources
+
+- [NIST — SP 800-34 (contingency planning)](https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

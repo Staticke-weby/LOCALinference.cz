@@ -90,6 +90,21 @@ const SLUGY = {
   'lokalni-ai-na-video': 'local-ai-video',
   'lokalni-ai-na-audio': 'local-ai-audio',
   'lokalni-ai-na-3d': 'local-ai-3d',
+  'pamet-agenta': 'agent-memory',
+  'navrh-nastroju': 'tool-design',
+  'model-routing': 'model-routing',
+  observability: 'observability',
+  'zalohy-a-obnova': 'backups-and-recovery',
+  'kontext-engineering': 'context-engineering',
+  'kvantizace-v-praxi': 'quantization-in-practice',
+  'elektrina-hluk-teplo': 'electricity-noise-heat',
+  'pamet': 'memory',
+  'vykon': 'performance',
+  'provoz': 'operations',
+  'agenti': 'agents',
+  'abliterace': 'abliteration',
+  'cestina': 'czech-and-documents',
+  'praxe': 'practice',
   mereni: 'measurements',
   zdroje: 'sources',
   'co-nevime': 'what-we-dont-know',
@@ -143,13 +158,34 @@ const dynamickaZarizeni = new Set([
 
 const chybi = [];
 const hotovo = [];
+
+// Dynamické routy v EN nekryjí celý CZ obsah: témata a slovník jsou
+// stuby z data/en/*.yaml. Parita proto počítá jen to, co v EN datech
+// nebo souborech skutečně existuje.
+function nactiEn(rel) {
+  const p = path.join(ROOT, 'data/en', rel);
+  if (!fs.existsSync(p)) return [];
+  return yaml.load(fs.readFileSync(p, 'utf8')) ?? [];
+}
+const enTemata = new Set(nactiEn('temata.yaml').map((t) => t.slug));
+const enSlovnik = new Set(nactiEn('slovnik.yaml').map((e) => `${e.group}/${e.slug}`));
+
 for (const f of czSoubory) {
   const cz = routa(CZ, f);
   const en = enRouta(cz);
+  const casti = cz.split('/');
+  const posledni = casti[casti.length - 1];
+  const ploche = `topics/${SLUGY[posledni] ?? posledni}`;
   const jeDynamicke =
-    (maZarizeni && cz.startsWith('zarizeni/') && dynamickaZarizeni.has(cz.split('/')[1])) ||
-    (maSlovnik && cz.startsWith('slovnik/') && cz.split('/').length >= 3) ||
-    (maTemata && cz.startsWith('temata/') && cz.split('/').length >= 2) ||
+    (maZarizeni && cz.startsWith('zarizeni/') && dynamickaZarizeni.has(casti[1])) ||
+    (maSlovnik &&
+      cz.startsWith('slovnik/') &&
+      casti.length >= 3 &&
+      enSlovnik.has(casti.slice(1).map((s) => SLUGY[s] ?? s).join('/'))) ||
+    (maTemata &&
+      cz.startsWith('temata/') &&
+      casti.length >= 2 &&
+      (enTemata.has(ploche.split('/')[1]) || enSoubory.has(ploche))) ||
     cz === '404';
   if (enSoubory.has(en) || jeDynamicke) hotovo.push({ cz, en });
   else chybi.push({ cz, en });

@@ -1,0 +1,152 @@
+---
+title: "Electricity, noise and heat: what local AI consumes"
+description: "How many watts 128GB machines draw, how to work out yearly consumption, why public noise measurements are missing and how heat causes throttling."
+last_verified: 2026-11-11
+---
+
+**Electricity** is a small item next to the price of the machine, but
+with all-day operation do not ignore it. **Noise** decides whether the
+machine can sit in an office. **Heat** decides whether it keeps its
+performance.
+
+## Short answer
+
+- **Draw depends on the machine:** 45–80 W for a laptop, 120–240 W
+  for a box.
+- **Yearly consumption follows from watts and hours.**
+- **We have no public noise measurements** — so we do not invent dB
+  figures.
+- **Heat means throttling**, not failure.
+
+## Draw of known machines
+
+| Device | Draw | Note |
+|---|---:|---|
+| DGX Spark | 140 W chip | 240 W power supply |
+| RTX Spark mini | 140 W | desktop |
+| RTX Spark notebook | 45–80 W | depends on the mode |
+| Gorgon Halo | 120 W | 160 W peak |
+| Strix Halo | not stated | vendors differ |
+| Mac Studio | max 480 W | power supply ceiling |
+| MacBook Pro | not stated | depends on configuration |
+
+These figures come from vendor documentation, not from our
+measurements. For Strix Halo and the MacBook there is no public
+figure under load.
+
+## Calculating consumption
+
+```
+kWh per year = draw (kW) × hours per day × days per year
+```
+
+An illustrative **calculation** at 8 hours and 250 days:
+
+| Draw | kWh/year |
+|---:|---:|
+| 80 W | 160 |
+| 120 W | 240 |
+| 140 W | 280 |
+| 240 W | 480 |
+
+The cost is the number of kWh times your tariff. We do not publish a
+price because it changes with the supplier and the plan.
+
+## Example: two boxes in an office
+
+A small company runs two 128GB boxes at 140 W, 8 hours a day, 250
+days a year.
+
+Illustrative **calculation**:
+
+```
+0.14 kW × 8 h × 250 days × 2 machines = 560 kWh per year
+```
+
+That is roughly one extra fridge. The cost is 560 times your tariff.
+Laptops at 60 W draw about **240 kWh**, less than half.
+
+The difference between 140 W and 240 W is not hundreds of units of
+currency; it is the heat in the room. Two boxes at 240 W already heat
+like a small radiator, and in summer you notice.
+
+## Noise
+
+We do not have public noise measurements under load for most of these
+machines. So we publish no dB figures. What we do know:
+
+- **A laptop** has a smaller cooler and higher fan speeds.
+- **A box** has a larger cooler and tends to be quieter.
+- **Mac Studio** is effectively passive; noise is minimal.
+- **DGX Spark** has active cooling; the specific dB figure is missing.
+
+Noise is **D12** in our gap register. When a public measurement
+appears, we will add it.
+
+## Measuring noise yourself
+
+We have no public dB figures, but you can measure your own machine
+with a phone:
+
+1. **Put the machine where it will actually sit**, not in a cupboard.
+2. **Phone one metre away**, at ear height.
+3. **Measure at idle**, under normal load and after 15 minutes.
+4. **Note the room noise** before switching on.
+5. **Compare with conversation** — a normal office is around 40 dB.
+
+Phone apps are not calibrated, but for comparing two machines in the
+same room they are enough. Do not present the phone number as exact.
+
+## Heat and throttling
+
+- **Watts become heat** — 1 W ≈ 3.41 BTU/h.
+- **240 W** is roughly **820 BTU/h**.
+- **A small room** warms up; in summer that means a higher
+  temperature and throttling.
+- **A dusty filter** reduces airflow.
+
+Throttling shows up as a fall in tok/s after a few minutes. It is not
+a fault; it is the chip protecting itself.
+
+## What to do
+
+- **Put the machine where air flows**, not in a cupboard.
+- **Plan for summer heat.**
+- **On a laptop, measure performance on battery and on the charger.**
+- **Do not cover the vents.**
+- **For batch jobs, plan pauses.**
+
+## Common mistakes
+
+| Mistake | Why it happens | How to avoid it |
+|---|---|---|
+| Counting only the peak | "it is a 240 W machine" | use the average under load |
+| Ignoring idle | the machine runs all day | measure with a wall meter |
+| Mixing up prices and tariffs | different plans | use the final price per kWh |
+| Underestimating heat | "it will cool itself" | count BTU/h |
+| A machine in a cupboard | "so it is quiet" | keep the airflow |
+
+## When not to bother
+
+- A short test.
+- A machine in a cool server room.
+- When electricity is negligible in the budget.
+- When the vendor only states the maximum and you never run at full load.
+
+## Where next
+
+- [Throttling](/dictionary/operations/throttling/) — why performance falls.
+- [Power limit](/dictionary/operations/power-limit/) — the draw ceiling.
+- [DGX Spark](/devices/dgx-spark/) — the hardware.
+- [Mac Studio](/devices/mac-studio/) — the quiet machine.
+- [Compare devices](/devices/compare/) — draw next to price.
+- [Topics](/topics/) — overview.
+
+## Sources
+
+- [NVIDIA — DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
+- [AMD — Ryzen AI Max+ PRO 495](https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html)
+- [Apple — Mac Studio](https://www.apple.com/mac-studio/specs/)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

@@ -1,0 +1,139 @@
+---
+title: "Agent memory: what to keep and what to forget"
+description: "An agent has context, a session and long-term memory. What to store, how to do it locally, how forgetting works and where the risk is."
+last_verified: 2026-11-11
+---
+
+**Agent memory** is not the same thing as context. Context is the
+working window of one request; memory survives across requests and
+sessions. Without it, the agent asks the same questions every day.
+With bad memory, cost, latency and the risk of remembering false
+things all grow.
+
+## Short answer
+
+- **Context is not memory.** Context has to fit the window; memory
+  lives outside it.
+- **Three layers:** session, summary and long-term memory.
+- **Less is more.** Store facts and decisions, not whole documents.
+- **Memory must be deletable.** Retention and permissions apply to it
+  too.
+
+## Three layers
+
+| Layer | What it holds | Where it lives | When it is used |
+|---|---|---|---|
+| **Context** | current request and history | inside the model | every request |
+| **Session** | the run of one task | application | during the task |
+| **Long-term** | facts, decisions, preferences | file or database | at the start of a new session |
+
+Context is expensive and limited. Session state is cheap but short.
+Long-term memory is the most valuable and the most risky.
+
+## What to remember
+
+- **Decisions** — "we use vLLM, not Ollama".
+- **Project facts** — paths, names, versions.
+- **Preferences** — style, format, language.
+- **Open tasks** — what is left.
+- **Links** — where a document or issue lives.
+
+What not to remember: whole documents, sensitive data, temporary
+values and anything that can be derived again cheaply.
+
+## How to do it locally
+
+1. **A file per project** — `AGENTS.md` or `memory.md` in the repo.
+2. **A database** — SQLite for facts and tasks.
+3. **A vector store** — for longer notes and documents.
+4. **Summaries** — older sessions are reduced to a few points.
+5. **Loading** — only the relevant part goes into the new session.
+
+Many harnesses load `AGENTS.md` automatically. It is the simplest
+memory that works without a database.
+
+## Example: invoices
+
+An agent processes invoices and should remember suppliers. Only what
+is used belongs in memory:
+
+```json
+{
+  "supplier": "Example Ltd",
+  "vat_id": "GB123456789",
+  "code": "SUP-001",
+  "last_invoice": "2026-11-01"
+}
+```
+
+Not the whole PDF. When a new invoice arrives, the agent finds the
+supplier by VAT ID and updates the record. When the ID changes, the
+newer record replaces the older one.
+
+## Memory versus RAG
+
+Both store text outside the context window, but for different reasons.
+
+| | Memory | RAG |
+|---|---|---|
+| **Content** | facts and decisions | documents |
+| **Who writes it** | agent or user | ingest from archives |
+| **Size** | small, a few kB | large, GB |
+| **Freshness** | changes often | changes on ingest |
+| **Risk** | poisoning and stale truth | wrong chunk and citation |
+
+Memory answers "what do we know about the project"; RAG answers "what
+does the document say". When memory starts holding whole documents,
+it is a badly designed RAG.
+
+## Forgetting and retention
+
+- **Ageing** — old items are deleted or down-weighted.
+- **Consolidation** — repeated facts are merged.
+- **Conflict** — a newer decision overwrites an older one.
+- **Deletion** — the user must be able to erase memory.
+- **Audit** — who stored what, and why.
+
+Memory without deletion is debt. Over time it holds false things and
+the agent acts on them.
+
+## Risks
+
+- **Memory poisoning** — a document or user inserts a false "fact".
+- **Privacy** — memory can contain personal data.
+- **Inconsistency** — two sessions remember opposite things.
+- **Cost** — large memory is sent with every request.
+- **False confidence** — the agent cites its own note as a source.
+
+## Common mistakes
+
+| Mistake | Why it happens | How to avoid it |
+|---|---|---|
+| Storing whole documents | "so it is at hand" | store fields and links |
+| Memory without deletion | nobody owns it | retention and erasure |
+| Two truths | old and new session | newer overwrites older |
+| Memory in the prompt | convenience | load only the relevant part |
+| Poisoning from a document | injection | mark the source and verify |
+
+## When not to bother
+
+- A one-off task.
+- A chat with no repetition.
+- When 32k of context is enough.
+- When nobody has time to maintain and prune it.
+
+## Where next
+
+- [Topics](/topics/) — overview.
+- [Agentic tasks](/dictionary/software/agentic-tasks/) — the basic term.
+- [Context](/dictionary/memory/context/) — the working window.
+- [RAG](/dictionary/software/rag/) — documents instead of memory.
+- [Model](/models/qwen3-8-flash-next/) — what runs locally.
+
+## Sources
+
+- [MemGPT — arXiv](https://arxiv.org/abs/2310.08560)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

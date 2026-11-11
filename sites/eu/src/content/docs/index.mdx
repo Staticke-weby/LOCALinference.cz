@@ -119,10 +119,10 @@ explains CUDA, TTFT, quantization and throttling — one term per page.
 
 ## Why 128 GB is the minimum
 
-Qwen3.8 Flash Next has 125 billion parameters and needs room for KV
-cache. On 128 GB of unified memory it fits with a useful context; on
-64 GB it does not fit in usable quality. That is why this site does
-not cover smaller machines.
+Qwen3.8 Flash Next has 180 billion parameters (125B main, 51B N-gram,
+4B MTP) and needs room for KV cache. On 128 GB of unified memory it
+fits with a useful context; on 64 GB it does not fit in usable quality.
+That is why this site does not cover smaller machines.
 
 The trade-off is real: a 128GB box is not as fast as a data-centre GPU,
 and not every model fits. What it buys is a machine on your desk, with

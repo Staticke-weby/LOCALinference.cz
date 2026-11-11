@@ -1,0 +1,157 @@
+---
+title: "Model routing: local model, cloud and fallback"
+description: "Routing sends tasks where they make sense: locally, to the cloud, or to a fallback model. The rules, the risks and when it is not worth it."
+last_verified: 2026-11-11
+---
+
+**Model routing** decides which model gets a task. It can be the local
+Qwen3.8, a smaller model for simple work, or a cloud model as a
+fallback. The goal is not "smart" routing but predictable behaviour
+and explicit rules.
+
+## Short answer
+
+- **Routing is policy**, not a model.
+- **Local first** for sensitive data and offline work.
+- **Cloud as a fallback** only for tasks the local model cannot do.
+- **Every rule needs a log** and an off switch.
+
+## What to route on
+
+| Signal | Local | Cloud |
+|---|---|---|
+| **Data sensitivity** | always | never |
+| **Offline** | always | impossible |
+| **Task complexity** | routine | extreme |
+| **Latency** | predictable | depends on the network |
+| **Cost** | fixed hardware | per token |
+| **Quality** | good on 128 GB | higher ceiling |
+
+Routing should not guess. When you are unsure where a task belongs,
+it belongs locally with manual approval.
+
+## Patterns
+
+- **Local-first** — local primary, cloud fallback on failure.
+- **Task-based** — extraction locally, creative work in the cloud.
+- **Fallback** — a different model on timeout or error.
+- **Escalation** — a small model asks for a larger one.
+- **A/B** — the same task to two models, a human picks.
+
+OpenClaw and Hermes both support fallback and model selection; the
+exact configuration is in their documentation.
+
+## Example configuration
+
+Keep the rules in the application, not in the prompt. Simplified:
+
+```yaml
+routing:
+  default: local-qwen38
+  fallback: null          # none for sensitive data
+  rules:
+    - when: "data == public"
+      model: local-qwen38
+    - when: "data == internal"
+      model: local-qwen38
+      fallback: cloud-only-after-approval
+    - when: "data == sensitive"
+      model: local-qwen38
+      fallback: stop
+  log:
+    model: true
+    path: true
+    tokens: true
+```
+
+`fallback: stop` means the task stops and waits for a human. That is
+safer than a silent switch to the cloud.
+
+## Escalation in practice
+
+A smaller model may ask for a larger one, but only along allowed
+paths. Example: the local model is unsure about a table extraction
+and returns `needs_escalation`. The application then:
+
+1. checks that the task is not sensitive,
+2. asks for approval if it leaves the building,
+3. sends the same input to the larger model,
+4. logs both models and the result.
+
+Without steps 1 and 2, escalation is the fastest route to a data leak.
+
+## Example: a law firm
+
+- **Contracts and case files** — always local, never cloud.
+- **Public statutes** — local, possibly cloud for research.
+- **Creative drafts** — local draft, cloud only after removing
+  personal data.
+- **Fallback** — when the local model times out, the task **stops**
+  and waits for a human; it does not go to the cloud automatically.
+
+The key point is that fallback is not the default. For sensitive data
+it is better to fail than to send the text out.
+
+## Risks
+
+- **Data leak** — routing can send sensitive text out.
+- **Inconsistency** — two models answer differently.
+- **Complexity** — more paths, more failures.
+- **Cost** — a fallback can be more expensive than local operation.
+- **Latency** — network and queue in the cloud.
+- **Audit** — you must see which model answered.
+
+## How to measure routing
+
+| Metric | What it says |
+|---|---|
+| **Local share** | how many tasks stayed home |
+| **Fallback rate** | how often it switches |
+| **Quality by path** | where the model fails |
+| **Cost per task** | local versus cloud |
+| **Latency** | how long the user waits |
+| **Leaks** | how many sensitive tasks went out |
+
+Without these numbers routing is a feeling. Measure by path, not
+globally.
+
+## What routing does not fix
+
+- **Model quality** — a bad model is not fixed by a path.
+- **Context** — a long document does not fit in the cloud for free.
+- **Network** — an internet outage stops the fallback.
+- **Permissions** — routing is not access control.
+- **Cost** — a fallback can be more expensive than local operation.
+
+Routing is road signage, not the engine.
+
+## Common mistakes
+
+- **Automatic fallback for sensitive data.**
+- **Routing by mood** instead of rules.
+- **No model in the log** next to the answer.
+- **Two models with no shared test set.**
+- **Rules in the prompt** instead of the application.
+
+## When not to bother
+
+- One model and one task.
+- All data is public.
+- There is no logging.
+- Nobody has time to maintain the rules.
+
+## Where next
+
+- [Topics](/topics/) — overview.
+- [Observability](/topics/observability/) — trace and audit.
+- [Model](/models/qwen3-8-flash-next/) — the local model.
+- [Speed](/speed/roofline/) — the ceiling of local speed.
+- [Methodology](/about/methodology/) — how we treat sources.
+
+## Sources
+
+- [OpenClaw — model providers](https://docs.openclaw.ai/concepts/model-providers)
+- [Hermes — providers](https://hermes-agent.nousresearch.com/docs/integrations/providers)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

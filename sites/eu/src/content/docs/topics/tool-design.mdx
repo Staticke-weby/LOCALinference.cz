@@ -1,0 +1,168 @@
+---
+title: "Tool design: schema, errors and permissions"
+description: "A good tool has a narrow schema, a clear description and validation. How to design an MCP server or function that the model actually uses well."
+last_verified: 2026-11-11
+---
+
+**Tool design** decides whether the agent does the right thing. The
+model only sees a name, a description and a schema; when those are
+vague, it calls the wrong tool. A tool is not a script for a human,
+it is an interface for a model.
+
+## Short answer
+
+- **Few tools, clear names.** Three to five per task.
+- **A narrow schema** — types, enums, required fields.
+- **Errors must be clear** and safe.
+- **Permissions and validation live in the application**, not in the
+  prompt.
+
+## Anatomy of a tool
+
+| Part | What it must say |
+|---|---|
+| **Name** | verb and object: `read_file`, `search_invoices` |
+| **Description** | when to use it and when not to |
+| **Parameters** | types, ranges, required fields |
+| **Output** | structure and limits |
+| **Errors** | what they mean and what to do |
+
+"Performs an operation" is useless. "Reads a UTF-8 text file inside
+the project directory; use it when you need the contents of a file"
+helps the model.
+
+## Schema in practice
+
+```json
+{
+  "name": "read_file",
+  "description": "Reads a text file inside the project directory. Do not use for binary files.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "string",
+        "description": "Relative path inside the project"
+      }
+    },
+    "required": ["path"],
+    "additionalProperties": false
+  }
+}
+```
+
+`additionalProperties: false` stops the model from sending invented
+parameters. Use enums for choices, not free text.
+
+## Bad and good descriptions
+
+```text
+# bad
+name: process
+description: Performs an operation on a file.
+
+# good
+name: read_text_file
+description: Reads a UTF-8 text file inside the project directory.
+  Use when you need the contents. Do not use for PDF or binary
+  files; use extract_pdf for those.
+```
+
+The second version says what it does, when to use it and what to use
+instead. The model stops reaching for `process` for everything.
+
+## Errors and idempotency
+
+- **Specific errors** — "file not found", not "error 500".
+- **Safe errors** — no internal paths or keys.
+- **Idempotency** — a repeated call must not duplicate a payment.
+- **Dry run** — an action can be tested without consequences.
+- **Timeout** — a tool must not hang forever.
+
+When the model gets a vague error, it retries and improvises. When it
+gets a precise one, it fixes the argument.
+
+## Permissions
+
+- **Directory allowlist** — the tool sees only the project.
+- **Read-only** where it only reads.
+- **Scoped tokens** for writes.
+- **Confirmation** for sending and paying.
+- **Call limits** per task.
+
+A tool that can do everything is worse than three narrow ones. The
+model gets lost in a wide interface and you cannot bound the damage.
+
+## MCP or a local function
+
+- **MCP server** — when several clients use the tool, or you want it
+  separated from the application.
+- **Local function** — when the tool is tightly coupled to the app and
+  runs in the same process.
+
+MCP adds a process, configuration and one more place to fail. For
+three tools in one application it is often unnecessary.
+
+MCP is not a security layer. It is a protocol; permissions belong to
+the server and the application.
+
+## Example: an invoice tool
+
+Instead of one `process_invoice`, build three narrow tools:
+
+| Tool | What it does | Risk |
+|---|---|---|
+| `read_invoice` | reads a PDF and returns text | low |
+| `extract_fields` | returns JSON against a schema | medium |
+| `post_invoice` | writes to the ledger | high, needs approval |
+
+The model cannot "just post it". It has to pass extraction,
+validation and approval. If extraction fails, `post_invoice` is never
+called. Give `post_invoice` an idempotency key (the invoice number) so
+a repeated call does not duplicate the entry.
+
+## Testing
+
+1. A correct call on a known input.
+2. A missing parameter.
+3. A wrong type.
+4. A path outside the allowlist.
+5. A file that does not exist.
+6. A very long output.
+7. A repeated call.
+8. Injection inside a document.
+
+## Common mistakes
+
+| Mistake | Why it happens | How to avoid it |
+|---|---|---|
+| One tool for everything | speed of development | split by risk |
+| Vague description | "it is obvious" | say when to use and when not |
+| Missing `required` | haste | mark mandatory fields |
+| Error without detail | generic handler | specific, safe message |
+| No output limit | large files | truncate and paginate |
+| No log | "not needed" | log tool and result |
+
+## When not to bother
+
+- When the agent only answers in text.
+- When one script is enough.
+- When there is no time for validation.
+- When the tool touches production data without permissions.
+
+## Where next
+
+- [Topics](/topics/) — overview.
+- [Agent memory](/topics/agent-memory/) — what the agent keeps.
+- [Agentic tasks](/dictionary/software/agentic-tasks/) — the basics.
+- [RAG](/dictionary/software/rag/) — documents as a tool input.
+- [Methodology](/about/methodology/) — how we treat sources.
+
+## Sources
+
+- [MCP specification](https://modelcontextprotocol.io/specification)
+- [JSON Schema](https://json-schema.org/)
+- [vLLM — tool calling](https://docs.vllm.ai/en/latest/features/tool_calling.html)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

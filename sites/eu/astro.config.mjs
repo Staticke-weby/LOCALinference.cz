@@ -173,7 +173,17 @@ export default defineConfig({
         },
         {
           label: 'Topics',
-          items: [{ label: 'Overview', link: '/topics/' }],
+          items: [
+            { label: 'Overview', link: '/topics/' },
+            { label: 'Context engineering', link: '/topics/context-engineering/' },
+            { label: 'Quantization in practice', link: '/topics/quantization-in-practice/' },
+            { label: 'Electricity, noise and heat', link: '/topics/electricity-noise-heat/' },
+            { label: 'Agent memory', link: '/topics/agent-memory/' },
+            { label: 'Tool design', link: '/topics/tool-design/' },
+            { label: 'Model routing', link: '/topics/model-routing/' },
+            { label: 'Observability', link: '/topics/observability/' },
+            { label: 'Backups and recovery', link: '/topics/backups-and-recovery/' },
+          ],
         },
         {
           label: 'Speed',
