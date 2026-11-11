@@ -1,0 +1,142 @@
+---
+title: "OpenCode and OpenChamber: a harness and a workspace for local agents"
+description: "OpenCode is a terminal agent, OpenChamber is its visual workspace. How to connect them to a local model, what they do, and where the limits are."
+last_verified: 2026-11-11
+---
+
+**OpenCode** is an open-source coding agent for the terminal.
+**OpenChamber** is a workspace that builds sessions, diffs,
+worktrees and remote access on top of it. Together they form one of
+the most practical routes to a local agent you can actually
+supervise.
+
+## Short answer
+
+- **OpenCode** is the harness; **OpenChamber** is the UI and session
+  management.
+- The **local model** is configured in OpenCode, not in OpenChamber.
+- **OpenChamber** is MIT, desktop/web/mobile, multi-run and
+  worktrees.
+- **Strength:** overview and review; **weakness:** one more layer and
+  fast development.
+
+## What is what
+
+| Part | Role | Licence |
+|---|---|---|
+| **OpenCode** | agent, tools, providers | MIT |
+| **OpenChamber** | workspace, sessions, review | MIT |
+
+OpenChamber is not a replacement for OpenCode. It is a client that
+reads sessions and sends prompts; the provider and the keys stay in
+OpenCode.
+
+## Connecting a local model
+
+1. Install OpenCode and set up a provider with an
+   OpenAI-compatible endpoint (Ollama, vLLM, LM Studio, llama.cpp).
+2. Verify tool calling on a simple tool.
+3. Start OpenChamber; the default desktop install ships its own
+   OpenCode.
+4. In OpenChamber, pick the project and a model that OpenCode offers.
+
+The exact config is in the OpenCode documentation. The same rules
+apply as everywhere else: `--jinja` with llama.cpp, the right model
+ID, enough context.
+
+## Install
+
+**Desktop:** download OpenChamber from GitHub Releases. It includes
+OpenCode, so nothing else is needed.
+
+**Web/PWA:** needs OpenCode and Node 24.14+:
+
+```bash
+curl -fsSL https://openchamber.dev/install | bash
+openchamber --ui-password choose-a-password
+```
+
+**OpenCode on its own** is installed according to its
+documentation; you use it in the terminal.
+
+## Workflow
+
+1. Open the project in OpenChamber.
+2. Enter the task; the agent runs in OpenCode.
+3. Watch the tool output and the diff.
+4. For a large change, use Changes Walkthrough.
+5. For a risky action, approve or reject it.
+6. Commit the result or open a PR.
+
+**Multi-run** sends the same prompt to several models, each in its
+own worktree. **Session Goals** keeps the agent on a goal until it
+reaches it or hits a limit.
+
+## Multi-run and fusion
+
+Multi-run is useful when you do not know which model or approach
+will win. You run the same task with two to five models, each in an
+isolated worktree. Then you compare the diffs and pick one.
+
+- **Advantage:** you see the real result, not a benchmark.
+- **Cost:** more tokens and more runs at once.
+- **Watch out:** models may need different context; a small model
+  can fail on a large repo.
+
+Fusion combines parts of the answers into a new session. It is a
+tool for experiments, not a replacement for review.
+
+## Remote access
+
+| Method | When | What to watch |
+|---|---|---|
+| **Localhost** | one machine | nothing |
+| **LAN/VPN** | a team in an office | access rights |
+| **Private Relay** | from a phone | pairing and revocation |
+| **Tunnel** | temporarily from a browser | password and exposure |
+
+Every remote method needs a password or a passkey. A relay is safer
+than an open port, but it is still access to the session.
+
+## Limits
+
+- **OpenChamber is not a harness.** If OpenCode cannot do a
+  provider, OpenChamber will not fix it.
+- **Fast development.** Smaller releases can behave differently.
+- **Remote access.** Relays and tunnels are convenient, but they
+  must have a password and permissions.
+- **Context.** Long sessions are expensive, as everywhere.
+
+## Security
+
+- **Localhost** for local use; remote only with a password and
+  ideally a relay.
+- **Tokens** in OpenCode, not in the prompt.
+- **Approval** for writes and sending.
+- **Logs** and session access need protection; they contain code and
+  context.
+
+## When not to use it
+
+- When you only want a terminal and no extra layer.
+- When you need a stable enterprise product.
+- When providers in OpenCode are not sorted out.
+- When it is a one-off script.
+
+## Where next
+
+- [Agents](/topics/agents/) — the hub for everything an agent needs.
+- [pi](/topics/agents/tools/pi/) — the minimal alternative.
+- [omp](/topics/agents/tools/omp/) — the alternative with LSP.
+- [MausBot](/topics/agents/tools/mausbot/) — a desktop with approval cards.
+- [OpenClaw](/topics/agents/tools/openclaw/) — a gateway from chat apps.
+- [Tool design](/topics/tool-design/) — schema, errors and permissions.
+
+## Sources
+
+- [OpenCode — documentation](https://opencode.ai/docs/) — 11 November 2026
+- [OpenChamber — GitHub](https://github.com/openchamber/openchamber) — 11 November 2026
+- [OpenChamber — documentation](https://docs.openchamber.dev/) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

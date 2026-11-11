@@ -1,0 +1,153 @@
+---
+title: "Citations and RAG evaluation: proving the answer is right"
+description: "RAG has to back up its answers. Citations, metadata, retrieval metrics and faithfulness scoring, with a rubric you can use."
+last_verified: 2026-11-11
+---
+
+RAG without citations is just a chat pretending to know your documents.
+Citations are the proof that the answer comes from your data, and at the
+same time the tool that exposes a hallucination. Evaluation then tells
+you whether RAG works as a whole, not just whether the model can write
+well.
+
+## Short answer
+
+- **Every answer should have a source** — document, page or section.
+- **The citation is generated from metadata**, not by the model.
+- **Evaluate retrieval and the answer separately.** A bad retrieval
+  cannot be saved by a good model.
+- **Without a rubric and a baseline, quality cannot improve.**
+
+## Citations
+
+For every chunk, store:
+
+- **document** and **page**,
+- **section** or **article**,
+- **date** and **version**,
+- **the document hash**.
+
+The answer then cites:
+
+> According to contract no. 123, article 5, page 3: the notice period
+> is two months.
+
+A model can get a citation wrong. That is why the **citation is
+assembled from metadata** and the model only chooses which chunk it
+refers to. When the model invents a page, that is an error, not
+"creativity".
+
+## Retrieval metrics
+
+| Metric | What it says | When to use it |
+|---|---|---|
+| **Recall@k** | was the right chunk in the top k? | the basic search test |
+| **Precision@k** | how many of the top k were relevant? | ranking quality |
+| **MRR** | how high was the first correct result? | ordering |
+| **Hit rate** | was it found at all? | a quick test |
+
+In practice **Recall@5** plus a manual check is often enough. Numbers
+without context do not say whether RAG is usable.
+
+## Evaluating the answer
+
+| Criterion | What to watch |
+|---|---|
+| **Faithfulness** | the answer matches the cited chunk |
+| **Completeness** | nothing important is missing |
+| **Citation** | it points to the right document and page |
+| **Numbers** | amounts, dates and codes are correct |
+| **Language** | grammar and terminology |
+| **Refusal** | when the answer is not in the data, the model says so |
+
+The model should be able to say **"this is not in the documents"**. When
+it cannot, RAG is not safe.
+
+## Example: an answer with a citation
+
+> According to contract no. 123, article 5, page 3, the notice period is
+> two months. The document does not mention an option of immediate
+> termination.
+
+That answer is useful because it admits what the document does not say.
+If the model instead invents article 9, that is a citation error.
+
+## Rubric
+
+| Criterion | 0 | 1 | 2 |
+|---|---|---|---|
+| Faithfulness | invented | partial | exact |
+| Citation | missing | wrong | correct |
+| Completeness | missing | partial | everything |
+| Numbers | error | uncertain | correct |
+| Language | errors | minor | clean |
+
+A maximum of 10 points. For production, set a threshold below which an
+answer does not go out without review.
+
+## Language specifics
+
+- **Diacritics** in citations and names.
+- **Inflection** — the citation has to be exact.
+- **Numbers** — local formatting.
+- **Abbreviations** — company IDs, VAT numbers and tax codes.
+- **Long documents** — the model may cite the wrong page.
+
+## How to enforce citations
+
+It is not about asking the model nicely, but about fixing the format.
+Two routes:
+
+- **Structured output** — the answer has an `answer` field and a
+  `citations` field, where each citation points to a chunk ID. The model
+  cannot return free text.
+- **Post-processing** — the application takes the chunk IDs that were
+  actually used and fills in the document, page and date from metadata.
+
+The second route is safer: even if the model gives a wrong ID, the
+application sees that it does not exist and refuses the answer. Details
+are under [structured
+output](/dictionary/software/structured-output/).
+
+## How many answers to check
+
+A rubric is useful only when answers are actually scored with it. A
+practical routine for every change:
+
+1. **20–30 answers** to questions from operations, not invented ones.
+2. **All refusals** — the model must be able to say "not in the data".
+3. **All answers containing numbers** — amounts, dates, company IDs.
+4. **One user without permission** — they must not receive someone
+   else's document.
+
+When scores between versions differ by one point, that is noise. Decide
+on repeated measurement, not on a single impression.
+
+## Common mistakes
+
+- **Citing only the document**, not the page.
+- **The model invents citations.**
+- **A chunk without metadata.**
+- **Evaluation by impression only.**
+- **Testing on the same data used for development.**
+- **No baseline** — you cannot tell what improved.
+
+## Where next
+
+- [Chunking](/topics/rag/chunking/) — metadata and splitting.
+- [Embeddings in practice](/topics/rag/embeddings-in-practice/) —
+  search.
+- [Permissions and security](/topics/rag/permissions-and-security/) —
+  who sees what.
+- [RAG](/topics/rag/) — the whole pipeline.
+- [Methodology](/about/methodology/) — how we treat data and sources.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+- [RAGAS — arXiv](https://arxiv.org/abs/2309.15217)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

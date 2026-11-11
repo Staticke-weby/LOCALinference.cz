@@ -1,0 +1,180 @@
+---
+title: "Function calling in practice: schema, parser and validation"
+description: "How to switch on tool calling for Qwen3.8 Flash Next, design the schema, validate the arguments and avoid hallucinated calls."
+last_verified: 2026-11-11
+---
+
+**Function calling** is the model's ability to ask for a function to be
+called. In practice the model returns a structured request and your
+application performs it. The schema design, the parser and the
+validation decide the outcome, not the model alone.
+
+## Short answer
+
+- **The model proposes, the application executes.** Never let the model
+  call anything directly without validation.
+- **Keep the schema narrow** — fewer fields, clear types, required
+  values.
+- **Switch on the tool parser in vLLM** and verify that the output is
+  structured.
+- **Log every call** and require confirmation for sensitive actions.
+
+## The schema
+
+A good schema:
+
+- **has few fields**,
+- **uses enums** for choices,
+- **marks required fields**,
+- **has limits** (length, range),
+- **never allows** free text where a number belongs.
+
+Example:
+
+```json
+{
+  "name": "read_file",
+  "description": "Reads a text file inside the allowed directory.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "path": { "type": "string" }
+    },
+    "required": ["path"]
+  }
+}
+```
+
+## vLLM
+
+In vLLM, Qwen3.8 Flash Next uses these switches:
+
+```bash
+--enable-auto-tool-choice
+--tool-call-parser qwen3_coder
+```
+
+Without the parser the model may return text that looks like JSON but
+is not a structured call. Verify it on a simple tool.
+
+## Validation and retry
+
+1. **Check the JSON** — parsability and types.
+2. **Check the required fields.**
+3. **Check the ranges** — numbers, lengths, enums.
+4. **Check permissions** — is the user allowed to do this?
+5. **On an error**, return the specific error to the model and let it
+   fix the call.
+6. **After two errors**, ask a human.
+
+## Tool choice
+
+- **Auto** — the model decides when to use a tool.
+- **Required** — it must call a tool; useful for extraction.
+- **None** — the tools are available, but the model must not use them.
+
+For extraction `required` is useful. For chat, `auto` may feel more
+natural.
+
+## Latency and context
+
+Every call is another round of the model. The history and the tool
+output grow, so:
+
+- **prefill** gets longer,
+- **the KV cache** takes more memory,
+- **the whole task** can take minutes.
+
+That is why you limit the number of steps and the size of tool output.
+
+## Testing
+
+- **A correct call** — the model picks the tool and the arguments.
+- **A missing field** — the application rejects the call.
+- **A file that does not exist** — the tool returns an error and the
+  model handles it.
+- **An unauthorised action** — the application rejects it.
+- **An injection inside a document** — the model must not obey it.
+- **A long output** — it must be truncated.
+
+## Example: invoice extraction
+
+The model gets a `save_invoice` tool with a schema for vendor, company
+ID, amount and date. The output is validated; when the company ID is
+missing, the application rejects the call and returns an error to the
+model. The model asks for the missing value or flags the field. It
+never stores an invented company ID.
+
+## What the model's answer looks like
+
+The model does not call the function itself, it returns a request:
+
+```json
+{
+  "tool_calls": [
+    {
+      "name": "read_file",
+      "arguments": { "path": "contracts/2026/framework-agreement.pdf" }
+    }
+  ]
+}
+```
+
+The application checks permissions, calls the function and returns the
+result as another message. Only then does the model continue. When the
+answer contains `content` instead of `tool_calls`, the model did not
+call the tool — often because the parser is missing or the tool is
+described badly.
+
+## How many steps an agent can handle
+
+Every step adds tool output to the context. An illustrative
+**calculation**: five steps of 1,500 output tokens each is 7,500 tokens
+on top, plus the system prompt, the history and the schemas. In a 32k
+context that means room runs out after six to eight steps.
+
+That is why in practice you set:
+
+- **a maximum number of steps** (say 10) and a clear error when it is
+  used up,
+- **a size limit on tool output**, so one result cannot eat the whole
+  context,
+- **history summarisation** for long tasks.
+
+An agent that runs 40 steps is not proof of quality. It is often a sign
+that it went round in circles.
+
+## Common mistakes
+
+| Mistake | Symptom | Fix |
+|---|---|---|
+| A vague tool description | the model calls the wrong tool | say when to use the tool and when not to |
+| The schema allows free text | the arguments cannot be parsed | restrict types and use enums |
+| `required` is missing | empty arguments | mark the mandatory fields |
+| The application does not validate | it stores an invented company ID | validate and return the error to the model |
+| The tool output is enormous | the context floods | truncate and paginate |
+| Actions without confirmation | an irreversible write | human confirmation |
+
+## When not to do it
+
+- The model should only answer in text.
+- A script can do the task safely.
+- You have no validation and no logs.
+- The action is irreversible and unchecked.
+
+## Where next
+
+- [MCP in practice](/topics/agents/mcp/) — tools and servers.
+- [Tool design](/topics/tool-design/) — schemas and errors.
+- [Coding agents](/topics/agents/coding-agents/) — working with code.
+- [Agent security](/topics/agents/agent-security/) — defence.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — tool calling](https://docs.vllm.ai/en/latest/features/tool_calling.html)
+- [vLLM recipes — Qwen3.8 Flash Next](https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Last verified: 11 November 2026.*

@@ -1,0 +1,156 @@
+---
+title: "Hermes: a self-hosted agent and gateway with a local model"
+description: "Hermes Agent from Nous Research is a self-hosted assistant with channels and approvals. It connects Ollama, vLLM and llama.cpp, and requires 64k context."
+last_verified: 2026-11-11
+---
+
+**Hermes Agent** is a self-hosted assistant and gateway from Nous
+Research. Unlike a simple harness, it also handles memory, skills,
+channels and long-lived sessions. It works with any
+OpenAI-compatible endpoint, so a local model is a first-class
+citizen.
+
+## Short answer
+
+- **MIT, self-hosted, macOS/Linux/WSL2.**
+- **Local model:** Ollama, vLLM, llama.cpp, SGLang, LocalAI.
+- **Minimum [64k context](/dictionary/memory/context/)** for agentic
+  work with tools.
+- **Channels:** Telegram, Discord, Slack, WhatsApp, Signal, email.
+- **Approval:** commands and actions can be confirmed.
+
+## What it is
+
+Hermes is an agent that runs on your machine or server, remembers
+context between sessions and can reach you over messaging. It adds
+skills, delegation and tool work. Configuration lives in
+`~/.hermes/config.yaml`; data stays local.
+
+It is not just a chat. Hermes can run commands, edit files and browse
+the web — which is why it needs permissions and supervision.
+
+## Connecting a local model
+
+**Ollama:**
+
+```bash
+ollama serve
+```
+
+Then:
+
+```text
+hermes model
+# Custom endpoint
+# URL: http://localhost:11434/v1
+# key: leave empty
+# model: qwen3.5:27b
+# context: 64000
+```
+
+**vLLM or llama.cpp:**
+
+```yaml
+# ~/.hermes/config.yaml
+model:
+  default: "qwen3.8-flash-next"
+  provider: "custom"
+  base_url: "http://127.0.0.1:8000/v1"
+```
+
+For llama.cpp use `--jinja` so that the chat template and tool
+calling work. With vLLM, check `--max-model-len` and the KV cache.
+
+**Mind the context:** Hermes refuses anything below 64,000 tokens,
+because the system prompt, tool schemas and history need room. With
+Ollama the default context varies with memory; set
+`OLLAMA_CONTEXT_LENGTH=64000`.
+
+## Install
+
+1. Install Hermes according to the documentation.
+2. Run `hermes setup` or `hermes model`.
+3. Choose a custom endpoint and enter the URL, key and model.
+4. Verify tool calling on a simple task.
+5. Optionally connect a channel (Telegram, Discord…).
+
+The desktop preview can manage a local llama.cpp server, including
+downloading a model and setting the context.
+
+## Workflow
+
+1. You give a goal in the terminal or in a channel.
+2. Hermes plans the steps and uses tools.
+3. Risky actions wait for confirmation.
+4. The result is written to the session and to memory.
+5. You can continue later or from another device.
+
+Memory and skills are useful on long projects; at the same time they
+mean the agent holds more context than you might expect.
+
+## Memory and skills
+
+- **Memory** — what the agent remembers between sessions.
+- **Skills** — learned procedures it can reuse.
+- **Delegation** — handing part of a task to another run.
+- **Curator** — choosing what is worth remembering.
+
+Memory increases usefulness and risk at the same time: what is
+stored once can surface in another session. Limit retention and
+check what gets stored.
+
+## Channels
+
+| Channel | What for | Note |
+|---|---|---|
+| Telegram | a personal agent | easy pairing |
+| Discord | a team | permissions follow the server |
+| Slack | a company | watch out for sensitive channels |
+| WhatsApp | personal | less suitable for work |
+| Email | asynchronous tasks | easy to forward |
+
+A channel is the way into the agent. When you open it, you also open
+a path for prompt injection from incoming messages.
+
+## Limits
+
+- **64k minimum.** A smaller context does not work reliably.
+- **Local model.** The quality of tool calling decides everything.
+- **Channels.** The gateway has to be secured.
+- **Young project.** Behaviour changes between versions.
+- **Configuration.** More layers than a simple harness.
+
+## Security
+
+- **The gateway** never on the public internet without a proxy and a
+  password.
+- **Channel tokens** need protecting; they are access to your
+  accounts.
+- **Approval** for the shell, writes and sending.
+- **Memory** can hold sensitive data; limit retention.
+- **Prompt injection** can arrive in a message or a document.
+
+## When not to use it
+
+- When you only want a quick coding agent in the terminal.
+- When your model has less than 64k context.
+- When you do not want to deal with a gateway and channels.
+- When you need strictly local operation without messaging.
+
+## Where next
+
+- [Agents](/topics/agents/) — the hub for everything an agent needs.
+- [Hermes Desktop](/topics/agents/tools/hermes-desktop/) — a local model in one click.
+- [OpenClaw](/topics/agents/tools/openclaw/) — the alternative gateway.
+- [MausBot](/topics/agents/tools/mausbot/) — a desktop with approval cards.
+- [Agent memory](/topics/agent-memory/) — what the agent keeps.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [Hermes Agent — documentation](https://hermes-agent.nousresearch.com/docs/) — 11 November 2026
+- [Hermes — providers and local endpoints](https://hermes-agent.nousresearch.com/docs/integrations/providers) — 11 November 2026
+- [Hermes — Ollama setup](https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

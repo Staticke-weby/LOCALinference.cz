@@ -1,0 +1,185 @@
+---
+title: "Who makes abliterated models and how to spot a solid one"
+description: "Who publishes abliterated models, what a model card should contain, how to read the indexes and what the provenance of the weights is. Without recommending a specific model."
+last_verified: 2026-11-11
+---
+
+> **This is not a recommendation.** We list examples of publishers and
+> criteria, not a ranking. A link to a repository does not mean the
+> model is safe or suitable.
+
+Abliterated models do not come out of big-company labs. They are
+published by individuals, small teams and community publishers, often
+within days of the base model's release. Quality therefore varies a
+lot.
+
+## Short answer
+
+- **The publisher is not the same thing as the model vendor.** Most just
+  modify finished weights.
+- **Provenance is everything**: base, revision, method, quantisation.
+- **The indexes are a catalogue**, not proof. They do not verify claims.
+- **"Uncensored" in the name is not a technical fact.**
+
+## Who does it
+
+| Type of publisher | What they do | What to watch |
+|---|---|---|
+| **An individual** | quick builds, experiments | documentation, licence |
+| **A small team** | consistent methodology, measurements | revisions, tests |
+| **A quantisation publisher** | converts someone else's model to NVFP4/GGUF | preserving the abliteration |
+| **A community index** | catalogue and metadata | verifies nothing, only collects |
+
+In practice the roles mix: one publisher abliterates the model, another
+quantises it, a third packages it into a container. Something can get
+lost at every step.
+
+## What a model card should contain
+
+A solid card answers seven questions:
+
+1. **The base** — the exact revision of Qwen3.8 Flash Next.
+2. **The method** — diff-in-means, orthogonalisation, LoRA, Heretic.
+3. **Where the edit was made** — attention, experts, MTP.
+4. **Refusal before and after** — set, scorer, protocol.
+5. **Quality** — benchmarks and known losses.
+6. **Quantisation** — what it was measured on.
+7. **Licence** — the publisher and the base model.
+
+When one is missing, it is a candidate. When three are missing, it is a
+risk.
+
+## Provenance in practice
+
+Provenance means you can trace the path from the base to the file:
+
+```
+Qwen/Qwen3.8-Flash-Next (revision A)
+  └─ nvidia/Qwen3.8-Flash-Next-FP4-Local (revision B)
+       └─ DevelopingDad/...-Abliterated (revision C)
+```
+
+At every step it should be visible what changed and what stayed. When the
+card says only "based on Qwen", provenance is missing.
+
+## Indexes and catalogues
+
+- [abliteratedmodels.org](https://www.abliteratedmodels.org/) —
+  metadata from the Hugging Face API, methodology, filtering.
+- [abliter.cn](https://abliter.cn/en/) — a similar catalogue with formats
+  and methods.
+
+Both collect public metadata. They **do not verify** whether the model
+really does what the card claims. Treat them as a signpost, not an
+audit.
+
+## How a build is made
+
+The typical path from the base to a finished repository:
+
+1. **Base** — the exact Qwen3.8 revision is downloaded.
+2. **Abliteration** — computing the direction and editing the weights.
+3. **Quantisation** — NVFP4, GGUF or MLX, often with a test of whether
+   the edit survived.
+4. **Package** — container, launcher, PLE and MTP configuration.
+5. **Documentation** — method, numbers, licence, date.
+
+Every step can change the result. When the card skips step 3, you do not
+know whether the model still refuses less after quantisation.
+
+## How to check a repository
+
+- [ ] Is the exact revision of the base stated?
+- [ ] Are the method and the scope of the edit described?
+- [ ] Are the refusal numbers before and after?
+- [ ] Is it stated which quantisation was measured?
+- [ ] Are both the publisher's and the base licence visible?
+- [ ] Is there a configuration in the repo for the engine you use?
+- [ ] Is there a date and a version?
+
+When more than two items are missing, treat the model as an experiment.
+
+## Common publisher mistakes
+
+| Mistake | Consequence |
+|---|---|
+| Abliteration on BF16, selling NVFP4 without a test | refusal comes back |
+| No launcher for the specific hardware | the model cannot be started |
+| Quantisation not stated with the numbers | the numbers cannot be compared |
+| A promise of "same as the base" without measurement | untrustworthy |
+| A licence copied from the base without explanation | legal risk |
+
+## Who is who
+
+| Role | What they do | Responsible for |
+|---|---|---|
+| **The base vendor** | trains Qwen3.8 | architecture and licence |
+| **The quantiser** | converts to NVFP4/GGUF | format and numbers |
+| **The abliterator** | removes refusal | method and measurement |
+| **The packager** | launcher, container, PLE | that it can be started |
+| **The index** | catalogue and metadata | verifies none of it |
+
+One entity can fill several roles. When the card says "by X", you need to
+find out which role X actually had.
+
+## How to recognise a repackaged build
+
+- **The original model card has disappeared** and only the name is left.
+- **The base revision or the method is missing.**
+- **The numbers are repeated** from another repo without change.
+- **The launcher is from different hardware** and nobody says so.
+- **The licence is "other"** without a link to the text.
+- **The date is old**, but the name promises something new.
+
+A repackaged build is not automatically fraud. But it is something
+different from original work, and the card should admit that.
+
+## Warning signs
+
+- **"Uncensored" without a method** — marketing.
+- **A missing licence** or one that conflicts with the base.
+- **No refusal numbers** before and after.
+- **Claims parity without a configuration.**
+- **A gated repo without explaining who published it and why.**
+- **Binaries instead of weights** — you do not know what they contain.
+- **An aggressive name** instead of a technical description.
+
+## Example: four roles
+
+| Example | Role | What is documented |
+|---|---|---|
+| huihui-ai | abliteration of the base | BF16 weights, GGUF variants |
+| OrcaRouter | abliteration + NVFP4 | 180B, 184 GB, a card with measurements |
+| lflare | editing on the quantisation grid | CSF container, quality measurements |
+| DevelopingDad | a package for DGX Spark | launcher, PLE from SSD, measurements |
+
+These are not recommendations. They are examples of different roles that
+you must be able to tell apart when you read a card.
+
+## When not to buy it
+
+- When the card does not state a licence.
+- When there are no refusal numbers.
+- When you do not know which quantisation was measured.
+- When the publisher mixes marketing and engineering.
+- When the model needs more memory than you have.
+
+## Where next
+
+- [Abliterated models](/topics/abliteration/) — what it is.
+- [How it works](/topics/abliteration/how-abliteration-works/) — the
+  technique.
+- [Running on 128 GB](/topics/abliteration/running-on-128gb/) — builds.
+- [Risks and law](/topics/abliteration/risks-and-law/) — licences.
+- [Hugging Face](/dictionary/software/huggingface/) — how to read cards.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [abliteratedmodels.org](https://www.abliteratedmodels.org/) — 10 November 2026
+- [abliter.cn](https://abliter.cn/en/) — 10 November 2026
+- [Hugging Face — model card](https://huggingface.co/docs/hub/model-cards)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

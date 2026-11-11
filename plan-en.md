@@ -228,22 +228,36 @@ pravdy a EN se z něj replikuje.*
 
 ## Stav k 11. 11. 2026
 
-CZ vyrostlo na **186 stránek**, EN má **112**. Chybí **74**:
+CZ má **186 stránek**, EN má **186**. Parita rout je **hotová**:
+`data/preklady.yaml` hlásí 187/187 (186 stránek + konfigurace OEM).
 
-| Sekce | Chybí | Co |
-|---|---:|---|
-| Témata | 47 | abliterace (6), agenti (16), čeština (6), RAG (6), provoz (8), praxe (5) |
-| Slovník | 26 | nová hesla od 9. 11. (kontext, MCP, abliterace, orchestrace…) |
-| Model | 1 | abliterovaná varianta Qwen3.8 |
+Co se v dávce 11. 11. přeložilo:
 
-Hotovo v dávce 11. 11.: osm nových témat jako plné EN články
-(context engineering, quantization in practice, electricity/noise/heat,
-agent memory, tool design, model routing, observability, backups and
-recovery) a oprava 180B parametrů na čtyřech místech EN.
+| Dávka | Stránek |
+|---|---:|
+| Osm nových témat (kontext, kvantizace, elektřina, paměť, nástroje, routing, observability, zálohy) | 8 |
+| Abliterace (6) + abliterovaná varianta modelu | 7 |
+| Agenti: pilíř, 6 kapitol a 9 nástrojů | 16 |
+| Čeština a dokumenty + Praxe pro profese | 11 |
+| RAG a dokumenty | 6 |
+| Provoz a bezpečnost | 8 |
+| Slovník: nová hesla v `data/en/slovnik.yaml` | 25 |
+| **Celkem** | **81** |
+
+Opraveno navíc: EN tvrdila 125B parametrů, správně je 180B celkem
+(125B main + 51B N-gram + 4B MTP) na čtyřech místech.
 
 `scripts/parita.mjs` se opravil: dřív počítal dynamické stuby témat
 a slovníku jako hotové stránky, takže hlásil 185/186. Teď kontroluje
-skutečné EN soubory a `data/en/*.yaml`, takže čísla odpovídají webu.
+skutečné EN soubory a `data/en/*.yaml`.
 
-Další dávky: slovník (26 hesel), abliterace (6+1), agenti (16),
-čeština a RAG (12), provoz (8), praxe (5).
+### Co ještě není plná hloubka
+
+- **12 témat je stále stub** z `data/en/temata.yaml` (cena, firmy, DGX,
+  Strix, RTX, Qwen, 128 GB, Windows 11, obrázky, video, audio, 3D).
+  Routa existuje, ale článek má 100–150 slov místo plné stránky.
+- **36 starších hesel slovníku** má 25–60 slov; nových 25 hesel má
+  120–200 slov. Sjednotit je znamená rozšířit starší hesla.
+
+Tyto dvě věci nejsou chybějící routy, ale hloubka. Další dávka je může
+srovnat s CZ.

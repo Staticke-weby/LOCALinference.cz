@@ -1,0 +1,119 @@
+---
+title: "Local AI in practice: professions, tasks and risks"
+description: "How to use local AI in law, accounting, manufacturing and software development. Concrete tasks, workflows, data, risks and what to measure."
+last_verified: 2026-11-11
+---
+
+Local AI is not a product you buy and switch on. It is a tool that has
+to fit a **specific profession, specific documents and a specific
+responsibility**. This cluster shows four areas where starting makes
+sense: law, accounting, manufacturing and software development.
+
+## Short answer
+
+- **Start with one task**, not “AI for the whole company”.
+- **Data and responsibility** decide more than the model.
+- **A person stays in control** of anything with a legal or financial
+  impact.
+- **Measure time, errors and quality** — without a baseline the benefit
+  cannot be shown.
+
+## The common pattern
+
+| Step | What to do |
+|---|---|
+| **1. Task** | pick repeated work with documents |
+| **2. Data** | find out where it comes from and who may see it |
+| **3. Model** | Qwen3.8 Flash Next on a 128GB box |
+| **4. Workflow** | input → model → check → output |
+| **5. Risks** | error, leak, liability, licence |
+| **6. Measurement** | time, errors, quality, cost |
+
+The pattern holds in all four professions. Only the data, the regulation
+and the consequences of an error differ.
+
+## Four professions
+
+- **[Law](/topics/practice/law/)** — contracts, case law, confidentiality.
+- **[Accounting](/topics/practice/accounting/)** — invoices, VAT, audit.
+- **[Manufacturing](/topics/practice/manufacturing/)** — manuals, documentation, offline.
+- **[Developers](/topics/practice/developers/)** — code, tests, agents.
+
+## Which profession to start with
+
+| Profession | Best first task | Consequence of error | Demands on the check |
+|---|---|---|---|
+| **Law** | summary and clause extraction | high | citations and review |
+| **Accounting** | invoice extraction | high | numbers and validation |
+| **Manufacturing** | search in a manual | safety | document version |
+| **Developers** | tests and review | medium | tests and diff |
+
+Start where there is **fast feedback**: an accountant sees that the sum
+does not add up; a developer sees that the test passed. Law and
+manufacturing have more expensive verification, so they need a stricter
+process.
+
+## What the first month looks like
+
+1. **Week 1** — choose the task, 20–50 samples, a manual baseline.
+2. **Week 2** — structured output and validation.
+3. **Week 3** — test on the samples, measure the error rate.
+4. **Week 4** — a pilot with one user and a collection of errors.
+
+Without the baseline from week 1, week 4 has nothing to compare with.
+That is the most common reason why the benefit cannot be defended.
+
+## What they have in common
+
+- **Documents** are both the input and the output.
+- **Czech** and professional terminology decide the outcome.
+- **The check** is part of the workflow, not an afterthought.
+- **Permissions** belong in the application, not in the prompt.
+- **Backups** and audit are mandatory for sensitive data.
+
+## Example: law and accounting
+
+A law firm starts with contract summaries, an accounting firm with
+invoice extraction. Both have the same foundation: documents,
+validation and a human check. Only the consequences of an error and the
+regulation differ. That is why law puts more weight on citations and
+confidentiality, accounting on numbers and audit.
+
+## When it makes no sense
+
+- The task is **a one-off**.
+- The data is **public** and the cloud does not bother you.
+- You have **no one to check** the output.
+- You cannot **measure the benefit**.
+- The project is just **“we want AI”** without a process.
+
+## Where the limit is
+
+- **Regulation** — in law, accounting and HR the interpretation decides,
+  not the model.
+- **Data** — without permissions and good documents even the best model
+  will not help.
+- **The check** — someone has to actually read the output; without that
+  the risk is higher than the benefit.
+- **Measurement** — without a baseline the benefit can neither be
+  defended nor improved.
+- **Capacity** — one 128GB box serves 1–4 people at once
+  ([calculation](/choosing/how-many-users/)).
+
+## Where next
+
+- [Law](/topics/practice/law/) — contracts and confidentiality.
+- [Accounting](/topics/practice/accounting/) — invoices and VAT.
+- [Manufacturing](/topics/practice/manufacturing/) — manuals and offline.
+- [Developers](/topics/practice/developers/) — code and agents.
+- [Local AI for business](/topics/local-ai-for-business/) — the decision.
+- [RAG](/topics/rag/) — documents.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Methodology](/about/methodology/)
+- [GDPR — official text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [AI Act — official text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+
+*Last verified: 11 November 2026.*

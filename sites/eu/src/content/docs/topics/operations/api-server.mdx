@@ -1,0 +1,164 @@
+---
+title: "API server for local AI: access, TLS and limits"
+description: "How to expose a local model safely as an API for a team. Reverse proxy, authentication, TLS, rate limits and health checks."
+last_verified: 2026-11-11
+---
+
+A model started in a terminal is fine for a test. For a team you need an
+**API server** that applications connect to, and an **access layer**
+that decides who may call what. An open port with a model on it is an
+invitation to everyone on the network.
+
+## Short answer
+
+- **Do not expose the model to the internet directly.** Use a reverse
+  proxy.
+- **Authentication is mandatory**, even on the local network.
+- **TLS** deals with eavesdropping; without it, do not send sensitive
+  data.
+- **Rate limits and health checks** are part of running the service, not
+  a bonus.
+
+## Architecture
+
+| Layer | What it does | Example |
+|---|---|---|
+| **Model server** | inference and the OpenAI API | vLLM, llama.cpp |
+| **Reverse proxy** | TLS, auth, limits | Caddy, Nginx |
+| **Application** | chat, RAG, agent | an internal tool |
+| **Monitoring** | metrics and logs | Prometheus, logs |
+
+Listen for the model server on `localhost` or on the internal network,
+never on a public IP.
+
+## Authentication
+
+Options:
+
+- **API key** — simple, but it has to be rotated.
+- **Session** — for people, not for applications.
+- **OIDC / SSO** — for a company.
+- **Proxy auth** — the proxy verifies the caller and passes the identity
+  on.
+
+Never put a key in a prompt or in a public client. For a team, use a
+shared account with rotation, not personal tokens.
+
+## TLS and the proxy
+
+- **TLS** on the proxy, not on the model server.
+- **HTTP/2** and compression as needed.
+- **Timeout** longer than the longest answer.
+- **Max body size** because prompts can be large.
+- **Health check** on `/health` or an equivalent.
+
+## Rate limits
+
+- **Request count** per user.
+- **Token count** per request.
+- **Concurrency** according to memory.
+- **Queue** with a timeout.
+
+Without a limit, one user pushes everybody else out of the KV cache.
+
+## Logs
+
+- **Who** called.
+- **When**, and with which model.
+- **How many tokens**.
+- **Latency** and errors.
+- **Without the content** of sensitive prompts unless it is necessary.
+
+Logs need retention and access rights.
+
+## Example: an internal endpoint
+
+The model runs on `localhost:8000`. A proxy on `ai.company.local`
+handles TLS and sign-in. The client receives an API key with a limit.
+Requests go to `/v1/chat/completions`. Port 8000 is not reachable from
+another network. That is the base to which monitoring and logs are
+added.
+
+## What a request looks like
+
+The client sends OpenAI-compatible JSON:
+
+```bash
+curl https://ai.firma.local/v1/chat/completions \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen3.8-flash-next",
+    "messages": [{"role": "user", "content": "Shrň tento dokument…"}],
+    "max_tokens": 800,
+    "stream": true
+  }'
+```
+
+`stream: true` means the answer flows token by token. For chat that feels
+better; for batch processing the whole answer at once is enough and
+logging is simpler.
+
+## How many requests it can handle
+
+Capacity is computed from aggregate throughput, not from the number of
+people. An illustrative **calculation** at roughly 100 tok/s aggregate
+and an average answer of 400 tokens:
+
+```
+requests per second ≈ 100 / 400 = 0.25
+requests per minute ≈ 15
+```
+
+That is the theoretical ceiling with nonstop generation. In practice
+count on half of it, because of prefill, the queue and the pauses
+between questions. For a team of up to four people that is enough; for
+more boxes you need a queue in the proxy (see
+[capacity](/choosing/how-many-users/)).
+
+## Common mistakes
+
+| Problem | Cause | Fix |
+|---|---|---|
+| `401 Unauthorized` | missing or expired token | key rotation, a clear error |
+| `413 Payload Too Large` | body size limit in the proxy | raise the limit, trim the prompt |
+| `504 Gateway Timeout` | proxy timeout shorter than the answer | lengthen the timeout |
+| The answer arrives in pieces | `stream: true` | the client must read the stream |
+| The model does not respond | the port is not reachable | health check and logs |
+| It crashes under concurrency | too little KV cache | lower `max-num-seqs` |
+
+## Checklist
+
+- [ ] The model does not listen on a public IP.
+- [ ] The proxy handles TLS.
+- [ ] Authentication is on.
+- [ ] A rate limit is set.
+- [ ] The health check works.
+- [ ] Logs contain no secrets.
+- [ ] There is a key rotation plan.
+- [ ] There is a kill switch.
+
+## When you do not need this
+
+- One user on localhost.
+- A short test without a network.
+- The model holds no sensitive data.
+- You have neither a team nor an application.
+
+## Where next
+
+- [Monitoring](/topics/operations/monitoring/) — metrics.
+- [Updates](/topics/operations/updates/) — versions.
+- [Operational security](/topics/operations/security/) — defence.
+- [vLLM](/dictionary/software/vllm/) — the server.
+- [Local AI for business](/topics/local-ai-for-business/) — operation.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [vLLM — documentation](https://docs.vllm.ai/)
+- [Caddy — documentation](https://caddyserver.com/docs/)
+- [Nginx — documentation](https://nginx.org/en/docs/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Last verified: 11 November 2026.*

@@ -1,0 +1,188 @@
+---
+title: "Model refusal: what it is and which areas it covers"
+description: "Refusal is a trained reaction to a harmful request. We explain what it covers, how it is measured and what changes after abliteration."
+last_verified: 2026-11-11
+---
+
+> **This is an explanation, not a how-to.** We do not list the prompts
+> used to get around refusal, nor procedures for harmful tasks.
+
+**Refusal** is the situation where a model does not answer a request as
+asked but instead declines it, warns or redirects. It is neither a bug
+nor censorship in the legal sense: it is the result of training meant
+to prevent harm. Abliteration suppresses that habit.
+
+## Short answer
+
+- **A refusal is not a single rule.** The model has it in many layers
+  and it shows up differently depending on language and context.
+- **A refusal differs from a warning.** A warning gives the answer with
+  the risk attached; a refusal does not give it.
+- **Over-refusal** is the second problem: the model refuses even a
+  benign thing because it mistakes it for a risk.
+- **Abliteration lowers refusal**, but it does not settle whether the
+  answer is correct or lawful.
+
+## Five model reactions
+
+| Reaction | What the model does | Example |
+|---|---|---|
+| **Answer** | fulfils the task | explains the procedure |
+| **Warning** | answers but flags the risk | "that is dangerous, but the principle is…" |
+| **Redirect** | offers a safer variant | offers prevention instead of instructions |
+| **Refusal** | does not answer at all | "I cannot do that" |
+| **Tool failure** | the tool returns an error | the model lacks permission |
+
+Abliteration mainly targets the last two items. Warnings and redirects
+may remain, because they are not always tied to the same direction.
+
+## Areas that refusal covers
+
+The table describes categories, not specific queries. Each has the
+reason why vendors address it and what threatens when refusal is
+switched off.
+
+| Area | Why it is refused | Risk after abliteration |
+|---|---|---|
+| **Violence and weapons** | harm to health | instructions for hurting someone |
+| **Illegal conduct** | criminal liability | support for crime |
+| **Drugs** | health and law | dosing, manufacture |
+| **Self-harm** | protection of life | escalation of a crisis |
+| **Sexual content and minors** | law and ethics | serious criminal offence |
+| **Hate and dehumanisation** | protection of groups | spreading hate |
+| **Privacy and personal data** | GDPR and dignity | doxxing, profiling |
+| **Health and law** | professional liability | dangerous advice |
+| **Copyright** | licence and law | plagiarism, infringement |
+| **Cybersecurity** | misuse | attack, malware |
+| **Political persuasion** | manipulation | disinformation |
+| **Bypassing its own rules** | system integrity | jailbreak, audit evasion |
+
+The categories overlap. A query about "an overdose remedy" is health and
+safety; a query about "a security test" is both legitimate and risky
+depending on context.
+
+## Refusal versus over-refusal
+
+**Over-refusal** is the opposite problem: the model refuses something
+that is legal and safe. Typically:
+
+- health education for students,
+- a security audit of your own system,
+- historical text with violence,
+- fiction with conflict,
+- a legal explanation of a crime.
+
+When a model refuses too much, people reach for abliteration. That is
+understandable, but the solution has side effects: along with the
+excessive refusal, the useful one disappears too.
+
+## How refusal is measured
+
+Refusal is not a binary property. It is measured on a **set of
+prompts** and with a **protocol**:
+
+1. **Set** — how many prompts, of what kind, in what language.
+2. **Category** — benign, borderline, harmful.
+3. **Scorer** — who decides that it was a refusal (a person, a model, a
+   rule).
+4. **Refusal rate** — the share refused in each category.
+5. **False refusals** — benign prompts that the model refused.
+
+A number without a protocol means nothing. When a publisher states "0 %
+refusals", it must say on which set and how it was counted. Otherwise
+it cannot be compared.
+
+## What changes after abliteration
+
+| What | What happens |
+|---|---|
+| **Refusing harmful queries** | drops significantly |
+| **Over-refusal** | drops as well |
+| **Knowledge** | stays |
+| **Answer quality** | may drop, mainly on complex tasks |
+| **Instructions and format** | may get worse |
+| **Tool calling** | may break, especially after quantisation |
+| **Language** | Czech may be worse than English |
+
+## Czech specifics
+
+- **Safety training is stronger in English.** A Czech query may pass
+  even with the base model, because the model does not evaluate it as
+  risky.
+- **Refusal in Czech can be inconsistent** — once yes, next time no.
+- **Translation changes the context.** A literal translation of a
+  harmful query may not look harmful.
+- **A local model has no input moderation.** You have to add that
+  yourself.
+
+## Three Czech situations
+
+Refusal shows up differently in Czech than in English. Three examples
+where the decision sits on the edge:
+
+| Situation | What is right | What often happens |
+|---|---|---|
+| **A historian writes about war crimes** | explain the context and the facts | the model refuses because of violence |
+| **An IT team tests its own system** | describe the method and scope | the model refuses as "hacking" |
+| **Medical awareness about overdose** | state prevention and help | the model refuses as instructions |
+
+In all three cases the refusal is **excessive**: the query is legitimate
+and the answer has public benefit. Abliteration removes such refusals —
+but along with them, the justified ones too.
+
+## How to test in operation
+
+A one-off test before deployment is not enough. Refusal changes with the
+prompt, the context and the language. A practical procedure:
+
+1. **A set of 20 queries** from your operation, half of them benign.
+2. **A second set of 20** borderline ones, where you want an answer
+   with a warning.
+3. **A third set of 20** clearly harmful ones, where you want a
+   refusal.
+4. **A protocol** — who evaluates and on what basis.
+5. **A monthly repeat** after every change of model or prompt.
+6. **A log** — which queries changed and why.
+
+When the benign set refuses more than 10 %, the model is inconvenient
+for your operation. When the harmful set does not refuse at all, you
+have an abliterated model and you need to know that.
+
+## Common mistakes
+
+- **Judging by impression** — one query is not a measurement.
+- **Mixing languages** — a Czech result does not hold for English.
+- **Testing only on public sets** — the model may know them.
+- **Not writing down the protocol** — a number without it cannot be
+  compared.
+- **Confusing a refusal with a tool error** — it is not the same thing.
+- **Switching moderation off** after abliteration — the risk remains.
+
+## Where the limit is
+
+- **Refusal is not a guarantee of safety.** A model can answer even
+  without abliteration when you steer it there with context.
+- **Abliteration does not settle liability.** That stays with the
+  operator.
+- **Measurement is expensive** — a good set and a scorer are not free.
+- **Language and culture** must be reflected in the set, otherwise the
+  number lies.
+
+## Where next
+
+- [How abliteration works](/topics/abliteration/how-abliteration-works/)
+  — the technique.
+- [Risks and law](/topics/abliteration/risks-and-law/) — consequences.
+- [Running on 128 GB](/topics/abliteration/running-on-128gb/) — builds.
+- [Abliterated models](/topics/abliteration/) — what they are.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+- [Model routing](/topics/model-routing/) — when to use which model.
+
+## Sources
+
+- [Arditi et al. — Refusal direction](https://arxiv.org/abs/2406.11717)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

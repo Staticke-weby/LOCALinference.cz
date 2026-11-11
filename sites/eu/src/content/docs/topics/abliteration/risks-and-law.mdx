@@ -1,0 +1,200 @@
+---
+title: "Abliterated models: risks, liability and licences"
+description: "What an abliterated model can cause, who carries the liability, what the AI Act and GDPR say and how the publishers' licences diverge."
+last_verified: 2026-11-11
+---
+
+> **This is not legal advice.** It is an overview of the risks and the
+> questions that have to be settled before deployment. Consult a lawyer
+> about a specific case.
+
+Abliteration is not just a technical edit. It changes which outputs the
+model produces, and with that the risk for you, your users and the
+people the model makes decisions about. Liability stays with the
+operator.
+
+## Short answer
+
+- **A model has no will and no intent.** The risk arises with the user
+  and the operator.
+- **The biggest risk is the combination with tools.** An agent can
+  perform an action, not just write text.
+- **Local operation means neither anonymity nor GDPR compliance.**
+- **The licence differs from build to build** and some cards contradict
+  each other.
+
+## What a model can cause
+
+| Risk | What it looks like | Who carries the consequence |
+|---|---|---|
+| **Illegal content** | instructions, manufacture, distribution | the operator and the user |
+| **Harm to health** | dangerous advice, a procedure | the operator |
+| **Disinformation** | convincing invented text | whoever publishes it |
+| **Hate** | dehumanisation of groups | the operator |
+| **Privacy** | assembling personal data | the data controller |
+| **Harm by an agent** | an email, a payment, a deletion | the operator |
+| **Discredit** | text passed off as expert | whoever uses it |
+
+A model on its own executes nothing. But when it gets tools, it can send
+an email, write to a database or run a command. That is where the risk
+stops being textual.
+
+## Capability versus intent
+
+An abliterated model is **more capable of doing harm**, because it has no
+guardrails. But it is not an "evil model". The difference is that:
+
+- a model has no intent, only probabilities,
+- a user has intent and responsibility,
+- an operator has control and responsibility,
+- the publisher of the weights is responsible for what it claims.
+
+When these roles get mixed up, the impression arises that "the model did
+it".
+
+## Liability
+
+- **The operator** decides the purpose, access and deployment.
+- **The user** is responsible for what they do with the output.
+- **The publisher of the weights** is responsible for the model
+  description and licence, not for your use.
+- **The hardware vendor** is not responsible for the model's outputs.
+
+With an agent there is also an **action approver**. When an agent sends an
+email, the one who authorised the sending is responsible, not the model.
+
+## AI Act
+
+Regulation (EU) 2024/1689 introduces obligations according to the type
+and risk of the system. For a local model that means:
+
+- **classify the purpose** — what the system decides and about whom,
+- **document** the model, the data and the limitations,
+- **human oversight** for decisions affecting people's rights,
+- **transparency** towards users,
+- **risk management** and testing,
+- **incidents** and reporting according to the type of system.
+
+Not every internal chatbot is high-risk. Deployment in recruitment,
+education, healthcare or access to services can be. Check the current
+text and annexes; the interpretation can change. If you operate outside
+the EU, your local rules apply instead, but the same questions remain.
+
+## GDPR
+
+Abliteration does not change the obligations. The following still
+applies:
+
+- **a legal basis** for processing,
+- **minimisation** — do not send the model what you do not need,
+- **retention** — how long you keep logs and outputs,
+- **data subject rights** — access, rectification, erasure,
+- **security** — access, encryption, backups.
+
+Watch out for **logs**: they can contain whole prompts and personal
+data. Switch them off and you lose the audit trail; switch them on and
+you raise the risk. The solution is short retention and logging
+metadata, not content.
+
+## Licences: let us state them as they are
+
+| Model | Licence according to the card | Note |
+|---|---|---|
+| Qwen3.8 Flash Next | Qwen Community License 1.0 | the base |
+| NVIDIA FP4-Local | NVIDIA Open Model Agreement | the quantised base |
+| DevelopingDad FP4-Local-Abliterated | NVIDIA Open Model + Qwen Community | inherits both layers |
+| lflare CSF-QAD-Abliterated | Qwen Community License 1.0 | inherits the base |
+| OrcaRouter Uncensored NVFP4 | the card states Apache-2.0 | **conflict** with the Qwen Community base |
+| huihui-ai abliterated | "other" | the specific text is in the repository |
+
+**We do not resolve the conflict.** We state what the publisher claims
+and what applies to the base model. Anyone who wants to deploy the model
+commercially has to read the licence themselves; we cannot promise them
+that Apache-2.0 is correct.
+
+The basic rules of the Qwen Community License 1.0 include commercial use,
+but also conditions for services and attribution. The details are in the
+`LICENSE` file of the model.
+
+## Risk matrix by use
+
+| Use | Suitability | What must be there |
+|---|---|---|
+| **Internal research and testing** | suitable | documentation, isolation, no production data |
+| **Creative writing for adults** | conditional | age verification, moderation, a legal framework |
+| **Customer support** | conditional | output moderation, human oversight, logs |
+| **HR and recruitment** | **unsuitable** | it decides about people, high-risk |
+| **Healthcare and law** | **unsuitable** | professional liability |
+| **A public service** | **unsuitable** | transparency and user protection |
+
+"Conditional" means the model must not be the only layer. There must be
+moderation, a human and the option to stop operation.
+
+## What to do in case of misuse
+
+- **Detection** — patterns of repeated queries, complaints, logs.
+- **Stopping** — immediate shutdown of the model or a specific account.
+- **Evidence** — keep logs, but without unnecessary personal data.
+- **Notification** — according to the nature and to GDPR/AI Act.
+- **Remediation** — moderation, restrictions, training.
+- **Record** — what happened and what changed.
+
+When misuse means illegal content, deleting it is not enough. The
+reporting obligation has to be assessed.
+
+## When the base model is the better choice
+
+- When you need **reliable tools** and format.
+- When it is a **public service**.
+- When you have **no moderation**.
+- When the risk is **higher than the benefit**.
+- When you are **not sure about the licence**.
+
+## Checklist before deployment
+
+- [ ] Is the purpose clear and who is responsible for it?
+- [ ] Is the model suitable for that purpose, even without guardrails?
+- [ ] Is the licence settled for commercial use?
+- [ ] Do we have input and output moderation?
+- [ ] Is a human in control of sensitive actions?
+- [ ] Are the logs free of unnecessary personal data?
+- [ ] Can we stop the model and revoke access?
+- [ ] Do we have an incident plan?
+- [ ] Is it clear what "this is not legal advice" covers?
+
+## Incident
+
+1. **Stop** the model or the agent.
+2. **Revoke** tokens and access.
+3. **Preserve** the logs and establish the scope.
+4. **Fix** the cause and add a test.
+5. **Consider notification** under GDPR and the AI Act.
+6. **Write down** the lessons.
+
+## When not to use it
+
+- **A public service** without moderation.
+- **Healthcare, law, HR** without professional oversight.
+- **Decisions about people** without human control.
+- **An agent with production keys.**
+- **When you are not sure about the licence.**
+
+## Where next
+
+- [Abliterated models](/topics/abliteration/) — what it is.
+- [Running on 128 GB](/topics/abliteration/running-on-128gb/) — builds.
+- [Who makes them](/topics/abliteration/who-makes-them/) — provenance.
+- [Licensing of generated content](/generation/licensing/) — models.
+- [Legal](/about/legal/) — who runs this site.
+- [Methodology](/about/methodology/) — how we read data.
+
+## Sources
+
+- [AI Act — official text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+- [GDPR — official text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [Qwen Community License 1.0](https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/main/LICENSE)
+- [NVIDIA FP4-Local — card](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local)
+- [OrcaRouter — card](https://huggingface.co/orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

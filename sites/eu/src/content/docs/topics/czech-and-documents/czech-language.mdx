@@ -1,0 +1,169 @@
+---
+title: "How a local model handles Czech: what to test and where it fails"
+description: "Czech has morphology, diacritics and formal registers. What to test on a local model, and why a benchmark is not enough."
+last_verified: 2026-11-11
+---
+
+**Czech** is not just “English with hooks on the letters”. It has rich
+morphology, free word order and a strong formal register. A model that
+answers fluently in English can look fine in Czech while mixing up
+names, numbers and cases. Quality therefore cannot be judged from one
+impression.
+
+## Short answer
+
+- **Fluency is not accuracy.** The model can write a pretty Czech
+  sentence with the wrong number or name.
+- **Czech can cost more tokens** than English; a longer text means more
+  tokens and more context.
+- **Test tasks, not a language in general.** Summaries, extraction and
+  translation have different criteria.
+
+## Tokenization and diacritics
+
+The model does not see letters, it sees tokens — the chunks of text a
+tokenizer splits words into. In Czech, words with diacritics can split
+into more pieces than ordinary English words. Two consequences:
+
+- **Longer input** — the same text can take more tokens.
+- **Bigger context** — a longer token array means a larger KV cache
+  (the memory that holds the conversation) and slower prefill (reading
+  the prompt before answering).
+
+The exact ratio depends on the tokenizer. When it matters, measure it in
+the engine, not by guesswork.
+
+## What to evaluate
+
+| Property | What to watch | Example of a failure |
+|---|---|---|
+| **Fluency** | natural word order, no calques | “provést rozhodnutí” instead of “rozhodnout” (a literal “make a decision”) |
+| **Grammar** | case, gender, agreement | wrong case on a surname |
+| **Diacritics** | háčky and čárky in names | “Řízení” written as “Rizeni” |
+| **Terminology** | legal, medical, technical terms | “žaloba” (lawsuit) vs. “stížnost” (complaint) |
+| **Facts** | numbers, dates, names, quotations | wrong amount or company ID |
+| **Style** | formal vs. informal | “ty” in an official letter |
+| **Consistency** | the same term throughout | “smlouva” once, “kontrakt” later |
+
+## What we know about it
+
+Qwen3.8 Flash Next is a multilingual, multimodal model. The model card
+lists benchmarks for English and code, but **there is no public Czech
+benchmark we could point to**. That does not mean the model is bad — it
+means you have to verify quality on your own data.
+
+For Czech quality, the following holds:
+
+- **More data means better results**, but Czech is a minority language.
+- **Quantization can blur small distinctions** — numbers, names,
+  endings.
+- **Long context can weaken attention** — the model may skip a passage
+  in the middle.
+- **Vision helps with scans**, but OCR quality decides the outcome.
+
+## How to test
+
+1. **Pick 20–50 tasks** from real work: summaries, extraction, e-mail,
+   proofreading, translation, a question over a document.
+2. **Write the correct answers** or the criteria. Not just “like/dislike”.
+3. **Use the same quantization and context** you will operate.
+4. **Set temperature to 0** for repeatability; creative tasks separately.
+5. **Watch four things:** facts, numbers, quotations, grammar.
+6. **Keep the result** and repeat after a change of model or
+   quantization.
+
+The detailed procedure is in
+[quality evaluation](/topics/czech-and-documents/quality-evaluation/).
+
+## A ten-minute Czech test
+
+Before building a large set, run ten phenomena. It is not a benchmark,
+it is a filter for whether it is worth continuing.
+
+| Phenomenon | What to enter | What to watch |
+|---|---|---|
+| Declining names | „Napiš e-mail panu Novákovi o schůzce s Petrou Dvořákovou.“ (Write an e-mail to Mr Novák about a meeting with Petra Dvořáková.) | surname endings |
+| Diacritics | „Přepiš větu: Ředitel nařídil řízení.“ (Rewrite: The director ordered the proceedings.) | háčky and čárky |
+| Gender and agreement | „Popiš, co udělala firma a co její jednatel.“ (Describe what the company did and what its director did.) | verb agreement |
+| Numerals | „Vypiš částky 1 250,50 a 3 000 slovy.“ (Write the amounts out in words.) | correct forms |
+| Formality | „Napiš odmítnutí klientovi.“ (Write a refusal to a client.) | consistent formal “vy” |
+| Terminology | „Vysvětli rozdíl mezi výpovědí a odstoupením.“ (Explain the difference between notice and withdrawal.) | precision of terms |
+| Word order | „Přelož větu s důrazem na termín.“ (Translate a sentence with emphasis on the deadline.) | naturalness |
+| Abbreviations | „Co znamená DUZP a kdy se uvádí?“ (What does DUZP mean and when is it stated?) | correct expansion |
+| Long text | 3 pages and a question about a detail in the middle | attention |
+| Stability | the same question twice | the same answer |
+
+DUZP is the Czech date of taxable supply — the day a VAT event occurs.
+Every country has its own equivalent, and the model should know the
+local one or say that it does not.
+
+When the model fails in three or more points, do not tune the prompt —
+choose another quantization or another model. When it fails in one, that
+is a specific task for a person to check.
+
+## What to record from the test
+
+- **Quantization and engine** — without them the result does not hold.
+- **Temperature** — 0 for repeatability.
+- **Context length** — for the long test.
+- **The exact sentences** — so you can repeat the test.
+- **Who graded it** — one person or two.
+
+## Three levels of testing
+
+| Level | What you learn | Effort |
+|---|---|---|
+| **Quick test** | 5 tasks, a basic impression | minutes |
+| **Pilot test** | 20–50 tasks, a rubric | hours |
+| **Production test** | real documents, weeks | ongoing |
+
+A pilot test is enough for a purchase decision. For deployment you need
+production checks, because both documents and models change.
+
+## How to read the results
+
+- **An average is not enough** — look at the worst tasks.
+- **Factual errors** are worse than stylistic ones.
+- **Stability** matters; the model should not say yes once and no the
+  next time.
+- **Change context** one step at a time, not everything at once.
+- **Compare with a baseline** — a person, the cloud, an older model.
+
+## Where Czech fails most often
+
+- **Declining names and titles** — the model may use the wrong case.
+- **Numbers and codes** — company IDs, VAT IDs, amounts, dates.
+- **Diacritics in proper names** — it may “correct” a surname.
+- **The formal register** — it mixes “ty” and “vy”.
+- **Terminology** — it uses synonyms that are not synonyms in law.
+- **Long documents** — it skips or garbles a passage.
+
+## When quality is good enough
+
+- **Internal summaries** — when a person reads and checks them.
+- **An e-mail draft** — when you edit it before sending.
+- **Translation for orientation** — when it is not meant for
+  publication.
+- **Extraction with validation** — when numbers are checked against the
+  source.
+
+For legal documents, medical records and financial reporting a person
+is always required.
+
+## Where next
+
+- [Document summaries](/topics/czech-and-documents/document-summaries/) — the procedure.
+- [Data extraction](/topics/czech-and-documents/data-extraction/) — invoices and forms.
+- [Translation and proofreading](/topics/czech-and-documents/translation-and-proofreading/) — style.
+- [Quality evaluation](/topics/czech-and-documents/quality-evaluation/) — how to measure.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+- [Context](/dictionary/memory/context/) — why long text hurts.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog — Qwen3.8-Flash-Next](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

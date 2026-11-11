@@ -1,0 +1,226 @@
+---
+title: "Qwen3.8 Flash Next abliterated: what is documented"
+description: "The abliterated variant of Qwen3.8 Flash Next: which builds share its parameters, fit on 128 GB with n-grams from SSD, and what the publishers' measurements claim."
+last_verified: 2026-11-11
+---
+
+> **This is a candidate, not a confirmed replacement for the base
+> model.** The numbers come from the publishers, not from our test.
+> Independent parity measurement is missing. The links lead to public
+> repositories; we do not host the weights, and we verify neither their
+> content nor their safety.
+
+**The abliterated variant of Qwen3.8 Flash Next** is the same model with
+refusal removed. The architecture, parameter count, tokenizer, vision
+and MTP stay. What changes is the willingness to answer, and with it the
+risk.
+
+## Short answer
+
+- **The parameters do not change.** Abliteration is an edit of the
+  weights, not a new model.
+- **It fits on 128 GB** as a build of ~102 GB with n-grams from SSD.
+- **Parity is documented only by publishers' claims**, mainly for prose
+  and code on DGX Spark.
+- **For RTX Spark** the community vLLM port supports an NVMe cache for
+  PLE, but nobody has publicly measured an abliterated build on it yet.
+  The weights share the same FP4-Local layout, so the path exists; the
+  evidence is missing.
+
+## What stays the same
+
+| Property | State |
+|---|---|
+| Architecture | Qwen4Exp, MoE, hybrid attention |
+| Parameters | 125B main + 51B n-grams + 4B MTP |
+| Active per token | 6B |
+| Tokenizer | the same |
+| Vision | preserved |
+| MTP | preserved, 4 drafts in some builds |
+| Context | 262k natively, in practice according to KV cache |
+
+## What changes
+
+| Property | Change |
+|---|---|
+| Refusal of harmful queries | drops significantly |
+| Over-refusal | drops |
+| Quality on complex tasks | may drop |
+| Instructions and format | may get worse |
+| Tool calling | risk of breaking |
+| Licence | inherited, but cards diverge |
+
+## Which builds to use
+
+| Build | Disk | PLE from SSD | Licence according to the card |
+|---|---:|---|---|
+| DevelopingDad FP4-Local-Abliterated | 102 GB | yes | NVIDIA Open Model + Qwen Community |
+| DevelopingDad Uncensored DGX-Spark | 184 GB | yes, mmap | NVIDIA Open Model + Qwen Community |
+| lflare CSF-QAD-Abliterated | 103 GB | yes | Qwen Community 1.0 |
+| huihui-ai GGUF (UD-IQ4_XS) | 94 GB | no | "other" |
+| mradermacher GGUF (IQ4_XS) | 98 GB | no | "other" |
+
+The GGUF builds are meant for Strix Halo and Mac; NVFP4 does not run
+there. The details are in
+[running on 128 GB](/topics/abliteration/running-on-128gb/).
+
+**Other public builds:** Chompa1422 offers an NVFP4 abliterated build for
+a single DGX Spark with TensorFold (42.13 prose / 72.45 code, but without
+a comparison with the base). dealignai and Jiunsong build on two DGX
+Sparks; that is not one 128 GB box and does not belong in the table
+above.
+
+## Documented numbers
+
+**DevelopingDad FP4-Local-Abliterated** (DGX Spark, 128 GB, single-node
+launcher, 104 GiB cap, FP8 KV, MTP 4 drafts):
+
+| Metric | NVIDIA FP4-Local base | Abliterated |
+|---|---:|---:|
+| Decode, prose | 39.4 tok/s | 38.0 tok/s |
+| Decode, code | 50.7 tok/s | 54.3 tok/s |
+| Refusal, development set | 99/100 | 0/100 |
+| Refusal, holdout | 100/100 | 6/100 |
+
+These are **the publisher's measurements** on one device, not an
+independent test. The difference in prose is −3.6 %, in code +7.1 %.
+"Comparable" yes, "the same" no.
+
+**lflare CSF-QAD-Abliterated** (measured against the parent NVFP4):
+
+| Metric | Parent | Abliterated |
+|---|---:|---:|
+| GPQA diamond | 164/198 | 166/198 |
+| MTP acceptance | 61.0 % | 59.5 % |
+| Refusal (protocol A) | — | 0/200 |
+
+The same holds here: the publisher, not an independent test. But the
+numbers show that abliteration does not have to destroy quality, if it
+is done on the quantisation grid.
+
+## Licences: as they are, conflict included
+
+- **Qwen3.8 Flash Next** — Qwen Community License 1.0.
+- **NVIDIA FP4-Local** — NVIDIA Open Model Agreement.
+- **DevelopingDad** — inherits both layers; the card states "NVIDIA Open
+  Model + Qwen Community".
+- **lflare** — Qwen Community 1.0.
+- **OrcaRouter** — the card states Apache-2.0, the base is Qwen
+  Community. A **conflict**; we do not pick the "better" variant.
+
+Anyone deploying the model commercially has to read the licence
+themselves.
+
+## How to verify parity
+
+1. The same base revision, tokenizer, MTP and vision.
+2. The same format: NVFP4, FP8 KV, the same engine and flags.
+3. The same parameter count in safetensors as the base build.
+4. Decode at 8k and 32k, three runs, ±5 %.
+5. TTFT and prefill, ±10 %.
+6. Four concurrent requests without swap.
+7. Quality: a public benchmark + 20 Czech tasks.
+8. Refusal: 50 benign + 50 harmful prompts.
+
+When any point is missing, it is a candidate.
+
+## What "the same parameter count" means
+
+The model has 180B parameters in total: 125B main, 51B n-grams and 4B
+MTP. But in safetensors with 4-bit packing a different number appears
+(96,486,615,005), because the weights are packed. **The match with the
+base is what decides**, not the absolute value.
+
+| Build | Safetensors total | Match with the base |
+|---|---:|---|
+| NVIDIA FP4-Local | 96,486,615,005 | reference |
+| DevelopingDad FP4-Local-Abliterated | 96,486,615,005 | **yes** |
+| lflare CSF-QAD | 96,637,001,693 | close, different packing |
+| OrcaRouter NVFP4 | 180B (BF16 PLE) | different packing, 184 GB |
+
+When the number differs significantly, it is a different format or a
+different part of the model — not "a different model".
+
+## When to expect parity and when not
+
+| Situation | Parity is likely | Why |
+|---|---|---|
+| Short chat, 8k | yes | the same computation |
+| Code and longer answers | rather yes | the same weights |
+| Long context 128k+ | not necessarily | KV cache and attention |
+| Tool calling | risk | changed projections |
+| Vision | risk | different layers |
+| Czech tasks | not measured | the set is missing |
+
+Parity is not a property of the model but **the result of measurement**
+on a specific task. That is why it cannot be promised in general.
+
+## Decision table
+
+| What you need | Base Qwen3.8 | Abliterated variant |
+|---|---|---|
+| Safe, predictable answers | **yes** | no |
+| Answers to sensitive but legal questions | sometimes refuses | **yes** |
+| Tool calling and format | **yes** | only after testing |
+| A public service | **yes** | no |
+| Research on refusal | **yes** | **yes** |
+| Commercial deployment | **yes** | only with moderation |
+
+## FAQ
+
+**Does it have the same parameters as the base?**
+Yes, abliteration does not change the architecture. In safetensors the
+number differs according to packing, but the layout is the same as
+NVIDIA FP4-Local.
+
+**Does the public version fit together with the KV cache?**
+With 102 GB of weights and PLE on SSD, yes; at 32k context there are
+tens of thousands of tokens left for the KV cache. With the 184 GB build
+on one box, no.
+
+**Does it work with vLLM?**
+Yes, but it needs the right container and flags. Stock vLLM will not load
+this checkpoint.
+
+**Can I use the base model for comparison?**
+Yes, that is the right procedure: the same engine, the same context, the
+same prompts. Without that you cannot measure parity.
+
+**Is it usable commercially?**
+It depends on the licence. DevelopingDad inherits the NVIDIA Open Model
+Agreement and Qwen Community; lflare Qwen Community; OrcaRouter states
+Apache-2.0 in conflict with the base.
+
+## When not to use it
+
+- **A public service** without moderation.
+- **Law, health, HR** without professional oversight.
+- **An agent with production keys.**
+- **When you need a quality guarantee** — abliteration does not give one.
+- **When you are not sure about the licence.**
+
+## Where next
+
+- [Abliterated models](/topics/abliteration/) — what it is.
+- [Refusals](/topics/abliteration/refusals/) — what gets switched off.
+- [How it works](/topics/abliteration/how-abliteration-works/) — the
+  technique.
+- [Running on 128 GB](/topics/abliteration/running-on-128gb/) — builds
+  and SSD.
+- [Risks and law](/topics/abliteration/risks-and-law/) — licences.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the base model.
+- [DGX Spark](/devices/dgx-spark/) — hardware.
+- [RTX Spark mini](/devices/rtx-spark-mini/) — hardware.
+
+## Sources
+
+- [DevelopingDad — FP4-Local-Abliterated](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated) — 10 November 2026
+- [lflare — CSF-QAD-Abliterated](https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated) — 10 November 2026
+- [NVIDIA — FP4-Local](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local) — 10 November 2026
+- [OrcaRouter — Uncensored NVFP4](https://huggingface.co/orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4) — 10 November 2026
+- [Chompa1422 — NVFP4 Abliterated](https://huggingface.co/Chompa1422/Qwen3.8-Flash-Next-NVFP4-Abliterated) — 11 November 2026
+- [Jiunsong — NVFP4 for 2× DGX Spark](https://huggingface.co/Jiunsong/SuperQwen3.8-Flash-Next-abliterated-NVFP4-DGX-Spark) — 11 November 2026
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

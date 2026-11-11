@@ -1,0 +1,161 @@
+---
+title: "pi: a minimal terminal agent with a local model"
+description: "pi is a small coding agent for the terminal. Connect it to a llama.cpp router, Ollama or vLLM and extend it to suit you. Install, config and limits."
+last_verified: 2026-11-11
+---
+
+**pi** is a minimalist agent harness for the terminal. It does not
+deal with a GUI or team management; it deals with the loop, the
+tools and the session. That makes it easy to connect to a local
+model and easy to extend.
+
+## Short answer
+
+- **MIT, terminal, macOS/Linux/Windows.** Node 22.19+.
+- **Local model:** llama.cpp router, Ollama, LM Studio, vLLM through
+  `models.json`.
+- **Strength:** simplicity and extensibility.
+- **Weakness:** no GUI, no team management, approval depends on the
+  configuration.
+
+## What it is
+
+pi is an agent that reads files in a project, proposes changes, runs
+commands and reads the results. It supports an interactive mode,
+print/JSON output, RPC and a TypeScript SDK. It is also used as the
+base for other tools (for example OpenClaw or
+[omp](/topics/agents/tools/omp/)).
+
+## Connecting a local model
+
+The **[llama.cpp](/dictionary/software/llamacpp/) router** is the most
+direct route:
+
+```bash
+llama-server \
+  --models-dir ~/models \
+  --no-models-autoload \
+  --jinja \
+  --host 127.0.0.1 \
+  --port 8080 \
+  -ngl 999 \
+  -c 32768
+```
+
+Then inside pi:
+
+```text
+/login llama.cpp
+/llama
+/model
+```
+
+`--jinja` turns on the chat template and tool calling. Without it
+the model will not call tools correctly. `--models-dir` points at
+the folder with GGUF files; `--no-models-autoload` keeps loading
+under control.
+
+**Ollama or vLLM** through `models.json`:
+
+```json
+{
+  "providers": {
+    "ollama": {
+      "baseUrl": "http://localhost:11434/v1",
+      "api": "openai-completions",
+      "apiKey": "ollama",
+      "models": [{ "id": "qwen3.5:27b" }]
+    }
+  }
+}
+```
+
+The `apiKey` field is formal with Ollama; the server ignores it.
+With vLLM, use a real token if the server requires one.
+
+## Install
+
+```bash
+curl -fsSL https://pi.dev/install.sh | sh
+```
+
+On Windows PowerShell:
+
+```powershell
+powershell -c "irm https://pi.dev/install.ps1 | iex"
+```
+
+Or through npm: `npm install -g --ignore-scripts @earendil-works/pi-coding-agent`.
+The installer pins dependencies; npm does not.
+
+## Workflow
+
+1. `cd` into the project and run `pi`.
+2. `/model` picks the model, `/thinking` sets the level of thinking.
+3. The agent reads files and proposes changes.
+4. You review the result and revert it if needed.
+5. The session is saved; you can continue later.
+
+For scripting, use the print or JSON mode; for integrating it into
+an application, use the SDK.
+
+## Extending it
+
+- **MCP and Codemode** — tools from external servers.
+- **Extensions** — your own tools and providers.
+- **Skills and prompt templates** — repeated procedures.
+- **Packages** — sharing through npm or git.
+
+## pi vs omp
+
+| What | pi | omp |
+|---|---|---|
+| Size | small, minimal | larger, feature-heavy |
+| LSP/DAP | no | yes |
+| Subagents | through extensions | yes |
+| Runtime | Node | Bun |
+| Good for | a quick start, extending | work on a large project |
+
+Start with pi when you want to understand the loop. Jump to omp
+when you need LSP and a debugger.
+
+## Limits
+
+- **Terminal.** No visual diff, no session overview.
+- **Approval.** Check exactly how it handles command confirmation; a
+  minimalist harness relies on what the model does.
+- **Model.** Tool-calling quality comes from the model, not from pi.
+- **Context.** Long sessions have to fit into the model's window.
+
+## Security
+
+pi runs as you and has access to files and the shell. Before using
+it on someone else's project, consider a container or a sandbox —
+see [agent security](/topics/agents/agent-security/). Do not put
+tokens and keys into the prompt.
+
+## When not to use it
+
+- When you want a GUI and approval cards.
+- When you need team management and an audit trail.
+- When the model cannot do tool calling.
+- When you only want to chat.
+
+## Where next
+
+- [Agents](/topics/agents/) — the hub for everything an agent needs.
+- [omp](/topics/agents/tools/omp/) — the fork with LSP and subagents.
+- [OpenCode and OpenChamber](/topics/agents/tools/opencode-and-openchamber/) —
+  a harness and a workspace.
+- [MausBot](/topics/agents/tools/mausbot/) — a desktop with approval cards.
+- [OpenClaw](/topics/agents/tools/openclaw/) — a gateway from chat apps.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [pi — GitHub](https://github.com/earendil-works/pi) — 11 November 2026
+- [pi — llama.cpp](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/llama-cpp.md) — 11 November 2026
+- [pi — models](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/models.md) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

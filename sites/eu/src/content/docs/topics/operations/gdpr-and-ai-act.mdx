@@ -1,0 +1,168 @@
+---
+title: "GDPR and the AI Act for local AI: what to watch"
+description: "Local AI and the law: legal basis, minimisation, retention, DPIA, the AI Act and documentation. A practical checklist, not legal advice."
+last_verified: 2026-11-11
+---
+
+Running locally means you do not send data to the cloud. **It does not
+mean GDPR or the AI Act stop applying to you.** You still process
+personal data on your own box, and the model can be part of a system
+that the law regulates.
+
+> This is a practical overview, not legal advice. Discuss a specific
+> deployment with a lawyer or a DPO. Czech and EU rules apply.
+
+## Short answer
+
+- **Local ≠ unregulated.** GDPR applies to data on your disk too.
+- **Legal basis** and **minimisation** are the first questions.
+- **The AI Act** depends on the type of deployment and the risk; not
+  every model is "high-risk".
+- **Documentation, logs and human oversight** are practical obligations.
+
+## GDPR
+
+| Question | What you need |
+|---|---|
+| **Legal basis** | consent, contract, legitimate interest… |
+| **Minimisation** | only the data you need |
+| **Retention** | how long, and why |
+| **Access** | who sees what |
+| **Data subject rights** | access, rectification, erasure |
+| **Processor** | who processes the data |
+| **DPIA** | for high-risk processing |
+| **Security** | technical and organisational measures |
+
+A local box is a processing tool. You still need a purpose, a basis and
+rules.
+
+## The AI Act
+
+The AI Act introduces obligations according to the **type and risk** of
+the system. For local AI that means:
+
+- **classify** the use case and the risk,
+- **document** the model, the data and the purpose,
+- **human oversight** for sensitive decisions,
+- **transparency** towards users,
+- **risk management** and testing,
+- **incidents** and reporting according to the type of system.
+
+Not every internal chatbot is high-risk. But a medical, HR or scoring
+deployment can be. Check the current text and its annexes.
+
+## Local specifics
+
+- **The data stays**, but it can sit in logs, the index and backups.
+- **The model** may come from a third party; its license and terms
+  apply.
+- **An agent** can send data out through a tool even though the model
+  runs locally.
+- **Prompt injection** can get around your rules.
+- **Deletion** must cover documents, vectors and logs.
+
+## Documentation
+
+- **Purpose** and legal basis.
+- **Categories** of data and of data subjects.
+- **Model** and version.
+- **Architecture** and data flows.
+- **Permissions** and roles.
+- **Retention** and deletion.
+- **Tests** and incidents.
+- **Human oversight**.
+
+## Example: a medical practice
+
+A practice wants a local model to transcribe notes. Even though the data
+stays in the practice, it is health data: it needs a legal basis,
+minimisation, retention, permissions and a risk assessment. The local
+box is the technical part, not the whole solution.
+
+## Who is who
+
+With local AI the roles get confused. What decides is who determines the
+purpose and who has access to the data:
+
+| Role | Who that is | What follows |
+|---|---|---|
+| **Controller** | your company | purpose, basis, data subject rights |
+| **Processor** | whoever processes data for you | a contract and instructions |
+| **Weights supplier** | the model maker | often **not** a processor |
+| **Infrastructure supplier** | a cloud, if you use one | a processor |
+| **DPO** | data protection officer | oversight and advice |
+
+A model downloaded from Hugging Face and run on your box does not mean
+the maker sees your data. A processor is whoever has access to the data
+— typically a cloud operator or an external administrator.
+
+## AI Act: indicative milestones
+
+The obligations are introduced in stages. Under Regulation (EU)
+2024/1689 the following milestones are usually cited:
+
+| Date | What starts to apply |
+|---|---|
+| 1 August 2024 | the regulation entered into force |
+| 2 February 2025 | the prohibitions of certain practices |
+| 2 August 2025 | obligations for general-purpose models (GPAI) |
+| 2 August 2026 | selected high-risk systems (Annex III) |
+| 2 August 2027 | high-risk in regulated products (Annex I) |
+
+The dates can change through amendments. Before deciding, check the
+current consolidated text and its annexes; this overview is not legal
+advice.
+
+## An erasure request in practice
+
+With RAG and logs, deleting the document is not enough. The procedure:
+
+1. **The document** — the original in storage.
+2. **The vectors** — the chunks in the index.
+3. **The cache** — the prefix cache and temporary files.
+4. **The logs** — if they contain the text or identifiers.
+5. **The backups** — according to the retention plan; confirm when it
+   disappears.
+6. **Confirmation** — record who performed the erasure and when.
+
+Without steps 2 and 3 the text stays "alive" in answers even though the
+file is gone. That is a common finding in an audit.
+
+## Checklist
+
+- [ ] Do we have a legal basis?
+- [ ] Do we minimise the data?
+- [ ] Do we know everywhere the data lives?
+- [ ] Can the data be deleted?
+- [ ] Do we have documentation?
+- [ ] Do we have human oversight?
+- [ ] Do we have a risk assessment?
+- [ ] Do we have an incident plan?
+
+## When to call a lawyer
+
+- You process **personal data** on a larger scale.
+- You deploy in **healthcare, HR or finance**.
+- An agent **decides** or recommends with an impact on people.
+- The data is a **special category**.
+- You do not know whether you are high-risk.
+
+## Where next
+
+- [Operational security](/topics/operations/security/) — the technical
+  side.
+- [API server](/topics/operations/api-server/) — access.
+- [Monitoring](/topics/operations/monitoring/) — logs.
+- [Local AI for business](/topics/local-ai-for-business/) — the decision.
+- [Prompt injection](/dictionary/operations/prompt-injection/) — the
+  risk.
+- [RAG permissions](/topics/rag/permissions-and-security/) — documents.
+
+## Sources
+
+- [GDPR — official text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [AI Act — official text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+- [NIST — AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Last verified: 11 November 2026.*

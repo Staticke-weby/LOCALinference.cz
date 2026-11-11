@@ -1,0 +1,161 @@
+---
+title: "A coding agent on 128 GB: what it can do and how to watch it"
+description: "A local coding agent can read a repo, propose changes and run tests. The workflow, sandbox, limits and when not to let an agent near production."
+last_verified: 2026-11-11
+---
+
+A **coding agent** is a model that gets a task in a repository: find the
+bug, add a test, change a function. It can read files, propose a diff
+and run commands. On a 128 GB box this works, but without a sandbox and
+tests it is risky.
+
+## Short answer
+
+- **An agent is not an autopilot.** It proposes changes; a human
+  approves them.
+- **Tests are the safety net.** Without them the agent "fixes" what
+  already worked.
+- **A sandbox and permissions** are mandatory; a repo holds secrets.
+- **Qwen3.8 Flash Next** has strong coding benchmarks, but that does
+  not mean it understands your project.
+
+## What the agent can do
+
+- **Search the repo** and find the relevant files.
+- **Read code** and explain what it does.
+- **Propose a change** or a diff.
+- **Run the tests** and read the results.
+- **Fix a bug** from the test output.
+- **Write documentation** or a commit message.
+
+## Workflow
+
+1. **A branch** — the agent works away from main.
+2. **Context** — pick the relevant files, not the whole repo.
+3. **A plan** — let the agent write the steps and approve them.
+4. **The change** — a small diff, not a rewrite of the project.
+5. **Tests** — run them in isolation.
+6. **Review** — read the diff and have it reviewed.
+7. **Merge** — only after human approval.
+
+## What to give the agent
+
+| Tool | What for | Risk |
+|---|---|---|
+| **file reading** | finding your way around the repo | secrets in `.env` |
+| **git** | history, diff, branch | an unwanted push |
+| **test runner** | verifying the change | running foreign code |
+| **shell** | build, lint | dangerous commands |
+| **issue tracker** | task context | a data leak |
+
+The agent should have no access to production keys or a production
+database.
+
+## Sandbox
+
+- **A container or VM** without a network, if possible.
+- **A read-only mount** for the repo when the agent only reads.
+- **A separate user** without root rights.
+- **Limits** on CPU, memory and time.
+- **No secrets** in the environment.
+- **A kill switch** — a way to stop it immediately.
+
+## How fast the agent is in practice
+
+A coding agent is not a single query but a series of steps. Every step
+means generating hundreds of tokens. At 25 tok/s per user (four people
+on the box, see [capacity](/choosing/how-many-users/)) the arithmetic
+is:
+
+| Step | Tokens | Time |
+|---|---:|---:|
+| Proposing a plan | 300 | ~12 s |
+| A diff for one function | 600 | ~24 s |
+| A fix from the tests | 400 | ~16 s |
+| The whole task, 8 steps | ~4,000 | ~2.7 min |
+
+This is a **calculation** from the speed, not a measurement of a
+specific agent. A real task usually takes longer, because context is
+read and tests are repeated. For comparison: a cloud agent answers in
+seconds, a local one in tens of seconds — the difference is in
+[decode](/dictionary/performance/decode/), not in the quality of the
+proposal.
+
+That is no reason to reject a local agent. For tasks that run in the
+background (write tests, run the linter) a few minutes do not matter.
+In interactive debugging you notice them.
+
+## How much code to put in the context
+
+The whole repo does not fit in the context and it would not help.
+A practical routine:
+
+- **Start from the error** — a stack trace or a description, not
+  "go through the project".
+- **Add 3–5 files** that the error mentions.
+- **Add the failing test.**
+- **Leave the rest to the tools** — the agent loads a file when it
+  needs it.
+
+The less context, the faster the
+[prefill](/dictionary/performance/prefill/) and the less noise for the
+model.
+
+## Tests and quality
+
+- **Unit tests** must pass.
+- **Lint and type checks** must pass.
+- **The diff** must be small and understandable.
+- **Behaviour** must not change outside the brief.
+- **Security** — no new dependencies without approval.
+
+## Language and locale specifics
+
+- **Comments and documentation** in a non-English language can be
+  inconsistent.
+- **Encoding** — UTF-8 and diacritics in the files.
+- **Identifiers** — the agent may "fix" non-English names.
+- **Test data** — local names and addresses.
+
+## Example: fixing a test
+
+A test fails on `null`. The agent gets the error, reads the function
+and proposes a guard. It runs the tests in the sandbox. When they pass,
+a human reads the diff and approves the merge. The agent has no access
+to production keys or to the main branch; otherwise one mistake could
+end up in production.
+
+## When not to let the agent in
+
+- **A production database** without read-only mode.
+- **Payment systems** without human approval.
+- **Repositories with secrets** without a sandbox.
+- **Irreversible migrations** without a backup.
+- **Code you do not understand** — you cannot review the diff.
+
+## Measurement
+
+- **Accepted versus rejected changes.**
+- **Time** from request to merge.
+- **Error rate** — how many changes failed the tests.
+- **Security incidents** — attempts at unauthorised access.
+- **Diff quality** — size and readability.
+
+## Where next
+
+- [MCP in practice](/topics/agents/mcp/) — tools.
+- [Function calling](/topics/agents/function-calling/) — the call
+  itself.
+- [Agent security](/topics/agents/agent-security/) — defence.
+- [Tool design](/topics/tool-design/) — schemas and permissions.
+- [Agentic tasks](/dictionary/software/agentic-tasks/) — the concept.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — tool calling](https://docs.vllm.ai/en/latest/features/tool_calling.html)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Git — documentation](https://git-scm.com/doc)
+
+*Last verified: 11 November 2026.*

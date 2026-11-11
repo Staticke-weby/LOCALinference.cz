@@ -1,0 +1,214 @@
+---
+title: "Abliterated models: what they are and what to expect"
+description: "Abliteration removes refusal from a model. We explain what changes in the weights, what follows from it, which Qwen3.8 builds fit 128 GB and where the limit is."
+last_verified: 2026-11-11
+---
+
+> **This is an explanation, not a guide to bypassing safety measures.**
+> An abliterated model has no guardrails, and responsibility for its
+> output rests with whoever runs it. This text is not legal advice.
+
+**An abliterated model** is a model whose ability to refuse a request
+has been removed from its weights. It does not mean the model is
+"smarter" or that it can do more. It means that instead of refusing a
+harmful request, it answers it. The rest of the model stays the same —
+same architecture, same parameter count, same knowledge. What that
+means technically is described in
+[how abliteration works](/topics/abliteration/how-abliteration-works/).
+
+## Short answer
+
+- **Abliteration is a change to the weights**, not a new model. The
+  parameter count does not change, so it fits in the same memory as
+  the base.
+- **Refusal is not one feature.** The model has it spread across many
+  layers; abliteration suppresses it but does not remove the
+  knowledge.
+- **The price is quality and safety.** The model may hallucinate more,
+  follow instructions worse and break tool calls.
+- **On 128 GB it works**, but only with a build that has the right
+  format and can keep the n-grams on an SSD.
+
+## What abliteration is and is not
+
+| What people think | What it actually is |
+|---|---|
+| "A model without censorship" | a model without trained refusal, but still with biases and mistakes |
+| "It can do more" | it cannot; it just does not refuse |
+| "It is a new model" | it is the same model with modified weights |
+| "It is safe because it runs locally" | local operation reduces data leakage, not the risk of the output |
+| "You just change the prompt" | abliteration changes the weights, not the prompt |
+
+## Decision table
+
+| What you need | Base model | Abliterated |
+|---|---|---|
+| Answers to sensitive but legal questions | sometimes refuses excessively | more suitable |
+| Legal, medical and financial advice | refuses or warns | **unsuitable** |
+| A public product or a school | **yes** | **no** |
+| Research on refusal and safety | **yes** | **yes**, with documentation |
+| Commercial deployment with liability | **yes** | only with moderation and a contract |
+| Adult content within a legal framework | restricts it | more suitable, but regulated |
+
+## How to recognise one
+
+A solid model card of an abliterated model states:
+
+- **the method** (diff-in-means, orthogonalisation, LoRA, Heretic),
+- **the refusal rate before and after** on a specific set,
+- **known losses** (benchmarks, tool behaviour),
+- **the licence** of both the publisher and the base model,
+- **the date and revision** of the base.
+
+When the card says only "uncensored" and nothing else, it is marketing.
+When it does not state a licence, it is a risk.
+
+## What changes in the weights
+
+The model learns to refuse during training. A direction in the
+activations emerges that corresponds to "not this". Abliteration
+suppresses that direction — typically by subtracting it from the
+weights of the attention and expert layers. This is described in
+detail in
+[how abliteration works](/topics/abliteration/how-abliteration-works/).
+
+The important point is that **the knowledge stays**. The model still
+knows how to do something; it just stops refusing it. That is why
+abliteration is a safety problem, not a technical trick.
+
+## Where it runs on 128 GB
+
+Abliteration does not change the size of the model, so the same memory
+arithmetic applies as for the base: Qwen3.8 Flash Next has 125B
+parameters in the main model, 6B active, a 51B n-gram table and 4B
+MTP. In NVFP4 that is around 96 GiB of weights.
+
+What decides, however, is the **format and how the n-grams are
+loaded**:
+
+| Device | Build | Disk | N-grams from SSD |
+|---|---|---:|---|
+| DGX Spark | DevelopingDad FP4-Local-Abliterated | 102 GB | yes |
+| DGX Spark | DevelopingDad Uncensored DGX-Spark | 184 GB | yes, mmap |
+| DGX / RTX Spark | lflare CSF-QAD-Abliterated | 103 GB | yes |
+| Strix Halo | huihui-ai GGUF (UD-IQ4_XS) | 94 GB | no |
+| Mac | the same GGUF through Metal | 94–98 GB | no |
+
+The details, numbers and criteria are in
+[running on 128 GB](/topics/abliteration/running-on-128gb/).
+
+## What it can cause
+
+- **Instructions for illegal conduct** — the model has no guardrails.
+- **Dangerous professional advice** — medical, legal, technical.
+- **Disinformation and hate** — the model generates the text readily.
+- **Privacy leaks** — it fills in or assembles personal data.
+- **Harm in agentic use** — the model can send an email or call a
+  tool it should not.
+
+Liability always rests with the operator. More in
+[risks and law](/topics/abliteration/risks-and-law/).
+
+## Abliteration, jailbreak and fine-tune
+
+People confuse these. They are not synonyms:
+
+| What | What changes | Who does it | Durability |
+|---|---|---|---|
+| **Abliteration** | weights, the refusal direction | the model publisher | permanent, in the file |
+| **Jailbreak** | the prompt or the context | the user | only for one query |
+| **Fine-tune** | weights, behaviour and style | a developer with data | permanent, but a different intervention |
+| **System prompt** | instructions in the context | the application | only for the session |
+
+Abliteration is an intervention in the model. A jailbreak is a trick in
+the query. When someone claims "the model is uncensored" but means the
+prompt, that is not abliteration, and it disappears after a restart.
+
+## Three scenarios where it makes sense
+
+- **Research on refusal and safety.** You want to measure how the model
+  behaves without guardrails and need a clean tool for it. It makes
+  sense with documentation and without production data.
+- **Adult content within a legal framework.** Fiction, games,
+  screenplays. It makes sense only with moderation, age verification
+  and clear rules.
+- **Czech queries that the base refuses excessively.** Historical text,
+  medical awareness, a security audit. It makes sense after a test
+  showing that the base really does refuse harmless things.
+
+In all three cases the same holds: **abliteration is not a replacement
+for moderation**. It is an extra layer of risk that you have to handle
+elsewhere.
+
+## Common mistakes
+
+| Mistake | Why it happens | How to avoid it |
+|---|---|---|
+| Confusing abliteration with a jailbreak | marketing and shorthand | describe what changes in the weights |
+| Expecting higher intelligence | "uncensored" sounds like an upgrade | measure benchmarks before and after |
+| Ignoring the licence | the card states a different one than the base | read both licences |
+| Testing only in English | the model is stronger in English | a Czech test set |
+| No moderation at all | "it runs locally, after all" | moderate input and output |
+| Running without logs | an attempt at privacy | log metadata, not content |
+
+## FAQ
+
+**Is abliteration legal?**
+Modifying the weights itself is legal; liability arises from use. It
+depends on the model licence and on what you do with the output. This
+text is not legal advice.
+
+**Does the public version fit on 128 GB?**
+Yes, if it is around 102 GB and the n-grams can go to an SSD. Builds at
+184 GB do not fit on one box, even if they are called NVFP4.
+
+**Which build for RTX Spark?**
+The same FP4-Local layout as DevelopingDad; the vLLM port supports an
+NVMe PLE cache. But nobody has publicly measured an abliterated build
+on RTX Spark yet.
+
+**Will it improve Czech?**
+No. Abliteration changes refusal, not language quality. Czech tasks
+have to be tested separately.
+
+**Can I go back to the base model?**
+Yes, they are different weights. Just keep both checkpoints and know
+which engine and config belongs to which.
+
+## When it makes no sense
+
+- **A public service** without moderation and human oversight.
+- **Legal, medical or HR decisions.**
+- **When you need reliable tool calling** — abliteration can break it.
+- **When the goal is only to "bypass censorship"** — that is not a use
+  case, it is a risk.
+- **When you have no time for testing** — quality changes from build to
+  build.
+
+## Where next
+
+- [Refusals](/topics/abliteration/refusals/) — what the model refuses
+  and why.
+- [How abliteration works](/topics/abliteration/how-abliteration-works/)
+  — the technique and its side effects.
+- [Running on 128 GB](/topics/abliteration/running-on-128gb/) — builds,
+  SSD and measurements.
+- [Risks and law](/topics/abliteration/risks-and-law/) — consequences
+  and liability.
+- [Who makes them](/topics/abliteration/who-makes-them/) — publishers
+  and provenance.
+- [The Qwen3.8 variant](/models/qwen3-8-flash-next-abliterated/) — what
+  is documented.
+- [Model](/models/qwen3-8-flash-next/) — the base model.
+- [Topics](/topics/) — overview.
+
+## Sources
+
+- [Arditi et al. — Refusal direction](https://arxiv.org/abs/2406.11717) (2024)
+- [NVIDIA — Qwen3.8 Flash Next FP4-Local](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local) — PLE offload, 10 November 2026
+- [DevelopingDad — FP4-Local-Abliterated](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated) — publisher's measurements, 10 November 2026
+- [lflare — CSF-QAD-Abliterated](https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated) — publisher's measurements, 10 November 2026
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

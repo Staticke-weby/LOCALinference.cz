@@ -1,0 +1,154 @@
+---
+title: "Local AI in accounting: invoices, VAT and audit"
+description: "How to use local AI in accounting: invoice extraction, VAT checks, reporting and audit. Data, validation and risks."
+last_verified: 2026-11-11
+---
+
+Accounting is ideal for local AI: many invoices, repeated tasks and
+sensitive data. It is also true that **the number must be right**. The
+model can help with the first pass, but validation and human approval
+remain.
+
+## Short answer
+
+- **Invoice extraction** is a safe start; **automatic posting** is not.
+- **Every amount, date and company ID** is checked against the
+  document.
+- **A local box** keeps data in the company, but does not solve the
+  audit trail.
+- **The output must be structured** and validated.
+
+## Where it makes sense
+
+| Task | What the model does | Risk |
+|---|---|---|
+| **Invoice extraction** | supplier, company ID, amount, VAT | a wrong digit |
+| **Document checks** | missing fields, duplicates | a false match |
+| **Report preparation** | a summary from the data | a wrong total |
+| **Audit support** | an overview of documents | missing evidence |
+| **Client communication** | an e-mail draft | the wrong tone |
+
+## Workflow
+
+1. **Receipt** — PDF, scan, e-mail.
+2. **Extraction** — OCR and structured fields.
+3. **Validation** — company ID, VAT ID, amounts, VAT, dates.
+4. **Check** — a person against the document.
+5. **Posting** — only after approval.
+6. **Archiving** — the document, the output, the log.
+
+## What to validate
+
+- **Company ID (IČO)** — 8 digits in Czechia, and the register.
+- **VAT ID (DIČ)** — prefix and format.
+- **Date** — issue, due, and the Czech DUZP (the date of taxable
+  supply).
+- **Amount** — base, VAT, total.
+- **VAT rate** — matching the type of supply.
+- **Currency** — the currency and, if converted, the rate used.
+- **Duplicates** — the same document twice.
+
+The Czech identifiers are a local example. Germany has a
+Umsatzsteuer-IdNr., the UK a VAT registration number, the US an EIN;
+the fields are the same, the formats and registers are not.
+
+## Data and audit
+
+- **Documents** have retention periods; do not delete them on your own
+  initiative.
+- **Logs** must show who changed what.
+- **Access** for authorised people only.
+- **Backups** and restore.
+- **Permissions** for the personal data on the documents.
+
+## Risks
+
+- **A wrong digit** — the model reads 1 000 as 10 000.
+- **Company ID swapped for VAT ID** — a different identifier.
+- **The wrong VAT rate.**
+- **A duplicate payment.**
+- **A missing document** in the report.
+- **Automation without a check.**
+
+## Example: checking an invoice
+
+An accountant uploads an invoice. The model pulls out the supplier, the
+company ID, the amount and the VAT. Validation reveals that the sum
+does not add up. The accountant returns the invoice to the supplier.
+Without validation the error would have gone into the books. The model
+helped, but did not decide.
+
+## What to measure
+
+- **The number of invoices** per hour.
+- **The error rate** after validation.
+- **How many** documents pass without a correction.
+- **The time** spent checking.
+- **The number of duplicates** and missing fields.
+
+## How much time it saves
+
+An illustrative **calculation** for 500 invoices a month:
+
+| Phase | By hand | With the model |
+|---|---|---|
+| Reading and transcription, 500 invoices | 3 min × 500 = 25 h | 40 s × 500 = 5.6 h |
+| Check against the document | included | 1 min × 500 = 8.3 h |
+| Total | ~25 h | ~13.9 h |
+
+These are a **calculation** with sample inputs, not a measurement of
+your company. The point is the ratio: the model shortens the
+transcription, not the check. When the check costs as much as the
+transcription, the saving is small.
+
+## How to introduce it
+
+1. **Pick one document type** — domestic invoices, not all of them at
+  once.
+2. **Define the fields** and their validation (company ID, amounts,
+   DUZP).
+3. **Prepare 50 invoices** including problematic ones (scan, foreign
+   currency).
+4. **Measure the error rate** before and after the check.
+5. **Introduce states** — new, extracted, checked, posted.
+6. **Only then** extend to other document types.
+
+Automatic posting without a person is the last step, not the first. Even
+when the model works reliably, the company carries the responsibility
+for the books.
+
+## Typical mistakes
+
+| Mistake | Why it happens | How to avoid it |
+|---|---|---|
+| Company ID and VAT ID swapped | similar formats | validate both fields separately |
+| The wrong VAT rate | the model does not know the type of supply | a rate table and a check |
+| A duplicate payment | the same invoice in two formats | a hash and matching |
+| A missing DUZP | the field is not in the schema | a required field and validation |
+| A transcribed amount | OCR | check the sum against the document |
+
+## When not to use it
+
+- **Automatic posting** without a person.
+- **A tax return** without a professional check.
+- **Poor scans** without OCR.
+- **Documents** with unreadable amounts.
+- **An audit** without the source documents.
+
+## Where next
+
+- [Data extraction](/topics/czech-and-documents/data-extraction/) — JSON and validation.
+- [Document summaries](/topics/czech-and-documents/document-summaries/) — text.
+- [RAG](/topics/rag/) — documents.
+- [Operations security](/topics/operations/security/) — data.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+- [Local AI for business](/topics/local-ai-for-business/) — the decision.
+
+## Sources
+
+- [Czech Financial Administration (Finanční správa)](https://www.financnisprava.cz/) — official portal for Czech VAT and filing rules
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [GDPR — official text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

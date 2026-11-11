@@ -1,0 +1,139 @@
+---
+title: "Herdr: orchestrating several local agents in the terminal"
+description: "Herdr is an AI-first multiplexer and orchestrator. It holds workspaces, panes and agents, and supports worktrees and a CLI. It picks no model; it runs pi, omp or OpenCode."
+last_verified: 2026-11-11
+---
+
+**Herdr** is a terminal multiplexer and orchestrator for coding
+agents. It is not a harness and not a model; it is a layer that runs
+several agents, hands them tasks and keeps the session. The local
+model belongs to the agent Herdr starts. The concept is explained
+under [agent orchestration](/dictionary/software/agent-orchestration/).
+
+## Short answer
+
+- **Apache-2.0, macOS/Linux, Windows in preview.**
+- **Not a model layer.** A local model depends on the agent.
+- **Workspaces, panes, agents** — three primitives.
+- **Worktrees** for isolating parallel tasks.
+- **A CLI and a socket API** for scripting and orchestration.
+
+## What it is
+
+Herdr looks like tmux, but it understands agents. Instead of a blind
+terminal it knows whether an agent is working, waiting or has
+failed. You can send it a prompt, wait for the result and read the
+answer — from the CLI or from another agent.
+
+Three primitives:
+
+| Term | What it is |
+|---|---|
+| **Workspace** | one project or task |
+| **Pane** | a real shell for an agent, a test or a server |
+| **Agent** | a recognised process that Herdr can address |
+
+## Connecting a local model
+
+Herdr does not pick a model itself. You start an agent in it that
+can use a local model:
+
+- [pi](/topics/agents/tools/pi/) with a llama.cpp router,
+- [omp](/topics/agents/tools/omp/) with Ollama or vLLM,
+- [OpenCode](/topics/agents/tools/opencode-and-openchamber/) with an
+  OpenAI-compatible endpoint.
+
+That makes Herdr an orchestration of local agents, not another
+model.
+
+## Install
+
+1. Install Herdr according to the documentation.
+2. Open a workspace in the project.
+3. Start an agent in a pane.
+4. Verify that Herdr recognises the agent and sees its state.
+5. Add a second pane or a worktree.
+
+Commands can change between versions; use the documentation for your
+specific version.
+
+## Workflow
+
+1. Create a workspace for the task.
+2. Start an agent and give it the goal.
+3. The agent runs in a pane; Herdr watches its state.
+4. Start a helper in another pane or worktree.
+5. Return the result to the main agent.
+6. Close finished panes; clean up worktrees.
+
+For parallel work it is essential that each agent has its own
+worktree. Otherwise the agents overwrite each other's files.
+
+## Worktree in practice
+
+1. The main workspace holds the project.
+2. A second agent gets its own worktree and branch.
+3. It works on an isolated copy.
+4. The result is reviewed and merged.
+5. The worktree is deleted.
+
+Without a worktree, two agents edit the same file and the result is
+non-deterministic. Herdr can do worktrees, but you have to use them;
+panes alone do not isolate files.
+
+## CLI and socket
+
+Herdr is scriptable. From the CLI or the socket you can:
+
+- create a workspace and a pane,
+- start an agent and send it a prompt,
+- wait for a state,
+- read the output,
+- send another instruction,
+- stop an agent.
+
+That is useful for orchestration: one agent can start a helper, wait
+for the result and continue. It also means that anyone with access
+to the socket can control the running agents.
+
+## Limits
+
+- **No isolation.** Herdr is a multiplexer, not a sandbox; agents run
+  as you. For risky code, use a container.
+- **No model layer.** If an agent cannot use a local model, Herdr
+  will not fix that.
+- **Windows preview.** Behaviour on Windows can differ.
+- **Complexity.** More agents means more sessions and more cleaning
+  up.
+
+## Security
+
+- **Agents inherit your permissions.** Do not paste production keys.
+- **A worktree is not a sandbox.** It protects files, not the system.
+- **Commands from the CLI** can affect running agents.
+- **Logs** and output can contain sensitive data.
+
+## When not to use it
+
+- When you have one agent and one task.
+- When you want security isolation — use a sandbox.
+- When you have no time to clean up worktrees.
+- When the agent cannot use a local model.
+
+## Where next
+
+- [Agents](/topics/agents/) — the hub for everything an agent needs.
+- [pi](/topics/agents/tools/pi/) — an agent for Herdr.
+- [omp](/topics/agents/tools/omp/) — the agent with LSP.
+- [OpenCode and OpenChamber](/topics/agents/tools/opencode-and-openchamber/) —
+  an agent and a workspace.
+- [Agent security](/topics/agents/agent-security/) — why panes are not a boundary.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [Herdr](https://herdr.dev/) — 11 November 2026
+- [Herdr — orchestration skill](https://github.com/aerain/herdr-agent-orchestration) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

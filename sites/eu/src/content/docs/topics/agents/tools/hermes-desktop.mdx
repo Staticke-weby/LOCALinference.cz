@@ -1,0 +1,124 @@
+---
+title: "Hermes Desktop: a local model in one click"
+description: "Hermes Desktop manages llama.cpp, downloads models that fit your memory and holds 64k context. What it does, where the limits are and when to use it."
+last_verified: 2026-11-11
+---
+
+**Hermes Desktop** is a desktop application from Nous Research that
+adds local model management to the
+[Hermes](/topics/agents/tools/hermes/) agent. You do not have to
+deal with llama.cpp, quantization or the number of layers on the
+GPU: you pick a model and Hermes prepares the engine and the
+context.
+
+## Short answer
+
+- **One-click llama.cpp** for macOS, Windows and Linux.
+- **A catalogue with a fit check** — green/yellow/red by memory.
+- **Minimum [64k context](/dictionary/memory/context/)** for agentic
+  work.
+- **An idle model is released after 15 minutes.**
+- **Only inference is local**; web, channels and MCP can go out.
+
+## What it is
+
+Hermes Desktop is a GUI over the Hermes agent. It adds:
+
+- installing and updating llama.cpp,
+- a model catalogue with a choice of quantization,
+- memory and context management,
+- starting and stopping the server with the app,
+- switching back to a cloud provider in one click.
+
+It is not a new model. It is a way to get a local model running
+without manual configuration.
+
+## How it works
+
+1. **Settings → Providers → Local Models.**
+2. **Install runtime** — downloads the official llama.cpp for your
+   hardware.
+3. **Pick a model** from the catalogue; Hermes shows whether it
+   fits.
+4. **Download** — the model is fetched and verified.
+5. **Use** — new chats run locally.
+
+The server starts and stops with the application and survives a
+restart. `--local` unlocks Local Models on platforms where they are
+not visible by default.
+
+## Model choice and memory
+
+- **Green** — the model fits entirely in GPU/unified memory.
+- **Yellow** — part of it goes to system RAM, slower.
+- **Red** — it does not fit; Hermes does not offer it as a
+  recommendation.
+- **Below 4 bit** Hermes will not go; it considers the quality too
+  poor.
+- **The recommendation** points at a model that gives at least
+  20 tok/s and 64k context.
+
+When a model needs more than the GPU has, Hermes offloads expert
+weights first, never the attention cache. Context grows at runtime
+while it fits; then the history is compressed.
+
+## Platforms and backends
+
+| Platform | Backend |
+|---|---|
+| **macOS** | Metal or CPU |
+| **Windows** | CUDA (NVIDIA), Vulkan (x64) or CPU |
+| **Linux** | CUDA (x64/arm64, driver 13), Vulkan, CPU; HIP optionally |
+
+If you already run your own `llama-server`, Hermes detects it on
+`:8080` and uses it. Other ports can be added to
+`local_runtime.detect_ports`.
+
+## What still goes over the network
+
+A local model does not mean an offline agent. According to the
+documentation:
+
+- **inference** is local,
+- **session, memory and skills** live in `~/.hermes`,
+- **web and browser** go over the network,
+- **Telegram and other channels** go through the platform,
+- **remote MCP** is a network call.
+
+If you want truly offline, turn those tools off.
+
+## Limits
+
+- **Only models that fit.** On 128 GB that is a smaller model than
+  Qwen3.8 Flash Next, unless you count on offload.
+- **64k minimum** — Hermes refuses a smaller context.
+- **Less control** than with a hand-run llama.cpp; some knobs are
+  missing.
+- **Desktop only** — it is not a server for a team.
+- **Young project** — behaviour changes.
+
+## When not to use it
+
+- When you need to tune quantization and KV cache precisely.
+- When you want Qwen3.8 Flash Next on 128 GB in NVFP4; that is a
+  different route.
+- When you run an agent for a team on a server.
+- When you want fully offline with no network tools.
+
+## Where next
+
+- [Hermes](/topics/agents/tools/hermes/) — the agent and gateway.
+- [LM Studio](/topics/agents/tools/lm-studio/) — another model runner.
+- [pi](/topics/agents/tools/pi/) — a terminal agent.
+- [OpenCode and OpenChamber](/topics/agents/tools/opencode-and-openchamber/) —
+  a harness and a workspace.
+- [Agents](/topics/agents/) — the hub for everything an agent needs.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [Hermes — Local Models](https://hermes-agent.nousresearch.com/docs/user-guide/local-models) — 11 November 2026
+- [Hermes — a local LLM on a Mac](https://hermes-agent.nousresearch.com/docs/guides/local-llm-on-mac) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

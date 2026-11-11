@@ -1,0 +1,174 @@
+---
+title: "PDF and scans for RAG: getting clean text out"
+description: "How to process PDFs, scans and tables for RAG. Text layers, OCR, diacritics, quality checks and the language-specific traps."
+last_verified: 2026-11-11
+---
+
+Before a model can answer questions over a document, the document has
+to be **readable**. With PDFs and scans that is not a given. Text
+converted badly then behaves in RAG like a bad document: it is searched,
+but the answers are wrong.
+
+## Short answer
+
+- **First find out whether the PDF has a text layer.** If it does, you
+  do not need OCR.
+- **A scan without text needs OCR**; the quality of the OCR decides
+  everything downstream.
+- **Diacritics and non-English scripts are sensitive**; check them by
+  hand.
+- **Tables and forms** often fall apart; keep them as metadata or
+  process them separately.
+
+## Document types
+
+| Type | What it holds | What to do |
+|---|---|---|
+| **Text PDF** | a text layer | extract, no OCR |
+| **Scanned PDF** | images of pages | OCR |
+| **DOCX** | structured text | convert to text/Markdown |
+| **E-mail** | body + attachments | extract body and attachments |
+| **Photo of a document** | an image | OCR or a vision model |
+| **Table** | a grid | extract to CSV/JSON |
+
+## Pipeline
+
+1. **Text detection** — try extraction; if it returns very few
+   characters, you are looking at a scan.
+2. **OCR** — use a language model for the document's language, not
+   English only.
+3. **Cleaning** — remove headers, footers and repeated text.
+4. **Diacritics check** — accents and other marks must survive.
+5. **Splitting** into sections or pages.
+6. **Metadata** — title, date, department, permissions.
+7. **Checking** — compare a sample against the original.
+
+## Language and script specifics
+
+The examples below come from Czech, but the same traps appear in any
+language with accents, inflection or local number formats.
+
+- **Diacritics** — "řízení" and "rizeni" are different words. Strip the
+  accents and the index no longer matches the question.
+- **Scans and stamps** — OCR can miss a stamp or a signature entirely.
+- **Tables** — local number and date formats (1 234,56 or 1,234.56).
+- **Abbreviations** — company registration numbers, VAT IDs and tax
+  codes must not be lost.
+- **Multiple languages** — some documents mix the local language and
+  English.
+
+## OCR quality
+
+Check:
+
+- [ ] **Diacritics** are correct.
+- [ ] **Numbers** match the original.
+- [ ] **Tables** have the right columns.
+- [ ] **Headers and footers** are not in the text many times over.
+- [ ] **Swapped characters** — `0` vs. `O`, `1` vs. `l`.
+- [ ] **Missing pages** — especially in scans.
+
+When the OCR is bad, rescanning the document is better than repairing
+text across the whole archive.
+
+## Tools
+
+- **pypdf** — basic text extraction from PDF.
+- **pdfplumber** — tables and layout.
+- **Tesseract** — OCR with a language pack for your language.
+- **PaddleOCR** — an alternative for harder scans.
+- **Qwen3.8 vision** — checking or extracting from an image.
+
+The right choice depends on the document type. For tables, pdfplumber
+beats a general-purpose OCR.
+
+## What to store
+
+- **The original file** — the source of truth.
+- **The extracted text** — for search.
+- **Metadata** — date, department, permissions.
+- **A hash** — to prove the document has not changed.
+- **Status** — new, processed, invalid.
+
+## Example: an invoice from a scan
+
+A scanned invoice has no text layer. OCR reads the supplier, the
+registration number, the amount and the date, but it can confuse `0`
+and `O`. Before the document goes into RAG, the numbers are compared
+with the original and metadata (year, department, status) is stored
+too. When OCR fails, the document is marked as unprocessed, not as
+"empty".
+
+## Decision table: OCR, vision or manual
+
+| Situation | Choice | Why |
+|---|---|---|
+| PDF with a text layer | direct extraction | fastest and most accurate |
+| Clean scan, printed text | OCR with the right language pack | reliable and cheap |
+| Scan with a table | pdfplumber or layout-aware OCR | keeps the columns |
+| Photo of a document, good light | OCR or a vision model | depends on the angle |
+| Handwriting, stamps, signatures | manual review | OCR is unreliable |
+| One sheet, you need the gist | a vision model | no pipeline to build |
+
+A vision model is good for individual items, not for an archive. Over
+thousands of pages, OCR is cheaper and easier to check.
+
+## How much space the index takes
+
+The size of a vector index can be calculated in advance:
+
+```
+size ≈ number of chunks × dimensions × bytes per number
+```
+
+Example: 50,000 chunks, a model with 1,024 dimensions and 4 bytes per
+number (float32) means **205 MB** for the vectors alone. On top of that
+come the chunk text, the metadata and the original files. This is a
+**calculation**, not a measurement; with float16 it is half, and with
+binary vectors less still.
+
+For a 128GB box this is not a problem. What matters is that the index
+stays in memory while queries run, so it counts towards the reserve
+next to the model and the
+[KV cache](/dictionary/memory/kv-cache/).
+
+## Common mistakes
+
+- **OCR without a language pack** — diacritics fall apart.
+- **Extraction even where a text layer exists** — wasted work and
+  errors.
+- **Tables as continuous text** — the columns get mixed up.
+- **Headers on every page** — they end up in the index thousands of
+  times.
+- **No sample check** — the error shows up only in the answers.
+- **Deleting the original** — without it you cannot verify what the
+  document said.
+
+## Where the limit is
+
+- **A poor scan** — blurred text does not become good OCR.
+- **Handwriting** — OCR is unreliable.
+- **Complex tables** — manual review is often better.
+- **Old documents** — different fonts and formats.
+- **Permissions** — the text must not end up where it does not belong.
+
+## Where next
+
+- [Chunking](/topics/rag/chunking/) — how to split the text.
+- [Embeddings in practice](/topics/rag/embeddings-in-practice/) — how
+  search works.
+- [Permissions and security](/topics/rag/permissions-and-security/) —
+  who sees what.
+- [RAG](/topics/rag/) — the whole pipeline.
+- [Vision](/dictionary/software/vision/) — what a model can read from an
+  image.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [pypdf — documentation](https://pypdf.readthedocs.io/)
+- [pdfplumber — documentation](https://github.com/jsvine/pdfplumber)
+- [Tesseract — documentation](https://tesseract-ocr.github.io/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Last verified: 11 November 2026.*

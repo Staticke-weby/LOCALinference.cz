@@ -1,0 +1,157 @@
+---
+title: "Running local AI: server, monitoring and security"
+description: "How to run local AI for a team: API server, authentication, monitoring, updates, security, GDPR and the AI Act."
+last_verified: 2026-11-11
+---
+
+Local AI is not just "start a model". When more people or a company use
+it, you need a **server, access control, monitoring, updates and
+security**. This cluster sums up the minimum that any deployment on a
+128 GB box should have.
+
+## Short answer
+
+- **API server** — vLLM or llama.cpp, not a chat in a terminal.
+- **Authentication** — anyone who reaches the port must not be able to
+  use the model.
+- **Monitoring** — tok/s, TTFT, queue, memory, errors.
+- **Updates** — pinned versions and a rollback plan.
+- **Security** — permissions, logs, prompt injection, GDPR.
+
+## What you need
+
+| Layer | Minimum |
+|---|---|
+| **Model** | Qwen3.8 Flash Next |
+| **Engine** | vLLM (team) / llama.cpp (single user) |
+| **Access** | reverse proxy, TLS, sign-in |
+| **Monitoring** | metrics and logs |
+| **Backups** | configuration and data |
+| **Documentation** | who manages what |
+
+## API server
+
+The model should not run as an open port. You need:
+
+- **OpenAI-compatible API** — for applications and clients.
+- **Authentication** — a token, a session or a proxy.
+- **TLS** — whenever traffic leaves localhost.
+- **Rate limit** — protection against overload.
+- **Logs** — who sent what.
+
+The details are in the [API server](/topics/operations/api-server/) page.
+
+## Monitoring
+
+Watch:
+
+- **tok/s** and **TTFT**,
+- the **queue** and the request count,
+- **memory** and the KV cache,
+- **temperature** and throttling,
+- **errors** and restarts.
+
+Without metrics you will not notice that the model is slowing down or
+that memory is running out. The details are in
+[monitoring](/topics/operations/monitoring/).
+
+## Updates
+
+- **Pin versions** of the model, the engine and the drivers.
+- **Test** a new version before deploying it.
+- **Keep a rollback** to the previous version.
+- **Back up** the configuration.
+- **Record changes** in a changelog.
+
+The details are in [updates](/topics/operations/updates/).
+
+## Security
+
+- **Least privilege** for users and for agents.
+- **Prompt injection** — a document or a tool can steer the model.
+- **Logs** without sensitive data.
+- **Separation** of test and production environments.
+- **Kill switch** — the ability to stop the model or the agent.
+
+The details are in [operational security](/topics/operations/security/).
+
+## GDPR and the AI Act
+
+Local operation is **not automatically compliant**. You need a legal
+basis, permissions, retention, documentation and a risk assessment.
+With agents and sensitive data it gets harder. The details are in
+[GDPR and the AI Act](/topics/operations/gdpr-and-ai-act/).
+
+## Example: a small team
+
+Four people, one DGX Spark, vLLM on the internal network. A proxy handles
+TLS and sign-in. Monitoring watches TTFT and the queue. Updates are
+tested on staging. Logs go to the company store. That is the minimum
+operation one administrator can handle.
+
+## Roles and responsibilities
+
+Operation without an owner ends at the first incident. A minimum split
+for a small company:
+
+| Role | What they hold | How often |
+|---|---|---|
+| **Box administrator** | installation, updates, backups | ongoing |
+| **Application owner** | access, prompts, quality | ongoing |
+| **Security** | network, logs, incidents | monthly |
+| **Legal / DPO** | GDPR, documentation | on change |
+| **Users** | checking the output | daily |
+
+One person can hold several roles, but it must be clear who decides
+during an outage and who approves new users.
+
+## The first 30 days of operation
+
+1. **Week 1** — put the API behind a proxy, write down versions and a
+   baseline.
+2. **Week 2** — monitoring, alerts and backups; test a restore.
+3. **Week 3** — permissions, logs and a test of an injection scenario.
+4. **Week 4** — documentation, an incident plan and user training.
+
+What does not get done in the first month usually never gets done. An
+operation without a baseline and alerts is tuned by complaints.
+
+## When not to use this
+
+- One user and a one-off test — llama.cpp is enough.
+- The data is public and the model changes nothing.
+- You have nobody to run the operation.
+- You have no permissions and no audit.
+
+## When it does not work
+
+Symptoms and checks are in
+[troubleshooting](/topics/operations/troubleshooting/): the model does
+not start, runs slowly or answers badly. Before you start swapping the
+model, verify that the engine sees the GPU and that the model fitted
+together with the KV cache.
+
+## Where next
+
+- [API server](/topics/operations/api-server/) — access and the API.
+- [Monitoring](/topics/operations/monitoring/) — metrics.
+- [Updates](/topics/operations/updates/) — versions and rollback.
+- [Operational security](/topics/operations/security/) — defence.
+- [Agent sandbox](/topics/operations/agent-sandbox/) — isolating actions.
+- [GDPR and the AI Act](/topics/operations/gdpr-and-ai-act/) — the law.
+- [Troubleshooting](/topics/operations/troubleshooting/) — symptoms and
+  fixes.
+- [Model routing](/topics/model-routing/) — local, or cloud.
+- [Observability](/topics/observability/) — traces and audit.
+- [Backups and recovery](/topics/backups-and-recovery/) — what must not
+  be lost.
+- [Local AI for business](/topics/local-ai-for-business/) — the decision.
+
+## Sources
+
+- [vLLM — documentation](https://docs.vllm.ai/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [GDPR — official text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [AI Act — official text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+
+*Last verified: 11 November 2026.*

@@ -1,0 +1,272 @@
+---
+title: "Abliterated Qwen3.8 on 128 GB: builds, SSD and parity"
+description: "Which abliterated Qwen3.8 Flash Next builds fit on 128 GB, how n-grams from SSD work, how to measure parity and where the limit is."
+last_verified: 2026-11-11
+---
+
+> **These are measurements and claims taken from publishers, not our
+> test.** The configuration is given with every number; where it is
+> missing, that is stated.
+
+Abliteration does not change the parameter count, so the same memory
+arithmetic applies as for the base. The difference is whether a build
+can keep the **n-gram table on an SSD** — without that, some packages do
+not fit on 128 GB, even if they are called NVFP4.
+
+## Short answer
+
+- **The model has 125B main parameters, 6B active, 51B n-grams and 4B
+  MTP.** Abliteration does not change that.
+- **NVIDIA FP4-Local has ~96 GiB of weights** and on DGX Spark, with PLE
+  offload, can serve up to 1M tokens of FP8 KV cache (NVIDIA's claim).
+- **For 128 GB, PLE from SSD decides**, not just the file size.
+- **Parity is not automatic.** The same format, engine and configuration
+  must be measured.
+
+## Memory arithmetic
+
+| Part | Parameters | What it means |
+|---|---:|---|
+| Main model | 125B | weights and compute |
+| Active per token | 6B | decode depends on them |
+| N-gram table | 51B | large, but can be kept on an SSD |
+| MTP | 4B | speculative decoding |
+
+In NVFP4 the whole model fits into ~96 GiB. The rest of the 128 GB is
+for the KV cache, activations, the system and container overhead. When
+the n-grams are moved to disk, space is freed for a longer context or
+more concurrent requests.
+
+## What PLE from SSD means
+
+NVIDIA uses these variables:
+
+```bash
+export VLLM_PLE_TABLE_MEMORY="disk"
+export B12X_DISK_BACKEND="io_uring"
+export CUTE_DSL_ARCH="sm_121a"
+```
+
+`VLLM_PLE_TABLE_MEMORY=disk` keeps the n-gram table on disk and maps it
+into memory. `io_uring` provides asynchronous reads. The result: the
+weights stay in memory, the n-grams are read from NVMe.
+
+**What it requires:**
+
+- an NVMe SSD, not SATA and not a network disk,
+- enough page cache; repeated n-grams are kept in RAM,
+- a pinned container with B12X kernels; stock vLLM will not load this
+  checkpoint,
+- measurement of TTFT and decode stability, not just the average.
+
+## A concrete launch
+
+Every build has its own path. Two that are publicly described:
+
+**NVIDIA FP4-Local and derivatives (B12X container):**
+
+```bash
+export VLLM_PLE_TABLE_MEMORY="disk"
+export B12X_DISK_BACKEND="io_uring"
+export CUTE_DSL_ARCH="sm_121a"
+
+vllm serve <repo> --quantization modelopt_mixed \
+  --tensor-parallel-size 1 --dtype bfloat16 \
+  --moe-backend b12x --linear-backend b12x
+```
+
+**DevelopingDad package (DGX Spark):**
+
+```bash
+hf download DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated \
+  --local-dir ./qwen-abliterated
+bash ./qwen-abliterated/serve-spark.sh ./qwen-abliterated
+```
+
+The launcher sets up the container, PLE from SSD and the limits itself.
+Do not run the model through stock vLLM or Transformers; this checkpoint
+requires B12X kernels.
+
+The commands are **abbreviated**. The full list of flags is in the model
+card of the specific build; a missing flag can mean different behaviour
+or a crash.
+
+## First run and what to expect
+
+- **The download** is large (102–184 GB) and depends on your line.
+- **The first start** compiles kernels and loads PLE; it can take longer
+  than later runs.
+- **TTFT** is the first thing the disk affects. Measure it separately.
+- **The page cache** warms up; after a few queries with the same
+  prefixes it can be faster.
+- **Temperature** and the power limit do not change; abliteration does
+  not mean higher consumption.
+
+## Common mistakes
+
+| Problem | Cause | Fix |
+|---|---|---|
+| OOM at startup | PLE in RAM, large context | `VLLM_PLE_TABLE_MEMORY=disk` |
+| Slow first token | disk or cold cache | NVMe, warm-up, smaller prompt |
+| The model still refuses | abliteration on BF16, not NVFP4 | another build, measure on the final format |
+| Broken tool calling | aggressive edit | another build, test the tools |
+| The container crashes | an image other than B12X | the pinned image from the card |
+| The disk heats up | long PLE reads | cooling, a different filesystem |
+
+## Which builds to use
+
+| Device | Build | Disk | PLE from SSD | Note |
+|---|---|---:|---|---|
+| DGX Spark | `DevelopingDad/...-FP4-Local-Abliterated` | 102 GB | yes | 104 GiB cap, MTP 4 drafts, FP8 KV |
+| DGX Spark | `DevelopingDad/...-Uncensored-DGX-Spark` | 184 GB | yes, mmap | BF16 PLE on disk, 100 GiB container |
+| DGX / RTX Spark | `lflare/...-CSF-QAD-Abliterated` | 103 GB | yes | Qwen licence, measured capability match |
+| RTX Spark (base) | NVIDIA FP4-Local base + vLLM port | 102 GB | yes, NVMe cache | 96/32 split, 32 GB free NVMe |
+| Strix Halo | `huihui-ai/...-v2-GGUF` (UD-IQ4_XS) | 94 GB | no | llama.cpp, Q8 KV |
+| Mac | the same GGUF through Metal | 94–98 GB | no | MLX 4bit is tight |
+
+**Unsuitable for a single 128 GB box:** `orcarouter/...-NVFP4`
+(184 GB, without a public launcher with PLE), `mazinb/...`
+(186 GB, split experts), `huihui-ai/...-abliterated`
+(360 GB BF16).
+
+**RTX Spark:** the community vLLM port for Windows ARM64 supports an
+NVMe cache for PLE. Set 96 GB of dedicated GPU memory (32 GB for
+Windows), a pagefile of 98,304/131,072 MB and leave at least 32 GB of
+NVMe free. On the NVIDIA forum the publisher reports 53.2 tok/s in the
+SPEED-Bench coding test on RTX Spark (community, not our test). Nobody
+has publicly measured an abliterated build on this port yet.
+
+## Formats and engines
+
+| Format | Where it runs | Advantage | Disadvantage |
+|---|---|---|---|
+| **NVFP4 + MXFP8** | DGX, RTX Spark, vLLM | fastest on Blackwell | NVIDIA only |
+| **NVFP4-CSF** | DGX, vLLM | smaller weights, same layout | needs a CSF reader |
+| **GGUF Q4/Q5** | Strix, Mac, CPU | portable | slower, no MTP |
+| **MLX 4bit** | Apple Silicon | native Metal | little room for context |
+
+On Strix Halo and Mac, do not bother with NVFP4. Neither ROCm nor Metal
+will run it; the path is GGUF and llama.cpp, or MLX.
+
+## Parity: how to measure it
+
+| Criterion | How | Tolerance |
+|---|---|---|
+| Same base | revision, tokenizer, MTP, vision | must match |
+| Same format | NVFP4, FP8 KV, engine and flags | must match |
+| Parameters | safetensors total against the base | must match |
+| Decode | 8k and 32k, 1 stream, 3 runs | ±5 % |
+| TTFT and prefill | the same prompts | ±10 % |
+| Concurrency | 4 requests | no crash and no swap |
+| Quality | a public benchmark + 20 Czech tasks | no drop > 2 points |
+| Refusal | 50 benign + 50 harmful | refusal drops, benign does not |
+
+**Documented numbers as of 10 November 2026 (publishers' claims):**
+
+- DevelopingDad: **38.0 tok/s** prose and **54.3 tok/s** code against
+  **39.4 / 50.7** for the base. Refusal 0/100 development and 6/100
+  holdout against 99/100 and 100/100 for the base.
+- lflare CSF: GPQA **166/198** against **164/198**, MTP acceptance
+  **59.5 %** against **61.0 %**, refusal 0/200 in protocol A.
+
+Independent measurement is missing. That is why these are candidates,
+not confirmed replacements.
+
+## What community builds show (11 November 2026)
+
+Besides DevelopingDad there are other public builds. The numbers are not
+comparable, because they use a different runtime and protocol:
+
+| Build | What it measured | Context |
+|---|---|---|
+| **DevelopingDad FP4-Local-Abliterated** | 38.0 prose / 54.3 code; 0/100 and 6/100 refusal | 1× DGX Spark, B12X, MTP4, FP8 KV |
+| **Chompa1422 NVFP4-Abliterated** | 42.13 prose / 72.45 code; TTFT 0.105/0.134 s | 1× DGX Spark, TensorFold, no comparison with the base |
+| **tonyd2wild (NVIDIA base)** | 43.9 tok/s median from 40 prompts; PLE from NVMe | 1× DGX Spark, ~76 GiB resident, 262k |
+| **gorbatjovy (abliterated, PLE FP8)** | 42.8–54.9 tok/s; KV 2.2M tokens | 2× DGX Spark, TP2, 125.9 GiB checkpoint |
+
+**What follows from that:**
+
+- **PLE from SSD works.** tonyd2wild keeps a 47.68 GiB FP8 n-gram table
+  on NVMe and the rest (~76 GiB) in memory; 262k context then fits on a
+  single Spark.
+- **FP8 PLE instead of BF16 saves ~48 GiB** (173.6 → 125.9 GiB) and
+  according to the publisher it does not change quality (KL 0.0018,
+  100 % first-token agreement on 80 prompts).
+- **Numbers are not parity.** Chompa1422 has no comparison with the
+  base; tonyd2wild measures the base, not the abliterated version.
+  DevelopingDad measures both, but on its own set and its own launcher.
+- **Two Sparks are not one box.** dealignai and Jiunsong build on
+  2× DGX Spark; that does not count as one device at 128 GB.
+
+All numbers are **publishers' measurements**, not an independent test.
+That is why A01 stays open.
+
+## What PLE from disk costs
+
+A disk is not RAM. A public benchmark on the PR for disk-backed PLE (one
+RTX PRO 6000, NVMe, 8k input / 512 output) shows the price:
+
+| Configuration | Tok/s @1 | Tok/s @32 | TTFT @1 |
+|---|---:|---:|---:|
+| PLE in RAM (baseline) | 84.5 | 517 | 569 ms |
+| PLE on disk, capped 48 GB | 79.4 | 427 | 571 ms |
+| PLE on disk, cold cache | 40.8 | 134 | 4,611 ms |
+
+What follows: **a warm cache is almost free** (−8 % at a single stream,
+the same TTFT), **a cold cache hurts** (half the speed and a TTFT in
+seconds). So it pays to:
+- have PLE on NVMe,
+- let the cache warm up with the first queries,
+- not mix a large model download with operation.
+
+The numbers are a **community benchmark**, not our test and not a 128 GB
+box.
+
+## What to measure in practice
+
+- **TTFT** at 8k, 32k and 128k — the disk shows up mainly here.
+- **Decode** after warm-up and after 10 minutes.
+- **Page cache hits** and I/O wait.
+- **Temperature and power limit** — abliteration does not change
+  consumption.
+- **Tool calling** and MTP acceptance.
+- **Refusal** on your own set, not someone else's.
+
+## Where the limit is
+
+- **A disk is not RAM.** Slow NVMe shows up in TTFT and with long
+  prompts.
+- **The page cache fills up** and behaviour can change.
+- **The container cap** (100–104 GiB) is part of the configuration; do
+  not switch it off without measuring.
+- **Windows ARM** splits memory differently than Linux; PLE from SSD is
+  not documented there yet.
+- **The licence** differs from build to build; see
+  [risks and law](/topics/abliteration/risks-and-law/).
+
+## Where next
+
+- [Abliterated models](/topics/abliteration/) — what it is.
+- [Risks and law](/topics/abliteration/risks-and-law/) — liability.
+- [The model variant](/models/qwen3-8-flash-next-abliterated/) — what is
+  documented.
+- [NVFP4](/dictionary/software/nvfp4/) — the format.
+- [KV cache](/dictionary/memory/kv-cache/) — what takes the memory.
+- [vLLM](/dictionary/software/vllm/) — the engine.
+- [DGX Spark](/devices/dgx-spark/) — hardware.
+- [RTX Spark mini](/devices/rtx-spark-mini/) — hardware.
+
+## Sources
+
+- [NVIDIA — Qwen3.8 Flash Next FP4-Local](https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local) — 10 November 2026
+- [DevelopingDad — FP4-Local-Abliterated](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated) — 10 November 2026
+- [DevelopingDad — Uncensored DGX-Spark](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-Uncensored-NVFP4-DGX-Spark) — 10 November 2026
+- [lflare — CSF-QAD-Abliterated](https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated) — 10 November 2026
+- [Chompa1422 — NVFP4 Abliterated](https://huggingface.co/Chompa1422/Qwen3.8-Flash-Next-NVFP4-Abliterated) — 11 November 2026
+- [tonyd2wild — NVFP4 on a single DGX Spark](https://github.com/tonyd2wild/Qwen3.8-Flash-Next-NVFP4-DGX-Spark) — 11 November 2026
+- [gorbatjovy — PLE FP8](https://huggingface.co/gorbatjovy/qwen3.8-flash-next-abliterated-NVFP4-plefp8) — 11 November 2026
+- [vLLM — disk-backed PLE benchmark](https://github.com/vllm-project/vllm/pull/54070) — 11 November 2026
+- [vLLM for RTX Spark (Windows ARM64)](https://github.com/devjeonghwan/vllm-for-rtx-spark) — 11 November 2026
+- [llama.cpp — documentation](https://github.com/ggml-org/llama.cpp)
+
+*Last verified: 11 November 2026.*

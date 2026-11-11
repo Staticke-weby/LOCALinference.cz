@@ -1,0 +1,174 @@
+---
+title: "Evaluating Czech quality: how to measure a local model"
+description: "How to test whether a local model handles Czech tasks. Building a test set, a rubric, a protocol and reading the results."
+last_verified: 2026-11-11
+---
+
+Without your own test you do not know whether the model handles **your**
+Czech tasks. A benchmark from a model card is useful, but it does not
+say how the model will cope with your contracts, invoices or e-mails.
+Quality evaluation is therefore part of deployment, not an academic
+discipline.
+
+## Short answer
+
+- **20–50 tasks from real work** beat thousands of generic ones.
+- **A rubric and correct answers** decide; an impression is not enough.
+- **The same model, quantization and context** for all measurements.
+- **Keep the results** — without a baseline, improvement cannot be
+  shown.
+
+## Building the test set
+
+Choose tasks that really happen:
+
+| Type | Count | What to evaluate |
+|---|---:|---|
+| Summaries | 5–10 | facts, scope, style |
+| Extraction | 5–10 | field accuracy, validation |
+| Answer from a document | 5–10 | the right passage, citation |
+| Translation | 5–10 | terminology, fluency |
+| Correspondence | 5–10 | tone, structure, facts |
+| Code / commands | 3–5 | whether it runs, safety |
+
+For each task write down:
+
+- **the input** (text or document),
+- **the expected output** or the criteria,
+- **what is forbidden** (inventing, changing numbers),
+- **who the reader is**.
+
+## The rubric
+
+For each task, score 0–2 in these categories:
+
+| Category | 0 | 1 | 2 |
+|---|---|---|---|
+| **Facts** | wrong | partly | correct |
+| **Numbers and dates** | wrong | uncertain | correct |
+| **Citations** | missing | partial | exact |
+| **Terminology** | wrong | inconsistent | correct |
+| **Grammar** | errors | minor | clean |
+| **Form** | unusable | needs edits | finished |
+
+Then convert the total into a percentage. What matters is that **0 means
+an error**, not “the model tried”.
+
+## The protocol
+
+1. **Freeze the configuration** — model, quantization, engine, context.
+2. **Set temperature to 0** for repeatability; creative tasks
+   separately.
+3. **Run each task twice** and watch stability.
+4. **Record the prompt** and any system message.
+5. **Keep the raw outputs** as well as the scores.
+6. **Repeat after a change** of model, quantization or prompt.
+
+## What to watch in Czech
+
+- **Diacritics** in names and titles.
+- **Declension** of names and terms.
+- **The formal register** — a consistent “vy”.
+- **Terminology** — per the glossary.
+- **Numbers and dates** — Czech formatting.
+- **Length** — the model can pad the answer.
+
+## A sample rubric for a contract
+
+| Criterion | 0 points | 1 point | 2 points |
+|---|---|---|---|
+| Parties | missing | one | both correct |
+| Subject | missing | general | precise |
+| Price | missing/wrong | partly | correct |
+| Duration | missing | approximate | correct |
+| Notice | missing | mentioned | correct |
+| Risks | missing | general | concrete |
+
+Maximum 12 points. For deployment, set a threshold below which you do
+not use the output without a manual fix.
+
+## How to record the results
+
+- **Date and model version.**
+- **Quantization and engine.**
+- **Temperature and context.**
+- **Prompt and glossary.**
+- **Score per task.**
+- **Notes on the errors.**
+
+Keep them in a table or in Markdown. Without a record the test cannot be
+repeated and the changes cannot be explained.
+
+## Calculating the score and the threshold
+
+The rubric gives points, but a decision needs a number. An illustrative
+**calculation** for 30 tasks with six categories at 0–2 points:
+
+```
+maximum = 30 tasks × 6 categories × 2 points = 360
+score = points earned / 360
+```
+
+Example: 300 points is 83 %. That alone does not say whether to deploy
+the model. The **distribution** decides: when all 60 lost points fall on
+“numbers and dates”, 83 % is dangerous. When they fall on “style”, it is
+usable with proofreading.
+
+The practical threshold follows from the risk:
+
+| Task | Threshold | If not met |
+|---|---:|---|
+| Internal summaries | 75 % | check every output |
+| Field extraction | 95 % on numbers | another model, or by hand |
+| Answer from a document | 90 % on citations | RAG, or by hand |
+| Translation for publication | 95 % | a person |
+
+## How long it takes
+
+For 30 tasks and two runs: 60 generations, each in the range of seconds
+to minutes, plus manual grading. Realistically **half a day to a day**
+of work when you have the criteria up front. Without criteria it drags,
+because you decide again for every task what correct means.
+
+## Common evaluation mistakes
+
+- **Testing on training data** — the result is inflated.
+- **Changing several things at once** — you do not know what helped.
+- **Grading a single prompt** — chance.
+- **Comparing different quantizations** — different numbers, different
+  quality.
+- **Trusting one benchmark** — it does not say how your tasks go.
+- **Not saving the results** — nothing can be repeated.
+
+## How many tasks are enough
+
+As a guide, **20–50 tasks**. When the results vary a lot between tasks,
+add more. When they are stable, a smaller set is enough. The goal is not
+a statistical publication, but a decision on whether to deploy the
+model.
+
+## When to repeat the test
+
+- **A change of model** or version.
+- **A change of quantization** — NVFP4 vs. FP8 vs. GGUF.
+- **A change of context** — 32k vs. 128k.
+- **A change of prompt** or glossary.
+- **A change of documents** — new types of contracts or invoices.
+
+## Where next
+
+- [How it handles Czech](/topics/czech-and-documents/czech-language/) — what to test.
+- [Document summaries](/topics/czech-and-documents/document-summaries/) — the task.
+- [Data extraction](/topics/czech-and-documents/data-extraction/) — validation.
+- [Translation and proofreading](/topics/czech-and-documents/translation-and-proofreading/) — style.
+- [Methodology](/about/methodology/) — how we read data.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [Methodology](/about/methodology/)
+- [How we read data](/getting-started/how-we-read-data/)
+
+*Last verified: 11 November 2026.*

@@ -1,0 +1,144 @@
+---
+title: "Office automation with a local agent: email and documents"
+description: "How to use a local agent for email, calendar and documents. Workflow, permissions, human approval and the risks."
+last_verified: 2026-11-11
+---
+
+Office automation is tempting: an agent reads email, drafts replies,
+sorts documents and writes to a spreadsheet. It is also the area with
+the highest risk of a data leak and of an unwanted action. That is why
+a **read-only start and human approval** pay off here more than
+anywhere else.
+
+## Short answer
+
+- **Start with reading and drafting**, not with sending.
+- **The agent must not send email without confirmation.**
+- **Mailbox and calendar permissions** should be as narrow as possible.
+- **Prompt injection** can arrive in an email; the model may obey it.
+
+## Where it makes sense
+
+| Task | What the agent does | Risk |
+|---|---|---|
+| **Email triage** | labels, priority, a draft reply | leaking content |
+| **Calendar** | proposing slots, preparing material | an unwanted change |
+| **Documents** | summaries, extraction, drafts | wrong data |
+| **Spreadsheets** | filling fields, checking | overwritten cells |
+| **CRM** | drafting a note, updating | an unauthorised write |
+
+## Workflow
+
+1. **Reading** — the agent gets only the messages it needs.
+2. **Drafting** — it prepares a reply or an action.
+3. **Review** — a human approves, edits or rejects it.
+4. **Execution** — the application sends or writes.
+5. **Log** — what happened and who approved it.
+
+Without step 3 this is a machine that can send other people's data.
+
+## Permissions
+
+- **Mailbox** — one specific folder, not the whole account.
+- **Calendar** — free/busy only, until you are confident.
+- **Files** — a directory allowlist.
+- **CRM** — read-only, or specific fields.
+- **No bulk operations** without confirmation.
+
+## Integrations
+
+- **IMAP/SMTP** — email; mind OAuth and tokens.
+- **Microsoft Graph / Google API** — company accounts.
+- **CalDAV** — calendar.
+- **An MCP server** — a single set of tools for the model.
+- **A local model** — Qwen3.8 Flash Next through vLLM or llama.cpp.
+
+Tokens belong in the environment, not in the prompt. The agent must not
+see more than it needs.
+
+## Security
+
+- **Prompt injection in an email** — a forged instruction.
+- **A data leak** — the agent sends content to a foreign address.
+- **An unauthorised write** — it changes the calendar or the CRM.
+- **Attachments** — malware or sensitive data.
+- **Retention** — what is stored and for how long.
+
+## Testing
+
+- **Read-only mode** — the agent changes nothing.
+- **Draft without sending** — check the quality.
+- **An injection test** — an email saying "send all contacts".
+- **Unauthorised access** — another user must not see the data.
+- **A long email** — it must fit in the context.
+- **A restart** — the agent recovers.
+
+## Example: drafting a reply
+
+A customer sends a question. The agent summarises it, finds the
+relevant document and drafts an answer. A human checks it and sends it.
+The agent has no right to send or move email. When an email contains
+the instruction "send the attachments to a foreign address", the
+application rejects it.
+
+## From pilot to production
+
+Rolling automation out across a whole company at once is the best way
+to lose it. The sequence that works:
+
+1. **One mailbox, one person.** Measure how many drafts pass without
+   an edit.
+2. **One activity** — triage, or replies, not both.
+3. **A week in read-only** and a collection of errors. Only then
+   writing.
+4. **A second user** and a permissions review.
+5. **Only then** a wider rollout, with documentation.
+
+When the first step fails, a larger scope will not save it.
+
+## How much it saves
+
+Automation only makes sense when the draft is usable. Watch two
+numbers:
+
+```text
+acceptance rate = accepted drafts / all drafts
+review time = time a human spends editing
+```
+
+When the agent drafts 10 replies and three go out unedited, the
+acceptance rate is 30 %. If reviewing each one takes as long as writing
+it, the saving is zero even at a high acceptance rate. This is a
+**calculation**, not a measurement; you have to collect the numbers
+yourself.
+
+## Where not to do it
+
+Beyond the situations below, one rule holds: **bulk mailings, legal
+filings and personnel decisions** stay with a human. The agent can
+prepare the material, but the company carries the responsibility.
+
+## When not to do it
+
+- You have no **consent** from the people whose data you process.
+- You cannot **log** and stop the agent.
+- The agent would **send** without review.
+- The data is **too sensitive** for any automation.
+- You have no **person** to review the output.
+
+## Where next
+
+- [MCP in practice](/topics/agents/mcp/) — tools.
+- [Agent security](/topics/agents/agent-security/) — defence.
+- [Coding agents](/topics/agents/coding-agents/) — code.
+- [Local AI for business](/topics/local-ai-for-business/) — operation.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [Model Context Protocol — documentation](https://modelcontextprotocol.io/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [GDPR — official text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+
+*Last verified: 11 November 2026.*

@@ -1,0 +1,161 @@
+---
+title: "Chunking: how to split documents for RAG"
+description: "Chunking decides what RAG finds. Chunk size, overlap, splitting by structure and the language traps that break retrieval."
+last_verified: 2026-11-11
+---
+
+**Chunking** is the splitting of a document into smaller parts that are
+stored in a vector database. It is the most influential and most often
+underestimated decision in RAG. A bad chunk loses the connection
+between ideas; an oversized chunk floods the context.
+
+## Short answer
+
+- **A chunk is the unit of search**, not the unit of the model.
+- **Smaller chunks** match more precisely but lose context.
+- **Larger chunks** keep the thread but eat context and rank worse.
+- **Split by structure** (headings, paragraphs, articles) rather than
+  by a fixed character count.
+
+## How big a chunk
+
+| Size | Advantage | Disadvantage |
+|---|---|---|
+| **small** (1–2 paragraphs) | precise search | loss of context |
+| **medium** (a section) | a compromise | depends on the document |
+| **large** (a chapter) | keeps the thread | worse ranking, more expensive |
+
+There is no universal number. Contracts suit articles, manuals suit
+sections, e-mail suits individual messages. Test on your own questions.
+
+## Overlap
+
+Overlap means neighbouring chunks share some text. It helps when the
+answer sits on a boundary. The downside is a larger index and duplicate
+results. For most European languages a small overlap is enough; for
+tables, rather none at all.
+
+## Splitting by structure
+
+- **Headings** — the chunk respects the chapter.
+- **Paragraphs** — a natural boundary.
+- **Contract articles** — numbered sections.
+- **Tables** — a separate chunk with its header.
+- **Lists** — kept together where possible.
+
+A naive split every 1,000 characters can cut a sentence or a table in
+half. Document structure is a better signal than length.
+
+## Metadata
+
+Add to every chunk:
+
+- **document** and **page**,
+- **section** or **article**,
+- **date** and **version**,
+- **department** and **permissions**,
+- **the document hash**.
+
+Without metadata you can neither filter nor cite. "It was found" is not
+enough; you have to know where it came from.
+
+## Language specifics
+
+- **Diacritics** — the chunk must keep accents and other marks.
+- **Inflection** — the searched term may appear in a different form.
+- **Long sentences** — splitting mid-sentence hurts.
+- **Tables** — local number and date formats.
+- **Abbreviations** — company registration numbers, VAT IDs and tax
+  codes must stay in the same chunk.
+
+## Example: a contract
+
+A contract has articles 1–12. A chunk per article beats a chunk per
+1,000 characters: each article holds together and the metadata carries
+the article number. For a price table, create a separate chunk with the
+header so the columns do not fall apart.
+
+## How to evaluate chunking
+
+1. Take **20 questions** whose answers you know.
+2. Check whether the correct chunk appeared in the **top 3–5**.
+3. If not, look at whether the chunk was too small or too large.
+4. Try a different split and compare.
+5. Write the result down; without a baseline, changes cannot be judged.
+
+## How many chunks a document produces
+
+The number of chunks can be estimated before indexing:
+
+```
+count ≈ document length / (chunk size − overlap)
+```
+
+Example: a 100-page PDF at 2,000 characters per page is roughly
+200,000 characters. With a chunk of 1,500 characters and an overlap of
+150 characters that works out to **about 148 chunks**. This is a
+**calculation**, not a measurement; the real count depends on splitting
+by structure.
+
+Why it matters: the number of chunks sets the index size, the cost of
+search and how many candidates fit into the context. At 10,000
+documents, the difference between 1,500 and 3,000 characters already
+means thousands of extra chunks.
+
+## Choosing by document type
+
+| Document | Split by | Why |
+|---|---|---|
+| Contract | articles | numbering and paragraphs |
+| Manual | sections and subsections | steps follow each other |
+| E-mail | individual messages | conversation by thread |
+| Table | sheet or block with a header | keeps the columns |
+| Web page | H2/H3 headings | page structure |
+| Meeting notes | paragraphs and decisions | topics alternate |
+
+When a document has no structure, only then split by length — and with
+an overlap that keeps a sentence whole.
+
+## How much context the chunks take
+
+RAG does not send the whole document, but a handful of chunks. An
+indicative **calculation**: 5 chunks of 1,500 characters is 7,500
+characters. At roughly 3.5 characters per token (the figure for Czech,
+which is denser than English) that is around **2,100 tokens** for the
+context alone. On top of that come the system prompt, the question and
+the history.
+
+The trade-off follows: more chunks improve the chance that the answer
+is in the context, but they lengthen
+[prefill](/dictionary/performance/prefill/) and take space in the
+[KV cache](/dictionary/memory/kv-cache/). A typical operating point is
+3–8 chunks, not 50.
+
+## Common mistakes
+
+- **Fixed length regardless of structure.**
+- **Chunks that are too small** — the model loses the thread.
+- **Chunks that are too large** — the context is flooded.
+- **No metadata** — no citations and no filtering.
+- **Duplicates** — the same text in ten chunks.
+- **Tables cut** into meaningless pieces.
+
+## Where next
+
+- [PDF and scans](/topics/rag/pdf-and-scans/) — how to get the text out.
+- [Embeddings in practice](/topics/rag/embeddings-in-practice/) — how
+  search works.
+- [Citations and evaluation](/topics/rag/citations-and-evaluation/) —
+  how to verify the answer.
+- [RAG](/topics/rag/) — the whole pipeline.
+- [Embeddings](/dictionary/software/embeddings/) — what a vector is.
+- [Vector database](/dictionary/software/vector-database/) — where to
+  store it.
+
+## Sources
+
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

@@ -1,0 +1,159 @@
+---
+title: "Monitoring local AI: what to measure and when to raise an alarm"
+description: "How to monitor a local model: tok/s, TTFT, queue, KV cache, memory, temperature and errors. Practical metrics and a checklist."
+last_verified: 2026-11-11
+---
+
+Monitoring is not just a graph. It is how you find out that the model is
+**slowing down**, **running out of memory** or that **someone sent an
+oversized request** — before the users notice.
+
+## Short answer
+
+- **Watch tok/s, TTFT, the queue and memory.** Those are the four basic
+  numbers.
+- **Add temperature and throttling** on laptops and small boxes.
+- **Log errors** and restarts.
+- **Set alerts from a baseline**, not from a feeling.
+
+## What to measure
+
+| Metric | Why | When it is a problem |
+|---|---|---|
+| **Decode tok/s** | speed of the answer | a sustained drop |
+| **TTFT** | waiting for the first token | growth with context or queue |
+| **Prefill tok/s** | reading the document | a drop after an update |
+| **Queue** | how many people are waiting | it keeps growing |
+| **KV cache** | memory for context | approaching the limit |
+| **GPU / RAM** | total memory | OOM or swap |
+| **Temperature** | throttling | high under load |
+| **Errors** | stability | 5xx, timeouts |
+
+## How to collect it
+
+- **vLLM** has metrics and a Prometheus endpoint; use the official
+  documentation.
+- **The llama.cpp server** logs requests and speeds.
+- **NVIDIA:** `nvidia-smi` or DCGM.
+- **AMD:** `rocm-smi`.
+- **System:** CPU, RAM, disk, network.
+
+Store metrics with a timestamp and the model, otherwise they cannot be
+compared.
+
+## Baseline
+
+First measure the **normal state**:
+
+- one user, a short prompt,
+- one user, a 32k document,
+- four users, short prompts,
+- a long run (hours).
+
+Only then set alerts. Without a baseline you do not know what "slow"
+means.
+
+## Alerts
+
+- **TTFT** above your limit for several minutes.
+- The **queue** grows and does not drain.
+- **Memory** below a safe reserve.
+- **Temperature** leading to throttling.
+- **Error rate** above the usual level.
+- A **restart** of the model or the server.
+
+Send alerts to email, chat or a ticket. A dashboard nobody opens is not
+enough.
+
+## Logs
+
+- **Who** and **when**.
+- The **model** and the **version**.
+- **Prompt and answer length**.
+- **Latency**.
+- The **error**, without secrets.
+
+Logs need retention and access rights. They can contain personal data.
+
+## Example: a queue alert
+
+Normally there are 0–2 requests in the queue. The alert fires when the
+queue is longer than 10 for five minutes. That means the model cannot
+keep up or someone sent an overlong context. Without a baseline you
+would not know whether 10 is "a lot".
+
+## Thresholds and alerts in practice
+
+An alert should be tied to impact, not to a number. A practical table:
+
+| Signal | Warning | Critical | What to do |
+|---|---|---|---|
+| TTFT | 2× baseline | 5× baseline | check the queue and context |
+| Queue | > 5 requests for 5 min | > 15 requests | lower concurrency |
+| Decode | −20 % against baseline | −50 % | temperature, throttling, version |
+| Free memory | < 15 % | < 5 % | lower context or batch |
+| Error rate | > 2 % | > 10 % | restart, rollback |
+| Temperature | 85 °C | 95 °C | cooling, power limit |
+
+The numbers are **indicative**; measure your own baseline. An alert
+that fires every day and means nothing stops interesting people — and
+then they miss the real one.
+
+## How much space the logs take
+
+Logging is cheap until you start storing the whole prompt. An
+illustrative **calculation**: a record without content is around 500
+bytes. At 5,000 requests a day that is **2.5 MB a day**, roughly 75 MB
+a month. Add whole prompts and answers and it can be a hundred times
+more.
+
+So keep two levels: **metrics and metadata** for a long time, **content**
+briefly or not at all. Keys and full personal data do not belong in the
+logs.
+
+## What not to do
+
+- **Alerts without a baseline** — you will tune a threshold instead of
+  running the service.
+- **A dashboard without an owner** — nobody looks at it.
+- **Logging everything** — cost growth and leak risk.
+- **Measuring only the average** — p95 reveals problems the average
+  hides.
+- **Forgetting throttling** — performance drops while the error rate
+  stays at zero.
+
+## Checklist
+
+- [ ] Are the metrics available?
+- [ ] Is there a baseline?
+- [ ] Are there alerts?
+- [ ] Are the logs free of secrets?
+- [ ] Is there retention?
+- [ ] Is there a dashboard?
+- [ ] Is there an incident response plan?
+
+## When you do not need this
+
+- One user and a short test.
+- The model serves nobody else.
+- You have no production data.
+- The terminal log is enough for you.
+
+## Where next
+
+- [API server](/topics/operations/api-server/) — access.
+- [Updates](/topics/operations/updates/) — versions.
+- [Operational security](/topics/operations/security/) — defence.
+- [vLLM](/dictionary/software/vllm/) — metrics.
+- [TTFT](/dictionary/performance/ttft/) — the wait.
+- [How many users a box handles](/choosing/how-many-users/) —
+  concurrency.
+
+## Sources
+
+- [vLLM — metrics](https://docs.vllm.ai/en/latest/design/metrics.html)
+- [Prometheus — documentation](https://prometheus.io/docs/)
+- [NVIDIA — nvidia-smi](https://developer.nvidia.com/nvidia-system-management-interface)
+- [AMD — rocm-smi](https://rocm.docs.amd.com/projects/rocm_smi_lib/en/latest/)
+
+*Last verified: 11 November 2026.*

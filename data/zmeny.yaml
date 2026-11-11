@@ -6,6 +6,13 @@
 
 - datum: 2026-11-11
   typ: obsah
+  titulek: "EN mutace: plná parita, 186 z 186 stránek"
+  co_se_zmenilo: "Anglická mutace dostala abliteraci (6 stránek a varianta modelu), agenty (pilíř, 6 kapitol, 9 nástrojů), češtinu a dokumenty, RAG, provoz a bezpečnost, praxi pro profese a 25 nových hesel slovníku. Parita rout je 187/187."
+  dotcene_stranky: [temata/abliterace, modely/qwen3-8-flash-next-abliterated, temata/agenti, temata/cestina, temata/rag, temata/provoz, temata/praxe, slovnik]
+  zdroj: https://www.localinference.eu/topics/
+
+- datum: 2026-11-11
+  typ: obsah
   titulek: "EN mutace: osm nových témat a oprava 180B parametrů"
   co_se_zmenilo: "Anglická mutace dostala plné články Context engineering, Quantization in practice, Electricity, noise and heat, Agent memory, Tool design, Model routing, Observability a Backups and recovery. Zároveň se opravil údaj o parametrech: 180B celkem (125B main + 51B N-gram + 4B MTP), ne 125B."
   dotcene_stranky: [temata/kontext-engineering, temata/kvantizace-v-praxi, temata/elektrina-hluk-teplo, temata/agenti/pamet-agenta, temata/agenti/navrh-nastroju, temata/provoz/model-routing, temata/provoz/observability, temata/provoz/zalohy-a-obnova, modely/qwen3-8-flash-next]

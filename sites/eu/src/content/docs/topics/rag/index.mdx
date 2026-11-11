@@ -1,0 +1,194 @@
+---
+title: "RAG and company documents: local AI that can cite"
+description: "RAG connects a local model to your own documents. The pipeline, PDFs and scans, chunking, embeddings, citations, permissions and when it pays off."
+last_verified: 2026-11-11
+---
+
+**RAG** (Retrieval-Augmented Generation) means the model does not get
+the whole archive, only the relevant passages that were found for the
+question. It is the most common way to bring company documents into
+local AI without sending everything into the context window or to the
+cloud.
+
+## Short answer
+
+- **RAG = search + generation.** First the relevant documents are
+  found, then the model reads them and answers.
+- **It pays off from hundreds of documents up**, once sending the full
+  text into the context no longer works.
+- **It is not magic.** Quality depends on the data, the chunks, the
+  embedding model and the checking. Bad RAG is worse than plain search.
+
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:900px" viewBox="0 0 900 190" role="img" aria-labelledby="rag-diagram-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="rag-diagram-title">RAG pipeline: documents, chunks, embeddings, search, model, citations</title>
+    <rect x="10" y="55" width="130" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="75" y="85" text-anchor="middle" fill="currentColor" font-size="13">documents</text>
+    <text x="75" y="104" text-anchor="middle" fill="currentColor" font-size="11">PDF, e-mail</text>
+    <line x1="140" y1="90" x2="170" y2="90" stroke="currentColor" /><polygon points="170,86 178,90 170,94" fill="currentColor" />
+    <rect x="178" y="55" width="120" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="238" y="85" text-anchor="middle" fill="currentColor" font-size="13">chunks</text>
+    <text x="238" y="104" text-anchor="middle" fill="currentColor" font-size="11">splitting</text>
+    <line x1="298" y1="90" x2="328" y2="90" stroke="currentColor" /><polygon points="328,86 336,90 328,94" fill="currentColor" />
+    <rect x="336" y="55" width="130" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="401" y="85" text-anchor="middle" fill="currentColor" font-size="13">embeddings</text>
+    <text x="401" y="104" text-anchor="middle" fill="currentColor" font-size="11">vectors</text>
+    <line x1="466" y1="90" x2="496" y2="90" stroke="currentColor" /><polygon points="496,86 504,90 496,94" fill="currentColor" />
+    <rect x="504" y="55" width="120" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="564" y="85" text-anchor="middle" fill="currentColor" font-size="13">search</text>
+    <text x="564" y="104" text-anchor="middle" fill="currentColor" font-size="11">top-K</text>
+    <line x1="624" y1="90" x2="654" y2="90" stroke="currentColor" /><polygon points="654,86 662,90 654,94" fill="currentColor" />
+    <rect x="662" y="55" width="110" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="717" y="85" text-anchor="middle" fill="currentColor" font-size="13">model</text>
+    <text x="717" y="104" text-anchor="middle" fill="currentColor" font-size="11">answer</text>
+    <line x1="772" y1="90" x2="802" y2="90" stroke="currentColor" /><polygon points="802,86 810,90 802,94" fill="currentColor" />
+    <rect x="810" y="55" width="80" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="850" y="85" text-anchor="middle" fill="currentColor" font-size="13">citation</text>
+    <text x="850" y="104" text-anchor="middle" fill="currentColor" font-size="11">source</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">RAG does not send the whole archive; it selects the relevant chunks and backs the answer with a citation.</figcaption>
+</figure>
+
+## How RAG works
+
+1. **Documents** are loaded from disks, e-mail or a business system.
+2. **The text is split** into chunks (paragraphs, pages, sections).
+3. **An embedding model** turns each chunk into a vector — a list of
+   numbers that represents its meaning.
+4. **A vector database** stores the vectors and can find similar ones.
+5. **The question** is turned into a vector and the top-K chunks are
+   retrieved.
+6. **The chat model** receives those chunks and answers with citations.
+7. **A check** confirms that the answer matches the source.
+
+Without RAG you send the whole document; with RAG you send only what is
+relevant. That saves context, memory and time.
+
+## RAG versus a long context
+
+| Situation | RAG | Long context |
+|---|---|---|
+| Many documents | **yes** | expensive and slow |
+| One large document | sometimes | **yes** |
+| Frequent questions over the same data | **yes** | wasteful |
+| Exact citations | **yes** | weaker |
+| Simple deployment | more work | **simpler** |
+
+Long context and RAG are not mutually exclusive. They are often
+combined: RAG selects the document, long context reads the whole
+contract. See [context engineering](/topics/context-engineering/) for
+how to spend the window.
+
+## What you need
+
+- **A model:** Qwen3.8 Flash Next on a 128GB box.
+- **An embedding model:** a smaller model that produces the vectors.
+- **A vector database:** FAISS, Chroma, Qdrant, pgvector.
+- **Ingest:** PDF, DOCX, e-mail, scans.
+- **Checking:** a person who verifies the answer and the citation.
+
+## What RAG does not fix
+
+- **Bad data.** If a document is invalid, RAG will still find it.
+- **Permissions.** You have to enforce them in the application, not in
+  the model.
+- **Hallucination.** Even with context, the model can invent an answer.
+- **Model quality.** RAG does not add reasoning the model lacks.
+- **Legal responsibility.** That stays with the company.
+
+## Example: contracts in a company
+
+A company has 2,000 contracts in PDF. RAG splits them by article,
+stores metadata (year, department, counterparty) and, for a question
+like "what is the notice period for supplier X", finds the relevant
+articles. The model answers with a citation of the specific contract
+and clause. A lawyer then checks only the selected passages instead of
+the whole archive.
+
+## Where the limit is
+
+- **Chunking** — bad splitting loses the connection between ideas.
+- **Embedding** — quality differs between languages and domains.
+- **Freshness** — a changed document needs a new embedding.
+- **Permissions** — who is allowed to see which document.
+- **Context** — only a handful of chunks fit into the model.
+- **Operations** — ingest, backups, monitoring, deletion.
+
+## What it costs
+
+RAG on a 128GB box needs no extra hardware. The costs are:
+
+- **time to prepare the data** — the largest item,
+- **the embedding model** — small, often on the CPU,
+- **the vector database** — disk space and RAM,
+- **administration** — updates, backups, permissions.
+
+A detailed breakdown is in [the cost of local
+AI](/topics/cost-of-local-ai/).
+
+## A typical project in five steps
+
+RAG cannot be bought; it has to be built. The order of the steps
+decides whether the project ends as a demo or in production:
+
+1. **Pick 50 documents** and 20 questions whose answers you know. This
+   is the test set; without it there is no point tuning anything.
+2. **Process the text** — extraction, OCR, metadata. The quality of the
+   input decides everything downstream (see [PDF and
+   scans](/topics/rag/pdf-and-scans/)).
+3. **Split and index** — chunking by structure, an embedding model, a
+   vector database ([chunking](/topics/rag/chunking/)).
+4. **Connect the model and citations** — the answer must show the
+   document and page, not just claim to know.
+5. **Measure, and only then expand** — Recall@5, faithfulness, refusals
+   ([citations and
+   evaluation](/topics/rag/citations-and-evaluation/)).
+
+The most common failure is skipping steps 1 and 5: the team points RAG
+at the whole archive, nobody measures quality, and a month later no one
+can tell what improved.
+
+## What to watch in production
+
+- **New documents** — without ingest, RAG answers from old data.
+- **Deleted documents** — their vectors must disappear too.
+- **Changed documents** — a new version needs a new embedding.
+- **Permissions** — the filter must apply on every single query.
+- **Quality** — a running sample of answers, not a one-off test.
+- **Context cost** — more chunks mean a longer prefill and slower
+  [TTFT](/dictionary/performance/ttft/).
+
+Monitoring and alerting for all of this is covered in
+[monitoring](/topics/operations/monitoring/).
+
+## When RAG makes no sense
+
+- You have **one document** that fits into the context.
+- You are looking for **an exact code or number** — full-text search is
+  better.
+- The data is **public** and you do not mind the cloud.
+- You have **no one to check and maintain** it.
+
+## Where next
+
+- [Topics](/topics/) — overview by use case.
+- [PDF and scans](/topics/rag/pdf-and-scans/) — how to get the text out.
+- [Chunking](/topics/rag/chunking/) — how to split documents.
+- [Embeddings in practice](/topics/rag/embeddings-in-practice/) — how
+  search works.
+- [Citations and evaluation](/topics/rag/citations-and-evaluation/) —
+  how to verify the answer.
+- [Permissions and security](/topics/rag/permissions-and-security/) —
+  who sees what.
+- [RAG in the dictionary](/dictionary/software/rag/) — the basic term.
+- [Agent memory](/topics/agent-memory/) — what persists between
+  sessions, as opposed to documents.
+
+## Sources
+
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — documentation](https://docs.vllm.ai/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Last verified: 11 November 2026.*

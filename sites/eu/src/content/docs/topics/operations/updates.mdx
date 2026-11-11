@@ -1,0 +1,142 @@
+---
+title: "Updating local AI: versions, testing and rollback"
+description: "How to update the model, the engine and the drivers without an outage. Pinned versions, a staging environment, backups and rollback."
+last_verified: 2026-11-11
+---
+
+Local AI keeps moving: new versions of vLLM, llama.cpp, drivers and
+models. An update can improve speed, but it can also break the API or
+change behaviour. Without pinned versions and a rollback, running the
+service turns into an experiment.
+
+## Short answer
+
+- **Pin versions** of the model, the engine, the drivers and the
+  configuration.
+- **Test on staging**, not in production.
+- **Keep a rollback** and a backup of the configuration.
+- **Record changes** and the reason for them.
+
+## What to pin
+
+| Item | Why |
+|---|---|
+| **Model** | a different revision can behave differently |
+| **Quantization** | NVFP4 / FP8 / GGUF differ |
+| **Engine** | the vLLM / llama.cpp version changes the API |
+| **Drivers** | CUDA / ROCm affect performance |
+| **OS** | DGX OS, Ubuntu, Windows |
+| **Configuration** | temperature, context, MTP, KV cache |
+
+Pin a specific revision or tag, not "latest".
+
+## The update procedure
+
+1. **Read the changelog** and the known issues.
+2. **Back up** the configuration and the data.
+3. **Deploy to staging** with the same configuration.
+4. **Run the tests** — API, quality, performance, memory.
+5. **Compare with the baseline.**
+6. **Deploy to production** in a low-traffic window.
+7. **Watch** the metrics and errors.
+8. **Roll back** if there is a problem.
+
+## Tests
+
+- **Health check** and a basic prompt.
+- **Tool calling** and the parser.
+- **Long context** and the KV cache.
+- **Concurrency** with 2–4 requests.
+- **Quality** on your own tasks.
+- **Memory** and temperature.
+
+Without tests, an update is just a hope.
+
+## Backups
+
+- **Configuration** — YAML, commands, variables.
+- **Model** — revision and hash; the weights themselves can be
+  downloaded again.
+- **Data** — documents, index, database.
+- **Logs** — for audit.
+- **The recovery procedure** — tried, not only written down.
+
+## Rollback
+
+- **The previous image** or binary.
+- **The previous model revision.**
+- **The previous configuration.**
+- **A check** that the API and the data work.
+
+A rollback must be fast. When it takes hours, it is not a rollback.
+
+## Example: a rollback
+
+A new vLLM version degrades tool calling. The tests pass on staging, but
+in production the agent stops calling the tool. A rollback to the
+previous image and configuration returns the service to its state before
+the update. Without a pinned version you would not know where to return
+to.
+
+## Risk matrix
+
+Not every update is equally dangerous. Decide by what changes:
+
+| What you update | Risk | Test | Rollback |
+|---|---|---|---|
+| Model (new revision) | high | quality and tool calling | the previous revision |
+| Engine (vLLM, llama.cpp) | high | API, performance, memory | the previous image |
+| CUDA / ROCm driver | medium | performance, stability | the previous driver |
+| OS | high | everything | snapshot |
+| Prompt configuration | low | 20 tasks | git |
+| Vector index | medium | Recall@5 | regeneration |
+
+The closer the layer is to the model, the worse the rollback. That is
+why a model revision is pinned for months and changed deliberately, not
+with every release.
+
+## When to update immediately
+
+- A **security fix** for a driver or the engine.
+- A **critical bug** that affects you.
+- An **incompatibility** with a new client or API.
+
+By contrast, "a new version came out" is not a reason. A service that
+works has no reason to be changed on a Friday afternoon.
+
+## Checklist
+
+- [ ] Are the versions pinned?
+- [ ] Is there staging?
+- [ ] Are there tests?
+- [ ] Is there a backup?
+- [ ] Is there a rollback?
+- [ ] Is there a changelog?
+- [ ] Is there a deployment window?
+- [ ] Is there monitoring?
+
+## When not to update
+
+- Before important work.
+- Without a backup and a rollback.
+- Without tests.
+- When you do not know the changelog.
+- When you have no time to deal with problems.
+
+## Where next
+
+- [API server](/topics/operations/api-server/) — access.
+- [Monitoring](/topics/operations/monitoring/) — metrics.
+- [Operational security](/topics/operations/security/) — defence.
+- [vLLM](/dictionary/software/vllm/) — the engine.
+- [llama.cpp](/dictionary/software/llamacpp/) — the engine.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [vLLM — releases](https://github.com/vllm-project/vllm/releases)
+- [llama.cpp — releases](https://github.com/ggml-org/llama.cpp/releases)
+- [NVIDIA — DGX Spark documentation](https://docs.nvidia.com/dgx/dgx-spark/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+
+*Last verified: 11 November 2026.*

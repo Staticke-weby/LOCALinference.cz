@@ -1,0 +1,158 @@
+---
+title: "Czech and local AI: what the models actually handle"
+description: "How local models cope with Czech, Czech documents, summaries, extraction and translation. What to test and where Qwen3.8 Flash Next stops."
+last_verified: 2026-11-11
+---
+
+**Czech** is a different problem for local AI than English is. It has
+rich morphology, free word order, diacritics and a formal as well as an
+informal register. A model that answers well in English may not be
+equally good on Czech contracts, invoices or e-mails. This hub
+summarises what to test and how to work with Czech documents.
+
+Most of it applies to any morphologically rich language with a smaller
+share of training data — Czech is simply the case we can document, and
+the one this site is written from.
+
+## Short answer
+
+- **Czech is not automatically good.** Qwen3.8 Flash Next is
+  multilingual, but there is no public Czech benchmark we could cite.
+- **The task decides, not the language.** Summaries, extraction and
+  translation have different criteria and different risks.
+- **Test on your own data.** 20–50 tasks from real work say more than
+  one benchmark.
+
+## What makes Czech different
+
+Czech is a West Slavic language with roughly ten million speakers. In
+training data it is a minority language, which is why the model can be
+fluent and still imprecise.
+
+| Property | Why it complicates the work |
+|---|---|
+| **Morphology** | words take many forms; the model has to handle case and conjugation |
+| **Diacritics** | háčky and čárky change meaning and even surnames |
+| **Word order** | free; emphasis and meaning shift with order |
+| **Formality** | “ty” vs. “vy”, official vs. everyday style |
+| **Terminology** | legal, medical and technical terms are not unified |
+| **Numbers and codes** | company registration number, VAT ID, dates, amounts, contract numbers |
+
+The model learns this from data. When it has seen little Czech, it can
+be fluent but inaccurate. That is why facts, numbers and quotations in
+Czech documents always get checked.
+
+## Five tasks worth solving
+
+1. **[Document summaries](/topics/czech-and-documents/document-summaries/)** —
+   a short, faithful summary of a long text.
+2. **[Data extraction](/topics/czech-and-documents/data-extraction/)** —
+   invoices, contracts and forms into structured fields.
+3. **[Translation and proofreading](/topics/czech-and-documents/translation-and-proofreading/)** —
+   Czech to English, English to Czech, style and terminology.
+4. **[Quality evaluation](/topics/czech-and-documents/quality-evaluation/)** —
+   how to measure that the output is usable.
+5. **[How the model handles Czech](/topics/czech-and-documents/czech-language/)** —
+   what to expect and where it fails.
+
+## A test set by task
+
+Before you start, decide what “good” means for you. Different tasks have
+different criteria and a different cost of error:
+
+| Task | Samples | What must pass | Cost of error |
+|---|---:|---|---|
+| Summary | 10 | facts, numbers, nothing extra | medium |
+| Extraction | 10 | every field against the source | high |
+| Translation | 10 | glossary and meaning | medium |
+| Correspondence | 5 | tone and facts | low |
+| Question over a document | 10 | the right passage and a citation | high |
+
+45 tasks in total. That is the scope one person can handle in a day,
+and enough to show whether the model is good enough for your documents.
+
+## The economics of the test
+
+An illustrative **calculation**: 45 tasks, two generations each, three
+minutes of grading per task = roughly **4.5 hours of work**. Against
+that stands the risk of deploying a model that gets the amount wrong in
+five percent of cases.
+
+When one wrong invoice means an hour of fixing and you process 500
+invoices a month, five percent is 25 fixes — 25 hours. A half-day test
+pays for itself in the first month.
+
+## What you need
+
+- **Qwen3.8 Flash Next** on a 128GB box — a model that handles both
+  documents and tool calling.
+- **Enough context** — 32k for ordinary documents, 128k for longer ones.
+- **RAG** — when documents accumulate and you do not want to send
+  everything at once.
+- **A check** — a person who verifies facts and numbers.
+- **A record of the configuration** — model, quantization, temperature,
+  prompt.
+
+## What we know and what we do not
+
+**We know:**
+
+- Qwen3.8 Flash Next is multimodal and multilingual.
+- The model has 180B parameters in total and 6B active.
+- Vision handles documents and screenshots.
+- Tool calling and structured output are supported.
+
+**We do not know:**
+
+- Exactly how its Czech grammar compares with other models.
+- How it performs on Czech legal and accounting documents.
+- How quality changes with quantization and context length.
+
+None of that can be read off a model card. You have to test it on your
+own tasks. The method is in
+[quality evaluation](/topics/czech-and-documents/quality-evaluation/).
+
+## How to start
+
+1. **Pick one task** — summary, extraction, translation.
+2. **Take 20–50 samples** from real work, not textbook texts.
+3. **Write the criteria** and the correct answers.
+4. **Run the model** with the same quantization you will operate.
+5. **Write down the results** and decide whether to continue.
+
+## When not to use it
+
+- **Legal interpretation** — the model can write a convincing but wrong
+  answer.
+- **Medical diagnosis** — the risk is too high.
+- **A financial audit without a check** — numbers must be verified.
+- **Publication without proofreading** — grammar and style need a person.
+- **Documents you do not understand** — you cannot check the output.
+
+## Where the limit is
+
+- **A long document** — the model can skip an important passage.
+- **Numbers and codes** — company IDs, VAT IDs and amounts need
+  validation.
+- **Legal and medical text** — an error has consequences; a person must
+  check.
+- **Quantization** — 4-bit can blur small distinctions.
+- **Context** — 262k is a ceiling, not a recommended operating point.
+
+## Where next
+
+- [Document summaries](/topics/czech-and-documents/document-summaries/) — the procedure.
+- [Data extraction](/topics/czech-and-documents/data-extraction/) — invoices and forms.
+- [Translation and proofreading](/topics/czech-and-documents/translation-and-proofreading/) — style.
+- [Quality evaluation](/topics/czech-and-documents/quality-evaluation/) — how to measure.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — what the model can do.
+- [RAG](/dictionary/software/rag/) — documents in context.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog — Qwen3.8-Flash-Next](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [Methodology](/about/methodology/)
+- [How we read data](/getting-started/how-we-read-data/)
+
+*Last verified: 11 November 2026.*

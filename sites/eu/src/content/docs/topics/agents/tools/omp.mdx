@@ -1,0 +1,145 @@
+---
+title: "omp: a terminal agent with LSP, a debugger and subagents"
+description: "oh my pi (omp) is a fork of pi with LSP, DAP, subagents and local providers. Install it, connect Ollama or llama.cpp, and see where the limits are."
+last_verified: 2026-11-11
+---
+
+**omp** (oh my pi) is a terminal coding agent that started as a fork
+of [pi](/topics/agents/tools/pi/). It adds LSP, a debugger,
+subagents and hash-anchored edits. It stays open source and works
+with local models.
+
+## Short answer
+
+- **MIT, terminal, macOS/Linux/Windows.** Requires Bun 1.3.14+.
+- **Local model:** Ollama, LM Studio, llama.cpp, vLLM.
+- **Strength:** LSP and DAP in the terminal, subagents, worktrees.
+- **Weakness:** a young project, many options, fast development.
+
+## What it is
+
+omp extends pi with the things an IDE usually handles:
+
+- **LSP** — diagnostics, symbols, rename across a project.
+- **DAP** — a connection to a real debugger.
+- **Subagents** — splitting work across several runs.
+- **Hash-anchored edits** — editing by line hashes, fewer broken
+  patches.
+- **Worktrees** — isolating parallel tasks.
+
+It is not a replacement for an IDE. It is an agent that behaves more
+like one.
+
+## Connecting a local model
+
+According to the documentation and reviews, the same route as with
+pi works:
+
+- **Ollama** at `http://localhost:11434/v1`,
+- **LM Studio** on its OpenAI endpoint,
+- **llama.cpp server** with `--jinja`,
+- **vLLM** with the OpenAI API.
+
+Configuration lives in `~/.omp/agent/models.yml` (models) and
+`~/.omp/agent/settings.yml` (tools and behaviour). Exact keys can
+change between versions; check them against the current
+documentation.
+
+For a local model the rule is: the better the tool calling, the
+fewer correction loops. omp can swap the model in the middle of a
+session.
+
+## Install
+
+```bash
+curl -fsSL https://omp.sh/install | sh
+```
+
+Homebrew: `brew install can1357/tap/omp`. Through Bun:
+`bun install -g @oh-my-pi/pi-coding-agent`. Windows PowerShell:
+`irm https://omp.sh/install.ps1 | iex`.
+
+After installing, run `omp` in a project. Adding shell completions is
+recommended.
+
+## Workflow
+
+1. `cd` into the project and run `omp`.
+2. `/login` picks the provider, `/model` the model.
+3. The agent reads the repo, uses LSP and proposes changes.
+4. Subagents handle parts of the task in parallel.
+5. `review` or a manual check of the diff.
+6. A worktree isolates risky changes.
+
+For orchestrating several agents, omp is often combined with
+[Herdr](/topics/agents/tools/herdr/).
+
+## LSP and DAP in practice
+
+**LSP** gives the agent the same information an editor has:
+diagnostics, symbols, references and rename. When the agent renames
+a function, the change goes through the language server and also
+updates re-exports and aliases. Fewer "almost correct" patches.
+
+**DAP** connects a real debugger. The agent can stop a process, walk
+the stack and read variables. That helps with bugs you cannot spot
+in the code.
+
+Both depend on a language server and a debugger for the language in
+question. For an unknown language they will not work.
+
+## Subagents
+
+A subagent is a separate run with its own context. It is used for:
+
+- parallel review,
+- splitting a large task,
+- testing variants,
+- working in a separate worktree.
+
+The advantage is context isolation; the disadvantage is that a
+subagent does not see everything the main agent sees. Give it a
+precise brief and check the result.
+
+## Limits
+
+- **Bun.** Without it the installation fails.
+- **Young project.** Behaviour and config change.
+- **Too many options.** Some have to be turned off, otherwise the
+  agent does more than you want.
+- **LSP depends on the language.** You need a server for each
+  language.
+- **Model.** A local model may not manage complex refactorings.
+
+## Security
+
+omp runs commands and edits files as you. Subagents and worktrees
+help with isolation, but they are not a security boundary. For
+untrusted code, use a sandbox — see
+[agent security](/topics/agents/agent-security/).
+
+## When not to use it
+
+- When you want a simple tool without configuration.
+- When you do not have Bun and do not want to install it.
+- When you need a stable API over the long term.
+- When the model cannot do tool calling.
+
+## Where next
+
+- [Agents](/topics/agents/) — the hub for everything an agent needs.
+- [pi](/topics/agents/tools/pi/) — the base omp grows from.
+- [OpenCode and OpenChamber](/topics/agents/tools/opencode-and-openchamber/) —
+  a harness and a workspace.
+- [Herdr](/topics/agents/tools/herdr/) — orchestration.
+- [Tool design](/topics/tool-design/) — how tools become usable.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [omp — GitHub](https://github.com/can1357/oh-my-pi) — 11 November 2026
+- [omp — documentation](https://omp.sh/) — 11 November 2026
+- [pi — GitHub](https://github.com/earendil-works/pi) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

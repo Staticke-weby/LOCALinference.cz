@@ -1,0 +1,118 @@
+---
+title: "LM Studio: a local server and GUI for models"
+description: "LM Studio runs a local model and offers an OpenAI-compatible server on :1234. What it is for, how to connect it to an agent, and where the limits are."
+last_verified: 2026-11-11
+---
+
+**LM Studio** is a desktop application for downloading, running and
+testing local models. It is not an agent harness; it is a **model
+runner and chat** that can expose an OpenAI-compatible server for an
+agent to connect to.
+
+## Short answer
+
+- **A GUI for models** — GGUF and MLX, downloads and tuning.
+- **A server at `http://localhost:1234/v1`** with the OpenAI API.
+- **Tool use and MCP** — the model must be able to do tool calling.
+- **Not a harness** — it does not run the loop or approve actions
+  itself.
+- **No authentication by default** — localhost only.
+
+## What it is
+
+LM Studio is an application for macOS, Windows and Linux. It lets
+you:
+
+- browse and download models,
+- run a chat with a local model,
+- set the context and parameters,
+- run a REST server for applications and agents,
+- watch memory use and speed.
+
+For an agent, the last part matters: a server that speaks the OpenAI
+protocol.
+
+## Connecting it to an agent
+
+1. In LM Studio, open **Developer** and start the server.
+2. Check `http://localhost:1234/v1/models`.
+3. In the agent ([pi](/topics/agents/tools/pi/),
+   [omp](/topics/agents/tools/omp/),
+   [OpenCode](/topics/agents/tools/opencode-and-openchamber/),
+   [Hermes](/topics/agents/tools/hermes/)) enter the base URL
+   `http://localhost:1234/v1` and the model ID.
+4. Test tool calling on one tool.
+
+```bash
+lms server start
+```
+
+The server also starts from the CLI. The default port is 1234.
+
+## Endpoints
+
+| Endpoint | What for |
+|---|---|
+| `/v1/chat/completions` | chat and tool calling |
+| `/v1/responses` | stateful responses and MCP |
+| `/v1/embeddings` | embeddings for RAG |
+| `/v1/models` | the list of models |
+| `/api/v1/*` | native model management |
+
+LM Studio also offers an Anthropic-compatible endpoint, so a client
+that expects the Claude format can connect as well.
+
+## Tool use and MCP
+
+- **Native tool use** — the model has a hammer icon in the app and
+  its chat template supports tools.
+- **Default tool use** — LM Studio tries to convert the format, but
+  the quality is lower.
+- **MCP** — since version 0.4.0, remote MCP only with explicit
+  permission.
+
+When a model cannot do tool calling, the agent gets text instead of a
+call. That is the most common reason why "the agent does not work in
+LM Studio".
+
+## Security
+
+- **No authentication** by default; the server listens on localhost
+  only.
+- **Network exposure** only with a token and a firewall.
+- **Tools** can reach files; restrict MCP and tools.
+- **Logs** can contain sensitive prompts.
+
+## Limits
+
+- **Not a harness.** It has no loop, no approvals and no repo work.
+- **One machine.** It is not a server for a team.
+- **GUI overhead.** The application runs even when it only serves.
+- **The model must support tools.** Otherwise the agent only chats.
+
+## When not to use it
+
+- When you want an agent that edits a repo on its own.
+- When you need a team server and permissions.
+- When the model cannot do tool calling.
+- When you only want a command line.
+
+## Where next
+
+- [Agents](/topics/agents/) — the hub for everything an agent needs.
+- [pi](/topics/agents/tools/pi/) — an agent that connects.
+- [OpenCode and OpenChamber](/topics/agents/tools/opencode-and-openchamber/) —
+  a harness and a workspace.
+- [Hermes Desktop](/topics/agents/tools/hermes-desktop/) — another
+  runner with llama.cpp.
+- [MausBot](/topics/agents/tools/mausbot/) — a desktop with approval cards.
+- [Tool design](/topics/tool-design/) — how tool calling is shaped.
+
+## Sources
+
+- [LM Studio — server](https://lmstudio.ai/docs/developer/core/server) — 11 November 2026
+- [LM Studio — OpenAI compatibility](https://lmstudio.ai/docs/developer/openai-compat) — 11 November 2026
+- [LM Studio — tool use](https://lmstudio.ai/docs/developer/openai-compat/tools) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

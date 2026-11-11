@@ -1,0 +1,168 @@
+---
+title: "When local AI does not work: symptoms and fixes"
+description: "Will not start, runs slowly or answers badly? Tables of symptoms, causes and checks for Windows, DGX OS, Strix Halo and macOS."
+last_verified: 2026-11-11
+---
+
+Most problems with local AI have four causes: the model did not fit, the
+engine does not see the GPU, the machine is overheating, or the context
+is set up wrong. Before you start changing the model, find out which of
+them it is. The tables below go from the most common to the rarest.
+
+## Short answer
+
+- **Check the GPU first**, not the model: `nvidia-smi`, `rocminfo` or
+  `system_profiler`.
+- **Look for `cuda`, `rocm` or `metal` in the engine log.** When they
+  are missing, the computation is running on the CPU.
+- **Slow running after a few minutes** is usually
+  [throttling](/dictionary/operations/throttling/), not a weak model.
+- **Poor quality** is usually quantization, sampling temperature or a
+  wrong chat template, not a "stupid model".
+
+## Decision tree
+
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:760px" viewBox="0 0 760 250" role="img" aria-labelledby="troubleshoot-title" xmlns="http://www.w3.org/2000/svg">
+    <title id="troubleshoot-title">Decision tree: from symptom to cause</title>
+    <rect x="10" y="95" width="150" height="60" rx="8" fill="none" stroke="currentColor" />
+    <text x="85" y="122" text-anchor="middle" fill="currentColor" font-size="13">symptom</text>
+    <text x="85" y="140" text-anchor="middle" fill="currentColor" font-size="11">what you see</text>
+    <line x1="160" y1="125" x2="200" y2="125" stroke="currentColor" /><polygon points="200,121 210,125 200,129" fill="currentColor" />
+    <rect x="210" y="10" width="170" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="295" y="35" text-anchor="middle" fill="currentColor" font-size="12">will not start</text>
+    <text x="295" y="52" text-anchor="middle" fill="currentColor" font-size="11">→ OOM, model, version</text>
+    <rect x="210" y="96" width="170" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="295" y="121" text-anchor="middle" fill="currentColor" font-size="12">runs slowly</text>
+    <text x="295" y="138" text-anchor="middle" fill="currentColor" font-size="11">→ GPU, temperature, KV cache</text>
+    <rect x="210" y="182" width="170" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="295" y="207" text-anchor="middle" fill="currentColor" font-size="12">poor quality</text>
+    <text x="295" y="224" text-anchor="middle" fill="currentColor" font-size="11">→ quantization, template</text>
+    <line x1="380" y1="38" x2="430" y2="38" stroke="currentColor" /><polygon points="430,34 440,38 430,42" fill="currentColor" />
+    <line x1="380" y1="124" x2="430" y2="124" stroke="currentColor" /><polygon points="430,120 440,124 430,128" fill="currentColor" />
+    <line x1="380" y1="210" x2="430" y2="210" stroke="currentColor" /><polygon points="430,206 440,210 430,214" fill="currentColor" />
+    <rect x="440" y="10" width="300" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="450" y="33" fill="currentColor" font-size="12">lower the context or quantization</text>
+    <text x="450" y="52" fill="currentColor" font-size="11">check the log and the engine version</text>
+    <rect x="440" y="96" width="300" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="450" y="119" fill="currentColor" font-size="12">verify that the GPU is working</text>
+    <text x="450" y="138" fill="currentColor" font-size="11">temperature, power limit, queue</text>
+    <rect x="440" y="182" width="300" height="56" rx="8" fill="none" stroke="currentColor" />
+    <text x="450" y="205" fill="currentColor" font-size="12">compare with a longer context</text>
+    <text x="450" y="224" fill="currentColor" font-size="11">sampling temperature, chat template</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">Start with the symptom, not with swapping the model. Most faults are fixed in the configuration.</figcaption>
+</figure>
+
+## First: is the model running on the GPU?
+
+| Platform | Command | What to look for |
+|---|---|---|
+| NVIDIA (DGX, RTX) | `nvidia-smi` | card name, driver, MiB in use |
+| AMD (Strix Halo) | `rocminfo` | an agent with `gfx1151` |
+| Apple | `system_profiler SPDisplaysDataType` | the chip and its core count |
+| Engine | the start-up log | `cuda`, `rocm`, `metal` or `cpu` |
+
+When the log says `cpu`, that is the most common cause of a "slow model".
+The engine works, it just does not see the graphics card — usually
+because of a wrong PyTorch build or a wrong driver.
+
+## The model will not start
+
+| Symptom | Cause | What to do |
+|---|---|---|
+| `out of memory` while loading | model plus KV cache did not fit | shorten the context, lower the quantization, smaller batch |
+| `unknown model architecture` | an old engine | update [vLLM](/dictionary/software/vllm/) or [llama.cpp](/dictionary/software/llamacpp/) |
+| `no kernel image is available` | torch does not match the architecture | reinstall torch for the right CUDA |
+| `permission denied` on the model files | wrong permissions | fix the owner and the permissions |
+| start-up takes many minutes | loading from a slow disk | keep the model on NVMe, not on a network drive |
+| `CUDA error: driver too old` | the driver is older than the runtime | update the driver |
+
+On the [DGX Spark](/devices/dgx-spark/) the official path is the NVIDIA
+container; outside it, CUDA and driver versions can drift apart. Stick
+to the [guide](/guides/dgx-spark/), not to blog recipes.
+
+## It runs slowly
+
+| Symptom | Cause | What to do |
+|---|---|---|
+| tens of seconds per token | computation on the CPU | check the GPU in the log |
+| speed drops after a minute | [throttling](/dictionary/operations/throttling/) | improve cooling, lower the [power limit](/dictionary/operations/power-limit/) |
+| the first answer takes long, then it is fast | prefill of a long prompt | shorten the context, enable [prefix caching](/dictionary/memory/prefix-caching/) and [flash attention](/dictionary/software/flash-attention/) |
+| slower with every user | queue and KV cache | lower concurrency, watch [monitoring](/topics/operations/monitoring/) |
+| much slower than the tables | a different quantization or context | compare the configuration, not just the model |
+
+Before you start fixing anything, work out the
+[roofline](/speed/roofline/): when a measured number exceeds the
+theoretical ceiling, the measurement is wrong; when it sits far below
+it, something other than memory is holding it back.
+
+## It answers badly
+
+| Symptom | Cause | What to do |
+|---|---|---|
+| it repeats itself, will not hold a format | sampling temperature | lower the temperature, cap max tokens |
+| it does not understand the system prompt | chat template | use the template from the model card |
+| it mixes languages | weak quantization | try a higher precision |
+| it loses information in the middle | [context rot](/dictionary/memory/context-rot/) | shorter context, RAG |
+| it invents tools | function calling | check the schema and the response format |
+
+## By platform
+
+| Platform | Typical problem | Where to look |
+|---|---|---|
+| Windows x64 | CPU fallback, driver | `nvidia-smi`, the ComfyUI log |
+| Windows on Arm | a missing ARM64 wheel | build from source, or skip the node |
+| DGX OS | CUDA version outside the container | the official NVIDIA container |
+| Strix Halo | ROCm and `gfx1151` | `rocminfo`, [ROCm](/dictionary/software/rocm/) |
+| macOS | MPS versus CPU | `mlx-lm`, the engine log |
+
+On Windows on Arm the problems show up mainly with custom ComfyUI nodes:
+some packages have no ARM64 wheel and the install ends with an error. The
+[Windows recipe](/generation/recipes/windows/) lists the specific
+packages that NVIDIA names.
+
+On Strix Halo the most common cause is the combination of driver and
+ROCm version. When `rocminfo` sees the card but the engine does not, the
+problem is in the runtime, not in the hardware.
+
+## What to send to support
+
+When the problem is not solved, send three things instead of "it does not
+work":
+
+1. **The symptom** — the exact message or number, not an impression.
+2. **The environment** — device, OS, engine and driver versions.
+3. **The configuration** — model, quantization, context, batch, the
+   command.
+
+Without these the problem cannot be reproduced and the answer will be a
+guess.
+
+## Where the limit is
+
+- **Not every problem is in the model.** Most are in the configuration.
+- **An update can make things worse.** Pin the versions that work.
+- **Throttling is not visible from one number.** Watch the trend.
+- **Community recipes age.** Check the date and the version.
+
+## Where next
+
+- [Monitoring](/topics/operations/monitoring/) — what to watch.
+- [Updates](/topics/operations/updates/) — versions and rollback.
+- [API server](/topics/operations/api-server/) — when access fails.
+- [Windows 11](/topics/local-ai-on-windows-11/) — platform specifics.
+- [Throttling](/dictionary/operations/throttling/) — why performance
+  drops.
+- [KV cache](/dictionary/memory/kv-cache/) — why memory runs out.
+
+## Sources
+
+- [vLLM — troubleshooting](https://docs.vllm.ai/en/latest/usage/troubleshooting.html)
+- [llama.cpp — GitHub issues](https://github.com/ggml-org/llama.cpp/issues)
+- [ComfyUI — documentation](https://docs.comfy.org/)
+- [NVIDIA — DGX Spark documentation](https://docs.nvidia.com/dgx/dgx-spark/)
+- [ROCm — documentation](https://rocm.docs.amd.com/)
+- [Apple — MLX](https://ml-explore.github.io/mlx/)
+
+*Last verified: 11 November 2026.*

@@ -1,0 +1,194 @@
+---
+title: "How abliteration works: the refusal direction and its price"
+description: "Abliteration removes the refusal direction from a model's activations. We explain diff-in-means, orthogonalisation, LoRA and what breaks in quality."
+last_verified: 2026-11-11
+---
+
+> **This is a technical explanation, not a recipe.** We do not describe
+> the steps by which a model's safety can be bypassed in production,
+> nor specific harmful prompts.
+
+Abliteration starts from the observation that refusal is not spread
+randomly across the whole model. In many language models it can be
+described as **a single direction in the activations** that fires when
+the model evaluates a request as harmful. When that direction is
+suppressed, the model stops refusing.
+
+## Short answer
+
+- **Refusal is learned behaviour**, not a separate module.
+- **The refusal direction** is a vector in the residual stream; it can
+  be found from the difference between harmful and benign prompts.
+- **Methods**: diff-in-means, orthogonalisation, LoRA, automated search
+  (Heretic).
+- **Knowledge stays**; what changes is the willingness to answer.
+- **The price** is quality, instruction following, tools and stability.
+
+## Alignment in brief
+
+A model first learns language and the world (pretraining), then to
+follow instructions (SFT) and finally to be helpful and safe (RLHF, DPO
+or similar methods). Refusal arises in the last stage: the model is
+rewarded for not answering a harmful request.
+
+That has two consequences:
+
+1. **Refusal is a layer on top of knowledge.** The model still knows the
+   subject matter.
+2. **It is sensitive to context and language.** The same query can be
+   refused in English and accepted in Czech.
+
+## The refusal direction
+
+The paper *Refusal in Language Models Is Mediated by a Single Direction*
+(Arditi et al., 2024) showed that in some models it is enough to find
+one vector and subtract it from the activations for the model to stop
+refusing. The method:
+
+- take a set of harmful prompts and a set of benign ones,
+- compute the mean activations for each set,
+- the difference of the means is a candidate for the refusal
+  direction,
+- subtract it from the activations, or from the weights that produce
+  it.
+
+This is called **diff-in-means**. With Qwen3.8 Flash Next, the attention
+output projections and the expert down projections are adjusted in
+practice, because that is where the direction passes through.
+
+## Abliteration methods
+
+| Method | Principle | Effort | Impact on quality |
+|---|---|---|---|
+| **Diff-in-means** | one direction from the difference of means | low | medium |
+| **Orthogonalisation** | subtracting the direction from matrices | medium | medium to high |
+| **LoRA** | a small adapter trained to suppress it | medium | lower, but data-dependent |
+| **Heretic** | automated search for parameters against refusal | low to medium | variable |
+| **Multiple directions** | rank-2 and higher | high | bigger intervention, lower leakage |
+
+**Heretic** is a tool that tries combinations of parameters and measures
+the trade-off between refusal and quality. The result is reproducible,
+but it still depends on the prompt set the author chose.
+
+## Why it survives quantisation
+
+Abliteration is done on full weights and the result is then quantised.
+Quantisation can partly erase the edit, especially with 4-bit formats.
+Some publishers therefore edit the weights directly on the quantisation
+grid and choose codes that approximate both the modified and the
+original value. This is called **constrained requantization**.
+
+Without it, the model keeps refusing even though the card claims
+otherwise. That is why, for finished builds, it matters that the
+publisher states at which quantisation refusal was measured — at BF16,
+or at the final NVFP4.
+
+## What abliteration will not do
+
+- **It will not remove knowledge.** The model still knows how to do
+  something.
+- **It will not add capability.** Benchmarks do not improve.
+- **It will not guarantee an answer.** The model can still hallucinate.
+- **It will not settle law.** It does not change the law.
+- **It will not save a bad model.** A weak model stays weak.
+
+## Side effects
+
+| Area | What can go wrong | How to spot it |
+|---|---|---|
+| **General quality** | worse reasoning, longer answers | benchmarks, Czech tasks |
+| **Instructions** | ignores the format or the system prompt | format tests |
+| **Tool calling** | does not call tools or sends wrong arguments | a test tool |
+| **MTP** | lower draft acceptance | measurement in vLLM |
+| **Vision** | worse image descriptions | a test set |
+| **Language** | worse Czech than English | a parallel set |
+| **Stability** | repetition, breakdown on long context | 32k and 128k tests |
+
+With Qwen3.8 Flash Next the MTP projections are adjusted too, so the
+speed of speculative decoding can change. That is not evidence of
+quality, just a different number.
+
+## How to verify a publisher's claim
+
+1. **Method and set** — what refusal was measured on.
+2. **Before and after** — numbers for the base and the derivative.
+3. **Quantisation** — BF16, or the final format.
+4. **Quality** — at least one public benchmark and a Czech set.
+5. **Tools** — a functional tool-calling test.
+6. **Licence** — the publisher and the base model.
+7. **Date and revision** — a different revision, different behaviour.
+
+When three of these points are missing, it is a candidate, not a
+finished model.
+
+## One direction, or more
+
+For some models one direction is enough (rank-1). Other times a
+"residual" refusal remains, especially when the model reasons or uses
+tools. Then more directions are subtracted (rank-2 and higher).
+
+The publisher lflare describes this concretely: the first version
+reached 0 % refusal with thinking switched off, but with thinking on it
+still refused. The second version subtracted the range of both
+directions and refusal disappeared there too. That is **the
+publisher's claim** on its own set, not a general rule.
+
+A higher rank means a bigger intervention into the weights and a bigger
+risk of side effects. It is not "better abliteration", it is a
+different trade-off.
+
+## Why it goes wrong
+
+| Cause | What happens | How to spot it |
+|---|---|---|
+| **Too aggressive an edit** | the model loses part of its instructions | ignores format, repeats itself |
+| **Quantisation grid** | the edit is erased | refusal returns after NVFP4 |
+| **MTP projections** | lower draft acceptance | slower decode |
+| **Language** | Czech is worse than English | a gap in the tests |
+| **Long context** | attention breaks down | errors in the middle of the text |
+| **Vision** | worse image descriptions | a test set |
+
+When refusal returns after quantisation, it is not a "bad model" but a
+badly performed abliteration. A solid publisher admits it and measures
+on the final format.
+
+## How to recognise bad abliteration
+
+- **The card states neither the method** nor the scope of the
+  intervention.
+- **Refusal numbers are missing** or are just "0 %" without a set.
+- **Quality was not measured** on the final quantisation.
+- **Tool calling was not tested.**
+- **The licence conflicts** with the base and the card does not address
+  it.
+- **The model refuses even benign things** — that may be a different
+  problem than refusal.
+
+## The ethical line
+
+Describing the principle is fine: the reader should know why a model
+refuses and what happens when that is switched off. Instructions for
+building a harmful model or for bypassing the safety of a specific
+service do not belong here. The difference is whether the text helps
+someone understand or helps someone cause harm.
+
+## Where next
+
+- [Refusals](/topics/abliteration/refusals/) — what it all covers.
+- [Running on 128 GB](/topics/abliteration/running-on-128gb/) — builds
+  and measurements.
+- [Risks and law](/topics/abliteration/risks-and-law/) — consequences.
+- [Abliterated models](/topics/abliteration/) — what they are.
+- [Quantization](/dictionary/software/quantization/) — what you lose.
+- [MTP](/dictionary/software/mtp/) — speculative decoding.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [Arditi et al. — Refusal direction](https://arxiv.org/abs/2406.11717) (2024)
+- [Heretic — the tool](https://github.com/p-e-w/heretic)
+- [lflare — constrained requantization](https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated) — 10 November 2026
+- [DevelopingDad — method and measurements](https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated) — 10 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

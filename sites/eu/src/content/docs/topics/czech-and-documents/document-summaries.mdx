@@ -1,0 +1,189 @@
+---
+title: "Summarising a Czech document locally: procedure and limits"
+description: "How to summarise a Czech contract, report or minutes with a local model. Procedure, prompt, fact checking and context choice on 128 GB."
+last_verified: 2026-11-11
+---
+
+Summarising is the most common task people want to solve locally. It is
+also the task where a model most often “looks good” while dropping an
+important sentence. A Czech document adds declension, terminology and a
+formal style on top of that.
+
+## Short answer
+
+- **A short document** fits in the context; a long one is better
+  summarised in parts.
+- **Always state the purpose of the summary** — for whom, how long,
+  what it must contain.
+- **Check facts, numbers and names** against the source.
+- **128 GB is enough** for documents and models; the limit is context
+  and quality.
+
+## Procedure
+
+1. **Choose the document and the purpose.** A lawyer wants a different
+   summary from a manager and a customer.
+2. **Check the input quality.** A scan without OCR is worse than text.
+3. **Split the text** into logical parts — chapters, articles,
+   paragraphs.
+4. **Summarise each part** with a clear brief and a length.
+5. **Join the partial summaries** and let the model remove repetition.
+6. **Verify the facts** and add citations to the source.
+
+With a short document you can skip the split and summarise it in one
+go. With a long one, splitting is safer.
+
+## Which context to choose
+
+| Document | Context | Approach |
+|---|---|---|
+| One page | 8k | one summary |
+| A few pages | 32k | one or two summaries |
+| Tens of pages | 128k | chapter by chapter |
+| Hundreds of pages | RAG | chunking and selected passages |
+
+The 262k maximum is not a recommended operating point. The longer the
+input, the slower the [prefill](/dictionary/performance/prefill/) and
+the less room left for other work.
+
+## A prompt that works
+
+The basic structure:
+
+> You are an assistant for Czech documents. Summarise the text for
+> [reader]. Keep the output to [length] and include the main decisions,
+> the parties, the deadlines, the amounts and the risks. Do not state
+> anything that is not in the text. For numbers and names, say where
+> they come from.
+
+Add:
+
+- **the form** — bullets, a table, an e-mail,
+- **what it must not do** — invent, change numbers, use synonyms,
+- **what it must do** — cite the page or paragraph,
+- **the reader** — lawyer, management, client.
+
+Write the prompt in the language of the document, or in English with
+the output language stated. The structure stays the same; what changes
+is the vocabulary the model reaches for.
+
+## A long document: split it
+
+For a document above 32k tokens, do not produce one summary. Split it
+into chapters or articles and summarise each separately. Then:
+
+1. **Merge the partial summaries** into one whole.
+2. **Remove repetition** and unify the style.
+3. **Add cross-references** — “see Article 5”.
+4. **Check what fell out** — especially numbers and pages.
+
+The result is longer than one “clever” summary, but more faithful.
+
+## A sample prompt for a contract
+
+> You are an assistant for Czech contracts. Summarise this contract for
+> a manager who does not know legal terminology. Output: 8–12 bullets.
+> State the parties, the subject, the price, the duration, the notice
+> period and the penalties. Do not invent anything; when a figure is
+> missing, write “not in the text”. For numbers, cite the article or
+> paragraph.
+
+That gives you a structure you can check.
+
+## How many pages fit in the context
+
+Context is counted in tokens, not pages. An indicative **calculation**
+for Czech: at 3.5–4 characters per token, a 32k context holds roughly
+112–128 thousand characters, which is **60–70 pages** of ordinary text.
+A 128k context holds four times that, 262k eight times.
+
+These are **calculations** with the stated ratio, not measurements of a
+particular tokenizer. Verify the real ratio in the engine. At the same
+time, **fitting is not handling**: with a longer input the risk of
+context rot grows — attention degrading across a long prompt — and the
+model may skip a passage in the middle.
+
+## Output template
+
+A summary is usable only when it has a fixed structure. A proven
+template for a contract:
+
+```markdown
+## Parties
+- client: …
+- contractor: …
+
+## Subject and price
+- subject: …
+- price: … (Article X)
+
+## Term and termination
+- effective from: …
+- notice period: …
+
+## Risks and penalties
+- …
+
+## What is not in the document
+- …
+```
+
+The “what is not in the document” section is more important than it
+looks. It forces the model to admit gaps instead of filling them, and
+it gives you a place to spot the error.
+
+## Quality check
+
+- [ ] **The main message** is right.
+- [ ] **Parties and names** match.
+- [ ] **Numbers and dates** match.
+- [ ] **Nothing important is missing.**
+- [ ] **Nothing extra is invented.**
+- [ ] **The style** suits the reader.
+- [ ] **Citations** point to the source.
+
+When in doubt, ask the model for **a list of claims with citations** and
+go through them against the document.
+
+## Czech specifics
+
+- **Formal vs. informal style** — “vy” in an official document.
+- **Terminology** — “smluvní strana” (contracting party), “zhotovitel”
+  (contractor), “objednatel” (client).
+- **Declension** — names and titles must stay correct.
+- **Numbers** — amounts, company IDs, VAT IDs, dates; never round.
+- **Abbreviations** — explain them at first use.
+
+## What you need
+
+- **Model:** Qwen3.8 Flash Next on a 128GB box.
+- **Engine:** vLLM on DGX/RTX, llama.cpp on Strix/Mac.
+- **Context:** 32k for ordinary documents, 128k for longer ones.
+- **A check:** a person who knows the document.
+
+## Where the limit is
+
+- **A long document** — the model can skip a passage.
+- **A scan without OCR** — input quality decides.
+- **Legal and medical text** — a person is required.
+- **Quantization** — 4-bit can blur small distinctions.
+- **Hallucination** — the model can add a “logical” piece of
+  information that is not in the text.
+
+## Where next
+
+- [Data extraction](/topics/czech-and-documents/data-extraction/) — structured fields.
+- [Quality evaluation](/topics/czech-and-documents/quality-evaluation/) — how to measure.
+- [How it handles Czech](/topics/czech-and-documents/czech-language/) — the limits.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+- [Context](/dictionary/memory/context/) — how much fits.
+- [RAG](/dictionary/software/rag/) — long archives.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Lost in the Middle — arXiv](https://arxiv.org/abs/2307.03172)
+- [vLLM — documentation](https://docs.vllm.ai/)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

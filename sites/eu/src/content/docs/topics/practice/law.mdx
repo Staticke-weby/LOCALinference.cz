@@ -1,0 +1,150 @@
+---
+title: "Local AI in law: contracts, research and confidentiality"
+description: "How to use local AI in legal practice: contract summaries, clause extraction, research and risk. Data, confidentiality and the check."
+last_verified: 2026-11-11
+---
+
+Legal practice is a natural fit for local AI: many documents, sensitive
+data and repeated tasks. It is also an area where an error can have
+serious consequences. The model is therefore not a replacement for a
+lawyer; it is a tool for the first pass and for checking.
+
+## Short answer
+
+- **Summaries and extraction** are a safe start; **a legal conclusion**
+  is not.
+- **Data must not leave the office** — a local box is an advantage.
+- **Every citation and clause** is checked against the source.
+- **Confidentiality and liability** stay with the lawyer.
+
+## Where it makes sense
+
+| Task | What the model does | Risk |
+|---|---|---|
+| **Contract summary** | main points, parties, deadlines | a skipped passage |
+| **Clause extraction** | notice, penalties, price | a wrong citation |
+| **Due diligence** | an overview of documents | a false conclusion |
+| **Research** | orientation in the text | an invented source |
+| **Letter draft** | a first version | style and facts |
+| **Annex check** | differences against a version | a missed change |
+
+## Workflow
+
+1. **Define the task** — summary, extraction, or a check.
+2. **Choose the documents** and verify they are valid.
+3. **The model reads and proposes** a structured output.
+4. **The lawyer checks** citations and clauses.
+5. **Work it into** the document.
+6. **Record** the version and the source.
+
+The model should not get an unlimited archive. RAG selects the relevant
+parts and
+[citations](/topics/rag/citations-and-evaluation/) show the source.
+
+## Data and confidentiality
+
+- **A local box** lowers the risk of transfer, but does not settle
+  permissions.
+- **Access** for specific people only.
+- **Logs** can contain sensitive data; limit retention.
+- **Backups** must be encrypted.
+- **Deletion** must cover documents, the index and the logs.
+- **The supplier** of the model and the hardware must have clear terms.
+
+Professional secrecy is a duty of the lawyer, not of the software. A
+local deployment removes the transfer to a third party; it does not
+remove the duty to protect the file, and it does not make an
+unauthorised reader harmless.
+
+## Risks
+
+- **Invented case law** — the model can cite a source that does not
+  exist.
+- **Outdated law** — the model does not know what changed.
+- **Wrong context** — RAG selects the wrong document.
+- **Faulty extraction** — an amount or a deadline.
+- **Confidentiality** — a leak through logs or an agent.
+- **Liability** — the model carries none.
+
+## Example: checking an annex
+
+A lawyer receives an original contract and an annex. The model compares
+the articles, marks the changes and flags new obligations. The lawyer
+checks the citations and decides what is acceptable. The model does not
+replace the interpretation of law; it only shortens the first pass.
+
+## What to measure
+
+- **Time** to the first pass.
+- **The number of errors** in facts and citations.
+- **The number of documents** processed per hour.
+- **How many outputs** passed without a correction.
+- **The lawyer's satisfaction** with the first draft.
+
+## How much time it saves
+
+Legal work is full of first reading. An illustrative **calculation** for
+due diligence with 200 documents:
+
+| Phase | By hand | With the model |
+|---|---|---|
+| First pass, 200 documents | 15 min × 200 = 50 h | 3 min × 200 = 10 h |
+| Citation check | included | 5 min × 200 = 16.7 h |
+| Total | ~50 h | ~26.7 h |
+
+The numbers are a **calculation** with sample inputs, not a
+measurement. They show one thing: the model does not shorten the check,
+it shortens the first pass. Anyone who skips the check saves nothing —
+they only move the risk.
+
+## How to introduce it
+
+1. **Pick one matter type** — contract summaries, or annex checks.
+2. **Take 20 documents** and write down by hand what the output should
+   contain.
+3. **Set up a structured output** — fields, not free text.
+4. **Check 20 outputs** against the original and record the errors.
+5. **Only then** let the model loose on a larger volume, still with a
+   check.
+6. **Turn on logging** — who, when, which document, which version.
+
+A lawyer who cannot explain where the model took a citation from should
+not use it. That is why
+[RAG with citations](/topics/rag/citations-and-evaluation/) is a
+condition, not an enhancement.
+
+## Typical mistakes
+
+| Mistake | Why it happens | How to avoid it |
+|---|---|---|
+| The model cites case law that does not exist | it has no access to a database | forbid free citations, verify |
+| The summary drops an exception | long document, short output | output per article, not all at once |
+| An old contract version | wrong index | metadata with version and validity |
+| A wrong amount | OCR or transcription | validation against the document |
+| A leak into the logs | the whole text is logged | log IDs and metadata, not content |
+
+## When not to use it
+
+- **A legal conclusion** without a check.
+- **A court filing** without review.
+- **Citations** without verification.
+- **Data** you are not allowed to process at all.
+- **Decisions** that affect people's rights.
+
+## Where next
+
+- [Document summaries](/topics/czech-and-documents/document-summaries/) — the procedure.
+- [Data extraction](/topics/czech-and-documents/data-extraction/) — fields and validation.
+- [RAG](/topics/rag/) — documents and citations.
+- [Operations security](/topics/operations/security/) — data.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+- [Local AI for business](/topics/local-ai-for-business/) — the decision.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [GDPR — official text](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+- [AI Act — official text](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

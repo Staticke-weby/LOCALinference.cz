@@ -1,0 +1,162 @@
+---
+title: "MausBot: a desktop agent with approvals and a local model"
+description: "MausBot is an open-source desktop harness with approval cards. It connects a local model through an OpenAI-compatible endpoint and runs on localhost."
+last_verified: 2026-11-11
+---
+
+**MausBot** is an open-source desktop application in which every chat
+is one agent. Before it runs a command or edits a file it asks with
+an Allow/Deny card. The harness listens only on `127.0.0.1` and
+keeps data locally.
+
+## Short answer
+
+- **Apache-2.0, desktop for macOS, Windows and Ubuntu.**
+- **Local model:** through an OpenAI-compatible endpoint.
+- **Approval:** every risky action as a card.
+- **Network:** the harness on `127.0.0.1`, no open port.
+- **Watch out:** Ubuntu requires Xorg; Wayland is not supported.
+
+## What it is
+
+MausBot is a layer over agent CLIs and a harness of its own. You
+create a bot, give it a model, apps and a computer. When it wants to
+run a shell command, edit a file or ask something, a card appears in
+the chat. You approve, deny or answer.
+
+Unlike a terminal harness, **the approval is visible** here. That is
+the main benefit: the agent does not work silently.
+
+## Connecting a local model
+
+MausBot speaks an OpenAI-compatible endpoint, so you can connect:
+
+- **Ollama** — `http://localhost:11434/v1`,
+- **vLLM** — `http://localhost:8000/v1`,
+- **LM Studio** — its local endpoint,
+- **llama.cpp server** — with `--jinja`.
+
+The procedure is in the engine settings: choose an
+OpenAI-compatible provider, enter the base URL, the key (often empty
+locally) and the model ID. Exact keys can differ between versions;
+check the documentation.
+
+According to the documentation MausBot also runs CLI engines; a
+local endpoint is the way to avoid the cloud. Check which engines
+your version supports.
+
+## Install
+
+1. Download the desktop application for your platform.
+2. Go through onboarding and sign in to the engine you want.
+3. Create a bot and pick a model.
+4. Add apps or the computer it may access.
+
+Data and keys live in `~/.openmausbot`. On Ubuntu, Xorg is required;
+Wayland is disabled.
+
+## Workflow
+
+1. The bot gets a task in the chat.
+2. It proposes an action; a card appears.
+3. You approve or deny.
+4. The bot continues and writes the result.
+5. The session stays in the application; you can come back to it.
+
+Routines can start a bot on a schedule or from a webhook. There too,
+a risky action waits for a card.
+
+## Approval cards in practice
+
+A card has three options: **Allow**, **Deny** and adding an answer.
+For a shell command you see the command, for a file the diff, for a
+question the text. If you do not answer, the action does not happen.
+
+That is the difference from a terminal agent that runs the command
+and you find out from the log. Here you see it in advance.
+
+## Routines and connected apps
+
+- **Routine** — a scheduled prompt or a webhook.
+- **Connected app** — access to an application through OAuth.
+- **Cloud computer** — an optional computer for the bot.
+- **Local computer** — your machine, only when you allow it.
+
+For sensitive work, keep the bot on localhost and without a cloud
+computer. For overnight work the cloud is an option, but data leaves
+the machine.
+
+## MausBot vs. cloud agents
+
+MausBot is often compared with "always-on" agents that run in the
+cloud. They are not the same products:
+
+| Tool | Where it runs | Local model | Approval | Data |
+|---|---|---|---|---|
+| **OpenAI Dots** | cloud computer | no | rules and confirmations | in the cloud |
+| **Grok Bot** | cloud (xAI) | no | limited | in the cloud |
+| **Meta Muse** | cloud VM | no | limited | in the cloud |
+| **Bops (Orgo)** | cloud computer | no | not stated | in the cloud |
+| **OpenClaw** | your machine | yes | optional | locally |
+| **Hermes** | your machine | yes | optional | locally |
+| **MausBot** | your machine | yes | always a card | locally |
+
+**What MausBot replaces:** a cloud agent that has access to your
+applications and your computer. The advantage is that the model and
+the session stay with you and every risky action goes through a
+card.
+
+**What it does not replace:** thousands of integrations and a cloud
+computer that keeps running when you close the laptop. Dots has
+over 4,000 apps; MausBot has its own catalogue and a local harness.
+
+For a company that does not want to send data to the cloud, this is
+a reasonable compromise. For someone who wants an agent 24/7 without
+a machine switched on, the cloud is better.
+
+## Limits
+
+- **Desktop only.** It is not a server for a team.
+- **Platforms.** Ubuntu with Xorg; not Wayland.
+- **Engines.** The local endpoint has to be compatible; not every
+  engine can do tool calling.
+- **Vendor material.** MausBot has its own comparison pages; treat
+  claims about competitors as the vendor's claims.
+
+## Security
+
+- **Localhost.** The harness is not on a public port.
+- **Approval.** Risky actions always through a card.
+- **OAuth tokens.** Scoped, not passwords.
+- **Data.** Sessions and keys are local; back them up.
+- **Agents.** A bot can control a computer; give it only what it
+  needs.
+
+## When not to use it
+
+- When you want an agent on a server for a team.
+- When you need Wayland.
+- When the model cannot do tool calling.
+- When you only want a chat without actions.
+
+## Where next
+
+- [Agents](/topics/agents/) — the hub for everything an agent needs.
+- [OpenCode and OpenChamber](/topics/agents/tools/opencode-and-openchamber/) —
+  the alternative with a workspace.
+- [pi](/topics/agents/tools/pi/) — a minimal harness.
+- [Hermes](/topics/agents/tools/hermes/) — a gateway with memory.
+- [OpenClaw](/topics/agents/tools/openclaw/) — a gateway from chat apps.
+- [Agent security](/topics/agents/agent-security/) — prompt injection and sandboxes.
+
+## Sources
+
+- [MausBot](https://mausbot.com/) — 11 November 2026
+- [MausBot — an AI agent that controls your computer](https://mausbot.com/blog/ai-agent-that-controls-your-computer) — 11 November 2026
+- [OpenAI — Introducing dots](https://openai.com/index/introducing-dots/) — 11 November 2026
+- [OpenAI — Dots availability](https://help.openai.com/en/articles/20001530-getting-started-with-your-dot) — 11 November 2026
+- [TechCrunch — Dots and the Pro price](https://techcrunch.com/2026/10/26/how-openai-turned-its-coding-tools-into-dots-an-always-on-personal-assistant/) — 11 November 2026
+- [The Verge — Dots vs. Muse](https://www.theverge.com/ai-artificial-intelligence/1002033/openai-dots-launch-muse-competitor) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

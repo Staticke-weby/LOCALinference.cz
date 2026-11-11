@@ -1,0 +1,118 @@
+---
+title: "OpenClaw: a gateway for local agents from chat apps"
+description: "OpenClaw is a self-hosted gateway that exposes an agent from Telegram, Slack and other channels. Local model, permissions and security risks."
+last_verified: 2026-11-11
+---
+
+**OpenClaw** is a gateway that connects an agent to chat channels.
+The agent runs on your machine, and you talk to it from Telegram or
+Slack. It works with local models, but its defaults are permissive.
+
+## Short answer
+
+- **A self-hosted gateway**, not a model and not a harness.
+- **Local model:** Ollama or an OpenAI-compatible endpoint.
+- **Channels:** Telegram, Slack, Discord and others.
+- **Risk:** the default exec is wide open; the gateway must not be
+  public.
+- **Licence:** GitHub says MIT, the vendor page says Apache-2.0 — a
+  discrepancy.
+
+## What it is
+
+OpenClaw is a daemon that holds one or more agents and offers them
+over messaging. It adds skills, MCP connectors and session
+management. It is not a replacement for a terminal harness; it is a
+layer for reaching a harness from your phone.
+
+## Connecting a local model
+
+1. Install OpenClaw and go through onboarding.
+2. In the provider settings, pick Ollama or your own
+   OpenAI-compatible endpoint.
+3. Verify that the model can do tool calling.
+4. Test a simple tool from the chat.
+
+Specific config keys change between versions; check them in the
+documentation. The same rules apply for a local model: the right
+model ID, enough context and the tool parser turned on.
+
+## Install
+
+OpenClaw is installed as a CLI/daemon on macOS, Linux or Windows.
+After installing, go through onboarding, connect a channel and set
+up the provider. By default the gateway listens on a port; if you do
+not need it from another machine, keep it on localhost.
+
+## Workflow
+
+1. The agent gets a task from the chat.
+2. It uses tools and skills.
+3. It sends the result back to the channel.
+4. For a risky action it can wait for confirmation, if you turn that
+   on.
+
+Skills from ClawHub extend what the agent can do; but every skill is
+code that you hand to the agent. Install only verified ones.
+
+## Channels and skills
+
+| Part | What it is | Risk |
+|---|---|---|
+| **Channel** | Telegram, Slack, Discord, email | token and access to the account |
+| **Skill** | code the agent can run | supply chain |
+| **MCP server** | tools over the protocol | permissions and data |
+| **Agent** | one persona and session | context sharing |
+
+A channel is the front door. If you connect it to your work Slack,
+the agent sees the messages you see. That is convenient, and it is
+also why a gateway does not belong on the public internet.
+
+## Ask mode and permissions
+
+OpenClaw has a mode where it asks before acting. Turn it on before
+you give the agent a shell. Without it the agent runs whatever the
+model proposes. You can also restrict tools and skills; fewer of
+them means fewer ways for something to go wrong.
+
+## Limits
+
+- **Security defaults.** According to the documentation and reviews,
+  the default shell is wide open; turn on ask mode and restrict
+  tools.
+- **Network exposure.** A gateway on a public port is an invitation.
+- **Channels.** Protect the tokens for Telegram and other services.
+- **Model.** A local model may not manage complex skills.
+
+## Security
+
+- **Localhost** or a VPN; never directly on the internet.
+- **Ask mode** for the shell and writes.
+- **An allowlist** of tools and skills.
+- **Logs** and a rate limit.
+- **[Prompt injection](/dictionary/operations/prompt-injection/)** can
+  arrive in a chat message.
+
+## When not to use it
+
+- When you want an agent only on your own laptop.
+- When you do not have time to watch a gateway.
+- When you need team management and an audit trail.
+- When the model cannot do tool calling.
+
+## Where next
+
+- [Agents](/topics/agents/) — the hub for everything an agent needs.
+- [Hermes](/topics/agents/tools/hermes/) — the alternative with memory.
+- [MausBot](/topics/agents/tools/mausbot/) — a desktop with approval cards.
+- [pi](/topics/agents/tools/pi/) — a minimal harness.
+- [Hermes Desktop](/topics/agents/tools/hermes-desktop/) — local models in one click.
+- [Agent security](/topics/agents/agent-security/) — exposure and injection.
+
+## Sources
+
+- [OpenClaw — GitHub](https://github.com/openclaw/openclaw) — 11 November 2026
+- [OpenClaw — documentation](https://docs.openclaw.ai/) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

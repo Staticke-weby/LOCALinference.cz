@@ -1,0 +1,153 @@
+---
+title: "Embeddings in practice: choosing and testing a search model"
+description: "How to choose an embedding model for RAG, how to measure retrieval quality, and when to combine vectors with full-text search."
+last_verified: 2026-11-11
+---
+
+The embedding model decides whether RAG **finds the right chunk**. It is
+not a chat model and it does not need 128 GB. It is a small model that
+turns text into a vector. A bad choice shows up as "RAG ignores my
+questions", even when the pipeline is technically fine.
+
+## Short answer
+
+- **Choose by language and task**, not by size.
+- **A non-English corpus needs a multilingual or language-specific
+  model**; an English-only model can work, but quality differs.
+- **Test on 20 questions** and watch whether the right chunk is in the
+  top 3–5.
+- **When you change the model or the chunking, regenerate the index.**
+
+## What the model does
+
+The model turns text into a vector. Similar texts end up with nearby
+vectors. Similarity is usually measured as cosine similarity. The model
+has:
+
+- **a maximum input length** — longer text is truncated or split,
+- **a vector dimension** — it affects storage and speed,
+- **a language** — some models are English-only, others multilingual,
+- **a licence** — commercial use.
+
+The right model depends on your data. For non-English documents, look
+for a multilingual model and test it on your own questions.
+
+## How to choose
+
+| Criterion | What to check |
+|---|---|
+| **Language** | your language, English, a mix |
+| **Input length** | does the chunk fit? |
+| **Dimensions** | storage and speed |
+| **Licence** | commercial use |
+| **Speed** | CPU vs. GPU |
+| **Quality** | a test on your own data |
+
+A benchmark score is only indicative. A test in your own domain decides.
+
+## Testing
+
+1. Take **20 questions** whose answers you know.
+2. For each, check whether the right chunk is in the top 3–5.
+3. If not, try a different model or different chunks.
+4. Write the results down and compare.
+5. Only then deal with the database and production.
+
+## Hybrid search
+
+Vector search is good at meaning and weaker on exact codes and numbers.
+That is why it is often combined with **full-text search**:
+
+- **vectors** — "notice period" also finds "the contract may be
+  terminated",
+- **full text** — finds an exact company ID, contract number or code,
+- **a reranker** — reorders the results by relevance.
+
+The hybrid is safer for documents full of numbers and abbreviations.
+
+## Language specifics
+
+- **Diacritics** — the model should preserve them.
+- **Inflection** — the question and the document may use different
+  forms of a word.
+- **Compound words** — some languages build long expressions.
+- **Mixed languages** — some documents are part local, part English.
+- **Abbreviations** — company IDs, VAT numbers and tax codes; test them
+  separately.
+
+## Example: a question
+
+A user asks "can the supplier end the contract with immediate effect?".
+Vector search finds the article that talks about "immediate
+withdrawal". Full-text search would look for "termination" and might
+miss it. Combining both approaches is safer.
+
+## How much space the index takes
+
+Vectors are not large, but across a big archive it adds up:
+
+```
+size ≈ number of chunks × dimensions × bytes per number
+```
+
+| Dimensions | 1,000 chunks | 50,000 chunks |
+|---:|---:|---:|
+| 768 (float32) | ~3 MB | ~154 MB |
+| 1,024 (float32) | ~4 MB | ~205 MB |
+| 1,536 (float32) | ~6 MB | ~307 MB |
+
+This is a **calculation** at 4 bytes per number. In practice float16 or
+binary vectors are used, which take less. Texts and metadata are
+usually larger than the vectors themselves.
+
+## How to test the model choice
+
+1. Prepare **20–30 questions** from real operations.
+2. For each, write down which document and chunk is the correct answer.
+3. Go through the top 5 results and mark whether the right chunk is
+   there.
+4. Compute **Recall@5** — the share of questions where it was.
+5. Repeat with another model or another chunking.
+
+Without this set you are deciding by impression. When Recall@5 comes out
+high and the answers are still bad, the problem is not the embedding but
+the model or the [chunking](/topics/rag/chunking/).
+
+## When to regenerate the index
+
+- **A change of embedding model.**
+- **A change of chunking.**
+- **A change of a document.**
+- **A change of metadata or permissions.**
+- **A change of the language version.**
+
+The index is not the source of truth. The source documents are.
+
+## Where the limit is
+
+- **The model does not understand the domain** — test on your own data.
+- **The chunk is too large or too small** — see
+  [chunking](/topics/rag/chunking/).
+- **Exact codes** — vectors are not ideal for them.
+- **Freshness** — an old index returns old answers.
+- **Permissions** — the model does not handle who may see what.
+
+## Where next
+
+- [Chunking](/topics/rag/chunking/) — how to split text.
+- [PDF and scans](/topics/rag/pdf-and-scans/) — how to get the text out.
+- [Citations and evaluation](/topics/rag/citations-and-evaluation/) —
+  how to verify the answer.
+- [RAG](/topics/rag/) — the whole pipeline.
+- [Embeddings](/dictionary/software/embeddings/) — the basic term.
+- [Vector database](/dictionary/software/vector-database/) — where to
+  store them.
+
+## Sources
+
+- [Sentence Transformers — documentation](https://www.sbert.net/)
+- [MTEB — embedding model benchmark](https://huggingface.co/spaces/mteb/leaderboard)
+- [Qdrant — documentation](https://qdrant.tech/documentation/)
+- [RAG — arXiv](https://arxiv.org/abs/2005.11401)
+
+*Last verified: 11 November 2026.*

@@ -1,0 +1,130 @@
+---
+title: "Local AI in manufacturing: manuals, documentation and offline work"
+description: "How to use local AI in manufacturing: technical manuals, documentation, shift reports and offline operation. Data, safety and limits."
+last_verified: 2026-11-11
+---
+
+In manufacturing, **availability, accuracy and offline operation** decide.
+A model that runs on the line without internet and can find the
+procedure in a manual can save more time than a chat that answers
+general questions. It is also true that a wrong procedure can be
+dangerous.
+
+## Short answer
+
+- **Manuals and documentation** are the best start.
+- **Offline operation** is an advantage; the data stays in the plant.
+- **Every procedure** must be verified by a person who knows it.
+- **The document version** matters as much as the answer.
+
+## Where it makes sense
+
+| Task | What the model does | Risk |
+|---|---|---|
+| **Search in a manual** | finds the procedure or a part | an outdated version |
+| **Shift summary** | an overview of reports | a skipped defect |
+| **Technical documentation** | a text draft | an imprecise term |
+| **Training** | an explanation of a procedure | oversimplification |
+| **Quality control** | an overview of defects | a false pattern |
+| **Orders and stock** | item extraction | a wrong code |
+
+## Workflow
+
+1. **Choose the document** and its valid version.
+2. **Verify that the right version** is in the index.
+3. **The model finds the procedure** and marks the source.
+4. **A supervisor or technician checks it.**
+5. **The output is used** or goes back for correction.
+6. **Record** the question and the answer for audit.
+
+## Data and offline operation
+
+- **A local box** in the plant, with no dependence on the internet.
+- **Documentation** in an internal index, not in the cloud.
+- **Permissions** by role and shift.
+- **Backups** and restore after an outage.
+- **Logs** without unnecessary personal data.
+
+## Risks
+
+- **Outdated documentation** — the model answers from an old version.
+- **The wrong term** — a different part or procedure.
+- **Safety** — a wrong procedure can injure someone.
+- **Missing context** — the model does not see the state of the line.
+- **Oversimplification** — the instruction looks simpler than reality.
+
+## Example: finding a procedure
+
+A technician asks about the procedure for replacing a part. The model
+finds the valid version of the manual and marks the page. The technician
+verifies the procedure and carries it out. When the model finds an old
+version, that must be visible from the metadata; otherwise the answer is
+dangerous.
+
+## What to measure
+
+- **Search time** in the documentation.
+- **The number of queries** per shift.
+- **How many answers** were correct.
+- **How many** had to be corrected.
+- **The number of incidents** connected with documentation.
+
+## How to introduce it in a plant
+
+1. **Choose documentation** that is valid and maintained. A manual
+   without an owner is worse than none.
+2. **Mark versions** and validity — the metadata must contain the
+   machine, the line model and the effective date.
+3. **Install the box locally** and set updates over the internal
+   network, not the internet.
+4. **Test on ten questions** from technicians, not from IT.
+5. **Set up feedback** — a “wrong answer” button on every output.
+6. **Train the operators** — the model is a tool, not an authority.
+
+Offline operation means the model does not see the current state of the
+line. Asked “what broke”, it has to answer from documentation and logs,
+not from assumptions.
+
+## How much it saves
+
+Searching a paper manual or a PDF takes minutes. An illustrative
+**calculation**: 20 queries per shift, each 5 minutes shorter thanks to
+a quick find — that is 100 minutes, over an hour and a half per shift.
+It is a **calculation** with sample inputs, not a measurement; the real
+benefit depends on how often technicians actually need the
+documentation.
+
+## Typical mistakes
+
+| Mistake | Why it happens | How to avoid it |
+|---|---|---|
+| An answer from an old version | the index holds several versions | filter by validity |
+| The model invents a part | the parts catalogue is missing | connect the catalogue, not just text |
+| A simplified procedure | the model shortens | output step by step, supervisor checks |
+| No line context | the model cannot see sensors | add data from the MES (the system that runs the line) |
+| Nobody updates it | there is no owner | name the responsible role |
+
+## When not to use it
+
+- **Safety procedures** without verification.
+- **Documentation** without versions and an owner.
+- **The state of the line** in real time, which the model cannot see.
+- **Dangerous operations** without supervision.
+- **Data** you are not allowed to process.
+
+## Where next
+
+- [RAG](/topics/rag/) — documents and citations.
+- [Document summaries](/topics/czech-and-documents/document-summaries/) — text.
+- [Operations security](/topics/operations/security/) — offline.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+- [DGX Spark](/devices/dgx-spark/) — a CUDA box.
+- [Strix Halo](/devices/strix-halo/) — a cheaper box.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Methodology](/about/methodology/)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Last verified: 11 November 2026.*

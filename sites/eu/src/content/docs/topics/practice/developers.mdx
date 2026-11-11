@@ -1,0 +1,139 @@
+---
+title: "Local AI for developers: code, tests and agents"
+description: "How to use local AI in development: a coding agent, review, tests, documentation and a safe sandbox. What to expect from Qwen3.8 Flash Next."
+last_verified: 2026-11-11
+---
+
+Developers have the best conditions for local AI: clear feedback
+(tests), available data (the repo) and a culture of code review. It is
+also an area where an agent can easily change more than it was supposed
+to. That is why a sandbox and tests are not optional.
+
+## Short answer
+
+- **A coding agent** is useful for tests, refactoring and explaining
+  code.
+- **Qwen3.8 Flash Next** has strong coding benchmarks, but it does not
+  know your project.
+- **Tests and review** are mandatory; an agent does not replace
+  responsibility.
+- **A sandbox** protects the repo, the keys and production.
+
+## Where it makes sense
+
+| Task | What the model does | Risk |
+|---|---|---|
+| **Explaining code** | describes what a function does | incomplete context |
+| **Tests** | proposes unit tests | poor coverage |
+| **Refactoring** | proposes a smaller change | broken behaviour |
+| **Code review** | flags a problem | a false alarm |
+| **Documentation** | a README draft | imprecision |
+| **Migration** | proposes steps | an irreversible change |
+
+## Workflow
+
+1. **Branch** — the agent works outside main.
+2. **Context** — select the relevant files.
+3. **Plan** — approve the steps.
+4. **Change** — a small diff.
+5. **Tests** — in the sandbox.
+6. **Review** — a person reads the diff.
+7. **Merge** — only after approval.
+
+## What to give the agent
+
+- **reading files** — orientation,
+- **git** — history and diff,
+- **a test runner** — verification,
+- **a shell** — build and lint, but in the sandbox,
+- **an issue tracker** — context.
+
+Do not give it production keys, the database or the main branch.
+
+## Security
+
+- **A sandbox** without network access where possible.
+- **A read-only repo** until the agent needs to write.
+- **No secrets** in the environment.
+- **Limits** on CPU, memory and time.
+- **A kill switch.**
+- **Logs** of every command.
+
+## Example: fixing a test
+
+The agent gets a failing test, reads the function and proposes a fix. It
+runs the tests in the sandbox. A person reads the diff and approves the
+merge. The agent has no access to production keys or to the main branch.
+That is a normal and safe workflow.
+
+## What to measure
+
+- **The number of accepted changes** vs. rejected ones.
+- **The time** from assignment to merge.
+- **The error rate** — how many changes came back from the tests.
+- **The size of the diff.**
+- **The number of incidents.**
+
+## How to introduce it in a team
+
+1. **Pick one task** — tests, review, or documentation.
+2. **Set up a sandbox** with a read-only repo and no network.
+3. **Measure the baseline** — how much time the task takes today.
+4. **Run the agent on 10 tasks** and review everything.
+5. **Set the rules** — a small diff, tests, no merge without a person.
+6. **Only then** add more tools or users.
+
+A team that starts with an agent on the whole backlog usually ends up
+with a pile of unreadable diffs. One well-handled task type is better.
+
+## How much it saves
+
+An illustrative **calculation** for a team making 40 small changes a
+week:
+
+| Phase | By hand | With the agent |
+|---|---|---|
+| Writing the change | 30 min × 40 = 20 h | 10 min × 40 = 6.7 h |
+| Review and fixes | 10 min × 40 = 6.7 h | 15 min × 40 = 10 h |
+| Total | ~26.7 h | ~16.7 h |
+
+The numbers are a **calculation** with sample inputs, not a
+measurement. They show the typical trade-off: the agent shortens the
+writing but adds review work. For complex changes the ratio flips and
+the agent does not pay off.
+
+## Typical mistakes
+
+| Mistake | Why it happens | How to avoid it |
+|---|---|---|
+| The agent “fixes” working code | there are no tests | tests before the change |
+| A huge diff | the agent rewrites more | limit the scope in the brief |
+| A new dependency | the model proposes a library | no dependencies without approval |
+| Secrets in the context | `.env` in the repo | exclude the files, rotate the keys |
+| Fake review | the model approves itself | a person does the review |
+
+## When not to use it
+
+- **Production migrations** without a backup.
+- **A payment system** without approval.
+- **A repo with secrets** without a sandbox.
+- **Code you do not understand.**
+- **Automatic merge** without review.
+
+## Where next
+
+- [Coding agents](/topics/agents/coding-agents/) — the workflow.
+- [MCP in practice](/topics/agents/mcp/) — tools.
+- [Function calling](/topics/agents/function-calling/) — calls.
+- [Operations security](/topics/operations/security/) — ops.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+- [DGX Spark](/devices/dgx-spark/) — a CUDA box.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [vLLM — documentation](https://docs.vllm.ai/)
+- [Git — documentation](https://git-scm.com/doc)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Last verified: 11 November 2026.*

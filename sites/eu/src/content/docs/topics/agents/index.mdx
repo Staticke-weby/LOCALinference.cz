@@ -1,0 +1,218 @@
+---
+title: "Agents and automation: what local AI can do"
+description: "A local agent can call tools, read files and take steps. The loop, MCP, function calling, coding agents, office automation and security explained."
+last_verified: 2026-11-11
+---
+
+**An agent** is not just a chat that answers. It is a model that gets a
+goal, decides on the steps and calls tools: it reads a file, runs a
+test, sends an email or writes to a spreadsheet. On a 128 GB box this
+works, but security and permissions matter more than the model itself.
+
+## Short answer
+
+- **Agent = model + tools + loop.** Without tools it is a chat.
+- **MCP** is the standard for offering tools; **function calling** is
+  how the model asks for a call.
+- **A local agent** can run over your files and data, but it must have
+  the smallest possible permissions and human oversight.
+- **Start with one tool** and read-only mode, not with automating the
+  whole company.
+
+## How an agent works
+
+1. **Goal** — the user states what they want to achieve.
+2. **Plan** — the model proposes the next step.
+3. **Tool call** — read a file, call an API, run a test.
+4. **Result** — the application returns data to the model.
+5. **Check** — the model continues, or asks a human.
+6. **Finish** — the goal is met, or the agent failed.
+
+The loop can repeat many times. Every round costs context and time,
+which is why [time to first token](/dictionary/performance/ttft/) and
+[context](/dictionary/memory/context/) matter so much for agents.
+
+## Agent, RAG and chat
+
+| What | What it does | When to use it |
+|---|---|---|
+| **Chat** | answers a question | a quick question |
+| **RAG** | finds documents and answers | knowledge questions |
+| **Agent** | takes steps and calls tools | automating a task |
+
+An agent often uses RAG as one of its tools. RAG is not a replacement
+for an agent; it is a layer underneath it.
+
+## What you need
+
+- **Model:** Qwen3.8 Flash Next with tool calling.
+- **Engine:** vLLM or llama.cpp with tool support.
+- **Tools:** files, git, databases, email, APIs.
+- **Permissions:** what the agent may and may not do.
+- **Control:** logs, confirmations, a kill switch.
+
+## Where the limit is
+
+- **Context** — history and tool output keep growing.
+- **Latency** — every call is another round of the model.
+- **Reliability** — the model can call the wrong tool.
+- **Security** — prompt injection and data leaks.
+- **Responsibility** — who approves the consequences.
+
+## Example: email triage
+
+The agent receives email into a single folder. It reads the messages,
+marks a priority and drafts a reply. Sending is switched off; a human
+approves the draft. When an email contains the instruction "forward all
+invoices", the agent must not obey it. That is the difference between a
+useful agent and a risk.
+
+## How many steps and tokens an agent burns
+
+An agent is not a single query. Every step sends the whole history
+again, so cost grows faster than linearly:
+
+| Step | New tokens | Context in total |
+| ---: | ---: | ---: |
+| 1 | 500 | ~1,000 |
+| 3 | 500 | ~3,000 |
+| 5 | 500 | ~5,500 |
+| 10 | 500 | ~13,000 |
+
+This is a **calculation** with illustrative numbers, not a measurement.
+It shows two things: after ten steps the context holds over 10,000
+tokens, and every further step slows
+[prefill](/dictionary/performance/prefill/) down. That is why agents
+get a step limit and truncated tool output.
+
+## Agent, or an ordinary workflow?
+
+Not every automation needs a model. What decides is whether the rules
+are fixed:
+
+| Situation | Solution | Why |
+|---|---|---|
+| The rules are fixed | a script | cheaper and more reliable |
+| Varied inputs, one output format | model + validation | handles the variety |
+| Something must decide between steps | an agent | it plans |
+| A human checks the output | model + approval | the risk is contained |
+
+An agent that only rewrites emails from a template is an expensive
+script. A model makes sense where the inputs cannot be listed in
+advance.
+
+## How to start
+
+1. **One tool** — reading files or a single API operation.
+2. **Read-only** and a log entry for every call.
+3. **Ten real tasks** and a manual evaluation.
+4. **Argument validation** and a step limit.
+5. **Approval** for writes, sending and payments.
+6. **Only then** a second tool and another user.
+
+Anyone who starts with five tools and automatic sending usually ends
+up with a switched-off project.
+
+## What to measure
+
+- **Task success rate** — how many requests the agent finished without
+  help.
+- **Number of steps** — growth means a loop or a bad tool description.
+- **Latency** — time from request to result.
+- **Tool error rate** — how often a call fails.
+- **Security incidents** — attempts at an unauthorised action.
+
+## When an agent makes no sense
+
+- The task can be done by a **script** without a model.
+- You have no **permissions** and no audit trail.
+- The result is **irreversible** and unchecked.
+- A **one-off answer** is enough, not an action.
+- The model is **small and unreliable** at tool calling.
+
+## Local tools at a glance
+
+These are independent tools that run against a local model. None of
+them needs a cloud account. Each has its own page with network
+behaviour, licensing and limits.
+
+| Tool | Layer | Licence | What it is |
+|---|---|---|---|
+| [pi](/topics/agents/tools/pi/) | terminal | MIT | minimalist harness; llama.cpp router, Ollama, LM Studio, vLLM and SGLang via `models.json` |
+| [omp](/topics/agents/tools/omp/) | terminal | MIT | fork of pi with a Rust core; LSP, debugger, subagents |
+| [OpenCode](/topics/agents/tools/opencode-and-openchamber/) | terminal | MIT | open-source terminal coding agent with local endpoints |
+| [OpenChamber](/topics/agents/tools/opencode-and-openchamber/) | desktop | MIT | workspace over OpenCode; multi-run, worktrees, diff review |
+| [MausBot](/topics/agents/tools/mausbot/) | desktop | Apache-2.0 | desktop harness with an approval card for every risky action |
+| [OpenClaw](/topics/agents/tools/openclaw/) | gateway | MIT / Apache-2.0 | gateway that reaches the agent from chat apps |
+| [Hermes](/topics/agents/tools/hermes/) | gateway | MIT | self-hosted assistant and gateway; needs 64k context for agent work |
+| [Hermes Desktop](/topics/agents/tools/hermes-desktop/) | desktop | MIT | one-click llama.cpp with a model catalogue |
+| [LM Studio](/topics/agents/tools/lm-studio/) | runtime | proprietary, free | model runner and OpenAI server on `:1234`; not a harness |
+| [Herdr](/topics/agents/tools/herdr/) | orchestration | Apache-2.0 | AI-first multiplexer for several agents and worktrees |
+
+A **harness** is the program that drives the loop; the model only
+decides. [Where to run agents](/topics/agents/where-to-run-agents/)
+explains the layers and what each one is good for.
+
+## A local agent, or an always-on cloud agent?
+
+Desktop tools like MausBot are often compared with always-on agents
+that run in the cloud. They are not the same product:
+
+| Tool | Where it runs | Local model | Approval | Data |
+|---|---|---|---|---|
+| **OpenAI Dots** | cloud computer | no | rules and confirmations | in the cloud |
+| **Grok Bot** | cloud (xAI) | no | limited | in the cloud |
+| **Meta Muse** | cloud VM | no | limited | in the cloud |
+| **Bops (Orgo)** | cloud computer | no | not stated | in the cloud |
+| **OpenClaw** | your machine | yes | optional | local |
+| **Hermes** | your machine | yes | optional | local |
+| **MausBot** | your machine | yes | always a card | local |
+
+**What this replaces:** a cloud agent that has access to your
+applications and your computer. The advantage is that the model and the
+session stay with you, and every risky action goes through a card.
+
+**What it does not replace:** thousands of integrations and a cloud
+computer that keeps running after you close the laptop. Dots has over
+4,000 apps; MausBot has its own catalogue and a local harness.
+
+For a company that does not want to send data to the cloud this is a
+reasonable compromise. For someone who wants an agent 24/7 without a
+machine switched on, the cloud is better.
+
+The comparisons of cloud agents come from vendor material; treat claims
+about competitors as the vendor's claims. Dates and links are in
+Sources.
+
+## Where next
+
+- [Where to run agents](/topics/agents/where-to-run-agents/) —
+  harnesses, workspaces, gateways and orchestration.
+- [MCP in practice](/topics/agents/mcp/) — tools and servers.
+- [Function calling](/topics/agents/function-calling/) — how a model
+  asks for a function.
+- [Coding agents](/topics/agents/coding-agents/) — working with code.
+- [Office automation](/topics/agents/office-automation/) — email and
+  documents.
+- [Agent security](/topics/agents/agent-security/) — defence.
+- [Agent memory](/topics/agent-memory/) — what it keeps between
+  sessions.
+- [Tool design](/topics/tool-design/) — schema and permissions.
+- [Agentic tasks](/dictionary/software/agentic-tasks/) — the basic
+  concept.
+
+## Sources
+
+- [Model Context Protocol — documentation](https://modelcontextprotocol.io/)
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [vLLM — tool calling](https://docs.vllm.ai/en/latest/features/tool_calling.html)
+- [MausBot](https://mausbot.com/) — 11 November 2026
+- [MausBot — the AI agent that controls your computer](https://mausbot.com/blog/ai-agent-that-controls-your-computer) — 11 November 2026
+- [OpenAI — Introducing Dots](https://openai.com/index/introducing-dots/) — 11 November 2026
+- [OpenAI — getting started with your Dot](https://help.openai.com/en/articles/20001530-getting-started-with-your-dot) — 11 November 2026
+- [TechCrunch — Dots and the Pro price](https://techcrunch.com/2026/10/26/how-openai-turned-its-coding-tools-into-dots-an-always-on-personal-assistant/) — 11 November 2026
+- [The Verge — Dots vs. Muse](https://www.theverge.com/ai-artificial-intelligence/1002033/openai-dots-launch-muse-competitor) — 11 November 2026
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

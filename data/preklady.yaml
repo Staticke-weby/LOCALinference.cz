@@ -62,6 +62,9 @@
 - cz: modely/proc-moe
   en: models/why-moe
   stav: hotovo
+- cz: modely/qwen3-8-flash-next-abliterated
+  en: models/qwen3-8-flash-next-abliterated
+  stav: hotovo
 - cz: modely/qwen3-8-flash-next
   en: models/qwen3-8-flash-next
   stav: hotovo
@@ -98,11 +101,32 @@
 - cz: slovnik
   en: dictionary
   stav: hotovo
+- cz: slovnik/pamet/context-rot
+  en: dictionary/memory/context-rot
+  stav: hotovo
+- cz: slovnik/pamet/gtt
+  en: dictionary/memory/gtt
+  stav: hotovo
 - cz: slovnik/pamet/kontext
   en: dictionary/memory/context
   stav: hotovo
 - cz: slovnik/pamet/kv-cache
   en: dictionary/memory/kv-cache
+  stav: hotovo
+- cz: slovnik/pamet/ngram-embeddings
+  en: dictionary/memory/ngram-embeddings
+  stav: hotovo
+- cz: slovnik/pamet/offload
+  en: dictionary/memory/offload
+  stav: hotovo
+- cz: slovnik/pamet/paged-attention
+  en: dictionary/memory/paged-attention
+  stav: hotovo
+- cz: slovnik/pamet/prefix-caching
+  en: dictionary/memory/prefix-caching
+  stav: hotovo
+- cz: slovnik/pamet/rope-yarn
+  en: dictionary/memory/rope-yarn
   stav: hotovo
 - cz: slovnik/pamet/unified-memory
   en: dictionary/memory/unified-memory
@@ -113,17 +137,41 @@
 - cz: slovnik/provoz/power-limit
   en: dictionary/operations/power-limit
   stav: hotovo
+- cz: slovnik/provoz/prompt-injection
+  en: dictionary/operations/prompt-injection
+  stav: hotovo
 - cz: slovnik/provoz/throttling
   en: dictionary/operations/throttling
   stav: hotovo
+- cz: slovnik/software/abliterace
+  en: dictionary/software/abliteration
+  stav: hotovo
+- cz: slovnik/software/agent-harness
+  en: dictionary/software/agent-harness
+  stav: hotovo
 - cz: slovnik/software/agentni-ulohy
   en: dictionary/software/agentic-tasks
+  stav: hotovo
+- cz: slovnik/software/ai-workspace
+  en: dictionary/software/ai-workspace
+  stav: hotovo
+- cz: slovnik/software/chat-template
+  en: dictionary/software/chat-template
   stav: hotovo
 - cz: slovnik/software/cuda
   en: dictionary/software/cuda
   stav: hotovo
 - cz: slovnik/software/difuze
   en: dictionary/software/diffusion
+  stav: hotovo
+- cz: slovnik/software/embeddingy
+  en: dictionary/software/embeddings
+  stav: hotovo
+- cz: slovnik/software/flash-attention
+  en: dictionary/software/flash-attention
+  stav: hotovo
+- cz: slovnik/software/function-calling
+  en: dictionary/software/function-calling
   stav: hotovo
 - cz: slovnik/software/gguf
   en: dictionary/software/gguf
@@ -137,8 +185,17 @@
 - cz: slovnik/software/kvantizace
   en: dictionary/software/quantization
   stav: hotovo
+- cz: slovnik/software/llamacpp
+  en: dictionary/software/llamacpp
+  stav: hotovo
 - cz: slovnik/software/lora
   en: dictionary/software/lora
+  stav: hotovo
+- cz: slovnik/software/mcp
+  en: dictionary/software/mcp
+  stav: hotovo
+- cz: slovnik/software/mlx
+  en: dictionary/software/mlx
   stav: hotovo
 - cz: slovnik/software/mtp
   en: dictionary/software/mtp
@@ -146,8 +203,14 @@
 - cz: slovnik/software/nvfp4
   en: dictionary/software/nvfp4
   stav: hotovo
+- cz: slovnik/software/ocr
+  en: dictionary/software/ocr
+  stav: hotovo
 - cz: slovnik/software/ollama
   en: dictionary/software/ollama
+  stav: hotovo
+- cz: slovnik/software/orchestrace-agentu
+  en: dictionary/software/agent-orchestration
   stav: hotovo
 - cz: slovnik/software/pbr
   en: dictionary/software/pbr
@@ -155,17 +218,32 @@
 - cz: slovnik/software/rag
   en: dictionary/software/rag
   stav: hotovo
+- cz: slovnik/software/reasoning
+  en: dictionary/software/reasoning
+  stav: hotovo
+- cz: slovnik/software/reranker
+  en: dictionary/software/reranker
+  stav: hotovo
 - cz: slovnik/software/rocm
   en: dictionary/software/rocm
   stav: hotovo
+- cz: slovnik/software/structured-output
+  en: dictionary/software/structured-output
+  stav: hotovo
 - cz: slovnik/software/stt
   en: dictionary/software/stt
+  stav: hotovo
+- cz: slovnik/software/teplota-vzorkovani
+  en: dictionary/software/sampling-temperature
   stav: hotovo
 - cz: slovnik/software/tts
   en: dictionary/software/tts
   stav: hotovo
 - cz: slovnik/software/upscaling
   en: dictionary/software/upscaling
+  stav: hotovo
+- cz: slovnik/software/vektorova-databaze
+  en: dictionary/software/vector-database
   stav: hotovo
 - cz: slovnik/software/vision
   en: dictionary/software/vision
@@ -178,6 +256,9 @@
   stav: hotovo
 - cz: slovnik/software/wsl2
   en: dictionary/software/wsl2
+  stav: hotovo
+- cz: slovnik/vykon/batch-size
+  en: dictionary/performance/batch-size
   stav: hotovo
 - cz: slovnik/vykon/decode
   en: dictionary/performance/decode
@@ -206,14 +287,98 @@
 - cz: temata/128gb-unified-memory
   en: topics/128gb-unified-memory
   stav: hotovo
+- cz: temata/abliterace
+  en: topics/abliteration
+  stav: hotovo
+- cz: temata/abliterace/jak-abliterace-funguje
+  en: topics/abliteration/how-abliteration-works
+  stav: hotovo
+- cz: temata/abliterace/kdo-je-tvori
+  en: topics/abliteration/who-makes-them
+  stav: hotovo
+- cz: temata/abliterace/odmitani
+  en: topics/abliteration/refusals
+  stav: hotovo
+- cz: temata/abliterace/provoz-na-128-gb
+  en: topics/abliteration/running-on-128gb
+  stav: hotovo
+- cz: temata/abliterace/rizika-a-pravo
+  en: topics/abliteration/risks-and-law
+  stav: hotovo
+- cz: temata/agenti/bezpecnost-agenta
+  en: topics/agents/agent-security
+  stav: hotovo
+- cz: temata/agenti/coding-agent
+  en: topics/agents/coding-agents
+  stav: hotovo
+- cz: temata/agenti/function-calling-v-praxi
+  en: topics/agents/function-calling
+  stav: hotovo
+- cz: temata/agenti
+  en: topics/agents
+  stav: hotovo
+- cz: temata/agenti/kde-provozovat-agenty
+  en: topics/agents/where-to-run-agents
+  stav: hotovo
+- cz: temata/agenti/mcp-v-praxi
+  en: topics/agents/mcp
+  stav: hotovo
+- cz: temata/agenti/nastroje/herdr
+  en: topics/agents/tools/herdr
+  stav: hotovo
+- cz: temata/agenti/nastroje/hermes-desktop
+  en: topics/agents/tools/hermes-desktop
+  stav: hotovo
+- cz: temata/agenti/nastroje/hermes
+  en: topics/agents/tools/hermes
+  stav: hotovo
+- cz: temata/agenti/nastroje/lm-studio
+  en: topics/agents/tools/lm-studio
+  stav: hotovo
+- cz: temata/agenti/nastroje/mausbot
+  en: topics/agents/tools/mausbot
+  stav: hotovo
+- cz: temata/agenti/nastroje/omp
+  en: topics/agents/tools/omp
+  stav: hotovo
+- cz: temata/agenti/nastroje/openclaw
+  en: topics/agents/tools/openclaw
+  stav: hotovo
+- cz: temata/agenti/nastroje/opencode-a-openchamber
+  en: topics/agents/tools/opencode-and-openchamber
+  stav: hotovo
+- cz: temata/agenti/nastroje/pi
+  en: topics/agents/tools/pi
+  stav: hotovo
 - cz: temata/agenti/navrh-nastroju
   en: topics/agents/tool-design
+  stav: hotovo
+- cz: temata/agenti/office-automatizace
+  en: topics/agents/office-automation
   stav: hotovo
 - cz: temata/agenti/pamet-agenta
   en: topics/agents/agent-memory
   stav: hotovo
 - cz: temata/cena-lokalni-ai
   en: topics/cost-of-local-ai
+  stav: hotovo
+- cz: temata/cestina/extrakce-dat
+  en: topics/czech-and-documents/data-extraction
+  stav: hotovo
+- cz: temata/cestina/hodnoceni-kvality
+  en: topics/czech-and-documents/quality-evaluation
+  stav: hotovo
+- cz: temata/cestina
+  en: topics/czech-and-documents
+  stav: hotovo
+- cz: temata/cestina/jak-model-zvlada-cestinu
+  en: topics/czech-and-documents/czech-language
+  stav: hotovo
+- cz: temata/cestina/preklad-a-korektura
+  en: topics/czech-and-documents/translation-and-proofreading
+  stav: hotovo
+- cz: temata/cestina/shrnuti-dokumentu
+  en: topics/czech-and-documents/document-summaries
   stav: hotovo
 - cz: temata/dgx-spark
   en: topics/dgx-spark
@@ -248,17 +413,74 @@
 - cz: temata/lokalni-ai-pro-firmy
   en: topics/local-ai-for-business
   stav: hotovo
+- cz: temata/praxe
+  en: topics/practice
+  stav: hotovo
+- cz: temata/praxe/pravo
+  en: topics/practice/law
+  stav: hotovo
+- cz: temata/praxe/ucetnictvi
+  en: topics/practice/accounting
+  stav: hotovo
+- cz: temata/praxe/vyroba
+  en: topics/practice/manufacturing
+  stav: hotovo
+- cz: temata/praxe/vyvojari
+  en: topics/practice/developers
+  stav: hotovo
+- cz: temata/provoz/aktualizace
+  en: topics/operations/updates
+  stav: hotovo
+- cz: temata/provoz/api-server
+  en: topics/operations/api-server
+  stav: hotovo
+- cz: temata/provoz/bezpecnost-provozu
+  en: topics/operations/security
+  stav: hotovo
+- cz: temata/provoz/gdpr-a-ai-act
+  en: topics/operations/gdpr-and-ai-act
+  stav: hotovo
+- cz: temata/provoz
+  en: topics/operations
+  stav: hotovo
 - cz: temata/provoz/model-routing
   en: topics/operations/model-routing
   stav: hotovo
+- cz: temata/provoz/monitoring
+  en: topics/operations/monitoring
+  stav: hotovo
 - cz: temata/provoz/observability
   en: topics/operations/observability
+  stav: hotovo
+- cz: temata/provoz/reseni-problemu
+  en: topics/operations/troubleshooting
+  stav: hotovo
+- cz: temata/provoz/sandbox-agentu
+  en: topics/operations/agent-sandbox
   stav: hotovo
 - cz: temata/provoz/zalohy-a-obnova
   en: topics/operations/backups-and-recovery
   stav: hotovo
 - cz: temata/qwen3-8-flash-next
   en: topics/qwen3-8-flash-next
+  stav: hotovo
+- cz: temata/rag/chunking
+  en: topics/rag/chunking
+  stav: hotovo
+- cz: temata/rag/citace-a-hodnoceni
+  en: topics/rag/citations-and-evaluation
+  stav: hotovo
+- cz: temata/rag/embeddingy-v-praxi
+  en: topics/rag/embeddings-in-practice
+  stav: hotovo
+- cz: temata/rag
+  en: topics/rag
+  stav: hotovo
+- cz: temata/rag/opravneni-a-bezpecnost
+  en: topics/rag/permissions-and-security
+  stav: hotovo
+- cz: temata/rag/pdf-a-skeny
+  en: topics/rag/pdf-and-scans
   stav: hotovo
 - cz: temata/rtx-spark
   en: topics/rtx-spark
@@ -335,228 +557,6 @@
 - cz: zdroje/zdroje
   en: sources/sources
   stav: hotovo
-- cz: modely/qwen3-8-flash-next-abliterated
-  en: models/qwen3-8-flash-next-abliterated
-  stav: ceka
-- cz: slovnik/pamet/context-rot
-  en: dictionary/memory/context-rot
-  stav: ceka
-- cz: slovnik/pamet/gtt
-  en: dictionary/memory/gtt
-  stav: ceka
-- cz: slovnik/pamet/ngram-embeddings
-  en: dictionary/memory/ngram-embeddings
-  stav: ceka
-- cz: slovnik/pamet/offload
-  en: dictionary/memory/offload
-  stav: ceka
-- cz: slovnik/pamet/paged-attention
-  en: dictionary/memory/paged-attention
-  stav: ceka
-- cz: slovnik/pamet/prefix-caching
-  en: dictionary/memory/prefix-caching
-  stav: ceka
-- cz: slovnik/pamet/rope-yarn
-  en: dictionary/memory/rope-yarn
-  stav: ceka
-- cz: slovnik/provoz/prompt-injection
-  en: dictionary/operations/prompt-injection
-  stav: ceka
-- cz: slovnik/software/abliterace
-  en: dictionary/software/abliteration
-  stav: ceka
-- cz: slovnik/software/agent-harness
-  en: dictionary/software/agent-harness
-  stav: ceka
-- cz: slovnik/software/ai-workspace
-  en: dictionary/software/ai-workspace
-  stav: ceka
-- cz: slovnik/software/chat-template
-  en: dictionary/software/chat-template
-  stav: ceka
-- cz: slovnik/software/embeddingy
-  en: dictionary/software/embeddingy
-  stav: ceka
-- cz: slovnik/software/flash-attention
-  en: dictionary/software/flash-attention
-  stav: ceka
-- cz: slovnik/software/function-calling
-  en: dictionary/software/function-calling
-  stav: ceka
-- cz: slovnik/software/llamacpp
-  en: dictionary/software/llama-cpp
-  stav: ceka
-- cz: slovnik/software/mcp
-  en: dictionary/software/mcp
-  stav: ceka
-- cz: slovnik/software/mlx
-  en: dictionary/software/mlx
-  stav: ceka
-- cz: slovnik/software/ocr
-  en: dictionary/software/ocr
-  stav: ceka
-- cz: slovnik/software/orchestrace-agentu
-  en: dictionary/software/orchestrace-agentu
-  stav: ceka
-- cz: slovnik/software/reasoning
-  en: dictionary/software/reasoning
-  stav: ceka
-- cz: slovnik/software/reranker
-  en: dictionary/software/reranker
-  stav: ceka
-- cz: slovnik/software/structured-output
-  en: dictionary/software/structured-output
-  stav: ceka
-- cz: slovnik/software/teplota-vzorkovani
-  en: dictionary/software/teplota-vzorkovani
-  stav: ceka
-- cz: slovnik/software/vektorova-databaze
-  en: dictionary/software/vektorova-databaze
-  stav: ceka
-- cz: slovnik/vykon/batch-size
-  en: dictionary/performance/batch-size
-  stav: ceka
-- cz: temata/abliterace
-  en: topics/abliteration
-  stav: ceka
-- cz: temata/abliterace/jak-abliterace-funguje
-  en: topics/abliteration/jak-abliterace-funguje
-  stav: ceka
-- cz: temata/abliterace/kdo-je-tvori
-  en: topics/abliteration/kdo-je-tvori
-  stav: ceka
-- cz: temata/abliterace/odmitani
-  en: topics/abliteration/odmitani
-  stav: ceka
-- cz: temata/abliterace/provoz-na-128-gb
-  en: topics/abliteration/provoz-na-128-gb
-  stav: ceka
-- cz: temata/abliterace/rizika-a-pravo
-  en: topics/abliteration/rizika-a-pravo
-  stav: ceka
-- cz: temata/agenti/bezpecnost-agenta
-  en: topics/agents/bezpecnost-agenta
-  stav: ceka
-- cz: temata/agenti/coding-agent
-  en: topics/agents/coding-agent
-  stav: ceka
-- cz: temata/agenti/function-calling-v-praxi
-  en: topics/agents/function-calling-v-praxi
-  stav: ceka
-- cz: temata/agenti
-  en: topics/agents
-  stav: ceka
-- cz: temata/agenti/kde-provozovat-agenty
-  en: topics/agents/kde-provozovat-agenty
-  stav: ceka
-- cz: temata/agenti/mcp-v-praxi
-  en: topics/agents/mcp-v-praxi
-  stav: ceka
-- cz: temata/agenti/nastroje/herdr
-  en: topics/agents/nastroje/herdr
-  stav: ceka
-- cz: temata/agenti/nastroje/hermes-desktop
-  en: topics/agents/nastroje/hermes-desktop
-  stav: ceka
-- cz: temata/agenti/nastroje/hermes
-  en: topics/agents/nastroje/hermes
-  stav: ceka
-- cz: temata/agenti/nastroje/lm-studio
-  en: topics/agents/nastroje/lm-studio
-  stav: ceka
-- cz: temata/agenti/nastroje/mausbot
-  en: topics/agents/nastroje/mausbot
-  stav: ceka
-- cz: temata/agenti/nastroje/omp
-  en: topics/agents/nastroje/omp
-  stav: ceka
-- cz: temata/agenti/nastroje/openclaw
-  en: topics/agents/nastroje/openclaw
-  stav: ceka
-- cz: temata/agenti/nastroje/opencode-a-openchamber
-  en: topics/agents/nastroje/opencode-a-openchamber
-  stav: ceka
-- cz: temata/agenti/nastroje/pi
-  en: topics/agents/nastroje/pi
-  stav: ceka
-- cz: temata/agenti/office-automatizace
-  en: topics/agents/office-automatizace
-  stav: ceka
-- cz: temata/cestina/extrakce-dat
-  en: topics/czech-and-documents/extrakce-dat
-  stav: ceka
-- cz: temata/cestina/hodnoceni-kvality
-  en: topics/czech-and-documents/hodnoceni-kvality
-  stav: ceka
-- cz: temata/cestina
-  en: topics/czech-and-documents
-  stav: ceka
-- cz: temata/cestina/jak-model-zvlada-cestinu
-  en: topics/czech-and-documents/jak-model-zvlada-cestinu
-  stav: ceka
-- cz: temata/cestina/preklad-a-korektura
-  en: topics/czech-and-documents/preklad-a-korektura
-  stav: ceka
-- cz: temata/cestina/shrnuti-dokumentu
-  en: topics/czech-and-documents/shrnuti-dokumentu
-  stav: ceka
-- cz: temata/praxe
-  en: topics/practice
-  stav: ceka
-- cz: temata/praxe/pravo
-  en: topics/practice/pravo
-  stav: ceka
-- cz: temata/praxe/ucetnictvi
-  en: topics/practice/ucetnictvi
-  stav: ceka
-- cz: temata/praxe/vyroba
-  en: topics/practice/vyroba
-  stav: ceka
-- cz: temata/praxe/vyvojari
-  en: topics/practice/vyvojari
-  stav: ceka
-- cz: temata/provoz/aktualizace
-  en: topics/operations/aktualizace
-  stav: ceka
-- cz: temata/provoz/api-server
-  en: topics/operations/api-server
-  stav: ceka
-- cz: temata/provoz/bezpecnost-provozu
-  en: topics/operations/bezpecnost-provozu
-  stav: ceka
-- cz: temata/provoz/gdpr-a-ai-act
-  en: topics/operations/gdpr-a-ai-act
-  stav: ceka
-- cz: temata/provoz
-  en: topics/operations
-  stav: ceka
-- cz: temata/provoz/monitoring
-  en: topics/operations/monitoring
-  stav: ceka
-- cz: temata/provoz/reseni-problemu
-  en: topics/operations/reseni-problemu
-  stav: ceka
-- cz: temata/provoz/sandbox-agentu
-  en: topics/operations/sandbox-agentu
-  stav: ceka
-- cz: temata/rag/chunking
-  en: topics/rag/chunking
-  stav: ceka
-- cz: temata/rag/citace-a-hodnoceni
-  en: topics/rag/citace-a-hodnoceni
-  stav: ceka
-- cz: temata/rag/embeddingy-v-praxi
-  en: topics/rag/embeddingy-v-praxi
-  stav: ceka
-- cz: temata/rag
-  en: topics/rag
-  stav: ceka
-- cz: temata/rag/opravneni-a-bezpecnost
-  en: topics/rag/opravneni-a-bezpecnost
-  stav: ceka
-- cz: temata/rag/pdf-a-skeny
-  en: topics/rag/pdf-a-skeny
-  stav: ceka
 - cz: zarizeni/konfigurace/<id>
   en: devices/configurations/<id>
   stav: hotovo

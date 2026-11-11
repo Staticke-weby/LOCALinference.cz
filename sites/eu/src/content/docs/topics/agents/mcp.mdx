@@ -1,0 +1,148 @@
+---
+title: "MCP in practice: connecting a local model to tools"
+description: "MCP connects a model to files, git or a database. The architecture, your first server, permissions, testing and day-to-day operation."
+last_verified: 2026-11-11
+---
+
+**MCP** is a practical way to offer tools to a model without writing a
+custom integration for every application. A server describes the tools,
+a client offers them to the model, and the model asks for a call. The
+rest is permissions and discipline.
+
+## Short answer
+
+- **An MCP server = the menu of tools.** The client = the application
+  that runs the model.
+- **Start read-only** with a server over a single directory.
+- **Permissions and a sandbox** matter more than the number of tools.
+- **Test attacks too** — a document with a forged instruction.
+
+## Architecture
+
+| Part | What it does | Example |
+|---|---|---|
+| **Client** | runs the model, receives calls | chat, IDE, agent |
+| **Server** | offers tools and data | files, git, a database |
+| **Model** | decides what to call | Qwen3.8 Flash Next |
+| **Application** | performs the call and returns the result | your code |
+
+A server can run locally (`stdio`) or as a network service. For
+sensitive data the local variant is the more natural choice.
+
+## Your first server
+
+Start with one of these:
+
+- **files** — reading inside an allowed directory,
+- **git** — history, diff, branches,
+- **SQLite** — queries against a single database,
+- **documentation** — search in Markdown.
+
+Do not add writing, deleting and email right away. First verify that
+the model calls the right tools.
+
+## Permissions
+
+- **A directory allowlist** — one specific folder only.
+- **Read-only** — no writes until you are confident.
+- **No keys in the prompt** — tokens belong in the environment.
+- **Limits** — a maximum number of calls and output size.
+- **Logs** — who called what.
+
+A server that sees the whole disk is needlessly dangerous.
+
+## Testing
+
+1. **The tool list** — the model sees only the allowed tools.
+2. **Reading a known file** — it returns the right content.
+3. **An attempt outside the allowlist** — it must fail.
+4. **A document with an injection** — the model must not obey it.
+5. **A long output** — it must be truncated.
+6. **A restart** — the server recovers.
+
+## Operation
+
+- **Version the server configuration.**
+- **Log** every call and its result.
+- **Update** both the server and the client.
+- **Limit** the number of tools; fewer is safer.
+- **Keep a kill switch** — a way to stop the agent.
+
+## Example: a git server
+
+The agent gets the task "explain what the last commit changed". The MCP
+server offers the `git_log` and `git_diff` tools, both read-only. The
+model asks for the diff, reads it and answers. It has no tool for push
+and no access to the production branch. That is a safe starting point.
+
+## What a single call looks like
+
+1. The user writes a task.
+2. The client sends the model a message and the **list of tools** with
+   their schemas.
+3. The model returns a call request (a tool and its arguments).
+4. **The application** performs the call — not the model.
+5. The result goes back to the model as another message.
+6. The model answers, or asks for another call.
+
+The key point is that **the model executes nothing**. If it executed,
+you could not limit anything. All security lives in steps 4 and 5.
+
+## How many tools are too many
+
+Every tool is a description with a schema that travels in **every**
+request. With fifty of them the model ignores half and confuses the
+rest.
+
+An illustrative **calculation**: a tool with a description and a schema
+takes around 200 tokens; twenty tools is 4,000 tokens sent with every
+query and taking up context. The numbers differ with the schema, but
+the principle holds: **fewer tools = more accurate calls and cheaper
+operation**.
+
+To begin with, 3–5 tools that cover one workflow are enough.
+
+## When the model calls the wrong tool
+
+| Symptom | Cause | What to do |
+|---|---|---|
+| It calls a tool that does not exist | a weak description or a hallucination | sharpen the description, cut the number |
+| It confuses two similar tools | overlapping names | merge them, or rename |
+| It sends empty arguments | required fields missing from the schema | mark them `required` |
+| It calls in a loop | no result or no end signal | limit the number of calls |
+| It answers without calling | the task reads like chat | adjust the system prompt |
+| It calls with the wrong data | no validation in the application | validate and return an error |
+
+Never fix the error by giving the model more tools. Fewer tools and a
+better description usually help.
+
+## Deployment for a team
+
+A `stdio` server is tied to one application and one user. For a team
+you need a network server with authentication, otherwise permissions
+get bypassed. The same rules apply as for an API server: TLS, a token,
+logs and a rate limit.
+
+## When you do not need MCP
+
+- One script that runs once.
+- A chat without tools.
+- A task a plain API handles.
+- No time to deal with permissions and logs.
+
+## Where next
+
+- [Function calling](/topics/agents/function-calling/) — how a model
+  asks for a function.
+- [Tool design](/topics/tool-design/) — schemas and permissions.
+- [Agent security](/topics/agents/agent-security/) — defence.
+- [Coding agents](/topics/agents/coding-agents/) — working with code.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [Model Context Protocol — documentation](https://modelcontextprotocol.io/)
+- [MCP — specification](https://modelcontextprotocol.io/specification)
+- [OWASP — LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+*Last verified: 11 November 2026.*

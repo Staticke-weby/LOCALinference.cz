@@ -1,0 +1,481 @@
+---
+title: "Where to run agents: harnesses, workspaces and gateways"
+description: "An overview of independent tools for running local agents: pi, omp, OpenCode, OpenChamber, MausBot, OpenClaw, Hermes and Herdr. Without the big providers."
+last_verified: 2026-11-11
+---
+
+An agent is not just a model. It is a **model + tools + loop +
+environment**. This article covers the last part: where the agent runs,
+who approves its actions and how it connects to a local model. It does
+not cover which editor to write code in, and it does not compare the
+tools of the large providers.
+
+## Short answer
+
+- **A harness is the program that drives the loop.** The model decides,
+  the harness executes.
+- **The terminal** is the fastest route: pi, omp, OpenCode.
+- **The desktop** gives an overview and approvals: OpenChamber,
+  MausBot.
+- **A gateway** lets the agent out of chat apps: OpenClaw, Hermes.
+- **Orchestration** handles several agents at once: Herdr.
+- **The local model** connects through an OpenAI-compatible endpoint.
+
+## What a harness is and is not
+
+| Layer | What it does | Example |
+|---|---|---|
+| **Model** | generates tokens | Qwen3.8 Flash Next |
+| **Engine** | serves the model and the API | vLLM, llama.cpp |
+| **Harness** | drives the loop and calls tools | pi, omp, OpenCode |
+| **Workspace** | shows sessions and diffs | OpenChamber |
+| **Tool** | reads a file, runs a test | a function or an MCP server |
+
+A harness is not a model and not an engine. When speed is at stake, the
+model and the engine decide. When it is about what the agent can do and
+what it is allowed to do, the harness decides.
+
+## What an AI workspace is
+
+An **AI workspace** is a visual layer above the harness: sessions,
+diffs, worktrees, history, review and remote access. It is not an IDE
+and it is not a model. It is the place where you see the agent's work
+and approve it.
+
+[OpenChamber](/topics/agents/tools/opencode-and-openchamber/) is an
+example: it runs on top of OpenCode and shows multi-run, worktrees and
+diffs.
+
+A workspace makes sense when:
+
+- you want to see what the agent changed before you merge it,
+- several agents or models run in parallel,
+- you work from more than one device,
+- you need review and approvals in one place.
+
+It makes no sense when all you want is a quick command in a terminal.
+
+## The four layers where an agent runs
+
+<figure style="margin:1.2rem 0">
+  <svg style="width:100%;height:auto;max-width:760px" viewBox="0 0 760 220" role="img" aria-labelledby="agent-layers" xmlns="http://www.w3.org/2000/svg">
+    <title id="agent-layers">The four layers of running an agent</title>
+    <rect x="20" y="70" width="150" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="95" y="98" text-anchor="middle" fill="currentColor" font-size="13">terminal</text>
+    <text x="95" y="117" text-anchor="middle" fill="currentColor" font-size="11">pi, omp, OpenCode</text>
+    <rect x="200" y="70" width="150" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="275" y="98" text-anchor="middle" fill="currentColor" font-size="13">desktop</text>
+    <text x="275" y="117" text-anchor="middle" fill="currentColor" font-size="11">OpenChamber, MausBot</text>
+    <rect x="380" y="70" width="150" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="455" y="98" text-anchor="middle" fill="currentColor" font-size="13">gateway</text>
+    <text x="455" y="117" text-anchor="middle" fill="currentColor" font-size="11">OpenClaw, Hermes</text>
+    <rect x="560" y="70" width="150" height="70" rx="8" fill="none" stroke="currentColor" />
+    <text x="635" y="98" text-anchor="middle" fill="currentColor" font-size="13">orchestration</text>
+    <text x="635" y="117" text-anchor="middle" fill="currentColor" font-size="11">Herdr</text>
+    <line x1="170" y1="105" x2="200" y2="105" stroke="currentColor" /><polygon points="200,101 208,105 200,109" fill="currentColor" />
+    <line x1="350" y1="105" x2="380" y2="105" stroke="currentColor" /><polygon points="380,101 388,105 380,109" fill="currentColor" />
+    <line x1="530" y1="105" x2="560" y2="105" stroke="currentColor" /><polygon points="560,101 568,105 560,109" fill="currentColor" />
+    <text x="380" y="35" text-anchor="middle" fill="currentColor" font-size="12">from one person to a team</text>
+  </svg>
+  <figcaption style="color:var(--sl-color-gray-3);font-size:var(--sl-text-sm);margin-top:0.35rem">The layers complement each other: terminal for speed, desktop for oversight, gateway for remote access, orchestration for several agents.</figcaption>
+</figure>
+
+This is not a ranking. It is about where the agent runs and who sees
+its actions. They are often combined: a terminal harness inside Herdr,
+a gateway above it, the desktop for review.
+
+## What a tool must support to work with a local model
+
+- **An OpenAI-compatible endpoint** — `/v1/chat/completions`.
+- **Tool calling** — the model must be able to return a structured
+  call.
+- **Context** — the system prompt, the schemas and the history must
+  fit.
+- **Streaming** — otherwise you wait for the whole answer.
+- **MCP or custom tools** — depending on the task.
+- **Logs and approvals** — who ran what.
+
+When a tool only does chat and no tool calling, it is a chat, not an
+agent. When it cannot connect to a local endpoint, it does not belong
+in this article.
+
+## A local endpoint in practice
+
+Most harnesses speak the OpenAI protocol. All they need is a base URL,
+a key and a model ID:
+
+**Ollama:**
+
+```text
+base URL: http://localhost:11434/v1
+model: qwen3.5:27b
+key: leave empty
+```
+
+**vLLM:**
+
+```bash
+vllm serve Qwen/Qwen3.8-Flash-Next \
+  --port 8000 --max-model-len 32768
+```
+
+```text
+base URL: http://127.0.0.1:8000/v1
+model: Qwen/Qwen3.8-Flash-Next
+```
+
+**llama.cpp:**
+
+```bash
+llama-server -m model.gguf --jinja \
+  --host 127.0.0.1 --port 8080 -ngl 999 -c 32768
+```
+
+`--jinja` matters: without it the model does not get the correct chat
+template and tool calling falls apart. In all three cases the model has
+to actually support tool calling; not every GGUF does.
+
+## What the loop looks like
+
+1. The harness sends the model a system prompt, the history and the
+   tool schemas.
+2. The model returns an answer, or a request for a tool.
+3. The harness validates the arguments and calls the tool.
+4. It adds the result to the context and sends it back to the model.
+5. The step repeats until the model answers or the limit is reached.
+
+Every step sends the whole history again. That is why context is
+expensive and why truncating tool output pays off. A harness that sends
+20 tools and the full log burns thousands of tokens before the first
+useful sentence.
+
+## Context and tool calling in practice
+
+A local model inside a harness fails in three places most often:
+
+**1. The chat template.** The model receives text without the right
+markers and does not know where the system message is. In llama.cpp
+`--jinja` fixes this; in vLLM the template is read from the model. When
+the model answers outside the format or ignores instructions, start
+here.
+
+**2. The tool parser.** The model returns JSON in the text, but the
+harness expects a structured call. The result: the agent "answers"
+instead of doing something. `tool_choice: required` for extraction and
+the right parser in the engine help.
+
+**3. Context.** The system prompt, the schemas and the history add up.
+An illustrative budget:
+
+| Part | Tokens |
+|---|---:|
+| system prompt | 1,500 |
+| schemas for 5 tools | 2,000 |
+| history after 4 steps | 2,000 |
+| new query | 500 |
+| **total before the answer** | **6,000** |
+
+That fits into a 32k context, but not after ten steps. That is why tool
+output gets truncated and history gets summarised.
+
+**A good test:** one tool, one call, a clear result. Only then add a
+second tool and parallel calls. When the model handles one call
+reliably, it will handle the loop.
+
+## Terminal harnesses
+
+### pi
+
+A minimalist agent in the terminal, MIT, from Earendil Works. It speaks
+to the llama.cpp router, Ollama, LM Studio, vLLM and SGLang through
+`models.json`. Its strength is simplicity: it is easy to extend and
+works as an SDK too. Details on the [pi page](/topics/agents/tools/pi/).
+
+### omp
+
+A fork of pi by Can Bölük, MIT, with a Rust core. It adds LSP, DAP
+(debugger), subagents, hash-anchored edits and dozens of providers. It
+runs natively on macOS, Linux and Windows and needs Bun. Details on the
+[omp page](/topics/agents/tools/omp/).
+
+### OpenCode
+
+An open-source terminal coding agent; OpenChamber is built on it. It
+supports providers, including local endpoints. Details on the
+[OpenCode and OpenChamber page](/topics/agents/tools/opencode-and-openchamber/).
+
+## Model runners
+
+Not every tool is a harness. **LM Studio** and **Hermes Desktop** give
+you a model and an OpenAI server, but they do not drive the loop
+themselves.
+
+- [LM Studio](/topics/agents/tools/lm-studio/) — a GUI, a server on
+  `:1234`, tool use and MCP; an agent connects to it.
+- [Hermes Desktop](/topics/agents/tools/hermes-desktop/) — one-click
+  llama.cpp, a model catalogue and a 64k minimum.
+
+When you want an agent, you still need a harness. When you only want a
+local API for your own code, a runner is enough.
+
+## Desktop workspaces
+
+### OpenChamber
+
+An MIT workspace over OpenCode. Desktop, web and mobile; multi-run over
+several models, worktrees, goals, diff review and a remote relay. The
+desktop app ships its own OpenCode, so there is nothing else to install.
+The local model goes through OpenCode. Details on the
+[OpenCode and OpenChamber page](/topics/agents/tools/opencode-and-openchamber/).
+
+### MausBot
+
+A desktop harness with approval cards, Apache-2.0. The harness listens
+on `127.0.0.1` and keeps sessions and keys locally. It connects a local
+model through an OpenAI-compatible endpoint. On Ubuntu it requires
+Xorg, not Wayland. Details on the
+[MausBot page](/topics/agents/tools/mausbot/).
+
+## Gateways
+
+### OpenClaw
+
+A gateway that exposes the agent to chat apps. It supports local Ollama
+and OpenAI endpoints. The default shell setting is permissive; the
+documentation disagrees on the licence (MIT vs. Apache-2.0). Details on
+the [OpenClaw page](/topics/agents/tools/openclaw/).
+
+### Hermes
+
+A self-hosted assistant and gateway from Nous Research. It connects any
+OpenAI-compatible endpoint, including Ollama, vLLM and llama.cpp. For
+agent work it requires at least a 64k context. It has a desktop preview,
+channels and command approvals. Details on the
+[Hermes page](/topics/agents/tools/hermes/).
+
+## Orchestration
+
+**Herdr** is an AI-first multiplexer and orchestrator. It holds
+workspaces, panes and agents, and offers worktrees and a CLI/socket API.
+It does not deal with the model itself; it launches pi, omp, OpenCode
+or other agents. Details on the
+[Herdr page](/topics/agents/tools/herdr/).
+
+## Approvals and permissions
+
+Harnesses differ mainly in what they do **without asking**. Three
+patterns:
+
+| Pattern | What happens | Where |
+|---|---|---|
+| **No approval** | the agent runs whatever it wants | terminal, a trusted project |
+| **Approval on risk** | shell, writes, sending | desktop, gateway |
+| **Approval always** | every action | production, other people's data |
+
+For local development in a private repo the first pattern is
+acceptable. For an agent that sees company documents the second is the
+minimum. The third is for payments and bulk operations.
+
+Permissions are not the same as approvals. A token can be narrow, but
+the agent may use it for something you did not expect. Hence the rule:
+**the smallest token, the smallest tool, the smallest directory.**
+
+## Where each layer fails
+
+| Layer | Typical failure | How you notice |
+|---|---|---|
+| **Terminal** | the model does not call tools | it answers in text instead of acting |
+| **Desktop** | the session is lost | the work is not in the diff |
+| **Gateway** | an open port | access from another network |
+| **Orchestration** | two agents in one worktree | conflicts and overwritten files |
+| **Model** | the context overflows | it forgets the start or stops early |
+
+The layers do not fix each other. When a gateway lets an attacker in, a
+desktop will not stop them. When an orchestrator assigns a worktree
+badly, a sandbox will not repair it.
+
+## Comparison table
+
+| Tool | Layer | Licence | Platforms | GUI | Approval | Local model | Network | MCP |
+|---|---|---|---|---|---|---|---|---|
+| [pi](/topics/agents/tools/pi/) | terminal | MIT | macOS, Linux, Windows | no | not stated | yes | localhost | yes |
+| [omp (oh my pi)](/topics/agents/tools/omp/) | terminal | MIT | macOS, Linux, Windows | no | not stated | yes | localhost | yes |
+| [OpenCode](/topics/agents/tools/opencode-and-openchamber/) | terminal | MIT | macOS, Linux, Windows | no | optional | yes | localhost | yes |
+| [OpenChamber](/topics/agents/tools/opencode-and-openchamber/) | desktop | MIT | macOS, Windows, Linux, Web, iOS, Android | yes | optional | yes | localhost | yes |
+| [MausBot](/topics/agents/tools/mausbot/) | desktop | Apache-2.0 | macOS, Windows, Ubuntu | yes | always | yes | localhost | not stated |
+| [OpenClaw](/topics/agents/tools/openclaw/) | gateway | MIT (GitHub) / Apache-2.0 (vendor) | macOS, Linux, Windows | control UI | optional | yes | port | yes |
+| [Hermes Agent](/topics/agents/tools/hermes/) | gateway | MIT | Linux, macOS, WSL2, Windows | desktop preview | optional | yes | port | yes |
+| [Hermes Desktop](/topics/agents/tools/hermes-desktop/) | desktop | MIT | macOS, Windows, Linux | yes | optional | yes | localhost | yes |
+| [LM Studio](/topics/agents/tools/lm-studio/) | runtime | proprietary (free) | macOS, Windows, Linux | yes | no | yes | localhost | yes |
+| [Herdr](/topics/agents/tools/herdr/) | orchestration | Apache-2.0 | macOS, Linux, Windows | yes | depends on the agent | depends on the agent | localhost | no |
+
+- **Approval** = whether the tool shows an action before performing it.
+- **Network** = where the tool listens; `localhost` is safer than an
+  open port.
+- The figures come from the documentation as of 11 November 2026; every
+  tool may be on a different version.
+
+## Decision tree
+
+1. **One person, one project** → pi or omp in a terminal.
+2. **I want to see the diff and approve it** → OpenChamber or MausBot.
+3. **I want the agent from my phone** → OpenClaw or Hermes.
+4. **I have several agents and worktrees** → Herdr.
+5. **I only want chat** → no harness, the model is enough.
+
+Start with one layer. Add combinations only once you know what you are
+missing.
+
+## Overhead and cost
+
+**Tokens** (illustrative calculation): a system prompt of 1,500 tokens,
+tool schemas 2,000, history 1,500 — every step sends ~5,000 tokens.
+Eight steps is 40,000 tokens of context, even though the answers only
+hold 3,200 tokens.
+
+**Time** (illustrative calculation): 8 steps × 400 tokens at 25 tok/s
+= 128 s of pure generation. On top of that comes reading files and
+running tests. A harness with a large system prompt adds seconds to
+every step.
+
+**Memory:** the harness runs on the CPU and takes hundreds of MB up to
+a few GB. The model and the KV cache are separate. On a 128 GB box this
+means the harness does not compete with the model for the GPU, but it
+can compete for CPU and disk.
+
+## Example: invoices
+
+A company wants an agent for invoice extraction. The sequence:
+
+1. **Harness:** OpenCode or pi in a container without a network.
+2. **Model:** Qwen3.8 Flash Next through vLLM on a 128 GB box.
+3. **Tools:** read PDF, OCR, write JSON.
+4. **Permissions:** read-only input, output into a single directory.
+5. **Approval:** posting into the accounting system needs a card.
+6. **Logs:** who, when, which document, which result.
+
+The agent has no network, so an injection inside a PDF has nowhere to
+go. It has no production token, so it cannot post by itself. When the
+model fails, a human sees it on the card and fixes it.
+
+## Common mistakes
+
+| Mistake | Why it happens | How to avoid it |
+|---|---|---|
+| A harness without tool calling | "it is just a chat" | verify the parser and the model |
+| Too many tools | the wish to be universal | 3–5 tools per task |
+| The whole log in the context | debugging | truncate the output |
+| An agent with a personal token | convenience | a scoped service account |
+| A gateway on a public port | "just for a moment" | localhost or a VPN |
+| No step limit | "the agent will manage" | 10–20 steps |
+| Testing only in English | the model is stronger there | a local-language test set |
+
+## Security minimum
+
+- **Localhost** — a gateway or harness should not be on a public port.
+- **Tokens** — short-lived, narrow, outside the prompt.
+- **Approvals** — for writes, sending and payments.
+- **A tool allowlist** — the agent sees only what it needs.
+- **Logs** — who, what, with what result.
+- **A kill switch** — an immediate stop.
+
+The [agent security](/topics/agents/agent-security/) page goes into
+detail.
+
+## When to use which layer
+
+| Situation | Layer | Why |
+|---|---|---|
+| A solo developer, one repo | terminal | fastest |
+| Proposing changes and reviewing a diff | desktop | overview and cards |
+| An agent from a phone | gateway | channels |
+| Several tasks in parallel | orchestration | worktrees |
+| A team of 3–5 people | gateway + desktop | access and overview |
+| Sensitive data | a terminal in a sandbox | the smallest surface |
+
+The combinations are not pointless, but they have a price: every layer
+adds configuration, logs and one more place that can break.
+
+## Operation and maintenance
+
+- **Pin versions.** The harness, the model and the engine all change.
+- **Update after a test.** A new version can change tool calling.
+- **Watch tokens and errors.** Growth means a loop or a bad tool
+  description.
+- **Back up the configuration** and the sessions you need.
+- **Change one thing at a time.** A model, a harness and a prompt
+  cannot be evaluated together.
+- **Review every three months.** The tools in this article are young;
+  what was true in November may not hold in spring.
+
+## Language and locale specifics
+
+- **A system prompt in a language other than English** can make tool
+  calling worse; try an English prompt with input in your own language.
+- **Diacritics in file paths** work, but a shell needs the right
+  encoding (UTF-8).
+- **Tool names** should stay in English (`read_file`, `run_test`); other
+  languages in the schema can confuse the model.
+- **Local-language test tasks** are necessary; a model can be strong in
+  English and weak elsewhere.
+- **Watch the answer format**; some models mix languages.
+
+## Checklist before deployment
+
+- [ ] The model supports tool calling and the test passed.
+- [ ] The endpoint is local or behind a VPN.
+- [ ] Tokens are short-lived and outside the prompt.
+- [ ] There are 3–5 tools, and they validate their input.
+- [ ] Risky actions need approval.
+- [ ] There is a step limit and a timeout.
+- [ ] The logs hold no secrets.
+- [ ] A kill switch exists.
+- [ ] There is a fallback plan for when the model fails.
+- [ ] Somebody knows who operates this.
+
+## What you will not find here
+
+This article is about **running an agent**, not about editors, editor
+plugins, the cloud or the tools of the large providers. Those are a
+different category with different rules. If you use them, this text
+does not argue against them; it only says the local route works without
+them.
+
+## When not to use it
+
+- **When chat is enough** — a harness is a needless layer.
+- **When you have no time for maintenance** — the tools change within
+  months.
+- **When the agent needs production keys** — permissions first.
+- **When the tool cannot connect to a local endpoint** — it does not
+  belong here.
+- **When you only want "AI in the editor"** — that is another category.
+
+## Where next
+
+- [Agents](/topics/agents/) — what an agent is.
+- [pi](/topics/agents/tools/pi/) — a minimal harness.
+- [omp](/topics/agents/tools/omp/) — a harness with LSP and subagents.
+- [OpenCode and OpenChamber](/topics/agents/tools/opencode-and-openchamber/) —
+  harness and workspace.
+- [MausBot](/topics/agents/tools/mausbot/) — approval cards.
+- [OpenClaw](/topics/agents/tools/openclaw/) — a gateway.
+- [Hermes](/topics/agents/tools/hermes/) — a self-hosted assistant.
+- [Herdr](/topics/agents/tools/herdr/) — orchestration.
+- [Agent security](/topics/agents/agent-security/) — defence.
+- [Model routing](/topics/model-routing/) — local first, cloud by rule.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+
+## Sources
+
+- [pi — documentation](https://github.com/earendil-works/pi)
+- [omp — documentation](https://github.com/can1357/oh-my-pi)
+- [OpenCode](https://opencode.ai/docs/)
+- [OpenChamber](https://github.com/openchamber/openchamber)
+- [MausBot](https://mausbot.com/)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Hermes Agent — documentation](https://hermes-agent.nousresearch.com/docs/)
+- [Herdr](https://herdr.dev/)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*

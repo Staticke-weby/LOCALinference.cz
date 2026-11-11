@@ -1,0 +1,181 @@
+---
+title: "Translating and proofreading Czech with a local model"
+description: "How to translate Czech to English and English to Czech locally, keep terminology and proofread. Procedure, glossary, checking and when a person is better."
+last_verified: 2026-11-11
+---
+
+Translation and proofreading are tasks a local model can handle well,
+provided you have a **glossary**, a **style** and a **check**. For short
+texts one prompt is often enough; for longer documents you have to work
+in parts and watch consistency.
+
+## Short answer
+
+- **Translation is not word for word.** Style, terms and context
+  decide.
+- **A glossary is the foundation** — without it the model mixes
+  synonyms.
+- **Proofreading should be conservative** — do not change facts and
+  names.
+- **For legal and medical texts** a person is required.
+
+## Translation procedure
+
+1. **Set the direction and the purpose** — Czech to English, English to
+   Czech, marketing, law, technical.
+2. **Build a glossary** — key terms and their translations.
+3. **Split the text** into paragraphs or sections.
+4. **Translate in parts** with the same glossary and style.
+5. **Unify the terminology** across the document.
+6. **Read it as a whole** — fluency and logic.
+
+## Style and form
+
+| Decision | What to choose | Example |
+|---|---|---|
+| **Formality** | “vy” for authorities and clients | „Vaše objednávka“ (your order) |
+| **Ty/vy** | one form throughout | do not mix |
+| **Terminology** | per the glossary | „smluvní strana“ |
+| **Abbreviations** | explain at first use | „DPH (daň z přidané hodnoty)“ |
+| **Numbers** | Czech formatting | `10 000,50` |
+| **Dates** | one format | `10. 11. 2026` |
+
+Czech distinguishes an informal “ty” and a formal “vy”, roughly like
+“tu” and “vous” in French. English has only “you”, so an English
+original does not tell you which one to use: the relationship and the
+document type do. Pick one and keep it.
+
+## Proofreading
+
+Proofreading is not rewriting. The model should fix:
+
+- grammar and diacritics,
+- punctuation,
+- word order,
+- repetition,
+- stylistic clumsiness.
+
+It must not change:
+
+- facts, numbers and names,
+- legal meaning,
+- quotations,
+- the structure of the document.
+
+When in doubt, ask for **a list of changes** and go through them.
+
+## Glossary
+
+A glossary is a table:
+
+| Source (Czech) | Target (English) | Note |
+|---|---|---|
+| smluvní strana | contracting party | law |
+| zhotovitel | contractor | law |
+| objednatel | client | law |
+| DPH | VAT | accounting |
+| výpovědní lhůta | notice period | law |
+
+Without a glossary the model uses synonyms and the document loses
+consistency.
+
+## The glossary in practice
+
+Do not hand the glossary to the model as a long block of text. Put it in
+the system prompt or as a table in every step. For longer documents, use
+**the same glossary** for all parts; otherwise the terms drift apart.
+
+When the model does not know a term, let it **flag** it rather than
+invent a translation. An unknown term is better than a wrong one.
+
+## Consistency check
+
+- **The same term** throughout the document.
+- **The same form** — “vy” vs. “Vy”.
+- **The same names** for companies and products.
+- **The same formatting** of numbers and dates.
+- **The same tone** across sections.
+
+Watch consistency in machine translation too; the model does not hold it
+by itself.
+
+## How to evaluate
+
+- **Fidelity** — nothing important is missing and nothing is added.
+- **Terminology** — per the glossary.
+- **Fluency** — the text sounds natural.
+- **Style** — it suits the purpose.
+- **Numbers and names** — unchanged.
+- **Consistency** — the same term throughout.
+
+For longer texts, **back-translation** and comparison help, but they are
+not proof. The best check is a person who knows both languages.
+
+## How to measure translation quality
+
+An impression is not enough, because a bad translation sounds fluent.
+Take 30–50 sentences and count **sentences without an error**:
+
+```
+score = sentences without an error / all sentences
+```
+
+Sort the errors into categories, because they are fixed differently:
+
+| Category | Example | Who fixes it |
+|---|---|---|
+| **Meaning** | “výpověď” (notice) swapped for “odstoupení” (withdrawal) | the translator |
+| **Terminology** | a different term from the glossary | the glossary |
+| **Numbers and dates** | 10 000 → 1 000 | a check against the source |
+| **Grammar** | case or agreement | proofreading |
+| **Style** | ty/vy, formality | the prompt |
+
+When the errors are mostly terminology, the glossary helps. When they
+are in meaning, the model is not good enough for that field. This is a
+**calculation** from manually marked sentences, not an automatic
+score.
+
+## Batch translation
+
+For longer documents, allow for the length of the answer: a 10-page
+document is roughly 25–30 thousand characters, which is 7–9 thousand
+tokens. At 50 tok/s that is **2.5–3 minutes** of pure generation per
+version.
+
+Checking and a second version after proofreading come on top.
+Translating two such documents a day is realistic; a whole book at once
+is not.
+
+## When a person is better
+
+- **Legal contracts** — meaning and liability.
+- **Medical texts** — the risk is high.
+- **Marketing slogans** — creativity and context.
+- **Culturally loaded texts** — allusions, idioms, humour.
+- **Publications** — reputation.
+
+The model is a good first draft and a helper, not the final translator.
+
+## Local or cloud
+
+Local translation makes sense for **sensitive documents** you do not
+want to send out. The cloud can be better for **rare languages** and
+**creative** texts. A combination often pays off: a local draft, a
+human final edit.
+
+## Where next
+
+- [How it handles Czech](/topics/czech-and-documents/czech-language/) — the limits.
+- [Document summaries](/topics/czech-and-documents/document-summaries/) — text.
+- [Quality evaluation](/topics/czech-and-documents/quality-evaluation/) — how to measure.
+- [Qwen3.8 Flash Next](/models/qwen3-8-flash-next/) — the model.
+- [Context](/dictionary/memory/context/) — long texts.
+- [RAG](/dictionary/software/rag/) — terminology from documents.
+
+## Sources
+
+- [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+- [Qwen blog — Qwen3.8-Flash-Next](https://qwen.ai/blog?id=qwen3.8-flash-next)
+- [Methodology](/about/methodology/)
+
+*Last verified: 11 November 2026.*
