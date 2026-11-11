@@ -805,8 +805,8 @@ polozky:
     stav: prubezne
     davka: 8
     hledat: "NVMe io_uring, vLLM PLE offload, DGX Spark"
-    poznamka: "NVIDIA udává 1M tokenů FP8 KV cache s offloadem; jde o tvrzení výrobce. Komunitní důkazy: tonyd2wild drží 47,68 GiB PLE na NVMe, ~76 GiB resident, 43,9 tok/s, 262k; gorbatjovy FP8 PLE 173,6→125,9 GiB, KV 2,2M tokenů na 2× Spark. Chybí měření 8k/32k/128k/262k na jednom boxu."
-    zdroj: https://github.com/tonyd2wild/Qwen3.8-Flash-Next-NVFP4-DGX-Spark
+    poznamka: "NVIDIA udává 1M tokenů FP8 KV cache s offloadem; jde o tvrzení výrobce. Komunitní důkazy: tonyd2wild drží 47,68 GiB PLE na NVMe, ~76 GiB resident, 43,9 tok/s, 262k; gorbatjovy FP8 PLE 173,6→125,9 GiB, KV 2,2M tokenů na 2× Spark; vLLM PR #54070 měří disk PLE −8 % @1 stream, −17 % @32, TTFT stejné, cold cache −50 %. Chybí měření 8k/32k/128k/262k na jednom boxu."
+    zdroj: https://github.com/vllm-project/vllm/pull/54070
     overeno: 2026-11-11
 
   - id: A06
@@ -817,9 +817,9 @@ polozky:
       - temata/abliterace/provoz-na-128-gb
       - modely/qwen3-8-flash-next-abliterated
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 8
     hledat: "vllm-for-rtx-spark, Windows ARM, NVIDIA forum"
-    poznamka: "Abliterovaný balíček pro RTX Spark s PLE z SSD zatím neexistuje; repacking mweinbach1 je neabliterovaný."
+    poznamka: "Vyřešeno 11. 11. 2026: port vLLM pro RTX Spark N1X umí NVMe cache pro PLE (min. 32 GB volného NVMe), doporučuje 96/32 split GPU/Windows a pagefile 98 304/131 072 MB. Na fóru NVIDIA 53,2 tok/s v SPEED-Bench coding (komunita). Abliterovaný build na tomto portu zatím veřejně změřený není; váhy mají stejný FP4-Local layout, ale je to neověřené."
     zdroj: https://github.com/devjeonghwan/vllm-for-rtx-spark
-    overeno: 2026-11-10
+    overeno: 2026-11-11

@@ -7,7 +7,7 @@
 - datum: 2026-11-11
   typ: mereni
   titulek: "Abliterovaný Qwen3.8: další veřejné buildy a PLE z SSD"
-  co_se_zmenilo: "Na stránce provozu jsou nová komunitní měření: Chompa1422 42,13/72,45 tok/s, tonyd2wild 43,9 tok/s s PLE z NVMe, gorbatjovy FP8 PLE se 125,9 GiB a 2,2M tokeny KV na dvou Sparkách. Čísla jsou označená jako měření vydavatelů, ne parita."
+  co_se_zmenilo: "Na stránce provozu jsou nová komunitní měření: Chompa1422 42,13/72,45 tok/s, tonyd2wild 43,9 tok/s s PLE z NVMe, gorbatjovy FP8 PLE se 125,9 GiB a 2,2M tokeny KV na dvou Sparkách. Přibyl benchmark ceny PLE z disku (−8 % při jednom streamu, −17 % při 32, cold cache −50 %) a postup pro RTX Spark: port vLLM umí NVMe PLE cache, 96/32 split a 53,2 tok/s v komunitním testu. Čísla jsou označená jako měření vydavatelů, ne parita."
   dotcene_stranky: [temata/abliterace/provoz-na-128-gb, modely/qwen3-8-flash-next-abliterated]
   zdroj: https://www.localinference.cz/temata/abliterace/provoz-na-128-gb/
 

@@ -122,6 +122,7 @@ pád.
 | DGX Spark | `DevelopingDad/...-FP4-Local-Abliterated` | 102 GB | ano | 104 GiB cap, MTP 4 drafty, FP8 KV |
 | DGX Spark | `DevelopingDad/...-Uncensored-DGX-Spark` | 184 GB | ano, mmap | BF16 PLE na disku, 100 GiB container |
 | DGX / RTX Spark | `lflare/...-CSF-QAD-Abliterated` | 103 GB | ano | Qwen licence, měřená shoda schopností |
+| RTX Spark (základ) | základ NVIDIA FP4-Local + port vLLM | 102 GB | ano, NVMe cache | 96/32 split, 32 GB volného NVMe |
 | Strix Halo | `huihui-ai/...-v2-GGUF` (UD-IQ4_XS) | 94 GB | ne | llama.cpp, Q8 KV |
 | Mac | stejné GGUF přes Metal | 94–98 GB | ne | MLX 4bit je těsné |
 
@@ -129,6 +130,13 @@ pád.
 (184 GB, bez veřejného launcheru s PLE), `mazinb/...`
 (186 GB, rozdělené experty), `huihui-ai/...-abliterated`
 (360 GB BF16).
+
+**RTX Spark:** komunitní port vLLM pro Windows ARM64 umí NVMe
+cache pro PLE. Nastavte 96 GB dedikované GPU paměti (32 GB pro
+Windows), pagefile 98 304/131 072 MB a nechte aspoň 32 GB volného
+NVMe. Na fóru NVIDIA vydavatel uvádí 53,2 tok/s v SPEED-Bench
+coding testu na RTX Sparku (komunita, ne náš test). Abliterovaný
+build na tomto portu zatím nikdo veřejně nezměřil.
 
 ## Formáty a enginy
 
@@ -195,6 +203,26 @@ srovnatelná, protože používají jiný runtime a protokol:
 Všechna čísla jsou **měření vydavatelů**, ne nezávislý test. Proto
 zůstává A01 otevřené.
 
+## Kolik stojí PLE z disku
+
+Disk není RAM. Veřejný benchmark k PR na disk-backed PLE (jeden
+RTX PRO 6000, NVMe, 8k vstup / 512 výstup) ukazuje cenu:
+
+| Konfigurace | Tok/s @1 | Tok/s @32 | TTFT @1 |
+|---|---:|---:|---:|
+| PLE v RAM (baseline) | 84,5 | 517 | 569 ms |
+| PLE na disku, capped 48 GB | 79,4 | 427 | 571 ms |
+| PLE na disku, cold cache | 40,8 | 134 | 4 611 ms |
+
+Z toho plyne: **teplá cache je skoro zdarma** (−8 % při jednom
+streamu, TTFT stejné), **studená cache bolí** (poloviční rychlost
+a TTFT v sekundách). Proto se vyplatí:
+- mít PLE na NVMe,
+- nechat cache zahřát prvními dotazy,
+- nemíchat velké stahování modelu s provozem.
+
+Čísla jsou **komunitní benchmark**, ne náš test a ne 128GB box.
+
 ## Co měřit v praxi
 
 - **TTFT** na 8k, 32k a 128k — disk se projeví hlavně tady.
@@ -237,6 +265,8 @@ zůstává A01 otevřené.
 - [Chompa1422 — NVFP4 Abliterated](https://huggingface.co/Chompa1422/Qwen3.8-Flash-Next-NVFP4-Abliterated) — 11. 11. 2026
 - [tonyd2wild — NVFP4 na jednom DGX Spark](https://github.com/tonyd2wild/Qwen3.8-Flash-Next-NVFP4-DGX-Spark) — 11. 11. 2026
 - [gorbatjovy — PLE FP8](https://huggingface.co/gorbatjovy/qwen3.8-flash-next-abliterated-NVFP4-plefp8) — 11. 11. 2026
+- [vLLM — disk-backed PLE benchmark](https://github.com/vllm-project/vllm/pull/54070) — 11. 11. 2026
+- [vLLM pro RTX Spark (Windows ARM64)](https://github.com/devjeonghwan/vllm-for-rtx-spark) — 11. 11. 2026
 - [llama.cpp — dokumentace](https://github.com/ggml-org/llama.cpp)
 
 *Naposledy ověřeno: 11. 11. 2026.*
