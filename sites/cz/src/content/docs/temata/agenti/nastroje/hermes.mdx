@@ -88,6 +88,30 @@ stažení modelu a nastavení kontextu.
 Paměť a skilly jsou užitečné u dlouhých projektů; zároveň
 znamenají, že agent drží víc kontextu, než byste čekali.
 
+## Paměť a skilly
+
+- **Paměť** — co si agent pamatuje mezi session.
+- **Skilly** — naučené postupy, které může znovu použít.
+- **Delegování** — předání části úlohy jinému běhu.
+- **Kurátor** — výběr toho, co má smysl si pamatovat.
+
+Paměť zvyšuje užitečnost a zároveň riziko: co se jednou uloží,
+může se objevit v jiné session. Omezujte retenci a kontrolujte,
+co se ukládá.
+
+## Kanály
+
+| Kanál | K čemu | Poznámka |
+|---|---|---|
+| Telegram | osobní agent | snadné párování |
+| Discord | tým | oprávnění podle serveru |
+| Slack | firma | pozor na citlivé kanály |
+| WhatsApp | osobní | méně vhodné pro práci |
+| E-mail | asynchronní úlohy | snadno přeposílatelné |
+
+Kanál je vstup do agenta. Když ho otevřete, otevřete i cestu
+pro prompt injection z příchozích zpráv.
+
 ## Limity
 
 - **64k minimum.** Menší kontext nefunguje spolehlivě.

@@ -67,6 +67,26 @@ Wayland je vypnutý.
 Rutiny umí spustit bota naplánovaně nebo z webhooku. I tam platí,
 že riziková akce čeká na kartu.
 
+## Approval karty v praxi
+
+Karta má tři možnosti: **Allow**, **Deny** a doplnění odpovědi.
+U shellu vidíte příkaz, u souboru diff, u otázky text. Když
+neodpovíte, akce se neprovede.
+
+To je rozdíl proti terminálovému agentovi, který příkaz spustí
+a vy to zjistíte z logu. Tady to vidíte předem.
+
+## Rutiny a connected apps
+
+- **Rutina** — naplánovaný prompt nebo webhook.
+- **Connected app** — přístup k aplikaci přes OAuth.
+- **Cloud computer** — volitelný počítač pro bota.
+- **Local computer** — váš stroj, jen když ho povolíte.
+
+Pro citlivé úlohy nechte bota na localhostu a bez cloudového
+počítače. Pro práci přes noc je cloud volba, ale data opouštějí
+stroj.
+
 ## Limity
 
 - **Desktop only.** Není to server pro tým.

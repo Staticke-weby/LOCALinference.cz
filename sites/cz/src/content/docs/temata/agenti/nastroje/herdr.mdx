@@ -68,7 +68,34 @@ konkrétní verze.
 6. Hotové panes zavřete; worktrees ukliďte.
 
 Pro paralelní práci je klíčové, že každý agent má vlastní
-worktree. Jinak si agenti si přepíšou soubory.
+worktree. Jinak si agenti přepíšou soubory.
+
+## Worktree v praxi
+
+1. Hlavní workspace drží projekt.
+2. Druhý agent dostane vlastní worktree a branch.
+3. Pracuje na izolované kopii.
+4. Výsledek se reviewuje a merguje.
+5. Worktree se smaže.
+
+Bez worktree dva agenti editují stejný soubor a výsledek je
+nedeterministický. Herdr worktrees umí, ale musíte je použít;
+samotné panes izolaci souborů nedávají.
+
+## CLI a socket
+
+Herdr je skriptovatelný. Z CLI nebo socketu můžete:
+
+- vytvořit workspace a pane,
+- spustit agenta a poslat mu prompt,
+- počkat na stav,
+- přečíst výstup,
+- poslat další instrukci,
+- zastavit agenta.
+
+To je užitečné pro orchestraci: jeden agent může spustit
+pomocníka, počkat na výsledek a pokračovat. Zároveň to znamená,
+že kdokoli s přístupem k socketu může ovládat běžící agenty.
 
 ## Limity
 

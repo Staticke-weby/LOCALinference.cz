@@ -129,6 +129,38 @@ proto se vyplatí ořezávat výstupy nástrojů. Harness, který
 posílá 20 nástrojů a celý log, spotřebuje tisíce tokenů ještě
 před první užitečnou větou.
 
+## Kontext a tool calling v praxi
+
+Lokální model v harnessu selhává nejčastěji na třech místech:
+
+**1. Chat template.** Model dostane text bez správných značek a
+neví, kde je systémová zpráva. U llama.cpp to řeší `--jinja`;
+u vLLM se template načte z modelu. Když model odpovídá mimo
+formát nebo ignoruje instrukce, začněte tady.
+
+**2. Parser nástrojů.** Model vrátí JSON v textu, ale harness
+čeká strukturované volání. Výsledek: agent „odpoví“ místo toho,
+aby něco udělal. Pomáhá `tool_choice: required` u extrakce a
+správný parser v enginu.
+
+**3. Kontext.** Systémový prompt, schémata a historie se sčítají.
+Ilustrativní rozpočet:
+
+| Část | Tokeny |
+|---|---:|
+| systémový prompt | 1 500 |
+| schémata 5 nástrojů | 2 000 |
+| historie po 4 krocích | 2 000 |
+| nový dotaz | 500 |
+| **celkem před odpovědí** | **6 000** |
+
+Do 32k kontextu se to vejde, ale po deseti krocích už ne. Proto
+se výstupy nástrojů ořezávají a historie se shrnuje.
+
+**Dobrý test:** jeden nástroj, jedno volání, jasný výsledek.
+Teprve potom přidejte druhý nástroj a souběžná volání. Když
+model zvládne jedno volání spolehlivě, zvládne i smyčku.
+
 ## Terminálové harnessy
 
 ### pi
@@ -210,6 +242,20 @@ Třetí je pro platby a hromadné operace.
 Oprávnění nejsou totéž co schválení. Token může být úzký, ale
 agent ho použije na něco, co jste nečekali. Proto platí:
 **nejmenší token, nejmenší nástroj, nejmenší adresář.**
+
+## Kde která vrstva selhává
+
+| Vrstva | Typická porucha | Jak se pozná |
+|---|---|---|
+| **Terminál** | model nevolá nástroje | odpovídá textem místo akce |
+| **Desktop** | session se ztratí | práce není v diffu |
+| **Gateway** | otevřený port | přístup z jiné sítě |
+| **Orchestrace** | dva agenti v jednom worktree | konflikty a přepsané soubory |
+| **Model** | kontext přeteče | zapomíná začátek nebo končí předčasně |
+
+Vrstvy se neopravují navzájem. Když gateway pustí útočníka,
+desktop mu nezabrání. Když orchestrátor špatně přidělí worktree,
+sandbox to nespraví.
 
 ## Srovnávací tabulka
 
@@ -304,6 +350,32 @@ konfiguraci, logy a místo, kde se může pokazit.
   nejde vyhodnotit.
 - **Revize každé tři měsíce.** Nástroje v tomto článku jsou
   mladé; co platilo v listopadu, nemusí platit na jaře.
+
+## Česká specifika
+
+- **Systémový prompt v češtině** může zhoršit tool calling;
+  zkuste anglický prompt a český vstup.
+- **Diakritika v cestách** k souborům funguje, ale v shellu
+  potřebuje správné kódování (UTF-8).
+- **Názvy nástrojů** nechte anglicky (`read_file`, `run_test`);
+  čeština v schématu může mást.
+- **České testovací úlohy** jsou nutné; model může být silný
+  v angličtině a slabý v češtině.
+- **Formát odpovědi** hlídejte; české modely někdy míchají
+  jazyky.
+
+## Checklist před nasazením
+
+- [ ] Model umí tool calling a test prošel.
+- [ ] Endpoint je lokální nebo přes VPN.
+- [ ] Tokeny jsou krátké a mimo prompt.
+- [ ] Nástroje jsou 3–5 a mají validaci.
+- [ ] Rizikové akce mají schválení.
+- [ ] Je limit kroků a timeout.
+- [ ] Logy jsou bez tajemství.
+- [ ] Existuje kill switch.
+- [ ] Je záložní plán, když model selže.
+- [ ] Někdo ví, kdo to provozuje.
 
 ## Co tu nenajdete
 

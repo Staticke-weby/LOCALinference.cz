@@ -71,6 +71,33 @@ shell completions.
 Pro orchestraci víc agentů se omp často kombinuje s
 [Herdr](/temata/agenti/nastroje/herdr/).
 
+## LSP a DAP v praxi
+
+**LSP** dává agentovi stejné informace jako editor: diagnostiku,
+symboly, reference a rename. Když agent přejmenuje funkci, projde
+to přes jazykový server a upraví i re-exporty a aliasy. Méně
+„skoro správných“ patchů.
+
+**DAP** připojí skutečný debugger. Agent může zastavit proces,
+projít zásobník a přečíst proměnné. Hodí se na chyby, které
+z kódu nepoznáte.
+
+Obojí závisí na jazykovém serveru a debuggeru pro daný jazyk.
+Pro neznámý jazyk to nebude fungovat.
+
+## Subagenti
+
+Subagent je samostatný běh s vlastním kontextem. Používá se na:
+
+- paralelní review,
+- rozdělení velké úlohy,
+- testování variant,
+- práci v samostatném worktree.
+
+Výhoda je izolace kontextu; nevýhoda je, že subagent nevidí
+všechno, co hlavní agent. Je potřeba mu dát přesný brief a
+výsledek zkontrolovat.
+
 ## Limity
 
 - **Bun.** Bez něj instalace neprojde.

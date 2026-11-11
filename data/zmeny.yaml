@@ -6,6 +6,13 @@
 
 - datum: 2026-11-11
   typ: obsah
+  titulek: "Agenti: druhá vlna prohloubení provozu"
+  co_se_zmenilo: "Pilíř o provozu agentů dostal rozpočet kontextu a tool callingu, tabulku poruch vrstev, česká specifika a checklist. Podstránky pi, omp, OpenCode/OpenChamber, MausBot, OpenClaw, Hermes a Herdr mají nové sekce: srovnání pi vs. omp, LSP a subagenti, multi-run a remote access, approval karty, kanály a skilly, worktrees a CLI."
+  dotcene_stranky: [temata/agenti/kde-provozovat-agenty, temata/agenti/nastroje/pi, temata/agenti/nastroje/omp, temata/agenti/nastroje/opencode-a-openchamber, temata/agenti/nastroje/mausbot, temata/agenti/nastroje/openclaw, temata/agenti/nastroje/hermes, temata/agenti/nastroje/herdr]
+  zdroj: https://www.localinference.cz/temata/agenti/kde-provozovat-agenty/
+
+- datum: 2026-11-11
+  typ: obsah
   titulek: "Nový článek: kde provozovat lokální agenty"
   co_se_zmenilo: "Přibyl pilíř o harnessech, workspace, gateway a orchestraci a sedm podstránek: pi, omp, OpenCode a OpenChamber, MausBot, OpenClaw, Hermes a Herdr. Každá popisuje připojení lokálního modelu, instalaci, limity a bezpečnost. Podstránky nejsou v menu, odkazuje na ně pilíř a tabulka."
   dotcene_stranky: [temata/agenti/kde-provozovat-agenty, temata/agenti/nastroje/pi, temata/agenti/nastroje/omp, temata/agenti/nastroje/opencode-a-openchamber, temata/agenti/nastroje/mausbot, temata/agenti/nastroje/openclaw, temata/agenti/nastroje/hermes, temata/agenti/nastroje/herdr, temata/agenti]

@@ -55,6 +55,26 @@ ji nepotřebujete z jiného stroje, nechte ji na localhostu.
 Skilly z ClawHub rozšiřují schopnosti; každý skill je ale kód,
 který agentovi dáváte. Instalujte jen ověřené.
 
+## Kanály a skilly
+
+| Část | Co to je | Riziko |
+|---|---|---|
+| **Kanál** | Telegram, Slack, Discord, e-mail | token a přístup do účtu |
+| **Skill** | kód, který agent umí spustit | supply chain |
+| **MCP server** | nástroje přes protokol | oprávnění a data |
+| **Agent** | jedna osobnost a session | sdílení kontextu |
+
+Kanál je vstupní brána. Když ho napojíte na pracovní Slack,
+agent vidí zprávy, které vidíte vy. To je pohodlné a zároveň
+důvod, proč gateway nepatří na veřejný internet.
+
+## Ask mode a oprávnění
+
+OpenClaw má režim, kdy se před akcí ptá. Zapněte ho dřív, než
+agentovi dáte shell. Bez něj agent spustí, co model navrhne.
+Omezit se dají i nástroje a skilly; méně jich znamená méně cest,
+kudy se dá něco pokazit.
+
 ## Limity
 
 - **Bezpečnostní defaulty.** Podle dokumentace a recenzí je

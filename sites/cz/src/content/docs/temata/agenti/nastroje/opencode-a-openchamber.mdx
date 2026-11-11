@@ -69,6 +69,32 @@ se v terminálu.
 worktree. **Session Goals** drží agenta u cíle, dokud ho nesplní
 nebo nedojde limit.
 
+## Multi-run a fusion
+
+Multi-run je užitečný, když nevíte, který model nebo přístup
+vyhraje. Spustíte stejné zadání u dvou až pěti modelů, každý
+v izolovaném worktree. Pak porovnáte diffy a vyberete.
+
+- **Výhoda:** vidíte skutečný výsledek, ne benchmark.
+- **Cena:** víc tokenů a víc běhů najednou.
+- **Pozor:** modely mohou potřebovat jiný kontext; malý model
+  může selhat na velkém repo.
+
+Fusion kombinuje části odpovědí do nové session. Je to nástroj
+pro experiment, ne náhrada review.
+
+## Remote access
+
+| Způsob | Kdy | Co hlídat |
+|---|---|---|
+| **Localhost** | jeden stroj | nic |
+| **LAN/VPN** | tým v kanceláři | přístupová práva |
+| **Private Relay** | z telefonu | párování a odvolání |
+| **Tunel** | dočasně z prohlížeče | heslo a expozice |
+
+Každý vzdálený přístup potřebuje heslo nebo passkey. Relay je
+bezpečnější než otevřený port, ale pořád je to přístup k session.
+
 ## Limity
 
 - **OpenChamber není harness.** Když OpenCode neumí providera,
