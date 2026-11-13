@@ -25,7 +25,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "hlídač: aktualizace stavu zdrojů"
-          file_pattern: data/stav-zdroju.json vystup/hlidac-report.md
+          file_pattern: data/stav-zdroju.json data/videa.yaml vystup/hlidac-report.md
       - uses: actions/upload-artifact@v4
         with:
           name: hlidac-report

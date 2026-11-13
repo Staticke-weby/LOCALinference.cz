@@ -18,6 +18,29 @@ const report = [];
 let changed = 0;
 let errors = 0;
 
+// Fronta videí: co už jsme viděli nebo zamítli. Hlídač do ní jen přidává.
+const videaFile = path.join(root, 'data/videa.yaml');
+const VIDEA_HLAVICKA = `# Fronta YouTube videí k zařízením.
+# Hlídač sem automaticky přidává nová videa ze zdrojů recenze-youtube-*.
+# \`stav\`: novy | prohlednuto | pouzito | zamitnuto
+# \`kvalita\`: 1–5 (5 = nejlepší), nebo null dokud nehodnotíte
+# \`proc\`: proč takový stav; u zamitnuto povinné
+# \`zarizeni\`: id zařízení, ke kterému video patří
+# Kontrola: npm run check:videa. Přehled: npm run videa, zápis: npm run videa:zapis
+
+`;
+let videa = (fs.existsSync(videaFile) ? yaml.load(fs.readFileSync(videaFile, 'utf8')) : null) ?? [];
+if (!Array.isArray(videa)) videa = [];
+let videaZmena = false;
+
+const videoId = (url) => String(url).match(/[?&]v=([\w-]{11})/)?.[1] ?? '';
+
+function zapisVidea() {
+  if (!videaZmena) return;
+  fs.writeFileSync(videaFile, VIDEA_HLAVICKA + yaml.dump(videa, { lineWidth: 160, noRefs: true }));
+  videaZmena = false;
+}
+
 function hash(text) {
   return crypto.createHash('sha256').update(text).digest('hex').slice(0, 16);
 }
@@ -91,10 +114,11 @@ function parseYouTubeSearch(html) {
     const okno = html.slice(m.index, m.index + 3000);
     const title = okno.match(/"title":\{"runs":\[\{"text":"((?:[^"\\]|\\.)*)"/)?.[1];
     const published = okno.match(/"publishedTimeText":\{"simpleText":"([^"]+)"/)?.[1] ?? '';
+    const kanal = okno.match(/"ownerText":\{"runs":\[\{"text":"((?:[^"\\]|\\.)*)"/)?.[1] ?? '';
     const u = `https://www.youtube.com/watch?v=${m[1]}`;
     const t = title ? decode(title) : '';
     if (!t || items.some((x) => x.u === u)) continue;
-    items.push({ t, u, d: decode(published) });
+    items.push({ t, u, d: decode(published), k: decode(kanal) });
   }
   return items;
 }
@@ -233,6 +257,30 @@ for (const source of sources) {
     const nove = drivejsiSeen ? items.filter((i) => !drivejsiSeen.includes(k(i))).slice(0, 10) : [];
     const seen = [...new Set([...(drivejsiSeen ?? []), ...items.map(k)])].slice(-300);
 
+    // YouTube: nová videa zařaď do trvalé fronty, ať se nemusí procházet znovu.
+    if (source.typ === 'youtube') {
+      const znam = new Set(videa.map((v) => v.id));
+      const dnes = new Date().toISOString().slice(0, 10);
+      for (const i of items) {
+        const id = videoId(i.u);
+        if (!id || znam.has(id)) continue;
+        videa.push({
+          id,
+          url: i.u,
+          nazev: i.t,
+          kanal: i.k ?? '',
+          zarizeni: source.id.replace(/^recenze-youtube-/, ''),
+          poprve: dnes,
+          stav: 'novy',
+          kvalita: null,
+          proc: '',
+        });
+        znam.add(id);
+        videaZmena = true;
+        if (!nove.some((n) => n.u === i.u)) nove.push(i);
+      }
+    }
+
     state[source.id] = {
       url: source.url,
       signature: sig,
@@ -267,6 +315,7 @@ for (const source of sources) {
 }
 
 fs.mkdirSync(outDir, { recursive: true });
+zapisVidea();
 const currentIds = new Set(sources.map((s) => s.id));
 const nextState = Object.fromEntries(Object.entries(state).filter(([id]) => currentIds.has(id)));
 fs.writeFileSync(stateFile, JSON.stringify(nextState, null, 2) + '\n');
