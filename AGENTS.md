@@ -191,7 +191,7 @@ Web stojí na datech, která stárnou. Proto má každý zdroj a každý údaj
 vlastní evidenci:
 
 - **`data/zdroje.yaml`** — registr zdrojů. U každého: `id`, `nazev`, `url`,
-  `typ` (`rss`, `github`, `hf`, `html`, `api`), `co_sledujeme`, `frekvence`,
+  `typ` (`rss`, `youtube`, `github`, `hf`, `html`, `api`), `co_sledujeme`, `frekvence`,
   `priorita`, `posledni_kontrola`, `stav`.
 - **`data/kurzy.yaml`** — kurzy ČNB a ECB s datem a zdrojem.
 - **`data/mereni.yaml`** — každé měření s konfigurací (viz níže).
@@ -201,8 +201,11 @@ vlastní evidenci:
   priorita, stav a dávka. Přehled generuje `npm run chybi`.
 - **`scripts/hlidac.mjs`** — pravidelná kontrola zdrojů. Umí RSS/Atom,
   GitHub releases, změny model card na Hugging Face a hash klíčové části
-  HTML stránky. Porovná stav s `data/stav-zdroju.json`, vypíše report
-  a případně založí issue. **Nikdy nemění obsah sám.**
+  HTML stránky. U RSS a YouTube ukládá položky a reportuje **nové titulky
+  s odkazy**; volitelný `filtr` omezí položky podle slov v titulku.
+  `typ: youtube` čte výsledky hledání seřazené od nejnovějších. Porovná
+  stav s `data/stav-zdroju.json`, vypíše report a případně založí issue.
+  **Nikdy nemění obsah sám.**
 - **Workflow `hlidac.yml`** — týdenní běh + ruční spuštění.
 - **Aktualizační checklist:** ověřit cenu → ověřit model → ověřit měření →
   upravit data → aktualizovat `overeno` → zapsat do `zmeny.yaml` → build.

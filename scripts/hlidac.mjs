@@ -35,6 +35,114 @@ function stripHtml(html) {
     .trim();
 }
 
+/** Dekóduje základní entity, CDATA a JSON escapes z titulků. */
+function decode(text) {
+  return text
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/\\u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
+    .replace(/\\"/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** RSS 2.0 i Atom: vrací položky s titulkem a odkazem. */
+function parseFeed(text) {
+  const items = [];
+  const blocks = [...text.matchAll(/<(item|entry)\b[\s\S]*?<\/\1>/gi)].map((m) => m[0]);
+  for (const block of blocks) {
+    const title = block.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? '';
+    const linkRss = block.match(/<link[^>]*>([\s\S]*?)<\/link>/i)?.[1] ?? '';
+    const linkAtom = block.match(/<link[^>]*href="([^"]+)"/i)?.[1] ?? '';
+    const datum =
+      block.match(/<pubDate[^>]*>([\s\S]*?)<\/pubDate>/i)?.[1] ??
+      block.match(/<published[^>]*>([\s\S]*?)<\/published>/i)?.[1] ??
+      '';
+    const u = decode(linkRss || linkAtom);
+    const t = decode(title);
+    if (u && t) items.push({ t, u, d: decode(datum) });
+  }
+  return items;
+}
+
+/** Klíč pro porovnání: titulek bez diakritiky a interpunkce. */
+function klic(i) {
+  return i.t
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+    .slice(0, 90);
+}
+
+/** YouTube nemá RSS pro hledání: přečte výsledky a vytáhne videa. */
+function parseYouTubeSearch(html) {
+  const items = [];
+  const re = /"videoId":"([\w-]{11})"/g;
+  let m;
+  while ((m = re.exec(html)) && items.length < 40) {
+    const okno = html.slice(m.index, m.index + 3000);
+    const title = okno.match(/"title":\{"runs":\[\{"text":"((?:[^"\\]|\\.)*)"/)?.[1];
+    const published = okno.match(/"publishedTimeText":\{"simpleText":"([^"]+)"/)?.[1] ?? '';
+    const u = `https://www.youtube.com/watch?v=${m[1]}`;
+    const t = title ? decode(title) : '';
+    if (!t || items.some((x) => x.u === u)) continue;
+    items.push({ t, u, d: decode(published) });
+  }
+  return items;
+}
+
+/** Převede "2 days ago", "3mo ago" nebo "2w ago" na dny; jinak null. */
+function stariDnu(text) {
+  if (!text) return null;
+  const t = text.toLowerCase().trim();
+  const komp = t.match(/^(\d+)\s*(mo|y|w|d|h)\s+ago$/);
+  if (komp) {
+    const n = Number(komp[1]);
+    const u = komp[2];
+    if (u === 'h') return n / 24;
+    if (u === 'd') return n;
+    if (u === 'w') return n * 7;
+    if (u === 'mo') return n * 30;
+    return n * 365;
+  }
+  const m = t.match(/(\d+)\s*(hour|day|week|month|year|hodin|den|dní|dnem|dny|dnů|týden|týdnem|týdny|měsíc|mesíc|měsíci|rok|lety)/);
+  if (!m) {
+    if (/(hour|hodin)/.test(t)) return 0.1;
+    if (/(day|dnem|den|dny)/.test(t)) return 1;
+    if (/(week|týden|týdnem|týdny)/.test(t)) return 7;
+    return null;
+  }
+  const n = Number(m[1]);
+  const u = m[2];
+  if (/hour|hodin/.test(u)) return n / 24;
+  if (/day|den|dní|dnem|dny|dnů/.test(u)) return n;
+  if (/week|týden|týdnem|týdny/.test(u)) return n * 7;
+  if (/month|měsíc|mesíc|měsíci/.test(u)) return n * 30;
+  return n * 365;
+}
+
+/** Ponechá jen videa z posledního týdne. */
+function cerstve(items) {
+  return items.filter((i) => {
+    const d = stariDnu(i.d);
+    return d != null && d <= 7;
+  });
+}
+
+function filtr(source, items) {
+  const slova = (source.filtr ?? []).map((s) => String(s).toLowerCase());
+  if (!slova.length) return items;
+  return items.filter((i) => slova.some((s) => i.t.toLowerCase().includes(s)));
+}
+
 async function fetchText(url) {
   const res = await fetch(url, {
     redirect: 'follow',
@@ -48,6 +156,7 @@ async function fetchText(url) {
   return await res.text();
 }
 
+/** Vrací podpis a u feedů i položky pro report novinek. */
 async function signature(source) {
   const url = source.url;
 
@@ -60,22 +169,24 @@ async function signature(source) {
       headers: {
         'user-agent': 'LocalInference-hlidac/0.1',
         accept: 'application/vnd.github+json',
+        ...(process.env.GITHUB_TOKEN ? { authorization: 'Bearer ' + process.env.GITHUB_TOKEN } : {}),
       },
     });
     if (res.ok) {
       const data = await res.json();
-      return `release:${data.tag_name}:${data.published_at ?? ''}`;
+      return { sig: `release:${data.tag_name}:${data.published_at ?? ''}`, items: [] };
     }
     const commits = await fetch(`https://api.github.com/repos/${m[1]}/${m[2]}/commits?per_page=1`, {
       signal: AbortSignal.timeout(20000),
       headers: {
         'user-agent': 'LocalInference-hlidac/0.1',
         accept: 'application/vnd.github+json',
+        ...(process.env.GITHUB_TOKEN ? { authorization: 'Bearer ' + process.env.GITHUB_TOKEN } : {}),
       },
     });
     if (!commits.ok) throw new Error(`GitHub API ${commits.status}`);
     const data = await commits.json();
-    return `commit:${data[0]?.sha ?? 'unknown'}`;
+    return { sig: `commit:${data[0]?.sha ?? 'unknown'}`, items: [] };
   }
 
   if (source.typ === 'hf') {
@@ -83,19 +194,21 @@ async function signature(source) {
     if (!m) throw new Error('nejde rozpoznat Hugging Face model');
     const api = `https://huggingface.co/api/models/${m[1]}/${m[2]}`;
     const data = JSON.parse(await fetchText(api));
-    return `hf:${data.sha ?? ''}:${data.lastModified ?? ''}`;
+    return { sig: `hf:${data.sha ?? ''}:${data.lastModified ?? ''}`, items: [] };
+  }
+
+  if (source.typ === 'youtube') {
+    const items = cerstve(filtr(source, parseYouTubeSearch(await fetchText(url)))).slice(0, 20);
+    return { sig: `yt:${hash(items.map(klic).join('|') || 'prazdno')}`, items };
   }
 
   if (source.typ === 'rss') {
-    const text = await fetchText(url);
-    const items = [...text.matchAll(/<(?:item|entry)[\s\S]*?<\/(?:item|entry)>/gi)]
-      .slice(0, 10)
-      .map((x) => x[0].replace(/\s+/g, ' '));
-    return `rss:${hash(items.join('|') || text.slice(0, 20000))}`;
+    const items = filtr(source, parseFeed(await fetchText(url))).slice(0, 20);
+    return { sig: `rss:${hash(items.map(klic).join('|') || 'prazdno')}`, items };
   }
 
   const text = await fetchText(url);
-  return `text:${hash(stripHtml(text).slice(0, 200000))}`;
+  return { sig: `text:${hash(stripHtml(text).slice(0, 200000))}`, items: [] };
 }
 
 for (const source of sources) {
@@ -106,23 +219,37 @@ for (const source of sources) {
       signature: previous?.signature ?? null,
       checkedAt: new Date().toISOString(),
       status: 'manual',
+      items: previous?.items ?? [],
     };
-    report.push({ source, status: 'manual', detail: 'ruční kontrola' });
+    report.push({ source, status: 'manual', detail: 'ruční kontrola', nove: [] });
     console.log(`- ${source.id}: ruční kontrola`);
     continue;
   }
   try {
-    const sig = await signature(source);
-    const status = !previous ? 'new' : previous.signature !== sig ? 'changed' : 'ok';
-    if (status !== 'ok') changed++;
+    const { sig, items } = await signature(source);
+
+    const drivejsiSeen = Array.isArray(previous?.seen) ? previous.seen : null;
+    const k = (i) => (source.typ === 'youtube' ? i.u : klic(i));
+    const nove = drivejsiSeen ? items.filter((i) => !drivejsiSeen.includes(k(i))).slice(0, 10) : [];
+    const seen = [...new Set([...(drivejsiSeen ?? []), ...items.map(k)])].slice(-300);
+
     state[source.id] = {
       url: source.url,
       signature: sig,
       checkedAt: new Date().toISOString(),
-      status,
+      status: !previous ? 'new' : nove.length ? 'changed' : 'ok',
+      items: items.slice(0, 30),
+      seen,
     };
-    report.push({ source, status, detail: status === 'changed' ? `${previous.signature} → ${sig}` : sig });
-    console.log(`${status === 'ok' ? '·' : '!'} ${source.id}: ${status}`);
+    const stav = state[source.id].status;
+    if (stav !== 'ok') changed++;
+    report.push({
+      source,
+      status: stav,
+      detail: stav === 'changed' ? `${nove.length} nových` : items.length ? `${items.length} položek` : sig,
+      nove,
+    });
+    console.log(`${stav === 'ok' ? '·' : '!'} ${source.id}: ${stav}${nove.length ? ` (+${nove.length})` : ''}`);
   } catch (e) {
     errors++;
     state[source.id] = {
@@ -131,8 +258,10 @@ for (const source of sources) {
       checkedAt: new Date().toISOString(),
       status: 'error',
       error: String(e.message ?? e),
+      items: previous?.items ?? [],
+      seen: previous?.seen ?? [],
     };
-    report.push({ source, status: 'error', detail: String(e.message ?? e) });
+    report.push({ source, status: 'error', detail: String(e.message ?? e), nove: [] });
     console.warn(`✗ ${source.id}: ${e.message}`);
   }
 }
@@ -142,19 +271,29 @@ const currentIds = new Set(sources.map((s) => s.id));
 const nextState = Object.fromEntries(Object.entries(state).filter(([id]) => currentIds.has(id)));
 fs.writeFileSync(stateFile, JSON.stringify(nextState, null, 2) + '\n');
 
+const novinky = report.flatMap((r) => r.nove.map((n) => ({ id: r.source.id, ...n })));
+
 const lines = [
   '# Hlídač zdrojů',
   '',
   `Kontrola: ${new Date().toISOString()}`,
-  `Zdroje: ${sources.length}, změny: ${changed}, chyby: ${errors}`,
+  `Zdroje: ${sources.length}, změny: ${changed}, chyby: ${errors}, nové položky: ${novinky.length}`,
   '',
   '| Zdroj | Stav | Detail |',
   '|---|---|---|',
   ...report.map((r) => `| ${r.source.id} | ${r.status} | ${String(r.detail).replace(/\|/g, '\\|')} |`),
-  '',
-  '> Hlídač nic nemění. Změny se řeší ručně a zapisují do `data/zmeny.yaml`.',
 ];
+
+if (novinky.length) {
+  lines.push('', '## Nové položky', '');
+  for (const n of novinky) {
+    lines.push(`- **${n.id}**: [${n.t}](${n.u})${n.d ? ` — ${n.d}` : ''}`);
+  }
+}
+
+lines.push('', '> Hlídač nic nemění. Změny se řeší ručně a zapisují do `data/zmeny.yaml`.');
+
 fs.writeFileSync(reportFile, lines.join('\n'));
 
 console.log(`\nReport: ${path.relative(root, reportFile)}`);
-console.log(`Změny: ${changed}, chyby: ${errors}`);
+console.log(`Změny: ${changed}, chyby: ${errors}, nové: ${novinky.length}`);

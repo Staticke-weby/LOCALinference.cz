@@ -1,4 +1,5 @@
 ---
+import AnchorHeading from '@astrojs/starlight/components/AnchorHeading.astro';
 import { getZkusenostiEn, isoDate } from '../lib/data';
 
 interface Props {
@@ -24,11 +25,11 @@ const typLabel: Record<string, string> = {
 {
   z && (
     <section class="li-zkusenosti">
-      <h2 id="experience-and-reviews">Experience and reviews</h2>
+      <AnchorHeading level={2} id="experience-and-reviews">Experience and reviews</AnchorHeading>
 
       <p class="li-zkusenosti__souhrn">{z.souhrn}</p>
 
-      <h3>What reviews say</h3>
+      <AnchorHeading level={3} id="what-reviews-say">What reviews say</AnchorHeading>
       <ul class="li-zkusenosti__seznam">
         {z.recenze.map((r) => (
           <li>
@@ -43,7 +44,7 @@ const typLabel: Record<string, string> = {
         ))}
       </ul>
 
-      <h3>What owners report</h3>
+      <AnchorHeading level={3} id="what-owners-report">What owners report</AnchorHeading>
       <ul class="li-zkusenosti__seznam">
         {(z.majitele ?? []).map((r) => (
           <li>
@@ -58,7 +59,7 @@ const typLabel: Record<string, string> = {
         ))}
       </ul>
 
-      <h3>What keeps coming up</h3>
+      <AnchorHeading level={3} id="what-keeps-coming-up">What keeps coming up</AnchorHeading>
       <ul>
         {z.opakuje.map((o) => (
           <li>{o}</li>

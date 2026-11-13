@@ -5,6 +5,13 @@
 # hreflang, menu, opravy odkazů) sem nepatří.
 
 - datum: 2026-11-13
+  typ: zdroj
+  titulek: "Hlídač sleduje nové recenze a videa k zařízením"
+  co_se_zmenilo: "Registr zdrojů má 14 nových položek: Google News pro články a recenze k sedmi zařízením a YouTube hledání seřazené od nejnovějších. Hlídač u RSS a YouTube ukládá položky a reportuje nové titulky s odkazy; videa bere jen za poslední týden, aby se neopakovala."
+  dotcene_stranky: [zdroje/zdroje]
+  zdroj: https://www.localinference.cz/zdroje/zdroje/
+
+- datum: 2026-11-13
   typ: obsah
   titulek: "Zkušenosti a recenze u každého zařízení"
   co_se_zmenilo: "Sedm stránek zařízení má novou sekci Zkušenosti a recenze: co píšou nezávislé testy, co hlásí majitelé, co se opakuje a kde chybí data. Každá položka má zdroj, datum a typ (nezávislý test / komunita). Stejná sekce je i v anglické mutaci. Zároveň se v celém webu sjednotily názvy zařízení bez skloňování (DGX Spark, Strix Halo, Mac Studio, MacBook Pro)."

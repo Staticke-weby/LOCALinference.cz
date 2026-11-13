@@ -1029,3 +1029,157 @@
   posledni_kontrola: 2026-11-11
   stav: ok
   poznamka: "Komunitní recept, medián 69,3 tok/s; konfigurace a raw data."
+
+- id: recenze-google-dgx-spark
+  nazev: "Recenze: DGX Spark (Google News)"
+  url: "https://news.google.com/rss/search?q=%22DGX+Spark%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en"
+  typ: rss
+  co_sledujeme: [recenze, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Nové články a recenze k zařízení; filtr propustí jen titulky s recenzním slovem."
+
+- id: recenze-google-rtx-spark-mini
+  nazev: "Recenze: RTX Spark mini (Google News)"
+  url: "https://news.google.com/rss/search?q=%22RTX+Spark+mini%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en"
+  typ: rss
+  co_sledujeme: [recenze, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Nové články a recenze k zařízení; filtr propustí jen titulky s recenzním slovem."
+
+- id: recenze-google-rtx-spark-notebook
+  nazev: "Recenze: RTX Spark notebook (Google News)"
+  url: "https://news.google.com/rss/search?q=%22RTX+Spark+notebook%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en"
+  typ: rss
+  co_sledujeme: [recenze, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Nové články a recenze k zařízení; filtr propustí jen titulky s recenzním slovem."
+
+- id: recenze-google-strix-halo
+  nazev: "Recenze: Strix Halo (Google News)"
+  url: "https://news.google.com/rss/search?q=%22Strix+Halo%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en"
+  typ: rss
+  co_sledujeme: [recenze, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Nové články a recenze k zařízení; filtr propustí jen titulky s recenzním slovem."
+
+- id: recenze-google-gorgon-halo
+  nazev: "Recenze: Gorgon Halo (Google News)"
+  url: "https://news.google.com/rss/search?q=%22Gorgon+Halo%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en"
+  typ: rss
+  co_sledujeme: [recenze, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Nové články a recenze k zařízení; filtr propustí jen titulky s recenzním slovem."
+
+- id: recenze-google-mac-studio
+  nazev: "Recenze: Mac Studio (Google News)"
+  url: "https://news.google.com/rss/search?q=%22Mac+Studio+M5%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en"
+  typ: rss
+  co_sledujeme: [recenze, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Nové články a recenze k zařízení; filtr propustí jen titulky s recenzním slovem."
+
+- id: recenze-google-macbook-pro
+  nazev: "Recenze: MacBook Pro (Google News)"
+  url: "https://news.google.com/rss/search?q=%22MacBook+Pro+M5+Max%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en"
+  typ: rss
+  co_sledujeme: [recenze, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Nové články a recenze k zařízení; filtr propustí jen titulky s recenzním slovem."
+
+- id: recenze-youtube-dgx-spark
+  nazev: "YouTube: DGX Spark review"
+  url: "https://www.youtube.com/results?search_query=DGX+Spark+review&hl=en&sp=CAI%253D"
+  typ: youtube
+  co_sledujeme: [recenze, video, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Hledání seřazené od nejnovějších; hlídač ukládá ID videí a reportuje nová."
+
+- id: recenze-youtube-rtx-spark-mini
+  nazev: "YouTube: RTX Spark mini review"
+  url: "https://www.youtube.com/results?search_query=RTX+Spark+mini+review&hl=en&sp=CAI%253D"
+  typ: youtube
+  co_sledujeme: [recenze, video, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Hledání seřazené od nejnovějších; hlídač ukládá ID videí a reportuje nová."
+
+- id: recenze-youtube-rtx-spark-notebook
+  nazev: "YouTube: RTX Spark notebook review"
+  url: "https://www.youtube.com/results?search_query=RTX+Spark+notebook+review&hl=en&sp=CAI%253D"
+  typ: youtube
+  co_sledujeme: [recenze, video, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Hledání seřazené od nejnovějších; hlídač ukládá ID videí a reportuje nová."
+
+- id: recenze-youtube-strix-halo
+  nazev: "YouTube: Strix Halo review"
+  url: "https://www.youtube.com/results?search_query=Strix+Halo+review&hl=en&sp=CAI%253D"
+  typ: youtube
+  co_sledujeme: [recenze, video, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Hledání seřazené od nejnovějších; hlídač ukládá ID videí a reportuje nová."
+
+- id: recenze-youtube-gorgon-halo
+  nazev: "YouTube: Gorgon Halo review"
+  url: "https://www.youtube.com/results?search_query=Gorgon+Halo+review&hl=en&sp=CAI%253D"
+  typ: youtube
+  co_sledujeme: [recenze, video, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Hledání seřazené od nejnovějších; hlídač ukládá ID videí a reportuje nová."
+
+- id: recenze-youtube-mac-studio
+  nazev: "YouTube: Mac Studio M5 local AI"
+  url: "https://www.youtube.com/results?search_query=Mac+Studio+M5+local+AI&hl=en&sp=CAI%253D"
+  typ: youtube
+  co_sledujeme: [recenze, video, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Hledání seřazené od nejnovějších; hlídač ukládá ID videí a reportuje nová."
+
+- id: recenze-youtube-macbook-pro
+  nazev: "YouTube: MacBook Pro M5 Max local AI"
+  url: "https://www.youtube.com/results?search_query=MacBook+Pro+M5+Max+local+AI&hl=en&sp=CAI%253D"
+  typ: youtube
+  co_sledujeme: [recenze, video, zkusenosti]
+  frekvence: tydne
+  priorita: stredni
+  posledni_kontrola: 2026-11-13
+  stav: ok
+  poznamka: "Hledání seřazené od nejnovějších; hlídač ukládá ID videí a reportuje nová."
