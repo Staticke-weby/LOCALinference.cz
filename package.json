@@ -15,6 +15,7 @@
     "chybi:zapis": "node scripts/chybi.mjs --zapis",
     "videa": "node scripts/videa.mjs",
     "videa:zapis": "node scripts/videa.mjs --zapis",
+    "videa:hodnotit": "node scripts/videa-hodnotit.mjs",
     "objevy": "node scripts/objevy.mjs",
     "parita": "node scripts/parita.mjs",
     "hlidac": "node scripts/hlidac.mjs",

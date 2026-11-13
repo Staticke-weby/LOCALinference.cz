@@ -200,11 +200,12 @@ vlastní evidenci:
 - **`data/chybi.yaml`** — registr mezer: co chybí, kde, proč, kde hledat,
   priorita, stav a dávka. Přehled generuje `npm run chybi`.
 - **`data/videa.yaml`** — fronta YouTube videí k zařízením. Hlídač do ní
-  nová videa jen přidává (`stav: novy`); hodnocení je ruční:
-  `prohlednuto` (nic nového), `pouzito` (číslo je na webu), `zamitnuto`
-  (irelevantní, reklama, slabá kvalita). U `zamitnuto` je `proc`
-  povinné. Novější videa mají přednost — software a návody stárnou; u
-  videí starších než 6 měsíců ověřit verzi enginu a modelu. Přehled
+  nová videa jen přidává; hodnocení dělá `npm run videa:hodnotit`
+  automaticky z popisu videa a dostupných titulků (`kvalita` 1–5,
+  `stav: prohlednuto`, `auto: true`). Ruční zásah je jen volitelná
+  korekce: `pouzito` (číslo je na webu), `zamitnuto` (s důvodem).
+  Novější videa mají přednost — software a návody stárnou; u videí
+  starších než 6 měsíců ověřit verzi enginu a modelu. Přehled
   `npm run videa`, zápis `videa.md` přes `npm run videa:zapis`, kontrola
   `npm run check:videa`.
 - **`scripts/hlidac.mjs`** — pravidelná kontrola zdrojů. Umí RSS/Atom,

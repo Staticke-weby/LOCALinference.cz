@@ -21,6 +21,7 @@ jobs:
       - run: npm run hlidac
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run videa:hodnotit
       - name: Uložit stav a report
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

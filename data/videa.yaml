@@ -5,120 +5,190 @@
 # `proc`: proč takový stav; u zamitnuto povinné
 # `zarizeni`: id zařízení, ke kterému video patří
 # `vydano`: datum publikace (u starších položek odhad z relativního údaje)
+# `auto`: true = hodnocení podle popisu a titulků, ne ze zhlédnutí
+# `delka_s`, `cisla`, `titulky`: co se z videa podařilo zjistit
 #
 # Novější videa mají přednost: software, enginy a návody k modelům rychle
 # stárnou. U videí starších než 6 měsíců ověřte verzi enginu a modelu;
 # kvalitní starší video může zůstat, ale nesmí být jediným zdrojem čísel.
 # Kontrola: npm run check:videa. Přehled: npm run videa, zápis: npm run videa:zapis
-
-
 - id: k7_K34eY9TM
   url: https://www.youtube.com/watch?v=k7_K34eY9TM
   nazev: NVIDIA, It’s Happening Again
   kanal: Alex Ziskind
   zarizeni: dgx-spark
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 30 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   vydano: '2026-11-10'
   vydano_odhad: false
+  auto: true
+  delka_s: 1811
+  shlednuti: 249990
+  cisla: []
+  titulky: false
 - id: JZVuemv0ZYY
   url: https://www.youtube.com/watch?v=JZVuemv0ZYY
   nazev: 'Mac Studio vs Two DGX Sparks: The 256 GB Trap'
   kanal: The Dark Factory
   zarizeni: dgx-spark
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 16 min. Zmiňuje 256 gb, 256gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   vydano: '2026-11-06'
   vydano_odhad: false
+  auto: true
+  delka_s: 954
+  shlednuti: 9989
+  cisla:
+    - 256 gb
+    - 256gb
+  titulky: false
 - id: rYHcgCmj9us
   url: https://www.youtube.com/watch?v=rYHcgCmj9us
   nazev: The Most Interesting Laptop of 2026
   kanal: ''
   zarizeni: rtx-spark-notebook
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 25 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   vydano: '2026-11-10'
   vydano_odhad: false
+  auto: true
+  delka_s: 1477
+  shlednuti: 270003
+  cisla: []
+  titulky: false
 - id: y9YXhEEwAwc
   url: https://www.youtube.com/watch?v=y9YXhEEwAwc
   nazev: Apple's Local AI App for Mac Is Coming (Harbor)
   kanal: Kai
   zarizeni: mac-studio
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 26 min. Zmiňuje 16 gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   vydano: '2026-11-12'
   vydano_odhad: false
+  auto: true
+  delka_s: 1537
+  shlednuti: 40650
+  cisla:
+    - 16 gb
+  titulky: false
 - id: JLs10oOX6NY
   url: https://www.youtube.com/watch?v=JLs10oOX6NY
   nazev: I Tested Local AI on My Mac Studio So You Don't Have To
   kanal: Kai
   zarizeni: mac-studio
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 28 min. Zmiňuje 48gb, 24gb, 32gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   vydano: '2026-11-08'
   vydano_odhad: false
+  auto: true
+  delka_s: 1675
+  shlednuti: 71620
+  cisla:
+    - 48gb
+    - 24gb
+    - 32gb
+  titulky: false
 - id: Ni7ON0pZtso
   url: https://www.youtube.com/watch?v=Ni7ON0pZtso
   nazev: Apple's New App Turns the Macs You Own Into One Private Local AI
   kanal: Simply AI
   zarizeni: mac-studio
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 8 min. Zmiňuje 24 gb, 24gb, 512gb. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
   vydano: '2026-11-11'
   vydano_odhad: false
+  auto: true
+  delka_s: 481
+  shlednuti: 18609
+  cisla:
+    - 24 gb
+    - 24gb
+    - 512gb
+  titulky: false
 - id: feKLlokg1AY
   url: https://www.youtube.com/watch?v=feKLlokg1AY
   nazev: I tested local AI on the base M6 Mac mini. Here's what actually worked
   kanal: Jose Romero
   zarizeni: mac-studio
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 20 min. Zmiňuje 16gb, 256gb, 64gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   vydano: '2026-11-11'
   vydano_odhad: false
+  auto: true
+  delka_s: 1197
+  shlednuti: 146
+  cisla:
+    - 16gb
+    - 256gb
+    - 64gb
+    - 11.4gb
+  titulky: false
 - id: 1jkV40QrhiE
   url: https://www.youtube.com/watch?v=1jkV40QrhiE
   nazev: Don't Buy the $22,299 Mac Studio for AI (Yet) | The First 512GB M5 Ultra Numbers
   kanal: ''
   zarizeni: mac-studio
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 3 min. Zmiňuje 512gb, 256gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   vydano: '2026-11-11'
   vydano_odhad: false
+  auto: true
+  delka_s: 209
+  shlednuti: 207
+  cisla:
+    - 512gb
+    - 256gb
+  titulky: false
 - id: mbqHk7kfhcA
   url: https://www.youtube.com/watch?v=mbqHk7kfhcA
   nazev: Buying a Mac for AI? What Nobody Warns You About
   kanal: Alex Grankin
   zarizeni: macbook-pro
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 5
+  proc: Automaticky z popisu a titulků. Délka 22 min. Zmiňuje 128 gb, 107 gb, 512 gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   vydano: '2026-11-07'
   vydano_odhad: false
+  auto: true
+  delka_s: 1303
+  shlednuti: 26402
+  cisla:
+    - 128 gb
+    - 107 gb
+    - 512 gb
+    - 96 gb
+    - 32 gb
+  titulky: false
 - id: TB--mw76SLg
   url: https://www.youtube.com/watch?v=TB--mw76SLg
   nazev: 'M5 Max MacBook Pro: This Stress Test Made PROLED...'
   kanal: ''
   zarizeni: macbook-pro
   poprve: '2026-11-13'
-  stav: novy
-  kvalita: null
-  proc: ''
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 19 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   vydano: '2026-11-08'
   vydano_odhad: false
+  auto: true
+  delka_s: 1129
+  shlednuti: 16259
+  cisla: []
+  titulky: false
