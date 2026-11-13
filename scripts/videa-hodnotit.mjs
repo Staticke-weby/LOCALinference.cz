@@ -17,8 +17,8 @@ let videa = yaml.load(fs.readFileSync(file, 'utf8')) ?? [];
 
 const ZARIZENI = {
   'dgx-spark': ['dgx spark', 'dgx'],
-  'rtx-spark-mini': ['rtx spark', 'spark mini'],
-  'rtx-spark-notebook': ['rtx spark', 'spark laptop', 'spark notebook'],
+  'rtx-spark-mini': ['rtx spark'],
+  'rtx-spark-notebook': ['rtx spark'],
   'strix-halo': ['strix halo', 'ryzen ai max'],
   'gorgon-halo': ['gorgon halo', 'ryzen ai max+ pro 495', 'max+ pro 495'],
   'mac-studio': ['mac studio'],
@@ -155,7 +155,9 @@ function ohodnot(video, html, titulkyText) {
 
 let zmen = 0;
 const VSE = process.argv.includes('--vse');
+const filtrZar = process.argv.find((a) => a.startsWith('--zarizeni='))?.split('=')[1];
 for (const v of videa) {
+  if (filtrZar && v.zarizeni !== filtrZar) continue;
   if (v.stav !== 'novy' && !(VSE && v.auto)) continue;
   try {
     const html = await stahni(v.url);
@@ -187,6 +189,11 @@ for (const v of videa) {
     continue;
   }
   await new Promise((r) => setTimeout(r, 400));
+}
+
+const puvodniPocet = (yaml.load(fs.readFileSync(file, 'utf8')) ?? []).length;
+if (!videa.length && puvodniPocet > 0) {
+  throw new Error('Odmítám zapsat prázdnou frontu: v souboru byla data.');
 }
 
 fs.writeFileSync(file, HLAVICKA + '\n' + yaml.dump(videa, { lineWidth: 200, noRefs: true }));

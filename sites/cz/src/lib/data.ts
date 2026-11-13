@@ -303,6 +303,8 @@ export type VideoZaznam = {
   proc?: string;
   popis?: string;
   nazor?: string;
+  popis_cs?: string;
+  nazor_cs?: string;
   popis_en?: string;
   nazor_en?: string;
 };

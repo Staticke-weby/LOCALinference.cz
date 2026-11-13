@@ -44,6 +44,10 @@ function vydanoDatum(text) {
 
 function zapisVidea() {
   if (!videaZmena) return;
+  const stary = fs.existsSync(videaFile)
+    ? (yaml.load(fs.readFileSync(videaFile, 'utf8')) ?? []).length
+    : 0;
+  if (!videa.length && stary > 0) throw new Error('Odmítám zapsat prázdnou frontu videí.');
   fs.writeFileSync(videaFile, VIDEA_HLAVICKA + yaml.dump(videa, { lineWidth: 160, noRefs: true }));
   videaZmena = false;
 }

@@ -25,10 +25,10 @@ const ceka = vsechna.filter((v) => v.stav === 'novy').length;
               {v.vydano ? `${formatDatum(v.vydano)}${v.vydano_odhad ? ' (odhad)' : ''}` : 'datum neuvedeno'}
               {v.kvalita ? ` · kvalita ${v.kvalita}/5` : ''}
             </span>
-            {v.popis && <p class="li-videa__popis">{v.popis}</p>}
-            {v.nazor && (
+            {v.popis_cs && <p class="li-videa__popis">{v.popis_cs}</p>}
+            {v.nazor_cs && (
               <p class="li-videa__nazor">
-                <strong>Jak to hodnotí:</strong> {v.nazor}
+                <strong>Jak to hodnotí:</strong> {v.nazor_cs}
               </p>
             )}
           </li>
