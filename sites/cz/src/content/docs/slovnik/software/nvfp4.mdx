@@ -1,5 +1,5 @@
 ---
-title: "NVFP4: co to je a proč se používá na DGX Sparku"
+title: "NVFP4: co to je a proč se používá na DGX Spark"
 description: "NVFP4 je 4bitový formát NVIDIA pro běh modelů na Blackwellu. Vysvětlíme, co znamená pro Qwen3.8 Flash Next, kde se liší od GGUF a kdy kvalita bolí."
 last_verified: 2026-11-10
 sidebar:
@@ -8,7 +8,7 @@ sidebar:
 ---
 
 **NVFP4** je 4bitový číselný formát NVIDIA pro běh modelů v nízké
-přesnosti. Na DGX Sparku je to nativní cesta, jak dostat Qwen3.8 Flash
+přesnosti. Na DGX Spark je to nativní cesta, jak dostat Qwen3.8 Flash
 Next do 128 GB a přitom neztratit příliš kvality. Není to ale univerzální
 formát — mimo NVIDIA hardware nefunguje.
 
@@ -19,7 +19,7 @@ formát — mimo NVIDIA hardware nefunguje.
 - **Qwen3.8 Flash Next v NVFP4 má ~101 GB**, takže na 128GB boxu
   zbyde ~27 GB na KV cache a režii.
 - **Je vázaný na NVIDIA Blackwell** a engine, který ho podporuje
-  (typicky vLLM). Na Strix Halu nebo Macu ho nespustíte.
+  (typicky vLLM). Na Strix Halo nebo Macu ho nespustíte.
 
 ## Co to je
 
@@ -59,13 +59,13 @@ KV cache.
 
 ## Kde se potká
 
-- **[vLLM](/slovnik/software/vllm/)** na DGX Sparku — oficiální recept
+- **[vLLM](/slovnik/software/vllm/)** na DGX Spark — oficiální recept
   pro Qwen3.8 Flash Next.
 - **Blackwell GPU** — formát je vázaný na hardware NVIDIA.
 - **RTX Spark** — CUDA má, ale podpora NVFP4 závisí na verzi enginu
   a Windows ARM64 portu.
 
-Na Strix Halu NVFP4 neběží; tam se používá [GGUF](/slovnik/software/gguf/)
+Na Strix Halo NVFP4 neběží; tam se používá [GGUF](/slovnik/software/gguf/)
 kvantizace. Na Macu zase MLX 4bit.
 
 ## Kde je kompromis

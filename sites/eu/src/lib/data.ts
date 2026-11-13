@@ -252,6 +252,29 @@ export function getZarizeniById(id: string): Zarizeni | undefined {
   return getZarizeni().find((z) => z.id === id);
 }
 
+export type ZkusenostEn = {
+  vydavatel?: string;
+  kde?: string;
+  url: string;
+  datum: string | Date;
+  typ: 'nezavisle' | 'komunita';
+  text: string;
+};
+
+export type ZkusenostiEn = {
+  zarizeni: string;
+  souhrn: string;
+  opakuje: string[];
+  recenze: ZkusenostEn[];
+  majitele?: ZkusenostEn[];
+  chybi?: string;
+};
+
+export function getZkusenostiEn(id: string): ZkusenostiEn | undefined {
+  const vse = load<ZkusenostiEn[]>('en/zkusenosti.yaml') ?? [];
+  return vse.find((z) => z.zarizeni === id);
+}
+
 export type ZarizeniEn = {
   id: string;
   verdict: string;

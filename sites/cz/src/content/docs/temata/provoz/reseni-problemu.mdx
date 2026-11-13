@@ -81,7 +81,7 @@ PyTorche nebo ovladači.
 | start trvá mnoho minut | načítání z pomalého disku | model na NVMe, ne na síťovém disku |
 | `CUDA error: driver too old` | ovladač starší než runtime | aktualizovat ovladač |
 
-U [DGX Sparku](/zarizeni/dgx-spark/) je oficiální cesta kontejner
+U [DGX Spark](/zarizeni/dgx-spark/) je oficiální cesta kontejner
 NVIDIA; mimo něj se mohou rozcházet verze CUDA a ovladače. Držte se
 [návodu](/navody/dgx-spark/), ne blogových receptů.
 
@@ -124,7 +124,7 @@ v ComfyUI: část balíčků nemá ARM64 wheel a instalace skončí chybou.
 [Recept pro Windows](/generovani/recepty/windows/) vypisuje konkrétní
 balíčky, které NVIDIA jmenuje.
 
-Na Strix Halu je nejčastější příčinou kombinace ovladače a verze
+Na Strix Halo je nejčastější příčinou kombinace ovladače a verze
 ROCm. Když `rocminfo` kartu vidí, ale engine ne, je problém
 v runtime, ne v hardwaru.
 

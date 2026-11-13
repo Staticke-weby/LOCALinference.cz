@@ -1,5 +1,5 @@
 ---
-title: "ROCm: co to je a proč je na Strix Halu druhá liga"
+title: "ROCm: co to je a proč je na Strix Halo druhá liga"
 description: "ROCm je AMD platforma pro výpočty na GPU. Vysvětlíme, co zvládne na Strix Halo 128 GB, kde narazí a kdy se vyplatí oproti CUDA."
 last_verified: 2026-11-04
 sidebar:
@@ -9,16 +9,16 @@ sidebar:
 
 **ROCm** je obdoba CUDA od AMD: platforma, na které běží výpočty na
 grafických čipech. Je otevřená a zdarma, ale její podpora není tak
-široká jako u CUDA — a to je přesně důvod, proč se u Strix Halu mluví
+široká jako u CUDA — a to je přesně důvod, proč se u Strix Halo mluví
 o kompromisu.
 
 ## K čemu to je
 
-Na Strix Halu (Ryzen AI Max+ 395) běží model přes **llama.cpp** nebo
+Na Strix Halo (Ryzen AI Max+ 395) běží model přes **llama.cpp** nebo
 **vLLM s ROCm backendem**. ROCm zprostředkuje výpočet na integrovaném
 Radeonu 8060S, který sdílí paměť s procesorem.
 
-V praxi to funguje: Qwen3.8 Flash Next na Strix Halu běží 36–79 tok/s
+V praxi to funguje: Qwen3.8 Flash Next na Strix Halo běží 36–79 tok/s
 podle kvantizace a délky kontextu. Rozdíl proti CUDA je jinde než
 v decode — **prefill je slabší**, takže dlouhý dokument se načítá
 déle.

@@ -1,6 +1,6 @@
 ---
 title: "DGX Spark: jak spustit lokální AI (návod krok za krokem)"
-description: "Od vybalení po první chat s Qwen3.8 Flash Next na DGX Sparku: aktualizace DGX OS, ověření GPU, oficiální vLLM recept a připojení klienta."
+description: "Od vybalení po první chat s Qwen3.8 Flash Next na DGX Spark: aktualizace DGX OS, ověření GPU, oficiální vLLM recept a připojení klienta."
 last_verified: 2026-11-04
 sidebar:
   label: DGX Spark
@@ -19,7 +19,7 @@ plný 180B model může trvat hodiny podle rychlosti připojení.
 > napájení, internet a přibližně 100 GB volného místa na model. Pro plný
 > Qwen3.8 Flash Next se hodí účet na Hugging Face a token.
 
-## Krok 1: První spuštění DGX Sparku
+## Krok 1: První spuštění DGX Spark
 
 1. Připojte napájení, monitor a klávesnici. Pokud chcete headless provoz,
    připojte síťový kabel a postupujte podle obrazovky.
@@ -45,10 +45,10 @@ aktualizace a napájení.
 
 *Zdroj: [komunitní setup guide](https://gpuwerk.com/dgx-spark/guides/setup-guide) — krok s aktualizací; `nvidia-smi` je standardní NVIDIA nástroj.*
 
-## Krok 3: Spuštění Qwen3.8 Flash Next na DGX Sparku
+## Krok 3: Spuštění Qwen3.8 Flash Next na DGX Spark
 
 Referenční a jediný model webu je **Qwen3.8 Flash Next** s 180B parametry.
-Na DGX Sparku 128 GB běží přes vLLM s NVFP4. NVIDIA k tomu nabízí hotový
+Na DGX Spark 128 GB běží přes vLLM s NVFP4. NVIDIA k tomu nabízí hotový
 recept; je delší, ale je to nejspolehlivější cesta.
 
 Nejdřív si nastavte token a připravte cache:
@@ -112,7 +112,7 @@ curl http://localhost:8000/v1/models
 
 *Zdroj: [NVIDIA Local AI Inference Recipes — DGX Spark](https://nvidia.github.io/local-ai-inference-recipes/hardware/dgx-spark/index.html).*
 
-## Krok 4: Připojení k DGX Sparku z laptopu
+## Krok 4: Připojení k DGX Spark z laptopu
 
 Server běží na `0.0.0.0:8000`. Z laptopu ve stejné síti otevřete
 `http://adresa-sparku:8000/v1/models`, nebo si port přetáhněte přes SSH:
@@ -130,7 +130,7 @@ autentizace a patří jen do důvěryhodné sítě.
 
 *Zdroj: [NVIDIA playbook — vLLM](https://build.nvidia.com/playbooks/vllm/advanced.md).*
 
-## Krok 5: Co dál s lokální AI na DGX Sparku
+## Krok 5: Co dál s lokální AI na DGX Spark
 
 - **Open WebUI** — webové chat rozhraní nad Ollamou nebo vLLM.
 - **OpenCode / OpenClaw** — agentní klienti, kteří používají OpenAI API.

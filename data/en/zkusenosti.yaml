@@ -1,0 +1,217 @@
+# Owner experience and reviews for each device.
+# Every entry has a source, a date and a type (nezavisle | komunita).
+# The text is an interpretation of a public source, not our own measurement.
+
+- zarizeni: dgx-spark
+  souhrn: "Testers and owners agree on quiet operation and a hot surface. Performance splits by recipe: default configuration 36–46 tok/s, optimized 67–70."
+  opakuje:
+    - "Quiet even under load; only a long CPU stress test makes noise."
+    - "The case throws heat and is hot to the touch under load."
+    - "The gap between the review and the community is mainly the engine and the number of patches."
+  recenze:
+    - vydavatel: "Tom's Hardware"
+      url: "https://www.tomshardware.com/pc-components/gpus/nvidia-dgx-spark-review"
+      datum: 2026-01-27
+      typ: nezavisle
+      text: "Praise for GB10 as efficient and fast for AI, with CUDA and the documentation as an advantage. Criticism for the price and the missing Windows. Noise during image generation measured up to 37.5 dBA; the case is hot under load."
+    - vydavatel: "Guru3D"
+      url: "https://www.guru3d.com/review/nvidia-dgx-spark-review/page-5/"
+      datum: 2026-11-12
+      typ: nezavisle
+      text: "Founders Edition: 36 W idle, 159 W during inference, 28–30 dB(A). Calls the box very quiet; the fans are audible mainly under sustained CPU load."
+    - vydavatel: "Digit"
+      url: "https://www.digit.in/features/general/nvidia-dgx-spark-review-this-is-what-a-real-ai-pc-feels-like.html"
+      datum: 2026-06-24
+      typ: nezavisle
+      text: "Surface 41 °C, exhaust 53 °C, 220 W peak from the wall. The system stayed stable and quiet even across repeated runs, with no throttling."
+  majitele:
+    - kde: "r/LocalAIServers"
+      url: "https://www.reddit.com/r/LocalAIServers/comments/1vp8h52/does_anyone_own_a_nvidia_dgx_spark_if_so_how/"
+      datum: 2026-08-15
+      typ: komunita
+      text: "Owners report extremely quiet running even under load, but noticeable heat. One of them runs two Sparks over ConnectX-7 and says they are quieter than a single small fan in a mini PC."
+    - kde: "Medium — 4 months later"
+      url: "https://medium.com/data-science-collective/i-was-ready-to-return-my-dgx-spark-then-nvidias-january-update-changed-everything-e67699155a45"
+      datum: 2026-02-24
+      typ: komunita
+      text: "One owner describes the first months as frustration: a 30B model throttled and the fan howled. After the January update the experience changed; but it is one story, not a measurement."
+  chybi: "Missing: independent dB noise measurements for the OEM variants; the numbers above apply to the Founders Edition."
+
+- zarizeni: rtx-spark-mini
+  souhrn: "Reviews agree on performance for large models and on the Windows on Arm ecosystem being early. A public measurement of Qwen3.8 on this box is missing."
+  opakuje:
+    - "128 GB is the main reason to buy, not raw performance."
+    - "The memory is soldered, only the SSD can be expanded."
+    - "Software and drivers are younger than on the DGX or the Mac."
+  recenze:
+    - vydavatel: "NGXP Tech — MSI EdgeMesa N AI+"
+      url: "https://ngxptech.com/msi-edgemesa-n-ai-plus-review-2026-rtx-spark/"
+      datum: 2026-06-13
+      typ: nezavisle
+      text: "Praise for 128 GB for models above 70B parameters and for the performance-to-size ratio. Criticism for the high price, the soldered RAM and the early Arm ecosystem."
+    - vydavatel: "Club386"
+      url: "https://www.club386.com/gigabyte-nvidia-rtx-spark-mini-pc/"
+      datum: 2026-11-11
+      typ: nezavisle
+      text: "Gigabyte AI Top Aero: 20 Arm cores, 6,144 CUDA cores, 128 GB unified and Windows 11 Arm. The same chip as the laptops, a different case and cooling."
+    - vydavatel: "Kimono Oyaji's Lab"
+      url: "https://kimono-oyaji.com/en/rtx-spark-n1x-memory-bandwidth-2026-en/"
+      datum: 2026-09-07
+      typ: nezavisle
+      text: "NVIDIA does not publish memory bandwidth. From his own measurements of other machines he estimates ~42 tok/s for an 8B model at 273 GB/s; he did not physically have an RTX Spark, so this is a calculation, not a measurement."
+  majitele:
+    - kde: "Windows Central — one-week test"
+      url: "https://www.windowscentral.com/hardware/nvidia/rtx-spark-review-benchmarks-2026"
+      datum: 2026-10-15
+      typ: nezavisle
+      text: "The default 128 GB split is 64 GB for the GPU and 64 GB for the system; for a larger model the ratio has to be changed by hand. The author sees this as the main practical complication."
+  chybi: "Missing: a public measurement of Qwen3.8 Flash Next on the RTX Spark mini; so far there are only numbers for smaller models."
+
+- zarizeni: rtx-spark-notebook
+  souhrn: "RTX Spark laptops earn praise for AI performance and criticism for battery, heat and noise. This is a first generation with early software."
+  opakuje:
+    - "Performance is the same on battery and on the charger, but the battery drains fast."
+    - "Under heavy inference the fans spin up and the case gets hot."
+    - "The software is beta: installing agents and CUDA on Arm has hooks."
+  recenze:
+    - vydavatel: "Windows Central"
+      url: "https://www.windowscentral.com/hardware/nvidia/rtx-spark-review-benchmarks-2026"
+      datum: 2026-10-15
+      typ: nezavisle
+      text: "It handles AI runs very well, but sustained decode trails more powerful dedicated GPUs. The battery lasts a working day for ordinary work, not with a local model."
+    - vydavatel: "The Verge"
+      url: "https://www.theverge.com/tech/1012748/nvidia-rtx-spark-windows-arm-laptops-asus-hp-lenovo-impressions"
+      datum: 2026-10-16
+      typ: nezavisle
+      text: "Ordinary work 5–6 hours on battery. A local agent with Qwen3.8 27B used 10 % of the battery in 10 minutes and the laptop got hot; the fans were loud even on simple queries."
+    - vydavatel: "PCWorld"
+      url: "https://www.pcworld.com/article/3275866/nvidias-rtx-spark-laptops-make-no-sense-until-they-do.html"
+      datum: 2026-11-03
+      typ: nezavisle
+      text: "During a large AI run the fans go \"like low Earth orbit\" and 46 % of the battery went in 33 minutes. At 7 000 USD the author says you need tasks that really use the memory."
+    - vydavatel: "The Register"
+      url: "https://www.theregister.com/personal-tech/2026/10/16/benchmarked-nvidias-rtx-spark-notebook-delivers-serious-local-ai-compute-at-a-price/5303621"
+      datum: 2026-10-16
+      typ: nezavisle
+      text: "Under sustained inference, occasional lock-ups and once graphical artifacts when the GPU went above 90 °C. According to the test, the cooling does not really address throttling."
+    - vydavatel: "Thurrott.com"
+      url: "https://www.thurrott.com/a-i/local-ai/343502/rtx-spark-local-ai-baby-steps-and-a-few-small-victories"
+      datum: 2026-11-04
+      typ: nezavisle
+      text: "After weeks of use: heavy, hot and loud, the software immature. Local AI works on the platform, but for an ordinary user it does not make sense."
+  chybi: "Missing: a public measurement of Qwen3.8 Flash Next on a 128GB laptop and dB noise measurements."
+
+- zarizeni: strix-halo
+  souhrn: "Owners praise the quietness, the power draw and the price for 128 GB. The most common complaint is software: ROCm, sleep and drivers."
+  opakuje:
+    - "ROCm is the main friction; Vulkan and llama.cpp work more reliably."
+    - "Large dense models are slow, MoE is usable."
+    - "The box is quiet and frugal, but on long context it loses to the DGX."
+  recenze:
+    - vydavatel: "Tom's Hardware"
+      url: "https://www.tomshardware.com/pc-components/gpus/nvidia-dgx-spark-review"
+      datum: 2026-01-27
+      typ: nezavisle
+      text: "Strix Halo draws around 112 W during inference. On long context, though, it is roughly twice as slow as the DGX Spark and uses twice as many joules per token."
+    - vydavatel: "Level1Techs forum"
+      url: "https://forum.level1techs.com/t/ive-hopped-on-the-strix-halo-train/248541"
+      datum: 2026-04-07
+      typ: komunita
+      text: "A user describes the early days: only Vulkan llama.cpp ran reliably, ROCm would not get going with a large context. With ROCm 7.2 and the toolbox it improved and today he uses it daily."
+    - vydavatel: "blog.t1m.me"
+      url: "https://blog.t1m.me/blog/local-llms-on-strix-halo-128gb-shared-ram"
+      datum: 2026-02-22
+      typ: komunita
+      text: "On the 128GB box he measured qwen3-coder-next at 35 tok/s, nemotron at 63 tok/s and gpt-oss 120B at 31 tok/s. The author calls them usable for smaller agent tasks, not for heavy production."
+  majitele:
+    - kde: "r/LocalLLM — Why I returned my Strix Halo"
+      url: "https://www.reddit.com/r/LocalLLM/comments/1vi3xcz/why_i_returned_my_strix_halo_128gb/"
+      datum: 2026-08-07
+      typ: komunita
+      text: "The owner returned the machine over software: problems with sleep and wake, the need for constant tuning. He praises the size, the quietness, the power draw and the modularity."
+  chybi: "Missing: public noise measurements under load for specific OEM boxes; the figures differ with the cooling."
+
+- zarizeni: mac-studio
+  souhrn: "Reviewers and owners alike describe the Mac Studio as a quiet and efficient machine for local agents. The weak spot is dependence on MLX and on the engine that supports a given model."
+  opakuje:
+    - "Quiet, cool and frugal even during long agent runs."
+    - "Performance depends on MLX and the specific engine; not every model is optimized."
+    - "128 GB is the ceiling: larger models need 256 GB or a quantization that does not suit them."
+  recenze:
+    - vydavatel: "MacStories — M5 Ultra"
+      url: "https://www.macstories.net/stories/m5-ultra-mac-studio-review-the-dream-mac-for-local-ai-agents/"
+      datum: 2026-09-21
+      typ: nezavisle
+      text: "On a 256GB configuration: Qwen3.8 Flash Next over 100 tok/s on a short prompt and 60–85 tok/s at 64–256k context. The machine is quiet, cool and in agent tasks markedly faster than the M3 Ultra."
+    - vydavatel: "Tom's Hardware — M5 Ultra vs DGX Spark"
+      url: "https://www.tomshardware.com/tech-industry/artificial-intelligence/going-deep-on-local-ai-performance-benchmarking-with-apples-mac-studio-with-m5-ultra-taking-on-nvidia-dgx-spark-inference-engine-recipes-mandatory-for-bigger-models-as-mlx-stack-matures"
+      datum: 2026-11-10
+      typ: nezavisle
+      text: "In an agent test the Mac Studio finished the task in roughly half the time of the DGX Spark and used 16 % less energy. With large models, though, the engine decides: TensorFold can run GLM 5.3, DeepSeek cannot."
+  majitele:
+    - kde: "r/MacStudio"
+      url: "https://www.reddit.com/r/MacStudio/comments/1wrnv78/owners_of_the_m5_ultra_that_use_it_for_llm_what/"
+      datum: 2026-09-27
+      typ: komunita
+      text: "An M5 Ultra owner: for LLMs \"fantastic\", Qwen3.8 fp8 with MTP around 45 tok/s. But the model thinks too much and has to be stopped; benchmark numbers are no guarantee."
+  chybi: "Missing: a public measurement of the 128GB configuration; the reviews above are for 256 GB."
+
+- zarizeni: macbook-pro
+  souhrn: "A portable machine that is the only laptop to carry 128 GB and models above 100B. You pay for that with heat, noise and lower speed than desktop boxes."
+  opakuje:
+    - "On small models the RTX laptop is faster; the advantage starts with models above 24 GB."
+    - "Large models warm it up and spin the fans, but the machine stays stable."
+    - "With the largest models 128 GB fills up and little is left for the system."
+  recenze:
+    - vydavatel: "Ai Miracle"
+      url: "https://www.aimiracle.ai/ai-hardware-review/macbook-pro-m5-max-review/"
+      datum: 2026-07-02
+      typ: nezavisle
+      text: "A 70B model in 4-bit quantization runs at 18–25 tok/s. On models up to 24 GB, though, the RTX 5090 laptop is faster; the M5 Max wins where 24 GB does not fit."
+    - vydavatel: "CraftRigs"
+      url: "https://craftrigs.com/comparisons/m5-max-128gb-local-llm-benchmark-reality/"
+      datum: 2026-03-13
+      typ: nezavisle
+      text: "Llama 3 70B 18–25 tok/s, 14B 45–60 tok/s, 7B 80–100 tok/s. Decode is limited by memory bandwidth, not compute; against the M4 Max that means 15–20 % more."
+    - vydavatel: "corriente.jp"
+      url: "https://corriente.jp/macbook-pro-m5-max-review/"
+      datum: 2026-04-05
+      typ: nezavisle
+      text: "An 80B model generated around 88 tok/s, 70B around 12 and 27B around 24 tok/s. The temperature stayed around 85 °C, the fan spun up, but the run did not fall apart."
+  majitele:
+    - kde: "r/LocalLLaMA"
+      url: "https://www.reddit.com/r/LocalLLaMA/comments/1sfr6u4/m5_max_128gb_17_models_23_prompts_qwen_35_122b_is/"
+      datum: 2026-04-08
+      typ: komunita
+      text: "After 17 models and 23 prompts his best result was Qwen 3.5 122B Q4: 50–65 tok/s. Gemma 4 31B at full precision ran around 7 tok/s, that is, unusably."
+  chybi: "Missing: a public measurement of Qwen3.8 Flash Next on a 128GB MacBook Pro; the numbers above are for other models."
+
+- zarizeni: gorgon-halo
+  souhrn: "192 GB is the main argument: a model fits that does not fit in 128 GB. The speed, though, is only slightly higher than with Strix Halo."
+  opakuje:
+    - "More memory, not more speed: bandwidth stays around 273 GB/s."
+    - "The largest models fit only in 2-bit quantization."
+    - "Price and availability are the main obstacle, not the hardware."
+  recenze:
+    - vydavatel: "The Register"
+      url: "https://www.theregister.com/personal-tech/2026/09/29/amds-192-gb-gorgon-halo-prices-might-leave-you-petrified/5299875"
+      datum: 2026-09-29
+      typ: nezavisle
+      text: "Calls the prices of 192GB machines frightening. For local AI and small companies, though, it may be a path to larger models without the cloud."
+    - vydavatel: "Intelligent Living"
+      url: "https://www.intelligentliving.co/192gb-ai-mini-pcs-have-arrived/"
+      datum: 2026-09-09
+      typ: nezavisle
+      text: "Summarizes the offer of 192GB mini PCs and warns that manufacturer-quoted speeds must be taken as marketing until independent tests confirm them."
+    - vydavatel: "llmspeed.dev"
+      url: "https://llmspeed.dev/hardware/ryzen-ai-max-pro-495-192gb/"
+      datum: 2026-09-15
+      typ: nezavisle
+      text: "Lists 192 GB and 273 GB/s as the main parameters that determine generation. These are modelled values derived from bandwidth, not measured throughput."
+  majitele:
+    - kde: "r/LocalLLaMA"
+      url: "https://www.reddit.com/r/LocalLLaMA/comments/1t3duwm/ryzen_ai_max_495_gorgon_halo_with_192gb_vram/"
+      datum: 2026-05-04
+      typ: komunita
+      text: "The discussion notes that bandwidth stays similar to Strix Halo (256–273 GB/s). The benefit is capacity: a larger model fits entirely in memory."
+  chybi: "Missing: a public measurement of Qwen3.8 Flash Next on 192 GB at 128k and 262k context on a single machine."

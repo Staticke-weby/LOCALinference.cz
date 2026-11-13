@@ -1,7 +1,7 @@
 ---
 title: "Gorgon Halo 192 GB: prostor pro Qwen3.8 Flash Next, ne pro obří modely"
-description: "192 GB unified paměti znamená delší kontext a víc souběžných požadavků pro Qwen3.8 Flash Next. Obří modely v Q2 patří do serverovny."
-last_verified: 2026-11-10
+description: "192 GB unified paměti pro delší kontext. Co na Gorgon Halo běží, kolik stojí, zkušenosti majitelů a recenze."
+last_verified: 2026-11-13
 sidebar:
   label: Gorgon Halo 192 GB
   order: 5
@@ -9,6 +9,7 @@ sidebar:
 
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
+import Zkusenosti from '../../../components/Zkusenosti.astro';
 
 **Verdikt:** Gorgon Halo není vstupenka k obřím modelům ani
 k nejvyšší kvantizaci. 192 GB je prostor navíc pro **Qwen3.8 Flash
@@ -38,7 +39,7 @@ Flash Next na 128 GB.
 - **Kolik lidí obslouží:** 2–4 podle kontextu; na víc přidejte box.
 - **Co to stojí:** od 134 900 Kč bez DPH (6 199 USD, odhad); americké
   ceny 6 199–7 499 USD bez DPH a dopravy.
-- **Kde narazíte:** propustnost paměti je stejná jako u Strix Hala,
+- **Kde narazíte:** propustnost paměti je stejná jako u Strix Halo,
   takže vyšší kvantizace nezrychlí model — jen zlepší kvalitu.
 
 ## Rychlá fakta
@@ -103,7 +104,7 @@ jsou minuty čekání.
 |---|---|---|---|
 | Framework, 30. 9. 2026 | DeepSeek V4.1 Flash Q2 ~14 tok/s, MiMo 16–18 tok/s při 0–64K | výrobce | konfigurace popsaná, nezávisle neověřené |
 | Komunitní test na HF | Qwen3.8 Q6_K_XL 19–20 tok/s krátce, 4,6 tok/s na 249K | komunita | sporné, konfigurace zpochybněna |
-| AMD (prezentace) | 52,2 tok/s vs. 51,2 tok/s na Strix Halu | výrobce | model a konfigurace neuvedeny |
+| AMD (prezentace) | 52,2 tok/s vs. 51,2 tok/s na Strix Halo | výrobce | model a konfigurace neuvedeny |
 
 Nezávislé měření Qwen3.8 Flash Next na 495 stále chybí. Proto
 v tabulce výše zůstává `[DOPLNIT]` a číslo 19–20 tok/s bereme jako
@@ -131,20 +132,22 @@ kapacita, ne zrychlení.
 - **Není to rychlejší.** Stejná architektura, stejná GPU jádra, jen
   o 6,7 % vyšší propustnost paměti.
 - **Stejný software.** ROCm, Vulkan, llama.cpp i vLLM se chovají jako
-  na Strix Halu; [NPU](/slovnik/software/rocm/) zůstává okrajová cesta.
+  na Strix Halo; [NPU](/slovnik/software/rocm/) zůstává okrajová cesta.
 - **Q2 kvantizace** u velkých modelů znamená horší kvalitu. Čím menší
   kvantizace, tím víc model „šumí“.
-- **Cena.** 6 199–7 499 USD je blízko DGX Sparku a RTX Sparku.
+- **Cena.** 6 199–7 499 USD je blízko DGX Spark a RTX Spark.
 - **První měření je sporné.** Komunitní test na 192GB boxu
   (Q6_K_XL, llama.cpp/ROCm) naměřil 19–20 tok/s na krátkém promptu
   a 4,6 tok/s na 249K kontextu. Jiní uživatelé stejnou konfiguraci
-  zpochybňují a na Strix Halu hlásí 50–65 tok/s. Dokud nepřijde
+  zpochybňují a na Strix Halo hlásí 50–65 tok/s. Dokud nepřijde
   nezávislé měření, bereme číslo jako spodní mez, ne jako vlastnost
   čipu.
 
-## Srovnání se Strix Halem
+## Srovnání se Strix Halo
 
 <TabulkaZarizeni filtr={["strix-halo", "gorgon-halo"]} />
+
+<Zkusenosti id="gorgon-halo" />
 
 ## Kudy dál
 

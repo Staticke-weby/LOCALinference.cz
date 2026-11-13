@@ -1,6 +1,6 @@
 ---
 title: "Prefill: co to je a proč dlouhý dokument zdržuje"
-description: "Prefill je fáze, kdy model přečte celé zadání. Vysvětlíme, proč rozhoduje o TTFT, proč je na Strix Halu úzkým hrdlem a co s tím udělat."
+description: "Prefill je fáze, kdy model přečte celé zadání. Vysvětlíme, proč rozhoduje o TTFT, proč je na Strix Halo úzkým hrdlem a co s tím udělat."
 last_verified: 2026-11-10
 sidebar:
   label: Prefill
@@ -65,7 +65,7 @@ Základní vztah je jednoduchý:
 
 > **TTFT ≈ délka vstupu / prefill tok/s + fronta + síť**
 
-Na Strix Halu 128 GB se prefill podle veřejných měření pohybuje mezi
+Na Strix Halo 128 GB se prefill podle veřejných měření pohybuje mezi
 **0,8 a 2,4 tis. tok/s** podle enginu a kvantizace. Z toho vychází
 orientační čekání:
 
@@ -77,15 +77,15 @@ orientační čekání:
 
 Jsou to **výpočty z rozsahu měření**, ne záruka. Konkrétní čísla a
 konfigurace jsou v [datové kartě](/data/qwen3-8-flash-next-strix-halo/).
-Na DGX Sparku je prefill výrazně rychlejší, protože CUDA a vLLM jsou
-pro tento model optimalizované; na RTX Sparku záleží na verzi portu.
+Na DGX Spark je prefill výrazně rychlejší, protože CUDA a vLLM jsou
+pro tento model optimalizované; na RTX Spark záleží na verzi portu.
 
-## Proč je prefill slabý na Strix Halu
+## Proč je prefill slabý na Strix Halo
 
 CUDA stroje mají prefill rychlejší, protože je pro ně optimalizovaný
 software. Na AMD se používá [ROCm](/slovnik/software/rocm/) nebo Vulkan
 a část optimalizací chybí. Není to chyba modelu — je to rozdíl
-v ekosystému. Proto se u Strix Hala vyplatí kratší vstupy a trpělivost
+v ekosystému. Proto se u Strix Halo vyplatí kratší vstupy a trpělivost
 u dlouhých dokumentů.
 
 ## Chunked prefill

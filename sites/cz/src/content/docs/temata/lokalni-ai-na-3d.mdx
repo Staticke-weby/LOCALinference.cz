@@ -1,6 +1,6 @@
 ---
 title: "Lokální AI na 3D: model z fotky na 128 GB"
-description: "Image-to-3D na 128GB zařízeních: TRELLIS.2, Pixal3D a Hunyuan3D, reálné časy na Strix Halu a Macu, formát GLB, PBR a licence."
+description: "Image-to-3D na 128GB zařízeních: TRELLIS.2, Pixal3D a Hunyuan3D, reálné časy na Strix Halo a Macu, formát GLB, PBR a licence."
 last_verified: 2026-11-10
 sidebar:
   order: 12
@@ -15,7 +15,7 @@ Na 128GB stroji jde o minuty, ne hodiny.
 - **Začněte TRELLIS.2** — MIT licence, PBR textura, běží na CUDA,
   ROCm i MPS.
 - **Počítejte minuty**: 512 px za ~2 minuty, 1024 px za ~6–7 minut
-  na Strix Halu.
+  na Strix Halo.
 - **Jedna fotka nestačí na věrný model**; ze tří až čtyř pohledů je
   výsledek výrazně lepší.
 - **Výstup není hotový asset** — chybí retopologie, měřítko a často
@@ -73,14 +73,14 @@ na blokování scény, ne na finální asset.
 
 Jsou to **převzatá měření**, ne náš test. Strix Halo je měřený na
 Windows s ROCm, Mac na MPS. Pro DGX Spark a RTX Spark veřejné číslo
-nemáme; na DGX Sparku je postup v oficiálním NVIDIA playbooku.
+nemáme; na DGX Spark je postup v oficiálním NVIDIA playbooku.
 
 Co z toho plyne pro praxi: **512 px je pracovní rozlišení**, 1024 px
 je finální. Na 512 px stihnete za hodinu dvacet až třicet iterací,
 což je zhruba tempo, jakým se dá ladit tvar. Na 1024 px už jen
 potvrzujete, že vybraná varianta vypadá dobře.
 
-Rozdíl mezi Strix Halem a M4 Pro není v kvalitě, ale v čase. Mac
+Rozdíl mezi Strix Halo a M4 Pro není v kvalitě, ale v čase. Mac
 s 24 GB paměti je navíc na hraně: TRELLIS.2 se vejde, ale na delší
 dávku už nezbývá místo. Mac Studio s 128 GB je v tomhle ohledu
 bezpečnější než notebook.
@@ -198,7 +198,7 @@ její autor.
 
 - [TRELLIS.2](https://github.com/microsoft/TRELLIS.2)
 - [trellis-mac — TRELLIS.2 na Apple Silicon](https://github.com/shivampkumar/trellis-mac)
-- [kroqueta-s — TRELLIS.2 na Strix Halu](https://github.com/kroqueta-s/trellis-strix-halo)
+- [kroqueta-s — TRELLIS.2 na Strix Halo](https://github.com/kroqueta-s/trellis-strix-halo)
 - [Pixal3D](https://github.com/TencentARC/Pixal3D)
 - [TripoSR](https://github.com/VAST-AI-Research/TripoSR)
 - [Hunyuan3D 2.x — licence](https://huggingface.co/tencent/Hunyuan3D-2)

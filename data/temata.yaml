@@ -124,7 +124,7 @@
     - /generovani/licence/
     - /generovani/recepty/
     - /zarizeni/srovnani/
-  chybi: "Chybí časy pro úpravy obrázků a Z-Image na RTX Sparku při 8 krocích."
+  chybi: "Chybí časy pro úpravy obrázků a Z-Image na RTX Spark při 8 krocích."
   overeno: 2026-11-05
 
 - id: lokalni-ai-na-video
@@ -140,7 +140,7 @@
     - /generovani/licence/
     - /generovani/recepty/
     - /zarizeni/srovnani/
-  chybi: "Chybí měření videa na DGX Sparku a další modely na RTX Sparku."
+  chybi: "Chybí měření videa na DGX Spark a další modely na RTX Spark."
   overeno: 2026-11-05
 
 - id: lokalni-ai-na-audio
@@ -172,7 +172,7 @@
     - /generovani/licence/
     - /slovnik/software/pbr/
     - /zarizeni/srovnani/
-  chybi: "Chybí měření 3D na DGX Sparku a RTX Sparku."
+  chybi: "Chybí měření 3D na DGX Spark a RTX Spark."
   overeno: 2026-11-05
 
 - id: cestina
@@ -318,5 +318,5 @@
   stav: hotovo
   stranky:
     - /temata/elektrina-hluk-teplo/
-  chybi: "Chybí veřejné měření hluku v zátěži (D12) a příkon Strix Hala."
+  chybi: "Chybí veřejné měření hluku v zátěži (D12) a příkon Strix Halo."
   overeno: 2026-11-11

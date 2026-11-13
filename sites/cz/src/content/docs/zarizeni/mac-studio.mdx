@@ -1,7 +1,7 @@
 ---
 title: "Mac Studio 128 GB: cena, výkon a Qwen3.8 Flash Next"
-description: "Mac Studio s M5 Max a 128 GB unified paměti: cena 147 990 Kč, 614 GB/s, MLX, naměřené tok/s a kde je limit proti CUDA strojům."
-last_verified: 2026-11-10
+description: "Mac Studio M5 Max se 128 GB unified paměti: cena 147 990 Kč, 614 GB/s, MLX, naměřené tok/s, zkušenosti a recenze."
+last_verified: 2026-11-13
 sidebar:
   label: Mac Studio
   order: 4
@@ -12,6 +12,7 @@ import RozcestnikZarizeni from '../../../components/RozcestnikZarizeni.astro';
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import AlzaCena from '../../../components/AlzaCena.astro';
 import GenerovaniNaZarizeni from '../../../components/GenerovaniNaZarizeni.astro';
+import Zkusenosti from '../../../components/Zkusenosti.astro';
 
 **Verdikt:** Tichý stolní stroj s 128 GB unified paměti a propustností
 614 GB/s. Qwen3.8 Flash Next na něm poběží, ale přes Apple ekosystém —
@@ -38,7 +39,7 @@ NVIDIA stack, musí jinam.
 - **Unified memory.** Procesor i grafika sdílejí jeden pool. Model se
   nemusí vejít do „VRAM“ — stačí, aby se vešel do 128 GB.
 - **Propustnost 614 GB/s** u M5 Max se 40jádrovou GPU. Je to víc než
-  u DGX Sparku (273 GB/s) a Strix Halu (256 GB/s), takže
+  u DGX Spark (273 GB/s) a Strix Halo (256 GB/s), takže
   [decode](/slovnik/vykon/decode/) může být rychlejší.
 - **Metal.** Grafické API Applu, přes které běží
   [llama.cpp](/slovnik/software/llamacpp/) i další nástroje.
@@ -93,7 +94,7 @@ výkon. Model Qwen3.8 Flash Next zabere kolem 90–100 GB, takže
 
 ## Kolik to stojí za tři roky
 
-Elektřina se počítá z příkonu, ale u Mac Studia výrobce udává jen
+Elektřina se počítá z příkonu, ale u Mac Studio výrobce udává jen
 maximum napájecího zdroje (480 W). Ilustrativní **výpočet horní meze**:
 480 W × 8 h × 250 dní = **960 kWh ročně**, tedy 2 880 kWh za tři roky.
 Skutečná spotřeba při inference bude nižší, protože 480 W je strop
@@ -109,7 +110,7 @@ dělá pořizovací cena.
 |---|---|---|
 | Ticho v kanceláři | **ano** | pasivní chlazení, žádný hluk |
 | macOS a continuity | **ano** | stejný ekosystém |
-| CUDA a NVFP4 | **ne** | patří DGX Sparku nebo RTX Sparku |
+| CUDA a NVFP4 | **ne** | patří DGX Spark nebo RTX Spark |
 | vLLM v produkci | **ne** | běží jen na CUDA |
 | Nejnižší cena za 128 GB | **ne** | Strix Halo je levnější |
 | Vysokou propustnost paměti | **ano** | 614 GB/s |
@@ -119,7 +120,7 @@ dělá pořizovací cena.
 - **Žádná CUDA.** NVFP4 ani oficiální vLLM.
 - **Kvantizace.** MLX a GGUF, ne NVFP4; kvalita se liší podle formátu.
 - **Opravitelnost.** Paměť je připájená; co koupíte, to máte.
-- **Cena za 128 GB** je vyšší než u Strix Halu.
+- **Cena za 128 GB** je vyšší než u Strix Halo.
 - **Dlouhý kontext** zdržuje prefill — 64k znamená TTFT kolem 80 s.
 
 ## Kde koupit
@@ -129,6 +130,8 @@ od 147 990 Kč vč. DPH k 9. 11. 2026. Před nákupem ověřte, že jde
 opravdu o 128GB variantu — řada se prodává i se 64 GB.
 
 <AlzaCena kategorie="mac" text="Otevřít kategorii na Alza.cz" />
+
+<Zkusenosti id="mac-studio" />
 
 ## Kudy dál
 

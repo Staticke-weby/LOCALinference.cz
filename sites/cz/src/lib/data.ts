@@ -267,6 +267,28 @@ export function getZarizeniById(id: string): Zarizeni | undefined {
   return getZarizeni().find((z) => z.id === id);
 }
 
+export type Zkusenost = {
+  vydavatel?: string;
+  kde?: string;
+  url: string;
+  datum: string | Date;
+  typ: 'nezavisle' | 'komunita';
+  text: string;
+};
+
+export type ZkusenostiZarizeni = {
+  zarizeni: string;
+  souhrn: string;
+  opakuje: string[];
+  recenze: Zkusenost[];
+  majitele: Zkusenost[];
+  chybi?: string;
+};
+
+export function getZkusenosti(id: string): ZkusenostiZarizeni | undefined {
+  return (load<ZkusenostiZarizeni[]>('zkusenosti.yaml') ?? []).find((z) => z.zarizeni === id);
+}
+
 export function getDgxSparkOem(): DgxSparkOem[] {
   return (load<DgxSparkOem[]>('dgx-spark-oem.yaml') ?? []).sort(
     (a, b) => a.cena_czk_s_dph - b.cena_czk_s_dph || b.uloziste_gb - a.uloziste_gb,

@@ -19,7 +19,7 @@ a open-source projektů. Když se řekne „ten stroj má CUDA“, znamená to,
 - **Pro lokální AI je důležitá proto**, že na ní běží vLLM, llama.cpp,
   FlashAttention i NVFP4.
 - **Není to záruka rychlosti.** O tok/s rozhoduje propustnost paměti
-  a software, ne logo. Na Strix Halu běží model bez CUDA.
+  a software, ne logo. Na Strix Halo běží model bez CUDA.
 
 ## K čemu to je
 
@@ -47,7 +47,7 @@ Pro lokální AI to znamená tři věci:
 
 Rozdíl není v tom, že by CUDA byla „rychlejší“. Rozdíl je v tom, že na
 CUDA stroji je hotový recept, který funguje, a při problému najdete
-odpověď. Na Strix Halu je potřeba počítat s tím, že některé věci
+odpověď. Na Strix Halo je potřeba počítat s tím, že některé věci
 půjdou přes Vulkan a některé vůbec.
 
 ## Kde ji v katalogu potkáte
@@ -75,7 +75,7 @@ DGX Spark s Linuxem.
 - **CUDA není záruka rychlosti.** O tok/s rozhoduje propustnost paměti
   a počet aktivních parametrů, ne logo na krabici.
 - **CUDA není podmínka pro lokální AI.** Qwen3.8 Flash Next běží
-  i na Strix Halu přes llama.cpp.
+  i na Strix Halo přes llama.cpp.
 - **CUDA neznamená uzamčení navždy.** Model i váhy jsou přenositelné;
   mění se jen engine, kterým je spustíte.
 - **CUDA není totéž co Tensor Cores.** Tensor Cores jsou hardware;
@@ -91,7 +91,7 @@ DGX Spark s Linuxem.
 
 ## Kdy se bez ní obejdete
 
-- **Jeden uživatel** a chat na Strix Halu přes llama.cpp.
+- **Jeden uživatel** a chat na Strix Halo přes llama.cpp.
 - **Nejnižší cena** — Strix Halo je levnější než CUDA stroje.
 - **Mac** — pokud vám stačí MLX a ekosystém Apple.
 - **Jednoduché generování obrázků** — ComfyUI funguje i na ROCm

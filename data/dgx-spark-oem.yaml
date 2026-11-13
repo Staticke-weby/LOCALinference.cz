@@ -17,7 +17,7 @@
   overeno: 2026-11-09
   titulek: "ASUS Ascent GX10 1TB: cena, výkon a co na něm poběží"
   description: "ASUS Ascent GX10 s GB10, 128 GB a 1 TB. Cena 162 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next v CUDA/vLLM."
-  popis: "Nejlevnější GB10 stroj v nabídce. Stejný čip, paměť a software jako DGX Spark, ale nižší cena a 1 TB úložiště. Pro vývojáře, kteří chtějí CUDA a DGX OS bez placení referenčního DGX Sparku."
+  popis: "Nejlevnější GB10 stroj v nabídce. Stejný čip, paměť a software jako DGX Spark, ale nižší cena a 1 TB úložiště. Pro vývojáře, kteří chtějí CUDA a DGX OS bez placení referenčního DGX Spark."
   pro_koho: "Pro vývojáře a malý tým, který chce CUDA, vLLM a DGX OS a chce ušetřit proti NVIDIA DGX Spark."
   silne:
     - "Nejnižší cena GB10 v nabídce"

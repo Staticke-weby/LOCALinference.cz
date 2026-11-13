@@ -4,6 +4,13 @@
 # stránky a pojmy. Technické záznamy o stavbě webu (build, sitemap,
 # hreflang, menu, opravy odkazů) sem nepatří.
 
+- datum: 2026-11-13
+  typ: obsah
+  titulek: "Zkušenosti a recenze u každého zařízení"
+  co_se_zmenilo: "Sedm stránek zařízení má novou sekci Zkušenosti a recenze: co píšou nezávislé testy, co hlásí majitelé, co se opakuje a kde chybí data. Každá položka má zdroj, datum a typ (nezávislý test / komunita). Stejná sekce je i v anglické mutaci. Zároveň se v celém webu sjednotily názvy zařízení bez skloňování (DGX Spark, Strix Halo, Mac Studio, MacBook Pro)."
+  dotcene_stranky: [zarizeni/dgx-spark, zarizeni/rtx-spark-mini, zarizeni/rtx-spark-notebook, zarizeni/strix-halo, zarizeni/mac-studio, zarizeni/macbook-pro, zarizeni/gorgon-halo]
+  zdroj: https://www.localinference.cz/zarizeni/dgx-spark/
+
 - datum: 2026-11-11
   typ: obsah
   titulek: "EN mutace: plná parita, 186 z 186 stránek"
@@ -28,7 +35,7 @@
 - datum: 2026-11-11
   typ: zdroj
   titulek: "Registr zdrojů: VideoCardz Gorgon Halo a NVIDIA forum recept"
-  co_se_zmenilo: "Dva zdroje používané u Gorgon Hala a DGX Sparku jsou nově v registru data/zdroje.yaml s datem kontroly."
+  co_se_zmenilo: "Dva zdroje používané u Gorgon Halo a DGX Spark jsou nově v registru data/zdroje.yaml s datem kontroly."
   dotcene_stranky: [zarizeni/gorgon-halo, data]
   zdroj: https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory
 
@@ -119,7 +126,7 @@
 - datum: 2026-11-10
   typ: obsah
   titulek: "Mac Studio a MacBook Pro: ceny, výkon a rozhodnutí"
-  co_se_zmenilo: "Obě stránky mají ceny konfigurací k datu, naměřené tok/s, srovnání s jinými stroji, výpočet spotřeby u Mac Studia a vysvětlení, kdy je notebook lepší než box."
+  co_se_zmenilo: "Obě stránky mají ceny konfigurací k datu, naměřené tok/s, srovnání s jinými stroji, výpočet spotřeby u Mac Studio a vysvětlení, kdy je notebook lepší než box."
   dotcene_stranky: [zarizeni/mac-studio, zarizeni/macbook-pro]
   zdroj: https://www.localinference.cz/zarizeni/mac-studio/
 
@@ -168,7 +175,7 @@
 - datum: 2026-11-10
   typ: obsah
   titulek: "Slovník: chat template, teplota, flash attention, GTT a offload"
-  co_se_zmenilo: "Pět nových hesel: chat template (proč model ignoruje systémový prompt), teplota a vzorkování (kdy nulu a kdy tvořivost), flash attention (co zrychlí u dlouhého kontextu), GTT (paměť graficky na Strix Halu) a offload (proč velký model na malé kartě běží pomalu). Všechna jsou v automatickém prolinkování."
+  co_se_zmenilo: "Pět nových hesel: chat template (proč model ignoruje systémový prompt), teplota a vzorkování (kdy nulu a kdy tvořivost), flash attention (co zrychlí u dlouhého kontextu), GTT (paměť graficky na Strix Halo) a offload (proč velký model na malé kartě běží pomalu). Všechna jsou v automatickém prolinkování."
   dotcene_stranky: [slovnik/software/chat-template, slovnik/software/teplota-vzorkovani, slovnik/software/flash-attention, slovnik/pamet/gtt, slovnik/pamet/offload]
   zdroj: https://www.localinference.cz/slovnik/software/chat-template/
 
@@ -337,7 +344,7 @@
 - datum: 2026-11-06
   typ: obsah
   titulek: "Doporučená cesta: Windows, Linux, nebo cena"
-  co_se_zmenilo: "Ve výběru je tabulka Doporučená cesta: Windows a jeden stroj → RTX Spark, Linux a vLLM → DGX Spark, nejnižší cena → Strix Halo. U Strix Hala přibyla sekce Co NPU skutečně umí, u RTX Sparku sekce Windows on Arm: co čekat."
+  co_se_zmenilo: "Ve výběru je tabulka Doporučená cesta: Windows a jeden stroj → RTX Spark, Linux a vLLM → DGX Spark, nejnižší cena → Strix Halo. U Strix Halo přibyla sekce Co NPU skutečně umí, u RTX Spark sekce Windows on Arm: co čekat."
   dotcene_stranky: [vyber/bezpecna-volba, zarizeni/strix-halo, zarizeni/rtx-spark-mini, zarizeni/rtx-spark-notebook]
   zdroj: https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html
 
@@ -386,13 +393,13 @@
 - datum: 2026-11-05
   typ: mereni
   titulek: "První časy generování pro Strix Halo a Mac"
-  co_se_zmenilo: "Do receptů přidáno naměřené Z-Image-Turbo: Strix Halo 128 GB ~24 s na 1024²/8 kroků (výrobce GPD) a MacBook Pro M5 Pro 64 GB 22 s na 1344×768 (komunita). U RTX Sparku zůstává [DOPLNIT]."
+  co_se_zmenilo: "Do receptů přidáno naměřené Z-Image-Turbo: Strix Halo 128 GB ~24 s na 1024²/8 kroků (výrobce GPD) a MacBook Pro M5 Pro 64 GB 22 s na 1344×768 (komunita). U RTX Spark zůstává [DOPLNIT]."
   dotcene_stranky: [generovani/recepty]
   zdroj: https://www.gpd.hk/newsinfo/3222619.html
 - datum: 2026-11-05
   typ: obsah
   titulek: "Nová sekce Generování: obrázky, video, audio, 3D"
-  co_se_zmenilo: "Přibylo 10 stránek /generovani/ a databáze 30 generativních modelů s licencí, nároky a rychlostí. Sekce odpovídá, co poběží na 128GB zařízeních; u DGX Sparku jsou naměřené časy u obrázků, ostatní jsou označené k doplnění."
+  co_se_zmenilo: "Přibylo 10 stránek /generovani/ a databáze 30 generativních modelů s licencí, nároky a rychlostí. Sekce odpovídá, co poběží na 128GB zařízeních; u DGX Spark jsou naměřené časy u obrázků, ostatní jsou označené k doplnění."
   dotcene_stranky: [generovani]
   zdroj: https://localagentboard.com/images
 - datum: 2026-11-05
@@ -415,7 +422,7 @@
   zdroj: https://omlx.ai/benchmarks/performance/7fpjs406
 - datum: 2026-11-04
   typ: cena
-  titulek: "Ceny Mac Studia a MacBooku Pro z Alza.cz"
+  titulek: "Ceny Mac Studio a MacBook Pro z Alza.cz"
   co_se_zmenilo: "Mac Studio 128 GB (M5 Max, 614 GB/s) stojí 147 990–171 990 Kč vč. DPH; MacBook Pro 128 GB 209 990–434 490 Kč. Specifikace upraveny na M5 Max podle Apple. Ceny se aktualizují přes kategorie Alza uvedené v aktualizace.md."
   dotcene_stranky: [zarizeni/mac-studio, zarizeni/macbook-pro, temata/cena-lokalni-ai]
   zdroj: https://www.alza.cz/mac-studio/18894763.htm
@@ -452,7 +459,7 @@
 - datum: 2026-11-04
   typ: obsah
   titulek: "Vysvětlivky: TTFT, prefill, souběžnost, paralelizace, power limit, throttling"
-  co_se_zmenilo: "Šest nových stránek vysvětluje pojmy, které se na webu používaly bez výkladu. Slovník má 25 pojmů, odkazy vedou z Jak čteme data, Kolik uživatelů a stránky RTX Spark notebooku."
+  co_se_zmenilo: "Šest nových stránek vysvětluje pojmy, které se na webu používaly bez výkladu. Slovník má 25 pojmů, odkazy vedou z Jak čteme data, Kolik uživatelů a stránky RTX Spark notebook."
   dotcene_stranky: [zaciname/co-je-ttft, zaciname/co-je-prefill, zaciname/co-je-soubeznost, zaciname/co-je-paralelizace, zaciname/co-je-power-limit, zaciname/co-je-throttling, zaciname/slovnik]
   zdroj: https://docs.vllm.ai/en/latest/design/metrics.html
 - datum: 2026-11-04
@@ -499,7 +506,7 @@
   zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next
 - datum: 2026-11-04
   typ: cena
-  titulek: "České ceny RTX Spark notebooků"
+  titulek: "České ceny RTX Spark notebook"
   co_se_zmenilo: "Přidáno 7 variant ASUS ProArt P14/P16, Lenovo Yoga Pro 9, MSI Prestige a Surface Laptop Ultra s 128GB. Ceny od 125 990 Kč vč. DPH; nová stránka /zarizeni/rtx-spark-notebook/."
   dotcene_stranky: [zarizeni/rtx-spark-notebook-oem, zarizeni/rtx-spark-notebook, vyber/rozpocet]
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939

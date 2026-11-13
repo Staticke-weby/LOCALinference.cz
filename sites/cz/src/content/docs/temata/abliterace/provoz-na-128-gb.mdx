@@ -19,7 +19,7 @@ matematika jako u základu. Rozdíl je v tom, jestli build umí držet
 
 - **Model má 125B hlavních parametrů, 6B aktivních, 51B n-gramů
   a 4B MTP.** Abliterace to nemění.
-- **NVIDIA FP4-Local má ~96 GiB vah** a na DGX Sparku umí s PLE
+- **NVIDIA FP4-Local má ~96 GiB vah** a na DGX Spark umí s PLE
   offloadem obsloužit až 1M tokenů FP8 KV cache (tvrzení NVIDIA).
 - **Pro 128 GB rozhoduje PLE z SSD**, ne jen velikost souboru.
 - **Parita není automatická.** Musí se měřit stejný formát, engine
@@ -135,7 +135,7 @@ pád.
 cache pro PLE. Nastavte 96 GB dedikované GPU paměti (32 GB pro
 Windows), pagefile 98 304/131 072 MB a nechte aspoň 32 GB volného
 NVMe. Na fóru NVIDIA vydavatel uvádí 53,2 tok/s v SPEED-Bench
-coding testu na RTX Sparku (komunita, ne náš test). Abliterovaný
+coding testu na RTX Spark (komunita, ne náš test). Abliterovaný
 build na tomto portu zatím nikdo veřejně nezměřil.
 
 ## Formáty a enginy
@@ -147,7 +147,7 @@ build na tomto portu zatím nikdo veřejně nezměřil.
 | **GGUF Q4/Q5** | Strix, Mac, CPU | přenosné | pomalejší, bez MTP |
 | **MLX 4bit** | Apple Silicon | nativní Metal | málo místa na kontext |
 
-Na Strix Halu a Macu NVFP4 neřešte. ROCm ani Metal ho nespustí;
+Na Strix Halo a Macu NVFP4 neřešte. ROCm ani Metal ho nespustí;
 cesta je GGUF a llama.cpp, případně MLX.
 
 ## Parita: jak ji měřit

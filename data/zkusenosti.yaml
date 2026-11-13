@@ -1,0 +1,217 @@
+# Zkušenosti majitelů a recenze k jednotlivým zařízením.
+# Každá položka má zdroj, datum a typ (nezavisle | komunita).
+# Text je interpretace veřejného zdroje, ne naše měření.
+
+- zarizeni: dgx-spark
+  souhrn: "Testeři i majitelé se shodují na tichém provozu a horkém povrchu. Výkon se rozchází podle receptu: výchozí konfigurace 36–46 tok/s, optimalizované 67–70."
+  opakuje:
+    - "Tichý i v zátěži; hluk řeší jen dlouhý CPU stress."
+    - "Skříň topí a v zátěži je horká na dotyk."
+    - "Rozdíl mezi recenzí a komunitou je hlavně engine a počet patchů."
+  recenze:
+    - vydavatel: "Tom's Hardware"
+      url: "https://www.tomshardware.com/pc-components/gpus/nvidia-dgx-spark-review"
+      datum: 2026-01-27
+      typ: nezavisle
+      text: "GB10 chválí jako efektivní a rychlý pro AI, CUDA a dokumentaci jako výhodu. Vytýká cenu a chybějící Windows. Hluk při generování obrázků naměřil do 37,5 dBA, skříň je v zátěži horká."
+    - vydavatel: "Guru3D"
+      url: "https://www.guru3d.com/review/nvidia-dgx-spark-review/page-5/"
+      datum: 2026-11-12
+      typ: nezavisle
+      text: "Founders Edition: 36 W v idle, 159 W při inferenci, 28–30 dB(A). Box označuje za velmi tichý, větráky jsou slyšet hlavně při trvalé zátěži CPU."
+    - vydavatel: "Digit"
+      url: "https://www.digit.in/features/general/nvidia-dgx-spark-review-this-is-what-a-real-ai-pc-feels-like.html"
+      datum: 2026-06-24
+      typ: nezavisle
+      text: "Povrch 41 °C, výfuk 53 °C, špička 220 W ze zásuvky. Systém byl stabilní a tichý i při opakovaných bězích, bez throttlingu."
+  majitele:
+    - kde: "r/LocalAIServers"
+      url: "https://www.reddit.com/r/LocalAIServers/comments/1vp8h52/does_anyone_own_a_nvidia_dgx_spark_if_so_how/"
+      datum: 2026-08-15
+      typ: komunita
+      text: "Majitelé hlásí extrémně tichý chod i v zátěži, ale výrazné teplo. Jeden z nich používá dva Sparky přes ConnectX-7 a říká, že jsou tišší než jeden malý ventilátor v mini PC."
+    - kde: "Medium — 4 months later"
+      url: "https://medium.com/data-science-collective/i-was-ready-to-return-my-dgx-spark-then-nvidias-january-update-changed-everything-e67699155a45"
+      datum: 2026-02-24
+      typ: komunita
+      text: "Jeden majitel popisuje první měsíce jako frustraci: 30B model throttloval, ventilátor hučel. Po lednové aktualizaci se zkušenost změnila; je to ale jeden příběh, ne měření."
+  chybi: "Chybí nezávislé měření hluku v dB pro OEM varianty; čísla výše platí pro Founders Edition."
+
+- zarizeni: rtx-spark-mini
+  souhrn: "Recenze se shodují na výkonu pro velké modely a na tom, že ekosystém Windows on Arm je raný. Veřejné měření Qwen3.8 na tomto boxu chybí."
+  opakuje:
+    - "128 GB je hlavní důvod koupě, ne hrubý výkon."
+    - "Paměť je připájená, rozšiřuje se jen SSD."
+    - "Software a ovladače jsou mladší než u DGX nebo Macu."
+  recenze:
+    - vydavatel: "NGXP Tech — MSI EdgeMesa N AI+"
+      url: "https://ngxptech.com/msi-edgemesa-n-ai-plus-review-2026-rtx-spark/"
+      datum: 2026-06-13
+      typ: nezavisle
+      text: "Chválí 128 GB pro modely nad 70B parametrů a poměr výkonu k velikosti. Vytýká vysokou cenu, připájenou RAM a raný Arm ekosystém."
+    - vydavatel: "Club386"
+      url: "https://www.club386.com/gigabyte-nvidia-rtx-spark-mini-pc/"
+      datum: 2026-11-11
+      typ: nezavisle
+      text: "Gigabyte AI Top Aero: 20 Arm jader, 6 144 CUDA jader, 128 GB unified a Windows 11 Arm. Stejný čip jako notebooky, jiná skříň a chlazení."
+    - vydavatel: "Kimono Oyaji's Lab"
+      url: "https://kimono-oyaji.com/en/rtx-spark-n1x-memory-bandwidth-2026-en/"
+      datum: 2026-09-07
+      typ: nezavisle
+      text: "NVIDIA neuvádí propustnost paměti. Z vlastních měření jiných strojů odhaduje ~42 tok/s pro 8B model při 273 GB/s; sám RTX Spark fyzicky neměl, jde o výpočet, ne měření."
+  majitele:
+    - kde: "Windows Central — test po týdnu"
+      url: "https://www.windowscentral.com/hardware/nvidia/rtx-spark-review-benchmarks-2026"
+      datum: 2026-10-15
+      typ: nezavisle
+      text: "Výchozí rozdělení 128 GB je 64 GB pro GPU a 64 GB pro systém; pro větší model se musí poměr změnit ručně. Autor to považuje za hlavní praktickou komplikaci."
+  chybi: "Chybí veřejné měření Qwen3.8 Flash Next na RTX Spark mini; zatím jsou jen čísla pro menší modely."
+
+- zarizeni: rtx-spark-notebook
+  souhrn: "Notebooky RTX Spark dostávají chválu za AI výkon a kritiku za baterii, teplo a hluk. Je to první generace s raným softwarem."
+  opakuje:
+    - "Výkon je stejný na baterii i na nabíječce, ale baterie mizí rychle."
+    - "Při těžké inference se ventilátory roztočí a skříň hřeje."
+    - "Software je beta: instalace agentů a CUDA na Arm mají háčky."
+  recenze:
+    - vydavatel: "Windows Central"
+      url: "https://www.windowscentral.com/hardware/nvidia/rtx-spark-review-benchmarks-2026"
+      datum: 2026-10-15
+      typ: nezavisle
+      text: "AI běhy zvládá velmi dobře, ale trvalý decode zaostává za výkonnějšími dedikovanými GPU. Baterie vydrží pracovní den při běžné práci, ne při lokálním modelu."
+    - vydavatel: "The Verge"
+      url: "https://www.theverge.com/tech/1012748/nvidia-rtx-spark-windows-arm-laptops-asus-hp-lenovo-impressions"
+      datum: 2026-10-16
+      typ: nezavisle
+      text: "Běžná práce 5–6 hodin na baterii. Lokální agent s Qwen3.8 27B spotřeboval 10 % baterie za 10 minut a notebook topil; fanoušci hučeli i u jednoduchých dotazů."
+    - vydavatel: "PCWorld"
+      url: "https://www.pcworld.com/article/3275866/nvidias-rtx-spark-laptops-make-no-sense-until-they-do.html"
+      datum: 2026-11-03
+      typ: nezavisle
+      text: "Při velkém AI běhu ventilátory „jako na nízké oběžné dráze“ a 46 % baterie za 33 minut. Za 7 000 USD je podle autora potřeba mít úlohy, které paměť opravdu využijí."
+    - vydavatel: "The Register"
+      url: "https://www.theregister.com/personal-tech/2026/10/16/benchmarked-nvidias-rtx-spark-notebook-delivers-serious-local-ai-compute-at-a-price/5303621"
+      datum: 2026-10-16
+      typ: nezavisle
+      text: "Při trvalé inferenci občasné lock-upy a jednou grafické artefakty, když GPU přesáhlo 90 °C. Chlazení podle testu throttling spíš neřeší."
+    - vydavatel: "Thurrott.com"
+      url: "https://www.thurrott.com/a-i/local-ai/343502/rtx-spark-local-ai-baby-steps-and-a-few-small-victories"
+      datum: 2026-11-04
+      typ: nezavisle
+      text: "Po týdnech používání: těžké, horké a hlučné, software nedospělý. Lokální AI na platformě funguje, ale pro běžného uživatele nedává smysl."
+  chybi: "Chybí veřejné měření Qwen3.8 Flash Next na 128GB notebooku a měření hluku v dB."
+
+- zarizeni: strix-halo
+  souhrn: "Majitelé chválí ticho, spotřebu a cenu za 128 GB. Nejčastější stížnost je software: ROCm, spánek a ovladače."
+  opakuje:
+    - "ROCm je hlavní friction; Vulkan a llama.cpp fungují spolehlivěji."
+    - "Velké dense modely jsou pomalé, MoE je použitelné."
+    - "Box je tichý a úsporný, ale na dlouhém kontextu ztrácí proti DGX."
+  recenze:
+    - vydavatel: "Tom's Hardware"
+      url: "https://www.tomshardware.com/pc-components/gpus/nvidia-dgx-spark-review"
+      datum: 2026-01-27
+      typ: nezavisle
+      text: "Strix Halo spotřebuje při inferenci kolem 112 W. Na dlouhém kontextu je ale přibližně dvakrát pomalejší než DGX Spark a spotřebuje dvakrát víc joulů na token."
+    - vydavatel: "Level1Techs forum"
+      url: "https://forum.level1techs.com/t/ive-hopped-on-the-strix-halo-train/248541"
+      datum: 2026-04-07
+      typ: komunita
+      text: "Uživatel popisuje začátky: stabilně fungoval jen Vulkan llama.cpp, ROCm se nedařilo rozjet s velkým kontextem. S ROCm 7.2 a toolboxem se to zlepšilo a dnes ho používá denně."
+    - vydavatel: "blog.t1m.me"
+      url: "https://blog.t1m.me/blog/local-llms-on-strix-halo-128gb-shared-ram"
+      datum: 2026-02-22
+      typ: komunita
+      text: "Na 128GB boxu naměřil qwen3-coder-next 35 tok/s, nemotron 63 tok/s a gpt-oss 120B 31 tok/s. Autor je označuje za použitelné pro menší agentní úlohy, ne pro těžký provoz."
+  majitele:
+    - kde: "r/LocalLLM — Why I returned my Strix Halo"
+      url: "https://www.reddit.com/r/LocalLLM/comments/1vi3xcz/why_i_returned_my_strix_halo_128gb/"
+      datum: 2026-08-07
+      typ: komunita
+      text: "Majitel vrátil stroj kvůli softwaru: problémy se spánkem a probouzením, nutnost neustálého ladění. Chválí velikost, ticho, spotřebu a modularitu."
+  chybi: "Chybí veřejné měření hluku v zátěži pro konkrétní OEM boxy; údaje se liší podle chlazení."
+
+- zarizeni: mac-studio
+  souhrn: "Recenze i majitelé popisují Mac Studio jako tichý a efektivní stroj pro lokální agenty. Slabina je závislost na MLX a enginu, který daný model podporuje."
+  opakuje:
+    - "Tichý, chladný a úsporný i při dlouhých agentních bězích."
+    - "Výkon závisí na MLX a konkrétním engine; ne každý model je optimalizovaný."
+    - "128 GB je strop: větší modely potřebují 256 GB nebo kvantizaci, která jim nesedí."
+  recenze:
+    - vydavatel: "MacStories — M5 Ultra"
+      url: "https://www.macstories.net/stories/m5-ultra-mac-studio-review-the-dream-mac-for-local-ai-agents/"
+      datum: 2026-09-21
+      typ: nezavisle
+      text: "Na 256GB konfiguraci: Qwen3.8 Flash Next přes 100 tok/s na krátkém promptu a 60–85 tok/s při 64–256k kontextu. Stroj je tichý, chladný a v agentních úlohách výrazně rychlejší než M3 Ultra."
+    - vydavatel: "Tom's Hardware — M5 Ultra vs DGX Spark"
+      url: "https://www.tomshardware.com/tech-industry/artificial-intelligence/going-deep-on-local-ai-performance-benchmarking-with-apples-mac-studio-with-m5-ultra-taking-on-nvidia-dgx-spark-inference-engine-recipes-mandatory-for-bigger-models-as-mlx-stack-matures"
+      datum: 2026-11-10
+      typ: nezavisle
+      text: "V agentním testu Mac Studio dokončil úlohu přibližně za polovinu času DGX Spark a spotřeboval o 16 % méně energie. U velkých modelů ale rozhoduje engine: TensorFold umí GLM 5.3, DeepSeek ne."
+  majitele:
+    - kde: "r/MacStudio"
+      url: "https://www.reddit.com/r/MacStudio/comments/1wrnv78/owners_of_the_m5_ultra_that_use_it_for_llm_what/"
+      datum: 2026-09-27
+      typ: komunita
+      text: "Majitel M5 Ultra: pro LLM „fantastické“, Qwen3.8 fp8 s MTP kolem 45 tok/s. Model ale příliš přemýšlí a je potřeba ho zastavovat; benchmarková čísla nejsou záruka."
+  chybi: "Chybí veřejné měření 128GB konfigurace; recenze výše jsou pro 256 GB."
+
+- zarizeni: macbook-pro
+  souhrn: "Přenosný stroj, který jako jediný notebook veze 128 GB a modely nad 100B. Za to platí teplem, hlukem a nižší rychlostí než stolní boxy."
+  opakuje:
+    - "Na malé modely je rychlejší RTX notebook; výhoda začíná u modelů nad 24 GB."
+    - "Velké modely zahřejí a roztočí ventilátory, ale stroj drží stabilně."
+    - "128 GB se u největších modelů plní a na systém zbývá málo."
+  recenze:
+    - vydavatel: "Ai Miracle"
+      url: "https://www.aimiracle.ai/ai-hardware-review/macbook-pro-m5-max-review/"
+      datum: 2026-07-02
+      typ: nezavisle
+      text: "70B model v 4bitovém kvantu běží 18–25 tok/s. Na modelech do 24 GB je ale rychlejší RTX 5090 notebook; M5 Max vyhrává tam, kam se 24 GB nevejde."
+    - vydavatel: "CraftRigs"
+      url: "https://craftrigs.com/comparisons/m5-max-128gb-local-llm-benchmark-reality/"
+      datum: 2026-03-13
+      typ: nezavisle
+      text: "Llama 3 70B 18–25 tok/s, 14B 45–60 tok/s, 7B 80–100 tok/s. Decode je limitovaný propustností paměti, ne compute; proti M4 Max jde o 15–20 %."
+    - vydavatel: "corriente.jp"
+      url: "https://corriente.jp/macbook-pro-m5-max-review/"
+      datum: 2026-04-05
+      typ: nezavisle
+      text: "80B model generoval kolem 88 tok/s, 70B kolem 12 a 27B kolem 24 tok/s. Teplota se držela kolem 85 °C, ventilátor se roztočil, ale běh se nerozpadl."
+  majitele:
+    - kde: "r/LocalLLaMA"
+      url: "https://www.reddit.com/r/LocalLLaMA/comments/1sfr6u4/m5_max_128gb_17_models_23_prompts_qwen_35_122b_is/"
+      datum: 2026-04-08
+      typ: komunita
+      text: "Po 17 modelech a 23 promptech mu jako nejlepší vyšel Qwen 3.5 122B Q4: 50–65 tok/s. Gemma 4 31B v plné přesnosti běžela kolem 7 tok/s, tedy nepoužitelně."
+  chybi: "Chybí veřejné měření Qwen3.8 Flash Next na 128GB MacBook Pro; čísla výše jsou pro jiné modely."
+
+- zarizeni: gorgon-halo
+  souhrn: "192 GB je hlavní argument: vejde se model, který se na 128 GB nevejde. Rychlost je ale jen o málo vyšší než u Strix Halo."
+  opakuje:
+    - "Paměť navíc, ne rychlost: propustnost zůstává kolem 273 GB/s."
+    - "Největší modely se vejdou jen v 2bitovém kvantu."
+    - "Cena a dostupnost jsou hlavní překážka, ne hardware."
+  recenze:
+    - vydavatel: "The Register"
+      url: "https://www.theregister.com/personal-tech/2026/09/29/amds-192-gb-gorgon-halo-prices-might-leave-you-petrified/5299875"
+      datum: 2026-09-29
+      typ: nezavisle
+      text: "Ceny 192GB strojů označuje za odstrašující. Pro lokální AI a malé firmy ale může jít o cestu k větším modelům bez cloudu."
+    - vydavatel: "Intelligent Living"
+      url: "https://www.intelligentliving.co/192gb-ai-mini-pcs-have-arrived/"
+      datum: 2026-09-09
+      typ: nezavisle
+      text: "Shrnuje nabídku 192GB mini PC a upozorňuje, že výrobcem udávané rychlosti je nutné brát jako marketing, dokud je nepotvrdí nezávislé testy."
+    - vydavatel: "llmspeed.dev"
+      url: "https://llmspeed.dev/hardware/ryzen-ai-max-pro-495-192gb/"
+      datum: 2026-09-15
+      typ: nezavisle
+      text: "Uvádí 192 GB a 273 GB/s jako hlavní parametry, které určují generování. Jde o modelované hodnoty z propustnosti, ne o změřený provoz."
+  majitele:
+    - kde: "r/LocalLLaMA"
+      url: "https://www.reddit.com/r/LocalLLaMA/comments/1t3duwm/ryzen_ai_max_495_gorgon_halo_with_192gb_vram/"
+      datum: 2026-05-04
+      typ: komunita
+      text: "Diskuse upozorňuje, že propustnost zůstává podobná Strix Halo (256–273 GB/s). Přínos je v kapacitě: větší model se vejde celý do paměti."
+  chybi: "Chybí veřejné měření Qwen3.8 Flash Next na 192 GB při 128k a 262k kontextu na jednom stroji."

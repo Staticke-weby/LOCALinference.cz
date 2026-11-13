@@ -1,6 +1,6 @@
 ---
 title: "ComfyUI na Windows: recept pro lokální generování"
-description: "Instalace ComfyUI na Windows 11 x64 i Arm: Comfy Desktop, ruční cesta s CUDA, ověření GPU a první obrázek. Co na RTX Sparku funguje a co ne."
+description: "Instalace ComfyUI na Windows 11 x64 i Arm: Comfy Desktop, ruční cesta s CUDA, ověření GPU a první obrázek. Co na RTX Spark funguje a co ne."
 last_verified: 2026-11-05
 sidebar:
   label: Windows
@@ -8,7 +8,7 @@ sidebar:
 ---
 
 Windows je nejrozšířenější cesta k lokálnímu generování. Na běžném
-PC s NVIDIA kartou je instalace otázkou minut. Na **RTX Sparku**
+PC s NVIDIA kartou je instalace otázkou minut. Na **RTX Spark**
 s Windows on Arm je to jiné: stejný program, ale část balíčků existuje
 jen pro Arm64.
 
@@ -26,7 +26,7 @@ Nejrychlejší cesta pro většinu lidí. Stáhněte instalátor z
 [comfy.org/download](https://comfy.org/download) a spusťte ho.
 
 1. Při prvním spuštění zvolte **lokální instalaci**, ne cloud.
-2. Na **RTX Sparku** zvolte v nastavení **NVIDIA ARM64**.
+2. Na **RTX Spark** zvolte v nastavení **NVIDIA ARM64**.
    NVIDIA to výslovně doporučuje pro Windows on Arm.
 3. Po dokončení otevřete rozhraní v prohlížeči.
 
@@ -93,7 +93,7 @@ wheely pro všechny balíčky. Po startu je rozhraní na
 | Audio | ano | ano přes Python |
 | Vlastní nodes | většina | jen s ARM64 wheel |
 
-Na RTX Sparku chybí část Python balíčků v nativní Arm64 verzi.
+Na RTX Spark chybí část Python balíčků v nativní Arm64 verzi.
 NVIDIA jmenuje **cryptography, grpcio, PyArrow, tiktoken a OpenCV**;
 řešením je build ze zdroje, který ne vždy projde. Projevuje se to
 typicky tak, že ComfyUI-Manager ohlásí chybu při instalaci node a
@@ -101,26 +101,26 @@ workflow se nenačte.
 
 ## Rychlost
 
-Na **RTX Sparku 128 GB** (Surface Laptop Ultra) naměřila nezávislá
+Na **RTX Spark 128 GB** (Surface Laptop Ultra) naměřila nezávislá
 laboratoř Principled Technologies **17,75 s** na obrázek 1024×1024
 s FLUX.2 klein 4B při **20 krocích** v ComfyUI. Další dva notebooky
-s RTX Sparkem se vešly do 16,4–21,4 s.
+s RTX Spark se vešly do 16,4–21,4 s.
 
-Pro srovnání: stejný test na MacBooku Pro s M5 Pro trval 84,8 s.
+Pro srovnání: stejný test na MacBook Pro s M5 Pro trval 84,8 s.
 Čísla platí pro Windows on Arm, kde je ComfyUI zatím **beta** a běží
 na nočním PyTorchi.
 
-Pro Z-Image-Turbo na RTX Sparku nemáme veřejné číslo
-`[DOPLNIT: měření]`. Na DGX Sparku, který používá stejný čip GB10,
+Pro Z-Image-Turbo na RTX Spark nemáme veřejné číslo
+`[DOPLNIT: měření]`. Na DGX Spark, který používá stejný čip GB10,
 dává 1024² za 7,5 s při 8 krocích — Windows verze ale může být jiná.
 
 **Video:** LTX-2.3 T2V 22B v rozlišení 1280×720 a 121 snímcích trvá
-na RTX Sparku **97,6 s** na klip (NVFP4). Stejný test na MacBooku Pro
+na RTX Spark **97,6 s** na klip (NVFP4). Stejný test na MacBook Pro
 M5 Pro dal 530 s. Jde o nezávislé měření Principled Technologies.
 
 ## Licence
 
-Licence se řídí modelem, ne platformou. Na Windows i na RTX Sparku
+Licence se řídí modelem, ne platformou. Na Windows i na RTX Spark
 platí stejná pravidla jako jinde: **Z-Image-Turbo, FLUX.2 klein
 a Wan 2.2 jsou Apache-2.0** a pro firmu bezpečné; Qwen-Image 2.1
 a FLUX.2 dev jsou nekomerční; HunyuanImage a HunyuanVideo vylučují
@@ -129,7 +129,7 @@ a podrobnosti v [licencích](/generovani/licence/).
 
 ## Kde je limit
 
-- **Windows on Arm je beta.** ComfyUI na RTX Sparku běží na nočním
+- **Windows on Arm je beta.** ComfyUI na RTX Spark běží na nočním
   PyTorchi; část nodes se nenainstaluje.
 - **Sdílená paměť.** 128 GB je společná pro systém i GPU, takže
   velký model bere rezervu systému.

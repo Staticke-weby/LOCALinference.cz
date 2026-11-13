@@ -27,7 +27,7 @@
     - "ROCm/Vulkan místo CUDA"
     - "Slabší prefill než u CUDA strojů"
     - "Pro 1–4 uživatele, ne pro tým"
-  kdy_ne: "Pokud potřebujete CUDA, NVFP4 nebo server pro víc lidí, sáhněte po DGX Sparku nebo RTX Sparku. Pokud chcete nejvyšší kvalitu za každou cenu, tento box ji nedodá."
+  kdy_ne: "Pokud potřebujete CUDA, NVFP4 nebo server pro víc lidí, sáhněte po DGX Spark nebo RTX Spark. Pokud chcete nejvyšší kvalitu za každou cenu, tento box ji nedodá."
   poznamka: "Novinka; Tiny; Windows 11 Pro; HDMI 2.0 a DisplayPort 2.0."
 
 - id: acer-veriton-ra110-128-2tb
@@ -54,7 +54,7 @@
     - "Dostupnost až 2027"
     - "ROCm/Vulkan místo CUDA"
     - "Stejný výkon jako Acemagic"
-  kdy_ne: "Pokud potřebujete stroj hned nebo CUDA, sáhněte po Acemagic, DGX Sparku nebo RTX Sparku."
+  kdy_ne: "Pokud potřebujete stroj hned nebo CUDA, sáhněte po Acemagic, DGX Spark nebo RTX Spark."
   poznamka: "Windows 11 Pro; Wi-Fi; 2TB SSD."
 
 - id: amd-ryzen-ai-halo-128

@@ -45,7 +45,7 @@
   kontrola: manual
   posledni_kontrola: 2026-11-09
   stav: ok
-  poznamka: "Ruční průchod diskusí; 11/2026 odtud první měření Gorgon Hala (192 GB, Q6_K_XL)."
+  poznamka: "Ruční průchod diskusí; 11/2026 odtud první měření Gorgon Halo (192 GB, Q6_K_XL)."
 
 - id: qwen38-blog
   nazev: Qwen blog — Qwen3.8-Flash-Next
@@ -69,7 +69,7 @@
   poznamka: "Recept aktualizován 27. 10. 2026; stable vLLM >= 0.30.0, doporučený nightly."
 
 - id: news-qq-rtx-prices
-  nazev: První ceny RTX Spark notebooků
+  nazev: První ceny RTX Spark notebook
   url: https://news.qq.com/rain/a/20261008A04Z5W00
   typ: html
   co_sledujeme: [cena, konfigurace, dostupnost]
@@ -598,7 +598,7 @@
   kontrola: manual
   posledni_kontrola: 2026-11-05
   stav: ok
-  poznamka: "Nezávislá laboratoř; testuje ComfyUI FLUX.2 klein a LTX-2.3 na RTX Sparku a M5 Pro."
+  poznamka: "Nezávislá laboratoř; testuje ComfyUI FLUX.2 klein a LTX-2.3 na RTX Spark a M5 Pro."
 
 - id: tencent-hunyuan-license
   nazev: Tencent Hunyuan - licenční podmínky

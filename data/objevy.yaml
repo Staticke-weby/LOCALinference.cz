@@ -21,14 +21,14 @@ polozky:
     url: https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html
     proc: "První hotový 128GB box přímo od AMD, 3 999 USD, s předinstalovaným Linuxem a ROCm. V katalogu chybí."
     stav: posuzuje-se
-    poznamka: "9. 11. 2026 ověřeno: 128 GB, 3 999,99 USD, Micro Center exclusive (US), Linux i Windows. Evropská dostupnost a česká cena nejsou; rozhodnout, zda zařadit jako OEM variantu Strix Hala."
+    poznamka: "9. 11. 2026 ověřeno: 128 GB, 3 999,99 USD, Micro Center exclusive (US), Linux i Windows. Evropská dostupnost a česká cena nejsou; rozhodnout, zda zařadit jako OEM variantu Strix Halo."
 
   - id: O-003
     datum: 2026-11-06
     typ: zarizeni
     nazev: "Gorgon Halo 192 GB (Ryzen AI Max+ PRO 495)"
     url: https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory
-    proc: "Nástupce Strix Hala s 192GB unified paměti. MINISFORUM 7 399 USD, Framework 6 799 USD, BOSGAME 6 199 USD."
+    proc: "Nástupce Strix Halo s 192GB unified paměti. MINISFORUM 7 399 USD, Framework 6 799 USD, BOSGAME 6 199 USD."
     stav: prevzato
     poznamka: "Zařazeno jako samostatné zařízení /zarizeni/gorgon-halo/ s jasnou větou, že pro Q38FN nepřináší rychlost."
 

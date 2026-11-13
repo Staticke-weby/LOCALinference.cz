@@ -29,6 +29,9 @@ davky:
   - id: 8
     nazev: "Abliterace a bezpečnost"
     cil: "Doložit paritu abliterovaného modelu, českou sadu odmítání a chování PLE z SSD."
+  - id: 9
+    nazev: "Zkušenosti a recenze"
+    cil: "Doplnit nezávislá měření k nové sekci Zkušenosti a recenze u zařízení."
 
 # Stránky, kde je [DOPLNIT] součást vysvětlení metodiky, ne skutečná mezera.
 ignorovat_stranky:
@@ -42,7 +45,7 @@ polozky:
   - id: G01
     oblast: generovani
     titulek: "RTX Spark: časy generování obrázků"
-    co_chybi: "Chyběly časy generování obrázků na RTX Sparku 128 GB. Doplněno: FLUX.2 klein 4B, 1024², 20 kroků, 17,75 s (Principled Technologies)."
+    co_chybi: "Chyběly časy generování obrázků na RTX Spark 128 GB. Doplněno: FLUX.2 klein 4B, 1024², 20 kroků, 17,75 s (Principled Technologies)."
     kde:
       - generovani/obrazky
       - generovani/recepty
@@ -52,7 +55,7 @@ polozky:
     stav: hotovo
     davka: 1
     hledat: "NVIDIA forum, Reddit r/StableDiffusion, YouTube benchmarky, LocalAgentBoard"
-    poznamka: "Z-Image-Turbo na RTX Sparku zůstává bez veřejného čísla; řeší ho G08."
+    poznamka: "Z-Image-Turbo na RTX Spark zůstává bez veřejného čísla; řeší ho G08."
     zdroj: https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/
     overeno: 2026-11-05
 
@@ -176,7 +179,7 @@ polozky:
   - id: G10
     oblast: generovani
     titulek: "RTX Spark: 3D a Z-Image při 8 krocích"
-    co_chybi: "3D na RTX Sparku nemá veřejné měření. Chybí i Z-Image-Turbo při 8 krocích; FLUX při 20 krocích změřený je."
+    co_chybi: "3D na RTX Spark nemá veřejné měření. Chybí i Z-Image-Turbo při 8 krocích; FLUX při 20 krocích změřený je."
     kde:
       - generovani/3d
       - generovani/recepty/windows
@@ -290,7 +293,7 @@ polozky:
 
   - id: D06
     oblast: data
-    titulek: "Kvantizace u čtyř měření na Strix Halu"
+    titulek: "Kvantizace u čtyř měření na Strix Halo"
     co_chybi: "U čtyř záznamů v data/mereni.yaml je kvantizace [DOPLNIT]. Bez ní číslo nelze srovnat."
     kde:
       - data/qwen3-8-flash-next-strix-halo
@@ -306,7 +309,7 @@ polozky:
   - id: D08
     oblast: data
     titulek: "Windows ARM64 proti Linuxu na stejném modelu"
-    co_chybi: "Chybí srovnání Qwen3.8 Flash Next na RTX Sparku s Windows ARM64 a na DGX Sparku s Linuxem."
+    co_chybi: "Chybí srovnání Qwen3.8 Flash Next na RTX Spark s Windows ARM64 a na DGX Spark s Linuxem."
     kde:
       - zarizeni/rtx-spark-notebook
       - temata/lokalni-ai-na-windows-11
@@ -811,7 +814,7 @@ polozky:
 
   - id: A06
     oblast: mereni
-    titulek: "PLE z SSD na RTX Sparku"
+    titulek: "PLE z SSD na RTX Spark"
     co_chybi: "Není doložené, jestli Windows ARM port vLLM umí PLE z SSD a jak se chová dělení paměti mezi VRAM a OS RAM."
     kde:
       - temata/abliterace/provoz-na-128-gb
@@ -823,3 +826,23 @@ polozky:
     poznamka: "Vyřešeno 11. 11. 2026: port vLLM pro RTX Spark N1X umí NVMe cache pro PLE (min. 32 GB volného NVMe), doporučuje 96/32 split GPU/Windows a pagefile 98 304/131 072 MB. Na fóru NVIDIA 53,2 tok/s v SPEED-Bench coding (komunita). Abliterovaný build na tomto portu zatím veřejně změřený není; váhy mají stejný FP4-Local layout, ale je to neověřené."
     zdroj: https://github.com/devjeonghwan/vllm-for-rtx-spark
     overeno: 2026-11-11
+
+  - id: Z01
+    oblast: zkusenosti
+    titulek: "Zkušenosti a recenze: chybějící nezávislá měření"
+    co_chybi: "Sekce Zkušenosti a recenze má u každého zařízení veřejné recenze a reporty majitelů, ale chybí nezávislé měření Qwen3.8 na RTX Spark mini a notebooku, na 128GB Mac Studiu a na 192GB Gorgon Halo při 128k a 262k kontextu. U Strix Halo chybí dB pro konkrétní OEM boxy."
+    kde:
+      - zarizeni/dgx-spark
+      - zarizeni/rtx-spark-mini
+      - zarizeni/rtx-spark-notebook
+      - zarizeni/strix-halo
+      - zarizeni/mac-studio
+      - zarizeni/macbook-pro
+      - zarizeni/gorgon-halo
+    priorita: P1
+    stav: otevreno
+    davka: 9
+    hledat: "Notebookcheck, Tom's Hardware, Level1Techs, Reddit r/LocalLLaMA, Hugging Face benchmark datasety"
+    poznamka: "Do té doby sekce cituje recenze a majitele s datem a označuje, co je nezávislé a co komunitní."
+    zdroj: https://www.tomshardware.com/pc-components/gpus/nvidia-dgx-spark-review
+    overeno: 2026-11-13

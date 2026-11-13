@@ -27,8 +27,8 @@ zařízení a chuť měřit, tady je přesně vidět, co by pomohlo.
 | **Čeština** | srovnávací testy na českých úlohách | benchmarky v angličtině neřeknou vše | vysoká |
 | **Vision** | reálné testy dokumentů a screenshotů | vision je výchozí, ale kvalita se liší | střední |
 | **Hluk a příkon** | měření v zátěži | rozhoduje o použití v kanceláři/domácnosti | střední |
-| **Generování obrázků** | časy na RTX Sparku a Macu, ověřené licence | bez toho nejde říct, co je rychlé a co komerčně bezpečné | vysoká |
-| **Generování videa a 3D** | časy na Strix Halu a Macu | video jsou minuty, ne sekundy; čtenář to musí vědět předem | střední |
+| **Generování obrázků** | časy na RTX Spark a Macu, ověřené licence | bez toho nejde říct, co je rychlé a co komerčně bezpečné | vysoká |
+| **Generování videa a 3D** | časy na Strix Halo a Macu | video jsou minuty, ne sekundy; čtenář to musí vědět předem | střední |
 | **Ceny v ČR/EU** | dostupnost, DPH, doprava | americká cena není česká cena | střední |
 
 ## Co by změnilo závěr o lokální AI

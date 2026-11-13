@@ -1,0 +1,115 @@
+---
+import { formatDatum, getZkusenosti } from '../lib/data';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const z = getZkusenosti(id);
+
+const typLabel: Record<string, string> = {
+  nezavisle: 'nezávislý test',
+  komunita: 'komunita',
+};
+---
+
+{
+  z && (
+    <section class="li-zkusenosti">
+      <h2 id="zkusenosti-a-recenze">Zkušenosti a recenze</h2>
+
+      <p class="li-zkusenosti__souhrn">{z.souhrn}</p>
+
+      <h3>Co říkají recenze</h3>
+      <ul class="li-zkusenosti__seznam">
+        {z.recenze.map((r) => (
+          <li>
+            <a href={r.url} target="_blank" rel="noopener noreferrer">
+              {r.vydavatel}
+            </a>{' '}
+            <span class="li-zkusenosti__typ">{typLabel[r.typ]}</span>{' '}
+            <time datetime={String(r.datum)}>{formatDatum(r.datum)}</time>
+            <br />
+            {r.text}
+          </li>
+        ))}
+      </ul>
+
+      <h3>Co hlásí majitelé</h3>
+      <ul class="li-zkusenosti__seznam">
+        {(z.majitele ?? []).map((r) => (
+          <li>
+            <a href={r.url} target="_blank" rel="noopener noreferrer">
+              {r.kde}
+            </a>{' '}
+            <span class="li-zkusenosti__typ">{typLabel[r.typ]}</span>{' '}
+            <time datetime={String(r.datum)}>{formatDatum(r.datum)}</time>
+            <br />
+            {r.text}
+          </li>
+        ))}
+      </ul>
+
+      <h3>Co se opakuje</h3>
+      <ul>
+        {z.opakuje.map((o) => (
+          <li>{o}</li>
+        ))}
+      </ul>
+
+      {z.chybi && (
+        <p class="li-zkusenosti__chybi">
+          <strong>Kde je nejistota:</strong> {z.chybi}{' '}
+          <a href="/zdroje/co-nevime/">Registr mezer</a>
+        </p>
+      )}
+
+      <p class="li-zkusenosti__pozn">
+        Jsou to převzaté zkušenosti a citace z veřejných zdrojů, ne naše
+        měření. U každé položky je datum; čísla platí pro konfiguraci
+        uvedenou ve zdroji. Podrobnosti v <a href="/o-webu/metodika/">metodice</a>.
+      </p>
+    </section>
+  )
+}
+
+<style>
+  .li-zkusenosti {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+  .li-zkusenosti__souhrn {
+    font-size: var(--sl-text-lg);
+    line-height: 1.55;
+  }
+  .li-zkusenosti__seznam {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .li-zkusenosti__seznam li {
+    line-height: 1.55;
+  }
+  .li-zkusenosti__typ {
+    display: inline-block;
+    padding: 0 0.4rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-2);
+  }
+  .li-zkusenosti__seznam time {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+  .li-zkusenosti__chybi {
+    padding: 0.6rem 0.8rem;
+    border-left: 3px solid var(--li-gold);
+    background: var(--li-gold-low);
+  }
+  .li-zkusenosti__pozn {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+</style>

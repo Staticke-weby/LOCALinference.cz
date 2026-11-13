@@ -1,5 +1,6 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import ZkusenostiEn from '../../components/ZkusenostiEn.astro';
 import {
   getDgxSparkOem,
   getRtxNotebookOem,
@@ -56,7 +57,7 @@ const datum = new Intl.DateTimeFormat('en-US', {
 <StarlightPage
   frontmatter={{
     title: `${z.nazev}: specs and what runs`,
-    description: `${z.nazev}: ${z.pamet_gb} GB unified memory, ${z.bandwidth_gbs} GB/s and Qwen3.8 Flash Next. What it costs and where the limits are.`,
+    description: `${z.nazev}: ${z.pamet_gb} GB unified memory, ${z.bandwidth_gbs} GB/s and Qwen3.8 Flash Next. What it costs, owner experience and reviews.`,
   }}
 >
   <p class="li-verdict">{en.verdict}</p>
@@ -151,6 +152,8 @@ const datum = new Intl.DateTimeFormat('en-US', {
       </p>
     </>
   )}
+
+  <ZkusenostiEn id={z.id} />
 
   <h2>More detail</h2>
 

@@ -1,7 +1,7 @@
 ---
 title: "DGX Spark 128 GB skladem: cena a kde koupit"
-description: "128 GB unified paměti, 273 GB/s a CUDA. Co na DGX Sparku reálně běží, česká cena od 162 990 Kč, OEM varianty a pro koho se vyplatí."
-last_verified: 2026-11-09
+description: "128 GB unified, 273 GB/s a CUDA. Co na DGX Spark běží, česká cena od 162 990 Kč, zkušenosti majitelů a recenze."
+last_verified: 2026-11-13
 sidebar:
   label: DGX Spark
   order: 2
@@ -15,6 +15,7 @@ import TabulkaDgxSparkOem from '../../../components/TabulkaDgxSparkOem.astro';
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
 import GenerovaniNaZarizeni from '../../../components/GenerovaniNaZarizeni.astro';
+import Zkusenosti from '../../../components/Zkusenosti.astro';
 
 **Verdikt:** Nejintegrovanější 128GB krabice s [CUDA](/slovnik/software/cuda/) a enterprise
 managementem. Za 151 tis. Kč (6 950 USD, odhad) už není nejlevnější - ale pokud
@@ -80,7 +81,7 @@ mají stejný čip GB10, 128 GB paměti a DGX OS. Liší se výrobce,
 - **4TB verze** začínají na 179 990 Kč (HP ZGX Nano, GIGABYTE).
 - **Rozdíly** jsou v úložišti, chlazení a záruce, ne ve výkonu.
 
-## Co na DGX Sparku poběží: Qwen3.8 Flash Next
+## Co na DGX Spark poběží: Qwen3.8 Flash Next
 
 <TabulkaMereni zarizeni="dgx-spark" />
 
@@ -94,13 +95,13 @@ a workload, ne fyzika. Pro plánování berte **spodní hranici 36,8 tok/s**;
 
 <GenerovaniNaZarizeni zarizeni="dgx-spark" />
 
-## Jak rychle běží Qwen3.8 Flash Next na DGX Sparku
+## Jak rychle běží Qwen3.8 Flash Next na DGX Spark
 
 **Konfigurace madeye:** vLLM nightly 8a728663, NVFP4, MTP3, FP8 KV,
 262 144 tokenů, 4 096tokené prefill chunky, 6 slotů. Nejsou to univerzální
 čísla; jsou to čísla pro tento setup.
 
-## Kontext a souběžnost na DGX Sparku
+## Kontext a souběžnost na DGX Spark
 
 | Kontext | Co se stane | Souběžnost |
 |---|---|---|
@@ -114,7 +115,7 @@ z KV cache. První komunitní měření při 6 streamech dává agregát
 91,9 tok/s, ale na krátkých promptech; chování na 32k a 128k je stále
 `[DOPLNIT: měření]`.
 
-## Co od DGX Sparku čekat
+## Co od DGX Spark čekat
 
 - **Zvládne:** chat, psaní, kód, práci s dokumenty, RAG, agentní úlohy.
 - **Nezvládne:** 20+ souběžných uživatelů, modely nad ~200B bez offloadu.
@@ -145,6 +146,8 @@ z KV cache. První komunitní měření při 6 streamech dává agregát
 Skladem na Alza.cz k 5. 11. 2026 (ASUS GX10 i další varianty). Cena začíná na 162 990 Kč vč. DPH.
 
 <AlzaCena kategorie="boxy" text="Otevřít kategorii na Alza.cz" />
+
+<Zkusenosti id="dgx-spark" />
 
 ## Kudy dál
 

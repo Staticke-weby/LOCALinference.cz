@@ -127,7 +127,7 @@ zařízeních zajímavé jen řídké MoE modely.
 do **KV cache**. Čím delší kontext, tím větší cache — a tím méně paměti
 zbývá na další uživatele.
 
-Na DGX Sparku zbývá po načtení Qwen3.8 Flash Next zhruba 27 GB. To stačí
+Na DGX Spark zbývá po načtení Qwen3.8 Flash Next zhruba 27 GB. To stačí
 na krátké kontexty a několik souběžných streamů. Jeden 200k tokenový
 request ale vezme většinu paměti a ostatní vytlačí. Proto rychlost klesá
 z 70 na 40 tok/s nad 128 tisíci tokeny

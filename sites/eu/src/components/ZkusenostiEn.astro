@@ -1,0 +1,123 @@
+---
+import { getZkusenostiEn, isoDate } from '../lib/data';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const z = getZkusenostiEn(id);
+
+const datum = (v: string | Date) =>
+  new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(`${isoDate(v)}T00:00:00Z`));
+
+const typLabel: Record<string, string> = {
+  nezavisle: 'independent review',
+  komunita: 'community',
+};
+---
+
+{
+  z && (
+    <section class="li-zkusenosti">
+      <h2 id="experience-and-reviews">Experience and reviews</h2>
+
+      <p class="li-zkusenosti__souhrn">{z.souhrn}</p>
+
+      <h3>What reviews say</h3>
+      <ul class="li-zkusenosti__seznam">
+        {z.recenze.map((r) => (
+          <li>
+            <a href={r.url} target="_blank" rel="noopener noreferrer">
+              {r.vydavatel}
+            </a>{' '}
+            <span class="li-zkusenosti__typ">{typLabel[r.typ]}</span>{' '}
+            <time datetime={isoDate(r.datum)}>{datum(r.datum)}</time>
+            <br />
+            {r.text}
+          </li>
+        ))}
+      </ul>
+
+      <h3>What owners report</h3>
+      <ul class="li-zkusenosti__seznam">
+        {(z.majitele ?? []).map((r) => (
+          <li>
+            <a href={r.url} target="_blank" rel="noopener noreferrer">
+              {r.kde}
+            </a>{' '}
+            <span class="li-zkusenosti__typ">{typLabel[r.typ]}</span>{' '}
+            <time datetime={isoDate(r.datum)}>{datum(r.datum)}</time>
+            <br />
+            {r.text}
+          </li>
+        ))}
+      </ul>
+
+      <h3>What keeps coming up</h3>
+      <ul>
+        {z.opakuje.map((o) => (
+          <li>{o}</li>
+        ))}
+      </ul>
+
+      {z.chybi && (
+        <p class="li-zkusenosti__chybi">
+          <strong>Where the uncertainty is:</strong> {z.chybi}{' '}
+          <a href="/sources/what-we-dont-know/">Gap register</a>
+        </p>
+      )}
+
+      <p class="li-zkusenosti__pozn">
+        These are borrowed experiences and quotes from public sources, not our
+        measurements. Each item carries a date; the numbers apply to the
+        configuration named in the source. See the{' '}
+        <a href="/about/methodology/">methodology</a>.
+      </p>
+    </section>
+  )
+}
+
+<style>
+  .li-zkusenosti {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+  .li-zkusenosti__souhrn {
+    font-size: var(--sl-text-lg);
+    line-height: 1.55;
+  }
+  .li-zkusenosti__seznam {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .li-zkusenosti__seznam li {
+    line-height: 1.55;
+  }
+  .li-zkusenosti__typ {
+    display: inline-block;
+    padding: 0 0.4rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-2);
+  }
+  .li-zkusenosti__seznam time {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+  .li-zkusenosti__chybi {
+    padding: 0.6rem 0.8rem;
+    border-left: 3px solid var(--li-gold);
+    background: var(--li-gold-low);
+  }
+  .li-zkusenosti__pozn {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+</style>

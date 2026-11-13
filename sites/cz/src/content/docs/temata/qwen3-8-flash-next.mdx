@@ -97,13 +97,13 @@ menší souběžnost. Maximum je strop, ne cíl.
 
 ## Jak rychle běží
 
-Veřejná měření: **36–65 tok/s** na [DGX Sparku](/zarizeni/dgx-spark/),
-**36–79 tok/s** na [Strix Halu](/zarizeni/strix-halo/) a **35–70 tok/s**
-na [RTX Spark notebooku](/zarizeni/rtx-spark-notebook/). Čísla závisí
+Veřejná měření: **36–65 tok/s** na [DGX Spark](/zarizeni/dgx-spark/),
+**36–79 tok/s** na [Strix Halo](/zarizeni/strix-halo/) a **35–70 tok/s**
+na [RTX Spark notebook](/zarizeni/rtx-spark-notebook/). Čísla závisí
 na kvantizaci, enginu, kontextu a MTP.
 
 Pro plánování berte **spodní hranici**, ne maximum. Optimalizovaný
-recept na DGX Sparku umí ~69 tok/s, ale není to výchozí stav.
+recept na DGX Spark umí ~69 tok/s, ale není to výchozí stav.
 
 ## Software
 
@@ -113,7 +113,7 @@ recept na DGX Sparku umí ~69 tok/s, ale není to výchozí stav.
 | [llama.cpp](/slovnik/software/llamacpp/) | lokální server, GGUF | Vulkan/CUDA, vision přes mmproj |
 | [Ollama](/slovnik/software/ollama/) | nejjednodušší start | experimentální tag, méně kontroly |
 
-Na DGX Sparku je oficiální cesta vLLM s NVFP4. Na Strix Halu je
+Na DGX Spark je oficiální cesta vLLM s NVFP4. Na Strix Halo je
 realističtější llama.cpp a GGUF. Na Macu MLX.
 
 ## Tři cesty nasazení
@@ -124,7 +124,7 @@ realističtější llama.cpp a GGUF. Na Macu MLX.
 | **llama.cpp + GGUF** | Strix Halo, Mac, Windows | GGUF kvantizaci, Vulkan/Metal/CUDA | jeden uživatel, jednoduchost |
 | **Ollama** | notebook, první test | nic než Ollama | rychlý start, experiment |
 
-Na DGX Sparku je nejlepší oficiální recept vLLM s NVFP4. Na Strix
+Na DGX Spark je nejlepší oficiální recept vLLM s NVFP4. Na Strix
 Halu je realističtější llama.cpp s GGUF Q4_K_M. Na Macu MLX. Na RTX
 Sparku záleží, jestli zvolíte nativní Windows port, nebo Linux.
 

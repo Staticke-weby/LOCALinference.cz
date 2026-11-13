@@ -1,7 +1,7 @@
 ---
 title: "RTX Spark notebook 128 GB skladem: cena a kde koupit"
-description: "Notebook se 128 GB unified paměti a 300 GB/s. Co o něm víme, včetně nativního vLLM pod Windows ARM64 a prvních měření."
-last_verified: 2026-11-09
+description: "Notebook se 128 GB unified a 300 GB/s. Co o RTX Spark notebook víme, vLLM pod Windows ARM64, zkušenosti a recenze."
+last_verified: 2026-11-13
 typ: zarizeni
 id: rtx-spark-notebook
 sidebar:
@@ -18,6 +18,7 @@ import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaMereni from '../../../components/TabulkaMereni.astro';
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 import GenerovaniNaZarizeni from '../../../components/GenerovaniNaZarizeni.astro';
+import Zkusenosti from '../../../components/Zkusenosti.astro';
 
 **Verdikt:** Notebook se 128 GB unified paměti a CUDA, který si vezmete
 na cesty — ale jen pro jednoho člověka, který ho opravdu využije.
@@ -78,7 +79,7 @@ displejem, úložištěm, zárukou a tím, jestli je adaptér v balení.
 - **Nejlevnější:** ASUS ProArt P14 za 125 990 Kč.
 - **Surface Laptop Ultra** je nejdražší, ale má nejlepší displej.
 
-## Co na RTX Spark notebooku poběží: Qwen3.8 Flash Next
+## Co na RTX Spark notebook poběží: Qwen3.8 Flash Next
 
 <TabulkaMereni zarizeni="rtx-spark-notebook" />
 
@@ -103,7 +104,7 @@ ne z měření.
 
 <GenerovaniNaZarizeni zarizeni="rtx-spark-notebook" />
 
-## Jak rychle běží Qwen3.8 Flash Next na RTX Spark notebooku
+## Jak rychle běží Qwen3.8 Flash Next na RTX Spark notebook
 
 **Co víme z veřejných zdrojů:** [CTOL](https://www.ctol.digital/news/nvidia-rtx-spark-laptop-within-8-percent-of-dgx-spark-speed)
 cituje Artificial Analysis, podle kterého je 128GB notebook do 8 % od DGX
@@ -114,7 +115,7 @@ bereme to jako signál, ne jako číslo do tabulky.
 4+ souběžných. Port sám uvádí až 16 requestů, ale bez veřejného měření
 na dlouhém kontextu to nebereme jako potvrzené.
 
-## Kontext a souběžnost na RTX Spark notebooku
+## Kontext a souběžnost na RTX Spark notebook
 
 | Kontext | Co se stane | Souběžnost |
 |---|---|---|
@@ -127,7 +128,7 @@ Maximum není doporučení. Na notebooku je navíc limitem baterie a teplota:
 dlouhý kontext a dlouhé generování znamenají trvalou zátěž. Konkrétní
 chování je `[DOPLNIT: měření]`.
 
-## Co od RTX Spark notebooku čekat
+## Co od RTX Spark notebook čekat
 
 - **Zvládne:** chat, psaní, kód, práci s dokumenty, offline režim.
 - **Nezvládne:** sdílený pool, batch přes noc, 4+ souběžných uživatelů,
@@ -187,6 +188,8 @@ Skladem na Alza.cz k 5. 11. 2026 (ASUS ProArt P14, Lenovo Yoga Pro 9). Cena od 1
 
 <AlzaCena kategorie="notebooky" text="Otevřít kategorii na Alza.cz" />
 
+<Zkusenosti id="rtx-spark-notebook" />
+
 ## Kudy dál
 
 - přehledu variant níže — české ceny variant.
@@ -213,7 +216,7 @@ Skladem na Alza.cz k 5. 11. 2026 (ASUS ProArt P14, Lenovo Yoga Pro 9). Cena od 1
   ARM64 stack, Smart App Control (10/2026).
 - [NeoTeo — jak Windows dělí unified paměť](https://www.neoteo.com/en/nvidia-rtx-spark-review-how-windows-divides-unified-memory) —
   GPU carveout a shared paměť (11/2026).
-- [První ceny RTX Spark notebooků](https://news.qq.com/rain/a/20261008A04Z5W00) —
+- [První ceny RTX Spark notebook](https://news.qq.com/rain/a/20261008A04Z5W00) —
   ASUS ProArt P14 128GB za 141 tis. Kč (6 499 USD, odhad; 10/2026).
 - [Presenc AI — RTX Spark local LLM benchmarks](https://presenc.ai/research/nvidia-rtx-spark-local-llm-benchmarks-2026) —
   proč zatím nejsou veřejná měření.

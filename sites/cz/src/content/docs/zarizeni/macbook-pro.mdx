@@ -1,7 +1,7 @@
 ---
 title: "MacBook Pro 128 GB: lokální AI na cestách s MLX"
-description: "MacBook Pro s M5 Max a 128 GB paměti: cena od 177 739 Kč, výkon Qwen3.8, throttling, baterie a srovnání s Mac Studiem."
-last_verified: 2026-11-10
+description: "MacBook Pro M5 Max se 128 GB: cena od 177 739 Kč, výkon Qwen3.8, throttling, baterie, zkušenosti majitelů a recenze."
+last_verified: 2026-11-13
 sidebar:
   label: MacBook Pro
   order: 2
@@ -13,6 +13,7 @@ import AlzaCena from '../../../components/AlzaCena.astro';
 
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import GenerovaniNaZarizeni from '../../../components/GenerovaniNaZarizeni.astro';
+import Zkusenosti from '../../../components/Zkusenosti.astro';
 
 **Verdikt:** Nejtenčí způsob, jak mít 128 GB paměti na cestách. Model
 na něm běží přes Metal a MLX, ale dlouhý běh narazí na teplo a baterii.
@@ -33,11 +34,11 @@ Pro práci u klienta dobré; jako stálý server drahé.
 
 <RychlaFakta id="macbook-pro" />
 
-## Technologie na MacBooku
+## Technologie na MacBook Pro
 
-- **Unified memory 128 GB.** Stejný princip jako u Mac Studia: model
+- **Unified memory 128 GB.** Stejný princip jako u Mac Studio: model
   se nemusí vejít do samostatné VRAM.
-- **M5 Max a 614 GB/s.** Propustnost paměti je vyšší než u DGX Sparku,
+- **M5 Max a 614 GB/s.** Propustnost paměti je vyšší než u DGX Spark,
   takže [decode](/slovnik/vykon/decode/) může být překvapivě rychlý.
 - **Metal + MLX.** Dvě cesty: llama.cpp přes Metal (přenosné, GGUF),
   nebo MLX (rychlejší, ale užší výběr modelů).
@@ -74,7 +75,7 @@ si vezměte nabíječku; na baterii je výkon nižší.
 | 14" 128 GB / 2 TB | 177 739 Kč | nejnižší nalezená cena |
 | 16" 128 GB / 8 TB | 300 490 Kč | nejvyšší varianta |
 
-Proti Mac Studiu se stejnou pamětí a 2TB diskem (171 990 Kč) je
+Proti Mac Studio se stejnou pamětí a 2TB diskem (171 990 Kč) je
 14" MacBook Pro dražší o **5 749 Kč**. To je cena za mobilitu,
 displej a baterii — u Applu překvapivě malý rozdíl. Je to **výpočet**
 z cen k 9. 11. 2026, ne nabídka.
@@ -113,6 +114,8 @@ Konfigurace s 128 GB je na Alza.cz k 9. 11. 2026; část variant je
 nedostupná. Cena od 177 739 Kč vč. DPH.
 
 <AlzaCena kategorie="macbooky" text="Otevřít kategorii na Alza.cz" />
+
+<Zkusenosti id="macbook-pro" />
 
 ## Kudy dál
 
