@@ -291,11 +291,16 @@ export type VideoZaznamEn = {
   nazor_en?: string;
 };
 
-/** Vybraná videa: použitá na webu nebo s kvalitou 4–5. */
+/** Vybraná videa: kvalita 4–5, nejlepší a nejnovější první, max. 8. */
 export function getVideaVybranaEn(id: string): VideoZaznamEn[] {
   return (load<VideoZaznamEn[]>('videa.yaml') ?? [])
     .filter((v) => v.zarizeni === id && (v.stav === 'pouzito' || (v.kvalita ?? 0) >= 4))
-    .sort((a, b) => String(b.vydano ?? '').localeCompare(String(a.vydano ?? '')));
+    .sort(
+      (a, b) =>
+        (b.kvalita ?? 0) - (a.kvalita ?? 0) ||
+        String(b.vydano ?? '').localeCompare(String(a.vydano ?? '')),
+    )
+    .slice(0, 8);
 }
 
 export type ZarizeniEn = {

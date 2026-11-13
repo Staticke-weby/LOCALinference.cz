@@ -40,7 +40,7 @@ function decode(s) {
     .replace(/&quot;/g, '"');
 }
 
-async function stahni(url, timeout = 20000) {
+async function stahni(url, timeout = 20000, pokus = 0) {
   const res = await fetch(url, {
     headers: {
       'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
@@ -48,6 +48,10 @@ async function stahni(url, timeout = 20000) {
     },
     signal: AbortSignal.timeout(timeout),
   });
+  if (res.status === 429 && pokus < 3) {
+    await new Promise((r) => setTimeout(r, 3000 * (pokus + 1)));
+    return stahni(url, timeout, pokus + 1);
+  }
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return await res.text();
 }
@@ -109,16 +113,19 @@ function ohodnot(video, html, titulkyText) {
   const cisla = [...new Set([...text.matchAll(CISLA)].map((m) => m[0].replace(/\s+/g, ' ').toLowerCase()))];
   const minut = Math.round(info.delka / 60);
   const klikbait = KLIKBAIT.test(video.nazev);
+  const vNazvu = zarizeni.some((z) => video.nazev.toLowerCase().includes(z));
 
   let skore = 0;
   if (info.popis.length >= 250) skore += 1;
   if (titulkyText.length > 2000) skore += 1;
   if (vTextu) skore += 1;
+  if (vNazvu) skore += 1;
   if (cisla.length >= 5) skore += 2;
   else if (cisla.length >= 2) skore += 1;
   if (info.delka >= 480) skore += 1;
   if (klikbait) skore -= 1;
   if (!info.popis && !titulkyText) skore = 0;
+  if (!vTextu) skore = Math.min(skore, 3);
 
   const kvalita = Math.max(1, Math.min(5, skore));
 
@@ -172,14 +179,14 @@ for (const v of videa) {
     console.log(`✓ ${v.id} ${v.kvalita}/5 ${v.nazev}`);
   } catch (e) {
     Object.assign(v, {
-      kvalita: 1,
-      stav: 'prohlednuto',
+      stav: 'novy',
       auto: true,
-      proc: `Popis se nepodařilo načíst (${e.message}); bez hodnocení.`,
+      proc: `Načtení popisu se nepodařilo (${e.message}); zkusí se znovu při dalším běhu.`,
     });
-    zmen++;
     console.log(`✗ ${v.id} ${e.message}`);
+    continue;
   }
+  await new Promise((r) => setTimeout(r, 400));
 }
 
 fs.writeFileSync(file, HLAVICKA + '\n' + yaml.dump(videa, { lineWidth: 200, noRefs: true }));

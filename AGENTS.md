@@ -205,9 +205,10 @@ vlastní evidenci:
   `stav: prohlednuto`, `auto: true`). Ruční zásah je jen volitelná
   korekce: `pouzito` (číslo je na webu), `zamitnuto` (s důvodem).
   Novější videa mají přednost — software a návody stárnou; u videí
-  starších než 6 měsíců ověřit verzi enginu a modelu. Přehled
-  `npm run videa`, zápis `videa.md` přes `npm run videa:zapis`, kontrola
-  `npm run check:videa`.
+  starších než 6 měsíců ověřit verzi enginu a modelu. Hledá se za
+  poslední měsíc (YouTube „tento měsíc“), protože web se aktualizuje
+  aspoň jednou měsíčně. Přehled `npm run videa`, zápis `videa.md` přes
+  `npm run videa:zapis`, kontrola `npm run check:videa`.
 - **`scripts/hlidac.mjs`** — pravidelná kontrola zdrojů. Umí RSS/Atom,
   GitHub releases, změny model card na Hugging Face a hash klíčové části
   HTML stránky. U RSS a YouTube ukládá položky a reportuje **nové titulky

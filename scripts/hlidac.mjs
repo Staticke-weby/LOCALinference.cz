@@ -229,7 +229,12 @@ async function signature(source) {
   }
 
   if (source.typ === 'youtube') {
-    const items = cerstve(filtr(source, parseYouTubeSearch(await fetchText(url)))).slice(0, 20);
+    const items = filtr(source, parseYouTubeSearch(await fetchText(url)))
+      .filter((i) => {
+        const d = stariDnu(i.d);
+        return d == null || d <= 30;
+      })
+      .slice(0, 20);
     return { sig: `yt:${hash(items.map(klic).join('|') || 'prazdno')}`, items };
   }
 

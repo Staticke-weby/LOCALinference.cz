@@ -1109,7 +1109,7 @@
 
 - id: recenze-youtube-dgx-spark
   nazev: "YouTube: DGX Spark review"
-  url: "https://www.youtube.com/results?search_query=DGX+Spark+review&hl=en&sp=CAI%253D"
+  url: "https://www.youtube.com/results?search_query=DGX+Spark+review&hl=en&sp=EgIIBA%253D%253D"
   typ: youtube
   co_sledujeme: [recenze, video, zkusenosti]
   frekvence: tydne
@@ -1120,7 +1120,7 @@
 
 - id: recenze-youtube-rtx-spark-mini
   nazev: "YouTube: RTX Spark mini review"
-  url: "https://www.youtube.com/results?search_query=RTX+Spark+mini+review&hl=en&sp=CAI%253D"
+  url: "https://www.youtube.com/results?search_query=RTX+Spark+mini+review&hl=en&sp=EgIIBA%253D%253D"
   typ: youtube
   co_sledujeme: [recenze, video, zkusenosti]
   frekvence: tydne
@@ -1131,7 +1131,7 @@
 
 - id: recenze-youtube-rtx-spark-notebook
   nazev: "YouTube: RTX Spark notebook review"
-  url: "https://www.youtube.com/results?search_query=RTX+Spark+notebook+review&hl=en&sp=CAI%253D"
+  url: "https://www.youtube.com/results?search_query=RTX+Spark+notebook+review&hl=en&sp=EgIIBA%253D%253D"
   typ: youtube
   co_sledujeme: [recenze, video, zkusenosti]
   frekvence: tydne
@@ -1142,7 +1142,7 @@
 
 - id: recenze-youtube-strix-halo
   nazev: "YouTube: Strix Halo review"
-  url: "https://www.youtube.com/results?search_query=Strix+Halo+review&hl=en&sp=CAI%253D"
+  url: "https://www.youtube.com/results?search_query=Strix+Halo+review&hl=en&sp=EgIIBA%253D%253D"
   typ: youtube
   co_sledujeme: [recenze, video, zkusenosti]
   frekvence: tydne
@@ -1153,7 +1153,7 @@
 
 - id: recenze-youtube-gorgon-halo
   nazev: "YouTube: Gorgon Halo review"
-  url: "https://www.youtube.com/results?search_query=Gorgon+Halo+review&hl=en&sp=CAI%253D"
+  url: "https://www.youtube.com/results?search_query=Gorgon+Halo+review&hl=en&sp=EgIIBA%253D%253D"
   typ: youtube
   co_sledujeme: [recenze, video, zkusenosti]
   frekvence: tydne
@@ -1164,7 +1164,7 @@
 
 - id: recenze-youtube-mac-studio
   nazev: "YouTube: Mac Studio M5 local AI"
-  url: "https://www.youtube.com/results?search_query=Mac+Studio+M5+local+AI&hl=en&sp=CAI%253D"
+  url: "https://www.youtube.com/results?search_query=Mac+Studio+M5+local+AI&hl=en&sp=EgIIBA%253D%253D"
   typ: youtube
   co_sledujeme: [recenze, video, zkusenosti]
   frekvence: tydne
@@ -1175,7 +1175,7 @@
 
 - id: recenze-youtube-macbook-pro
   nazev: "YouTube: MacBook Pro M5 Max local AI"
-  url: "https://www.youtube.com/results?search_query=MacBook+Pro+M5+Max+local+AI&hl=en&sp=CAI%253D"
+  url: "https://www.youtube.com/results?search_query=MacBook+Pro+M5+Max+local+AI&hl=en&sp=EgIIBA%253D%253D"
   typ: youtube
   co_sledujeme: [recenze, video, zkusenosti]
   frekvence: tydne
