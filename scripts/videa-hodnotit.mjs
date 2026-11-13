@@ -78,6 +78,29 @@ async function titulky(html) {
   }
 }
 
+function popisVidea(desc) {
+  const lines = String(desc)
+    .split('\n')
+    .map((s) => s.trim())
+    .filter(
+      (s) =>
+        s &&
+        !/^https?:/i.test(s) &&
+        !/^[0-9]+:[0-9]{2}/.test(s) &&
+        !/(amzn|geni\.us|link\.amazon|patreon|sponsor|affiliate|gear|checklist)/i.test(s),
+    );
+  const text = lines.join(' ').replace(/\s+/g, ' ').trim();
+  const sentences = text.split(/(?<=[.!?])\s+/);
+  return sentences.slice(0, 2).join(' ').slice(0, 280);
+}
+
+function nazorVidea(desc) {
+  const sentences = String(desc).replace(/\n/g, ' ').split(/(?<=[.!?])\s+/);
+  const klic =
+    /(recommend|worth it|don'?t buy|do not buy|avoid|i returned|better than|worse than|verdict|doporučuji|nedoporučuji|nekupte|vyplatí|nevyplatí)/i;
+  return sentences.find((s) => klic.test(s) && s.length < 320) ?? '';
+}
+
 function ohodnot(video, html, titulkyText) {
   const info = popisZHtml(html);
   const text = `${info.popis} ${titulkyText}`;
@@ -115,6 +138,10 @@ function ohodnot(video, html, titulkyText) {
     vydano_odhad: info.vydano ? false : (video.vydano_odhad ?? false),
     shlednuti: info.shlednuti || null,
     cisla,
+    popis: popisVidea(info.popis),
+    nazor: nazorVidea(info.popis),
+    popis_auto: true,
+    nazor_auto: true,
     proc: casti.join(' '),
   };
 }
@@ -127,6 +154,12 @@ for (const v of videa) {
     const html = await stahni(v.url);
     const titulkyText = await titulky(html);
     const hodnoceni = ohodnot(v, html, titulkyText);
+    if (v.popis && v.popis_auto === false) {
+      delete hodnoceni.popis;
+      delete hodnoceni.nazor;
+      delete hodnoceni.popis_auto;
+      delete hodnoceni.nazor_auto;
+    }
     if (titulkyText.length > 500) {
       hodnoceni.proc += ' Titulky dostupné.';
       hodnoceni.titulky = true;

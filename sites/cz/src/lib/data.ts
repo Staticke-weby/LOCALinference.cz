@@ -301,6 +301,10 @@ export type VideoZaznam = {
   stav: 'novy' | 'prohlednuto' | 'pouzito' | 'zamitnuto';
   kvalita?: number | null;
   proc?: string;
+  popis?: string;
+  nazor?: string;
+  popis_en?: string;
+  nazor_en?: string;
 };
 
 /** Vybraná videa: použitá na webu nebo s kvalitou 4–5. */

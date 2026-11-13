@@ -30,7 +30,12 @@ const datum = (v: string | Date) =>
               {v.vydano ? datum(v.vydano) : 'date not stated'}
               {v.kvalita ? ` · quality ${v.kvalita}/5` : ''}
             </span>
-            {(v.proc_en || v.proc) && <p class="li-videa__proc">{v.proc_en || v.proc}</p>}
+            {(v.popis_en || v.popis) && <p class="li-videa__popis">{v.popis_en || v.popis}</p>}
+            {(v.nazor_en || v.nazor) && (
+              <p class="li-videa__nazor">
+                <strong>Reviewer's take:</strong> {v.nazor_en || v.nazor}
+              </p>
+            )}
           </li>
         ))}
       </ul>
@@ -64,6 +69,14 @@ const datum = (v: string | Date) =>
   }
   .li-videa__proc {
     margin: 0.25rem 0 0;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+  .li-videa__popis {
+    margin: 0.3rem 0 0;
+  }
+  .li-videa__nazor {
+    margin: 0.2rem 0 0;
     font-size: var(--sl-text-sm);
     color: var(--sl-color-gray-2);
   }

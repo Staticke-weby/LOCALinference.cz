@@ -28,6 +28,12 @@
   shlednuti: 249990
   cisla: []
   titulky: false
+  popis: Srovnání GMKtec EVO X5 Pro s NVIDIA DGX Spark na stejných úlohách.
+  nazor: Popis neuvádí jasný verdikt; jde o srovnávací video, ne o samostatnou recenzi.
+  popis_auto: false
+  nazor_auto: false
+  popis_en: GMKtec EVO X5 Pro compared with the NVIDIA DGX Spark on the same tasks.
+  nazor_en: The description gives no clear verdict; this is a comparison, not a standalone review.
 - id: JZVuemv0ZYY
   url: https://www.youtube.com/watch?v=JZVuemv0ZYY
   nazev: 'Mac Studio vs Two DGX Sparks: The 256 GB Trap'
@@ -46,6 +52,12 @@
     - 256 gb
     - 256gb
   titulky: false
+  popis: 'Dva propojené DGX Spark proti Mac Studio M5 Ultra s 256 GB: cena, rychlost, co se vejde, generování obrázků a videa.'
+  nazor: 'Autor říká, že dva DGX Spark nejsou jeden 256GB stroj, a upozorňuje na „past 256 GB“: kapacita se nedá sčítat bez ztráty.'
+  popis_auto: false
+  nazor_auto: false
+  popis_en: 'Two linked DGX Sparks against a 256GB Mac Studio M5 Ultra: price, speed, what fits, image and video generation.'
+  nazor_en: 'The author argues two DGX Sparks are not one 256GB machine and calls it the "256 GB trap": capacity does not add up without a cost.'
 - id: rYHcgCmj9us
   url: https://www.youtube.com/watch?v=rYHcgCmj9us
   nazev: The Most Interesting Laptop of 2026
@@ -62,6 +74,12 @@
   shlednuti: 270003
   cisla: []
   titulky: false
+  popis: 'Recenze Asus ProArt P14 s RTX Spark: povrch, displej, CPU a GPU, hry, SolidWorks a lokální AI.'
+  nazor: Popis neuvádí verdikt. Video je sponzorované Asusem, což je potřeba číst jako kontext.
+  popis_auto: false
+  nazor_auto: false
+  popis_en: 'Asus ProArt P14 with RTX Spark reviewed: chassis, display, CPU and GPU, gaming, SolidWorks and local AI.'
+  nazor_en: The description gives no verdict. The video is sponsored by Asus, which is context worth knowing.
 - id: y9YXhEEwAwc
   url: https://www.youtube.com/watch?v=y9YXhEEwAwc
   nazev: Apple's Local AI App for Mac Is Coming (Harbor)
@@ -79,6 +97,12 @@
   cisla:
     - 16 gb
   titulky: false
+  popis: 'Leak aplikace Harbor od Applu: lokální AI server pro Mac, který z Maců dělá týmový stroj bez cloudu.'
+  nazor: 'Autor upozorňuje, že Harbor je pro tým, ne pro jednotlivce: když deset lidí pošle dlouhý dokument najednou, desátý čeká přes sedm minut.'
+  popis_auto: false
+  nazor_auto: false
+  popis_en: 'The leaked Apple Harbor app: a local AI server that turns Macs into a private team machine without the cloud.'
+  nazor_en: 'The author warns Harbor is for teams, not individuals: when ten people paste a long document at once, the tenth waits over seven minutes.'
 - id: JLs10oOX6NY
   url: https://www.youtube.com/watch?v=JLs10oOX6NY
   nazev: I Tested Local AI on My Mac Studio So You Don't Have To
@@ -98,6 +122,12 @@
     - 24gb
     - 32gb
   titulky: false
+  popis: 'Ollama vs LM Studio na Mac Studio M5 Ultra: jeden prompt versus šestnáct souběžných požadavků.'
+  nazor: Při jednom promptu se oba enginy liší o 5 %, ale při šestnácti požadavcích udělá LM Studio 5,4× víc práce. Autor to považuje za rozhodující pro agenty.
+  popis_auto: false
+  nazor_auto: false
+  popis_en: 'Ollama versus LM Studio on an M5 Ultra Mac Studio: one prompt versus sixteen concurrent requests.'
+  nazor_en: On one prompt the engines differ by 5%, but with sixteen requests LM Studio does 5.4x the work. The author treats that as decisive for agents.
 - id: Ni7ON0pZtso
   url: https://www.youtube.com/watch?v=Ni7ON0pZtso
   nazev: Apple's New App Turns the Macs You Own Into One Private Local AI
@@ -117,6 +147,12 @@
     - 24gb
     - 512gb
   titulky: false
+  popis: 'Leak Harbor od Claris: co znamená pro Mac s 16 nebo 24 GB, které Mac mini můžou do poolu a jestli čekat, nebo použít LM Studio či Ollama.'
+  nazor: Popis neuvádí verdikt; video je vysvětlující přehled leaku a možností, ne recenze.
+  popis_auto: false
+  nazor_auto: false
+  popis_en: 'The Claris Harbor leak: what it means for a Mac with 16 or 24GB, which Mac mini can join a pool, and whether to wait or use LM Studio or Ollama.'
+  nazor_en: The description gives no verdict; this is an explanatory overview of the leak, not a review.
 - id: feKLlokg1AY
   url: https://www.youtube.com/watch?v=feKLlokg1AY
   nazev: I tested local AI on the base M6 Mac mini. Here's what actually worked
@@ -137,6 +173,12 @@
     - 64gb
     - 11.4gb
   titulky: false
+  popis: 'Základní Mac mini M6 s 16 GB proti Mac Studio: pět modelů, psaní, oprava kódu, Whisper a úpravy obrázků.'
+  nazor: Autor základní Mac mini vrátil. Ukazuje, co na 16 GB reálně zvládne a kde narazí, a přidává, co změní 64 GB.
+  popis_auto: false
+  nazor_auto: false
+  popis_en: 'A base M6 Mac mini with 16GB against a Mac Studio: five models, writing, a code fix, Whisper and image editing.'
+  nazor_en: The author returned the base Mac mini. He shows what 16GB really handles, where it hits the wall, and what 64GB changes.
 - id: 1jkV40QrhiE
   url: https://www.youtube.com/watch?v=1jkV40QrhiE
   nazev: Don't Buy the $22,299 Mac Studio for AI (Yet) | The First 512GB M5 Ultra Numbers
@@ -155,6 +197,12 @@
     - 512gb
     - 256gb
   titulky: false
+  popis: 'První čísla M5 Ultra s 512 GB proti 256GB verzi: cena, rychlost, kvalita a co zvládne jen 512 GB.'
+  nazor: Autor nedoporučuje kupovat 512GB Mac Studio pro AI, dokud nejsou otestované velké modely. Čísla pro 512 GB jsou podle něj neověřená a od komunity.
+  popis_auto: false
+  nazor_auto: false
+  popis_en: 'First numbers for the 512GB M5 Ultra against the 256GB version: price, speed, quality and what only 512GB can run.'
+  nazor_en: The author advises against buying a 512GB Mac Studio for AI until large models are tested. The 512GB numbers are community-submitted and unverified.
 - id: mbqHk7kfhcA
   url: https://www.youtube.com/watch?v=mbqHk7kfhcA
   nazev: Buying a Mac for AI? What Nobody Warns You About
@@ -176,6 +224,12 @@
     - 96 gb
     - 32 gb
   titulky: false
+  popis: 'Pět věcí, které zjistíte až po koupi Macu na lokální AI: použitelná paměť, teplo a hluk, baterie, dlouhé dokumenty a rychlost paměti.'
+  nazor: Autor varuje, že ze 128 GB zůstane AI jen asi 107 GB, notebook topí a je hlučný a baterie při zátěži vydrží asi hodinu a čtvrt.
+  popis_auto: false
+  nazor_auto: false
+  popis_en: 'Five things you only learn after buying a Mac for local AI: usable memory, heat and noise, battery, long documents and memory speed.'
+  nazor_en: The author warns that of 128GB only about 107GB is left for AI, the laptop runs hot and loud, and the battery lasts about an hour and a quarter under load.
 - id: TB--mw76SLg
   url: https://www.youtube.com/watch?v=TB--mw76SLg
   nazev: 'M5 Max MacBook Pro: This Stress Test Made PROLED...'
@@ -192,3 +246,9 @@
   shlednuti: 16259
   cisla: []
   titulky: false
+  popis: 'Zátěžový test 16palcového MacBooku Pro s M5 Max: výkon, teplota a chování při dlouhé zátěži.'
+  nazor: Popis neuvádí konkrétní verdikt; video stojí na měřeních ze zátěžového testu.
+  popis_auto: false
+  nazor_auto: false
+  popis_en: 'A stress test of the 16-inch MacBook Pro with M5 Max: performance, temperature and behaviour under sustained load.'
+  nazor_en: The description gives no specific verdict; the video stands on stress-test measurements.
