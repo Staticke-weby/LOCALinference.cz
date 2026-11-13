@@ -1,0 +1,72 @@
+---
+import { formatDatum, getVideaVybrana, getVideaZarizeni } from '../lib/data';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const videa = getVideaVybrana(id);
+const vsechna = getVideaZarizeni(id);
+const ceka = vsechna.filter((v) => v.stav === 'novy').length;
+---
+
+<div class="li-videa">
+  {
+    videa.length ? (
+      <ul>
+        {videa.map((v) => (
+          <li>
+            <a href={v.url} target="_blank" rel="noopener noreferrer">
+              {v.nazev}
+            </a>
+            <span class="li-videa__meta">
+              {v.kanal ? `${v.kanal} · ` : ''}
+              {v.vydano ? `${formatDatum(v.vydano)}${v.vydano_odhad ? ' (odhad)' : ''}` : 'datum neuvedeno'}
+              {v.kvalita ? ` · kvalita ${v.kvalita}/5` : ''}
+            </span>
+            {v.proc && <p class="li-videa__proc">{v.proc}</p>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="li-videa__prazdno">
+        Zatím tu nejsou ohodnocená videa. Ve frontě {ceka ? `čeká ${ceka}` : 'není žádné'} k
+        prohlédnutí; objeví se tu jen videa, která projdou hodnocením.
+      </p>
+    )
+  }
+
+  <p class="li-videa__pozn">
+    Videa nehostujeme. Odkazy vedou na YouTube a otevírají se v nové kartě.
+    Data vydání jsou orientační, u novějších videí je přesnější.
+    Novější videa mají přednost: software a návody k modelům rychle stárnou.
+  </p>
+</div>
+
+<style>
+  .li-videa ul {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .li-videa li {
+    line-height: 1.5;
+  }
+  .li-videa__meta {
+    display: block;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+  .li-videa__proc {
+    margin: 0.25rem 0 0;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+  .li-videa__prazdno {
+    color: var(--sl-color-gray-2);
+  }
+  .li-videa__pozn {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+</style>

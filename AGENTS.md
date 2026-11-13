@@ -203,8 +203,10 @@ vlastní evidenci:
   nová videa jen přidává (`stav: novy`); hodnocení je ruční:
   `prohlednuto` (nic nového), `pouzito` (číslo je na webu), `zamitnuto`
   (irelevantní, reklama, slabá kvalita). U `zamitnuto` je `proc`
-  povinné. Přehled `npm run videa`, zápis `videa.md` přes
-  `npm run videa:zapis`, kontrola `npm run check:videa`.
+  povinné. Novější videa mají přednost — software a návody stárnou; u
+  videí starších než 6 měsíců ověřit verzi enginu a modelu. Přehled
+  `npm run videa`, zápis `videa.md` přes `npm run videa:zapis`, kontrola
+  `npm run check:videa`.
 - **`scripts/hlidac.mjs`** — pravidelná kontrola zdrojů. Umí RSS/Atom,
   GitHub releases, změny model card na Hugging Face a hash klíčové části
   HTML stránky. U RSS a YouTube ukládá položky a reportuje **nové titulky

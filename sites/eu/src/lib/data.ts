@@ -275,6 +275,26 @@ export function getZkusenostiEn(id: string): ZkusenostiEn | undefined {
   return vse.find((z) => z.zarizeni === id);
 }
 
+export type VideoZaznamEn = {
+  id: string;
+  url: string;
+  nazev: string;
+  kanal?: string;
+  zarizeni: string;
+  vydano?: string | null;
+  stav: 'novy' | 'prohlednuto' | 'pouzito' | 'zamitnuto';
+  kvalita?: number | null;
+  proc?: string;
+  proc_en?: string;
+};
+
+/** Vybraná videa: použitá na webu nebo s kvalitou 4–5. */
+export function getVideaVybranaEn(id: string): VideoZaznamEn[] {
+  return (load<VideoZaznamEn[]>('videa.yaml') ?? [])
+    .filter((v) => v.zarizeni === id && (v.stav === 'pouzito' || (v.kvalita ?? 0) >= 4))
+    .sort((a, b) => String(b.vydano ?? '').localeCompare(String(a.vydano ?? '')));
+}
+
 export type ZarizeniEn = {
   id: string;
   verdict: string;

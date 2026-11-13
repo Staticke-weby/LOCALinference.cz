@@ -1,0 +1,76 @@
+---
+import { getVideaVybranaEn, isoDate } from '../lib/data';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const videa = getVideaVybranaEn(id);
+
+const datum = (v: string | Date) =>
+  new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(`${isoDate(v)}T00:00:00Z`));
+---
+
+<div class="li-videa">
+  {
+    videa.length ? (
+      <ul>
+        {videa.map((v) => (
+          <li>
+            <a href={v.url} target="_blank" rel="noopener noreferrer">
+              {v.nazev}
+            </a>
+            <span class="li-videa__meta">
+              {v.kanal ? `${v.kanal} · ` : ''}
+              {v.vydano ? datum(v.vydano) : 'date not stated'}
+              {v.kvalita ? ` · quality ${v.kvalita}/5` : ''}
+            </span>
+            {(v.proc_en || v.proc) && <p class="li-videa__proc">{v.proc_en || v.proc}</p>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="li-videa__prazdno">
+        No rated videos yet. Only videos that pass review appear here.
+      </p>
+    )
+  }
+
+  <p class="li-videa__pozn">
+    We do not host videos. Links open on YouTube in a new tab. Publication dates
+    are approximate. Newer videos come first: software and model recipes age
+    quickly.
+  </p>
+</div>
+
+<style>
+  .li-videa ul {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .li-videa li {
+    line-height: 1.5;
+  }
+  .li-videa__meta {
+    display: block;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+  .li-videa__proc {
+    margin: 0.25rem 0 0;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+  .li-videa__prazdno {
+    color: var(--sl-color-gray-2);
+  }
+  .li-videa__pozn {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+</style>

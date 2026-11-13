@@ -289,6 +289,31 @@ export function getZkusenosti(id: string): ZkusenostiZarizeni | undefined {
   return (load<ZkusenostiZarizeni[]>('zkusenosti.yaml') ?? []).find((z) => z.zarizeni === id);
 }
 
+export type VideoZaznam = {
+  id: string;
+  url: string;
+  nazev: string;
+  kanal?: string;
+  zarizeni: string;
+  poprve?: string;
+  vydano?: string | null;
+  vydano_odhad?: boolean;
+  stav: 'novy' | 'prohlednuto' | 'pouzito' | 'zamitnuto';
+  kvalita?: number | null;
+  proc?: string;
+};
+
+/** Vybraná videa: použitá na webu nebo s kvalitou 4–5. */
+export function getVideaVybrana(id: string): VideoZaznam[] {
+  return (load<VideoZaznam[]>('videa.yaml') ?? [])
+    .filter((v) => v.zarizeni === id && (v.stav === 'pouzito' || (v.kvalita ?? 0) >= 4))
+    .sort((a, b) => String(b.vydano ?? b.poprve ?? '').localeCompare(String(a.vydano ?? a.poprve ?? '')));
+}
+
+export function getVideaZarizeni(id: string): VideoZaznam[] {
+  return (load<VideoZaznam[]>('videa.yaml') ?? []).filter((v) => v.zarizeni === id);
+}
+
 export function getDgxSparkOem(): DgxSparkOem[] {
   return (load<DgxSparkOem[]>('dgx-spark-oem.yaml') ?? []).sort(
     (a, b) => a.cena_czk_s_dph - b.cena_czk_s_dph || b.uloziste_gb - a.uloziste_gb,

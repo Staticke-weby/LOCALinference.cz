@@ -1,6 +1,8 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import AnchorHeading from '@astrojs/starlight/components/AnchorHeading.astro';
 import ZkusenostiEn from '../../components/ZkusenostiEn.astro';
+import VideaEn from '../../components/VideaEn.astro';
 import {
   getDgxSparkOem,
   getRtxNotebookOem,
@@ -154,6 +156,12 @@ const datum = new Intl.DateTimeFormat('en-US', {
   )}
 
   <ZkusenostiEn id={z.id} />
+
+  <AnchorHeading level={2} id="youtube-video-reviews">
+    {z.nazev} on YouTube — video reviews
+  </AnchorHeading>
+
+  <VideaEn id={z.id} />
 
   <h2>More detail</h2>
 

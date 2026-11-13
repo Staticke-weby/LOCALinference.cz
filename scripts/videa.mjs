@@ -39,7 +39,10 @@ for (const [i, v] of (Array.isArray(videa) ? videa : []).entries()) {
 const pocty = STAVY.map((s) => [s, videa.filter((v) => v?.stav === s).length]);
 const fronta = videa
   .filter((v) => v?.stav === 'novy')
-  .sort((a, b) => String(b.poprve ?? '').localeCompare(String(a.poprve ?? '')));
+  .sort(
+    (a, b) =>
+      String(b.vydano ?? b.poprve ?? '').localeCompare(String(a.vydano ?? a.poprve ?? '')),
+  );
 
 console.log(`Videa: ${videa.length}`);
 for (const [s, n] of pocty) console.log(`  ${s}: ${n}`);
@@ -62,10 +65,10 @@ if (KONTROLA) {
 
 if (ZAPIS) {
   const radek = (v) =>
-    `| ${v.poprve ?? ''} | ${v.zarizeni ?? ''} | [${String(v.nazev).replace(/\|/g, '\\|')}](${v.url}) | ${v.kanal ?? ''} | ${v.stav} | ${v.kvalita ?? ''} | ${String(v.proc ?? '').replace(/\|/g, '\\|')} |`;
+    `| ${v.poprve ?? ''} | ${v.vydano ?? ''} | ${v.zarizeni ?? ''} | [${String(v.nazev).replace(/\|/g, '\\|')}](${v.url}) | ${v.kanal ?? ''} | ${v.stav} | ${v.kvalita ?? ''} | ${String(v.proc ?? '').replace(/\|/g, '\\|')} |`;
   const tabulka = (seznam) => [
-    '| Poprvé | Zařízení | Video | Kanál | Stav | Kvalita | Proč |',
-    '|---|---|---|---|---|---:|---|',
+    '| Poprvé | Vydáno | Zařízení | Video | Kanál | Stav | Kvalita | Proč |',
+    '|---|---|---|---|---|---|---:|---|',
     ...seznam.map(radek),
   ];
 

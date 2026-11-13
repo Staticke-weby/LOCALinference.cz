@@ -35,6 +35,13 @@ let videaZmena = false;
 
 const videoId = (url) => String(url).match(/[?&]v=([\w-]{11})/)?.[1] ?? '';
 
+/** Odhad data publikace z relativního textu ("3mo ago") při zachycení. */
+function vydanoDatum(text) {
+  const d = stariDnu(text);
+  if (d == null) return null;
+  return new Date(Date.now() - d * 86400000).toISOString().slice(0, 10);
+}
+
 function zapisVidea() {
   if (!videaZmena) return;
   fs.writeFileSync(videaFile, VIDEA_HLAVICKA + yaml.dump(videa, { lineWidth: 160, noRefs: true }));
@@ -271,6 +278,8 @@ for (const source of sources) {
           kanal: i.k ?? '',
           zarizeni: source.id.replace(/^recenze-youtube-/, ''),
           poprve: dnes,
+          vydano: vydanoDatum(i.d),
+          vydano_odhad: true,
           stav: 'novy',
           kvalita: null,
           proc: '',

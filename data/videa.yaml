@@ -4,7 +4,13 @@
 # `kvalita`: 1–5 (5 = nejlepší), nebo null dokud nehodnotíte
 # `proc`: proč takový stav; u zamitnuto povinné
 # `zarizeni`: id zařízení, ke kterému video patří
+# `vydano`: datum publikace (u starších položek odhad z relativního údaje)
+#
+# Novější videa mají přednost: software, enginy a návody k modelům rychle
+# stárnou. U videí starších než 6 měsíců ověřte verzi enginu a modelu;
+# kvalitní starší video může zůstat, ale nesmí být jediným zdrojem čísel.
 # Kontrola: npm run check:videa. Přehled: npm run videa, zápis: npm run videa:zapis
+
 
 - id: k7_K34eY9TM
   url: https://www.youtube.com/watch?v=k7_K34eY9TM
@@ -15,6 +21,8 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-10'
+  vydano_odhad: false
 - id: JZVuemv0ZYY
   url: https://www.youtube.com/watch?v=JZVuemv0ZYY
   nazev: 'Mac Studio vs Two DGX Sparks: The 256 GB Trap'
@@ -24,6 +32,8 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-06'
+  vydano_odhad: false
 - id: rYHcgCmj9us
   url: https://www.youtube.com/watch?v=rYHcgCmj9us
   nazev: The Most Interesting Laptop of 2026
@@ -33,6 +43,8 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-10'
+  vydano_odhad: false
 - id: y9YXhEEwAwc
   url: https://www.youtube.com/watch?v=y9YXhEEwAwc
   nazev: Apple's Local AI App for Mac Is Coming (Harbor)
@@ -42,6 +54,8 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-12'
+  vydano_odhad: false
 - id: JLs10oOX6NY
   url: https://www.youtube.com/watch?v=JLs10oOX6NY
   nazev: I Tested Local AI on My Mac Studio So You Don't Have To
@@ -51,6 +65,8 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-08'
+  vydano_odhad: false
 - id: Ni7ON0pZtso
   url: https://www.youtube.com/watch?v=Ni7ON0pZtso
   nazev: Apple's New App Turns the Macs You Own Into One Private Local AI
@@ -60,6 +76,8 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-11'
+  vydano_odhad: false
 - id: feKLlokg1AY
   url: https://www.youtube.com/watch?v=feKLlokg1AY
   nazev: I tested local AI on the base M6 Mac mini. Here's what actually worked
@@ -69,6 +87,8 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-11'
+  vydano_odhad: false
 - id: 1jkV40QrhiE
   url: https://www.youtube.com/watch?v=1jkV40QrhiE
   nazev: Don't Buy the $22,299 Mac Studio for AI (Yet) | The First 512GB M5 Ultra Numbers
@@ -78,6 +98,8 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-11'
+  vydano_odhad: false
 - id: mbqHk7kfhcA
   url: https://www.youtube.com/watch?v=mbqHk7kfhcA
   nazev: Buying a Mac for AI? What Nobody Warns You About
@@ -87,6 +109,8 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-07'
+  vydano_odhad: false
 - id: TB--mw76SLg
   url: https://www.youtube.com/watch?v=TB--mw76SLg
   nazev: 'M5 Max MacBook Pro: This Stress Test Made PROLED...'
@@ -96,3 +120,5 @@
   stav: novy
   kvalita: null
   proc: ''
+  vydano: '2026-11-08'
+  vydano_odhad: false

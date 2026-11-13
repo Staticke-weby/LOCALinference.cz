@@ -5,6 +5,13 @@
 # hreflang, menu, opravy odkazů) sem nepatří.
 
 - datum: 2026-11-13
+  typ: obsah
+  titulek: "YouTube video recenze u každého zařízení"
+  co_se_zmenilo: "Stránky zařízení mají novou sekci „<zařízení> na YouTube – video recenze“. Zobrazují se v ní jen ohodnocená videa (kvalita 4–5 nebo použitá na webu), nejnovější první; software a návody k modelům rychle stárnou. Fronta všech zachycených videí je v data/videa.yaml a přehled ve videa.md."
+  dotcene_stranky: [zarizeni/dgx-spark, zarizeni/rtx-spark-mini, zarizeni/rtx-spark-notebook, zarizeni/strix-halo, zarizeni/mac-studio, zarizeni/macbook-pro, zarizeni/gorgon-halo]
+  zdroj: https://www.localinference.cz/zarizeni/dgx-spark/
+
+- datum: 2026-11-13
   typ: zdroj
   titulek: "Hlídač sleduje nové recenze a videa k zařízením"
   co_se_zmenilo: "Registr zdrojů má 14 nových položek: Google News pro články a recenze k sedmi zařízením a YouTube hledání seřazené od nejnovějších. Hlídač u RSS a YouTube ukládá položky a reportuje nové titulky s odkazy; videa bere jen za poslední týden, aby se neopakovala."
