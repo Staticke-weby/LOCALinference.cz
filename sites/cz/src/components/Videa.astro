@@ -18,7 +18,7 @@ const ceka = vsechna.filter((v) => v.stav === 'novy').length;
         {videa.map((v) => (
           <li>
             <a href={v.url} target="_blank" rel="noopener noreferrer">
-              {v.nazev}
+              {v.nazev_cs || v.nazev}
             </a>
             <span class="li-videa__meta">
               {v.kanal ? `${v.kanal} · ` : ''}

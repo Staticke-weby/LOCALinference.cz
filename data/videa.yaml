@@ -235,6 +235,7 @@
   nazor_en: The author warns that of 128GB only about 107GB is left for AI, the laptop runs hot and loud, and the battery lasts about an hour and a quarter under load.
   popis_cs: 'Pět věcí, které zjistíte až po koupi Macu na lokální AI: použitelná paměť, teplo a hluk, baterie, dlouhé dokumenty a rychlost paměti.'
   nazor_cs: Autor varuje, že ze 128 GB zůstane AI jen asi 107 GB, notebook topí a je hlučný a baterie při zátěži vydrží asi hodinu a čtvrt.
+  nazev_cs: Kupujete Mac na AI? Pět věcí, před kterými nikdo nevaruje
 - id: TB--mw76SLg
   url: https://www.youtube.com/watch?v=TB--mw76SLg
   nazev: 'M5 Max MacBook Pro: This Stress Test Made PROLED...'
@@ -456,6 +457,7 @@
   titulky: false
   popis_cs: Srovnává cenu za GB u DGX Spark a 192GB Gorgon Halo; zmiňuje 273 GB/s a softwarový háček.
   nazor_cs: Autor nedoporučuje kupovat DGX Spark za 6 950 USD, dokud si neprojde cenu za GB.
+  nazev_cs: Nekupujte DGX Spark za 6 950 USD, dokud tohle neuvidíte
 - id: FW8bCjhl3zE
   url: https://www.youtube.com/watch?v=FW8bCjhl3zE
   nazev: NVIDIA DGX Spark in 12 Minutes
@@ -547,6 +549,7 @@
   titulky: false
   popis_cs: Zkušenost s provozem náročných otevřených modelů na DGX Spark v praxi.
   nazor_cs: ''
+  nazev_cs: Provoz špičkových lokálních modelů na DGX Spark
 - id: QwD0XJ4hXiA
   url: https://www.youtube.com/watch?v=QwD0XJ4hXiA
   nazev: Don't Buy the DGX Spark 64GB Until You Run This Math
@@ -571,6 +574,7 @@
   titulky: false
   popis_cs: Počítá, jestli se u 64GB verze za 4 999 USD vyplatí paměť proti ceně, a ptá se, jak ověřit tvrzení NVIDIA.
   nazor_cs: Autor varuje před koupí 64GB verze, dokud si člověk neprojde výpočet.
+  nazev_cs: Nekupujte DGX Spark 64 GB, dokud si neprojdete tento výpočet
 - id: 7kWqGfnEhCM
   url: https://www.youtube.com/watch?v=7kWqGfnEhCM
   nazev: The DGX Spark 64GB is a Local AI Warning Sign
@@ -682,6 +686,7 @@
   titulky: false
   popis_cs: Reakce na tvrzení o RTX Spark a co podle autora lidé přehlížejí.
   nazor_cs: ''
+  nazev_cs: Všichni se v RTX Spark mýlí
 - id: En5vhDNLspU
   url: https://www.youtube.com/watch?v=En5vhDNLspU
   nazev: NVIDIA RTX Spark is Game Ready
@@ -770,6 +775,7 @@
   titulky: false
   popis_cs: Proč RTX Spark rozčiluje a jakou hru podle autora NVIDIA hraje.
   nazor_cs: ''
+  nazev_cs: RTX Spark už lidi štve
 - id: McYCZqdKVcc
   url: https://www.youtube.com/watch?v=McYCZqdKVcc
   nazev: Nvidia's RTX Spark Is Going to Be a Slow Burn | Lab Report
@@ -919,6 +925,7 @@
   titulky: false
   popis_cs: 'Představení RTX Spark: ARM čip, 128 GB unified, přes 6 000 CUDA jader a 120B modely.'
   nazor_cs: ''
+  nazev_cs: 'NVIDIA zasadila ránu Applu: RTX Spark'
 - id: SyaxOkZ9XUI
   url: https://www.youtube.com/watch?v=SyaxOkZ9XUI
   nazev: Why Nobody Should Buy the $6,000 NVIDIA RTX Spark (128GB N1X Deep Dive)
@@ -950,6 +957,7 @@
   titulky: false
   popis_cs: Proč se 128GB RTX Spark za 6 000 USD podle autora nevyplatí; rozbor čipu N1X.
   nazor_cs: Autor říká, že by ho neměl kupovat nikdo.
+  nazev_cs: Proč by RTX Spark za 6 000 USD neměl kupovat nikdo (128 GB N1X)
 - id: n4p0KYaSisI
   url: https://www.youtube.com/watch?v=n4p0KYaSisI
   nazev: RTX Spark Laptops Are Here... But Who Can Afford Them?
@@ -974,6 +982,7 @@
   titulky: false
   popis_cs: Ceny a dostupnost RTX Spark notebooků a otázka, komu se vyplatí.
   nazor_cs: ''
+  nazev_cs: RTX Spark notebooky jsou tu. Kdo si je může dovolit?
 - id: 0-VG9QBm8S8
   url: https://www.youtube.com/watch?v=0-VG9QBm8S8
   nazev: Nvidia's New Laptops - RTX Spark
@@ -1103,6 +1112,7 @@
   titulky: false
   popis_cs: 'RTX Spark proti MacBooku Pro M5 Pro a M5 Max: pro koho vlastně je.'
   nazor_cs: ''
+  nazev_cs: RTX Spark vs. nejrychlejší MacBook Pro (M5 Pro / M5 Max)
 - id: q7KwD2MrZng
   url: https://www.youtube.com/watch?v=q7KwD2MrZng
   nazev: I Switched. You (Probably) Shouldn't. Surface Laptop Ultra & RTX Spark
@@ -1125,6 +1135,7 @@
   titulky: false
   popis_cs: Zkušenost po přechodu na Surface Laptop Ultra s RTX Spark.
   nazor_cs: Autor říká, že by to většina lidí dělat neměla.
+  nazev_cs: Přešel jsem. Většina lidí by neměla. Surface Laptop Ultra a RTX Spark
 - id: RBjLfAb3sCg
   url: https://www.youtube.com/watch?v=RBjLfAb3sCg
   nazev: This is a disaster..
@@ -1149,6 +1160,7 @@
   titulky: false
   popis_cs: První zkušenosti s RTX Spark notebooky a jejich problémy.
   nazor_cs: Autor to označuje za katastrofu.
+  nazev_cs: Tohle je katastrofa…
 - id: kPCbxDWFngU
   url: https://www.youtube.com/watch?v=kPCbxDWFngU
   nazev: 'RTX Spark Laptop Review: Dawn of a New ERA?'
@@ -1174,6 +1186,7 @@
   titulky: false
   popis_cs: 'Recenze RTX Spark notebooku: výkon, hry, tvorba a lokální AI.'
   nazor_cs: ''
+  nazev_cs: 'Recenze RTX Spark notebooku: začátek nové éry?'
 - id: aQKGejbv-Rs
   url: https://www.youtube.com/watch?v=aQKGejbv-Rs
   nazev: Don't Buy a RTX Spark Laptop For Local AI Until You See This
@@ -1213,6 +1226,7 @@
   titulky: false
   popis_cs: 'Microsoftův benchmark: Surface Laptop Ultra čeká 170 s na první slovo u 128K promptu.'
   nazor_cs: Autor varuje před koupí 128GB notebooku za 5 899 USD.
+  nazev_cs: Nekupujte RTX Spark notebook na lokální AI, dokud tohle neuvidíte
 - id: 8zDVBMIj2dY
   url: https://www.youtube.com/watch?v=8zDVBMIj2dY
   nazev: This wasn't what I had hoped for... RTX Spark Unsponsored Review
@@ -1269,6 +1283,7 @@
   titulky: false
   popis_cs: 'Matematika kolem Surface Laptop Ultra a RTX Spark: paměť, rychlost, cena.'
   nazor_cs: Autor radí nekupovat, dokud si neprojdete výpočet.
+  nazev_cs: Nekupujte RTX Spark notebook, dokud tohle neuvidíte
 - id: C6A0HXGelPg
   url: https://www.youtube.com/watch?v=C6A0HXGelPg
   nazev: 'ASUS ProArt P16: The Best RTX Spark Laptop… But Is It Worth It?'
@@ -1295,6 +1310,7 @@
   titulky: false
   popis_cs: 'Recenze Asus ProArt P16 s RTX Spark: nejlepší RTX notebook, ale za jakou cenu.'
   nazor_cs: ''
+  nazev_cs: 'Asus ProArt P16: nejlepší RTX Spark notebook, ale vyplatí se?'
 - id: 9tq71nn0u0c
   url: https://www.youtube.com/watch?v=9tq71nn0u0c
   nazev: 'Nvidia''s RTX Spark Is Here: The Future of Windows Laptops?'
@@ -1326,6 +1342,7 @@
   titulky: false
   popis_cs: Kompletní benchmarky a architektura RTX Spark N1X v notebooku.
   nazor_cs: Autor hodnotí, jestli se příplatek vyplatí.
+  nazev_cs: 'RTX Spark je tu: budoucnost Windows notebooků?'
 - id: 9m8EEpRR3Vg
   url: https://www.youtube.com/watch?v=9m8EEpRR3Vg
   nazev: Strix Halo Is INSANE
@@ -1425,6 +1442,7 @@
   titulky: false
   popis_cs: 'Recenze GMKTec EVO-X2 s Ryzen AI Max+ 395: nejvýkonnější APU AMD a jeho chování.'
   nazor_cs: ''
+  nazev_cs: 'Nejvýkonnější APU od AMD: Strix Halo / Ryzen AI Max+ 395 (recenze GMKTec EVO-X2)'
 - id: wj87jupAfTk
   url: https://www.youtube.com/watch?v=wj87jupAfTk
   nazev: 'TUF A14 (Strix Halo): Is It Worth Buying?'
@@ -1600,6 +1618,7 @@
   titulky: false
   popis_cs: Recenze Minisforum MS-S1 Max s Ryzen AI Max+ 395 a 128 GB paměti.
   nazor_cs: Autor ho označuje za nejlepší AMD Strix Halo mini PC, které testoval.
+  nazev_cs: 'Nejlepší mini PC se Strix Halo: Minisforum MS-S1 Max'
 - id: v20kLX76_GU
   url: https://www.youtube.com/watch?v=v20kLX76_GU
   nazev: The New ROG Flow Z13 Has The Fastest iGPU Ever! AMD Strix Halo Review
@@ -1820,6 +1839,7 @@
   titulky: false
   popis_cs: Benchmarky 192GB Ryzen AI Halo proti Strix Halo, včetně čtyřhodinové zátěže.
   nazor_cs: ''
+  nazev_cs: 192 GB RAM pro lokální AI? Benchmark Ryzen AI Halo (Micro Center)
 - id: 7VCBkrvH_jE
   url: https://www.youtube.com/watch?v=7VCBkrvH_jE
   nazev: 'AMD Just Killed AI Subscriptions Forever (Ryzen AI Halo: Gorgon Halo)'
@@ -1845,6 +1865,7 @@
   titulky: false
   popis_cs: 'Gorgon Halo: 192 GB unified paměti a co se na ni vejde.'
   nazor_cs: ''
+  nazev_cs: 'AMD prý navždy zabilo AI předplatná (Ryzen AI Halo: Gorgon Halo)'
 - id: sugz_q-FFj0
   url: https://www.youtube.com/watch?v=sugz_q-FFj0
   nazev: Throwing the Innova Halo Gorgon for the First Time!
@@ -1892,6 +1913,7 @@
   titulky: false
   popis_cs: Co přináší 192GB Framework Desktop s Ryzen AI Max+ PRO 495 proti 128GB Strix Halo.
   nazor_cs: ''
+  nazev_cs: '192 GB Framework Desktop: lokální AI na Gorgon Halo'
 - id: 3kzGhcduKw0
   url: https://www.youtube.com/watch?v=3kzGhcduKw0
   nazev: GORGON vs HALO MAMBA!
@@ -1962,6 +1984,7 @@
   titulky: false
   popis_cs: Levný AMD mini PC s 120B modelem offline proti DGX Spark.
   nazor_cs: ''
+  nazev_cs: AMD prý navždy zabilo AI předplatná (Ryzen AI Halo)
 - id: mqme3dcFu_k
   url: https://www.youtube.com/watch?v=mqme3dcFu_k
   nazev: Lenovo Legion 7a Review – A Premium Laptop With an AMD Problem
@@ -2038,6 +2061,7 @@
   titulky: false
   popis_cs: 'Rozbor všech dostupných měření Gorgon Halo: co přináší 192 GB a co ne.'
   nazor_cs: Autor radí 192GB Gorgon Halo nekupovat, dokud si neprojdete čísla.
+  nazev_cs: Nekupujte 192GB Gorgon Halo, dokud tohle neuvidíte
 - id: sMacAPpgXhQ
   url: https://www.youtube.com/watch?v=sMacAPpgXhQ
   nazev: How I Configure the Ryzen AI Halo (Strix Halo) for 10-15% Faster Local Inference
@@ -2152,6 +2176,7 @@
   titulky: false
   popis_cs: Autor tvrdí, že Mac Studio M5 Ultra s 512 GB mění ekonomiku lokální AI proti DGX Spark.
   nazor_cs: Podle autora Apple DGX Spark „zabil“, hlavně kvůli paměti a ceně.
+  nazev_cs: Mac Studio M5 Ultra prý zabil DGX Spark pro lokální AI
 - id: kLNDGwaHohE
   url: https://www.youtube.com/watch?v=kLNDGwaHohE
   nazev: Local AI on a Mac Is a Waste of Money (M5 Pro vs a $20 Subscription)
@@ -2267,6 +2292,7 @@
   titulky: false
   popis_cs: Může 512GB Mac Studio za 22 299 USD nahradit Claude? Srovnání s dvěma 256GB Macy a s předplatným.
   nazor_cs: Autor dává verdikt, komu se koupě vyplatí a komu ne.
+  nazev_cs: Může Mac Studio za 22 000 USD nahradit Claude? (512 GB M5 Ultra)
 - id: DnAFOBNX29Y
   url: https://www.youtube.com/watch?v=DnAFOBNX29Y
   nazev: Local AI Just Got EXPENSIVE | Mac Studio M5 vs DGX Spark
@@ -2318,6 +2344,7 @@
   titulky: false
   popis_cs: Proč se M5 Ultra nevyplatí na lokální AI a jaká matematika vychází proti hostovanému modelu.
   nazor_cs: Autor radí Mac Studio M5 Ultra na lokální AI nekupovat.
+  nazev_cs: Nekupujte Mac Studio M5 Ultra na lokální AI (udělejte tohle)
 - id: a-n6YN_tD9U
   url: https://www.youtube.com/watch?v=a-n6YN_tD9U
   nazev: Don't buy a Mac Studio for local AI (do this)
@@ -2351,6 +2378,7 @@
   titulky: false
   popis_cs: 'Co naměřily recenze a co píšou majitelé: 64GB Mac Studio za zhruba 3 500 USD a čekání 104 s na první slovo.'
   nazor_cs: Autor doporučuje zvážit jinou cestu; 64GB stroj se vyplatí jen proti drahému tarifu.
+  nazev_cs: Nekupujte Mac Studio na lokální AI (udělejte tohle)
 - id: hp_BXRPkZOI
   url: https://www.youtube.com/watch?v=hp_BXRPkZOI
   nazev: 'Mac Studio for Local AI: M5 Max 128GB vs M5 Ultra'
@@ -2384,6 +2412,7 @@
   titulky: false
   popis_cs: 'M5 Max 128GB za 5 399 USD proti M5 Ultra za 5 499 USD: co se za 100 USD rozdílu získá.'
   nazor_cs: Autor říká, že pro většinu lidí se Ultra nevyplatí.
+  nazev_cs: 'Mac Studio pro lokální AI: M5 Max 128 GB vs. M5 Ultra'
 - id: hl9r8ohBMuo
   url: https://www.youtube.com/watch?v=hl9r8ohBMuo
   nazev: Don't Buy the 96GB M5 Ultra | The Mac Studio I'd Actually Get for Local AI
@@ -2457,6 +2486,7 @@
   titulky: false
   popis_cs: 'Mac mini M6, M5 Pro, Mac Studio M5 Max a Ultra: rozhoduje propustnost paměti.'
   nazor_cs: Autor radí s koupí počkat.
+  nazev_cs: 'Mac mini vs. Mac Studio pro lokální AI: zatím nekupujte'
 - id: 6t4FuQUTgo0
   url: https://www.youtube.com/watch?v=6t4FuQUTgo0
   nazev: Is Mac Studio M5 Ultra for AI, worth it..?
@@ -2525,6 +2555,7 @@
   titulky: false
   popis_cs: Propojení tří MacBooků Pro M5 Max pro lokální AI.
   nazor_cs: ''
+  nazev_cs: Propojil jsem tři M5 MacBooky, aby utáhly „nemožnou“ AI
 - id: jzqBtld_iIg
   url: https://www.youtube.com/watch?v=jzqBtld_iIg
   nazev: 'M5 Max 128GB After 5 Months: How Far Can You Push Local AI?'
@@ -2577,6 +2608,7 @@
   titulky: false
   popis_cs: Srovnání MacBooku Pro M5 Max a Lenovo Legion s RTX 5090 na generování videa, obrázků a LLM.
   nazor_cs: ''
+  nazev_cs: 'Apple M5 Max vs. RTX 5090: souboj notebooků pro lokální AI'
 - id: WRGtnaE_6i8
   url: https://www.youtube.com/watch?v=WRGtnaE_6i8
   nazev: M5 Max vs M4 Max - AI PERFORMANCE TEST
@@ -2652,6 +2684,7 @@
   titulky: false
   popis_cs: 'Průvodce výběrem Macu na lokální AI: kolik paměti a jaký čip.'
   nazor_cs: ''
+  nazev_cs: 'Kupujete Mac na AI: jediný průvodce, který potřebujete'
 - id: 0xNgYkvWVSQ
   url: https://www.youtube.com/watch?v=0xNgYkvWVSQ
   nazev: 'Mirai Uzu: The FASTEST Local AI Engine? M5 Max & M6 Mac mini Tested!'
@@ -2740,6 +2773,7 @@
   titulky: false
   popis_cs: Test, jestli M5 Max opravdu zrychlil zpracování promptu 6,6×.
   nazor_cs: Autor zpochybňuje marketingové číslo.
+  nazev_cs: O kolik je M5 Max rychlejší? Test lokální AI na MacBooku Pro
 - id: c_58D7ixOQI
   url: https://www.youtube.com/watch?v=c_58D7ixOQI
   nazev: M5 Ultra… Apple Wasn’t Messing Around
@@ -2784,6 +2818,7 @@
   titulky: false
   popis_cs: 'Srovnání M4 Max a M5 Max: většinou jde o zhruba 20 % nárůst, někde rozhoduje SSD.'
   nazor_cs: Autor říká, že rozdíl není jen v AI.
+  nazev_cs: 'M4 Max vs. M5 Max MacBook Pro: nejde jen o AI'
 - id: NCoDvPQIZJ0
   url: https://www.youtube.com/watch?v=NCoDvPQIZJ0
   nazev: 'Microsoft Surface Ultra RTX Spark review for AI: It''s very different from the DGX spark'
@@ -2951,6 +2986,7 @@
   titulky: false
   popis_cs: Autor porovnává své předpovědi o RTX Spark s reálnými benchmarky, včetně Qwen3.8 27B a GPT-OSS 120B.
   nazor_cs: Přiznává, co odhadl špatně, a upravuje verdikty podle měření.
+  nazev_cs: Vsadil jsem na RTX Spark. Tady je, co jsem odhadl špatně
 - id: aVwyT-CPksU
   url: https://www.youtube.com/watch?v=aVwyT-CPksU
   nazev: 'DGX Spark 64GB: Is It Worth $4,999? (vs Mac Studio, Strix Halo)'
@@ -2984,6 +3020,7 @@
   titulky: false
   popis_cs: Hodnotí 64GB DGX Spark za 4 999 USD proti Mac Studio a Strix Halo.
   nazor_cs: Autor se ptá, jestli se 64GB verze za tu cenu vyplatí; popis neuvádí jednoznačné ano či ne.
+  nazev_cs: 'DGX Spark 64 GB: vyplatí se 4 999 USD? (proti Mac Studio a Strix Halo)'
 - id: HTWs2GKhymw
   url: https://www.youtube.com/watch?v=HTWs2GKhymw
   nazev: 'RTX Spark vs Mac Studio: Same $6,000, Very Different Speed'
@@ -3041,6 +3078,7 @@
   titulky: false
   popis_cs: Kolik modelů se vejde do jednoho, dvou a čtyř DGX Spark a kde další box přestane dávat smysl.
   nazor_cs: Autor upozorňuje, že 128 GB nemá smysl kupovat, pokud už máte 24 GB VRAM.
+  nazev_cs: 'Cluster DGX Spark: co zvládne jeden, dva a čtyři Sparky'
 - id: _TTlmS9oO0M
   url: https://www.youtube.com/watch?v=_TTlmS9oO0M
   nazev: Strix Halo vs M5 Max vs DGX Spark for Local AI (2026)
@@ -3071,6 +3109,7 @@
   titulky: false
   popis_cs: Srovnání Strix Halo, MacBooku Pro M5 Max a DGX Spark na stejných modelech.
   nazor_cs: Podle autora drží všech 28 z 30 modelů, takže rozhoduje rychlost, software a cena.
+  nazev_cs: Strix Halo vs. M5 Max vs. DGX Spark pro lokální AI (2026)
 - id: XuFpFDQqP4w
   url: https://www.youtube.com/watch?v=XuFpFDQqP4w
   nazev: 'M5 Ultra vs DGX Spark: Which Runs Local AI Better?'
@@ -3098,6 +3137,7 @@
   titulky: false
   popis_cs: 'Srovnání Mac Studio M5 Ultra a DGX Spark: Mac zapisuje skoro 4× rychleji, dva Sparky ale odpovídají dřív na dlouhý kód.'
   nazor_cs: Autor říká, že ho to nemění v doporučení.
+  nazev_cs: 'M5 Ultra vs. DGX Spark: co běží lokální AI lépe?'
 - id: eDWNKBsKNF8
   url: https://www.youtube.com/watch?v=eDWNKBsKNF8
   nazev: 'RTX Spark vs Mac Mini: Don''t Pay $4,300 More'
@@ -3150,6 +3190,7 @@
   titulky: false
   popis_cs: 'Srovnání RTX Spark notebooku a MacBooku Pro M5 Max pro lokální AI: paměť, rychlost, cena.'
   nazor_cs: ''
+  nazev_cs: 'RTX Spark notebook vs. MacBook Pro pro lokální AI: kterých 128 GB koupit'
 - id: 74wKV2LLmrE
   url: https://www.youtube.com/watch?v=74wKV2LLmrE
   nazev: Nvidia RTX Spark Long-Term Review — MacBook Pro's BIGGEST Threat (And Flaw)
@@ -3204,6 +3245,7 @@
   titulky: false
   popis_cs: 'První reálné testy RTX Spark: 120B model 63 tok/s, 27B model 16 tok/s.'
   nazor_cs: Autor hodnotí i vlastní předpovědi.
+  nazev_cs: 'RTX Spark: 120B model 63 tok/s, 27B model 16 tok/s'
 - id: P6VNiL_YtuY
   url: https://www.youtube.com/watch?v=P6VNiL_YtuY
   nazev: 'Asus ProArt P16 Review: The RTX Spark is alive!'
@@ -3322,6 +3364,7 @@
   titulky: false
   popis_cs: 'Ceny RTX Spark: nejlevnější má 24 GB, 128GB Surface stojí 5 899 USD.'
   nazor_cs: Autor upozorňuje, že cena od 2 599 USD neplatí pro 128GB verzi.
+  nazev_cs: 'Nvidia RTX Spark: 128 GB za 2 599 USD? Ani náhodou'
 - id: 5A4n9-Y6O-w
   url: https://www.youtube.com/watch?v=5A4n9-Y6O-w
   nazev: Should PC gamers care about RTX Spark?
@@ -3457,6 +3500,7 @@
   titulky: false
   popis_cs: Srovnání RTX Spark notebooku a Strix Halo na stejných modelech plus rozbor 51 recenzí.
   nazor_cs: ''
+  nazev_cs: 'RTX Spark vs. Strix Halo: co přehlédlo 51 recenzí'
 - id: 0P4uQpKaADI
   url: https://www.youtube.com/watch?v=0P4uQpKaADI
   nazev: Locally Hosted AI is Becoming Scarily Good...
@@ -3528,6 +3572,7 @@
   titulky: false
   popis_cs: Proč je 128GB Strix Halo podle autora nejrozumnější box pro domácí AI; zmiňuje ceny DRAM a ASRock AI Box-A395.
   nazor_cs: Autor ho označuje za nejlepší volbu pro rok 2026.
+  nazev_cs: 'Strix Halo 128 GB: nejlepší box pro lokální AI v roce 2026?'
 - id: 7nWVPpQqNwE
   url: https://www.youtube.com/watch?v=7nWVPpQqNwE
   nazev: 120W of Strix Halo Power in 6.2 Liters! Minisforum T5 Max First Look
@@ -3556,6 +3601,7 @@
   titulky: false
   popis_cs: 'První pohled na Minisforum T5 Max: 120 W Strix Halo v 6,2litrové skříni.'
   nazor_cs: ''
+  nazev_cs: '120 W Strix Halo v 6,2 litrech: první pohled na Minisforum T5 Max'
 - id: kPFf9E22cmY
   url: https://www.youtube.com/watch?v=kPFf9E22cmY
   nazev: 'RTX Spark Laptop: Can It Game?'
@@ -3633,6 +3679,7 @@
   titulky: false
   popis_cs: 'Srovnání Ryzen AI Max+ 395 a RTX 5090 na 235B modelech: co se načte a co je pomalejší.'
   nazor_cs: ''
+  nazev_cs: 'Ryzen AI Max+ 395 vs. RTX 5090: co se načte a co je pomalejší'
 - id: AyyiShEVLzs
   url: https://www.youtube.com/watch?v=AyyiShEVLzs
   nazev: 'Intel G3 Extreme v AMD Strix Halo: XeSS Beats FSR 4… Mostly'
@@ -3683,6 +3730,7 @@
   titulky: false
   popis_cs: 'První pohled na Minisforum T5 Max: 120 W Strix Halo v 6,2litrové skříni.'
   nazor_cs: ''
+  nazev_cs: '120 W Strix Halo v 6,2 litrech: první pohled na Minisforum T5 Max'
 - id: Fy8LAbt1gUw
   url: https://www.youtube.com/watch?v=Fy8LAbt1gUw
   nazev: Ryzen AI Halo vs RTX 5090 vs Mac (Local AI)
@@ -3731,6 +3779,7 @@
   titulky: false
   popis_cs: 'Srovnání 192GB Ryzen AI Halo, RTX 5090 a Macu: co se vejde a jak rychle běží.'
   nazor_cs: ''
+  nazev_cs: Ryzen AI Halo vs. RTX 5090 vs. Mac v lokální AI
 - id: zNFwFa0U-HM
   url: https://www.youtube.com/watch?v=zNFwFa0U-HM
   nazev: AMD's New AI Box Costs Almost Double. It's Only 3% Faster.
@@ -3759,6 +3808,7 @@
   titulky: false
   popis_cs: 'Nový 192GB box za 7 299 USD proti loňskému za 3 999 USD: jediný test ukazuje zhruba 3 % rychlosti navíc.'
   nazor_cs: Autor upozorňuje, že dvojnásobná cena nepřináší dvojnásobný výkon.
+  nazev_cs: Nový AI box od AMD stojí skoro dvakrát tolik a je jen o 3 % rychlejší
 - id: k4nZxgWMCy4
   url: https://www.youtube.com/watch?v=k4nZxgWMCy4
   nazev: AMD Just Built an AI Beast That Nvidia Can't Match on Memory!
@@ -3786,6 +3836,7 @@
   titulky: false
   popis_cs: 192GB AMD Ryzen AI Halo za 7 299 USD a otázka, jestli paměť stačí.
   nazor_cs: Autor se ptá, jestli víc paměti automaticky znamená lepší stroj.
+  nazev_cs: AMD postavilo AI bestii, na kterou Nvidia pamětí nemá
 - id: T3FySU0d_KU
   url: https://www.youtube.com/watch?v=T3FySU0d_KU
   nazev: AMD Just Built an AI Machine That Nvidia Can't Match on Memory!
@@ -3935,6 +3986,7 @@
   titulky: false
   popis_cs: Proč se 96GB M5 Ultra za 5 499 USD nevyplatí proti levnějšímu Mac Studiu.
   nazor_cs: Autor radí koupit jiný Mac.
+  nazev_cs: Nekupujte M5 Ultra za 5 499 USD na AI. Kupte tento Mac
 - id: b5k51iMFrgY
   url: https://www.youtube.com/watch?v=b5k51iMFrgY
   nazev: 'Mac Studio 128GB vs 64GB: Which Runs the New Local AI?'
@@ -3970,6 +4022,7 @@
   titulky: false
   popis_cs: 'Rozdíl mezi 64 a 128GB Mac Studio M5 Max: stejný čip a 614 GB/s, jiná kapacita.'
   nazor_cs: Autor říká, že příplatek 1 600 USD kupuje prostor, ne rychlost.
+  nazev_cs: 'Mac Studio 128 GB vs. 64 GB: co zvládne novou lokální AI'
 - id: zY11Mss9fsw
   url: https://www.youtube.com/watch?v=zY11Mss9fsw
   nazev: I Joined Macbook M5 Max and Studio M5 Ultra to Run a 432 GB Model
@@ -4123,6 +4176,7 @@
   titulky: false
   popis_cs: 'Zkušenost po koupi M5 Max Mac Studio: kde se rozdíl proti staršímu stroji neprojevil.'
   nazor_cs: Autor čekal větší rozdíl, než dostal.
+  nazev_cs: Koupil jsem Mac Studio M5 Max a čekal větší rozdíl
 - id: qOgtwYpjJ7A
   url: https://www.youtube.com/watch?v=qOgtwYpjJ7A
   nazev: I Gave My Mac and Claude the Same 8 Jobs. Local AI Is Easier Than You Think
@@ -4280,6 +4334,7 @@
   titulky: false
   popis_cs: Co se dá provozovat na každé velikosti paměti od 16 GB do 1 TB a jak rychle.
   nazor_cs: ''
+  nazev_cs: Jakou AI spustíte na každé velikosti paměti od 16 GB do 1 TB
 - id: Nni_nX52x_M
   url: https://www.youtube.com/watch?v=Nni_nX52x_M
   nazev: Don't Buy More RAM for Local AI Until You Watch This
@@ -4444,6 +4499,7 @@
   titulky: false
   popis_cs: Autor nesouhlasí s recenzemi, které řadí M5 Max před RTX Spark; opírá se o test agentní práce.
   nazor_cs: Podle autora se recenze mýlí.
+  nazev_cs: 'RTX Spark notebooky vs. MacBook Pro M5 Max: recenze se mýlí'
 - id: fU3zdkIzXBk
   url: https://www.youtube.com/watch?v=fU3zdkIzXBk
   nazev: M6 vs M5 MacBook Pro - 2nm Chip Power.. UNLEASHED

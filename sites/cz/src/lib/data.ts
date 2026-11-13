@@ -293,6 +293,7 @@ export type VideoZaznam = {
   id: string;
   url: string;
   nazev: string;
+  nazev_cs?: string;
   kanal?: string;
   zarizeni: string;
   poprve?: string;
@@ -309,10 +310,10 @@ export type VideoZaznam = {
   nazor_en?: string;
 };
 
-/** Vybraná videa: kvalita 4–5, nejlepší a nejnovější první, max. 8. */
+/** Vybraná videa pro CZ: jen s českým popisem, kvalita 4–5, max. 8. */
 export function getVideaVybrana(id: string): VideoZaznam[] {
   return (load<VideoZaznam[]>('videa.yaml') ?? [])
-    .filter((v) => v.zarizeni === id && (v.stav === 'pouzito' || (v.kvalita ?? 0) >= 4))
+    .filter((v) => v.zarizeni === id && v.popis_cs && (v.stav === 'pouzito' || (v.kvalita ?? 0) >= 4))
     .sort(
       (a, b) =>
         (b.kvalita ?? 0) - (a.kvalita ?? 0) ||
