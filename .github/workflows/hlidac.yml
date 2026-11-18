@@ -1,8 +1,9 @@
 name: Hlídač zdrojů
 
+# Týdenní běh dělá scheduled task v OpenChamber (pondělí 09:00 Europe/Prague),
+# protože tam na report navazuje triage a commit stavu. Tady zůstává jen ruční
+# spuštění pro případ, že počítač neběžel nebo je potřeba běh zopakovat.
 on:
-  schedule:
-    - cron: '0 6 * * 1' # každé pondělí 06:00 UTC
   workflow_dispatch:
 
 permissions:
