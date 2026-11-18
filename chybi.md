@@ -2,15 +2,15 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**54 položek** · 14 otevreno · 1 ceka-na-vas · 19 prubezne · 20 hotovo · 34 markerů [DOPLNIT] na 13 stránkách.
+**54 položek** · 9 otevreno · 3 hleda-se · 1 ceka-na-vas · 19 prubezne · 22 hotovo · 33 markerů [DOPLNIT] na 13 stránkách.
 
 ## Souhrn podle dávek
 
 | Dávka | Název | Otevřených |
 |---|---|---|
 | 1 | Generování: rychlosti, licence a slovník | 2 |
-| 2 | Katalogová data Qwen3.8 | 7 |
-| 3 | Kvalita, čeština a provoz | 3 |
+| 2 | Katalogová data Qwen3.8 | 6 |
+| 3 | Kvalita, čeština a provoz | 2 |
 | 4 | Ceny a dostupnost | 5 |
 | 5 | Obsah a propojení | 2 |
 | 6 | Infrastruktura a publikace | 2 |
@@ -45,13 +45,13 @@
 
 | ID | Co chybí | Priorita | Stav | Stránky |
 |---|---|---|---|---|
-| D01 | RTX Spark mini: první veřejné měření Qwen3.8 | P0 | prubezne | /zarizeni/rtx-spark-mini/<br>/zarizeni/rtx-spark-notebook/<br>/temata/rtx-spark/ |
-| D02 | DGX Spark a Strix Halo: TTFT a prefill na jednotném promptu | P0 | otevreno | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/data/qwen3-8-flash-next-strix-halo/ |
+| D01 | RTX Spark mini: první veřejné měření Qwen3.8 | P0 | hleda-se | /zarizeni/rtx-spark-mini/<br>/zarizeni/rtx-spark-notebook/<br>/temata/rtx-spark/ |
+| D02 | DGX Spark a Strix Halo: TTFT a prefill na jednotném promptu | P0 | hleda-se | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/data/qwen3-8-flash-next-strix-halo/ |
 | D03 | Souběžnost 4+ na všech zařízeních | P0 | otevreno | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-mini/<br>/zarizeni/rtx-spark-notebook/<br>/zarizeni/srovnani/<br>/temata/128gb-unified-memory/ |
 | D05 | Podložené doporučení provozního kontextu | P0 | hotovo | /modely/qwen3-8-flash-next/<br>/zaciname/jak-cteme-data/ |
 | D04 | 128k a 262k kontext: rychlost i kvalita | P1 | otevreno | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/modely/qwen3-8-flash-next/ |
 | D06 | Kvantizace u čtyř měření na Strix Halo | P1 | otevreno | /data/qwen3-8-flash-next-strix-halo/<br>/zdroje/mereni/ |
-| D08 | Windows ARM64 proti Linuxu na stejném modelu | P1 | otevreno | /zarizeni/rtx-spark-notebook/<br>/temata/lokalni-ai-na-windows-11/ |
+| D08 | Windows ARM64 proti Linuxu na stejném modelu | P1 | hotovo | /zarizeni/rtx-spark-notebook/<br>/temata/lokalni-ai-na-windows-11/ |
 | Z06 | Gorgon Halo 192 GB: chybí nezávislé měření | P1 | prubezne | /zarizeni/gorgon-halo/<br>/zarizeni/srovnani/ |
 
 - **D01** — Stránka nemá žádné číslo: TTFT, prefill, decode ani chování na 128k. *Hledat:* NVIDIA forum, llamaperf, Reddit, GitHub benchmarky
@@ -59,7 +59,6 @@
 - **D03** — DGX Spark má 4 souběžné prompty 100,2 tok/s agregát a 6 streamů 91,9 tok/s, oboje na krátkých promptech. Chybí 4+ souběžně na Strix Halo, RTX Spark a Macu a kdekoli na dlouhém kontextu. *Hledat:* vLLM a SGLang benchmarky, fóra, InferenceX
 - **D04** — Maximum v datasheetu nic neříká o praxi. Chybí rychlost a kvalita na dlouhém kontextu pro Qwen3.8. *Hledat:* llamaperf, MRCR a needle testy, komunitní reporty
 - **D06** — U čtyř záznamů v data/mereni.yaml je kvantizace [DOPLNIT]. Bez ní číslo nelze srovnat. *Hledat:* llamaperf detail reportu
-- **D08** — Chybí srovnání Qwen3.8 Flash Next na RTX Spark s Windows ARM64 a na DGX Spark s Linuxem. *Hledat:* NVIDIA forum, komunitní měření, Reddit
 - **Z06** — Nemáme nezávislý test Qwen3.8 Flash Next ani větších modelů na Ryzen AI Max+ PRO 495. První komunitní test existuje, ale je sporný: 19–20 tok/s na krátkém promptu, 4,6 tok/s na 249K. Jiní uživatelé hlásí 50–65 tok/s a konfiguraci zpochybňují. *Hledat:* Phoronix, Local LLM Benchmarks, Reddit r/LocalLLaMA, recenze 495
 
 ## Dávka 3 — Kvalita, čeština a provoz
@@ -68,13 +67,12 @@
 
 | ID | Co chybí | Priorita | Stav | Stránky |
 |---|---|---|---|---|
-| D10 | České testy: shrnutí, extrakce, e-mail, kód | P1 | otevreno | /modely/qwen3-8-flash-next/<br>/temata/lokalni-ai-a-cestina/ |
-| D11 | Vision: dokumenty, OCR, tabulky, screenshoty | P1 | otevreno | /modely/qwen3-8-flash-next/<br>/zarizeni/srovnani/ |
-| D12 | Hluk, příkon a teploty v zátěži | P1 | otevreno | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-notebook/<br>/zarizeni/macbook-pro/<br>/slovnik/provoz/power-limit/ |
+| D10 | České testy: shrnutí, extrakce, e-mail, kód | P1 | hleda-se | /modely/qwen3-8-flash-next/<br>/temata/lokalni-ai-a-cestina/ |
+| D11 | Vision: dokumenty, OCR, tabulky, screenshoty | P1 | hotovo | /modely/qwen3-8-flash-next/<br>/zarizeni/srovnani/ |
+| D12 | Hluk, příkon a teploty v zátěži | P1 | prubezne | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-notebook/<br>/zarizeni/macbook-pro/<br>/slovnik/provoz/power-limit/ |
 | D13 | Tool calling a agentní úlohy | P1 | hotovo | /modely/qwen3-8-flash-next/<br>/temata/lokalni-ai-agenti/ |
 
 - **D10** — Anglické benchmarky nestačí. Chybí české úlohy na Qwen3.8. *Hledat:* komunitní testy, OpenWork zkušenosti, veřejné české benchmarky
-- **D11** — Vision je výchozí, ale kvalita se liší. Chybí reálné testy. *Hledat:* model cards, komunitní reporty, Reddit, GitHub
 - **D12** — Chybí měření hluku, příkonu a teplot pro DGX Spark, Strix Halo a RTX notebooky. *Hledat:* recenze, fóra, měření uživatelů
 
 ## Dávka 4 — Ceny a dostupnost
@@ -182,7 +180,7 @@
 
 - `zarizeni/rtx-spark-mini` — 10×
 - `zarizeni/rtx-spark-notebook` — 5×
-- `zarizeni/dgx-spark` — 4×
+- `zarizeni/dgx-spark` — 3×
 - `zarizeni/gorgon-halo` — 3×
 - `modely/qwen3-8-flash-next` — 2×
 - `slovnik/provoz/power-limit` — 2×

@@ -66,9 +66,19 @@ v malé firmě se tím nic nemění.
 - **Nástroje:** tool calling, reasoning parser, agentní smyčky.
   Toolathlon Verified 73,5 a CoWorkBench 73,9
   ([model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)).
-- **Vision:** text + obrázky; dokumenty, screenshoty, tabulky.
+- **Vision:** model card potvrzuje vision encoder (image-text-to-text,
+  text + obrázek + video). Benchmarky na kartě: RealWorldQA 88,5,
+  ERQA 72,3, CharXiv (RQ) 84,6, MathVision 90,6 — výrobce, proto
+  `duveryhodnost: nizka`. OCR benchmarky (OCRBench, DocVQA) karta
+  neuvádí. Nezávisle změřený GDP.pdf 15,6 % (Artificial Analysis)
+  ukazuje, že na složité dokumenty to není jistota. Rozlišení podle
+  `preprocessor_config.json`: od ~256×256 do ~4096×4096 px, na stropě
+  kolem 16 tisíc vizuálních tokenů — to je výpočet z konfigurace, ne
+  tvrzení výrobce.
 - **Čeština:** `[DOPLNIT: vlastní nebo komunitní test]`. Model je
   multilingvní, ale to není totéž jako dobrá čeština na vašich úkolech.
+  Veřejný český test k 18. 11. 2026 neexistuje: model card jazyky
+  vůbec neuvádí a čeští testeři píšou, že vlastní měření nemají.
 
 ## Software pro Qwen3.8 Flash Next: vLLM, llama.cpp, Ollama
 

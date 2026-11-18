@@ -232,10 +232,10 @@ polozky:
       - zarizeni/rtx-spark-notebook
       - temata/rtx-spark
     priorita: P0
-    stav: prubezne
+    stav: hleda-se
     davka: 2
     hledat: "NVIDIA forum, llamaperf, Reddit, GitHub benchmarky"
-    poznamka: "K 10. 11. 2026 zkontrolováno NVIDIA fórum, HF diskuse, r/LocalLLaMA a llamaperf: veřejné měření Qwen3.8 na mini neexistuje. Čísla z notebooku (stejný N1X) nepřenášíme kvůli jinému chlazení a power limitu. Na stránce je postup, jak si měření udělat (llama-bench, konfigurace, co zapsat)."
+    poznamka: "K 18. 11. 2026 verejne mereni RTX Spark mini neexistuje. Existuje vendor recept pro N1X (llama.cpp b11901, IQ4_XS, MTP3, kontext 262 144) s 36,58 tok/s decode a StorageReview na OmniBook Ultra 16 (128 GB, jiny model): 89,5 tok/s Qwen3.6-35B-A3B, 12,6 tok/s Qwen3.8-27B pri 8192/1024."
     zdroj: null
     overeno: 2026-11-10
 
@@ -248,10 +248,10 @@ polozky:
       - zarizeni/strix-halo
       - data/qwen3-8-flash-next-strix-halo
     priorita: P0
-    stav: otevreno
+    stav: hleda-se
     davka: 2
     hledat: "madeye, llamaperf, SMF, SparkLab, GitHub"
-    poznamka: null
+    poznamka: "DGX Spark hotovy (TTFT 201-236 ms, prefill 1 825 tok/s). Strix Halo: TTFT na Flash Next nikdo nezmeril; na Qwen3.6-35B Q4_K_M (Vulkan b9049) 1,9 s na 2k a 34 s na 32k, na Qwen3.8-27B cold 16k ~41 s (ROCm). RTX Spark: prefill 7 103 tok/s (OmniBook, RAG), TTFT 24,3 s pri c=8 na 8K promptu, jiny model."
     zdroj: null
     overeno: null
 
@@ -270,7 +270,7 @@ polozky:
     stav: otevreno
     davka: 2
     hledat: "vLLM a SGLang benchmarky, fóra, InferenceX"
-    poznamka: null
+    poznamka: "RTX Spark 128 GB: 12,6 / 28,1 (c=4) / 33,8 (c=8) tok/s pri 8192 in a 1024 out (StorageReview, Qwen3.8-27B). DGX Spark: 35,2 tok/s na request pri c=8 (gpuwerk, vLLM, AWQ). Strix Halo: ~33 tok/s pri c=4 (AGmind, ITL 30 ms). Mac: chybi."
     zdroj: null
     overeno: null
 
@@ -286,7 +286,7 @@ polozky:
     stav: otevreno
     davka: 2
     hledat: "llamaperf, MRCR a needle testy, komunitní reporty"
-    poznamka: null
+    poznamka: "DGX Spark: 86,3 tok/s na 4k, 78,8 na 50k, 31,5 na 100k (SparkBench, Qwen3.6-35B, NVFP4, MTP3). Strix Halo: prefill klesa na polovinu pri kazdem zdvojnasobeni (317 tok/s na 6k, 168 na 35k). Kvalita 32k vs 128k na zarizeni zmerena neni; RULER model-level 99,84 vs 99,81."
     zdroj: null
     overeno: null
 
@@ -328,10 +328,10 @@ polozky:
       - zarizeni/rtx-spark-notebook
       - temata/lokalni-ai-na-windows-11
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 2
     hledat: "NVIDIA forum, komunitní měření, Reddit"
-    poznamka: null
+    poznamka: "MindStudio, MSI Prestige N16 Flip AI+ (N1X, 128 GB), gpt-oss-120b, stejny llama.cpp: Windows 65,4, WSL 65,1, nativni Linux 13,9 tok/s kvuli chybejicimu ACPI zarizeni NVIDIA Platform Controllers (GPU na ~780 MHz). Jeden recenzent, mechanismus overen prepinacem."
     zdroj: null
     overeno: null
 
@@ -344,10 +344,10 @@ polozky:
       - modely/qwen3-8-flash-next
       - temata/lokalni-ai-a-cestina
     priorita: P1
-    stav: otevreno
+    stav: hleda-se
     davka: 3
     hledat: "komunitní testy, OpenWork zkušenosti, veřejné české benchmarky"
-    poznamka: "Vlastní měření neděláme; hledáme veřejné výsledky."
+    poznamka: "K 18. 11. 2026 verejny cesky test neexistuje: model card jazyky neuvadi, cesky katalog vibecoding.cz pise, ze vlastni mereni cestiny nema. Multilingvni agregaty (MGSM 89,33, MMMLU 84,86) o cestine nevypovidaji."
     zdroj: null
     overeno: null
 
@@ -359,10 +359,10 @@ polozky:
       - modely/qwen3-8-flash-next
       - zarizeni/srovnani
     priorita: P1
-    stav: otevreno
+    stav: hotovo
     davka: 3
     hledat: "model cards, komunitní reporty, Reddit, GitHub"
-    poznamka: null
+    poznamka: "Vision potvrzen model cardem. Vyrobce: RealWorldQA 88,5, ERQA 72,3, CharXiv 84,6, MathVision 90,6; OCR benchmarky karta nema. Nezavisle GDP.pdf 15,6 % (Artificial Analysis). Rozliseni z preprocessor_config: ~256-4096 px, ~16 tis. vizualnich tokenu (vypocet)."
     zdroj: null
     overeno: null
 
@@ -377,10 +377,10 @@ polozky:
       - zarizeni/macbook-pro
       - slovnik/provoz/power-limit
     priorita: P1
-    stav: otevreno
+    stav: prubezne
     davka: 3
     hledat: "recenze, fóra, měření uživatelů"
-    poznamka: null
+    poznamka: "DGX Spark 60-90 W (ServeTheHome), ~160 W a 37,5 dBA/46 cm (Tom's), 159 W/30 dB(A) (Guru3D), idle 22-45 W. Framework Desktop 23,4 dB idle / 36,6-40,1 zatez, 144 W (Notebookcheck); GMKtec EVO-X2 47 dB(A), 128,9 W; EVO-X5 Pro 36 dB idle a 43-44 dB pri 120 W (APU telemetrie); Mac Studio 6 W idle / 145 W max, do 30 dBA. RTX Spark mini: nikdo nemeril."
     zdroj: null
     overeno: null
 
@@ -777,7 +777,7 @@ polozky:
     stav: prubezne
     davka: 2
     hledat: "Phoronix, Local LLM Benchmarks, Reddit r/LocalLLaMA, recenze 495"
-    poznamka: "Zařízení je na trhu od září 2026. 11/2026 první komunitní test (Q6_K_XL, llama.cpp/ROCm, 192 GB): 19–20 tok/s krátký prompt, 14,8 při 32k, 4,6 při 249k. Sporné. Doplněno měření výrobce (Framework, 30. 9. 2026): DeepSeek V4.1 Flash Q2 ~14 tok/s, MiMo 16–18 tok/s při 0–64K; AMD uvádí 52,2 vs. 51,2 tok/s bez konfigurace. Nezávislý test Qwen3.8 stále chybí."
+    poznamka: "Nezavisle: kyuz0/Framework 14 tok/s (DeepSeek V4.1 Flash Q2), 16-18 (MiMo), 7-8 (GLM-5.3 320B); Micro Center ~12 tok/s. Komunitni 19-20 je horni hranice rozsahu, ne typicka hodnota. Flash Next na 495 porad chybi."
     zdroj: https://huggingface.co/Qwen/Qwen3.8-Flash-Next/discussions/84
     overeno: 2026-11-10
 

@@ -27,6 +27,20 @@ const ZARIZENI = {
 
 const CISLA = /(?<![\d:.,])(\d+(?:[.,]\d+)?)\s*(tok\/s|t\/s|token\/s|gb\/s|gb|w|dba|db|°c)(?![\w])/gi;
 const KLIKBAIT = /(you won'?t believe|insane|mind.?blowing|shocking|game.?changer|must see|top \d+)/i;
+// Reklamní popis: affiliate odkazy, sponzorské kódy, prodej klíčů.
+const SPONZOR =
+  /(sponsor|affiliate|amazon associate|patreon|use code|discount code|slevov|urcdkey|kup(?:te|ono)?\s+klí|windows keys|reklamn)/i;
+
+/** Popis bez odkazů, časových značek a reklamních řádků — co z něj zbude věcného. */
+function vecnyPopis(desc) {
+  return String(desc)
+    .split('\n')
+    .map((s) => s.trim())
+    .filter((s) => s && !/^https?:/i.test(s) && !/^[0-9]+:[0-9]{2}/.test(s) && !SPONZOR.test(s))
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 function decode(s) {
   return s
@@ -114,6 +128,8 @@ function ohodnot(video, html, titulkyText) {
   const minut = Math.round(info.delka / 60);
   const klikbait = KLIKBAIT.test(video.nazev);
   const vNazvu = zarizeni.some((z) => video.nazev.toLowerCase().includes(z));
+  // Čistě sponzorský popis bez věcného obsahu: hodnotíme jako reklamu, ne recenzi.
+  const sponzorovane = SPONZOR.test(text) && vecnyPopis(info.popis).length < 200;
 
   let skore = 0;
   if (info.popis.length >= 250) skore += 1;
@@ -126,6 +142,7 @@ function ohodnot(video, html, titulkyText) {
   if (klikbait) skore -= 1;
   if (!info.popis && !titulkyText) skore = 0;
   if (!vTextu) skore = Math.min(skore, 3);
+  if (sponzorovane) skore = Math.min(skore, 2);
 
   const kvalita = Math.max(1, Math.min(5, skore));
 
@@ -135,10 +152,12 @@ function ohodnot(video, html, titulkyText) {
   if (vTextu) casti.push('Zařízení je v textu jmenované.');
   else casti.push('Zařízení v textu přímo nejmenuje.');
   if (klikbait) casti.push('Titulek je bulvární.');
+  if (sponzorovane) casti.push('Popis je reklama bez věcného obsahu.');
 
   return {
     kvalita,
-    stav: 'prohlednuto',
+    stav: sponzorovane ? 'zamitnuto' : 'prohlednuto',
+    sponzorovane,
     auto: true,
     delka_s: info.delka || null,
     vydano: info.vydano ?? video.vydano ?? null,
@@ -156,9 +175,11 @@ function ohodnot(video, html, titulkyText) {
 let zmen = 0;
 const VSE = process.argv.includes('--vse');
 const filtrZar = process.argv.find((a) => a.startsWith('--zarizeni='))?.split('=')[1];
+const filtrId = process.argv.find((a) => a.startsWith('--id='))?.split('=')[1];
 for (const v of videa) {
   if (filtrZar && v.zarizeni !== filtrZar) continue;
-  if (v.stav !== 'novy' && !(VSE && v.auto)) continue;
+  if (filtrId && v.id !== filtrId) continue;
+  if (!filtrId && v.stav !== 'novy' && !(VSE && v.auto)) continue;
   try {
     const html = await stahni(v.url);
     const titulkyText = await titulky(html);

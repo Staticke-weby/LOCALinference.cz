@@ -131,7 +131,14 @@ agregát 91,9 tok/s, ale na krátkých promptech. Chování na 128k
 - **Uzavřený stack:** CUDA a NVIDIA playbooky jsou výhoda pro start,
   ale horší pro vyměnitelnost.
 - **Souběžnost:** 16 slotů v KV cache není 16 spokojených uživatelů.
-- **Napájení a hluk:** `[DOPLNIT: měření]`.
+- **Napájení a hluk:** v zátěži modelu 60–90 W ze zásuvky
+  ([ServeTheHome](https://www.servethehome.com/nvidia-dgx-spark-review-the-gb10-machine-is-so-freaking-cool/4/)),
+  při plné GPU zátěži ~160 W
+  ([Tom's Hardware](https://www.tomshardware.com/pc-components/gpus/nvidia-dgx-spark-review/4))
+  a 159 W / 30 dB(A) (Guru3D). Idle 22–45 W podle zdroje a displeje;
+  NVIDIA udává 29 dB(A). Tom's Hardware naměřil 37,5 dBA v 46 cm při
+  šumu podlahy 33 dBA. Vzdálenosti měření se liší, čísla nejdou
+  srovnávat 1:1.
 
 ## Pro koho je DGX Spark 128 GB
 

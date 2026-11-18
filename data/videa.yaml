@@ -325,7 +325,7 @@
   proc: Automaticky z popisu a titulků. Délka 21 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   auto: true
   delka_s: 1237
-  shlednuti: 1176334
+  shlednuti: 1208383
   cisla: []
   popis: >-
     It turns out the M5 Ultra needs something from you before it really pulls ahead. 🔹 Try MerlinAI here: https://www.getmerlin.in/pricing?coupon=merlin and use code is ALX5 for a big discount ⌨️🏢
@@ -334,6 +334,7 @@
   popis_auto: true
   nazor_auto: true
   titulky: false
+  sponzorovane: false
 - id: HklEDsvlUi8
   url: https://www.youtube.com/watch?v=HklEDsvlUi8
   nazev: 'RTX Spark vs DGX Spark: I Was Wrong'
@@ -1234,13 +1235,14 @@
   proc: Automaticky z popisu a titulků. Délka 31 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   auto: true
   delka_s: 1858
-  shlednuti: 698905
+  shlednuti: 707688
   cisla: []
   popis: When NVIDIA puts the name "RTX" on a product, it's safe to imply that its a "gaming" product... So what happens when you try to game on the RTX Spark?
   nazor: ''
   popis_auto: true
   nazor_auto: true
   titulky: false
+  sponzorovane: false
 - id: wdvmq6_STcU
   url: https://www.youtube.com/watch?v=wdvmq6_STcU
   nazev: Don't Buy an RTX Spark Laptop Until You See This
@@ -1579,7 +1581,7 @@
   proc: Automaticky z popisu a titulků. Délka 41 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   auto: true
   delka_s: 2468
-  shlednuti: 111042
+  shlednuti: 111292
   cisla: []
   popis: >-
     Timestamps: AI Integration & Consulting: https://bijanbowen.com Join the Discord: https://discord.gg/hfaR2exy7S In this video, we take a hands-on look at the NVIDIA DGX Spark, also branded as the
@@ -1588,6 +1590,7 @@
   popis_auto: true
   nazor_auto: true
   titulky: false
+  sponzorovane: false
 - id: EPjA1Lm4ftY
   url: https://www.youtube.com/watch?v=EPjA1Lm4ftY
   nazev: The BEST AMD Strix Halo Mini PC Minisforum MS S1 Max
@@ -1918,18 +1921,19 @@
   poprve: '2026-11-13'
   vydano: '2024-11-23'
   vydano_odhad: false
-  stav: prohlednuto
+  stav: zamitnuto
   kvalita: 1
-  proc: Automaticky z popisu a titulků. Délka 9 min. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
+  proc: Automaticky z popisu a titulků. Délka 9 min. Zařízení v textu přímo nejmenuje. Popis je reklama bez věcného obsahu. Titulky nedostupné nebo krátké.
   auto: true
   delka_s: 540
-  shlednuti: 9756
+  shlednuti: 9819
   cisla: []
   popis: Save $$ on all things disc golf! or use code IcebergTV at checkout Elevate Your Game Use Code Ice20 For 20% off your order
   nazor: ''
   popis_auto: true
   nazor_auto: true
   titulky: false
+  sponzorovane: true
 - id: FE1Uyhg5hjw
   url: https://www.youtube.com/watch?v=FE1Uyhg5hjw
   nazev: AMD Says 2 Ryzen AI Halos Can Run a 400B Model... I Tested It
@@ -3398,7 +3402,7 @@
   proc: Automaticky z popisu a titulků. Délka 17 min. Zmiňuje 128gb, 96gb. Zařízení je v textu jmenované. Titulek je bulvární. Titulky nedostupné nebo krátké.
   auto: true
   delka_s: 1032
-  shlednuti: 224213
+  shlednuti: 225545
   cisla:
     - 128gb
     - 96gb
@@ -3409,6 +3413,7 @@
   popis_auto: true
   nazor_auto: true
   titulky: false
+  sponzorovane: false
 - id: MaumIMgtwGw
   url: https://www.youtube.com/watch?v=MaumIMgtwGw
   nazev: Can RTX Spark Replace My MacBook Pro?
@@ -3584,7 +3589,7 @@
   proc: Automaticky z popisu a titulků. Délka 13 min. Zmiňuje 250w, 120w, 48gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   auto: true
   delka_s: 795
-  shlednuti: 218375
+  shlednuti: 222963
   cisla:
     - 250w
     - 120w
@@ -3600,6 +3605,7 @@
   popis_cs: 'První pohled na Minisforum T5 Max: 120 W Strix Halo v 6,2litrové skříni.'
   nazor_cs: ''
   nazev_cs: '120 W Strix Halo v 6,2 litrech: první pohled na Minisforum T5 Max'
+  sponzorovane: false
 - id: kPFf9E22cmY
   url: https://www.youtube.com/watch?v=kPFf9E22cmY
   nazev: 'RTX Spark Laptop: Can It Game?'
@@ -3639,7 +3645,7 @@
   proc: Automaticky z popisu a titulků. Délka 13 min. Zmiňuje 192gb, 160gb, 120w. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   auto: true
   delka_s: 775
-  shlednuti: 396459
+  shlednuti: 400480
   cisla:
     - 192gb
     - 160gb
@@ -3651,6 +3657,7 @@
   popis_auto: true
   nazor_auto: true
   titulky: false
+  sponzorovane: false
 - id: xvGqHEWowfY
   url: https://www.youtube.com/watch?v=xvGqHEWowfY
   nazev: 'Ryzen AI Max+ 395 vs RTX 5090: What Loads, What''s Slower'
@@ -3708,17 +3715,13 @@
   poprve: '2026-11-13'
   vydano: '2026-11-04'
   vydano_odhad: false
-  stav: prohlednuto
-  kvalita: 5
-  proc: Automaticky z popisu a titulků. Délka 13 min. Zmiňuje 250w, 120w, 48gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  stav: zamitnuto
+  kvalita: 1
+  proc: Duplikát téhož titulu s jiným ID; popis je jen reklama na klíče, hodnocení 1/5.
   auto: true
-  delka_s: 795
-  shlednuti: 174
-  cisla:
-    - 250w
-    - 120w
-    - 48gb
-    - 16gb
+  delka_s: null
+  shlednuti: null
+  cisla: []
   popis: >-
     A Powerful Mini PC! Vip-URCDKey 25% Black Friday Sale code for software: ETA Windows 11 Pro Key($27):https://biitt.ly/RUZiX Office 2024 Pro Key($22): https://biitt.ly/o8WvY Windows 11 Home
     Key($25):https://biitt.ly/SQKqi Windows 10 Pro OEM Key($21):https://biitt.ly/KpEmf Office 2
@@ -3729,6 +3732,7 @@
   popis_cs: 'První pohled na Minisforum T5 Max: 120 W Strix Halo v 6,2litrové skříni.'
   nazor_cs: ''
   nazev_cs: '120 W Strix Halo v 6,2 litrech: první pohled na Minisforum T5 Max'
+  sponzorovane: false
 - id: Fy8LAbt1gUw
   url: https://www.youtube.com/watch?v=Fy8LAbt1gUw
   nazev: Ryzen AI Halo vs RTX 5090 vs Mac (Local AI)
@@ -4571,9 +4575,9 @@
   poprve: '2026-11-18'
   vydano: '2026-10-27'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 4
-  proc: 'Sestava ze dvou DGX Sparků (pool paměti); web sleduje jen jedno zařízení.'
+  proc: Sestava ze dvou DGX Sparků (pool paměti); web sleduje jen jedno zařízení.
   auto: true
   delka_s: 1014
   shlednuti: 129556
@@ -4692,9 +4696,9 @@
   poprve: '2026-11-18'
   vydano: '2026-11-10'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 2
-  proc: 'Obecná nákupní rada bez měření na konkrétním zařízení (kvalita 2/5).'
+  proc: Obecná nákupní rada bez měření na konkrétním zařízení (kvalita 2/5).
   auto: true
   delka_s: 1389
   shlednuti: 397643
@@ -4759,9 +4763,9 @@
   poprve: '2026-11-18'
   vydano: '2026-11-15'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 3
-  proc: 'Přehled notebooků pro běžné použití, ne lokální AI na 128 GB.'
+  proc: Přehled notebooků pro běžné použití, ne lokální AI na 128 GB.
   auto: true
   delka_s: 775
   shlednuti: 191569
@@ -4786,7 +4790,7 @@
   proc: Automaticky z popisu a titulků. Délka 186 min. Zmiňuje 128gb, 128 gb, 230 w. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
   auto: true
   delka_s: 11140
-  shlednuti: 4910
+  shlednuti: 4912
   cisla:
     - 128gb
     - 128 gb
@@ -4799,8 +4803,9 @@
   nazor_auto: true
   titulky: false
   nazev_cs: 'Nimo Axis 395: notebook s Ryzen AI Max+ 395 a 128 GB'
-  popis_cs: 'Tříhodinový stream s notebookem Nimo Axis 395 (Ryzen AI Max+ 395, 128 GB paměti). Popis videa je sponzorský, konkrétní čísla v něm nejsou.'
+  popis_cs: 'Tříhodinový stream s notebookem Nimo Axis 395 (Ryzen AI Max+ 395, 128 GB): recenze pro profesionály — každodenní práce, upgrade a chování v zátěži, ne hry. Popis začíná sponzorským blokem, zbytek je věcný.'
   nazor_cs: ''
+  sponzorovane: false
 - id: DsrCRNEuVhI
   url: https://www.youtube.com/watch?v=DsrCRNEuVhI
   nazev: 'Gorgon Halo vs DGX Spark: Do You Need 192 GB of RAM?'
@@ -4859,9 +4864,9 @@
   poprve: '2026-11-18'
   vydano: '2026-11-16'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 5
-  proc: 'Mac Studio s 96 GB paměti, pod hranicí 128 GB.'
+  proc: Mac Studio s 96 GB paměti, pod hranicí 128 GB.
   auto: true
   delka_s: 220
   shlednuti: 484
@@ -4944,9 +4949,9 @@
   poprve: '2026-11-18'
   vydano: '2026-11-14'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 3
-  proc: 'Obecná novinka o čipu, žádné měření lokálního provozu.'
+  proc: Obecná novinka o čipu, žádné měření lokálního provozu.
   auto: true
   delka_s: 1335
   shlednuti: 15726
@@ -4967,9 +4972,9 @@
   poprve: '2026-11-18'
   vydano: '2026-11-13'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 3
-  proc: 'Nákupní rada pro Apple, bez měření lokálního provozu.'
+  proc: Nákupní rada pro Apple, bez měření lokálního provozu.
   auto: true
   delka_s: 1927
   shlednuti: 17938
@@ -5019,9 +5024,9 @@
   poprve: '2026-11-18'
   vydano: '2026-11-06'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 4
-  proc: 'Recenze OLED displeje, mimo provoz lokálních modelů.'
+  proc: Recenze OLED displeje, mimo provoz lokálních modelů.
   auto: true
   delka_s: 912
   shlednuti: 37174
@@ -5118,13 +5123,13 @@
   url: https://www.youtube.com/watch?v=tdg6vYZU8cE
   nazev: The $3,999 Nvidia DGX Spark Killer? | AMD Ryzen AI Halo Developer Platform Review
   kanal: GG Tech Reviews
-  zarizeni: 'strix-halo'
+  zarizeni: strix-halo
   poprve: '2026-11-18'
   vydano: '2026-11-17'
   vydano_odhad: false
   stav: prohlednuto
-  kvalita: 5
-  proc: Automaticky z popisu a titulků. Délka 3 min. Zmiňuje 192gb, 256 gb/s, 128gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 3 min. Zmiňuje 192gb, 256 gb/s, 128gb. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
   auto: true
   delka_s: 180
   shlednuti: 5
@@ -5140,8 +5145,9 @@
   nazor_auto: true
   titulky: false
   nazev_cs: 'Ryzen AI Halo: recenze 128GB developerské desky'
-  popis_cs: 'Recenze developerské desky AMD Ryzen AI Halo se 128 GB paměti, kterou autor v titulku staví proti DGX Spark.'
+  popis_cs: Recenze developerské desky AMD Ryzen AI Halo se 128 GB paměti, kterou autor v titulku staví proti DGX Spark.
   nazor_cs: ''
+  sponzorovane: false
 - id: TjAqidQ-JWI
   url: https://www.youtube.com/watch?v=TjAqidQ-JWI
   nazev: 'Mac Studio vs DGX Spark: Which Is Better for Local AI? (Nov 2026)'
@@ -5449,9 +5455,9 @@
   poprve: '2026-11-18'
   vydano: '2026-11-17'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 5
-  proc: 'RTX Spark s 32 GB paměti, pod hranicí 128 GB.'
+  proc: RTX Spark s 32 GB paměti, pod hranicí 128 GB.
   auto: true
   delka_s: 659
   shlednuti: 5980
@@ -5476,9 +5482,9 @@
   poprve: '2026-11-18'
   vydano: '2026-11-17'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 4
-  proc: 'Herní test; web se hernímu výkonu nevěnuje.'
+  proc: Herní test; web se hernímu výkonu nevěnuje.
   auto: true
   delka_s: 1249
   shlednuti: 316
@@ -5496,9 +5502,9 @@
   poprve: '2026-11-18'
   vydano: '2026-11-07'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 5
-  proc: 'RTX Spark s 32 a 64 GB paměti, pod hranicí 128 GB.'
+  proc: RTX Spark s 32 a 64 GB paměti, pod hranicí 128 GB.
   auto: true
   delka_s: 2133
   shlednuti: 10723
@@ -5663,9 +5669,9 @@
   poprve: '2026-11-18'
   vydano: '2026-10-24'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 3
-  proc: 'Mac Studio s 36 GB paměti, pod hranicí 128 GB.'
+  proc: Mac Studio s 36 GB paměti, pod hranicí 128 GB.
   auto: true
   delka_s: 195
   shlednuti: 382
@@ -5686,9 +5692,9 @@
   poprve: '2026-11-18'
   vydano: '2026-10-25'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 2
-  proc: 'Kvalita 2/5, nákupní rada bez měření.'
+  proc: Kvalita 2/5, nákupní rada bez měření.
   auto: true
   delka_s: 1399
   shlednuti: 19099
@@ -5708,9 +5714,9 @@
   poprve: '2026-11-18'
   vydano: '2026-10-23'
   vydano_odhad: false
-  stav: 'zamitnuto'
+  stav: zamitnuto
   kvalita: 1
-  proc: 'Kvalita 1/5, bulvární titulek, bez měření.'
+  proc: Kvalita 1/5, bulvární titulek, bez měření.
   auto: true
   delka_s: 476
   shlednuti: 6681

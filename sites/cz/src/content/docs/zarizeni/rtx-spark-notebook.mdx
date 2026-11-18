@@ -147,6 +147,14 @@ chování je `[DOPLNIT: měření]`.
   podíl se nastavuje ručně.
 - **vLLM** je komunitní port, ne oficiální Windows build.
 - **Smart App Control** může blokovat nepodepsané nástroje.
+- **Windows proti Linuxu:** na MSI Prestige N16 Flip AI+ (N1X, 128 GB)
+  dal stejný llama.cpp s gpt-oss-120b 65,4 tok/s na Windows 11 ARM64,
+  65,1 ve WSL a jen 13,9 tok/s na nativním Linuxu. Příčina je chybějící
+  ACPI zařízení „NVIDIA Platform Controllers and Framework“: GPU zůstane
+  na ~780 MHz. Recenzent to ověřil přepínačem ve Windows — vypnuté
+  zařízení srazilo 83 na 31 tok/s, zapnuté vrátilo ~78
+  ([MindStudio](https://www.mindstudio.ai/blog/rtx-spark-windows-vs-linux-vs-wsl-benchmark)).
+  Jeden stroj a jeden recenzent, ale mechanismus je doložený.
 
 ## Na co si dát pozor
 

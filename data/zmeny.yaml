@@ -626,4 +626,10 @@
   co_se_zmenilo: "Do stránky doplněny TTFT 201-236 ms, prefill 1 825 tok/s na 32 791tokovém dokumentu a 4 souběžné prompty se 100,2 tok/s agregátem. Čísla od 10. 9. 2026 už byla v datech, v textu zůstávalo [DOPLNIT]."
   dotcene_stranky: [zarizeni/dgx-spark]
   zdroj: https://madeye.github.io/qwen38-flash-next-on-dgx-spark/
+- datum: 2026-11-18
+  typ: obsah
+  titulek: "Dávka 2 a 3: Windows vs Linux, nezávislý Gorgon Halo, vision, hluk"
+  co_se_zmenilo: "Gorgon Halo má nezávislý rozsah 7-16 tok/s místo jednoho komunitního čísla; RTX Spark notebook má změřený propad Linuxu (13,9 vs 65,4 tok/s kvůli chybějícímu ACPI zařízení); model page má vision benchmarky a doložené, že veřejný český test neexistuje; DGX Spark má příkon a hluk s odkazy."
+  dotcene_stranky: [zarizeni/gorgon-halo, zarizeni/rtx-spark-notebook, zarizeni/dgx-spark, modely/qwen3-8-flash-next]
+  zdroj: https://www.mindstudio.ai/blog/rtx-spark-windows-vs-linux-vs-wsl-benchmark
 
