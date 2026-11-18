@@ -121,12 +121,6 @@
       cena_czk_s_dph: 129989
       dostupnost: "Skladem 4 ks"
 
-- id: asus-proart-p16-128-1tb
-  zaznamy:
-    - datum: 2026-11-05
-      cena_czk_s_dph: 130990
-      dostupnost: "Očekáváme 17. 10. 2026; část variant nedostupná"
-
 - id: msi-prestige-n16-flip-128-2tb
   zaznamy:
     - datum: 2026-11-05
@@ -141,12 +135,18 @@
 
 - id: surface-laptop-ultra-128-1tb
   zaznamy:
+    - datum: 2026-11-18
+      cena_czk_s_dph: 168990
+      dostupnost: "Předobjednávka, očekáváme prosinec 2026"
     - datum: 2026-11-05
       cena_czk_s_dph: 165653
       dostupnost: "Předobjednávka, očekáváme prosinec 2026"
 
 - id: surface-laptop-ultra-128-1tb-167
   zaznamy:
+    - datum: 2026-11-18
+      cena_czk_s_dph: 170990
+      dostupnost: "Předobjednávka, očekáváme prosinec 2026"
     - datum: 2026-11-05
       cena_czk_s_dph: 167767
       dostupnost: "Předobjednávka, očekáváme prosinec 2026"

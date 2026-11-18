@@ -33,20 +33,6 @@
   overeno: 2026-11-04
   poznamka: "15,3\" OLED 2560×1600 165Hz; 2TB; 3 roky Premium Care On-Site; bez adaptéru."
 
-- id: asus-proart-p16-128-1tb
-  nazev: ASUS ProArt P16 H7607 (128GB/1TB)
-  vyrobce: ASUS
-  pamet_gb: 128
-  uloziste_gb: 1024
-  cena_czk_s_dph: 130990
-  cena_czk_bez_dph: 108256
-  dostupnost: "Očekáváme 17. 10. 2026; část variant nedostupná"
-  prodejce: Alza.cz
-  objednaci_kod: NA563z10b07
-  zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
-  poznamka: "16\" OLED 3840×2400 120Hz; bez adaptéru; 1 rok ochrany proti poškození po registraci."
-
 - id: msi-prestige-n16-flip-128-2tb
   nazev: MSI Prestige N16 Flip (128GB/2TB)
   vyrobce: MSI
@@ -63,7 +49,7 @@
   poznamka: "16\" OLED 3840×2400 120Hz; 2TB; 1 rok ochrany proti náhodnému poškození po registraci."
 
 - id: asus-proart-p16-128-1tb-153
-  nazev: ASUS ProArt P16 H7607 (128GB/1TB, vyšší varianta)
+  nazev: ASUS ProArt P16 H7607 (128GB/1TB)
   vyrobce: ASUS
   pamet_gb: 128
   uloziste_gb: 1024
@@ -74,32 +60,34 @@
   objednaci_kod: NA563z10b06
   url: https://www.alza.cz/asus-proart-p16-h7607-nvidia-rtx-spark-n1x-6144jadrova-gpu-20jadrovy-cpu-128gb-unified-memory-d13573045.htm
   zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-18
   poznamka: "16\" OLED; bez adaptéru; vyšší cena než základní P16."
 
 - id: surface-laptop-ultra-128-1tb
-  nazev: Microsoft Surface Laptop Ultra (128GB/1TB)
+  nazev: Microsoft Surface Laptop Ultra (128GB/1TB, bez adaptéru)
   vyrobce: Microsoft
   pamet_gb: 128
   uloziste_gb: 1024
-  cena_czk_s_dph: 165653
-  cena_czk_bez_dph: 136903
+  cena_czk_s_dph: 168990
+  cena_czk_bez_dph: 139661
   dostupnost: "Předobjednávka, očekáváme prosinec 2026"
   prodejce: Alza.cz
   objednaci_kod: MCS266a26
+  url: https://www.alza.cz/microsoft-surface-laptop-ultra-rtx-spark-n1x-6144jadrova-gpu-20jadrovy-cpu-128gb-unified-memory-d13579325.htm
   zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
-  poznamka: "15\" 3270×2180 120Hz; 2 kg; bez adaptéru. Druhá varianta za 167 767 Kč."
+  overeno: 2026-11-18
+  poznamka: "15\" 3270×2180 120Hz; 2 kg; bez adaptéru — nutné dokoupit. Dražší varianta s adaptérem je samostatné SKU."
 
 - id: surface-laptop-ultra-128-1tb-167
-  nazev: Microsoft Surface Laptop Ultra (128GB/1TB, druhá varianta)
+  nazev: Microsoft Surface Laptop Ultra (128GB/1TB, s adaptérem)
   vyrobce: Microsoft
   pamet_gb: 128
   uloziste_gb: 1024
-  cena_czk_s_dph: 167767
-  cena_czk_bez_dph: 138651
+  cena_czk_s_dph: 170990
+  cena_czk_bez_dph: 141314
   dostupnost: "Předobjednávka, očekáváme prosinec 2026"
   prodejce: Alza.cz
+  url: https://www.alza.cz/microsoft-surface-laptop-ultra-rtx-spark-n1x-6144jadrova-gpu-20jadrovy-cpu-128gb-unified-memory-d13579331.htm
   zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
-  poznamka: "Druhá Surface varianta; stejná paměť a úložiště, jiná cena."
+  overeno: 2026-11-18
+  poznamka: "Stejný stroj jako levnější varianta, ale s adaptérem v balení; rozdíl 2 000 Kč."

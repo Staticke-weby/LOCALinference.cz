@@ -656,4 +656,10 @@
   co_se_zmenilo: "Produktová stránka PNY NVIDIA DGX Spark 4TB hlásí „Prodej skončil“ a neuvádí cenu. SKU odebrán z data/dgx-spark-oem.yaml i z historie cen, texty změněny z 15 na 14 OEM strojů. Zbylých 14 GB10 SKU má odkaz na produkt místo kategorie."
   dotcene_stranky: [zarizeni/dgx-spark, temata/dgx-spark]
   zdroj: https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm
+- datum: 2026-11-18
+  typ: cena
+  titulek: "Surface: varianty rozlišené adaptérem, ProArt P16 sloučen"
+  co_se_zmenilo: "Surface Laptop Ultra: levnější varianta je bez adaptéru (168 990 Kč), dražší s adaptérem (170 990 Kč); obě mají odkaz na produkt. ProArt P16 měl dva záznamy se stejnou konfigurací — levnější za 130 990 Kč nesl zastaralou cenu, zůstává jeden za 153 990 Kč. Ceny v textech srovnány."
+  dotcene_stranky: [zarizeni/rtx-spark-notebook, temata/rtx-spark, vyber/rozpocet, temata/cena-lokalni-ai]
+  zdroj: https://www.alza.cz/microsoft-surface-laptop-ultra-rtx-spark-n1x-6144jadrova-gpu-20jadrovy-cpu-128gb-unified-memory-d13579325.htm
 
