@@ -650,4 +650,10 @@
   co_se_zmenilo: "Kontrola v prohlížeči 18. 11. 2026: ASUS Ascent GX10 1TB 162 990 -> 168 990 Kč, Lenovo ThinkStation PGX 2TB 196 050 -> 199 990 Kč, Acer Veriton GN100 4TB 225 847 -> 229 990 Kč. Ceny v textech na 14 místech srovnány. Jedenáct SKU dostalo odkaz na produkt místo odkazu na kategorii."
   dotcene_stranky: [zarizeni/dgx-spark, temata/dgx-spark, temata/cena-lokalni-ai, vyber/rozpocet]
   zdroj: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
+- datum: 2026-11-18
+  typ: cena
+  titulek: "PNY DGX Spark odebrán: prodej skončil"
+  co_se_zmenilo: "Produktová stránka PNY NVIDIA DGX Spark 4TB hlásí „Prodej skončil“ a neuvádí cenu. SKU odebrán z data/dgx-spark-oem.yaml i z historie cen, texty změněny z 15 na 14 OEM strojů. Zbylých 14 GB10 SKU má odkaz na produkt místo kategorie."
+  dotcene_stranky: [zarizeni/dgx-spark, temata/dgx-spark]
+  zdroj: https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm
 

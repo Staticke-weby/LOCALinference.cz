@@ -76,12 +76,6 @@
       cena_czk_s_dph: 225847
       dostupnost: "Na objednávku – termín upřesníme"
 
-- id: pny-dgx-spark-4tb
-  zaznamy:
-    - datum: 2026-11-05
-      cena_czk_s_dph: 229990
-      dostupnost: "Na cestě > 5 ks, očekáváme 10. 11. 2026"
-
 - id: dell-pro-max-gb10-4tb
   zaznamy:
     - datum: 2026-11-05

@@ -413,7 +413,7 @@ polozky:
     stav: prubezne
     davka: 4
     hledat: "Alza, CZC, TS Bohemia, Mironet, OEM"
-    poznamka: "Ceny GB10 overeny 18. 11. 2026 u 12 z 15 SKU. Odkaz na produkt ma 11 SKU; u ZGX 1TB, Dell 2TB, DGX Spark 4TB a PGX 4TB zbyva odkaz na kategorii."
+    poznamka: "GB10: 14 SKU (PNY DGX Spark odebran - prodej skoncil), vsech 14 ma odkaz na produkt. Ceny overeny 18. 11. 2026 u 12 z nich; u Dell 2TB a ZGX 1TB zbyva overit cenu na produktove strance."
     zdroj: https://www.alza.cz/ai-pc/18907789.htm
     overeno: 2026-11-10
 
@@ -444,7 +444,7 @@ polozky:
     stav: prubezne
     davka: 4
     hledat: "Microsoft, ASUS, HP, Lenovo, MSI, Dell, Alza"
-    poznamka: "Kategorie RTX Spark ma 50 polozek, ceny v datech z 9. 11. 2026. Odkaz na produkt chybi u vsech 7 SKU - dalsi kolo: dohledat URL a overit ceny."
+    poznamka: "Notebooky: 4 ze 7 SKU maji odkaz na produkt (P14, P16 153 990, Yoga Pro 9, Prestige N16). Surface Laptop Ultra x2 a ProArt P16 za 130 990 se nedaji jednoznacne priradit - u Surface maji obe varianty jinou cenu nez v datech, u P16 existuji dve stranky se stejnou cenou 153 990. Ceny z 9. 11. 2026."
     zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm
     overeno: 2026-11-10
 

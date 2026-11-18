@@ -99,6 +99,7 @@
   dostupnost: "Skladem > 5 ks u dodavatele"
   prodejce: Alza.cz
   objednaci_kod: TD140s01c7
+  url: https://www.alza.cz/dell-pro-max-s-gb10-fcm1253-d13342132.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
 
@@ -128,6 +129,7 @@
   dostupnost: "Na objednávku – termín upřesníme"
   prodejce: Alza.cz
   objednaci_kod: HPBD5024d4
+  url: https://www.alza.cz/hp-zgx-nano-g1n-ai-d13375941.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
 
@@ -141,6 +143,7 @@
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: NRn2000
+  url: https://www.alza.cz/nvidia-dgx-spark-d13165934.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-09
   poznamka: "Referenční DGX Spark; v této nabídce dražší než některé OEM 4TB varianty."
@@ -176,20 +179,6 @@
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-18
   poznamka: "Akční cena -1 %."
-
-- id: pny-dgx-spark-4tb
-  nazev: PNY NVIDIA DGX Spark 4TB
-  vyrobce: PNY
-  pamet_gb: 128
-  uloziste_gb: 4096
-  cena_czk_s_dph: 229990
-  cena_czk_bez_dph: 190074
-  dostupnost: "Na cestě > 5 ks, očekáváme 10. 11. 2026"
-  prodejce: Alza.cz
-  objednaci_kod: NRn2001
-  url: https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm
-  zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
 
 - id: dell-pro-max-gb10-4tb
   nazev: Dell Pro Max s GB10 FCM1253 4TB
@@ -243,5 +232,6 @@
   cena_czk_bez_dph: 206603
   dostupnost: "Doručení na prodejnu zdarma"
   prodejce: Alza.cz
+  url: https://www.alza.cz/lenovo-thinkstation-pgx-4tb-d13581413.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
   overeno: 2026-11-04
