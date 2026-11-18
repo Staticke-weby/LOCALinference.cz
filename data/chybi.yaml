@@ -313,10 +313,10 @@ polozky:
       - data/qwen3-8-flash-next-strix-halo
       - zdroje/mereni
     priorita: P1
-    stav: otevreno
+    stav: hleda-se
     davka: 2
     hledat: "llamaperf detail reportu"
-    poznamka: null
+    poznamka: "llamaperf.com uz stranku engine/hipfire nevede (404) a v prehledu 346 reportu pro Strix Halo se hipfire mezi enginy neobjevuje; kvantizace u ctyr mereni hipfire 0.4.2.1 (8k/32k/128k/256k) neni dohledatelna. Bud ji najit v puvodnim reportu, nebo mereni vyradit - rozhodnuti provozovatele."
     zdroj: null
     overeno: null
 
@@ -380,7 +380,7 @@ polozky:
     stav: prubezne
     davka: 3
     hledat: "recenze, fóra, měření uživatelů"
-    poznamka: "DGX Spark 60-90 W (ServeTheHome), ~160 W a 37,5 dBA/46 cm (Tom's), 159 W/30 dB(A) (Guru3D), idle 22-45 W. Framework Desktop 23,4 dB idle / 36,6-40,1 zatez, 144 W (Notebookcheck); GMKtec EVO-X2 47 dB(A), 128,9 W; EVO-X5 Pro 36 dB idle a 43-44 dB pri 120 W (APU telemetrie); Mac Studio 6 W idle / 145 W max, do 30 dBA. RTX Spark mini: nikdo nemeril."
+    poznamka: "Na strankach: DGX Spark 60-90 W a 37,5 dBA/46 cm (Tom's), 159 W/30 dB(A) (Guru3D); Strix Halo Framework Desktop 23,4 dB idle a 36,6-40,1 zatez, 144 W (Notebookcheck), GMKtec EVO-X2 47 dB a 128,9 W; Gorgon EVO-X5 Pro 36 dB idle a 43-44 dB pri 120 W (ComputerBase); Mac Studio do 30 dBA a 7-9 W idle (Apple, HotHardware). Zbyva RTX Spark mini a notebook - nikdo je nemeril."
     zdroj: null
     overeno: null
 

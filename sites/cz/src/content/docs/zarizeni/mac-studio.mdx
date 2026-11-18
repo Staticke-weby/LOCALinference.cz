@@ -95,11 +95,13 @@ výkon. Model Qwen3.8 Flash Next zabere kolem 90–100 GB, takže
 
 ## Kolik to stojí za tři roky
 
-Elektřina se počítá z příkonu, ale u Mac Studio výrobce udává jen
-maximum napájecího zdroje (480 W). Ilustrativní **výpočet horní meze**:
-480 W × 8 h × 250 dní = **960 kWh ročně**, tedy 2 880 kWh za tři roky.
-Skutečná spotřeba při inference bude nižší, protože 480 W je strop
-napájení, ne trvalý odběr.
+Elektřina se počítá z příkonu. Apple udává podle čipu 7–9 W v klidu a
+200 W (M5 Max), respektive 385 W (M5 Ultra) maximum
+([Apple](https://support.apple.com/en-us/102027)); 480 W je jen strop
+napájecího zdroje. Ilustrativní **výpočet horní meze** se 200 W:
+200 W × 8 h × 250 dní = **400 kWh ročně**, tedy 1 200 kWh za tři roky.
+Skutečná spotřeba při inference bude nižší, protože maximum je špička,
+ne trvalý odběr.
 
 K částce za stroj připočtěte cenu za kWh podle své smlouvy. U tichého
 stolního Macu je elektřina menší položka než u GPU serveru; rozdíl
@@ -109,7 +111,7 @@ dělá pořizovací cena.
 
 | Potřebujete | Mac Studio | Poznámka |
 |---|---|---|
-| Ticho v kanceláři | **ano** | pasivní chlazení, žádný hluk |
+| Ticho v kanceláři | **ano** | aktivní chlazení, ale do 30 dB(A) při zátěži (HotHardware) |
 | macOS a continuity | **ano** | stejný ekosystém |
 | CUDA a NVFP4 | **ne** | patří DGX Spark nebo RTX Spark |
 | vLLM v produkci | **ne** | běží jen na CUDA |

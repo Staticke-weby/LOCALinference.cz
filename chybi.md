@@ -2,7 +2,7 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**54 položek** · 9 otevreno · 3 hleda-se · 1 ceka-na-vas · 19 prubezne · 22 hotovo · 33 markerů [DOPLNIT] na 13 stránkách.
+**54 položek** · 8 otevreno · 4 hleda-se · 1 ceka-na-vas · 19 prubezne · 22 hotovo · 33 markerů [DOPLNIT] na 13 stránkách.
 
 ## Souhrn podle dávek
 
@@ -50,7 +50,7 @@
 | D03 | Souběžnost 4+ na všech zařízeních | P0 | otevreno | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-mini/<br>/zarizeni/rtx-spark-notebook/<br>/zarizeni/srovnani/<br>/temata/128gb-unified-memory/ |
 | D05 | Podložené doporučení provozního kontextu | P0 | hotovo | /modely/qwen3-8-flash-next/<br>/zaciname/jak-cteme-data/ |
 | D04 | 128k a 262k kontext: rychlost i kvalita | P1 | otevreno | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/modely/qwen3-8-flash-next/ |
-| D06 | Kvantizace u čtyř měření na Strix Halo | P1 | otevreno | /data/qwen3-8-flash-next-strix-halo/<br>/zdroje/mereni/ |
+| D06 | Kvantizace u čtyř měření na Strix Halo | P1 | hleda-se | /data/qwen3-8-flash-next-strix-halo/<br>/zdroje/mereni/ |
 | D08 | Windows ARM64 proti Linuxu na stejném modelu | P1 | hotovo | /zarizeni/rtx-spark-notebook/<br>/temata/lokalni-ai-na-windows-11/ |
 | Z06 | Gorgon Halo 192 GB: chybí nezávislé měření | P1 | prubezne | /zarizeni/gorgon-halo/<br>/zarizeni/srovnani/ |
 
