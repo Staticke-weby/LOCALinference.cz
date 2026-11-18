@@ -164,6 +164,14 @@ function stariDnu(text) {
   return n * 365;
 }
 
+/** Stáří položky v dnech: relativní "3w ago" (YouTube) i absolutní datum z RSS. */
+function stariDneDatum(text) {
+  const relativni = stariDnu(text);
+  if (relativni != null) return relativni;
+  const cas = Date.parse(String(text ?? ''));
+  return Number.isNaN(cas) ? null : (Date.now() - cas) / 86400000;
+}
+
 /** Ponechá jen videa z posledního týdne. */
 function cerstve(items) {
   return items.filter((i) => {
@@ -243,7 +251,13 @@ async function signature(source) {
   }
 
   if (source.typ === 'rss') {
-    const items = filtr(source, parseFeed(await fetchText(url))).slice(0, 20);
+    // Google News a podobné feedy vrací i měsíce staré články; držíme 90 dní.
+    const items = filtr(source, parseFeed(await fetchText(url)))
+      .filter((i) => {
+        const d = stariDneDatum(i.d);
+        return d == null || d <= 90;
+      })
+      .slice(0, 20);
     return { sig: `rss:${hash(items.map(klic).join('|') || 'prazdno')}`, items };
   }
 

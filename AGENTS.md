@@ -212,7 +212,8 @@ vlastní evidenci:
 - **`scripts/hlidac.mjs`** — pravidelná kontrola zdrojů. Umí RSS/Atom,
   GitHub releases, změny model card na Hugging Face a hash klíčové části
   HTML stránky. U RSS a YouTube ukládá položky a reportuje **nové titulky
-  s odkazy**; volitelný `filtr` omezí položky podle slov v titulku.
+  s odkazy**; u RSS bere posledních 90 dní, u YouTube poslední měsíc.
+  Volitelný `filtr` omezí položky podle slov v titulku.
   `typ: youtube` čte výsledky hledání seřazené od nejnovějších. Porovná
   stav s `data/stav-zdroju.json`, vypíše report a případně založí issue.
   **Nikdy nemění obsah sám.**

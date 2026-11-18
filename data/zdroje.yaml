@@ -1015,9 +1015,10 @@
   co_sledujeme: [cena, pamet, dostupnost]
   frekvence: tydne
   priorita: stredni
-  posledni_kontrola: 2026-11-11
+  kontrola: manual
+  posledni_kontrola: 2026-11-18
   stav: ok
-  poznamka: "Cena 7 399 USD a 192 GB unified paměti; použito u Gorgon Halo."
+  poznamka: "Cena 7 399 USD a 192 GB unified paměti; použito u Gorgon Halo. Cloudflare vrací hlídači 403 (i s browserovým user-agentem), takže kontrola je ruční."
 
 - id: nvidia-forum-dgx-spark-recipe
   nazev: NVIDIA forum — šest týdnů ladění Qwen3.8 na DGX Spark
