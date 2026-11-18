@@ -3,6 +3,9 @@
 
 - id: asus-ascent-gx10-1tb
   zaznamy:
+    - datum: 2026-11-18
+      cena_czk_s_dph: 168990
+      dostupnost: "Skladem > 5 ks"
     - datum: 2026-11-05
       cena_czk_s_dph: 162990
       dostupnost: "Skladem > 5 ks"
@@ -39,6 +42,9 @@
 
 - id: lenovo-thinkstation-pgx-2tb
   zaznamy:
+    - datum: 2026-11-18
+      cena_czk_s_dph: 199990
+      dostupnost: "Skladem > 5 ks"
     - datum: 2026-11-05
       cena_czk_s_dph: 196050
       dostupnost: "Skladem > 5 ks"
@@ -63,6 +69,9 @@
 
 - id: acer-veriton-gn100-4tb
   zaznamy:
+    - datum: 2026-11-18
+      cena_czk_s_dph: 229990
+      dostupnost: "Na objednávku – termín upřesníme"
     - datum: 2026-11-05
       cena_czk_s_dph: 225847
       dostupnost: "Na objednávku – termín upřesníme"

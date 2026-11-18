@@ -644,4 +644,10 @@
   co_se_zmenilo: "llamaperf.com už nevede engine hipfire (404) a kvantizace u čtyř měření Strix Halo (8k/32k/128k/256k) nebyla dohledatelná. Podle pravidla o odstraňování zmizelých zdrojů měření zmizela z data/mereni.yaml i z tabulek; zbylo 19 měření."
   dotcene_stranky: [zarizeni/strix-halo]
   zdroj: https://llamaperf.com/gpu/strix-halo-128gb
+- datum: 2026-11-18
+  typ: cena
+  titulek: "Alza: tři ceny opraveny, jedenáct SKU má odkaz na produkt"
+  co_se_zmenilo: "Kontrola v prohlížeči 18. 11. 2026: ASUS Ascent GX10 1TB 162 990 -> 168 990 Kč, Lenovo ThinkStation PGX 2TB 196 050 -> 199 990 Kč, Acer Veriton GN100 4TB 225 847 -> 229 990 Kč. Ceny v textech na 14 místech srovnány. Jedenáct SKU dostalo odkaz na produkt místo odkazu na kategorii."
+  dotcene_stranky: [zarizeni/dgx-spark, temata/dgx-spark, temata/cena-lokalni-ai, vyber/rozpocet]
+  zdroj: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
 

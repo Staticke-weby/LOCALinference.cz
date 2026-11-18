@@ -2,7 +2,7 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**54 položek** · 8 otevreno · 3 hleda-se · 1 ceka-na-vas · 19 prubezne · 23 hotovo · 33 markerů [DOPLNIT] na 13 stránkách.
+**54 položek** · 8 otevreno · 3 hleda-se · 1 ceka-na-vas · 18 prubezne · 24 hotovo · 33 markerů [DOPLNIT] na 13 stránkách.
 
 ## Souhrn podle dávek
 
@@ -11,7 +11,7 @@
 | 1 | Generování: rychlosti, licence a slovník | 2 |
 | 2 | Katalogová data Qwen3.8 | 5 |
 | 3 | Kvalita, čeština a provoz | 2 |
-| 4 | Ceny a dostupnost | 5 |
+| 4 | Ceny a dostupnost | 4 |
 | 5 | Obsah a propojení | 2 |
 | 6 | Infrastruktura a publikace | 2 |
 | 7 | Průběžná údržba | 9 |
@@ -83,13 +83,12 @@
 | C01 | České ceny všech 128GB konfigurací | P1 | prubezne | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-notebook/<br>/vyber/rozpocet/ |
 | C03 | RTX Spark notebook: všechny OEM ceny | P1 | prubezne | /zarizeni/rtx-spark-notebook/<br>/zarizeni/konfigurace/ |
 | C04 | Česká cena RTX Spark mini | P1 | hotovo | /zarizeni/rtx-spark-mini/<br>/temata/cena-lokalni-ai/<br>/vyber/rozpocet/ |
-| C02 | Ruční kontrola Alza snapshotu | P2 | prubezne | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-notebook/ |
+| C02 | Ruční kontrola Alza snapshotu | P2 | hotovo | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-notebook/ |
 | C06 | Kurzy ČNB a ECB | P2 | prubezne | /vyber/rozpocet/<br>/temata/cena-lokalni-ai/ |
 | C07 | Dostupnost Maců 128 GB | P2 | prubezne | /zarizeni/mac-studio/<br>/zarizeni/macbook-pro/ |
 
 - **C01** — Americká listovka není česká cena. U části konfigurací chybí česká cena nebo je jen odhad. *Hledat:* Alza, CZC, TS Bohemia, Mironet, OEM
 - **C03** — Ceny se liší podle OEM. Chybí české ceny některých variant. *Hledat:* Microsoft, ASUS, HP, Lenovo, MSI, Dell, Alza
-- **C02** — Alza blokuje fetch/HEAD (403), ceny je potřeba ověřovat ručně. OpenChamber browser kategorie i produkty načte. *Hledat:* Alza podle objednacího kódu
 - **C06** — Kurzy je potřeba pravidelně aktualizovat kvůli přepočtům. *Hledat:* ČNB, ECB
 - **C07** — Mac 128 GB je „na cestě“ / předprodej. Chybí potvrzení, kdy bude skladem, aby se dalo psát „skladem“. *Hledat:* Apple CZ, Alza
 
