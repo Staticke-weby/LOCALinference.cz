@@ -216,7 +216,13 @@ vlastní evidenci:
   `typ: youtube` čte výsledky hledání seřazené od nejnovějších. Porovná
   stav s `data/stav-zdroju.json`, vypíše report a případně založí issue.
   **Nikdy nemění obsah sám.**
-- **Workflow `hlidac.yml`** — týdenní běh + ruční spuštění.
+- **Týdenní běh** — scheduled task v OpenChamber, pondělí 09:00
+  Europe/Prague: spustí `npm run hlidac` a `npm run videa:hodnotit`,
+  commitne `data/stav-zdroju.json` a `data/videa.yaml` a report
+  roztřídí (ceny, nové titulky, chyby zdrojů). Běží tam proto, že na
+  report navazuje triage; počítač s OpenChamber ale musí být zapnutý.
+  Workflow `hlidac.yml` zůstává jen na ruční spuštění
+  (`workflow_dispatch`) jako záloha a pro ověření po změnách skriptu.
 - **Aktualizační checklist:** ověřit cenu → ověřit model → ověřit měření →
   upravit data → aktualizovat `overeno` → zapsat do `zmeny.yaml` → build.
 
