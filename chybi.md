@@ -2,14 +2,14 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**54 položek** · 8 otevreno · 4 hleda-se · 1 ceka-na-vas · 19 prubezne · 22 hotovo · 33 markerů [DOPLNIT] na 13 stránkách.
+**54 položek** · 8 otevreno · 3 hleda-se · 1 ceka-na-vas · 19 prubezne · 23 hotovo · 33 markerů [DOPLNIT] na 13 stránkách.
 
 ## Souhrn podle dávek
 
 | Dávka | Název | Otevřených |
 |---|---|---|
 | 1 | Generování: rychlosti, licence a slovník | 2 |
-| 2 | Katalogová data Qwen3.8 | 6 |
+| 2 | Katalogová data Qwen3.8 | 5 |
 | 3 | Kvalita, čeština a provoz | 2 |
 | 4 | Ceny a dostupnost | 5 |
 | 5 | Obsah a propojení | 2 |
@@ -50,7 +50,7 @@
 | D03 | Souběžnost 4+ na všech zařízeních | P0 | otevreno | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-mini/<br>/zarizeni/rtx-spark-notebook/<br>/zarizeni/srovnani/<br>/temata/128gb-unified-memory/ |
 | D05 | Podložené doporučení provozního kontextu | P0 | hotovo | /modely/qwen3-8-flash-next/<br>/zaciname/jak-cteme-data/ |
 | D04 | 128k a 262k kontext: rychlost i kvalita | P1 | otevreno | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/modely/qwen3-8-flash-next/ |
-| D06 | Kvantizace u čtyř měření na Strix Halo | P1 | hleda-se | /data/qwen3-8-flash-next-strix-halo/<br>/zdroje/mereni/ |
+| D06 | Kvantizace u čtyř měření na Strix Halo | P1 | hotovo | /data/qwen3-8-flash-next-strix-halo/<br>/zdroje/mereni/ |
 | D08 | Windows ARM64 proti Linuxu na stejném modelu | P1 | hotovo | /zarizeni/rtx-spark-notebook/<br>/temata/lokalni-ai-na-windows-11/ |
 | Z06 | Gorgon Halo 192 GB: chybí nezávislé měření | P1 | prubezne | /zarizeni/gorgon-halo/<br>/zarizeni/srovnani/ |
 
@@ -58,7 +58,6 @@
 - **D02** — DGX Spark je hotový: TTFT 201–236 ms (krátké prompty) a prefill 1 825 tok/s na 32 791tokovém dokumentu (madeye, 10. 9. 2026). Chybí TTFT u Strix Halo — prefill tam je 770–2 372 tok/s podle enginu — a TTFT i prefill u RTX Spark mini a notebooku. Pořád chybí stejný prompt napříč zařízeními. *Hledat:* madeye, llamaperf, SMF, SparkLab, GitHub
 - **D03** — DGX Spark má 4 souběžné prompty 100,2 tok/s agregát a 6 streamů 91,9 tok/s, oboje na krátkých promptech. Chybí 4+ souběžně na Strix Halo, RTX Spark a Macu a kdekoli na dlouhém kontextu. *Hledat:* vLLM a SGLang benchmarky, fóra, InferenceX
 - **D04** — Maximum v datasheetu nic neříká o praxi. Chybí rychlost a kvalita na dlouhém kontextu pro Qwen3.8. *Hledat:* llamaperf, MRCR a needle testy, komunitní reporty
-- **D06** — U čtyř záznamů v data/mereni.yaml je kvantizace [DOPLNIT]. Bez ní číslo nelze srovnat. *Hledat:* llamaperf detail reportu
 - **Z06** — Nemáme nezávislý test Qwen3.8 Flash Next ani větších modelů na Ryzen AI Max+ PRO 495. První komunitní test existuje, ale je sporný: 19–20 tok/s na krátkém promptu, 4,6 tok/s na 249K. Jiní uživatelé hlásí 50–65 tok/s a konfiguraci zpochybňují. *Hledat:* Phoronix, Local LLM Benchmarks, Reddit r/LocalLLaMA, recenze 495
 
 ## Dávka 3 — Kvalita, čeština a provoz
@@ -195,4 +194,3 @@
 ## Data bez hodnot
 - generativní modely bez rychlosti: 25/30
 - generativní modely bez počtu parametrů: 4/30
-- měření bez kvantizace: 4/23

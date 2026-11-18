@@ -313,13 +313,13 @@ polozky:
       - data/qwen3-8-flash-next-strix-halo
       - zdroje/mereni
     priorita: P1
-    stav: hleda-se
+    stav: hotovo
     davka: 2
     hledat: "llamaperf detail reportu"
-    poznamka: "llamaperf.com uz stranku engine/hipfire nevede (404) a v prehledu 346 reportu pro Strix Halo se hipfire mezi enginy neobjevuje; kvantizace u ctyr mereni hipfire 0.4.2.1 (8k/32k/128k/256k) neni dohledatelna. Bud ji najit v puvodnim reportu, nebo mereni vyradit - rozhodnuti provozovatele."
     zdroj: null
     overeno: null
 
+    poznamka: "Vyreseno odebranim: kvantizace ctyr mereni hipfire 0.4.2.1 nebyla dohledatelna (llamaperf uz engine nevede, 404) a nahradni zdroj se nenasel, takze mereni zmizela z data/mereni.yaml i z webu."
   - id: D08
     oblast: data
     titulek: "Windows ARM64 proti Linuxu na stejném modelu"

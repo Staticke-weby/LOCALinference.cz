@@ -230,6 +230,16 @@ vlastní evidenci:
 Pravidlo: **každý údaj má svého vlastníka a datum kontroly.** Když se zdroj
 nedá ověřit, údaj se označí `[DOPLNIT]` nebo se z webu odstraní.
 
+**Zmizelý zdroj nebo nabídka se odstraňuje, nearchivuje.** Když se produkt
+přestal prodávat, stránka vrací 404 nebo model zmizel a nenajde se náhradní
+veřejný zdroj, údaj (SKU, měření, odkaz) se odstraní z dat i z webu. Web je
+nástroj pro rozhodnutí dnes, ne obraz historie. Odstranění se zapíše do
+`data/zmeny.yaml` a položka v `data/chybi.yaml` se uzavře jako `hotovo`
+s důvodem. Pozor na rozdíl mezi „nedostupné" (403, bot protection, výpadek)
+a „přestalo existovat" (404, stažený produkt, mrtvý model) — odebírá se jen
+druhé. Historie cen se na webu nezobrazuje; v `data/historie-cen.yaml`
+zůstává jen poslední záznam na konfiguraci.
+
 ### 3.2 Registr mezer a dávkové doplňování
 
 Chybějící údaje se neřeší náhodně. Všechno, co chybí, je v

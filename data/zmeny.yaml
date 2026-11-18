@@ -638,4 +638,10 @@
   co_se_zmenilo: "Doplněny decibely a watty s odkazy: Framework Desktop 23,4 dB v klidu a 36,6-40,1 dB v zátěži, 144 W; GMKtec EVO-X2 47 dB a 128,9 W; GMKtec EVO-X5 Pro 36 dB v klidu a 43-44 dB při 120 W; Mac Studio do 30 dB a 7-9 W v klidu. Opraveno tvrzení, že Mac Studio je pasivně chlazený - má ventilátor, jen tichý."
   dotcene_stranky: [zarizeni/strix-halo, zarizeni/gorgon-halo, zarizeni/mac-studio]
   zdroj: https://www.notebookcheck.net/Framework-Desktop-review-Mini-PC-wrapped-in-a-mini-ITX-body.1115803.0.html
+- datum: 2026-11-18
+  typ: zdroj
+  titulek: "Odebrána čtyři měření hipfire: zdroj zmizel"
+  co_se_zmenilo: "llamaperf.com už nevede engine hipfire (404) a kvantizace u čtyř měření Strix Halo (8k/32k/128k/256k) nebyla dohledatelná. Podle pravidla o odstraňování zmizelých zdrojů měření zmizela z data/mereni.yaml i z tabulek; zbylo 19 měření."
+  dotcene_stranky: [zarizeni/strix-halo]
+  zdroj: https://llamaperf.com/gpu/strix-halo-128gb
 
