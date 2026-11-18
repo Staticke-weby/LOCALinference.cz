@@ -620,4 +620,10 @@
   co_se_zmenilo: "Kurz ČNB k 16. 11. 2026 (1 USD = 22,182 Kč, 1 EUR = 24,430 Kč). Ve frontě videí ohodnoceno 26 nových, 13 zamítnuto (32-96 GB, herní testy, nákupní rady), dvě videa s kvalitou 5 dostala český popis. Hlídač nově bere u RSS jen položky za posledních 90 dní."
   dotcene_stranky: [zarizeni/gorgon-halo, zarizeni/strix-halo]
   zdroj: https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt
+- datum: 2026-11-18
+  typ: mereni
+  titulek: "DGX Spark: TTFT, prefill a souběžnost v textu"
+  co_se_zmenilo: "Do stránky doplněny TTFT 201-236 ms, prefill 1 825 tok/s na 32 791tokovém dokumentu a 4 souběžné prompty se 100,2 tok/s agregátem. Čísla od 10. 9. 2026 už byla v datech, v textu zůstávalo [DOPLNIT]."
+  dotcene_stranky: [zarizeni/dgx-spark]
+  zdroj: https://madeye.github.io/qwen38-flash-next-on-dgx-spark/
 

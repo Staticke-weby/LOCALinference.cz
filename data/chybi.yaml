@@ -193,6 +193,20 @@ polozky:
     zdroj: null
     overeno: null
 
+  - id: G11
+    oblast: generovani
+    titulek: "Časy úprav obrázků: inpainting a outpainting"
+    co_chybi: "Veřejné časy úprav obrázků na zařízeních — inpainting, outpainting a přebarvení. Stránka zatím jen říká, že úprava je pomalejší než generování."
+    kde:
+      - generovani/uprava-obrazku
+    priorita: P2
+    stav: otevreno
+    davka: 1
+    hledat: "kyuz0 toolboxes, ComfyUI benchmarky, Reddit r/StableDiffusion, YouTube"
+    poznamka: "U čísla uvést rozlišení, masku, model a verzi ComfyUI."
+    zdroj: null
+    overeno: null
+
   - id: G09
     oblast: generovani
     titulek: "Slovník: VRAM a STT"
@@ -228,7 +242,7 @@ polozky:
   - id: D02
     oblast: data
     titulek: "DGX Spark a Strix Halo: TTFT a prefill na jednotném promptu"
-    co_chybi: "Reporty měří prefill různě, takže čísla nejdou srovnat. Chybí stejný prompt a stejná kvantizace."
+    co_chybi: "DGX Spark je hotový: TTFT 201–236 ms (krátké prompty) a prefill 1 825 tok/s na 32 791tokovém dokumentu (madeye, 10. 9. 2026). Chybí TTFT u Strix Halo — prefill tam je 770–2 372 tok/s podle enginu — a TTFT i prefill u RTX Spark mini a notebooku. Pořád chybí stejný prompt napříč zařízeními."
     kde:
       - zarizeni/dgx-spark
       - zarizeni/strix-halo
@@ -244,7 +258,7 @@ polozky:
   - id: D03
     oblast: data
     titulek: "Souběžnost 4+ na všech zařízeních"
-    co_chybi: "Většina reportů je single-stream. DGX Spark má nově 6-stream agregát 91,9 tok/s, ale chybí 4+ souběžné na ostatních zařízeních a na dlouhém kontextu."
+    co_chybi: "DGX Spark má 4 souběžné prompty 100,2 tok/s agregát a 6 streamů 91,9 tok/s, oboje na krátkých promptech. Chybí 4+ souběžně na Strix Halo, RTX Spark a Macu a kdekoli na dlouhém kontextu."
     kde:
       - zarizeni/dgx-spark
       - zarizeni/strix-halo

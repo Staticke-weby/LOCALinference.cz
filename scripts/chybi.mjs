@@ -103,11 +103,21 @@ for (const p of polozky) {
 }
 const nezapsane = [...markeryPodleStranky.keys()].filter((s) => !pokryte.has(s)).sort();
 
-const bezMarkeru = [];
+// Stránka se [DOPLNIT], kterou nekryje žádná otevřená položka: buď ji kryjí
+// jen hotové položky (mezera se vrátila), nebo ji nekryje nic.
+const kryti = new Map();
 for (const p of polozky) {
-  if (!p.kde?.length) continue;
-  const pocet = p.kde.reduce((soucet, s) => soucet + (markeryPodleStranky.get(s) ?? 0), 0);
-  if (p.stav === 'hotovo' && pocet > 0) bezMarkeru.push({ ...p, pocet });
+  for (const k of p.kde ?? []) {
+    if (!kryti.has(k)) kryti.set(k, []);
+    kryti.get(k).push(p);
+  }
+}
+
+const bezVlastnika = [];
+for (const [stranka, pocet] of markeryPodleStranky) {
+  const kryjici = kryti.get(stranka) ?? [];
+  if (kryjici.some((p) => p.stav !== 'hotovo')) continue;
+  bezVlastnika.push({ stranka, pocet, hotove: kryjici.filter((p) => p.stav === 'hotovo').map((p) => p.id) });
 }
 
 // --- prázdné hodnoty v datech -------------------------------------------
@@ -184,7 +194,10 @@ if (!jenKontrola) {
     console.log('Nezapsané stránky s [DOPLNIT]:');
     for (const s of nezapsane) console.log(`  ? ${s} (${markeryPodleStranky.get(s)}×)`);
   }
-  for (const p of bezMarkeru) console.log(`  ! ${p.id}: stav hotovo, ale ${p.pocet}× [DOPLNIT]`);
+  for (const b of bezVlastnika) {
+    const kdo = b.hotove.length ? `kryjí jen hotové: ${b.hotove.join(', ')}` : 'nekryje žádná položka';
+    console.log(`  ! ${b.stranka}: ${b.pocet}× [DOPLNIT], ${kdo}`);
+  }
   if (dataZavad.length) {
     console.log('Data bez hodnot:');
     for (const d of dataZavad) console.log(`  · ${d}`);

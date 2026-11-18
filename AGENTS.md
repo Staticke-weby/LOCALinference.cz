@@ -243,7 +243,9 @@ Chybějící údaje se neřeší náhodně. Všechno, co chybí, je v
 - **Stavy:** `otevreno`, `hleda-se`, `ceka-na-vas` (rozhodnutí
   provozovatele), `prubezne` (opakovaná kontrola), `hotovo`.
 - **`[DOPLNIT]` v článku musí mít položku v registru.** `npm run
-  check:chybi` jinak selže. To brání tichému růstu seznamu.
+  check:chybi` upozorní na stránku, jejíž `[DOPLNIT]` nekryje žádná
+  otevřená položka — buď ji kryjí jen hotové (mezera se vrátila), nebo
+  ji nekryje nic. To brání tichému růstu seznamu.
 - **Postup:** dohledat veřejný zdroj → zapsat do `data/*.yaml` s datem
   a typem → upravit text → přidat zdroj → changelog → `stav: hotovo`
   → `npm run chybi:zapis` → `npm run check`.

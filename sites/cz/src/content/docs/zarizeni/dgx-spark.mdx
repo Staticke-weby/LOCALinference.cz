@@ -106,15 +106,16 @@ a workload, ne fyzika. Pro plánování berte **spodní hranici 36,8 tok/s**;
 
 | Kontext | Co se stane | Souběžnost |
 |---|---|---|
-| 32k | bezpečný provoz, nejlepší rychlost | [DOPLNIT] |
-| 128k | dlouhé dokumenty, KV cache roste | [DOPLNIT] |
-| 262k | maximum modelu, KV cache na hraně | [DOPLNIT] |
+| 32k | bezpečný provoz, nejlepší rychlost | 4 souběžné prompty: 100,2 tok/s agregát (krátké prompty, ne 32k) |
+| 128k | dlouhé dokumenty, KV cache roste | [DOPLNIT: souběžnost na 128k] |
+| 262k | maximum modelu, KV cache na hraně | v praxi 0–1: KV cache 7,44 GiB unese 507 810 tokenů, ne 6× 262k |
 | 1M | s YaRN, na tomto zařízení nepraktické | 0–1 |
 
 Maximum není doporučení. Jeden 200k request může vytlačit ostatní
-z KV cache. První komunitní měření při 6 streamech dává agregát
-91,9 tok/s, ale na krátkých promptech; chování na 32k a 128k je stále
-`[DOPLNIT: měření]`.
+z KV cache. Na čerstvém 32 791tokovém dokumentu dal prefill 1 825 tok/s
+a první token za 17,97 s (madeye, 10. 9. 2026); při 6 streamech je
+agregát 91,9 tok/s, ale na krátkých promptech. Chování na 128k
+`[DOPLNIT: chování na 128k]`.
 
 ## Co od DGX Spark čekat
 
