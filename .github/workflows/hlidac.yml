@@ -22,12 +22,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm run videa:hodnotit
-      - name: Uložit stav a report
+      # Report je generovaný výstup (vystup/ je v .gitignore), takže se necommituje.
+      # Do gitu jde jen stav hlídače a fronta videí.
+      - name: Uložit stav a frontu videí
+        if: always()
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "hlídač: aktualizace stavu zdrojů"
-          file_pattern: data/stav-zdroju.json data/videa.yaml vystup/hlidac-report.md
+          file_pattern: data/stav-zdroju.json data/videa.yaml
+      - name: Report do souhrnu běhu
+        if: always()
+        run: |
+          if [ -f vystup/hlidac-report.md ]; then
+            cat vystup/hlidac-report.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Report se nevytvořil." >> "$GITHUB_STEP_SUMMARY"
+          fi
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: hlidac-report
           path: vystup/hlidac-report.md
