@@ -40,7 +40,7 @@
 - zarizeni: rtx-spark-mini
   souhrn: "Stolní RTX Spark drží výkon lépe než notebook: v recenzích se po 30 minutách zátěže nesnížil a zůstal pod 90 °C. Hlavní výtky jsou cena, porty a raný Windows on Arm. Veřejné měření Qwen3.8 Flash Next je zatím jedno a z krátkého chatu."
   opakuje:
-    - "Stolní chlazení je znát: trvalý výkon je o 5–12 % vyšší než u notebooku se stejným čipem a teploty jsou o 10–14 °C nižší."
+    - "Stolní chlazení je znát: trvalý výkon je o 5–12 % vyšší než u notebooku se stejným čipem a teploty jsou o 14 °C nižší. Notebooky v testu skóre neztratily, jen jely na teplotním stropu."
     - "128 GB je hlavní důvod koupě, ne hrubý výkon; paměť je připájená a rozšiřuje se jen SSD."
     - "Výhoda roste se souběžností: při 8 požadavcích je stolní stroj o 18–25 % rychlejší než notebook."
     - "Software a ovladače jsou mladší než u DGX nebo Macu; porty jsou jen USB-C."

@@ -21,8 +21,9 @@ import Zkusenosti from '../../../components/Zkusenosti.astro';
 import Videa from '../../../components/Videa.astro';
 
 **Verdikt:** Nejchladnější cesta k 128 GB s CUDA a Windows.
-V recenzích drží výkon i po půl hodině zátěže, kde notebooky se stejným
-čipem throttlují. V Česku ale stojí **194 990 Kč vč. DPH** — víc než
+Po půl hodině zátěže drží skóre (1,007× prvního průchodu) a 83 °C;
+notebooky se stejným čipem jely na 97 °C, tedy na svém teplotním
+stropu. V Česku ale stojí **194 990 Kč vč. DPH** — víc než
 DGX Spark. Vyplatí se, když chcete Windows a stálý provoz, ne když
 hledáte nejnižší cenu za 128 GB.
 
@@ -87,7 +88,7 @@ Spark**. K 21. 11. 2026 v ní bylo šest položek; katalog zajímají jen
 Katalog řeší **jen 128GB verzi**. U stolního stroje navíc rozhoduje
 chlazení: 140 W v těle o objemu 1,15 litru je víc než u notebooku
 (45–80 W), ale pořád míň než u serveru. Právě proto drží výkon
-i při dlouhém běhu — a proto je hlučnější než kancelářský mini PC.
+i při dlouhém běhu.
 
 ## Co na RTX Spark mini poběží: Qwen3.8 Flash Next
 
@@ -171,9 +172,12 @@ Tohle je hlavní rozdíl proti notebooku a první věc, kterou recenze měří.
 | Hluk v zátěži | pod 55 dB | — | Windows Central |
 | Hluk a teplota v 60min FurMarku | 57 dBA při tichu 30 dBA, SoC 98 °C | — | Profesional Review |
 
-**Co z toho plyne:** stolní stroj se po 30 minutách zátěže nezastavil
-ani nesnížil skóre a zůstal o 10–14 °C chladnější než notebooky. Pro
-provoz 24/7 je to přesně to, co potřebujete. Dvě čísla hluku se ale
+**Co z toho plyne:** skóre po 30 minutách zůstalo na 1,007× prvního
+průchodu, teplota na 83,3 °C. Notebooky jely průměrně na 97 °C, tedy
+na svém teplotním stropu, ale skóre si také udržely (0,994× a 1,002×).
+Rozdíl je v absolutním výkonu (o 5–12 % vyšší skóre) a v teplotní
+rezervě — ne v tom, že by notebooky po půl hodině zpomalily. Pro
+provoz 24/7 je rezerva to, co potřebujete. Dvě čísla hluku se ale
 neshodují (pod 55 dB vs. 57 dBA) a ani jedno neuvádí vzdálenost ani
 vážení — berte je jako orientaci, ne jako srovnatelný údaj.
 
