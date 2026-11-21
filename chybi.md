@@ -2,7 +2,7 @@
 
 *Vygenerováno z `data/chybi.yaml`. Neupravuj ručně — měň YAML a spusť `npm run chybi:zapis`.*
 
-**54 položek** · 8 otevreno · 3 hleda-se · 1 ceka-na-vas · 18 prubezne · 24 hotovo · 33 markerů [DOPLNIT] na 13 stránkách.
+**55 položek** · 9 otevreno · 3 hleda-se · 1 ceka-na-vas · 18 prubezne · 24 hotovo · 27 markerů [DOPLNIT] na 12 stránkách.
 
 ## Souhrn podle dávek
 
@@ -11,7 +11,7 @@
 | 1 | Generování: rychlosti, licence a slovník | 2 |
 | 2 | Katalogová data Qwen3.8 | 5 |
 | 3 | Kvalita, čeština a provoz | 2 |
-| 4 | Ceny a dostupnost | 4 |
+| 4 | Ceny a dostupnost | 5 |
 | 5 | Obsah a propojení | 2 |
 | 6 | Infrastruktura a publikace | 2 |
 | 7 | Průběžná údržba | 9 |
@@ -54,7 +54,7 @@
 | D08 | Windows ARM64 proti Linuxu na stejném modelu | P1 | hotovo | /zarizeni/rtx-spark-notebook/<br>/temata/lokalni-ai-na-windows-11/ |
 | Z06 | Gorgon Halo 192 GB: chybí nezávislé měření | P1 | prubezne | /zarizeni/gorgon-halo/<br>/zarizeni/srovnani/ |
 
-- **D01** — Stránka nemá žádné číslo: TTFT, prefill, decode ani chování na 128k. *Hledat:* NVIDIA forum, llamaperf, Reddit, GitHub benchmarky
+- **D01** — Stránka nemá TTFT, prefill ani chování na 128k pro Qwen3.8 Flash Next na stolním N1X. Jediné veřejné číslo je krátký chat v IQ4. *Hledat:* NVIDIA forum, llamaperf, Reddit, GitHub benchmarky
 - **D02** — DGX Spark je hotový: TTFT 201–236 ms (krátké prompty) a prefill 1 825 tok/s na 32 791tokovém dokumentu (madeye, 10. 9. 2026). Chybí TTFT u Strix Halo — prefill tam je 770–2 372 tok/s podle enginu — a TTFT i prefill u RTX Spark mini a notebooku. Pořád chybí stejný prompt napříč zařízeními. *Hledat:* madeye, llamaperf, SMF, SparkLab, GitHub
 - **D03** — DGX Spark má 4 souběžné prompty 100,2 tok/s agregát a 6 streamů 91,9 tok/s, oboje na krátkých promptech. Chybí 4+ souběžně na Strix Halo, RTX Spark a Macu a kdekoli na dlouhém kontextu. *Hledat:* vLLM a SGLang benchmarky, fóra, InferenceX
 - **D04** — Maximum v datasheetu nic neříká o praxi. Chybí rychlost a kvalita na dlouhém kontextu pro Qwen3.8. *Hledat:* llamaperf, MRCR a needle testy, komunitní reporty
@@ -68,11 +68,11 @@
 |---|---|---|---|---|
 | D10 | České testy: shrnutí, extrakce, e-mail, kód | P1 | hleda-se | /modely/qwen3-8-flash-next/<br>/temata/lokalni-ai-a-cestina/ |
 | D11 | Vision: dokumenty, OCR, tabulky, screenshoty | P1 | hotovo | /modely/qwen3-8-flash-next/<br>/zarizeni/srovnani/ |
-| D12 | Hluk, příkon a teploty v zátěži | P1 | prubezne | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-notebook/<br>/zarizeni/macbook-pro/<br>/slovnik/provoz/power-limit/ |
+| D12 | Hluk, příkon a teploty v zátěži | P1 | prubezne | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-notebook/<br>/zarizeni/rtx-spark-mini/<br>/zarizeni/macbook-pro/<br>/slovnik/provoz/power-limit/ |
 | D13 | Tool calling a agentní úlohy | P1 | hotovo | /modely/qwen3-8-flash-next/<br>/temata/lokalni-ai-agenti/ |
 
 - **D10** — Anglické benchmarky nestačí. Chybí české úlohy na Qwen3.8. *Hledat:* komunitní testy, OpenWork zkušenosti, veřejné české benchmarky
-- **D12** — Chybí měření hluku, příkonu a teplot pro DGX Spark, Strix Halo a RTX notebooky. *Hledat:* recenze, fóra, měření uživatelů
+- **D12** — Chybí měření hluku, příkonu a teplot pro DGX Spark, Strix Halo, RTX notebooky a stolní RTX Spark. *Hledat:* recenze, fóra, měření uživatelů
 
 ## Dávka 4 — Ceny a dostupnost
 
@@ -84,11 +84,13 @@
 | C03 | RTX Spark notebook: všechny OEM ceny | P1 | prubezne | /zarizeni/rtx-spark-notebook/<br>/zarizeni/konfigurace/ |
 | C04 | Česká cena RTX Spark mini | P1 | hotovo | /zarizeni/rtx-spark-mini/<br>/temata/cena-lokalni-ai/<br>/vyber/rozpocet/ |
 | C02 | Ruční kontrola Alza snapshotu | P2 | hotovo | /zarizeni/dgx-spark/<br>/zarizeni/strix-halo/<br>/zarizeni/rtx-spark-notebook/ |
+| C05 | MSI EdgeMesa N AI+: česká cena a dostupnost | P2 | otevreno | /zarizeni/rtx-spark-mini/ |
 | C06 | Kurzy ČNB a ECB | P2 | prubezne | /vyber/rozpocet/<br>/temata/cena-lokalni-ai/ |
 | C07 | Dostupnost Maců 128 GB | P2 | prubezne | /zarizeni/mac-studio/<br>/zarizeni/macbook-pro/ |
 
 - **C01** — Americká listovka není česká cena. U části konfigurací chybí česká cena nebo je jen odhad. *Hledat:* Alza, CZC, TS Bohemia, Mironet, OEM
 - **C03** — Ceny se liší podle OEM. Chybí české ceny některých variant. *Hledat:* Microsoft, ASUS, HP, Lenovo, MSI, Dell, Alza
+- **C05** — MSI EdgeMesa N AI+ ve 128 GB je na Alza.cz vedená bez ceny a jako momentálně nedostupná; neznáme českou cenu ani termín. *Hledat:* Alza.cz produkt MSI EdgeMesa N AI+, MSI CZ, další čeští prodejci
 - **C06** — Kurzy je potřeba pravidelně aktualizovat kvůli přepočtům. *Hledat:* ČNB, ECB
 - **C07** — Mac 128 GB je „na cestě“ / předprodej. Chybí potvrzení, kdy bude skladem, aby se dalo psát „skladem“. *Hledat:* Apple CZ, Alza
 
@@ -176,7 +178,7 @@
 
 ## Markery [DOPLNIT] podle stránek
 
-- `zarizeni/rtx-spark-mini` — 10×
+- `zarizeni/rtx-spark-mini` — 5×
 - `zarizeni/rtx-spark-notebook` — 5×
 - `zarizeni/dgx-spark` — 3×
 - `zarizeni/gorgon-halo` — 3×
@@ -187,7 +189,6 @@
 - `generovani/recepty/linux` — 1×
 - `generovani/recepty/windows` — 1×
 - `generovani/uprava-obrazku` — 1×
-- `temata/rtx-spark` — 1×
 - `zarizeni/srovnani` — 1×
 
 ## Data bez hodnot

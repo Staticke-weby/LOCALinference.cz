@@ -1,7 +1,7 @@
 ---
 title: "Kolik stojí lokální AI: ceny 128GB boxů v Kč"
 description: "Přehled hotových 128GB zařízení podle ceny a toho, co reálně zvládnou. Včetně českých cen Strix Halo, DGX Spark a RTX Spark."
-last_verified: 2026-11-04
+last_verified: 2026-11-21
 sidebar:
   label: Ceny v Kč
   order: 1
@@ -14,7 +14,7 @@ import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 Ceny uvádíme **primárně v Kč**. U českých maloobchodních cen je
 uvedeno, zda jsou s DPH; Ceny v USA jsou bez daně a dopravy. Kde českou
 cenu neznáme, je přepočet z USD označený jako **odhad** (kurz ČNB
-21,762 k 3. 11. 2026). Katalog řeší jen **128GB zařízení**; menší
+22,182 k 16. 11. 2026). Katalog řeší jen **128GB zařízení**; menší
 stroje na Qwen3.8 Flash Next nestačí.
 
 <TabulkaZarizeni />
@@ -32,30 +32,32 @@ Podrobnosti v [Strix Halo OEM](/zarizeni/strix-halo/).
 ## Kolem 120 000 Kč: Strix Halo 128 GB
 
 Nejlevnější cesta k 128 GB. Acemagic A10A a Acer Veriton RA110 stojí
-**119 990 Kč vč. DPH**; V USA cena začíná na 3 449 USD (75 tis. Kč, odhad). Vejde se na
+**119 990 Kč vč. DPH**; V USA cena začíná na 3 449 USD (77 tis. Kč, odhad). Vejde se na
 Qwen3.8 Flash Next, ale prefill je slabší a ROCm není tak zralý jako CUDA.
-
-## Kolem 130 000 Kč (odhad): RTX Spark mini 128 GB
-
-Stolní CUDA za **130 550 Kč** (5 999 USD, odhad). Českou cenu neznáme,
-jde o přepočet kurzem ČNB. Stejná paměť a bandwidth jako notebook, ale stálé
-chlazení. Konkrétní měření Qwen3.8 FN na mini chybí.
 
 ## Kolem 126 000–168 000 Kč: RTX Spark notebook 128 GB
 
 ASUS ProArt P14 začíná na **125 990 Kč vč. DPH** (128GB/1TB).
 Lenovo Yoga Pro 9 stojí 129 989 Kč a dává 2TB a 3 roky on-site servisu.
 Surface Laptop Ultra je až za 168 990–170 990 Kč. V USA je cena
-5 899,99–6 999 USD (128–152 tis. Kč, odhad). Podrobnosti v
+5 899,99–6 999 USD (131–155 tis. Kč, odhad). Podrobnosti v
 [RTX Spark notebook OEM](/zarizeni/rtx-spark-notebook/).
 
 ## Kolem 160 000–220 000 Kč: DGX Spark 128 GB
 
 Nejintegrovanější 128GB krabice s CUDA a enterprise managementem. Česká
 cena začíná na **168 990 Kč vč. DPH** (ASUS GX10 1TB); NVIDIA DGX Spark
-4TB stojí 218 990 Kč. V USA je cena 6 950 USD (151 tis. Kč, odhad). Dává smysl tam, kde
+4TB stojí 218 990 Kč. V USA je cena 6 950 USD (154 tis. Kč, odhad). Dává smysl tam, kde
 potřebujete NVIDIA stack, clustering nebo správu flotily — ne jako
 „levný node“.
+
+## Kolem 195 000 Kč: RTX Spark mini 128 GB
+
+Nejchladnější stolní varianta s Windows a CUDA. ASUS ProArt GR1X
+128GB/2TB stojí **194 990 Kč vč. DPH**, MSI EdgeMesa N AI+ je zatím
+v nabídce bez ceny. Drží výkon i po půl hodině zátěže, ale v Česku je
+dražší než DGX Spark — platíte za Windows a stolní formu, ne za víc
+tok/s. Podrobnosti v [RTX Spark mini](/zarizeni/rtx-spark-mini/).
 
 ## Dražší zařízení nezařazujeme
 
@@ -87,6 +89,7 @@ většího je o kompromisech, ne o magii.
 ## Kudy dál
 
 - [Strix Halo](/zarizeni/strix-halo/) — nejlevnější 128GB varianta.
+- [RTX Spark mini](/zarizeni/rtx-spark-mini/) — stolní Windows s CUDA.
 - [Strix Halo OEM](/zarizeni/strix-halo/) — české ceny.
 - [DGX Spark OEM](/zarizeni/dgx-spark/) — české ceny GB10 strojů.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
@@ -99,7 +102,8 @@ většího je o kompromisech, ne o magii.
 - [Microsoft — Surface Laptop Ultra](https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8)
 - [Compute Market — Strix Halo ceny](https://www.compute-market.com/blog/strix-halo-mini-pc-local-ai-2026)
 - [Alza.cz – AI počítače (kategorie)](https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939)
+- [Alza.cz – Počítače s NVIDIA RTX Spark](https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm)
 - [llamaperf - Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
 - [BetterClaw — RTX Spark vs DGX Spark](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark)
 
-*Naposledy ověřeno: 4. 11. 2026.*
+*Naposledy ověřeno: 21. 11. 2026.*

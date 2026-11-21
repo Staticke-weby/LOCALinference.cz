@@ -226,7 +226,7 @@ polozky:
   - id: D01
     oblast: data
     titulek: "RTX Spark mini: první veřejné měření Qwen3.8"
-    co_chybi: "Stránka nemá žádné číslo: TTFT, prefill, decode ani chování na 128k."
+    co_chybi: "Stránka nemá TTFT, prefill ani chování na 128k pro Qwen3.8 Flash Next na stolním N1X. Jediné veřejné číslo je krátký chat v IQ4."
     kde:
       - zarizeni/rtx-spark-mini
       - zarizeni/rtx-spark-notebook
@@ -235,9 +235,9 @@ polozky:
     stav: hleda-se
     davka: 2
     hledat: "NVIDIA forum, llamaperf, Reddit, GitHub benchmarky"
-    poznamka: "K 18. 11. 2026 verejne mereni RTX Spark mini neexistuje. Existuje vendor recept pro N1X (llama.cpp b11901, IQ4_XS, MTP3, kontext 262 144) s 36,58 tok/s decode a StorageReview na OmniBook Ultra 16 (128 GB, jiny model): 89,5 tok/s Qwen3.6-35B-A3B, 12,6 tok/s Qwen3.8-27B pri 8192/1024."
-    zdroj: null
-    overeno: 2026-11-10
+    poznamka: "21. 11. 2026: Chaping (ifeng) naměřil na ASUS ProArt GR1X 128 GB Qwen3.8 Flash Next v IQ4 přes Hermes ~30 tok/s, krátký chat, konfigurace neuvedena (v datech jako nízka důvěryhodnost). StorageReview dal na Qwen3.8 27B (jiný model) 13,1 / 31,4 / 40,0 tok/s při 1 / 4 / 8 požadavcích. Chybí FN na dlouhém kontextu a se souběžností."
+    zdroj: https://tech.ifeng.com/c/8yAEYHt7q3u
+    overeno: 2026-11-21
 
   - id: D02
     oblast: data
@@ -369,20 +369,21 @@ polozky:
   - id: D12
     oblast: kvalita
     titulek: "Hluk, příkon a teploty v zátěži"
-    co_chybi: "Chybí měření hluku, příkonu a teplot pro DGX Spark, Strix Halo a RTX notebooky."
+    co_chybi: "Chybí měření hluku, příkonu a teplot pro DGX Spark, Strix Halo, RTX notebooky a stolní RTX Spark."
     kde:
       - zarizeni/dgx-spark
       - zarizeni/strix-halo
       - zarizeni/rtx-spark-notebook
+      - zarizeni/rtx-spark-mini
       - zarizeni/macbook-pro
       - slovnik/provoz/power-limit
     priorita: P1
     stav: prubezne
     davka: 3
     hledat: "recenze, fóra, měření uživatelů"
-    poznamka: "Na strankach: DGX Spark 60-90 W a 37,5 dBA/46 cm (Tom's), 159 W/30 dB(A) (Guru3D); Strix Halo Framework Desktop 23,4 dB idle a 36,6-40,1 zatez, 144 W (Notebookcheck), GMKtec EVO-X2 47 dB a 128,9 W; Gorgon EVO-X5 Pro 36 dB idle a 43-44 dB pri 120 W (ComputerBase); Mac Studio do 30 dBA a 7-9 W idle (Apple, HotHardware). Zbyva RTX Spark mini a notebook - nikdo je nemeril."
-    zdroj: null
-    overeno: null
+    poznamka: "Na strankach: DGX Spark 60-90 W a 37,5 dBA/46 cm (Tom's), 159 W/30 dB(A) (Guru3D); Strix Halo Framework Desktop 23,4 dB idle a 36,6-40,1 zatez, 144 W (Notebookcheck), GMKtec EVO-X2 47 dB a 128,9 W; Gorgon EVO-X5 Pro 36 dB idle a 43-44 dB pri 120 W (ComputerBase); Mac Studio do 30 dBA a 7-9 W idle (Apple, HotHardware). 21. 11. 2026: stolní RTX Spark má první čísla - ASUS GR1X pod 55 dB v zátěži (Windows Central), ale 57 dBA proti tichu 30 dBA a 98 °C na SoC (Profesional Review); Cinebench loop 83,3/88,7 °C (StorageReview). Chybí vzdálenost a metodika měření hluku, chybí příkon ze zásuvky."
+    zdroj: https://www.storagereview.com/review/asus-proart-gr1x-review
+    overeno: 2026-11-21
 
   - id: D13
     oblast: kvalita
@@ -451,7 +452,7 @@ polozky:
   - id: C04
     oblast: ceny
     titulek: "Česká cena RTX Spark mini"
-    co_chybi: "Ověřeno: RTX Spark mini se v českém maloobchodě neprodává. Cena proto zůstává odhadem z USD."
+    co_chybi: "Česká maloobchodní cena stolního RTX Spark. Vyřešeno 21. 11. 2026: ASUS ProArt GR1X 128GB/2TB stojí 194 990 Kč vč. DPH."
     kde:
       - zarizeni/rtx-spark-mini
       - temata/cena-lokalni-ai
@@ -460,9 +461,23 @@ polozky:
     stav: hotovo
     davka: 4
     hledat: "české e-shopy, OEM zastoupení"
-    poznamka: "Stránka to už uvádí; cena se nepřepočítává jako česká."
-    zdroj: https://www.alza.cz/ai-pc/18907789.htm
-    overeno: 2026-11-05
+    poznamka: "Alza.cz otevřela kategorii Počítače s NVIDIA RTX Spark (18925089). Data jsou v data/rtx-spark-mini-oem.yaml, texty s cenou srovnané na čtyřech stránkách. MSI EdgeMesa N AI+ zůstává bez ceny (C05)."
+    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+    overeno: 2026-11-21
+
+  - id: C05
+    oblast: ceny
+    titulek: "MSI EdgeMesa N AI+: česká cena a dostupnost"
+    co_chybi: "MSI EdgeMesa N AI+ ve 128 GB je na Alza.cz vedená bez ceny a jako momentálně nedostupná; neznáme českou cenu ani termín."
+    kde:
+      - zarizeni/rtx-spark-mini
+    priorita: P2
+    stav: otevreno
+    davka: 4
+    hledat: "Alza.cz produkt MSI EdgeMesa N AI+, MSI CZ, další čeští prodejci"
+    poznamka: "Obě 128GB varianty (2TB a 4TB) jsou v datech s null cenou. Americká MSRP 128GB/4TB je 7 499 USD."
+    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+    overeno: 2026-11-21
 
   - id: C06
     oblast: ceny

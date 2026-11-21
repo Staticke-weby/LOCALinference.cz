@@ -4,6 +4,27 @@
 # stránky a pojmy. Technické záznamy o stavbě webu (build, sitemap,
 # hreflang, menu, opravy odkazů) sem nepatří.
 
+- datum: 2026-11-21
+  typ: cena
+  titulek: "Stolní RTX Spark je v české nabídce: 194 990 Kč"
+  co_se_zmenilo: "Alza.cz otevřela kategorii Počítače s NVIDIA RTX Spark a prodává ASUS ProArt GR1X 128GB/2TB za 194 990 Kč vč. DPH (na objednávku), 64GB variantu za 129 990 Kč. MSI EdgeMesa N AI+ 128 GB je v nabídce bez ceny a nedostupná. Stránka RTX Spark mini proto dostala přehled variant a odkaz na novou kategorii; česká cena je vyšší než u DGX Spark, takže se změnil verdikt i doporučení na ostatních stránkách s cenami."
+  dotcene_stranky: [zarizeni/rtx-spark-mini, zarizeni/srovnani, zarizeni/dgx-spark, temata/rtx-spark, temata/cena-lokalni-ai, vyber/rozpocet]
+  zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+
+- datum: 2026-11-21
+  typ: mereni
+  titulek: "První veřejné číslo Qwen3.8 Flash Next na stolním RTX Spark"
+  co_se_zmenilo: "Recenze ASUS ProArt GR1X naměřila Qwen3.8 Flash Next v IQ4 přes Hermes kolem 30 tok/s (krátký chat, jeden stream, konfigurace neuvedena). StorageReview navíc změřil stolní N1X na Qwen3.8 27B: 13,1 tok/s při jednom požadavku, 31,4 při čtyřech a 40,0 při osmi, což je o 18–25 % víc než u notebooků se stejným čipem. Čísla jsou v datech měření a na stránce RTX Spark mini s vyznačenou důvěryhodností."
+  dotcene_stranky: [zarizeni/rtx-spark-mini, zdroje/mereni]
+  zdroj: https://www.storagereview.com/review/asus-proart-gr1x-review
+
+- datum: 2026-11-21
+  typ: zdroj
+  titulek: "Recenze stolního RTX Spark a registry zdrojů"
+  co_se_zmenilo: "Registr zdrojů má tři nové položky: kategorii stolních RTX Spark na Alza.cz, laboratorní test StorageReview a čínskou recenzi s prvním číslem Qwen3.8 Flash Next na stolním N1X. Sekce Zkušenosti a recenze u RTX Spark mini cituje osm testů z 18.–19. 11. 2026 včetně teplot, hluku a portů."
+  dotcene_stranky: [zarizeni/rtx-spark-mini, zdroje/zdroje]
+  zdroj: https://www.storagereview.com/review/asus-proart-gr1x-review
+
 - datum: 2026-11-13
   typ: obsah
   titulek: "YouTube video recenze u každého zařízení"

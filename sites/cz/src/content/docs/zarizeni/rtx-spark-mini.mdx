@@ -1,7 +1,9 @@
 ---
-title: "RTX Spark mini 128 GB: cena, výkon a Qwen3.8 Flash Next"
-description: "128 GB unified, 300 GB/s a CUDA. Co víme o RTX Spark mini, čím se liší od notebooku, zkušenosti a recenze."
-last_verified: 2026-11-13
+title: "RTX Spark mini 128 GB: cena, výkon a recenze"
+description: "Stolní RTX Spark s 128 GB unified paměti. Česká cena 194 990 Kč vč. DPH, naměřený výkon z recenzí, hluk, porty a co na něm poběží z Qwen3.8 Flash Next."
+last_verified: 2026-11-21
+typ: zarizeni
+id: rtx-spark-mini
 sidebar:
   label: RTX Spark mini
   order: 6
@@ -11,15 +13,18 @@ import RozcestnikZarizeni from '../../../components/RozcestnikZarizeni.astro';
 
 import AlzaCena from '../../../components/AlzaCena.astro';
 
+import TabulkaRtxMiniOem from '../../../components/TabulkaRtxMiniOem.astro';
 import RychlaFakta from '../../../components/RychlaFakta.astro';
 import TabulkaZarizeni from '../../../components/TabulkaZarizeni.astro';
 import GenerovaniNaZarizeni from '../../../components/GenerovaniNaZarizeni.astro';
 import Zkusenosti from '../../../components/Zkusenosti.astro';
 import Videa from '../../../components/Videa.astro';
 
-**Verdikt:** Stejná paměť a bandwidth jako notebook, ale stolní chlazení
-a stálý provoz. Za 130 550 Kč (5 999 USD, odhad) je to nejlevnější [CUDA](/slovnik/software/cuda/) cesta k 128 GB, pokud
-nepotřebujete přenosnost.
+**Verdikt:** Nejchladnější cesta k 128 GB s CUDA a Windows.
+V recenzích drží výkon i po půl hodině zátěže, kde notebooky se stejným
+čipem throttlují. V Česku ale stojí **194 990 Kč vč. DPH** — víc než
+DGX Spark. Vyplatí se, když chcete Windows a stálý provoz, ne když
+hledáte nejnižší cenu za 128 GB.
 
 <aside class="tip">
 **Pro koho:** malý pool, 1–4 lidé, CUDA, stálý provoz.
@@ -30,9 +35,11 @@ nepotřebujete přenosnost.
 **První spuštění:** [návod krok za krokem](/navody/rtx-spark/) — od
 Windows po první chat s modelem.
 
-> **Toto jsou převzatá data, ne naše měření.** Specifikace a cena jsou
-> z oficiálních zdrojů. Pro mini zatím nemáme veřejné měření Qwen3.8 FN;
-> neuvádíme odhad. Podrobnosti v [metodice](/o-webu/metodika/).
+> **Toto jsou převzatá data, ne naše měření.** Specifikace jsou
+> z oficiální dokumentace a z nabídky prodejce, čísla výkonu z recenzí
+> z 18.–19. 11. 2026. Kde měření pro Qwen3.8 Flash Next chybí (dlouhý
+> kontext, souběžnost, TTFT), je to označené. Podrobnosti v
+> [metodice](/o-webu/metodika/).
 
 
 <RozcestnikZarizeni navod="/navody/rtx-spark/" />
@@ -42,47 +49,92 @@ Windows po první chat s modelem.
 - **Pro jaké úlohy:** stálý interní chat, dokumenty, kód a agenti
   v kanceláři, kde nechcete notebook.
 - **Kolik lidí obslouží:** 1–4 uživatele; na víc přidejte box.
-- **Co to stojí:** 130 550 Kč (5 999 USD, odhad) bez DPH, plus elektřina.
-- **Kde narazíte:** Windows/Arm runtime je nový, měření chybí a cena
-  je blízko DGX Spark.
+- **Co to stojí:** 194 990 Kč vč. DPH za ASUS ProArt GR1X 128GB/2TB
+  (21. 11. 2026, na objednávku). V USA stolní RTX Spark začínají
+  na 4 399 USD bez DPH a dopravy.
+- **Kde narazíte:** cena je v ČR vyšší než u DGX Spark, porty jsou jen
+  USB-C a Windows on Arm je mladý.
 
 ## Rychlá fakta
 
 <RychlaFakta id="rtx-spark-mini" />
 
-<AlzaCena kategorie="boxy" text="Ceny a dostupnost na Alze" />
+<AlzaCena kategorie="rtx-spark-pocitace" text="Stolní RTX Spark na Alze" />
+
+## Ceny a varianty: tři 128GB konfigurace
+
+Alza.cz má od listopadu 2026 vlastní kategorii **Počítače s NVIDIA RTX
+Spark**. K 21. 11. 2026 v ní bylo šest položek; katalog zajímají jen
+128GB konfigurace, protože menší na Qwen3.8 Flash Next nestačí.
+
+<TabulkaRtxMiniOem />
+
+- **Jediná s cenou:** ASUS ProArt GR1X 128GB/2TB za **194 990 Kč vč.
+  DPH** (161 149 Kč bez DPH), na objednávku.
+- **MSI EdgeMesa N AI+** (2 a 4 TB) je v nabídce bez ceny a jako
+  momentálně nedostupná. Vedeme ji proto, že existuje; koupit se dnes
+  nedá.
+- **64GB varianta** ASUS GR1X stojí 129 990 Kč, ale do katalogu
+  nepatří: model se na ni v použitelné kvantizaci nevejde.
+- **Pozor na srovnání s notebookem.** Stejných 128 GB v notebooku
+  začíná na 125 990 Kč, tedy o 69 tis. Kč méně. V USA je přitom
+  pořadí opačné (desktop od 4 399 USD, notebook od 5 899,99 USD).
+  Česká cena stolního stroje je tak vysoká, že hlavní argument pro
+  stolní provedení — nižší cena za stejný čip — u nás neplatí.
 
 ## Konfigurace
 
-Katalog řeší **jen 128GB verzi** za 130 550 Kč (5 999 USD, odhad). Menší konfigurace
-do katalogu nezařazujeme, protože na nich Qwen3.8 Flash Next neběží.
+Katalog řeší **jen 128GB verzi**. U stolního stroje navíc rozhoduje
+chlazení: 140 W v těle o objemu 1,15 litru je víc než u notebooku
+(45–80 W), ale pořád míň než u serveru. Právě proto drží výkon
+i při dlouhém běhu — a proto je hlučnější než kancelářský mini PC.
 
 ## Co na RTX Spark mini poběží: Qwen3.8 Flash Next
 
-Zatím nemáme veřejné měření Qwen3.8 Flash Next specificky pro mini.
-N1X čip je stejný jako v notebooku, ale chlazení a power limit jsou jiné.
-Konkrétní čísla proto `[DOPLNIT: měření]`.
-
 **Co víme:** 128 GB se vejde na Qwen3.8 Flash Next v 4bitové kvantizaci
-(cca 95–110 GB). Zbytek paměti je na kontext a systém.
+(cca 95–110 GB). Zbytek paměti je na kontext a systém. To je z model
+cardu a [BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark),
+ne z měření.
 
-## Co na něm poběží z generativních modelů
+**Co je změřené:** jediné veřejné číslo pro Qwen3.8 Flash Next na
+stolním N1X je z recenze ASUS ProArt GR1X: **kolem 30 tok/s**
+v kvantizaci IQ4 přes agentní nástroj Hermes, krátký chat, jeden
+stream. Recenze neuvádí kontext, verzi enginu ani nastavení, takže
+číslo bereme jako spodní hranici, ne jako provozní normu
+([ifeng/差评](https://tech.ifeng.com/c/8yAEYHt7q3u), 18. 11. 2026).
 
-<GenerovaniNaZarizeni zarizeni="rtx-spark-mini" />
+**Co je změřené na jiném modelu:** [StorageReview](https://www.storagereview.com/review/asus-proart-gr1x-review)
+poslal na stolní a notebookové N1X model Qwen3.8 27B v Q4_K_M přes
+llama.cpp s CUDA. Testovaný ASUS měl 64 GB a MSI 128 GB; čip a paměť
+jsou stejné, liší se jen kapacita. Při jednom požadavku dal stolní
+stroj 13,1 tok/s, notebooky 12,6 a 12,4. Při čtyřech požadavcích 31,4
+proti 28,1 a 27,5; při osmi 40,0 proti 33,8 a 31,9. **Rozdíl roste
+s frontou:** na jednoho uživatele je to do 6 %, na osm požadavků
+18–25 %.
+
+**Co z toho plyne:** velký model se vejde, ale samotná paměť rychlost
+nezvedne. Stolní provedení přidává trvalý výkon a ticho, ne vyšší
+decode. Kdo potřebuje víc tok/s, musí sáhnout po jiné třídě stroje.
 
 ## Jak rychle běží Qwen3.8 Flash Next na RTX Spark mini
 
-| Režim | Krátký kontext | Dlouhý kontext (>128k) |
+| Režim | Naměřeno | Co to je |
 |---|---|---|
-| Single-stream | [DOPLNIT] | [DOPLNIT] |
-| TTFT | [DOPLNIT] | [DOPLNIT] |
-| Prefill | [DOPLNIT] | [DOPLNIT] |
-| Pohodlná souběžnost | [DOPLNIT] | [DOPLNIT] |
+| Krátký chat, 1 stream | ~30 tok/s | Qwen3.8 FN, IQ4, Hermes; konfigurace neuvedena |
+| TTFT | `[DOPLNIT: TTFT]` | pro FN nikdo veřejně neměřil |
+| Prefill a dlouhý kontext (128k+) | `[DOPLNIT: dlouhý kontext]` | chybí |
+| Souběžnost na FN | `[DOPLNIT: souběžnost]` | chybí |
+| Pro srovnání: Qwen3.8 27B, 1/4/8 požadavků | 13,1 / 31,4 / 40,0 tok/s | jiný model, sada StorageReview |
+
+**Důvěryhodnost: nízká.** Jedna recenze, krátký chat, neznámý kontext
+a verze enginu. Pro plánování počítejte s nižší hodnotou, než je
+naměřená — v provozu s frontou, logováním a delším kontextem čísla
+klesají. Konkrétní rozptyl `[DOPLNIT: měření]`.
 
 ## Jak si rychlost změřit sám
 
-Veřejné číslo chybí, ale majitel mini si ho může změřit za půl hodiny.
-Stačí [llama.cpp](/slovnik/software/llamacpp/) s ARM64 buildem a CUDA:
+Majitel mini si číslo doplní za půl hodiny. Stačí
+[llama.cpp](/slovnik/software/llamacpp/) s ARM64 buildem a CUDA:
 
 ```powershell
 llama-bench -m qwen3.8-flash-next-Q4_K_M.gguf -p 512 -n 128 -r 3
@@ -108,13 +160,47 @@ Výsledek zveřejněte v diskusi k modelu na Hugging Face s celou
 konfigurací. Číslo bez konfigurace se nedá srovnat a do katalogu
 nepatří.
 
-## Srovnání s notebookem
+## Teplo, hluk a trvalý výkon
 
-<TabulkaZarizeni filtr={["rtx-spark-mini", "rtx-spark-notebook"]} />
+Tohle je hlavní rozdíl proti notebooku a první věc, kterou recenze měří.
 
-Stejná paměť i bandwidth. Mini vyhraje na stálém provozu a chlazení,
-notebook na cestách. Nepřetržitý výkon mini by měl být vyšší, ale bez
-měření to neuvádíme.
+| Test | ASUS ProArt GR1X | Notebooky se stejným čipem | Zdroj |
+|---|---|---|---|
+| Cinebench 2026, 30minutový loop | 7 306 b, 1,007× první průchod | 6 970 a 6 550 b | StorageReview |
+| Teplota CPU v loopu (průměr / max) | 83,3 / 88,7 °C | 97,4 / 98,2 a 97,3 / 98,3 °C | StorageReview |
+| Hluk v zátěži | pod 55 dB | — | Windows Central |
+| Hluk a teplota v 60min FurMarku | 57 dBA při tichu 30 dBA, SoC 98 °C | — | Profesional Review |
+
+**Co z toho plyne:** stolní stroj se po 30 minutách zátěže nezastavil
+ani nesnížil skóre a zůstal o 10–14 °C chladnější než notebooky. Pro
+provoz 24/7 je to přesně to, co potřebujete. Dvě čísla hluku se ale
+neshodují (pod 55 dB vs. 57 dBA) a ani jedno neuvádí vzdálenost ani
+vážení — berte je jako orientaci, ne jako srovnatelný údaj.
+
+## Kontext, který zařízení reálně udrží
+
+Váhy modelu zaberou 95–110 GB ze 128 GB. Zbytek se dělí mezi KV cache,
+systém a aplikace, proto je dlouhý kontext vždy kompromis.
+
+| Kontext | Co se stane |
+|---|---|
+| 32k | bezpečný provoz pro chat, dokumenty a kód |
+| 128k | dlouhé dokumenty; KV cache roste a na systém zbývá málo |
+| 262k | maximum modelu; na 128GB stroji jen s malou KV cache a jedním streamem |
+
+Maximum není doporučení. Windows navíc dělí paměť na část pro GPU
+a část pro systém a podíl se nastavuje ručně; konkrétní chování
+Qwen3.8 FN na 128k a 262k je `[DOPLNIT: měření]`.
+
+## Co od RTX Spark mini čekat
+
+- **Zvládne:** chat, psaní, kód, práci s dokumenty, RAG, agentní úlohy
+  pro 1–4 lidi a dlouhý běh bez throttlingu.
+- **Nezvládne:** sdílený pool pro desítky uživatelů, batch přes noc
+  ve velkém a auditní stopu bez vlastního registru.
+- **Nejlepší využití:** stálý box na stole, který má model pořád
+  načtený a odpovídá přes API i mimo pracovní dobu.
+- **Kde narazí:** porty, cena proti DGX Spark a raný Windows on Arm.
 
 ## Windows on Arm: co čekat
 
@@ -123,27 +209,40 @@ měření to neuvádíme.
   ARM64 build.
 - **Python stack:** potřebujete ARM64 kola. Knihovny bez nich se
   nespustí, i když na Linuxu fungují.
-- **Paměť:** Windows dělí pool na GPU-dedikovanou část a shared;
-  podíl se nastavuje ručně. Není to „jedno číslo“ jako u DGX OS.
+- **Paměť:** ASUS ve výchozím stavu rezervuje systému 64 GB. Podíl
+  se mění v ProArt Creator Hubu; po přenastavení viděl Windows 46,4 GB
+  a GPU 80 GB a přes WSL šlo alokovat 108 GB
+  ([DDay.it](https://www.dday.it/redazione/59503/un-mini-pc-con-rtx-spark-e-128-gb-di-ram-puo-cambiare-il-modi-di-lavorare-la-recensione-dellasus-proart-gr1x)).
+- **vLLM** běží přes komunitní port, ne jako oficiální Windows build.
 - **Smart App Control** může zablokovat nepodepsané nástroje.
-- **vLLM** běží přes komunitní port, ne oficiální podporu.
-
-Nic z toho neznamená, že to nejde — znamená to, že první instalace
-není odpoledne a půl.
+- **Ovladače:** recenze hlásí občasné bliknutí externího displeje
+  a jeden black screen; autor to přičítá ovladačům. Před nasazením
+  do provozu to ověřte na své sestavě.
 
 ## Na co si dát pozor
 
-- **Windows/Arm:** runtime je jiný než Linux; nativní vLLM port existuje,
-  ale je komunitní.
-- **Chlazení:** 140 W je víc než notebook, ale stále ne server.
-- **Měření:** chybí; první číslo berte jako `[DOPLNIT]`, dokud se neobjeví.
-- **Cena:** 130 550 Kč (5 999 USD, odhad) je blízko DGX Spark; rozhoduje CUDA stack a forma.
+- **Porty.** Čtyři USB-C (jeden z nich je napájení), HDMI 2.1 a 10G
+  LAN. Žádný USB-A, žádný audio jack, žádná čtečka a vše jen na zadní
+  straně. Klávesnici s USB-A připojíte přes redukci nebo hub.
+- **Úložiště.** Dodávaný 1TB disk je Gen4: studené načtení 12,8GB
+  modelu trvalo 10,94 s proti 6,7–7,0 s u Gen5 disků v konkurenci.
+  Druhý slot M.2 2280 to řeší běžným diskem z obchodu.
+- **Chlazení.** 140 W v 1,15 litru znamená dva ventilátory. V zátěži
+  jsou slyšet; konkrétní čísla se mezi recenzemi rozcházejí
+  (pod 55 dB vs. 57 dBA) a metodika není popsána.
+- **Windows/Arm:** nativní vLLM port existuje, ale je komunitní.
+  Oficiální vLLM Windows nepodporuje a část ekosystému může chybět.
+- **Cena.** 194 990 Kč je víc než ASUS Ascent GX10 (168 990 Kč)
+  i než nejlevnější DGX Spark. Za Windows a stolní formu si připlácíte.
 
 ## Kde koupit
 
-V českém maloobchodě se neprodává. Kategorie AI počítačů na Alza.cz je nejblíž.
+V českém maloobchodě od listopadu 2026. ASUS ProArt GR1X 128GB/2TB
+stojí **194 990 Kč vč. DPH** a je na objednávku; 64GB varianta
+129 990 Kč. MSI EdgeMesa N AI+ je v kategorii bez ceny a nedostupná.
+Ceny jsou bez dopravy, k 21. 11. 2026.
 
-<AlzaCena kategorie="boxy" text="Otevřít kategorii na Alza.cz" />
+<AlzaCena kategorie="rtx-spark-pocitace" text="Otevřít kategorii na Alza.cz" />
 
 ## Zkušenosti a recenze
 
@@ -156,17 +255,37 @@ V českém maloobchodě se neprodává. Kategorie AI počítačů na Alza.cz je 
 ## Kudy dál
 
 - [RTX Spark notebook](/zarizeni/rtx-spark-notebook/) — mobilní varianta.
-- [DGX Spark](/zarizeni/dgx-spark/) — dražší, ale integrovanější.
+- [DGX Spark](/zarizeni/dgx-spark/) — levnější, ale Linux a DGX OS.
+- [Srovnání zařízení](/zarizeni/srovnani/) — všechny 128GB stroje.
 - [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/) — referenční model.
 - [Co nevíme](/zdroje/co-nevime/) — chybějící měření.
 
 ## Zdroje
 
+- [Alza.cz — Počítače s NVIDIA RTX Spark](https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm) —
+  nabídka, ceny a dostupnost (21. 11. 2026).
+- [Alza.cz — ASUS ProArt GR1X 128GB/2TB](https://www.alza.cz/asus-proart-gr1x-mini-pc-rtx-spark-gr1x-vg0076an-d13573484.htm) —
+  specifikace, porty, rozměry a cena (21. 11. 2026).
+- [StorageReview — ASUS ProArt GR1X](https://www.storagereview.com/review/asus-proart-gr1x-review) —
+  laboratorní test stolních RTX Spark, teploty a souběžnost (18. 11. 2026).
+- [Windows Central — ASUS ProArt GR1X](https://www.windowscentral.com/hardware/asus/asus-proart-gr1x-nvidia-rtx-spark-desktop-review) —
+  hluk, throttling a srovnání s notebookem (18. 11. 2026).
+- [Digit — ASUS ProArt GR1X](https://www.digit.in/features/general/asus-proart-gr1x-review-rtx-spark-finds-a-desktop-role.html) —
+  llama.cpp čísla a limity testu (18. 11. 2026).
+- [DDay.it — ASUS ProArt GR1X](https://www.dday.it/redazione/59503/un-mini-pc-con-rtx-spark-e-128-gb-di-ram-puo-cambiare-il-modi-di-lavorare-la-recensione-dellasus-proart-gr1x) —
+  dělení paměti a spotřeba (18. 11. 2026).
+- [Telepolis — ASUS ProArt GR1X](http://www.telepolis.pl/artykuly/testy-sprzetu/asus-proart-gr1x-minipc-nvidia-rtx-spark-test-recenzja-opinie) —
+  GPT-OSS-120B a celkové hodnocení (18. 11. 2026).
+- [BenchLife — ASUS ProArt GR1X](https://benchlife.info/nvidia-rtx-spark-asus-proart-gr1x-review/) —
+  testy AI nástrojů a kompatibilita Arm (18. 11. 2026).
+- [NeoTeo — souhrn recenzí GR1X](https://www.neoteo.com/en/asus-proart-gr1x-review-local-ai-results-and-trade-offs) —
+  hluk, teploty a porty (19. 11. 2026).
+- [ifeng/差评 — ASUS ProArt GR1X](https://tech.ifeng.com/c/8yAEYHt7q3u) —
+  Qwen3.8 Flash Next v IQ4, první veřejné číslo (18. 11. 2026).
 - [NVIDIA RTX Spark](https://www.nvidia.com/en-us/products/rtx-spark/)
-- [RTX Spark PC — přehled zařízení](https://rtxsparkpc.com/)
 - [NVIDIA RTX Spark porting guide](https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html)
 - [BetterClaw — RTX Spark vs DGX Spark](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark)
 - [XDA — CUDA na Windows on Arm je verze 1](https://www.xda-developers.com/things-nobody-tells-you-before-buying-an-rtx-spark-laptop)
 - [NeoTeo — jak Windows dělí unified paměť](https://www.neoteo.com/en/nvidia-rtx-spark-review-how-windows-divides-unified-memory)
 
-*Naposledy ověřeno: 10. 11. 2026.*
+*Naposledy ověřeno: 21. 11. 2026.*

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 import { z } from 'zod';
-import { dgxSparkOem, generativniModel, historieCen, kurz, mereni, model, rtxNotebookOem, strixHaloOem, tema, zdroj, zarizeni, zmena } from './schema.mjs';
+import { dgxSparkOem, generativniModel, historieCen, kurz, mereni, model, rtxMiniOem, rtxNotebookOem, strixHaloOem, tema, zdroj, zarizeni, zmena } from './schema.mjs';
 
 const root = process.cwd();
 const dataDir = path.join(root, 'data');
@@ -82,6 +82,7 @@ function daysOld(date) {
 const zarizeniData = readYaml('zarizeni.yaml');
 const dgxSparkOemData = readYaml('dgx-spark-oem.yaml');
 const rtxNotebookOemData = readYaml('rtx-spark-notebook-oem.yaml');
+const rtxMiniOemData = readYaml('rtx-spark-mini-oem.yaml');
 const strixHaloOemData = readYaml('strix-halo-oem.yaml');
 const temataData = readYaml('temata.yaml');
 const historieData = readYaml('historie-cen.yaml');
@@ -95,6 +96,7 @@ const zmenyData = readYaml('zmeny.yaml');
 const zarizeniList = validate('data/zarizeni.yaml', zarizeni, zarizeniData);
 const dgxSparkOemList = validate('data/dgx-spark-oem.yaml', dgxSparkOem, dgxSparkOemData);
 const rtxNotebookOemList = validate('data/rtx-spark-notebook-oem.yaml', rtxNotebookOem, rtxNotebookOemData);
+const rtxMiniOemList = validate('data/rtx-spark-mini-oem.yaml', rtxMiniOem, rtxMiniOemData);
 const strixHaloOemList = validate('data/strix-halo-oem.yaml', strixHaloOem, strixHaloOemData);
 const temataList = validate('data/temata.yaml', tema, temataData);
 const historieList = validate('data/historie-cen.yaml', historieCen, historieData);
@@ -108,6 +110,7 @@ const zmenyList = validate('data/zmeny.yaml', zmena, zmenyData);
 checkDuplicates('data/zarizeni.yaml', zarizeniList);
 checkDuplicates('data/dgx-spark-oem.yaml', dgxSparkOemList);
 checkDuplicates('data/rtx-spark-notebook-oem.yaml', rtxNotebookOemList);
+checkDuplicates('data/rtx-spark-mini-oem.yaml', rtxMiniOemList);
 checkDuplicates('data/strix-halo-oem.yaml', strixHaloOemList);
 checkDuplicates('data/temata.yaml', temataList);
 checkDuplicates('data/historie-cen.yaml', historieList);
@@ -131,6 +134,14 @@ for (const o of strixHaloOemList) {
   if (o.cena_czk_s_dph != null && o.cena_czk_bez_dph != null) {
     const pomer = o.cena_czk_s_dph / o.cena_czk_bez_dph;
     if (pomer < 1.15 || pomer > 1.25) warn(`data/strix-halo-oem.yaml / ${o.id}: poměr ceny s/bez DPH je ${pomer.toFixed(3)}`);
+  }
+}
+
+for (const o of rtxMiniOemList) {
+  if (o.pamet_gb !== 128) warn(`data/rtx-spark-mini-oem.yaml / ${o.id}: RTX Spark mini zařazujeme jen ve 128 GB`);
+  if (o.cena_czk_s_dph != null && o.cena_czk_bez_dph != null) {
+    const pomer = o.cena_czk_s_dph / o.cena_czk_bez_dph;
+    if (pomer < 1.15 || pomer > 1.25) warn(`data/rtx-spark-mini-oem.yaml / ${o.id}: poměr ceny s/bez DPH je ${pomer.toFixed(3)}`);
   }
 }
 
@@ -160,6 +171,7 @@ for (const [name, items] of [
   ['data/zarizeni.yaml', zarizeniList],
   ['data/dgx-spark-oem.yaml', dgxSparkOemList],
   ['data/rtx-spark-notebook-oem.yaml', rtxNotebookOemList],
+  ['data/rtx-spark-mini-oem.yaml', rtxMiniOemList],
   ['data/strix-halo-oem.yaml', strixHaloOemList],
   ['data/temata.yaml', temataList],
   ['data/modely.yaml', modelyList],
@@ -196,6 +208,7 @@ const referenced = new Set();
 for (const z of zarizeniList) for (const u of z.zdroje) referenced.add(u);
 for (const o of dgxSparkOemList) referenced.add(o.zdroj);
 for (const o of rtxNotebookOemList) referenced.add(o.zdroj);
+for (const o of rtxMiniOemList) referenced.add(o.zdroj);
 for (const o of strixHaloOemList) referenced.add(o.zdroj);
 for (const m of modelyList) for (const u of m.zdroje) referenced.add(u);
 for (const m of mereniList) referenced.add(m.zdroj);
@@ -205,7 +218,7 @@ for (const u of referenced) {
 }
 
 console.log('');
-console.log(`Data: ${zarizeniList.length} zařízení, ${dgxSparkOemList.length} GB10 OEM SKU, ${rtxNotebookOemList.length} RTX notebook OEM SKU, ${strixHaloOemList.length} Strix Halo OEM SKU, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${temataList.length} témat, ${historieList.length} historií cen, ${generativniList.length} generativních modelů, ${zmenyList.length} změn.`);
+console.log(`Data: ${zarizeniList.length} zařízení, ${dgxSparkOemList.length} GB10 OEM SKU, ${rtxNotebookOemList.length} RTX notebook OEM SKU, ${rtxMiniOemList.length} RTX mini OEM SKU, ${strixHaloOemList.length} Strix Halo OEM SKU, ${modelyList.length} modelů, ${mereniList.length} měření, ${zdrojeList.length} zdrojů, ${temataList.length} témat, ${historieList.length} historií cen, ${generativniList.length} generativních modelů, ${zmenyList.length} změn.`);
 if (errors === 0) console.log(`✓ Data jsou v pořádku (${warnings} varování).`);
 else console.error(`✗ ${errors} chyb, ${warnings} varování.`);
 

@@ -6,6 +6,7 @@ import {
   formatDatum,
   getDgxSparkOem,
   getRtxNotebookOem,
+  getRtxSparkMiniOem,
   getStrixHaloOem,
   getHistorieCen,
 } from '../../../lib/data';
@@ -15,7 +16,7 @@ type Rodina = {
   nazev: string;
   stranka: string;
   navod: string;
-  kategorie: 'boxy' | 'notebooky';
+  kategorie: 'boxy' | 'notebooky' | 'rtx-spark-pocitace';
   kratce: string;
 };
 
@@ -45,6 +46,14 @@ const rodiny: Record<string, Rodina> = {
     kategorie: 'notebooky',
     kratce: 'notebook s NVIDIA N1X a Windows 11',
   },
+  rtxmini: {
+    id: 'rtx-spark-mini',
+    nazev: 'RTX Spark mini',
+    stranka: '/zarizeni/rtx-spark-mini/',
+    navod: '/navody/rtx-spark/',
+    kategorie: 'rtx-spark-pocitace',
+    kratce: 'stolní počítač s NVIDIA N1X a Windows 11',
+  },
 };
 
 
@@ -53,6 +62,7 @@ const rodiny: Record<string, Rodina> = {
   for (const sku of getDgxSparkOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.dgx });
   for (const sku of getStrixHaloOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.strix });
   for (const sku of getRtxNotebookOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.rtxnb });
+  for (const sku of getRtxSparkMiniOem()) polozky.push({ id: sku.id, sku, rodina: rodiny.rtxmini });
 
   return polozky.map((p) => ({ params: { id: p.id }, props: p }));
 }
@@ -81,7 +91,7 @@ const { sku, rodina } = Astro.props as {
   rodina: Rodina;
 };
 
-const cena = sku.cena_czk_s_dph != null ? `${formatKc(sku.cena_czk_s_dph)} Kč` : '-';
+const cena = sku.cena_czk_s_dph != null ? `${formatKc(sku.cena_czk_s_dph)} Kč` : 'cena neoznámena';
 const datum = formatDatum(sku.overeno);
 const sklad = /skladem/i.test(sku.dostupnost);
 const title = sku.titulek ?? `${sku.nazev}: cena a kde koupit`;
@@ -106,7 +116,9 @@ const historie = getHistorieCen(sku.id);
 
   <div class="li-cena-velka">
     <span class="li-cena-velka__castka">{cena}</span>
-    <span class="li-cena-velka__pozn">vč. DPH · k {datum}</span>
+    <span class="li-cena-velka__pozn">
+      {sku.cena_czk_s_dph != null ? 'vč. DPH · ' : ''}k {datum}
+    </span>
   </div>
 
   <table class="li-tabulka">
@@ -154,7 +166,10 @@ const historie = getHistorieCen(sku.id);
   <h2>Kde koupit</h2>
 
   <p>
-    Cena je z českého maloobchodu k {datum}. {sklad ? 'Varianta byla v době kontroly skladem.' : 'Dostupnost se může změnit; ověřte ji před objednáním.'}
+    {sku.cena_czk_s_dph != null
+      ? `Cena je z českého maloobchodu k ${datum}.`
+      : `Prodejce tuto variantu vede bez ceny k ${datum}.`}{' '}
+    {sklad ? 'Varianta byla v době kontroly skladem.' : 'Dostupnost se může změnit; ověřte ji před objednáním.'}
   </p>
 
   <AlzaCena kategorie={rodina.kategorie} text="Otevřít kategorii na Alza.cz" />

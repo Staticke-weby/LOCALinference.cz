@@ -121,6 +121,8 @@ export const strixHaloOem = z
 
 export const rtxNotebookOem = strixHaloOem;
 
+export const rtxMiniOem = strixHaloOem;
+
 export const model = z.object({
   id,
   nazev: z.string().min(2),

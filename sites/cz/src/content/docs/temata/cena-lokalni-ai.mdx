@@ -1,7 +1,7 @@
 ---
 title: "Kolik stojí lokální AI v roce 2026: ceny, provoz a TCO"
 description: "Ceny 128GB a 192GB AI strojů v Kč a USD, co se platí zvlášť a jak spočítat, kdy se lokální AI vyplatí proti cloudu."
-last_verified: 2026-11-10
+last_verified: 2026-11-21
 sidebar:
   label: Cena lokální AI
   order: 2
@@ -34,13 +34,15 @@ jsou uvedené v závorce jako list price bez DPH a dopravy.
 | [Strix Halo 128 GB](/zarizeni/strix-halo/) | 119 990 Kč | od 3 449 USD | nejnižší cena, Windows/Linux, ROCm |
 | [RTX Spark notebook 128 GB](/zarizeni/rtx-spark-notebook/) | 125 990–170 990 Kč | 5 899,99–6 999 USD | mobilita, Windows, CUDA |
 | [DGX Spark 128 GB](/zarizeni/dgx-spark/) | 168 990–249 990 Kč | 6 950 USD | CUDA, Linux, vLLM, tým |
+| [RTX Spark mini 128 GB](/zarizeni/rtx-spark-mini/) | 194 990 Kč | od 4 399 USD | stálý provoz, Windows, CUDA |
 | [Mac Studio 128 GB](/zarizeni/mac-studio/) | 147 990–171 990 Kč | 128GB varianta se v US neuvádí | MLX, tiché studio |
 | [MacBook Pro 128 GB](/zarizeni/macbook-pro/) | 177 739–300 490 Kč | 128GB varianta se v US neuvádí | mobilita, macOS, MLX |
 | [Gorgon Halo 192 GB](/zarizeni/gorgon-halo/) | česká cena není | 6 199–7 499 USD | 192 GB pro delší kontext |
 
 Česká cena není přepočet US ceny. Obsahuje DPH, dopravu a marži;
-u některých modelů se navíc liší konfigurace. RTX Spark mini českou
-cenu zatím nemáme; v US začíná na 5 999 USD.
+u některých modelů se navíc liší konfigurace. Stolní RTX Spark je
+v Česku výjimka: stojí 194 990 Kč, tedy **víc než DGX Spark**, i když
+v USA je pořadí opačné (desktop od 4 399 USD, notebook od 5 899,99 USD).
 
 ## Co je v ceně a co ne
 
@@ -184,6 +186,7 @@ Když je nemá kdo dělat, lokální AI se rozpadne dřív než cloud.
 |---|---|---|
 | **do 130 tis. Kč** | Strix Halo 128 GB | nejnižší cena, Windows/Linux |
 | **125–170 tis. Kč** | RTX Spark notebook | mobilita a Windows |
+| **195 tis. Kč** | RTX Spark mini | stálý provoz, Windows, CUDA |
 | **160–250 tis. Kč** | DGX Spark / GB10 OEM | CUDA, Linux, tým |
 | **150–300 tis. Kč** | Mac Studio / MacBook Pro | Apple, MLX, ticho |
 | **6 199–7 499 USD** | Gorgon Halo 192 GB | delší kontext, ne rychlost |
@@ -235,6 +238,8 @@ zapomíná na **správu a školení**, protože nejsou na faktuře.
 
 <AlzaCena kategorie="boxy" text="Ceny v kategorii AI počítače" />
 
+<AlzaCena kategorie="rtx-spark-pocitace" text="Ceny stolních RTX Spark" />
+
 ## Kdy se vyplatí počkat
 
 - **Na konkrétní variantu** — 4TB nebo Windows verze může přijít.
@@ -264,4 +269,4 @@ už dnes ztrácíte čas ruční prací.
 - [Apple — Mac Studio](https://www.apple.com/mac-studio/specs/)
 - [AMD — Ryzen AI Max+ 395](https://www.amd.com/en/products/processors/laptop/ryzen/ai-max-300-series/amd-ryzen-ai-max-plus-395.html)
 
-*Naposledy ověřeno: 10. 11. 2026.*
+*Naposledy ověřeno: 21. 11. 2026.*

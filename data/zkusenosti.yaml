@@ -38,34 +38,65 @@
   chybi: "Chybí nezávislé měření hluku v dB pro OEM varianty; čísla výše platí pro Founders Edition."
 
 - zarizeni: rtx-spark-mini
-  souhrn: "Recenze se shodují na výkonu pro velké modely a na tom, že ekosystém Windows on Arm je raný. Veřejné měření Qwen3.8 na tomto boxu chybí."
+  souhrn: "Stolní RTX Spark drží výkon lépe než notebook: v recenzích se po 30 minutách zátěže nesnížil a zůstal pod 90 °C. Hlavní výtky jsou cena, porty a raný Windows on Arm. Veřejné měření Qwen3.8 Flash Next je zatím jedno a z krátkého chatu."
   opakuje:
-    - "128 GB je hlavní důvod koupě, ne hrubý výkon."
-    - "Paměť je připájená, rozšiřuje se jen SSD."
-    - "Software a ovladače jsou mladší než u DGX nebo Macu."
+    - "Stolní chlazení je znát: trvalý výkon je o 5–12 % vyšší než u notebooku se stejným čipem a teploty jsou o 10–14 °C nižší."
+    - "128 GB je hlavní důvod koupě, ne hrubý výkon; paměť je připájená a rozšiřuje se jen SSD."
+    - "Výhoda roste se souběžností: při 8 požadavcích je stolní stroj o 18–25 % rychlejší než notebook."
+    - "Software a ovladače jsou mladší než u DGX nebo Macu; porty jsou jen USB-C."
   recenze:
+    - vydavatel: "StorageReview — ASUS ProArt GR1X"
+      url: "https://www.storagereview.com/review/asus-proart-gr1x-review"
+      datum: 2026-11-18
+      typ: nezavisle
+      text: "První laboratorní test stolních RTX Spark: ASUS ProArt GR1X (64 GB) a MSI EdgeMesa N AI+ (128 GB). Ve 30minutovém Cinebench loopu dal GR1X 7 306 bodů, tedy stejně jako první průchod (1,007×), průměr 83,3 °C a maximum 88,7 °C; notebooky se stejným čipem jely na 97 °C. Při 8 souběžných požadavcích na Qwen3.8 27B dal 40,0 tok/s proti 33,8 a 31,9 u notebooků. MSI EdgeMesa měla stejný výkon, ale 88,4 °C průměr a 107,3 °C špičku."
+    - vydavatel: "Windows Central — ASUS ProArt GR1X"
+      url: "https://www.windowscentral.com/hardware/asus/asus-proart-gr1x-nvidia-rtx-spark-desktop-review"
+      datum: 2026-11-18
+      typ: nezavisle
+      text: "GR1X se v zátěži držel pod 55 dB a podle testu nethrottloval; proti notebooku naměřil 10–21,9 % vyšší výkon v benchmarcích. Vytýká málo portů a to, že na předním panelu není nic kromě tlačítka."
+    - vydavatel: "Digit — ASUS ProArt GR1X"
+      url: "https://www.digit.in/features/general/asus-proart-gr1x-review-rtx-spark-finds-a-desktop-role.html"
+      datum: 2026-11-18
+      typ: nezavisle
+      text: "Phi 3.5 dalo 69,34 tok/s, Mistral 7B a Llama 3.1 kolem 50 tok/s, Llama 2 27,96 tok/s, první token pod 1 s. Autor sám upozorňuje, že hluk, příkon ani teploty v jeho testu změřené nejsou."
+    - vydavatel: "DDay.it — ASUS ProArt GR1X"
+      url: "https://www.dday.it/redazione/59503/un-mini-pc-con-rtx-spark-e-128-gb-di-ram-puo-cambiare-il-modi-di-lavorare-la-recensione-dellasus-proart-gr1x"
+      datum: 2026-11-18
+      typ: nezavisle
+      text: "ASUS ve výchozím stavu rezervuje systému 64 GB; po přenastavení viděl Windows 46,4 GB a GPU 80 GB a přes WSL šlo alokovat 108 GB. Chválí ticho a nízkou spotřebu, jako limit vidí cenu proti Mac Studiu."
+    - vydavatel: "Telepolis — ASUS ProArt GR1X"
+      url: "http://www.telepolis.pl/artykuly/testy-sprzetu/asus-proart-gr1x-minipc-nvidia-rtx-spark-test-recenzja-opinie"
+      datum: 2026-11-18
+      typ: nezavisle
+      text: "GPT-OSS-120B v Q4_K_M běžel v průměru kolem 63 tok/s přes půl hodiny generování; celkově 7,5/10. Na Mac Studio to podle autora ještě nestačí, hlavně kvůli ceně."
+    - vydavatel: "BenchLife — ASUS ProArt GR1X"
+      url: "https://benchlife.info/nvidia-rtx-spark-asus-proart-gr1x-review/"
+      datum: 2026-11-18
+      typ: nezavisle
+      text: "Test 128GB kusu přes llama.cpp, Ollama a ComfyUI, 3DMark Steel Nomad Light 14 670 bodů. Upozorňuje, že starší x86 aplikace mohou narazit na kompatibilitu Windows on Arm."
+    - vydavatel: "NeoTeo — souhrn recenzí GR1X"
+      url: "https://www.neoteo.com/en/asus-proart-gr1x-review-local-ai-results-and-trade-offs"
+      datum: 2026-11-19
+      typ: nezavisle
+      text: "Souhrn cizích testů: 128GB kus dal 40–45 tok/s na GPT-OSS 120B (MuyComputer), 64GB kus zvládl 70B Llama (Profesional Review). Profesional Review naměřil 98 °C na SoC při 60minutovém FurMarku a 57 dBA proti tichu 30 dBA. Porty jsou jen vzadu a bez USB-A."
     - vydavatel: "NGXP Tech — MSI EdgeMesa N AI+"
       url: "https://ngxptech.com/msi-edgemesa-n-ai-plus-review-2026-rtx-spark/"
       datum: 2026-06-13
       typ: nezavisle
       text: "Chválí 128 GB pro modely nad 70B parametrů a poměr výkonu k velikosti. Vytýká vysokou cenu, připájenou RAM a raný Arm ekosystém."
-    - vydavatel: "Club386"
-      url: "https://www.club386.com/gigabyte-nvidia-rtx-spark-mini-pc/"
-      datum: 2026-11-11
+    - vydavatel: "差评 (Chaping), převzato ifeng — ASUS ProArt GR1X"
+      url: "https://tech.ifeng.com/c/8yAEYHt7q3u"
+      datum: 2026-11-18
       typ: nezavisle
-      text: "Gigabyte AI Top Aero: 20 Arm jader, 6 144 CUDA jader, 128 GB unified a Windows 11 Arm. Stejný čip jako notebooky, jiná skříň a chlazení."
-    - vydavatel: "Kimono Oyaji's Lab"
-      url: "https://kimono-oyaji.com/en/rtx-spark-n1x-memory-bandwidth-2026-en/"
-      datum: 2026-09-07
-      typ: nezavisle
-      text: "NVIDIA neuvádí propustnost paměti. Z vlastních měření jiných strojů odhaduje ~42 tok/s pro 8B model při 273 GB/s; sám RTX Spark fyzicky neměl, jde o výpočet, ne měření."
+      text: "Qwen3.8 Flash Next v kvantizaci IQ4 přes Hermes dalo kolem 30 tok/s; Llama 3.1 8B 50,67 tok/s a první token za 0,35 s. Při testu občas blikl externí displej a jednou se objevil black screen; autor to přičítá ovladačům."
   majitele:
     - kde: "Windows Central — test po týdnu"
       url: "https://www.windowscentral.com/hardware/nvidia/rtx-spark-review-benchmarks-2026"
       datum: 2026-10-15
       typ: nezavisle
       text: "Výchozí rozdělení 128 GB je 64 GB pro GPU a 64 GB pro systém; pro větší model se musí poměr změnit ručně. Autor to považuje za hlavní praktickou komplikaci."
-  chybi: "Chybí veřejné měření Qwen3.8 Flash Next na RTX Spark mini; zatím jsou jen čísla pro menší modely."
+  chybi: "Chybí veřejné měření Qwen3.8 Flash Next na stolním RTX Spark na dlouhém kontextu a při souběžnosti; jediné číslo je krátký chat v IQ4. Hluk uvádějí dva zdroje různě (pod 55 dB vs. 57 dBA proti tichu 30 dBA) a chybí reporty českých majitelů."
 
 - zarizeni: rtx-spark-notebook
   souhrn: "Notebooky RTX Spark dostávají chválu za AI výkon a kritiku za baterii, teplo a hluk. Je to první generace s raným softwarem."

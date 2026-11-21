@@ -132,6 +132,8 @@ export type StrixHaloOem = {
 
 export type RtxNotebookOem = StrixHaloOem;
 
+export type RtxMiniOem = StrixHaloOem;
+
 export type GenerativniModel = {
   id: string;
   nazev: string;
@@ -342,6 +344,14 @@ export function getStrixHaloOem(): StrixHaloOem[] {
 
 export function getRtxNotebookOem(): RtxNotebookOem[] {
   return (load<RtxNotebookOem[]>('rtx-spark-notebook-oem.yaml') ?? []).sort(
+    (a, b) =>
+      (a.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) - (b.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) ||
+      b.uloziste_gb - a.uloziste_gb,
+  );
+}
+
+export function getRtxSparkMiniOem(): RtxMiniOem[] {
+  return (load<RtxMiniOem[]>('rtx-spark-mini-oem.yaml') ?? []).sort(
     (a, b) =>
       (a.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) - (b.cena_czk_s_dph ?? Number.POSITIVE_INFINITY) ||
       b.uloziste_gb - a.uloziste_gb,

@@ -1,7 +1,7 @@
 ---
 title: "RTX Spark: cena, výkon a kdy se vyplatí"
 description: "RTX Spark mini a notebook 128 GB: české ceny od 125 990 Kč, Qwen3.8 Flash Next ve vLLM, CUDA na Windows ARM64 a kde jsou limity."
-last_verified: 2026-11-10
+last_verified: 2026-11-21
 sidebar:
   label: RTX Spark cena
   order: 5
@@ -11,9 +11,10 @@ import AlzaCena from '../../../components/AlzaCena.astro';
 
 RTX Spark je Windows varianta 128GB boxu s CUDA. Notebooky v české
 nabídce začínají na **125 990 Kč vč. DPH** (ASUS ProArt P14 128GB/1TB);
-Surface Laptop Ultra stojí 168 990–170 990 Kč. Mini se v českém
-maloobchodě zatím neprodává; v USA začíná na 5 999 USD bez DPH
-a dopravy.
+Surface Laptop Ultra stojí 168 990–170 990 Kč. Stolní mini se v Česku
+prodává od listopadu 2026: ASUS ProArt GR1X 128GB/2TB za **194 990 Kč
+vč. DPH**, tedy dráž než notebook i než DGX Spark. V USA přitom stolní
+RTX Spark začínají na 4 399 USD a notebooky na 5 899,99 USD.
 
 ## Rychlá odpověď
 
@@ -32,7 +33,7 @@ a dopravy.
 | OS | Windows 11 | Windows 11 |
 | Software | CUDA, vLLM port, llama.cpp, Ollama, LM Studio | stejný základ |
 | Příkon | 45–80 W | 140 W |
-| Česká cena | 125 990–170 990 Kč | není k dispozici |
+| Česká cena | 125 990–170 990 Kč | 194 990 Kč |
 
 Na 128 GB poběží [Qwen3.8 Flash Next](/modely/qwen3-8-flash-next/)
 přes llama.cpp nebo komunitní vLLM port. NVFP4 závisí na verzi
@@ -46,26 +47,33 @@ enginu a Windows ARM64.
 | Baterie | funguje jako UPS | není |
 | Chlazení | throttling | stálé |
 | Hluk | podle zátěže | podle ventilátoru |
-| Cena v ČR | 125 990–170 990 Kč | není |
+| Cena v ČR | 125 990–170 990 Kč | 194 990 Kč |
 | Vhodné na cesty | **ano** | ne |
 
-Notebook je zajímavý tím, že ho vezmete k datům. Mini je levnější
-na stůl, ale v ČR ho zatím neseženete.
+Notebook je zajímavý tím, že ho vezmete k datům. Mini je na stůl
+a drží výkon i po hodině zátěže, ale v ČR je dnes dražší než notebook
+i než DGX Spark. Rozhoduje tedy software a forma, ne cena.
 
 ## Jak rychle běží Qwen3.8 Flash Next
 
 Notebook má veřejné měření **35,37 tok/s** (llama.cpp) a **70,44 tok/s**
 (komunitní vLLM port). Rozdíl je konfigurace: MTP, CUDA graphs,
-počet requestů a teplota. Mini zatím veřejné měření nemá.
+počet requestů a teplota. Stolní mini má zatím jedno číslo: **kolem
+30 tok/s** pro Qwen3.8 Flash Next v IQ4 přes Hermes, krátký chat bez
+uvedené konfigurace. Na jiném modelu (Qwen3.8 27B, Q4_K_M) dal stolní
+N1X 13,1 / 31,4 / 40,0 tok/s při 1 / 4 / 8 požadavcích, zatímco
+notebooky 12,6 / 28,1 / 33,8 a 12,4 / 27,5 / 31,9.
 
 | Konfigurace | Decode | Poznámka |
 |---|---:|---|
-| llama.cpp | 35,37 tok/s | konzervativní baseline |
-| vLLM port | 70,44 tok/s | optimalizovaný komunitní build |
-| Mini | `[DOPLNIT: měření]` | chybí veřejný test |
+| llama.cpp | 35,37 tok/s | notebook, konzervativní baseline |
+| vLLM port | 70,44 tok/s | notebook, optimalizovaný komunitní build |
+| Mini, Qwen3.8 FN v IQ4 | ~30 tok/s | krátký chat, konfigurace neuvedena |
+| Mini, Qwen3.8 27B, 8 požadavků | 40,0 tok/s | agregát, jiný model |
 
 Pro plánování berte **spodní hranici**. 70 tok/s není výchozí stav
-a na baterii/throttlingu může být nižší.
+a na baterii nebo při throttlingu může být nižší. U mini chybí dlouhý
+kontext a souběžnost na Qwen3.8 FN.
 
 ## Windows ARM64 a CUDA
 
@@ -130,7 +138,8 @@ Notebook je zajímavý tam, kde data vznikají:
 - **demo** — model běží na místě.
 
 Naopak na stůl je lepší mini nebo DGX Spark: lepší chlazení,
-stabilnější výkon a nižší cena za stejný čip.
+stabilnější výkon a u DGX Spark i nižší česká cena. Stolní mini
+si v ČR připlácí za Windows a ticho.
 
 ## Windows ARM64: co otestovat
 
@@ -186,7 +195,9 @@ Když některý krok nefunguje, počítejte s časem na práci.
 - **Souběžnost** — jeden box pro 1–4 lidi.
 - **CUDA** — na Arm64 je to preview, ne stoprocentní ekosystém.
 
-<AlzaCena kategorie="notebooky" text="Ceny RTX Spark" />
+<AlzaCena kategorie="notebooky" text="Ceny RTX Spark notebooků" />
+
+<AlzaCena kategorie="rtx-spark-pocitace" text="Ceny stolních RTX Spark" />
 
 ## Praxe: co lidé řeší
 
@@ -230,4 +241,4 @@ Když některý krok nefunguje, počítejte s časem na práci.
 - [vllm-for-rtx-spark](https://github.com/devjeonghwan/vllm-for-rtx-spark)
 - [Alza.cz — RTX Spark notebooky](https://www.alza.cz/notebooky-rtx-spark/18924563.htm)
 
-*Naposledy ověřeno: 10. 11. 2026.*
+*Naposledy ověřeno: 21. 11. 2026.*

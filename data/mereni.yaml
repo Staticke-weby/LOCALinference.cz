@@ -241,6 +241,36 @@
   interpretace: "Stejný test, jiný engine; vLLM port je zhruba 2× rychlejší."
   zdroj: https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530
 
+- id: 2026-11-18-rtx-spark-mini-qwen38-hermes
+  datum: 2026-11-18
+  zarizeni: rtx-spark-mini
+  model: qwen3-8-flash-next
+  kvantizace: IQ4 (GGUF)
+  engine: Hermes
+  engine_verze: null
+  kontext: null
+  kontext_strop: null
+  ttft_ms: null
+  prefill_toks: null
+  decode_toks: 30.0
+  agregat_toks: null
+  soubeznost: 1
+  nastaveni:
+    mtp: null
+    mtp_draft_tokens: null
+    kv_cache: null
+    flash_attention: null
+    chunked_prefill: null
+    teplota: null
+    power_limit_w: null
+  typ: namereno
+  mereno_kym: nezavisle
+  duveryhodnost: nizka
+  normalizace: "krátký chat, jeden stream; kontext, verze enginu a nastavení neuvedeny"
+  interpretace: "Zatím jediné veřejné číslo pro Qwen3.8 Flash Next na stolním RTX Spark. Berte ho jako spodní hranici: ~30 tok/s v IQ4 přes agentní nástroj, ne próza ani dlouhý kontext."
+  zdroj: https://tech.ifeng.com/c/8yAEYHt7q3u
+  poznamka: "ASUS ProArt GR1X 128 GB, recenze 18. 11. 2026. Číslo je zaokrouhlené z popisu („每秒能吐 30 个 token“); kvantizaci uvádí zdroj jen jako IQ4."
+
 - id: 2026-09-21-strix-halo-qwen38-llamacpp
   datum: 2026-09-21
   zarizeni: strix-halo

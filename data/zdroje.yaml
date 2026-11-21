@@ -527,6 +527,42 @@
   posledni_kontrola: 2026-11-09
   stav: ok
   poznamka: "fetch/HEAD vrací 403; ceny se ověřují ručně v OpenChamber browseru."
+
+- id: alza-rtx-spark-pocitace
+  nazev: Alza.cz - Počítače s NVIDIA RTX Spark (kategorie)
+  url: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+  typ: html
+  co_sledujeme: [cena, dostupnost, konfigurace, nove-stolni-rtx-spark]
+  frekvence: tydne
+  priorita: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-21
+  stav: ok
+  poznamka: "Stolní větev RTX Spark. K 21. 11. 2026 šest položek: ASUS ProArt GR1X 128GB/2TB s cenou, 64GB bez zájmu katalogu a čtyři MSI EdgeMesa N AI+ bez ceny."
+
+- id: storagereview-proart-gr1x
+  nazev: StorageReview - ASUS ProArt GR1X
+  url: https://www.storagereview.com/review/asus-proart-gr1x-review
+  typ: html
+  co_sledujeme: [mereni, teploty, hluk, qwen3-8]
+  frekvence: mesicne
+  priorita: vysoka
+  kontrola: manual
+  posledni_kontrola: 2026-11-21
+  stav: ok
+  poznamka: "První laboratorní test stolního RTX Spark; srovnává GR1X, MSI EdgeMesa a dva notebooky se stejným čipem."
+
+- id: ifeng-chaping-proart-gr1x
+  nazev: 差评 (Chaping) — ASUS ProArt GR1X, převzato ifeng
+  url: https://tech.ifeng.com/c/8yAEYHt7q3u
+  typ: html
+  co_sledujeme: [mereni, qwen3-8-flash-next, ovladace]
+  frekvence: mesicne
+  priorita: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-21
+  stav: ok
+  poznamka: "Jediné veřejné číslo Qwen3.8 Flash Next na stolním N1X (~30 tok/s, IQ4). Konfigurace je popsána vágně."
 - id: acer-veriton-ra110
   nazev: Acer - Veriton RA110 AI Mini Workstation
   url: https://www.acer.com/us-en/desktops-and-all-in-ones/veriton-workstations/veriton-ra110-ai-mini-workstation

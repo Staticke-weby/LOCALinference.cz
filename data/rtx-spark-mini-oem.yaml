@@ -1,0 +1,87 @@
+# České maloobchodní ceny stolních počítačů s NVIDIA RTX Spark N1X (desktop N1X), 128 GB.
+# Ceny jsou z nabídky Alza.cz, kategorie „Počítače s NVIDIA RTX Spark“ (18925089), ověřeno 21. 11. 2026.
+# Nejde o ceny z amerického trhu; ty jsou v data/zarizeni.yaml.
+# Zařazujeme jen 128GB konfigurace: na 64GB se Qwen3.8 Flash Next nevejde v použitelné kvalitě.
+# Ceny kolísají a část nabídky je bez ceny. Před nákupem ověřte aktuální stav.
+
+- id: asus-proart-gr1x-128-2tb
+  nazev: ASUS ProArt GR1X (128GB/2TB)
+  vyrobce: ASUS
+  pamet_gb: 128
+  uloziste_gb: 2048
+  cena_czk_s_dph: 194990
+  cena_czk_bez_dph: 161149
+  dostupnost: "Na objednávku – termín upřesníme"
+  prodejce: Alza.cz
+  objednaci_kod: NRn14pdi003
+  url: https://www.alza.cz/asus-proart-gr1x-mini-pc-rtx-spark-gr1x-vg0076an-d13573484.htm
+  zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+  overeno: 2026-11-21
+  poznamka: "1,15 l (150×150×51 mm), 1,48 kg, adaptér 240 W přes USB-C PD, TDP 140 W. Dva sloty M.2 2280 (až 4 TB), 10G LAN, Wi-Fi 7, 4× USB-C (jeden napájecí) a HDMI 2.1; žádný USB-A, žádný audio jack, vše jen na zadní straně."
+  titulek: "ASUS ProArt GR1X 128GB/2TB: cena, výkon a co na něm poběží"
+  description: "Stolní RTX Spark s 128 GB unified paměti za 194 990 Kč vč. DPH. Naměřené hodnoty z recenzí, chlazení, hluk, porty a co na něm poběží z Qwen3.8 Flash Next."
+  popis: "První stolní RTX Spark v české nabídce a zatím jediný, který má cenu: 128 GB unified paměti, Windows 11 Pro a dva sloty M.2 v těle o objemu 1,15 litru. Stejný čip N1X jako notebook, ale vyšší power limit a větší chladič, takže drží výkon i při dlouhém běhu."
+  pro_koho: "Pro vývojáře a malý tým, který chce CUDA a Windows na stole a potřebuje, aby model běžel celý den bez throttlingu. Ne na cesty a ne pro toho, kdo hledá nejnižší cenu za 128 GB."
+  silne:
+    - "128 GB unified paměti a CUDA ve Windows 11"
+    - "Chlazení udrží 140 W; v recenzích se výkon po 30 minutách nesnížil"
+    - "Dva sloty M.2 2280, úložiště lze rozšířit běžným diskem"
+    - "10G LAN, Wi-Fi 7 a čtyři displeje"
+  slabe:
+    - "194 990 Kč vč. DPH je víc než DGX Spark nebo ASUS Ascent GX10"
+    - "Jen USB-C, žádný USB-A ani audio jack"
+    - "Dodávaný 1TB disk je Gen4 a studené načtení modelu je pomalejší"
+    - "Windows on Arm: část nástrojů nemá ARM64 build"
+  kdy_ne: "Pokud chcete nejnižší cenu za 128 GB (Strix Halo), Linux a DGX OS (DGX Spark), nebo stroj na cesty (notebook)."
+
+- id: msi-edgemesa-n-ai-128-4tb
+  nazev: MSI EdgeMesa N AI+ (128GB/4TB)
+  vyrobce: MSI
+  pamet_gb: 128
+  uloziste_gb: 4096
+  cena_czk_s_dph: null
+  cena_czk_bez_dph: null
+  dostupnost: "Momentálně nedostupné, cena neoznámena"
+  prodejce: Alza.cz
+  objednaci_kod: NRn2020a
+  url: https://www.alza.cz/msi-edgemesa-n-ai-128-4tb-d13674915.htm
+  zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+  overeno: 2026-11-21
+  poznamka: "V Alza.cz vedená bez ceny a jako nedostupná. 152×147×53 mm, 1,18 l, 1,32 kg; jeden slot SSD (testovaný kus měl 4TB Gen5). Americká MSRP 128GB/4TB je 7 499 USD."
+  titulek: "MSI EdgeMesa N AI+ 128GB/4TB: cena a dostupnost v Česku"
+  description: "Stolní RTX Spark od MSI se 128 GB a 4 TB. V české nabídce je bez ceny a nedostupný; co o něm víme z recenzí a co na něm poběží."
+  popis: "Druhá stolní cesta k 128 GB unified paměti s RTX Spark N1X. V testech je výkonově srovnatelná s ASUS ProArt GR1X, ale hřeje víc a má jen jeden slot SSD. V Česku ji zatím koupit nelze."
+  pro_koho: "Pro toho, kdo chce 4 TB úložiště a nevadí mu počkat na českou cenu a dostupnost."
+  silne:
+    - "128 GB unified paměti ve stolním těle"
+    - "4TB NVMe Gen5 v testované konfiguraci"
+  slabe:
+    - "V Česku bez ceny a nedostupná"
+    - "Jen jeden slot SSD"
+    - "V zátěži hřeje víc než ASUS GR1X (107,3 °C špička v Cinebench loopu)"
+  kdy_ne: "Dokud nemá českou cenu a skladem; dnes je to jen informace, že varianta existuje."
+
+- id: msi-edgemesa-n-ai-128-2tb
+  nazev: MSI EdgeMesa N AI+ (128GB/2TB)
+  vyrobce: MSI
+  pamet_gb: 128
+  uloziste_gb: 2048
+  cena_czk_s_dph: null
+  cena_czk_bez_dph: null
+  dostupnost: "Momentálně nedostupné, cena neoznámena"
+  prodejce: Alza.cz
+  objednaci_kod: NRn2020b
+  url: https://www.alza.cz/msi-edgemesa-n-ai-128-2tb-d13674916.htm
+  zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+  overeno: 2026-11-21
+  poznamka: "Stejný stroj jako 4TB varianta, jen s 2TB diskem. V Alza.cz bez ceny a nedostupná."
+  titulek: "MSI EdgeMesa N AI+ 128GB/2TB: cena a dostupnost v Česku"
+  description: "Stolní RTX Spark od MSI se 128 GB a 2 TB. V české nabídce bez ceny a nedostupný; co o něm víme z recenzí."
+  popis: "Stejná 128GB platforma jako 4TB varianta, jen s menším diskem. Pro katalog ji vedeme proto, aby bylo vidět, že v Česku existuje druhý stolní RTX Spark; koupit se dnes nedá."
+  pro_koho: "Pro toho, kdo sleduje dostupnost a chce 128 GB s menším diskem."
+  silne:
+    - "128 GB unified paměti ve stolním těle"
+  slabe:
+    - "V Česku bez ceny a nedostupná"
+    - "Jen jeden slot SSD"
+  kdy_ne: "Dokud nemá českou cenu a skladem."
