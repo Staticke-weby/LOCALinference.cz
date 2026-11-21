@@ -97,45 +97,54 @@ i při dlouhém běhu.
 cardu a [BetterClaw](https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark),
 ne z měření.
 
-**Co je změřené:** jediné veřejné číslo pro Qwen3.8 Flash Next na
-stolním N1X je z recenze ASUS ProArt GR1X: **kolem 30 tok/s**
-v kvantizaci IQ4 přes agentní nástroj Hermes, krátký chat, jeden
-stream. Recenze neuvádí kontext, verzi enginu ani nastavení, takže
-číslo bereme jako spodní hranici, ne jako provozní normu
+**Čip a paměť jsou stejné jako u notebooku.** Stolní N1X má 20 jader
+Grace, GPU Blackwell RTX s 6 144 jádry a 128 GB LPDDR5X-9400
+(300 GB/s) — stejně jako RTX Spark notebook, včetně Windows 11 Arm
+a CUDA. Decode u Qwen3.8 Flash Next proto nemá důvod být jiný:
+rozhoduje propustnost paměti a engine, ne skříň.
+
+**Notebook má veřejná čísla:** **35,37 tok/s** v llama.cpp
+(NVIDIA recipe) a **70,44 tok/s** v komunitním vLLM portu pro Windows
+ARM64. Stejný port je stavěný na stejný čip a systém, takže běží
+i na mini; na mini to ale zatím nikdo veřejně nezměřil. Bereme to jako
+očekávání z identického hardwaru, ne jako měření.
+
+**Jediné číslo přímo z mini** je ~30 tok/s z recenze ASUS ProArt GR1X:
+Qwen3.8 FN v IQ4 přes Hermes, krátký chat. Jiná kvantizace, jiný
+engine a agentní nástroj nad tím — proto je níž než notebookových
+35 tok/s v llama.cpp a o rychlosti stroje neříká nic
 ([ifeng/差评](https://tech.ifeng.com/c/8yAEYHt7q3u), 18. 11. 2026).
 
-**Co je změřené na jiném modelu:** [StorageReview](https://www.storagereview.com/review/asus-proart-gr1x-review)
-poslal na stolní a notebookové N1X model Qwen3.8 27B v Q4_K_M přes
-llama.cpp s CUDA. Testovaný ASUS měl 64 GB a MSI 128 GB; čip a paměť
-jsou stejné, liší se jen kapacita. Při jednom požadavku dal stolní
-stroj 13,1 tok/s, notebooky 12,6 a 12,4. Při čtyřech požadavcích 31,4
-proti 28,1 a 27,5; při osmi 40,0 proti 33,8 a 31,9. **Rozdíl roste
-s frontou:** na jednoho uživatele je to do 6 %, na osm požadavků
-18–25 %.
+**Co se na mini liší:** trvalý výkon. 140 W a větší chladič drží
+clocky; u Qwen3.8 27B dal stolní N1X při 8 požadavcích 40,0 tok/s
+proti 33,8 a 31,9 u notebooků (StorageReview). Na jednoho uživatele
+je rozdíl do 6 %, s frontou 18–25 %.
 
-**Co z toho plyne:** velký model se vejde, ale samotná paměť rychlost
-nezvedne. Stolní provedení přidává trvalý výkon a ticho, ne vyšší
-decode. Kdo potřebuje víc tok/s, musí sáhnout po jiné třídě stroje.
+**Co z toho plyne:** pro plánování použijte čísla notebooku
+(35 a 70 tok/s) i pro mini. Co na mini nikdo nezměřil, je TTFT,
+prefill a chování na dlouhém kontextu — tam zůstává `[DOPLNIT]`.
+Postup je stejný jako u notebooku: [návod k vLLM na RTX Spark](/navody/rtx-spark/).
 
 ## Jak rychle běží Qwen3.8 Flash Next na RTX Spark mini
 
-| Režim | Naměřeno | Co to je |
-|---|---|---|
-| Krátký chat, 1 stream | ~30 tok/s | Qwen3.8 FN, IQ4, Hermes; konfigurace neuvedena |
-| TTFT | `[DOPLNIT: TTFT]` | pro FN nikdo veřejně neměřil |
-| Prefill a dlouhý kontext (128k+) | `[DOPLNIT: dlouhý kontext]` | chybí |
-| Souběžnost na FN | `[DOPLNIT: souběžnost]` | chybí |
-| Pro srovnání: Qwen3.8 27B, 1/4/8 požadavků | 13,1 / 31,4 / 40,0 tok/s | jiný model, sada StorageReview |
+| Co | Mini | Notebook | Poznámka |
+|---|---|---|---|
+| llama.cpp, NVIDIA recipe | očekává se stejně | 35,37 tok/s | stejný čip, paměť i engine; na mini nezměřeno |
+| vLLM Windows ARM64 port | očekává se stejně | 70,44 tok/s | stejný port; na mini nezměřeno |
+| Qwen3.8 FN v IQ4 přes Hermes | ~30 tok/s | — | jiný engine a kvantizace, není srovnatelné |
+| Qwen3.8 27B, 1/4/8 požadavků | 13,1 / 31,4 / 40,0 tok/s | 12,6 / 28,1 / 33,8 tok/s | jiný model; stolní chlazení drží víc |
+| TTFT, prefill, dlouhý kontext na FN | `[DOPLNIT: TTFT]` | `[DOPLNIT: TTFT]` | nezměřeno ani na jednom |
 
-**Důvěryhodnost: nízká.** Jedna recenze, krátký chat, neznámý kontext
-a verze enginu. Pro plánování počítejte s nižší hodnotou, než je
-naměřená — v provozu s frontou, logováním a delším kontextem čísla
-klesají. Konkrétní rozptyl `[DOPLNIT: měření]`.
+**Důvěryhodnost:** čísla notebooku jsou komunitní měření (nízká
+důvěryhodnost), přenos na mini je odvození z identického čipu a paměti,
+ne měření. Číslo ~30 tok/s je jeden krátký chat bez uvedené
+konfigurace. Konkrétní rozptyl `[DOPLNIT: měření]`.
 
 ## Jak si rychlost změřit sám
 
-Majitel mini si číslo doplní za půl hodiny. Stačí
-[llama.cpp](/slovnik/software/llamacpp/) s ARM64 buildem a CUDA:
+Majitel mini si číslo doplní za půl hodiny a ověří, že sedí
+s notebookem. Stačí [llama.cpp](/slovnik/software/llamacpp/) s ARM64
+buildem a CUDA:
 
 ```powershell
 llama-bench -m qwen3.8-flash-next-Q4_K_M.gguf -p 512 -n 128 -r 3

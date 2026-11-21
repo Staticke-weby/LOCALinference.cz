@@ -1,7 +1,7 @@
 ---
 title: "RTX Spark: jak spustit Qwen3.8 Flash Next ve vLLM (návod)"
 description: "Od Windows 11 po první chat s Qwen3.8 Flash Next na RTX Spark. Model NVFP4 od NVIDIA, vLLM build pro Windows ARM64 a ověřené kroky."
-last_verified: 2026-11-06
+last_verified: 2026-11-21
 sidebar:
   label: RTX Spark
   order: 3
@@ -10,8 +10,13 @@ sidebar:
 import AlzaCena from '../../../components/AlzaCena.astro';
 
 Tento návod platí pro **RTX Spark mini i notebook** — mají stejný
-Windows 11 Arm64, stejný CUDA stack a stejný postup. Rozdíl je jen
-v chlazení a baterii: notebook nechte při prvním nastavení na nabíječce.
+Windows 11 Arm64, stejný CUDA stack, stejný komunitní vLLM build a
+stejný postup. Rozdíl je jen v chlazení, napájení a ve výchozím
+dělení paměti: notebook nechte při prvním nastavení na nabíječce,
+u stolního ASUS GR1X nastavte podíl paměti v ProArt Creator Hubu.
+
+Výkon modelu je na obou stejný: rozhoduje čip a propustnost paměti,
+ne skříň. Mini drží vyšší trvalý výkon při dlouhém běhu.
 
 > **Co budete potřebovat:** Windows 11 Arm64, NVIDIA driver kompatibilní
 > s CUDA 13.4, ARM64 Python 3.13, místo na model (desítky GB) a dalších
@@ -20,7 +25,7 @@ v chlazení a baterii: notebook nechte při prvním nastavení na nabíječce.
 **Dvě věci narovinu, než začnete:**
 
 - **Model je od NVIDIA** — `nvidia/Qwen3.8-Flash-Next-FP4-Local` na
-  Hugging Face. To je odladěná NVFP4 varianta pro 128GB GB10 stroje.
+  Hugging Face. To je odladěná NVFP4 varianta pro 128GB unified paměť.
 - **vLLM build je komunitní** — projekt `devjeonghwan/vllm-for-rtx-spark`
   připravuje ARM64 kolo vLLM s MTP a CUDA grafy. Není to oficiální
   Windows build od vLLM ani od NVIDIA. Čísla níže jsou od autora
@@ -42,7 +47,9 @@ Musí se objevit **RTX Spark N1X** a verze driveru. Pokud ne, nepokračujte
 a zkontrolujte, že máte ARM64 driver, ne x64.
 
 4. **Nastavte 96 GB dedikované GPU paměti.** Ve Windows jde o podíl
-   z 128GB poolu; zbylých zhruba 32 GB zůstane systému.
+   z 128GB poolu; zbylých zhruba 32 GB zůstane systému. Podíl se
+   nastavuje v NVIDIA app; ASUS ho na GR1X nabízí i v **ProArt Creator
+   Hubu** a ve výchozím stavu nechává systému 64 GB.
 
 5. **Zvětšete odkládací soubor.** CUDA alokace jdou ve Windows přes
    system commit, takže malý pagefile způsobí OOM i při volné paměti
@@ -87,6 +94,8 @@ pokud ho chcete mít jinde než na systémovém.
 
 Konfigurace počítá s **96 GB na GPU**, MTP spekulativním dekódováním,
 CUDA grafy, kontextem **409 600 tokenů** a až **16 souběžnými požadavky**.
+Stejný příkaz a stejný profil použijete na mini i na notebooku; čísla
+z testů (70,44 tok/s) pocházejí z notebooku se stejným čipem a pamětí.
 
 První start připravuje PLE cache a může trvat několik minut. Až server
 napíše, že poslouchá na `http://127.0.0.1:8000`, je hotovo.
@@ -139,13 +148,15 @@ nemá. V klientovi použijte `http://adresa-stroje:8000/v1` a model
 | CUDA OOM i při volné GPU | malý pagefile — 98304/131072 MB |
 | Model se dlouho načítá | normální; první start plní PLE cache |
 | Port 8000 obsazený | přidejte `--port 8001` |
-| Pomalé na notebooku | nabíječka, 96 GB GPU alokace, kontrola throttlingu |
+| Pomalé po minutách | notebook na nabíječce; u obou podíl GPU paměti (96 GB) a kontrola throttlingu |
 
 Když tabulka nestačí, pokračujte v
 [řešení problémů](/temata/provoz/reseni-problemu/) — společný postup
 pro všechny platformy.
 
-<AlzaCena kategorie="notebooky" text="Kde notebook koupit" />
+<AlzaCena kategorie="notebooky" text="Kde koupit RTX Spark notebook" />
+
+<AlzaCena kategorie="rtx-spark-pocitace" text="Kde koupit stolní RTX Spark" />
 
 ## Zdroje
 
@@ -156,4 +167,4 @@ pro všechny platformy.
 - [NVIDIA Local AI Inference Recipes — RTX Spark (llama.cpp)](https://nvidia.github.io/local-ai-inference-recipes/hardware/rtx-spark/index.html)
 - [NVIDIA RTX Spark — Getting Started](https://forums.developer.nvidia.com/t/rtx-spark-getting-started-with-development/385976)
 
-*Naposledy ověřeno: 6. 11. 2026.*
+*Naposledy ověřeno: 21. 11. 2026.*

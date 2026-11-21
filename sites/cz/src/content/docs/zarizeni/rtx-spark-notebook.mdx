@@ -187,9 +187,11 @@ chování je `[DOPLNIT: měření]`.
 
 <TabulkaZarizeni filtr={["rtx-spark-notebook", "rtx-spark-mini"]} />
 
-Stejná paměť i bandwidth. Rozhoduje forma: notebook vyhraje na cestách,
-mini na stálém provozu. Nepřetržitý výkon notebooku je nižší, ale konkrétní
-číslo `[DOPLNIT: měření]`.
+Stejná paměť, bandwidth i systém, takže decode Qwen3.8 FN je stejný:
+35,37 tok/s v llama.cpp a 70,44 tok/s v komunitním vLLM portu (obojí
+naměřeno na notebooku). Rozhoduje forma a trvalý výkon: notebook
+vyhraje na cestách, mini drží clocky při dlouhém běhu. Konkrétní
+rozdíl v trvalém výkonu `[DOPLNIT: měření]`.
 
 ## Kde koupit
 

@@ -56,24 +56,30 @@ i než DGX Spark. Rozhoduje tedy software a forma, ne cena.
 
 ## Jak rychle běží Qwen3.8 Flash Next
 
-Notebook má veřejné měření **35,37 tok/s** (llama.cpp) a **70,44 tok/s**
-(komunitní vLLM port). Rozdíl je konfigurace: MTP, CUDA graphs,
-počet requestů a teplota. Stolní mini má zatím jedno číslo: **kolem
-30 tok/s** pro Qwen3.8 Flash Next v IQ4 přes Hermes, krátký chat bez
-uvedené konfigurace. Na jiném modelu (Qwen3.8 27B, Q4_K_M) dal stolní
-N1X 13,1 / 31,4 / 40,0 tok/s při 1 / 4 / 8 požadavcích, zatímco
-notebooky 12,6 / 28,1 / 33,8 a 12,4 / 27,5 / 31,9.
+Notebook a mini mají stejný čip, paměť i systém, takže decode je
+stejný: **35,37 tok/s** v llama.cpp a **70,44 tok/s** v komunitním
+vLLM portu. Naměřeno je to na notebooku; na mini to nikdo veřejně
+nezopakoval, ale není důvod, proč by to mělo být jiné. Rozdíl je
+v konfiguraci (MTP, CUDA graphs, počet requestů, teplota) a v trvalém
+výkonu — tam má mini navrch.
+
+Jediné číslo přímo z mini je **~30 tok/s** pro Qwen3.8 FN v IQ4 přes
+Hermes, krátký chat bez uvedené konfigurace. Jiný engine a kvantizace,
+tedy není srovnatelné s 35 tok/s v llama.cpp. Na jiném modelu
+(Qwen3.8 27B, Q4_K_M) dal stolní N1X 13,1 / 31,4 / 40,0 tok/s při
+1 / 4 / 8 požadavcích, zatímco notebooky 12,6 / 28,1 / 33,8 a 12,4 /
+27,5 / 31,9.
 
 | Konfigurace | Decode | Poznámka |
 |---|---:|---|
-| llama.cpp | 35,37 tok/s | notebook, konzervativní baseline |
-| vLLM port | 70,44 tok/s | notebook, optimalizovaný komunitní build |
-| Mini, Qwen3.8 FN v IQ4 | ~30 tok/s | krátký chat, konfigurace neuvedena |
-| Mini, Qwen3.8 27B, 8 požadavků | 40,0 tok/s | agregát, jiný model |
+| llama.cpp (notebook i mini) | 35,37 tok/s | naměřeno na notebooku; stejný čip a paměť |
+| vLLM port (notebook i mini) | 70,44 tok/s | naměřeno na notebooku; stejný build pro Windows ARM64 |
+| Mini, Qwen3.8 FN v IQ4 přes Hermes | ~30 tok/s | jiný engine a kvantizace, není srovnatelné |
+| Mini vs. notebook, 27B, 8 požadavků | 40,0 vs. 31,9–33,8 tok/s | jiný model; stolní chlazení drží víc |
 
 Pro plánování berte **spodní hranici**. 70 tok/s není výchozí stav
-a na baterii nebo při throttlingu může být nižší. U mini chybí dlouhý
-kontext a souběžnost na Qwen3.8 FN.
+a na baterii nebo při throttlingu může být nižší. U obou strojů chybí
+TTFT, prefill a dlouhý kontext na Qwen3.8 FN.
 
 ## Windows ARM64 a CUDA
 

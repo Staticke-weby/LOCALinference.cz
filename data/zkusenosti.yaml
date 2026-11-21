@@ -38,8 +38,9 @@
   chybi: "Chybí nezávislé měření hluku v dB pro OEM varianty; čísla výše platí pro Founders Edition."
 
 - zarizeni: rtx-spark-mini
-  souhrn: "Stolní RTX Spark drží výkon lépe než notebook: v recenzích se po 30 minutách zátěže nesnížil a zůstal pod 90 °C. Hlavní výtky jsou cena a porty. Veřejné měření Qwen3.8 Flash Next je zatím jedno a z krátkého chatu."
+  souhrn: "Stolní RTX Spark drží výkon lépe než notebook: v recenzích se po 30 minutách zátěže nesnížil a zůstal pod 90 °C. Hlavní výtky jsou cena a porty. Qwen3.8 Flash Next na mini nikdo veřejně neměřil, ale čip, paměť i Windows ARM64 jsou stejné jako u notebooku, takže platí jeho čísla (35,37 tok/s llama.cpp, 70,44 tok/s vLLM port)."
   opakuje:
+    - "Stejný čip, paměť i systém: decode Qwen3.8 FN je stejný jako u notebooku; mini přidává jen trvalý výkon a ticho."
     - "Stolní chlazení je znát: trvalý výkon je o 5–12 % vyšší než u notebooku se stejným čipem a teploty jsou o 14 °C nižší. Notebooky v testu skóre neztratily, jen jely na teplotním stropu."
     - "128 GB je hlavní důvod koupě, ne hrubý výkon; paměť je připájená a rozšiřuje se jen SSD."
     - "Výhoda roste se souběžností: při 8 požadavcích je stolní stroj o 18–25 % rychlejší než notebook."
@@ -96,7 +97,7 @@
       datum: 2026-10-15
       typ: nezavisle
       text: "Výchozí rozdělení 128 GB je 64 GB pro GPU a 64 GB pro systém; pro větší model se musí poměr změnit ručně. Autor to považuje za hlavní praktickou komplikaci."
-  chybi: "Chybí veřejné měření Qwen3.8 Flash Next na stolním RTX Spark na dlouhém kontextu a při souběžnosti; jediné číslo je krátký chat v IQ4. Hluk uvádějí dva zdroje různě (pod 55 dB vs. 57 dBA proti tichu 30 dBA) a chybí reporty českých majitelů."
+  chybi: "Chybí veřejné měření Qwen3.8 Flash Next přímo na stolním RTX Spark: čísla notebooku platí podle shodného čipu a paměti, ale na mini je nikdo neověřil. Chybí TTFT, prefill a dlouhý kontext na obou strojích. Hluk uvádějí dva zdroje různě (pod 55 dB vs. 57 dBA proti tichu 30 dBA) a chybí reporty českých majitelů."
 
 - zarizeni: rtx-spark-notebook
   souhrn: "Notebooky RTX Spark dostávají chválu za AI výkon a kritiku za baterii, teplo a hluk. Je to první generace s raným softwarem."

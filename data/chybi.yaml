@@ -235,7 +235,7 @@ polozky:
     stav: hleda-se
     davka: 2
     hledat: "NVIDIA forum, llamaperf, Reddit, GitHub benchmarky"
-    poznamka: "21. 11. 2026: Chaping (ifeng) naměřil na ASUS ProArt GR1X 128 GB Qwen3.8 Flash Next v IQ4 přes Hermes ~30 tok/s, krátký chat, konfigurace neuvedena (v datech jako nízka důvěryhodnost). StorageReview dal na Qwen3.8 27B (jiný model) 13,1 / 31,4 / 40,0 tok/s při 1 / 4 / 8 požadavcích. Chybí FN na dlouhém kontextu a se souběžností."
+    poznamka: "21. 11. 2026: Chaping (ifeng) naměřil na ASUS ProArt GR1X 128 GB Qwen3.8 Flash Next v IQ4 přes Hermes ~30 tok/s, krátký chat, konfigurace neuvedena (v datech jako nízka důvěryhodnost). Jiný engine a kvantizace, takže to není srovnatelné s notebookem. Čip, paměť i Windows ARM64 jsou u mini a notebooku shodné, proto se čísla notebooku (35,37 llama.cpp, 70,44 vLLM port) berou i pro mini; na mini je nikdo neověřil. StorageReview dal na Qwen3.8 27B 13,1 / 31,4 / 40,0 tok/s při 1 / 4 / 8 požadavcích. Chybí FN na dlouhém kontextu, TTFT a prefill."
     zdroj: https://tech.ifeng.com/c/8yAEYHt7q3u
     overeno: 2026-11-21
 
