@@ -29,7 +29,7 @@ hledáte nejnižší cenu za 128 GB.
 
 <aside class="tip">
 **Pro koho:** malý pool, 1–4 lidé, CUDA, stálý provoz.
-**Pro koho ne:** práce na cestě, 20+ uživatelů, nejzralejší Linux stack.
+**Pro koho ne:** práce na cestě, 20+ uživatelů, Linux a DGX OS.
 **Minimum pro denní práci:** Qwen3.8 Flash Next na 128 GB.
 </aside>
 
@@ -53,8 +53,8 @@ Windows po první chat s modelem.
 - **Co to stojí:** 194 990 Kč vč. DPH za ASUS ProArt GR1X 128GB/2TB
   (21. 11. 2026, na objednávku). V USA stolní RTX Spark začínají
   na 4 399 USD bez DPH a dopravy.
-- **Kde narazíte:** cena je v ČR vyšší než u DGX Spark, porty jsou jen
-  USB-C a Windows on Arm je mladý.
+- **Kde narazíte:** cena je v ČR vyšší než u DGX Spark a porty jsou
+  jen USB-C.
 
 ## Rychlá fakta
 
@@ -204,14 +204,13 @@ Qwen3.8 FN na 128k a 262k je `[DOPLNIT: měření]`.
   ve velkém a auditní stopu bez vlastního registru.
 - **Nejlepší využití:** stálý box na stole, který má model pořád
   načtený a odpovídá přes API i mimo pracovní dobu.
-- **Kde narazí:** porty, cena proti DGX Spark a raný Windows on Arm.
+- **Kde narazí:** porty a cena proti DGX Spark.
 
-## Windows on Arm: co čekat
+## Windows on Arm: co potřebujete vědět
 
-- **CUDA na Windows ARM je developer preview.** Dorazila v roce 2026
-  (CUDA 13.4) a je zaměřená na RTX Spark; část nástrojů ještě nemá
-  ARM64 build.
-- **Python stack:** potřebujete ARM64 kola. Knihovny bez nich se
+- **CUDA na Windows ARM** vede NVIDIA jako developer preview (CUDA
+  13.4, 2026); XDA ji popisuje jako „verzi 1“.
+- **Python stack:** knihovny potřebují ARM64 kola. Bez nich se
   nespustí, i když na Linuxu fungují.
 - **Paměť:** ASUS ve výchozím stavu rezervuje systému 64 GB. Podíl
   se mění v ProArt Creator Hubu; po přenastavení viděl Windows 46,4 GB
@@ -222,6 +221,11 @@ Qwen3.8 FN na 128k a 262k je `[DOPLNIT: měření]`.
 - **Ovladače:** recenze hlásí občasné bliknutí externího displeje
   a jeden black screen; autor to přičítá ovladačům. Před nasazením
   do provozu to ověřte na své sestavě.
+- **Co v testech fungovalo:** BenchLife projel llama.cpp, Ollama
+  a ComfyUI, ifeng běžné aplikace i hry a obě recenze je rozjely.
+  Starší x86 programy běží přes emulaci; u velkých CAD sestav může být
+  odezva horší (ifeng naměřil nízké skóre v Creo a CATIA). Digit
+  upozorňuje, že kompatibilita závisí na konkrétní úloze.
 
 ## Na co si dát pozor
 
@@ -235,7 +239,7 @@ Qwen3.8 FN na 128k a 262k je `[DOPLNIT: měření]`.
   jsou slyšet; konkrétní čísla se mezi recenzemi rozcházejí
   (pod 55 dB vs. 57 dBA) a metodika není popsána.
 - **Windows/Arm:** nativní vLLM port existuje, ale je komunitní.
-  Oficiální vLLM Windows nepodporuje a část ekosystému může chybět.
+  Starší x86 aplikace běží přes emulaci.
 - **Cena.** 194 990 Kč je víc než ASUS Ascent GX10 (168 990 Kč)
   i než nejlevnější DGX Spark. Za Windows a stolní formu si připlácíte.
 
