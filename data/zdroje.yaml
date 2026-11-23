@@ -512,9 +512,9 @@
   frekvence: tydne
   priorita: vysoka
   kontrola: manual
-  posledni_kontrola: 2026-11-09
+  posledni_kontrola: 2026-11-23
   stav: ok
-  poznamka: "fetch/HEAD vrací 403; ceny se ověřují ručně v OpenChamber browseru."
+  poznamka: "fetch/HEAD vrací 403; ceny ověřuje týdenní běh hlídače v OpenChamber browseru, ne skript."
 
 - id: alza-rtx-spark
   nazev: Alza.cz - RTX Spark (kategorie)
@@ -524,9 +524,9 @@
   frekvence: tydne
   priorita: vysoka
   kontrola: manual
-  posledni_kontrola: 2026-11-09
+  posledni_kontrola: 2026-11-23
   stav: ok
-  poznamka: "fetch/HEAD vrací 403; ceny se ověřují ručně v OpenChamber browseru."
+  poznamka: "fetch/HEAD vrací 403; ceny ověřuje týdenní běh hlídače v OpenChamber browseru, ne skript."
 
 - id: alza-rtx-spark-pocitace
   nazev: Alza.cz - Počítače s NVIDIA RTX Spark (kategorie)
@@ -536,9 +536,9 @@
   frekvence: tydne
   priorita: vysoka
   kontrola: manual
-  posledni_kontrola: 2026-11-21
+  posledni_kontrola: 2026-11-23
   stav: ok
-  poznamka: "Stolní větev RTX Spark. K 21. 11. 2026 šest položek: ASUS ProArt GR1X 128GB/2TB s cenou, 64GB bez zájmu katalogu a čtyři MSI EdgeMesa N AI+ bez ceny."
+  poznamka: "Stolní větev RTX Spark. K 23. 11. 2026 šest položek: ASUS ProArt GR1X 128GB/2TB za 194 990 Kč, 64GB varianta, čtyři MSI EdgeMesa N AI+ bez ceny. Ověřuje týdenní běh hlídače v OpenChamber browseru."
 
 - id: storagereview-proart-gr1x
   nazev: StorageReview - ASUS ProArt GR1X
@@ -551,6 +551,30 @@
   posledni_kontrola: 2026-11-21
   stav: ok
   poznamka: "První laboratorní test stolního RTX Spark; srovnává GR1X, MSI EdgeMesa a dva notebooky se stejným čipem."
+
+- id: computerbase-msi-edgemesa
+  nazev: ComputerBase - MSI EdgeMesa N AI+
+  url: https://www.computerbase.de/artikel/pc-systeme/msi-edgemesa-n-ai-nvidia-rtx-spark-test.100328/
+  typ: html
+  co_sledujeme: [prikon, teploty, cena, srovnani-notebook]
+  frekvence: mesicne
+  priorita: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-23
+  stav: ok
+  poznamka: "Měří příkon jen GPU při inferenci; není to odběr ze zásuvky. Německé ceny, na CZ web se bere jen technika."
+
+- id: tomshardware-msi-edgemesa
+  nazev: Tom's Hardware - MSI EdgeMesa N AI+
+  url: https://www.tomshardware.com/desktops/mini-pcs/msi-edgemesa-n-ai-plus-review
+  typ: html
+  co_sledujeme: [parametry, cena, porty, windows-on-arm]
+  frekvence: mesicne
+  priorita: stredni
+  kontrola: manual
+  posledni_kontrola: 2026-11-23
+  stav: ok
+  poznamka: "Konfigurace 128GB/4TB za 7 499,99 USD; na CZ web jde cena jen jako US list price."
 
 - id: ifeng-chaping-proart-gr1x
   nazev: 差评 (Chaping) — ASUS ProArt GR1X, převzato ifeng

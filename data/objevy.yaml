@@ -49,3 +49,21 @@ polozky:
     proc: "Aktualizované GGUF z 4. 11. 2026 s vyšší přesností kvantizace. Může změnit doporučenou kvantizaci na llama.cpp."
     stav: novy
     poznamka: "Ověřit čísla z model cardu a porovnat s dosavadní UD-IQ4_XS."
+
+  - id: O-006
+    datum: 2026-11-23
+    typ: zarizeni
+    nazev: "Dell Creator Edition Desktop (DM1273) 128 GB"
+    url: https://www.dell.com/en-us/shop/desktop-computers/spd/dellcreatoreditiondesktopdm1273
+    proc: "Stolní RTX Spark N1X se 128 GB, v prodeji na Dell.com od 18. 11. 2026. V datech chybí; česká dostupnost ani cena nejsou."
+    stav: novy
+    poznamka: "Dell.com 23. 11. 2026 uvádí 7 464 USD za 128GB/2TB (Gen4 QLC, adaptér 280 W). Žádný nezávislý test zatím neexistuje. Rozhodnout, zda vést jako variantu RTX Spark mini (americká cena v zarizeni.yaml), nebo počkat na českou nabídku."
+
+  - id: O-007
+    datum: 2026-11-23
+    typ: zarizeni
+    nazev: "GIGABYTE AI TOP AERO 128 GB"
+    url: https://www.gigabyte.com/press/news/2467
+    proc: "Jednolirový stolní RTX Spark N1X, až 128 GB a 4TB Gen5 SSD, Windows 11. Oznámeno 10. 11. 2026."
+    stav: novy
+    poznamka: "GIGABYTE k 23. 11. 2026 neuvádí cenu, konfigurace ani prodejní stránku (jen globální tisková zpráva). Zařadit až s cenou a dostupností."

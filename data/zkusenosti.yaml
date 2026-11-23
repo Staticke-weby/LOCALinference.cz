@@ -86,6 +86,16 @@
       datum: 2026-06-13
       typ: nezavisle
       text: "Chválí 128 GB pro modely nad 70B parametrů a poměr výkonu k velikosti. Vytýká vysokou cenu, připájenou RAM a raný Arm ekosystém."
+    - vydavatel: "ComputerBase — MSI EdgeMesa N AI+"
+      url: "https://www.computerbase.de/artikel/pc-systeme/msi-edgemesa-n-ai-nvidia-rtx-spark-test.100328/"
+      datum: 2026-11-18
+      typ: nezavisle
+      text: "Mini PC s N1X má proti notebooku povolených až 140 W místo 80 W. Při inferenci Qwen 3.8 27B naměřil výkon jen GPU 64,1 W proti 38,4 W u notebooku ProArt P16, v Blenderu 51,5 W proti 53,6 W. Cena 128GB/4TB je 7 999 EUR, 64GB/1TB 4 599 EUR (německý trh)."
+    - vydavatel: "Tom's Hardware — MSI EdgeMesa N AI+"
+      url: "https://www.tomshardware.com/desktops/mini-pcs/msi-edgemesa-n-ai-plus-review"
+      datum: 2026-11-20
+      typ: nezavisle
+      text: "128 GB LPDDR5X se sdílenou propustností 273 GB/s, 4TB NVMe, 10GbE, Wi-Fi 7 a 240 W přes USB-C. Konfigurace za 7 499,99 USD. Jako slabinu vidí omezené porty a kompatibilitu Windows on Arm."
     - vydavatel: "差评 (Chaping), převzato ifeng — ASUS ProArt GR1X"
       url: "https://tech.ifeng.com/c/8yAEYHt7q3u"
       datum: 2026-11-18

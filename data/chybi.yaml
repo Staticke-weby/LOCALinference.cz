@@ -381,9 +381,9 @@ polozky:
     stav: prubezne
     davka: 3
     hledat: "recenze, fóra, měření uživatelů"
-    poznamka: "Na strankach: DGX Spark 60-90 W a 37,5 dBA/46 cm (Tom's), 159 W/30 dB(A) (Guru3D); Strix Halo Framework Desktop 23,4 dB idle a 36,6-40,1 zatez, 144 W (Notebookcheck), GMKtec EVO-X2 47 dB a 128,9 W; Gorgon EVO-X5 Pro 36 dB idle a 43-44 dB pri 120 W (ComputerBase); Mac Studio do 30 dBA a 7-9 W idle (Apple, HotHardware). 21. 11. 2026: stolní RTX Spark má první čísla - ASUS GR1X pod 55 dB v zátěži (Windows Central), ale 57 dBA proti tichu 30 dBA a 98 °C na SoC (Profesional Review); Cinebench loop 83,3/88,7 °C (StorageReview). Chybí vzdálenost a metodika měření hluku, chybí příkon ze zásuvky."
+    poznamka: "Na strankach: DGX Spark 60-90 W a 37,5 dBA/46 cm (Tom's), 159 W/30 dB(A) (Guru3D); Strix Halo Framework Desktop 23,4 dB idle a 36,6-40,1 zatez, 144 W (Notebookcheck), GMKtec EVO-X2 47 dB a 128,9 W; Gorgon EVO-X5 Pro 36 dB idle a 43-44 dB pri 120 W (ComputerBase); Mac Studio do 30 dBA a 7-9 W idle (Apple, HotHardware). 21. 11. 2026: stolní RTX Spark má první čísla - ASUS GR1X pod 55 dB v zátěži (Windows Central), ale 57 dBA proti tichu 30 dBA a 98 °C na SoC (Profesional Review); Cinebench loop 83,3/88,7 °C (StorageReview). 23. 11. 2026: ComputerBase měří u MSI EdgeMesa příkon jen GPU při inferenci Qwen 3.8 27B 64,1 W proti 38,4 W u notebooku ProArt P16 (51,5 W v Blenderu); pořád to není odběr ze zásuvky. Chybí vzdálenost a metodika měření hluku, chybí příkon ze zásuvky."
     zdroj: https://www.storagereview.com/review/asus-proart-gr1x-review
-    overeno: 2026-11-21
+    overeno: 2026-11-23
 
   - id: D13
     oblast: kvalita
@@ -430,7 +430,7 @@ polozky:
     stav: hotovo
     davka: 4
     hledat: "Alza podle objednacího kódu"
-    poznamka: "Alza zkontrolovana v prohlizeci 18. 11. 2026. Tri ceny nesedely a jsou prepsane: GX10 1TB 168 990, PGX 2TB 199 990, Veriton GN100 4TB 229 990; texty s cenou na 14 mistech sladi. Jedenact SKU dostalo odkaz na produkt misto odkazu na kategorii."
+    poznamka: "Alza zkontrolovana v prohlizeci 18. 11. 2026. Tri ceny nesedely a jsou prepsane: GX10 1TB 168 990, PGX 2TB 199 990, Veriton GN100 4TB 229 990; texty s cenou na 14 mistech sladi. Jedenact SKU dostalo odkaz na produkt misto odkazu na kategorii. 23. 11. 2026: kontrola zopakovana pres OpenChamber browser (14 GB10, 6 notebooku, 3 Strix Halo, 3 RTX mini, Mac Studio); zmeny zapsany v data/zmeny.yaml, dva odkazy vedly na ukonceny prodej a jsou opravene."
     zdroj: null
     overeno: 2026-11-09
 
