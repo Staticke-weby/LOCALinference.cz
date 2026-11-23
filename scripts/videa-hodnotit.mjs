@@ -27,6 +27,14 @@ const ZARIZENI = {
 
 const CISLA = /(?<![\d:.,])(\d+(?:[.,]\d+)?)\s*(tok\/s|t\/s|token\/s|gb\/s|gb|w|dba|db|°c)(?![\w])/gi;
 const KLIKBAIT = /(you won'?t believe|insane|mind.?blowing|shocking|game.?changer|must see|top \d+)/i;
+/**
+ * Stroj s méně než 128 GB unified paměti. Bere se jen titulek a začátek
+ * popisu (specifikace testovaného kusu), aby video o 128GB stroji nespadlo
+ * jen proto, že na okraj zmíní 64 GB model.
+ */
+const MALA_PAMET = /\b(8|16|24|32|36|48|64)\s*gb\b[^.\n]{0,30}(unified|unificada|ram|memory|pamě[tť])/i;
+const MALA_PAMET_OPACNE = /(unified|unificada|ram|memory|pamě[tť])[^.\n]{0,30}\b(8|16|24|32|36|48|64)\s*gb\b/i;
+const jeMalaPamet = (text) => MALA_PAMET.test(text) || MALA_PAMET_OPACNE.test(text);
 // Reklamní popis: affiliate odkazy, sponzorské kódy, prodej klíčů.
 const SPONZOR =
   /(sponsor|affiliate|amazon associate|patreon|use code|discount code|slevov|urcdkey|kup(?:te|ono)?\s+klí|windows keys|reklamn)/i;
@@ -144,6 +152,15 @@ function ohodnot(video, html, titulkyText) {
   if (!vTextu) skore = Math.min(skore, 3);
   if (sponzorovane) skore = Math.min(skore, 2);
 
+  // Stroj pod 128 GB je mimo katalog, i když video zmiňuje 128 GB u něčeho jiného.
+  const uvod = `${video.nazev} ${info.popis.slice(0, 300)}`;
+  const malaPamet = jeMalaPamet(uvod);
+  if (malaPamet) skore = Math.min(skore, 2);
+
+  // Sestavy z více GPU (VRAM), racky, clustery a trénink do katalogu nepatří.
+  const mimoZaber = /(vram|whitebox|sestav|cluster|\brack\b|trénink|training|fine.?tun)/i.test(uvod);
+  if (mimoZaber) skore = Math.min(skore, 2);
+
   const kvalita = Math.max(1, Math.min(5, skore));
 
   const casti = ['Automaticky z popisu a titulků.'];
@@ -151,12 +168,14 @@ function ohodnot(video, html, titulkyText) {
   if (cisla.length) casti.push(`Zmiňuje ${cisla.slice(0, 3).join(', ')}.`);
   if (vTextu) casti.push('Zařízení je v textu jmenované.');
   else casti.push('Zařízení v textu přímo nejmenuje.');
+  if (malaPamet) casti.push('Zmiňuje stroj s méně než 128 GB paměti — mimo katalog.');
+  if (mimoZaber) casti.push('Sestava z více GPU, cluster nebo trénink — mimo katalog.');
   if (klikbait) casti.push('Titulek je bulvární.');
   if (sponzorovane) casti.push('Popis je reklama bez věcného obsahu.');
 
   return {
     kvalita,
-    stav: sponzorovane ? 'zamitnuto' : 'prohlednuto',
+    stav: sponzorovane || mimoZaber ? 'zamitnuto' : 'prohlednuto',
     sponzorovane,
     auto: true,
     delka_s: info.delka || null,

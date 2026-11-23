@@ -14,6 +14,7 @@ const ZAPIS = process.argv.includes('--zapis');
 const KONTROLA = process.argv.includes('--kontrola');
 
 const chyby = [];
+const varovani = [];
 
 if (!Array.isArray(videa)) chyby.push('soubor musí být seznam');
 
@@ -37,6 +38,21 @@ for (const [i, v] of (Array.isArray(videa) ? videa : []).entries()) {
 }
 
 const pocty = STAVY.map((s) => [s, videa.filter((v) => v?.stav === s).length]);
+
+// Video s dobrým hodnocením, které už dva týdny čeká na český popis, se na
+// stránkách ukáže jen v originále. Upozornit, aby fronta nezrezla.
+const dnes = Date.now();
+const cekaNaPopis = videa.filter((v) => {
+  if (!v || v.stav === 'zamitnuto' || v.popis_cs || (v.kvalita ?? 0) < 4) return false;
+  const od = Date.parse(String(v.poprve ?? v.vydano ?? ''));
+  return Number.isFinite(od) && dnes - od > 14 * 24 * 3600 * 1000;
+});
+if (cekaNaPopis.length) {
+  varovani.push(
+    `${cekaNaPopis.length} videí s kvalitou 4–5 čeká na popis_cs déle než 14 dní (na stránkách jsou zatím v originále)`,
+  );
+}
+
 const fronta = videa
   .filter((v) => v?.stav === 'novy')
   .sort(
@@ -51,11 +67,14 @@ if (chyby.length) {
   for (const c of chyby) console.log(`  ✗ ${c}`);
   process.exitCode = 1;
 }
+if (varovani.length) {
+  console.log(`\nVarování: ${varovani.length}`);
+  for (const v of varovani) console.log(`  ! ${v}`);
+}
 
 if (KONTROLA) {
   if (!chyby.length) console.log('\n✓ Fronta videí je v pořádku.');
-} else if (fronta.length) {
-  console.log('\nKe zhlédnutí:');
+} else if (fronta.length) {  console.log('\nKe zhlédnutí:');
   for (const v of fronta.slice(0, 30)) {
     console.log(`  ${v.poprve ?? ''}  ${v.zarizeni ?? ''}  ${v.nazev}`);
     console.log(`              ${v.url}`);

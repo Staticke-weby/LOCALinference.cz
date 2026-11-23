@@ -26,6 +26,12 @@ const ceka = vsechna.filter((v) => v.stav === 'novy').length;
               {v.kvalita ? ` · kvalita ${v.kvalita}/5` : ''}
             </span>
             {v.popis_cs && <p class="li-videa__popis">{v.popis_cs}</p>}
+            {!v.popis_cs && v.popis && (
+              <p class="li-videa__popis">
+                {v.popis}{' '}
+                <span class="li-videa__orig">popis převzatý z videa (originál)</span>
+              </p>
+            )}
             {v.nazor_cs && (
               <p class="li-videa__nazor">
                 <strong>Jak to hodnotí:</strong> {v.nazor_cs}
@@ -46,7 +52,9 @@ const ceka = vsechna.filter((v) => v.stav === 'novy').length;
     Videa nehostujeme. Odkazy vedou na YouTube a otevírají se v nové kartě.
     Hodnocení je automatické podle popisu videa a dostupných titulků, ne ze
     zhlédnutí. Data vydání jsou orientační, u novějších videí jsou přesnější.
-    Novější videa mají přednost: software a návody k modelům rychle stárnou.
+    U části videí je popis převzatý z YouTube v originále, protože český
+    ještě není; je to označené. Novější videa mají přednost: software a
+    návody k modelům rychle stárnou.
   </p>
 </div>
 
@@ -75,6 +83,10 @@ const ceka = vsechna.filter((v) => v.stav === 'novy').length;
     margin: 0.2rem 0 0;
     font-size: var(--sl-text-sm);
     color: var(--sl-color-gray-2);
+  }
+  .li-videa__orig {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
   }
   .li-videa__prazdno {
     color: var(--sl-color-gray-2);

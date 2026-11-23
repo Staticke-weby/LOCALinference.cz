@@ -576,9 +576,9 @@
   poprve: '2026-11-13'
   vydano: '2026-10-02'
   vydano_odhad: false
-  stav: prohlednuto
+  stav: zamitnuto
   kvalita: 4
-  proc: Automaticky z popisu a titulků. Délka 5 min. Zmiňuje 64gb, 128gb, 192gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  proc: "Ruční korekce: testuje DGX Spark se 64 GB, tedy verzi mimo katalog (128 GB+)."
   auto: true
   delka_s: 291
   shlednuti: 65823
@@ -3053,9 +3053,9 @@
   poprve: '2026-11-13'
   vydano: '2026-10-28'
   vydano_odhad: false
-  stav: prohlednuto
+  stav: zamitnuto
   kvalita: 5
-  proc: Automaticky z popisu a titulků. Délka 20 min. Zmiňuje 128gb, 24gb, 118 gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  proc: "Ruční korekce: cluster 1–4 DGX Sparků (pool), ne jedno zařízení."
   auto: true
   delka_s: 1178
   shlednuti: 5865
@@ -5201,7 +5201,7 @@
   url: https://www.youtube.com/watch?v=B3duKgLo_Ck
   nazev: I Ran a 70B AI Model on the Surface Laptop Ultra (RTX Spark Review)
   kanal: The Bulldog Tech
-  zarizeni: rtx-spark-mini
+  zarizeni: rtx-spark-notebook
   poprve: '2026-11-18'
   vydano: '2026-11-05'
   vydano_odhad: false
@@ -6527,7 +6527,6 @@
   nazor_auto: true
   titulky: false
   popis_cs: 'Maďarský test DGX Sparku po několika týdnech běhu lokálních modelů: pro koho se 128 GB vyplatí a pro koho ne. Délka 33 minut.'
-
 - id: HsFAGEY0_jY
   url: https://www.youtube.com/watch?v=HsFAGEY0_jY
   nazev: I ran Qwen 3.8 on a laptop and I'm blown away
@@ -6672,7 +6671,6 @@
   nazor_auto: true
   titulky: false
   popis_cs: 'Třicet dní provozu Mac Studia M5 Ultra pro lokální AI: co funguje, co ne a která kombinace čipu a paměti dává smysl. Délka 13 minut.'
-
 - id: vVxujZS4hFA
   url: https://www.youtube.com/watch?v=vVxujZS4hFA
   nazev: Local AI is No Longer an Option. Here is Why
@@ -6734,7 +6732,7 @@
   vydano_odhad: false
   stav: zamitnuto
   kvalita: 5
-  proc: "Ruční korekce: srovnává M5 Pro se 48 GB a M5 Max se 36 GB, oba pod hranicí katalogu (128 GB+)."
+  proc: 'Ruční korekce: srovnává M5 Pro se 48 GB a M5 Max se 36 GB, oba pod hranicí katalogu (128 GB+).'
   sponzorovane: false
   auto: true
   delka_s: 502
@@ -6761,7 +6759,7 @@
   vydano_odhad: false
   stav: zamitnuto
   kvalita: 5
-  proc: "Ruční korekce: test běží na MacBooku Pro s 36 GB unified paměti, tedy mimo katalog (128 GB+)."
+  proc: 'Ruční korekce: test běží na MacBooku Pro s 36 GB unified paměti, tedy mimo katalog (128 GB+).'
   sponzorovane: false
   auto: true
   delka_s: 586
@@ -6798,6 +6796,101 @@
   popis: >-
     Mac mini local AI in November 2026, for anyone running a Mac mini LLM at home: we re-checked the five things the extra $1,000 for an M5 Pro 48GB buys over the $1,299 M6 32GB, with this month's
     free engines. The M6 Mac mini now writes Qwen 3.8 27B at about 28 tokens a second on a 
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: 3gy34XTFEIQ
+  url: https://www.youtube.com/watch?v=3gy34XTFEIQ
+  nazev: Every Way to Get 512GB of VRAM for Local AI
+  kanal: RepoChad
+  zarizeni: strix-halo
+  poprve: '2026-11-23'
+  vydano: '2026-10-31'
+  vydano_odhad: false
+  stav: zamitnuto
+  kvalita: 5
+  proc: "Ruční korekce: sestavy z více GPU (512 GB VRAM), whitebox mimo katalog."
+  sponzorovane: false
+  auto: true
+  delka_s: 1203
+  shlednuti: 21489
+  cisla:
+    - 512gb
+    - 1gb
+    - 129gb
+    - 768gb
+    - 64gb
+    - 32gb
+    - 128gb
+    - 96gb
+  popis: >-
+    Apple just priced the 512GB Mac Studio at $22,299, and it ships in January. So I priced every other way to get 512GB of memory for local AI, using what things actually sold for on US eBay this
+    week, not what sellers are asking.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: y9PcvOqaZ3U
+  url: https://www.youtube.com/watch?v=y9PcvOqaZ3U
+  nazev: 40K Lore - The Siege of Vraks (Part 4) - The Screams of the Dead
+  kanal: The Pontius
+  zarizeni: gorgon-halo
+  poprve: '2026-11-23'
+  vydano: '2026-11-21'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 2
+  proc: Automaticky z popisu a titulků. Délka 89 min. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 5333
+  shlednuti: 11296
+  cisla: []
+  popis: The return of an old friend of the channel. Also the world seemed to not want me to edit this video, gladly my autism is too strong for life to counter.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: '-pYbBmB14Sk'
+  url: https://www.youtube.com/watch?v=-pYbBmB14Sk
+  nazev: I Turned a £200 Trash Can Mac Pro Into a Linux AI Server in 2026
+  kanal: DevWithZachary
+  zarizeni: macbook-pro
+  poprve: '2026-11-23'
+  vydano: '2026-11-16'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 33 min. Zmiňuje 3gb, 6gb, 240 gb/s. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 1997
+  shlednuti: 52543
+  cisla:
+    - 3gb
+    - 6gb
+    - 240 gb/s
+    - 8gb
+    - 64gb
+    - 28w
+    - 32gb
+    - 36gb
+    - 410 gb/s
+    - 392.5 tok/s
+    - 36.6 tok/s
+    - 178.3 tok/s
+    - 22.1 tok/s
+    - 74.4 tok/s
+    - 13.0 tok/s
+    - 27.6 tok/s
+    - 6.40 tok/s
+    - 9.06 tok/s
+    - 2.53 tok/s
+    - 120w
+  popis: >-
+    Can a £200 2013 "Trash Can" Apple Mac Pro (MacPro6,1) running Linux actually beat modern hardware for local AI, vision alt-text, and daily coding in 2026? Out of the box, modern local AI tools hit
+    three brick walls on this machine: AMD dropped ROCm support for GCN 1.0 (FirePro D5
   nazor: ''
   popis_auto: true
   nazor_auto: true
