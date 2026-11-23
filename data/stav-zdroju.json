@@ -2,7 +2,7 @@
   "qwen-blog": {
     "url": "https://qwen.ai/blog",
     "signature": "text:28a5651e858aeea9",
-    "checkedAt": "2026-11-23T08:41:56.415Z",
+    "checkedAt": "2026-11-23T09:35:56.346Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -10,7 +10,7 @@
   "qwen38-flash-next-hf": {
     "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
     "signature": "hf:812d96e10a0dd82b69d749e68693698cf6c36daa:2026-11-07T04:42:40.000Z",
-    "checkedAt": "2026-11-23T08:41:56.651Z",
+    "checkedAt": "2026-11-23T09:35:56.594Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -18,7 +18,7 @@
   "qwen38-blog": {
     "url": "https://qwen.ai/blog?id=qwen3.8-flash-next",
     "signature": "text:28a5651e858aeea9",
-    "checkedAt": "2026-11-23T08:41:57.024Z",
+    "checkedAt": "2026-11-23T09:35:56.975Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -26,7 +26,7 @@
   "vllm-qwen38-recipe": {
     "url": "https://recipes.vllm.ai/Qwen/Qwen3.8-Flash-Next",
     "signature": "text:26d449a0c11b377e",
-    "checkedAt": "2026-11-23T08:41:57.227Z",
+    "checkedAt": "2026-11-23T09:35:57.205Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -34,7 +34,7 @@
   "news-qq-rtx-prices": {
     "url": "https://news.qq.com/rain/a/20261008A04Z5W00",
     "signature": "text:7a4b141816e2eccc",
-    "checkedAt": "2026-11-23T08:41:58.449Z",
+    "checkedAt": "2026-11-23T09:35:57.895Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -42,7 +42,7 @@
   "vllm-recipes": {
     "url": "https://recipes.vllm.ai/",
     "signature": "text:3b2bbfb771603233",
-    "checkedAt": "2026-11-23T08:41:58.550Z",
+    "checkedAt": "2026-11-23T09:35:57.993Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -50,24 +50,23 @@
   "sglang-cookbook": {
     "url": "https://docs.sglang.io/cookbook/",
     "signature": "text:b139b26b9b288f33",
-    "checkedAt": "2026-11-23T08:41:59.961Z",
+    "checkedAt": "2026-11-23T09:35:59.404Z",
     "status": "ok",
     "items": [],
     "seen": []
   },
   "llamaperf-strix-halo": {
     "url": "https://llamaperf.com/gpu/strix-halo-128gb",
-    "signature": "text:d28494d8c5d7d70d",
-    "checkedAt": "2026-11-23T08:42:19.980Z",
-    "status": "error",
-    "error": "The operation was aborted due to timeout",
+    "signature": "text:f260d69f71df1f0d",
+    "checkedAt": "2026-11-23T09:35:59.638Z",
+    "status": "ok",
     "items": [],
     "seen": []
   },
   "inferencex": {
     "url": "https://inferencex.semianalysis.com/",
     "signature": "text:cbd75c4e81dc7053",
-    "checkedAt": "2026-11-23T08:42:20.172Z",
+    "checkedAt": "2026-11-23T09:35:59.868Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -75,7 +74,7 @@
   "nvidia-dgx-spark": {
     "url": "https://www.nvidia.com/en-us/products/workstations/dgx-spark/",
     "signature": "text:a83482a0fd787846",
-    "checkedAt": "2026-11-23T08:42:20.488Z",
+    "checkedAt": "2026-11-23T09:36:00.210Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -83,7 +82,7 @@
   "nvidia-rtx-spark": {
     "url": "https://www.nvidia.com/en-us/products/rtx-spark/",
     "signature": "text:4598f97939759f5d",
-    "checkedAt": "2026-11-23T08:42:20.643Z",
+    "checkedAt": "2026-11-23T09:36:00.528Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -91,7 +90,7 @@
   "nvidia-rtx-spark-porting": {
     "url": "https://docs.nvidia.com/rtx-spark/rtx-spark-porting-guide/latest/overview.html",
     "signature": "text:fe69a7bbbb7e5983",
-    "checkedAt": "2026-11-23T08:42:20.876Z",
+    "checkedAt": "2026-11-23T09:36:00.924Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -99,7 +98,7 @@
   "madeye-dgx-spark": {
     "url": "https://madeye.github.io/qwen38-flash-next-on-dgx-spark/",
     "signature": "text:1888c27c7c7bcdb1",
-    "checkedAt": "2026-11-23T08:42:21.133Z",
+    "checkedAt": "2026-11-23T09:36:01.052Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -107,7 +106,7 @@
   "corsair-dgx-spark": {
     "url": "https://www.corsair.com/us/en/explorer/corsair-pro/software/qwen38-flash-next-dgx-spark-tutorial/",
     "signature": "text:d2db674b4ce4b35a",
-    "checkedAt": "2026-11-23T08:42:22.040Z",
+    "checkedAt": "2026-11-23T09:36:02.052Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -115,15 +114,15 @@
   "presenc-rtx-spark": {
     "url": "https://presenc.ai/research/nvidia-rtx-spark-local-llm-benchmarks-2026",
     "signature": "text:bda54316fa9f6c07",
-    "checkedAt": "2026-11-23T08:42:22.619Z",
+    "checkedAt": "2026-11-23T09:36:02.358Z",
     "status": "ok",
     "items": [],
     "seen": []
   },
   "betterclaw-rtx-spark": {
     "url": "https://www.betterclaw.io/blog/rtx-spark-vs-dgx-spark",
-    "signature": "text:9bca9b3f7c6313dc",
-    "checkedAt": "2026-11-23T08:42:22.829Z",
+    "signature": "text:1e3db81ab031a6a5",
+    "checkedAt": "2026-11-23T09:36:02.567Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -131,7 +130,7 @@
   "tomshardware-rtx-spark": {
     "url": "https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models",
     "signature": "text:9ac7dce7e73b0edf",
-    "checkedAt": "2026-11-23T08:42:23.111Z",
+    "checkedAt": "2026-11-23T09:36:02.877Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -139,7 +138,7 @@
   "ctol-rtx-spark": {
     "url": "https://www.ctol.digital/news/nvidia-rtx-spark-laptop-within-8-percent-of-dgx-spark-speed",
     "signature": "text:6af91bab23266d31",
-    "checkedAt": "2026-11-23T08:42:24.623Z",
+    "checkedAt": "2026-11-23T09:36:04.039Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -147,7 +146,7 @@
   "vllm-rtx-spark-github": {
     "url": "https://github.com/devjeonghwan/vllm-for-rtx-spark",
     "signature": "release:v0.2.0:2026-11-07T20:10:43Z",
-    "checkedAt": "2026-11-23T08:42:25.004Z",
+    "checkedAt": "2026-11-23T09:36:04.387Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -155,15 +154,16 @@
   "vllm-rtx-spark-forum": {
     "url": "https://forums.developer.nvidia.com/t/native-vllm-on-rtx-spark-windows-arm64-2x-faster-than-nvidias-llama-cpp-recipe/387530",
     "signature": "text:473cdd95657d8c1f",
-    "checkedAt": "2026-11-23T08:42:26.101Z",
-    "status": "ok",
+    "checkedAt": "2026-11-23T09:36:04.927Z",
+    "status": "error",
+    "error": "HTTP 403",
     "items": [],
     "seen": []
   },
   "vllm-windows-docs": {
     "url": "https://docs.vllm.ai/en/latest/getting_started/installation/gpu/",
     "signature": "text:37815bdcc56f7c11",
-    "checkedAt": "2026-11-23T08:42:26.497Z",
+    "checkedAt": "2026-11-23T09:36:05.144Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -171,7 +171,7 @@
   "amd-ryzen-ai-max": {
     "url": "https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html",
     "signature": "text:5f7d656e0f2f7a0d",
-    "checkedAt": "2026-11-23T08:42:26.859Z",
+    "checkedAt": "2026-11-23T09:36:05.425Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -179,7 +179,7 @@
   "gmktec-strix-halo": {
     "url": "https://www.gmktec.com/",
     "signature": "text:04f03ee43fe32638",
-    "checkedAt": "2026-11-23T08:42:27.343Z",
+    "checkedAt": "2026-11-23T09:36:06.130Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -187,7 +187,7 @@
   "cnb-kurzy": {
     "url": "https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt",
     "signature": "text:a24b3fc8505b6a0a",
-    "checkedAt": "2026-11-23T08:42:27.484Z",
+    "checkedAt": "2026-11-23T09:36:06.319Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -195,7 +195,7 @@
   "ecb-kurzy": {
     "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
     "signature": "text:12ce7374150b075e",
-    "checkedAt": "2026-11-23T08:42:27.640Z",
+    "checkedAt": "2026-11-23T09:36:06.468Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -203,7 +203,7 @@
   "unsloth-gguf": {
     "url": "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF",
     "signature": "hf:f5d175de2cf7f720d45d6064019a81fcf056e986:2026-11-13T10:49:42.000Z",
-    "checkedAt": "2026-11-23T08:42:27.855Z",
+    "checkedAt": "2026-11-23T09:36:06.703Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -211,7 +211,7 @@
   "llm-kube-qwen38": {
     "url": "https://llmkube.com/docs/labs/qwen38-flash-next-gufo-on-strix-halo",
     "signature": "text:e7994f2de09bb580",
-    "checkedAt": "2026-11-23T08:42:28.377Z",
+    "checkedAt": "2026-11-23T09:36:07.117Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -219,7 +219,7 @@
   "smf-dgx-spark": {
     "url": "https://www.smfclearinghouse.com/blog/2026-09-19-qwen38-flash-next-24-7-kit",
     "signature": "text:b6de7feb43da95e4",
-    "checkedAt": "2026-11-23T08:42:28.946Z",
+    "checkedAt": "2026-11-23T09:36:07.465Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -227,7 +227,7 @@
   "sparklab-bench": {
     "url": "https://github.com/sixteen-miles-labs/sparklab/blob/main/benchmarks/frameworks/QWEN38_FLASH_NEXT.md",
     "signature": "release:v0.1.3:2026-09-16T15:43:08Z",
-    "checkedAt": "2026-11-23T08:42:29.154Z",
+    "checkedAt": "2026-11-23T09:36:07.722Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -235,7 +235,7 @@
   "llamacpp-rtx-n1x": {
     "url": "https://github.com/ggml-org/llama.cpp/discussions/31494",
     "signature": "release:v1.0.0:2026-11-13T10:20:19Z",
-    "checkedAt": "2026-11-23T08:42:29.420Z",
+    "checkedAt": "2026-11-23T09:36:07.972Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -243,15 +243,15 @@
   "mindstudio-rtx-spark": {
     "url": "https://www.mindstudio.ai/blog/run-local-llms-rtx-spark-laptop",
     "signature": "text:5032badef79d1746",
-    "checkedAt": "2026-11-23T08:42:29.650Z",
+    "checkedAt": "2026-11-23T09:36:08.136Z",
     "status": "ok",
     "items": [],
     "seen": []
   },
   "microsoft-surface-ultra": {
     "url": "https://www.microsoft.com/en-us/store/configure/surface-laptop-ultra/8wg5vqp0x4b8",
-    "signature": "text:aa752059fb78687c",
-    "checkedAt": "2026-11-23T08:42:30.834Z",
+    "signature": "text:9e1480d6da160060",
+    "checkedAt": "2026-11-23T09:36:09.281Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -259,7 +259,7 @@
   "compute-market-strix-halo": {
     "url": "https://www.compute-market.com/blog/strix-halo-mini-pc-local-ai-2026",
     "signature": "text:f169e93f002e2ac1",
-    "checkedAt": "2026-11-23T08:42:31.029Z",
+    "checkedAt": "2026-11-23T09:36:09.521Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -267,7 +267,7 @@
   "rtxsparkpc-tracker": {
     "url": "https://rtxsparkpc.com/",
     "signature": "text:7ba1cbfe77bf705f",
-    "checkedAt": "2026-11-23T08:42:31.663Z",
+    "checkedAt": "2026-11-23T09:36:09.917Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -275,7 +275,7 @@
   "nvidia-dgx-spark-first-boot": {
     "url": "https://docs.nvidia.com/dgx/dgx-spark/first-boot.html",
     "signature": "text:f802a61bbf1f698c",
-    "checkedAt": "2026-11-23T08:42:31.938Z",
+    "checkedAt": "2026-11-23T09:36:10.195Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -283,7 +283,7 @@
   "nvidia-dgx-spark-recipes": {
     "url": "https://nvidia.github.io/local-ai-inference-recipes/hardware/dgx-spark/index.html",
     "signature": "text:e3d1439746169948",
-    "checkedAt": "2026-11-23T08:42:32.320Z",
+    "checkedAt": "2026-11-23T09:36:10.522Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -291,7 +291,7 @@
   "nvidia-rtx-spark-llamacpp": {
     "url": "https://build.nvidia.com/rtx-spark/running-llamacpp/overview.md",
     "signature": "text:969b4cdc9e31fde1",
-    "checkedAt": "2026-11-23T08:42:32.783Z",
+    "checkedAt": "2026-11-23T09:36:10.808Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -299,7 +299,7 @@
   "nvidia-rtx-spark-recipes": {
     "url": "https://nvidia.github.io/local-ai-inference-recipes/hardware/rtx-spark/index.html",
     "signature": "text:f19a0c1ef59cedb0",
-    "checkedAt": "2026-11-23T08:42:32.999Z",
+    "checkedAt": "2026-11-23T09:36:11.002Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -307,7 +307,7 @@
   "ollama-qwen38-flash-next": {
     "url": "https://ollama.com/library/qwen3.8-flash-next",
     "signature": "text:e0fa8e619bf9d6a8",
-    "checkedAt": "2026-11-23T08:42:33.357Z",
+    "checkedAt": "2026-11-23T09:36:11.424Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -315,7 +315,7 @@
   "llamacpp-releases": {
     "url": "https://github.com/ggml-org/llama.cpp/releases",
     "signature": "release:v1.0.0:2026-11-13T10:20:19Z",
-    "checkedAt": "2026-11-23T08:42:33.408Z",
+    "checkedAt": "2026-11-23T09:36:11.476Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -323,7 +323,7 @@
   "amd-rocm-ryzen-uma": {
     "url": "https://rocm.blogs.amd.com/artificial-intelligence/ryzen-uma-llm/README.html",
     "signature": "text:056b2045653e051e",
-    "checkedAt": "2026-11-23T08:42:33.603Z",
+    "checkedAt": "2026-11-23T09:36:11.641Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -331,7 +331,7 @@
   "amd-playbooks-halo": {
     "url": "https://developer.amd.com/playbooks/clustering-rpc-server",
     "signature": "text:eb7ef94ac3f1df80",
-    "checkedAt": "2026-11-23T08:42:34.133Z",
+    "checkedAt": "2026-11-23T09:36:12.218Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -339,7 +339,7 @@
   "strix-halo-guide": {
     "url": "https://hogeheer499-commits.github.io/strix-halo-guide/",
     "signature": "text:0d3c5afbbed6b456",
-    "checkedAt": "2026-11-23T08:42:34.424Z",
+    "checkedAt": "2026-11-23T09:36:12.398Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -347,7 +347,7 @@
   "gpuwerk-dgx-spark": {
     "url": "https://gpuwerk.com/dgx-spark/guides/setup-guide",
     "signature": "text:c6bd769920a07cae",
-    "checkedAt": "2026-11-23T08:42:34.934Z",
+    "checkedAt": "2026-11-23T09:36:12.937Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -355,14 +355,14 @@
   "alza-ai-pc": {
     "url": "https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:34.934Z",
+    "checkedAt": "2026-11-23T09:36:12.937Z",
     "status": "manual",
     "items": []
   },
   "acer-veriton-ra110": {
     "url": "https://www.acer.com/us-en/desktops-and-all-in-ones/veriton-workstations/veriton-ra110-ai-mini-workstation",
     "signature": "text:006559c4b8e506a4",
-    "checkedAt": "2026-11-23T08:42:35.283Z",
+    "checkedAt": "2026-11-23T09:36:13.222Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -370,7 +370,7 @@
   "qwen38-license": {
     "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/LICENSE",
     "signature": "text:b3bdd8378e562efc",
-    "checkedAt": "2026-11-23T08:41:56.797Z",
+    "checkedAt": "2026-11-23T09:35:56.736Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -378,14 +378,14 @@
   "hf-qwen38-discussions": {
     "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/discussions",
     "signature": null,
-    "checkedAt": "2026-11-23T08:41:56.797Z",
+    "checkedAt": "2026-11-23T09:35:56.736Z",
     "status": "manual",
     "items": []
   },
   "vllm-releases": {
     "url": "https://github.com/vllm-project/vllm/releases",
     "signature": "release:v0.34.0:2026-11-16T23:22:00Z",
-    "checkedAt": "2026-11-23T08:41:58.915Z",
+    "checkedAt": "2026-11-23T09:35:58.379Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -393,7 +393,7 @@
   "sglang-releases": {
     "url": "https://github.com/sgl-project/sglang/releases",
     "signature": "release:v0.5.23:2026-11-02T22:14:10Z",
-    "checkedAt": "2026-11-23T08:41:59.193Z",
+    "checkedAt": "2026-11-23T09:35:58.602Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -401,14 +401,14 @@
   "alza-rtx-spark": {
     "url": "https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:34.934Z",
+    "checkedAt": "2026-11-23T09:36:12.937Z",
     "status": "manual",
     "items": []
   },
   "apple-mac-studio": {
     "url": "https://www.apple.com/mac-studio/specs/",
     "signature": "text:9fcd94bf1b8723c9",
-    "checkedAt": "2026-11-23T08:42:35.534Z",
+    "checkedAt": "2026-11-23T09:36:13.455Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -416,7 +416,7 @@
   "apple-macbook-pro": {
     "url": "https://www.apple.com/macbook-pro/specs/",
     "signature": "text:2ce8698c9dab974a",
-    "checkedAt": "2026-11-23T08:42:35.786Z",
+    "checkedAt": "2026-11-23T09:36:13.640Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -424,7 +424,7 @@
   "apple-mlx": {
     "url": "https://ml-explore.github.io/mlx/",
     "signature": "text:e3b0c44298fc1c14",
-    "checkedAt": "2026-11-23T08:42:36.035Z",
+    "checkedAt": "2026-11-23T09:36:13.779Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -432,7 +432,7 @@
   "llama-cpp-build": {
     "url": "https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md",
     "signature": "release:v1.0.0:2026-11-13T10:20:19Z",
-    "checkedAt": "2026-11-23T08:42:36.087Z",
+    "checkedAt": "2026-11-23T09:36:13.837Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -440,7 +440,7 @@
   "omlx-benchmark": {
     "url": "https://omlx.ai/benchmarks/performance/7fpjs406",
     "signature": "text:b41e4701c0d6c6fc",
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -448,84 +448,84 @@
   "principled-rtx-spark": {
     "url": "https://www.principledtechnologies.com/Microsoft/RTXSpark-vs-M5Pro-1026/",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "tencent-hunyuan-license": {
     "url": "https://huggingface.co/tencent/HunyuanVideo-1.5/blob/main/LICENSE",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "amd-rocm-matrix": {
     "url": "https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "amd-ryzen-ai-linux": {
     "url": "https://ryzenai.docs.amd.com/en/latest/linux.html",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "fastflowlm-linux": {
     "url": "https://fastflowlm.com/docs/install_lin",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "nix-amd-ai": {
     "url": "https://github.com/noamsto/nix-amd-ai/blob/main/docs/performance.md",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "cuda-woa": {
     "url": "https://developer.nvidia.com/topics/ai/local-ai/port-apps",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "nvidia-qwen38-fp4-local": {
     "url": "https://huggingface.co/nvidia/Qwen3.8-Flash-Next-FP4-Local",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "vllm-rtx-spark": {
     "url": "https://github.com/devjeonghwan/vllm-for-rtx-spark",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "gorgon-framework-192": {
     "url": "https://frame.work/blog/what-192gb-changes-for-local-ai-on-the-framework-desktop",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "amd-ryzen-ai-max-495": {
     "url": "https://www.amd.com/en/products/processors/laptop/ryzen-pro/ai-max-pro-400-series/amd-ryzen-ai-max-plus-pro-495.html",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.168Z",
+    "checkedAt": "2026-11-23T09:36:14.817Z",
     "status": "manual",
     "items": []
   },
   "amd-ryzen-ai-halo": {
     "url": "https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html",
     "signature": "text:f28e7098722f4ded",
-    "checkedAt": "2026-11-23T08:42:37.614Z",
+    "checkedAt": "2026-11-23T09:36:15.140Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -533,14 +533,14 @@
   "videocardz-gorgon": {
     "url": "https://videocardz.com/topics/cpus/amd-ryzen-400",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:37.614Z",
+    "checkedAt": "2026-11-23T09:36:15.140Z",
     "status": "manual",
     "items": []
   },
   "salient-dgx-recipe": {
     "url": "https://github.com/salient-data/qwen38-next-dgx-recipe",
     "signature": "commit:7432036e7d549ed266d16832c43ea960f2cb7d55",
-    "checkedAt": "2026-11-23T08:42:38.353Z",
+    "checkedAt": "2026-11-23T09:36:15.829Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -548,7 +548,7 @@
   "roozich-qwen38-spark": {
     "url": "https://github.com/roozich/Qwen3.8-Flash-Spark",
     "signature": "commit:df9052833eb5933fb3b0508a609def87a81e3d69",
-    "checkedAt": "2026-11-23T08:42:38.896Z",
+    "checkedAt": "2026-11-23T09:36:16.325Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -556,7 +556,7 @@
   "arxiv-refusal-direction": {
     "url": "https://arxiv.org/abs/2406.11717",
     "signature": "text:1d4b94a52bdef3f5",
-    "checkedAt": "2026-11-23T08:42:39.070Z",
+    "checkedAt": "2026-11-23T09:36:16.488Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -564,7 +564,7 @@
   "heretic": {
     "url": "https://github.com/p-e-w/heretic",
     "signature": "release:v2.1.0:2026-11-08T07:14:03Z",
-    "checkedAt": "2026-11-23T08:42:39.297Z",
+    "checkedAt": "2026-11-23T09:36:16.715Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -572,7 +572,7 @@
   "developingdad-fp4-abliterated": {
     "url": "https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-FP4-Local-Abliterated",
     "signature": "hf:8854af51b173a3f2fd7144cfdd4020c77660972b:2026-11-18T19:59:07.000Z",
-    "checkedAt": "2026-11-23T08:42:39.525Z",
+    "checkedAt": "2026-11-23T09:36:16.937Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -580,7 +580,7 @@
   "developingdad-dgx-spark-uncensored": {
     "url": "https://huggingface.co/DevelopingDad/Qwen3.8-Flash-Next-Uncensored-NVFP4-DGX-Spark",
     "signature": "hf:6773ecf92784fce1fb00655269821eb31f825b28:2026-10-09T16:59:59.000Z",
-    "checkedAt": "2026-11-23T08:42:39.683Z",
+    "checkedAt": "2026-11-23T09:36:17.104Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -588,7 +588,7 @@
   "lflare-csf-abliterated": {
     "url": "https://huggingface.co/lflare/Qwen3.8-Flash-Next-NVFP4-MXFP8-CSF-QAD-Abliterated",
     "signature": "hf:8d96cc1d2641b32a680a51a2a9894b45fb2ba30f:2026-10-26T18:35:38.000Z",
-    "checkedAt": "2026-11-23T08:42:39.829Z",
+    "checkedAt": "2026-11-23T09:36:17.258Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -596,7 +596,7 @@
   "orcarouter-uncensored-nvfp4": {
     "url": "https://huggingface.co/orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4",
     "signature": "hf:9c6f1345b523a9d9d70b41542a63b39e3c9b7ca6:2026-10-27T06:57:13.000Z",
-    "checkedAt": "2026-11-23T08:42:39.999Z",
+    "checkedAt": "2026-11-23T09:36:17.412Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -604,7 +604,7 @@
   "abliteratedmodels": {
     "url": "https://www.abliteratedmodels.org/",
     "signature": "text:e5c87d6a95091482",
-    "checkedAt": "2026-11-23T08:42:40.224Z",
+    "checkedAt": "2026-11-23T09:36:17.701Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -612,7 +612,7 @@
   "abliter-cn": {
     "url": "https://abliter.cn/en/",
     "signature": "text:e2d65ae830506785",
-    "checkedAt": "2026-11-23T08:42:40.548Z",
+    "checkedAt": "2026-11-23T09:36:17.927Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -620,7 +620,7 @@
   "pi-agent": {
     "url": "https://github.com/earendil-works/pi",
     "signature": "release:v1.6.0:2026-11-20T11:35:03Z",
-    "checkedAt": "2026-11-23T08:42:40.595Z",
+    "checkedAt": "2026-11-23T09:36:17.975Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -628,7 +628,7 @@
   "omp-agent": {
     "url": "https://github.com/can1357/oh-my-pi",
     "signature": "release:v19.1.1:2026-11-23T05:37:29Z",
-    "checkedAt": "2026-11-23T08:42:40.649Z",
+    "checkedAt": "2026-11-23T09:36:18.193Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -636,7 +636,7 @@
   "opencode": {
     "url": "https://opencode.ai/docs/",
     "signature": "text:6d290e767cc75296",
-    "checkedAt": "2026-11-23T08:42:40.777Z",
+    "checkedAt": "2026-11-23T09:36:18.375Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -644,15 +644,15 @@
   "openchamber": {
     "url": "https://github.com/openchamber/openchamber",
     "signature": "release:v2.8.0:2026-11-22T00:41:17Z",
-    "checkedAt": "2026-11-23T08:42:41.003Z",
+    "checkedAt": "2026-11-23T09:36:18.592Z",
     "status": "ok",
     "items": [],
     "seen": []
   },
   "mausbot": {
     "url": "https://mausbot.com/",
-    "signature": "text:a090d3de532c426c",
-    "checkedAt": "2026-11-23T08:42:41.275Z",
+    "signature": "text:774166b18720a078",
+    "checkedAt": "2026-11-23T09:36:18.971Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -660,7 +660,7 @@
   "openclaw": {
     "url": "https://github.com/openclaw/openclaw",
     "signature": "release:v2026.11.7:2026-11-23T01:33:51Z",
-    "checkedAt": "2026-11-23T08:42:41.512Z",
+    "checkedAt": "2026-11-23T09:36:19.218Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -668,7 +668,7 @@
   "hermes-agent": {
     "url": "https://hermes-agent.nousresearch.com/docs/",
     "signature": "text:9160cadc15c79623",
-    "checkedAt": "2026-11-23T08:42:41.821Z",
+    "checkedAt": "2026-11-23T09:36:19.559Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -676,7 +676,7 @@
   "hermes-desktop": {
     "url": "https://hermes-agent.nousresearch.com/docs/user-guide/local-models",
     "signature": "text:9d0f4fdc9a1ac8b2",
-    "checkedAt": "2026-11-23T08:42:41.900Z",
+    "checkedAt": "2026-11-23T09:36:19.634Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -684,7 +684,7 @@
   "lm-studio": {
     "url": "https://lmstudio.ai/docs/developer/core/server",
     "signature": "text:04c2e25b511ddf11",
-    "checkedAt": "2026-11-23T08:42:42.447Z",
+    "checkedAt": "2026-11-23T09:36:20.043Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -692,7 +692,7 @@
   "herdr": {
     "url": "https://herdr.dev/",
     "signature": "text:e7eee156420fed60",
-    "checkedAt": "2026-11-23T08:42:42.606Z",
+    "checkedAt": "2026-11-23T09:36:20.227Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -700,7 +700,7 @@
   "chompa-ab": {
     "url": "https://huggingface.co/Chompa1422/Qwen3.8-Flash-Next-NVFP4-Abliterated",
     "signature": "hf:cd48fb08d59193a9cbec576565a101c0c0dbdf2d:2026-10-27T14:37:55.000Z",
-    "checkedAt": "2026-11-23T08:42:42.754Z",
+    "checkedAt": "2026-11-23T09:36:20.381Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -708,7 +708,7 @@
   "tonyd2wild-ple": {
     "url": "https://github.com/tonyd2wild/Qwen3.8-Flash-Next-NVFP4-DGX-Spark",
     "signature": "commit:6ad1c8f15cbab1ababd2048e8e5f94094dbfc4a0",
-    "checkedAt": "2026-11-23T08:42:43.358Z",
+    "checkedAt": "2026-11-23T09:36:21.024Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -716,7 +716,7 @@
   "gorbatjovy-ple-fp8": {
     "url": "https://huggingface.co/gorbatjovy/qwen3.8-flash-next-abliterated-NVFP4-plefp8",
     "signature": "hf:2065365912e46b205c64a70ac5b85b4869674d31:2026-08-27T20:22:24.000Z",
-    "checkedAt": "2026-11-23T08:42:43.534Z",
+    "checkedAt": "2026-11-23T09:36:21.172Z",
     "status": "ok",
     "items": [],
     "seen": []
@@ -724,23 +724,24 @@
   "videocardz-gorgon-halo-192gb": {
     "url": "https://videocardz.com/newz/first-amd-gorgon-halo-pc-with-max-pro-495-launches-at-7399-comes-with-192gb-of-memory",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:43.534Z",
+    "checkedAt": "2026-11-23T09:36:21.172Z",
     "status": "manual",
     "items": []
   },
   "nvidia-forum-dgx-spark-recipe": {
     "url": "https://forums.developer.nvidia.com/t/six-weeks-optimizing-qwen3-8-flash-next-on-one-dgx-spark-67-5-tok-s-median-decode-80-on-structured-work-reproducible-recipe-with-raw-data/385463",
     "signature": "text:3ea5fa08bac531fa",
-    "checkedAt": "2026-11-23T08:42:44.837Z",
-    "status": "ok",
+    "checkedAt": "2026-11-23T09:36:21.712Z",
+    "status": "error",
+    "error": "HTTP 403",
     "items": [],
     "seen": []
   },
   "recenze-google-dgx-spark": {
     "url": "https://news.google.com/rss/search?q=%22DGX+Spark%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en",
     "signature": "rss:826349740ef8c34f",
-    "checkedAt": "2026-11-23T08:42:46.468Z",
-    "status": "changed",
+    "checkedAt": "2026-11-23T09:36:23.055Z",
+    "status": "ok",
     "items": [
       {
         "t": "NVIDIA DGX Spark Review - Comics Gaming Magazine",
@@ -818,7 +819,7 @@
   "recenze-google-rtx-spark-mini": {
     "url": "https://news.google.com/rss/search?q=%22RTX+Spark+mini%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en",
     "signature": "rss:2fafc0b7bc41b4df",
-    "checkedAt": "2026-11-23T08:42:47.935Z",
+    "checkedAt": "2026-11-23T09:36:24.319Z",
     "status": "ok",
     "items": [
       {
@@ -956,8 +957,8 @@
   },
   "recenze-google-rtx-spark-notebook": {
     "url": "https://news.google.com/rss/search?q=%22RTX+Spark+notebook%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en",
-    "signature": "rss:9b14691cd70c39f4",
-    "checkedAt": "2026-11-23T08:42:49.380Z",
+    "signature": "rss:e891e949bc432d20",
+    "checkedAt": "2026-11-23T09:36:25.569Z",
     "status": "ok",
     "items": [
       {
@@ -994,11 +995,6 @@
         "t": "Best Laptops for Local AI in 2026: Lab-Tested Leaderboard - StorageReview.com",
         "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1lWG9ORDJ6VUxMeHhUQjNRS1NFbjFhR3Z3N05BWFJxRnVXbWtkVEUtQnp3azNvZVZ5dTMxc0M1U1ZVWE1fdWdfUHNUVlZ5bVN6OHF5bXdPdVFkclROUEZTdNIBZkFVX3lxTFBpSTJ5Q0dJcmZiTGdSNFVOQjlqLW16RlA5amNqXzNFLXJaS1lqUEtFajBxWTdDeEpWOUJjb2NJcW9VSWJQZnctVG95MTZ0SlI5ZlcwQU9iQWN4aFgxckNTaW5TOExOZw?oc=5",
         "d": "Thu, 12 Nov 2026 08:00:00 GMT"
-      },
-      {
-        "t": "Lenovo ThinkPad P1 Gen 9 Review: Panther Lake and a 50W RTX PRO 2000 in the Thin ThinkPad Flagship - StorageReview.com",
-        "u": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQZ0RHeDNYcmMtLUJLZ3R5OV9yNWdoT3hSUXZoc1gzX1VoOGNNUWtQRWg0d2JHQURGWVFza2pRdll2eHZRQUJmWTNBN0dtZUF2WnRmdWMxNG5ySjJBQ1lUdjgtcEczaG84cEMwdUlqOWt5ckdWdDdYLWxXOEFkSGlkaDlxZUJHTGVCUXh4bFZ4UDlnQUtUTU4wcnVR0gGfAUFVX3lxTE8wdm41RW5KLWI5WTJIUUgzSE9ZbTFpTGdvcE5XanJzWVZvbjYxZFRaMXVHWjFua3c1ZU9uT2ZUUVVFYUxkZGtjT3BUSWxDMG12V2ZXT25MeVkzVUdwY3hZNXkxeDNrcnhFeXNkRnIxeXgyUFk0cU1jdEhoa0UxZGhLeWNNUWY3TlphYUZXdmpIQTd0eEVYYWhNMXpndGt1Yw?oc=5",
-        "d": "Mon, 26 Oct 2026 07:00:00 GMT"
       }
     ],
     "seen": [
@@ -1016,7 +1012,7 @@
   "recenze-google-strix-halo": {
     "url": "https://news.google.com/rss/search?q=%22Strix+Halo%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en",
     "signature": "rss:bedbc62dead5c8ea",
-    "checkedAt": "2026-11-23T08:42:50.829Z",
+    "checkedAt": "2026-11-23T09:36:26.847Z",
     "status": "ok",
     "items": [
       {
@@ -1099,8 +1095,8 @@
   "recenze-google-gorgon-halo": {
     "url": "https://news.google.com/rss/search?q=%22Gorgon+Halo%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en",
     "signature": "rss:2fa37383ccdc96f3",
-    "checkedAt": "2026-11-23T08:42:52.331Z",
-    "status": "changed",
+    "checkedAt": "2026-11-23T09:36:28.097Z",
+    "status": "ok",
     "items": [
       {
         "t": "AMD Gorgon Halo Benchmarks vs RTX Spark [2026] - shattered.io",
@@ -1211,10 +1207,15 @@
   },
   "recenze-google-mac-studio": {
     "url": "https://news.google.com/rss/search?q=%22Mac+Studio+M5%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en",
-    "signature": "rss:98000425579380b4",
-    "checkedAt": "2026-11-23T08:42:53.812Z",
+    "signature": "rss:705474449c4f4899",
+    "checkedAt": "2026-11-23T09:36:29.388Z",
     "status": "ok",
     "items": [
+      {
+        "t": "Mac Studio M5 Ultra Review – Big Brain, Small Box - Pokde.Net",
+        "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5pUFBwdGJQc3FEaHpkZ3lweWwyZktGYUNGVzFhdjdWVWFSNHN2akljaVBjSkQwV3Q1UlhPZDBIRWc5QnZLUklGTjg1ck5GQXhqVy12WnVWVlEweTh6ajBmeQ?oc=5",
+        "d": "Mon, 23 Nov 2026 02:00:00 GMT"
+      },
       {
         "t": "Review: Mac Studio M5 Ultra for video editors – part 1 by Scott Simmons - ProVideo Coalition - ProVideo Coalition",
         "u": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOdGQ1Rnk4cWdTOEhGRU1xaGdvNmotMG5YTXZYVmxDTFdzOGZja1B2bjhFTVUwQm9VZWQtUm94VGVtdVhFbDRLRzRnUFB1OE96ZGFGZTdyMXNucVlYQzlTSnVNQ2NIdE43N19XWDRrVU51aDJSX1MwdVpQNENNVkY2ZzJCUXI1bXFSSHN6bE9uZ9IBlAFBVV95cUxQYmFvX0F5UWRlTlNCSjhvcW5VUGU2Z3YwaXVHS1VzSkl2R2FEOHFVMVFlZlotWUJ6VElOa2YzMzJmU3pFUkpVejJESG42ZFRQMklCVDM4dmFIQnJ2VDdfSERKdTJYTVpReGFRbmdBeGZCc20yZEZWakNYckhoSGJ6SkNrMmwxYlRHdm1iOWtxWmVPbldv?oc=5",
@@ -1309,11 +1310,6 @@
         "t": "The new Mac Studio is here – but which one should you buy? - Macworld",
         "u": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOUGppaFBHNmJ2UWl3UVlRa1k3WkpQWklFbDhlZ2JBT2FZU01DQTZvOXhQVlJTci1jX01tVnBBY2JyRmtYd1lFN0xBMTFHbEZQby1ZLWJJMkk4aDhmUW5zSmtOUV9SRjQyNktub2JPeVA5T2h5RDl1eDBpYmF5WVdpMW1OZG5XajdBcUN0QzFn?oc=5",
         "d": "Mon, 21 Sep 2026 07:00:00 GMT"
-      },
-      {
-        "t": "M5 Ultra Mac Studio vs M1 Ultra Mac Studio: Four years of change, compared - AppleInsider",
-        "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNckZYSjVkSWtzY3NhWGh1UkRNczB6Wm15RDAyOEVPMi1GVXhPV2pKV19tVlVvcFJMZS0yVW5wZXpPSVYxOTd4amR4ejlvaklZZEdoTUJhSXZDRVBfZUNNUl9BUDJHR3RoanJWZkRHQnA2UFBaMXRIMEh6c0JGaExxOEtVc0oyWEM3RnVxLTJiQllTZTlLdVBTYlU4NnJubjh6TUpST1l2UU9QMXo1OG5qM20xX2loenJsZGc?oc=5",
-        "d": "Thu, 27 Aug 2026 07:00:00 GMT"
       }
     ],
     "seen": [
@@ -1345,13 +1341,14 @@
       "apple m5 ultra processor benchmarks and specs notebookcheck",
       "arm vs x86 1 2 tb s mac studio vs intel series 3 2026 shattered io",
       "mac mini m5 pro review mini gets serious with one caveat appleinsider",
-      "m5 max vs ryzen ai max pro 495 what fits in 192 gb kingy ai"
+      "m5 max vs ryzen ai max pro 495 what fits in 192 gb kingy ai",
+      "mac studio m5 ultra review big brain small box pokde net"
     ]
   },
   "recenze-google-macbook-pro": {
     "url": "https://news.google.com/rss/search?q=%22MacBook+Pro+M5+Max%22+(review+OR+recenze+OR+test)&hl=en-US&gl=US&ceid=US:en",
     "signature": "rss:42bc8bed6db2cbdd",
-    "checkedAt": "2026-11-23T08:42:55.279Z",
+    "checkedAt": "2026-11-23T09:36:30.696Z",
     "status": "ok",
     "items": [
       {
@@ -1391,9 +1388,9 @@
   },
   "recenze-youtube-dgx-spark": {
     "url": "https://www.youtube.com/results?search_query=DGX+Spark+review&hl=en&sp=EgIIBA%253D%253D",
-    "signature": "yt:31bc1b112f967e07",
-    "checkedAt": "2026-11-23T08:42:56.084Z",
-    "status": "changed",
+    "signature": "yt:1d7db442c4dcc683",
+    "checkedAt": "2026-11-23T09:36:31.432Z",
+    "status": "ok",
     "items": [
       {
         "t": "NVIDIA DGX Spark: The Holy Grail of Local AI?",
@@ -1408,10 +1405,10 @@
         "k": "The Dark Factory"
       },
       {
-        "t": "Ryzen AI Halo 495 vs NVIDIA DGX Spark Which Should You Buy",
-        "u": "https://www.youtube.com/watch?v=DZ7tOr6oIB0",
-        "d": "3w ago",
-        "k": "SpecsyLabs"
+        "t": "NVIDIA, It’s Happening Again... Gorgon Halo is here",
+        "u": "https://www.youtube.com/watch?v=k7_K34eY9TM",
+        "d": "12d ago",
+        "k": ""
       },
       {
         "t": "NVIDIA Didn't Want Me to Do This… Linux on RTX Spark",
@@ -1426,22 +1423,22 @@
         "k": "Alex Finn"
       },
       {
-        "t": "NVIDIA, It’s Happening Again",
-        "u": "https://www.youtube.com/watch?v=k7_K34eY9TM",
-        "d": "12d ago",
-        "k": "Alex Ziskind"
-      },
-      {
-        "t": "RTX Desktop vs DGX Desktop: Ft. MSI EdgeMesa N AI+ Series Mini PC",
-        "u": "https://www.youtube.com/watch?v=B9f6IjCAtyc",
-        "d": "4d ago",
-        "k": ""
+        "t": "Ryzen AI Halo 495 vs NVIDIA DGX Spark Which Should You Buy",
+        "u": "https://www.youtube.com/watch?v=DZ7tOr6oIB0",
+        "d": "3w ago",
+        "k": "SpecsyLabs"
       },
       {
         "t": "RTX Spark vs DGX Spark: NVIDIA's Local AI Civil War",
         "u": "https://www.youtube.com/watch?v=HklEDsvlUi8",
         "d": "10d ago",
         "k": "Measured Locally"
+      },
+      {
+        "t": "RTX Desktop vs DGX Desktop: Ft. MSI EdgeMesa N AI+ Series Mini PC",
+        "u": "https://www.youtube.com/watch?v=B9f6IjCAtyc",
+        "d": "4d ago",
+        "k": ""
       },
       {
         "t": "Local AI Just Got EXPENSIVE | Mac Studio M5 vs DGX Spark",
@@ -1474,6 +1471,12 @@
         "k": ""
       },
       {
+        "t": "MEGÉRI? Nvidia DGX Spark: 3 hét helyi AI-jal",
+        "u": "https://www.youtube.com/watch?v=eMvMoV_8ZGc",
+        "d": "5d ago",
+        "k": "AI a Mindennapokban - Szabolccsal"
+      },
+      {
         "t": "DGX Spark cluster: the biggest local AI 1, 2 or 4 Sparks run..",
         "u": "https://www.youtube.com/watch?v=5R7Fw8AqySk",
         "d": "3w ago",
@@ -1484,12 +1487,6 @@
         "u": "https://www.youtube.com/watch?v=8Tw2LdgTcY0",
         "d": "4d ago",
         "k": "Micro Center"
-      },
-      {
-        "t": "MEGÉRI? Nvidia DGX Spark: 3 hét helyi AI-jal",
-        "u": "https://www.youtube.com/watch?v=eMvMoV_8ZGc",
-        "d": "5d ago",
-        "k": "AI a Mindennapokban - Szabolccsal"
       },
       {
         "t": "Mac Studio vs DGX Spark: Which Is Better for Local AI? (Nov 2026)",
@@ -1504,16 +1501,16 @@
         "k": "365 Facts"
       },
       {
-        "t": "The Biggest Local AI The Nvidia DGX Spark Runs",
-        "u": "https://www.youtube.com/watch?v=SdXAkMr_ugI",
-        "d": "4w ago",
-        "k": "Locally"
-      },
-      {
         "t": "I ran Qwen 3.8 on a laptop and I'm blown away",
         "u": "https://www.youtube.com/watch?v=HsFAGEY0_jY",
         "d": "2w ago",
         "k": "Alex Finn"
+      },
+      {
+        "t": "The Biggest Local AI The Nvidia DGX Spark Runs",
+        "u": "https://www.youtube.com/watch?v=SdXAkMr_ugI",
+        "d": "4w ago",
+        "k": "Locally"
       }
     ],
     "seen": [
@@ -1576,9 +1573,9 @@
   },
   "recenze-youtube-rtx-spark-mini": {
     "url": "https://www.youtube.com/results?search_query=RTX+Spark+mini+review&hl=en&sp=EgIIBA%253D%253D",
-    "signature": "yt:1f728efda2acb1bf",
-    "checkedAt": "2026-11-23T08:42:56.684Z",
-    "status": "changed",
+    "signature": "yt:13a554ce2957b2a5",
+    "checkedAt": "2026-11-23T09:36:32.140Z",
+    "status": "ok",
     "items": [
       {
         "t": "Does RTX Spark Desktop Change the PC Forever?",
@@ -1605,7 +1602,7 @@
         "k": "Tech Unpacked"
       },
       {
-        "t": "Nvidia RTX Spark Mini PCs, Clearly Explained",
+        "t": "Before You Buy a Gaming Card for AI, See Nvidia's RTX Spark",
         "u": "https://www.youtube.com/watch?v=QlqetB23VPM",
         "d": "3d ago",
         "k": "Simply AI"
@@ -1637,20 +1634,20 @@
       {
         "t": "NVIDIA RTX Spark Desktops: Real Power or Pricey Hype?",
         "u": "https://www.youtube.com/watch?v=iH1G3xbbPi4",
-        "d": "13h ago",
+        "d": "14h ago",
         "k": "KLICKEDLAB"
-      },
-      {
-        "t": "THIS is the MOST Desired PC 2026, but WHY? - MSI EdgeMesa N AI+ Mini PC review",
-        "u": "https://www.youtube.com/watch?v=m1IPcLeW7Qc",
-        "d": "2d ago",
-        "k": ""
       },
       {
         "t": "Your Spark, Your Story: Yannik Marek | NVIDIA RTX Spark",
         "u": "https://www.youtube.com/watch?v=sooiYbnctEw",
         "d": "2w ago",
         "k": "NVIDIA"
+      },
+      {
+        "t": "THIS is the MOST Desired PC 2026, but WHY? - MSI EdgeMesa N AI+ Mini PC review",
+        "u": "https://www.youtube.com/watch?v=m1IPcLeW7Qc",
+        "d": "2d ago",
+        "k": ""
       },
       {
         "t": "RTX Spark Review w/ ProArt P16 - Part 1 Game Benchmarks + What Games Actually Work on RTX Spark?",
@@ -1665,28 +1662,28 @@
         "k": "Dr Akanda Ashraf"
       },
       {
-        "t": "RTX Spark Laptop 1-Month Review",
-        "u": "https://www.youtube.com/watch?v=tQw-5ZaZ76o",
-        "d": "5d ago",
-        "k": "Colab_GenAI"
-      },
-      {
-        "t": "I Unplugged My RTX Spark Laptop: 44 Minutes of AI",
-        "u": "https://www.youtube.com/watch?v=svRKsyyHbHo",
-        "d": "18h ago",
-        "k": "Measured Locally"
-      },
-      {
         "t": "NVIDIA, It’s Happening Again... Gorgon Halo is here",
         "u": "https://www.youtube.com/watch?v=k7_K34eY9TM",
         "d": "12d ago",
         "k": ""
       },
       {
+        "t": "RTX Spark Laptop 1-Month Review",
+        "u": "https://www.youtube.com/watch?v=tQw-5ZaZ76o",
+        "d": "5d ago",
+        "k": "Colab_GenAI"
+      },
+      {
         "t": "Surface Laptop Ultra + RTX Spark Review: Is It Worth $4,299?",
         "u": "https://www.youtube.com/watch?v=B3duKgLo_Ck",
         "d": "2w ago",
         "k": "The Bulldog Tech"
+      },
+      {
+        "t": "I Unplugged My RTX Spark Laptop: 44 Minutes of AI",
+        "u": "https://www.youtube.com/watch?v=svRKsyyHbHo",
+        "d": "19h ago",
+        "k": "Measured Locally"
       },
       {
         "t": "RTX Spark Laptops: $7,000 Disappointment?",
@@ -1771,9 +1768,9 @@
   },
   "recenze-youtube-rtx-spark-notebook": {
     "url": "https://www.youtube.com/results?search_query=RTX+Spark+notebook+review&hl=en&sp=EgIIBA%253D%253D",
-    "signature": "yt:cd171d094f0a5a28",
-    "checkedAt": "2026-11-23T08:42:57.265Z",
-    "status": "changed",
+    "signature": "yt:7030bc49f49bf217",
+    "checkedAt": "2026-11-23T09:36:32.902Z",
+    "status": "ok",
     "items": [
       {
         "t": "RTX Spark Laptops… But they’re not all equal",
@@ -1812,6 +1809,12 @@
         "k": "Micro Center"
       },
       {
+        "t": "The Most Interesting Laptop of 2026",
+        "u": "https://www.youtube.com/watch?v=rYHcgCmj9us",
+        "d": "12d ago",
+        "k": "Zip Tie Tech"
+      },
+      {
         "t": "RTX Spark Laptop 1-Month Review",
         "u": "https://www.youtube.com/watch?v=tQw-5ZaZ76o",
         "d": "5d ago",
@@ -1830,28 +1833,22 @@
         "k": ""
       },
       {
-        "t": "The Most Interesting Laptop of 2026",
-        "u": "https://www.youtube.com/watch?v=rYHcgCmj9us",
-        "d": "12d ago",
-        "k": "Zip Tie Tech"
-      },
-      {
         "t": "HP OmniBook Ultra 16 Review: Is 32GB RAM Enough for RTX Spark?",
         "u": "https://www.youtube.com/watch?v=2sXnkKx-86M",
         "d": "5d ago",
         "k": "NotebookcheckReviews"
       },
       {
-        "t": "RTX Spark vs Strix Halo: What 51 Reviews Missed",
-        "u": "https://www.youtube.com/watch?v=-HqpMYFWLcM",
-        "d": "3w ago",
-        "k": "Measured Locally"
-      },
-      {
         "t": "Nvidia RTX Spark: Everything You Need to Know Before You Buy",
         "u": "https://www.youtube.com/watch?v=4q5X7YddEZg",
         "d": "3w ago",
         "k": "Seaman Gadgets"
+      },
+      {
+        "t": "RTX Spark vs Strix Halo: What 51 Reviews Missed",
+        "u": "https://www.youtube.com/watch?v=-HqpMYFWLcM",
+        "d": "3w ago",
+        "k": "Measured Locally"
       },
       {
         "t": "HP OmniBook Ultra NVIDIA RTX Spark Review: The Good, Bad & Surprising",
@@ -1872,21 +1869,21 @@
         "k": ""
       },
       {
-        "t": "I ran Qwen 3.8 on a laptop and I'm blown away",
-        "u": "https://www.youtube.com/watch?v=HsFAGEY0_jY",
-        "d": "2w ago",
-        "k": "Alex Finn"
-      },
-      {
         "t": "Tento Nvidia notebook útočí na Apple",
         "u": "https://www.youtube.com/watch?v=rpVJZI8huJs",
         "d": "4w ago",
         "k": "GeekBoy"
       },
       {
-        "t": "RTX Spark on Battery: What the Reviews Missed",
-        "u": "https://www.youtube.com/watch?v=svRKsyyHbHo",
-        "d": "18h ago",
+        "t": "I ran Qwen 3.8 on a laptop and I'm blown away",
+        "u": "https://www.youtube.com/watch?v=HsFAGEY0_jY",
+        "d": "2w ago",
+        "k": "Alex Finn"
+      },
+      {
+        "t": "RTX Spark Laptop: Can It Game?",
+        "u": "https://www.youtube.com/watch?v=kPFf9E22cmY",
+        "d": "2w ago",
         "k": "Measured Locally"
       },
       {
@@ -1950,8 +1947,8 @@
   "recenze-youtube-strix-halo": {
     "url": "https://www.youtube.com/results?search_query=Strix+Halo+review&hl=en&sp=EgIIBA%253D%253D",
     "signature": "yt:0b59733331da8139",
-    "checkedAt": "2026-11-23T08:42:57.825Z",
-    "status": "changed",
+    "checkedAt": "2026-11-23T09:36:33.485Z",
+    "status": "ok",
     "items": [
       {
         "t": "Is this the BEST Local AI 128GB Strix Halo box?",
@@ -2110,15 +2107,126 @@
       "https://www.youtube.com/watch?v=AcuCl1oAg8w",
       "https://www.youtube.com/watch?v=BEWEOW_S0fE",
       "https://www.youtube.com/watch?v=YaIYyntfeWw",
-      "https://www.youtube.com/watch?v=kM2M36imIME"
+      "https://www.youtube.com/watch?v=kM2M36imIME",
+      "https://www.youtube.com/watch?v=3gy34XTFEIQ",
+      "https://www.youtube.com/watch?v=11Wnxi_781Q"
     ]
   },
   "recenze-youtube-gorgon-halo": {
     "url": "https://www.youtube.com/results?search_query=Gorgon+Halo+review&hl=en&sp=EgIIBA%253D%253D",
-    "signature": "yt:039be867feef6a56",
-    "checkedAt": "2026-11-23T08:42:58.378Z",
+    "signature": "yt:a82b986f8220fa5b",
+    "checkedAt": "2026-11-23T09:36:34.010Z",
     "status": "ok",
-    "items": [],
+    "items": [
+      {
+        "t": "Gorgon Halo Arrives in GMKtec... Do you need 192 GB of LPDDR5?!?",
+        "u": "https://www.youtube.com/watch?v=YbIX2AWCqB8",
+        "d": "3w ago",
+        "k": "Level1Techs"
+      },
+      {
+        "t": "NVIDIA, It’s Happening Again... Gorgon Halo is here",
+        "u": "https://www.youtube.com/watch?v=k7_K34eY9TM",
+        "d": "12d ago",
+        "k": "Alex Ziskind"
+      },
+      {
+        "t": "192GB of RAM for Local AI?! AMD Ryzen AI Halo Benchmarked | Micro Center",
+        "u": "https://www.youtube.com/watch?v=dq-KT5x9Sy0",
+        "d": "4w ago",
+        "k": "Micro Center"
+      },
+      {
+        "t": "Don't Buy the 192GB Gorgon Halo Until You See This",
+        "u": "https://www.youtube.com/watch?v=qNDrQ8Msv1U",
+        "d": "2w ago",
+        "k": "Amplify Imagination"
+      },
+      {
+        "t": "Ryzen AI Halo vs RTX 5090 vs Mac (Local AI)",
+        "u": "https://www.youtube.com/watch?v=Fy8LAbt1gUw",
+        "d": "3w ago",
+        "k": "Locally"
+      },
+      {
+        "t": "Gorgon Halo vs DGX Spark: Do You Need 192 GB of RAM?",
+        "u": "https://www.youtube.com/watch?v=DsrCRNEuVhI",
+        "d": "5d ago",
+        "k": "Plain Spoken Tech"
+      },
+      {
+        "t": "This Is The Most Powerful Mini PC AMD Has Ever Built! (192GB RAM)",
+        "u": "https://www.youtube.com/watch?v=78dRucCkFi4",
+        "d": "4w ago",
+        "k": "ETA PRIME"
+      },
+      {
+        "t": "Is this the BEST Local AI 128GB Strix Halo box?",
+        "u": "https://www.youtube.com/watch?v=68QinHpIV6Y",
+        "d": "3w ago",
+        "k": ""
+      },
+      {
+        "t": "Your Mac Studio vs AMD's 192GB AI PC: Watch This Before You Buy",
+        "u": "https://www.youtube.com/watch?v=Wj1YQJ9vQD8",
+        "d": "10d ago",
+        "k": "Mind The Prompt"
+      },
+      {
+        "t": "AMD Ryzen AI Halo Ryzen AI Max+ PRO 495 3.1GHz Honest Review 2026",
+        "u": "https://www.youtube.com/watch?v=F9TU1s2y7Pc",
+        "d": "3w ago",
+        "k": "Hari Kumar"
+      },
+      {
+        "t": "Strix Halo 128GB: Best Local AI Box in 2026?",
+        "u": "https://www.youtube.com/watch?v=FLlaWkQ3jDw",
+        "d": "3w ago",
+        "k": "Scottek"
+      },
+      {
+        "t": "192GB AI Mini PC for $6,199: BOSGAME M5 MAX Explained",
+        "u": "https://www.youtube.com/watch?v=VWmIzYeu6Uo",
+        "d": "2w ago",
+        "k": "AI & Tech News"
+      },
+      {
+        "t": "AMD's New AI PCs: What Actually Matters?",
+        "u": "https://www.youtube.com/watch?v=P-ocL2G0Yek",
+        "d": "2w ago",
+        "k": "X ZONE"
+      },
+      {
+        "t": "【ローカルLLMレーダー】2026-10-26（月） DGX Spark 8台／Ollama 0.40.11",
+        "u": "https://www.youtube.com/watch?v=vrDm2o3a-rw",
+        "d": "4w ago",
+        "k": "シンオン株式会社 (Synon,Inc) 公式"
+      },
+      {
+        "t": "Can a $22K Mac Studio Replace Claude? (512GB M5 Ultra)",
+        "u": "https://www.youtube.com/watch?v=PlOI37B3Ntg",
+        "d": "3w ago",
+        "k": "Devsplainers"
+      },
+      {
+        "t": "Mac Studio M5 Max vs Ultra for AI: Don't Waste $5,700",
+        "u": "https://www.youtube.com/watch?v=SMv9VOocae8",
+        "d": "4w ago",
+        "k": "Sanchit Gogna"
+      },
+      {
+        "t": "Don't Buy the $5,499 M5 Ultra for AI. Buy This Mac Instead",
+        "u": "https://www.youtube.com/watch?v=Utpz4ZuJIWY",
+        "d": "3w ago",
+        "k": "Priced Out"
+      },
+      {
+        "t": "40K Lore - The Siege of Vraks (Part 4) - The Screams of the Dead",
+        "u": "https://www.youtube.com/watch?v=y9PcvOqaZ3U",
+        "d": "1d ago",
+        "k": "The Pontius"
+      }
+    ],
     "seen": [
       "https://www.youtube.com/watch?v=YbIX2AWCqB8",
       "https://www.youtube.com/watch?v=dq-KT5x9Sy0",
@@ -2159,14 +2267,15 @@
       "https://www.youtube.com/watch?v=vrDm2o3a-rw",
       "https://www.youtube.com/watch?v=SMv9VOocae8",
       "https://www.youtube.com/watch?v=PlOI37B3Ntg",
-      "https://www.youtube.com/watch?v=peOpDhbymuw"
+      "https://www.youtube.com/watch?v=peOpDhbymuw",
+      "https://www.youtube.com/watch?v=y9PcvOqaZ3U"
     ]
   },
   "recenze-youtube-mac-studio": {
     "url": "https://www.youtube.com/results?search_query=Mac+Studio+M5+local+AI&hl=en&sp=EgIIBA%253D%253D",
-    "signature": "yt:278554fece6f9a2a",
-    "checkedAt": "2026-11-23T08:43:00.463Z",
-    "status": "changed",
+    "signature": "yt:ecc6c84b962f09c9",
+    "checkedAt": "2026-11-23T09:36:36.010Z",
+    "status": "ok",
     "items": [
       {
         "t": "Can a $22K Mac Studio Replace Claude? (512GB M5 Ultra)",
@@ -2193,7 +2302,7 @@
         "k": "Alex Grankin"
       },
       {
-        "t": "Olares One vs Mac Studio M5 Ultra: Local AI at Half the Price",
+        "t": "Mac Studio M5 Ultra vs. Olares One",
         "u": "https://www.youtube.com/watch?v=RpW8cxFSa-o",
         "d": "2d ago",
         "k": "Blue Lightning"
@@ -2223,28 +2332,16 @@
         "k": "Kai"
       },
       {
-        "t": "Mac Mini vs Mac Studio For Apple Harbor (Local AI)",
-        "u": "https://www.youtube.com/watch?v=Ek9REeR8V04",
-        "d": "22h ago",
-        "k": "Locally"
-      },
-      {
-        "t": "I Joined Macbook M5 Max and Studio M5 Ultra to Run a 432 GB Model",
-        "u": "https://www.youtube.com/watch?v=zY11Mss9fsw",
-        "d": "3w ago",
-        "k": "AIex The AI Workbench"
-      },
-      {
         "t": "Local AI Just Got EXPENSIVE | Mac Studio M5 vs DGX Spark",
         "u": "https://www.youtube.com/watch?v=DnAFOBNX29Y",
         "d": "3w ago",
         "k": "Tech2WiLD"
       },
       {
-        "t": "I Gave My Mac and Claude the Same 8 Jobs. Local AI Is Easier Than You Think",
-        "u": "https://www.youtube.com/watch?v=qOgtwYpjJ7A",
+        "t": "I Joined Macbook M5 Max and Studio M5 Ultra to Run a 432 GB Model",
+        "u": "https://www.youtube.com/watch?v=zY11Mss9fsw",
         "d": "3w ago",
-        "k": "The Dark Factory"
+        "k": "AIex The AI Workbench"
       },
       {
         "t": "Can Local AI Replace My Claude Subscription? M5 Ultra 256GB vs M5 Max Build 2 Apps",
@@ -2259,10 +2356,16 @@
         "k": "Sanchit Gogna"
       },
       {
-        "t": "Local AI is No Longer an Option. Here is Why",
-        "u": "https://www.youtube.com/watch?v=vVxujZS4hFA",
-        "d": "22h ago",
-        "k": "Kai"
+        "t": "Mac Mini vs Mac Studio For Apple Harbor (Local AI)",
+        "u": "https://www.youtube.com/watch?v=Ek9REeR8V04",
+        "d": "23h ago",
+        "k": "Locally"
+      },
+      {
+        "t": "I Gave My Mac and Claude the Same 8 Jobs. Local AI Is Easier Than You Think",
+        "u": "https://www.youtube.com/watch?v=qOgtwYpjJ7A",
+        "d": "3w ago",
+        "k": "The Dark Factory"
       },
       {
         "t": "I Just Got the Mac Studio M5 Ultra (96GB) for Local AI",
@@ -2275,6 +2378,12 @@
         "u": "https://www.youtube.com/watch?v=Clue9LX1-Ks",
         "d": "4w ago",
         "k": "WebsiteRadar"
+      },
+      {
+        "t": "Local AI is No Longer an Option. Here is Why",
+        "u": "https://www.youtube.com/watch?v=vVxujZS4hFA",
+        "d": "23h ago",
+        "k": "Kai"
       },
       {
         "t": "I Bought TWO M5 Max Mac Studios… One Had to Go!",
@@ -2338,33 +2447,15 @@
   },
   "recenze-youtube-macbook-pro": {
     "url": "https://www.youtube.com/results?search_query=MacBook+Pro+M5+Max+local+AI&hl=en&sp=EgIIBA%253D%253D",
-    "signature": "yt:1e25a1e61dc60d54",
-    "checkedAt": "2026-11-23T08:43:02.032Z",
-    "status": "changed",
+    "signature": "yt:e2661775d097c992",
+    "checkedAt": "2026-11-23T09:36:37.417Z",
+    "status": "ok",
     "items": [
       {
         "t": "Don't Buy 128GB MacBook For Local AI: Here's Why",
         "u": "https://www.youtube.com/watch?v=XoQ8gBT_dUY",
-        "d": "17h ago",
+        "d": "18h ago",
         "k": "Samuel Gregory"
-      },
-      {
-        "t": "New MacBook Pro for AI: Don't Pay $1,000 More for Less Memory",
-        "u": "https://www.youtube.com/watch?v=co1h0xEkeaU",
-        "d": "3w ago",
-        "k": "Mind The Prompt"
-      },
-      {
-        "t": "Buying a Mac for AI? What Nobody Warns You About",
-        "u": "https://www.youtube.com/watch?v=mbqHk7kfhcA",
-        "d": "2w ago",
-        "k": "Alex Grankin"
-      },
-      {
-        "t": "Mac Studio M5 Max vs Ultra for AI: Don't Waste $5,700",
-        "u": "https://www.youtube.com/watch?v=SMv9VOocae8",
-        "d": "4w ago",
-        "k": "Sanchit Gogna"
       },
       {
         "t": "Before You Spend Thousands on Local AI, Watch This",
@@ -2373,40 +2464,22 @@
         "k": "Alex Grankin"
       },
       {
-        "t": "Don't Buy the $4,099 MacBook Pro for Local AI | The One I'd Actually Get",
-        "u": "https://www.youtube.com/watch?v=LwQExF-RrIQ",
-        "d": "3w ago",
-        "k": "Build Alone"
-      },
-      {
-        "t": "I Tested Local AI on My Mac Studio So You Don't Have To",
-        "u": "https://www.youtube.com/watch?v=JLs10oOX6NY",
-        "d": "2w ago",
-        "k": "Kai"
-      },
-      {
-        "t": "Mac Studio 128GB vs 64GB: Which Runs the New Local AI?",
-        "u": "https://www.youtube.com/watch?v=b5k51iMFrgY",
-        "d": "4w ago",
-        "k": "Sanchit Gogna"
-      },
-      {
-        "t": "RTX Spark laptops vs MacBook Pro M5 Max - The AI reviews are wrong",
-        "u": "https://www.youtube.com/watch?v=4zITC0AFRf4",
-        "d": "4w ago",
-        "k": "Measured Locally"
-      },
-      {
         "t": "A Second Mac Just Killed The 512GB Mac Studio For Local AI",
         "u": "https://www.youtube.com/watch?v=FohbC8DlGZI",
         "d": "2d ago",
         "k": "Local Explained"
       },
       {
-        "t": "How does the MacBook Pro M5 Max perform with LOCAL AI? Qwen 3.8 27B + Ollama MLX",
-        "u": "https://www.youtube.com/watch?v=GFlcEqim8ps",
-        "d": "1d ago",
-        "k": "Ricardo Bertran"
+        "t": "Buying a Mac for AI? What Nobody Warns You About",
+        "u": "https://www.youtube.com/watch?v=mbqHk7kfhcA",
+        "d": "2w ago",
+        "k": "Alex Grankin"
+      },
+      {
+        "t": "MacBook M5 Max Local AI: LM Studio, oMLX, TensorFold and Strata Compared",
+        "u": "https://www.youtube.com/watch?v=VM-XQgtWYIk",
+        "d": "4w ago",
+        "k": "AIex The AI Workbench"
       },
       {
         "t": "Can Local AI Replace My Claude Subscription? M5 Ultra 256GB vs M5 Max Build 2 Apps",
@@ -2415,40 +2488,10 @@
         "k": "AIex The AI Workbench"
       },
       {
-        "t": "M5 Max MacBook Pro: This Stress Test Made PROLED...",
-        "u": "https://www.youtube.com/watch?v=TB--mw76SLg",
-        "d": "2w ago",
-        "k": ""
-      },
-      {
-        "t": "What AI You Can Run at Every Memory Size, From 16GB to 1TB",
-        "u": "https://www.youtube.com/watch?v=vwvT01tT5Ac",
-        "d": "3w ago",
-        "k": "Alex Grankin"
-      },
-      {
-        "t": "Don't Buy the M5 Pro for AI! (Read This First)",
-        "u": "https://www.youtube.com/watch?v=grV_toQZvck",
-        "d": "4w ago",
-        "k": "Bruno Vega"
-      },
-      {
-        "t": "Mac mini local AI: M6 Mac mini 32GB or M5 Pro 48GB? What $1,000 buys",
-        "u": "https://www.youtube.com/watch?v=LMCR8pT2QHA",
-        "d": "11d ago",
-        "k": "KernelBrief"
-      },
-      {
         "t": "You Don't Need a $20,000 Mac for AI. Here's What I'd Buy",
         "u": "https://www.youtube.com/watch?v=11Wnxi_781Q",
         "d": "2w ago",
         "k": "The Dark Factory"
-      },
-      {
-        "t": "I Joined Macbook M5 Max and Studio M5 Ultra to Run a 432 GB Model",
-        "u": "https://www.youtube.com/watch?v=zY11Mss9fsw",
-        "d": "3w ago",
-        "k": "AIex The AI Workbench"
       },
       {
         "t": "Apple's Local AI App for Mac Is Coming (Harbor)",
@@ -2457,10 +2500,76 @@
         "k": "Kai"
       },
       {
+        "t": "New OLED MacBook Pro for Local AI: Worth It? (M5 Pro vs M5 Max)",
+        "u": "https://www.youtube.com/watch?v=5ox7bw44MEs",
+        "d": "2w ago",
+        "k": "Alex Pinchuk"
+      },
+      {
+        "t": "I Tested Local AI on My Mac Studio So You Don't Have To",
+        "u": "https://www.youtube.com/watch?v=JLs10oOX6NY",
+        "d": "2w ago",
+        "k": "Kai"
+      },
+      {
+        "t": "Don't Buy a Mac for AI Until You Watch This",
+        "u": "https://www.youtube.com/watch?v=ixy-xP2gMnA",
+        "d": "9d ago",
+        "k": "Kai"
+      },
+      {
+        "t": "I Turned a £200 Trash Can Mac Pro Into a Linux AI Server in 2026",
+        "u": "https://www.youtube.com/watch?v=-pYbBmB14Sk",
+        "d": "6d ago",
+        "k": "DevWithZachary"
+      },
+      {
+        "t": "My MacBook Pro Was 6 Months Old... Then Apple Changed It",
+        "u": "https://www.youtube.com/watch?v=6-eYbxxnkrE",
+        "d": "4d ago",
+        "k": ""
+      },
+      {
+        "t": "M5 Max MacBook Pro: This Stress Test Made PROLED...",
+        "u": "https://www.youtube.com/watch?v=TB--mw76SLg",
+        "d": "2w ago",
+        "k": ""
+      },
+      {
         "t": "Apple's Harbor or LM Studio? Local AI on Your Mac, Which to Pick Now",
         "u": "https://www.youtube.com/watch?v=Ni7ON0pZtso",
         "d": "11d ago",
         "k": ""
+      },
+      {
+        "t": "M5 Pro Mac mini vs PROLED MacBook Pro: Desktop or Laptop?",
+        "u": "https://www.youtube.com/watch?v=bNGcHTh24ro",
+        "d": "5d ago",
+        "k": "Adam Talks Tech"
+      },
+      {
+        "t": "I Found the Best MacBook for Local AI (And It’s Cheap)",
+        "u": "https://www.youtube.com/watch?v=rKdkGp519sU",
+        "d": "2w ago",
+        "k": "Devsplainers"
+      },
+      {
+        "t": "Don't Buy the $4,099 MacBook Pro for Local AI | The One I'd Actually Get",
+        "u": "https://www.youtube.com/watch?v=LwQExF-RrIQ",
+        "d": "3w ago",
+        "k": "Build Alone"
+      },
+      {
+        "t": "Mac Studio 128GB vs 64GB: Which Runs the New Local AI?",
+        "u": "https://www.youtube.com/watch?v=b5k51iMFrgY",
+        "d": "4w ago",
+        "k": "Sanchit Gogna"
+      },
+      {
+        "t": "The Mac M5 Ultra is a Trap for Local LLMs (Here’s Why)",
+        "u": "https://www.youtube.com/watch?v=hQu-9Tw-qco",
+        "d": "4w ago",
+        "k": "Bullions Watchdog"
       }
     ],
     "seen": [
@@ -2518,41 +2627,42 @@
       "https://www.youtube.com/watch?v=SMv9VOocae8",
       "https://www.youtube.com/watch?v=GFlcEqim8ps",
       "https://www.youtube.com/watch?v=LMCR8pT2QHA",
-      "https://www.youtube.com/watch?v=zY11Mss9fsw"
+      "https://www.youtube.com/watch?v=zY11Mss9fsw",
+      "https://www.youtube.com/watch?v=-pYbBmB14Sk"
     ]
   },
   "alza-rtx-spark-pocitace": {
     "url": "https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:34.934Z",
+    "checkedAt": "2026-11-23T09:36:12.937Z",
     "status": "manual",
     "items": []
   },
   "storagereview-proart-gr1x": {
     "url": "https://www.storagereview.com/review/asus-proart-gr1x-review",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:34.934Z",
+    "checkedAt": "2026-11-23T09:36:12.937Z",
     "status": "manual",
     "items": []
   },
   "ifeng-chaping-proart-gr1x": {
     "url": "https://tech.ifeng.com/c/8yAEYHt7q3u",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:34.934Z",
+    "checkedAt": "2026-11-23T09:36:12.937Z",
     "status": "manual",
     "items": []
   },
   "computerbase-msi-edgemesa": {
     "url": "https://www.computerbase.de/artikel/pc-systeme/msi-edgemesa-n-ai-nvidia-rtx-spark-test.100328/",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:34.934Z",
+    "checkedAt": "2026-11-23T09:36:12.937Z",
     "status": "manual",
     "items": []
   },
   "tomshardware-msi-edgemesa": {
     "url": "https://www.tomshardware.com/desktops/mini-pcs/msi-edgemesa-n-ai-plus-review",
     "signature": null,
-    "checkedAt": "2026-11-23T08:42:34.934Z",
+    "checkedAt": "2026-11-23T09:36:12.937Z",
     "status": "manual",
     "items": []
   }

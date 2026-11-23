@@ -220,6 +220,25 @@ async function fetchFeed(url) {
   }
 }
 
+/**
+ * Běžná stránka: jeden retry na timeout. Servery občas nestihnou odpovědět
+ * do 20 s, i když při ručním otevření odpovídají hned (llamaperf).
+ */
+async function fetchStranku(url) {
+  for (let pokus = 1; ; pokus++) {
+    try {
+      return await fetchText(url);
+    } catch (e) {
+      const docasne =
+        /HTTP (429|503)/.test(String(e.message)) ||
+        e.name === 'AbortError' ||
+        /aborted|timeout/i.test(String(e.message));
+      if (pokus >= 2 || !docasne) throw e;
+      await sleep(3000);
+    }
+  }
+}
+
 /** Vrací podpis a u feedů i položky pro report novinek. */
 async function signature(source) {
   const url = source.url;
@@ -282,7 +301,7 @@ async function signature(source) {
     return { sig: `rss:${hash(items.map(klic).join('|') || 'prazdno')}`, items };
   }
 
-  const text = await fetchText(url);
+  const text = await fetchStranku(url);
   return { sig: `text:${hash(stripHtml(text).slice(0, 200000))}`, items: [] };
 }
 
@@ -383,21 +402,56 @@ fs.writeFileSync(stateFile, JSON.stringify(nextState, null, 2) + '\n');
 
 const novinky = report.flatMap((r) => r.nove.map((n) => ({ id: r.source.id, ...n })));
 
+// Stejný titulek přijde často ze dvou feedů (Google News + YouTube). Do reportu
+// patří jednou, s výčtem zdrojů; jinak triage čte totéž dvakrát.
+const klicTitulku = (t) => String(t).toLowerCase().replace(/\s+/g, ' ').trim();
+const podleTitulku = new Map();
+for (const n of novinky) {
+  const k = klicTitulku(n.t);
+  if (!podleTitulku.has(k)) podleTitulku.set(k, { ...n, zdroje: [n.id] });
+  else {
+    const e = podleTitulku.get(k);
+    if (!e.zdroje.includes(n.id)) e.zdroje.push(n.id);
+  }
+}
+
+// Předtřídění pro triage: co je mimo záběr katalogu a co naopak stojí za pohled.
+const MIMO =
+  /(whitebox|sestav|build|rack|cluster|8\s?[×x]|trénink|training|fine.?tun|gaming|hern|vram|lore|warhammer|40k|retro|trash|16\s?gb|24\s?gb|32\s?gb|48\s?gb|64\s?gb)/i;
+const ZABER =
+  /(128\s?gb|dgx spark|rtx spark|strix halo|gorgon halo|ryzen ai max|m5 (max|ultra)|qwen3\.8)/i;
+const polozky = [...podleTitulku.values()].map((e) => ({
+  ...e,
+  tag: MIMO.test(e.t) ? 'mimo' : ZABER.test(e.t) ? 'zaber' : 'jine',
+}));
+const skupiny = [
+  ['zaber', 'Do záběru — posoudit zařazení'],
+  ['jine', 'Ostatní — bez zřejmého klíčového slova'],
+  ['mimo', 'Mimo záběr — whiteboxy, racky, trénink, starší a menší stroje'],
+];
+
 const lines = [
   '# Hlídač zdrojů',
   '',
   `Kontrola: ${new Date().toISOString()}`,
-  `Zdroje: ${sources.length}, změny: ${changed}, chyby: ${errors}, nové položky: ${novinky.length}`,
+  `Zdroje: ${sources.length}, změny: ${changed}, chyby: ${errors}, nové položky: ${polozky.length}${
+    novinky.length > polozky.length ? ` (${novinky.length - polozky.length} duplicit)` : ''
+  }`,
   '',
   '| Zdroj | Stav | Detail |',
   '|---|---|---|',
   ...report.map((r) => `| ${r.source.id} | ${r.status} | ${String(r.detail).replace(/\|/g, '\\|')} |`),
 ];
 
-if (novinky.length) {
-  lines.push('', '## Nové položky', '');
-  for (const n of novinky) {
-    lines.push(`- **${n.id}**: [${n.t}](${n.u})${n.d ? ` — ${n.d}` : ''}`);
+if (polozky.length) {
+  for (const [tag, nadpis] of skupiny) {
+    const vSkupine = polozky.filter((p) => p.tag === tag);
+    if (!vSkupine.length) continue;
+    lines.push('', `## ${nadpis} (${vSkupine.length})`, '');
+    for (const n of vSkupine) {
+      const zdroje = n.zdroje.length > 1 ? ` _(${n.zdroje.join(', ')})_` : '';
+      lines.push(`- [${n.t}](${n.u})${n.d ? ` — ${n.d}` : ''}${zdroje}`);
+    }
   }
 }
 
@@ -406,4 +460,4 @@ lines.push('', '> Hlídač nic nemění. Změny se řeší ručně a zapisují d
 fs.writeFileSync(reportFile, lines.join('\n'));
 
 console.log(`\nReport: ${path.relative(root, reportFile)}`);
-console.log(`Změny: ${changed}, chyby: ${errors}, nové: ${novinky.length}`);
+console.log(`Změny: ${changed}, chyby: ${errors}, nové: ${polozky.length}`);
