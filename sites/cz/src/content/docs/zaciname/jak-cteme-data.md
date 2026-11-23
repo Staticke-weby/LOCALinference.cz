@@ -133,4 +133,3 @@ Pokud chcete vlastní číslo:
   specifikace.
 - [llamaperf](https://llamaperf.com/gpu/strix-halo-128gb) — komunitní měření.
 
-*Naposledy ověřeno: 4. 11. 2026.*

@@ -107,4 +107,3 @@ u těchto zařízení bavíme o MoE.
 - [llamaperf — Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb)
 - [NVIDIA DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/)
 
-*Naposledy ověřeno: 4. 11. 2026.*

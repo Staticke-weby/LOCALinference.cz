@@ -68,5 +68,3 @@ srovnatelnosti. Podrobnosti jsou v [metodice](/o-webu/metodika/).
 - [Metodika](/o-webu/metodika/)
 - [Registr zdrojů](/zdroje/zdroje/)
 - [Qwen3.8 Flash Next — model card](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
-
-*Naposledy ověřeno: 5. 11. 2026.*

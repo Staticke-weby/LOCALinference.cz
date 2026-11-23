@@ -70,4 +70,3 @@ hardware ani modely a nejsme spojeni s jejich výrobci. Podrobnosti v
 - [Metodika](/o-webu/metodika/)
 - [Registr zdrojů](/zdroje/zdroje/)
 
-*Naposledy ověřeno: 4. 11. 2026.*

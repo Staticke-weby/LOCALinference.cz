@@ -84,4 +84,3 @@ nepotřebujeme k němu cookie lištu.
 - [OpenWork.cz — právní informace](https://www.openwork.cz/o-webu/pravni/) — stejný provozovatel.
 - [Metodika](/o-webu/metodika/) — pravidla práce s daty.
 
-*Naposledy ověřeno: 10. 11. 2026.*

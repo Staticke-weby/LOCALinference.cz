@@ -199,5 +199,3 @@ a čtvrt. Rozdíl je znát, ale obojí je použitelné.
   273 GB/s.
 - [llamaperf: Strix Halo 128GB](https://llamaperf.com/gpu/strix-halo-128gb) —
   reálná měření na 128GB APU.
-
-*Naposledy ověřeno: 4. 11. 2026.*
