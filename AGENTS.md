@@ -222,6 +222,12 @@ vlastní evidenci:
   commitne `data/stav-zdroju.json` a `data/videa.yaml` a report
   roztřídí (ceny, nové titulky, chyby zdrojů). Běží tam proto, že na
   report navazuje triage; počítač s OpenChamber ale musí být zapnutý.
+  Součástí běhu je **kontrola Alza.cz v OpenChamber browseru**: zdroje
+  `alza-*` jsou `kontrola: manual`, protože fetch vrací 403, ale agent
+  kategorie a produkty v prohlížeči otevře a ověří cenu i dostupnost
+  u katalogových SKU. Změny zapíše do `data/*-oem.yaml`,
+  `data/historie-cen.yaml`, `data/zarizeni.yaml` a `data/zmeny.yaml`
+  a stejnými čísly sladí texty stránek.
   Workflow `hlidac.yml` zůstává jen na ruční spuštění
   (`workflow_dispatch`) jako záloha a pro ověření po změnách skriptu.
 - **Aktualizační checklist:** ověřit cenu → ověřit model → ověřit měření →

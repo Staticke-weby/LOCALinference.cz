@@ -199,6 +199,27 @@ async function fetchText(url) {
   return await res.text();
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Google News drží limit na počet requestů v krátkém čase a na sedm feedů
+ * v řadě vrací 429. Před každým requestem na news.google.com proto pauza
+ * a na 429/503 jeden až dva retry se zpožděním.
+ */
+async function fetchFeed(url) {
+  const jeGoogle = /news\.google\.com/.test(url);
+  for (let pokus = 1; ; pokus++) {
+    if (jeGoogle) await sleep(1200);
+    try {
+      return await fetchText(url);
+    } catch (e) {
+      const docasne = /HTTP (429|503)/.test(String(e.message));
+      if (pokus >= 3 || !docasne) throw e;
+      await sleep(5000 * pokus);
+    }
+  }
+}
+
 /** Vrací podpis a u feedů i položky pro report novinek. */
 async function signature(source) {
   const url = source.url;
@@ -241,7 +262,7 @@ async function signature(source) {
   }
 
   if (source.typ === 'youtube') {
-    const items = filtr(source, parseYouTubeSearch(await fetchText(url)))
+    const items = filtr(source, parseYouTubeSearch(await fetchFeed(url)))
       .filter((i) => {
         const d = stariDnu(i.d);
         return d == null || d <= 30;
@@ -252,7 +273,7 @@ async function signature(source) {
 
   if (source.typ === 'rss') {
     // Google News a podobné feedy vrací i měsíce staré články; držíme 90 dní.
-    const items = filtr(source, parseFeed(await fetchText(url)))
+    const items = filtr(source, parseFeed(await fetchFeed(url)))
       .filter((i) => {
         const d = stariDneDatum(i.d);
         return d == null || d <= 90;
@@ -284,7 +305,8 @@ for (const source of sources) {
 
     const drivejsiSeen = Array.isArray(previous?.seen) ? previous.seen : null;
     const k = (i) => (source.typ === 'youtube' ? i.u : klic(i));
-    const nove = drivejsiSeen ? items.filter((i) => !drivejsiSeen.includes(k(i))).slice(0, 10) : [];
+    const vsechnyNove = drivejsiSeen ? items.filter((i) => !drivejsiSeen.includes(k(i))) : [];
+    const nove = vsechnyNove.slice(0, 20);
     const seen = [...new Set([...(drivejsiSeen ?? []), ...items.map(k)])].slice(-300);
 
     // YouTube: nová videa zařaď do trvalé fronty, ať se nemusí procházet znovu.
@@ -326,7 +348,14 @@ for (const source of sources) {
     report.push({
       source,
       status: stav,
-      detail: stav === 'changed' ? `${nove.length} nových` : items.length ? `${items.length} položek` : sig,
+      detail:
+        stav === 'changed'
+          ? `${vsechnyNove.length} nových${
+              vsechnyNove.length > nove.length ? ` (v reportu prvních ${nove.length})` : ''
+            }`
+          : items.length
+            ? `${items.length} položek`
+            : sig,
       nove,
     });
     console.log(`${stav === 'ok' ? '·' : '!'} ${source.id}: ${stav}${nove.length ? ` (+${nove.length})` : ''}`);
