@@ -177,10 +177,26 @@
     overeno: 2026-11-23
     zdroj: https://www.alza.cz/mac-studio/18894763.htm?idp=12510&banner_id=41939
     poznamka: "128GB/512GB 147 990 Kč; 128GB/2TB 171 990 Kč; vč. DPH."
+  konfigurace:
+    - nazev: "128 GB / 512 GB"
+      cena_czk_s_dph: 147990
+      dostupnost: "Skladem > 5 ks"
+      objednaci_kod: TL020a7i
+      overeno: 2026-11-23
+    - nazev: "128 GB / 1 TB"
+      cena_czk_s_dph: 156990
+      dostupnost: "Skladem > 5 ks"
+      objednaci_kod: TL020a7j
+      overeno: 2026-11-23
+    - nazev: "128 GB / 2 TB"
+      cena_czk_s_dph: 171990
+      dostupnost: "Skladem > 5 ks"
+      objednaci_kod: TL020a7k
+      overeno: 2026-11-23
   zdroje:
     - https://www.apple.com/mac-studio/specs/
     - https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md
-  overeno: 2026-11-09
+  overeno: 2026-11-23
 
 - id: macbook-pro
   nazev: Apple MacBook Pro 16" 128 GB
@@ -207,6 +223,17 @@
     overeno: 2026-11-23
     zdroj: https://www.alza.cz/macbook-pro/18900520.htm?idp=12510&banner_id=41939
     poznamka: "14\" 128GB/2TB 197 490 Kč (na objednávku); 16\" 128GB/8TB 282 610 Kč v akci, běžně 297 490 Kč (skladem); vč. DPH. 128 GB je jen u M5 Max, M5 Pro končí na 48 GB. Ceny se rychle mění."
+  konfigurace:
+    - nazev: "14\" 128 GB / 2 TB"
+      cena_czk_s_dph: 197490
+      dostupnost: "Na objednávku – termín upřesníme"
+      objednaci_kod: NL271e1jn
+      overeno: 2026-11-23
+    - nazev: "16\" 128 GB / 8 TB"
+      cena_czk_s_dph: 282610
+      dostupnost: "Skladem (akce −5 %, běžně 297 490 Kč)"
+      objednaci_kod: NL271f2l4n
+      overeno: 2026-11-23
   zdroje:
     - https://www.apple.com/macbook-pro/specs/
     - https://ml-explore.github.io/mlx/

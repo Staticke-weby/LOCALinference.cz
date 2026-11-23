@@ -225,9 +225,9 @@ vlastní evidenci:
   Součástí běhu je **kontrola Alza.cz v OpenChamber browseru**: zdroje
   `alza-*` jsou `kontrola: manual`, protože fetch vrací 403, ale agent
   kategorie a produkty v prohlížeči otevře a ověří cenu i dostupnost
-  u katalogových SKU. Změny zapíše do `data/*-oem.yaml`,
-  `data/historie-cen.yaml`, `data/zarizeni.yaml` a `data/zmeny.yaml`
-  a stejnými čísly sladí texty stránek.
+  u katalogových SKU. Postup a úskalí jsou v 3.4. Změny zapíše do
+  `data/*-oem.yaml`, `data/historie-cen.yaml`, `data/zarizeni.yaml`
+  a `data/zmeny.yaml` a stejnými čísly sladí texty stránek.
   Workflow `hlidac.yml` zůstává jen na ruční spuštění
   (`workflow_dispatch`) jako záloha a pro ověření po změnách skriptu.
 - **Aktualizační checklist:** ověřit cenu → ověřit model → ověřit měření →
@@ -300,6 +300,34 @@ vlastní cestu: `data/objevy.yaml` a postup v `postup-objevovani.md`.
 Podrobný postup, zdroje a rozhodovací strom jsou v
 `postup-objevovani.md`. Když kandidát projde jen částí filtru, rozhodne
 provozovatel — agent ho nezamlčí ani nezařadí sám.
+
+### 3.4 Kontrola Alzy v prohlížeči
+
+Alza vrací fetchi 403, proto jsou zdroje `alza-*` v `data/zdroje.yaml`
+`kontrola: manual`. Ceny se ověřují v OpenChamber browseru v rámci
+týdenního běhu; nikdy se neberou z vyhledávače ani z druhé ruky.
+
+- **Kategorie:** Počítače s NVIDIA RTX Spark (18925089), AI počítače
+  (18907789), Notebooky s RTX Spark (18924563), Mac Studio (18894763),
+  MacBook Pro (18900520).
+- **Produkty:** odkazy jsou v `data/*-oem.yaml` a `data/zarizeni.yaml`.
+  Když na stránce nesedí objednací kód, hledej přes
+  `https://www.alza.cz/search.htm?exps=<kód>`.
+- **Parametry v URL** (hash za `#f`): paměť `par70=<MB>--<MB>`
+  (128 GB = `131072`), cena `limit=-1--<Kč>`. Pořadí `sc` pořadí nemění
+  a `cst` (stav zboží) se chová nekonzistentně — „jen nové“ filtrovat
+  nelze, místo toho ověř extrémy podle objednacího kódu.
+- **Hash nespustí reload.** Bez `?r=<timestamp>` před `#f&…` prohlížeč
+  vrátí starý obsah i po změně filtru. Vždy otevírej `…?r=<ts>#f&…`
+  a zkontroluj počet položek.
+- **Cena:** ber tu, jejíž `cena / 1,21` sedí na údaj „bez DPH“; druhá
+  přeškrtnutá je původní. Akční cena je aktuální cena, ne „původně“.
+- **U každého SKU** ověř cenu s DPH, cenu bez DPH, dostupnost a objednací
+  kód. Výsledek zapiš do `data/*-oem.yaml`, `data/historie-cen.yaml`,
+  `data/zarizeni.yaml` (`cena_czk`, u Maců `konfigurace`) a
+  `data/zmeny.yaml`.
+- **Rozsahy u Maců:** `cena_czk.od/do` se počítá z `konfigurace`;
+  `npm run check:data` hlídá, že sedí.
 
 ---
 

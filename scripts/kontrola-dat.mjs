@@ -153,6 +153,39 @@ for (const o of rtxNotebookOemList) {
   }
 }
 
+// Bez objednacího kódu se cena na Alze nedá dohledat ani ověřit.
+for (const [name, items] of [
+  ['data/dgx-spark-oem.yaml', dgxSparkOemList],
+  ['data/rtx-spark-notebook-oem.yaml', rtxNotebookOemList],
+  ['data/rtx-spark-mini-oem.yaml', rtxMiniOemList],
+  ['data/strix-halo-oem.yaml', strixHaloOemList],
+]) {
+  for (const o of items) {
+    if (!String(o.objednaci_kod ?? '').trim()) {
+      fail(`${name} / ${o.id}: chybí objednaci_kod — cena by se nedala ověřit`);
+    }
+  }
+}
+
+// Rozsah od/do musí odpovídat pojmenovaným konfiguracím, jinak se rozejde s textem.
+for (const z of zarizeniList) {
+  const k = z.konfigurace;
+  if (!k?.length) continue;
+  if (!z.cena_czk) {
+    fail(`data/zarizeni.yaml / ${z.id}: má konfigurace, ale chybí cena_czk`);
+    continue;
+  }
+  const ceny = k.map((x) => x.cena_czk_s_dph);
+  const min = Math.min(...ceny);
+  const max = Math.max(...ceny);
+  if (z.cena_czk.od !== min) {
+    fail(`data/zarizeni.yaml / ${z.id}: cena_czk.od ${z.cena_czk.od} neodpovídá nejlevnější konfiguraci ${min}`);
+  }
+  if ((z.cena_czk.do ?? z.cena_czk.od) !== max) {
+    fail(`data/zarizeni.yaml / ${z.id}: cena_czk.do ${z.cena_czk.do} neodpovídá nejdražší konfiguraci ${max}`);
+  }
+}
+
 for (const m of mereniList) {
   if (!zarizeniIds.has(m.zarizeni)) fail(`data/mereni.yaml / ${m.id}: neznámé zařízení ${m.zarizeni}`);
   if (!modelIds.has(m.model)) fail(`data/mereni.yaml / ${m.id}: neznámý model ${m.model}`);

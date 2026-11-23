@@ -47,6 +47,17 @@ export const zarizeni = z.object({
     })
     .refine((v) => v.do == null || v.od <= v.do, { message: 'od musí být <= do' })
     .optional(),
+  konfigurace: z
+    .array(
+      z.object({
+        nazev: z.string().min(3),
+        cena_czk_s_dph: z.number().positive(),
+        dostupnost: z.string().min(1),
+        objednaci_kod: z.string().min(1),
+        overeno: datum,
+      }),
+    )
+    .optional(),
   cpu: z.string().min(1),
   gpu: z.string().min(1),
   os: z.array(z.string().min(1)).min(1),
