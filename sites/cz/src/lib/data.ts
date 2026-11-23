@@ -543,11 +543,16 @@ export function merenoKymLabel(k: Mereni['mereno_kym']): string {
   return k === 'vyrobce' ? 'výrobce' : k === 'nezavisle' ? 'nezávislý' : 'komunita';
 }
 
-/** Affiliate odkazy musí být označené rel="sponsored"; ostatní jen bezpečnostní rel. */
+/**
+ * Affiliate odkazy musí být označené rel="sponsored"; ostatní jen bezpečnostní rel.
+ * Affiliate je jen odkaz s affiliate parametrem (`idp`) — odkaz na produktovou
+ * stránku v seznamu zdrojů affiliate není a označovat se nemá.
+ */
 export function relOdkazu(url: string): string {
   try {
-    const host = new URL(url).hostname.toLowerCase();
-    if (host === 'alza.cz' || host.endsWith('.alza.cz')) {
+    const u = new URL(url);
+    const host = u.hostname.toLowerCase();
+    if ((host === 'alza.cz' || host.endsWith('.alza.cz')) && u.searchParams.has('idp')) {
       return 'sponsored noopener noreferrer';
     }
   } catch {

@@ -21,10 +21,13 @@ const umami =
 
 /**
  * Affiliate odkazy (Alza) označí rel="sponsored". Bez toho by web
- * vydával placený odkaz za redakční.
+ * vydával placený odkaz za redakční. Affiliate je jen odkaz s affiliate
+ * parametrem (`idp`), ne každý odkaz na alza.cz: produktové stránky
+ * v seznamu zdrojů affiliate nejsou.
  */
 function rehypeAffiliate() {
   const AFFILIATE = ['alza.cz'];
+  const AFFILIATE_PARAM = 'idp';
 
   return (tree) => {
     const walk = (node) => {
@@ -32,20 +35,20 @@ function rehypeAffiliate() {
         const href = node.properties?.href;
         if (typeof href === 'string') {
           try {
-            const host = new URL(href).hostname.toLowerCase();
-            const jeAffiliate = AFFILIATE.some(
-              (d) => host === d || host.endsWith(`.${d}`),
-            );
+            const url = new URL(href);
+            const host = url.hostname.toLowerCase();
+            const jeAffiliate =
+              AFFILIATE.some((d) => host === d || host.endsWith(`.${d}`)) &&
+              url.searchParams.has(AFFILIATE_PARAM);
             if (jeAffiliate) {
-              const rel = new Set(
-                String(node.properties.rel ?? '')
-                  .split(/\s+/)
-                  .filter(Boolean),
-              );
+              const stavajici = Array.isArray(node.properties.rel)
+                ? node.properties.rel
+                : String(node.properties.rel ?? '').split(/[\s,]+/);
+              const rel = new Set(stavajici.filter(Boolean));
               rel.add('sponsored');
               rel.add('noopener');
               rel.add('noreferrer');
-              node.properties.rel = [...rel].join(' ');
+              node.properties.rel = [...rel];
             }
           } catch {
             // relativní odkaz

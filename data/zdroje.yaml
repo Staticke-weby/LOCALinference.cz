@@ -530,7 +530,7 @@
 
 - id: alza-rtx-spark-pocitace
   nazev: Alza.cz - Počítače s NVIDIA RTX Spark (kategorie)
-  url: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+  url: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm?idp=12510&banner_id=41939
   typ: html
   co_sledujeme: [cena, dostupnost, konfigurace, nove-stolni-rtx-spark]
   frekvence: tydne

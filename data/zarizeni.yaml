@@ -55,7 +55,7 @@
     od: 194990
     s_dph: true
     overeno: 2026-11-21
-    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm?idp=12510&banner_id=41939
     poznamka: "ASUS ProArt GR1X 128GB/2TB 194 990 Kč vč. DPH (na objednávku). 64GB varianta 129 990 Kč; MSI EdgeMesa N AI+ 128 GB je v nabídce bez ceny a nedostupná."
   cpu: NVIDIA Arm SoC
   gpu: Blackwell
@@ -69,7 +69,7 @@
   slabe: [Windows on Arm, v ČR dražší než DGX Spark, málo veřejných měření]
   zdroje:
     - https://www.nvidia.com/en-us/products/rtx-spark/
-    - https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
+    - https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm?idp=12510&banner_id=41939
     - https://www.storagereview.com/review/asus-proart-gr1x-review
     - https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models
   overeno: 2026-11-21

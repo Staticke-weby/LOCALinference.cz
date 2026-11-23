@@ -167,6 +167,41 @@ for (const [name, items] of [
   }
 }
 
+// Alza: affiliate parametr patří na kategorii, nikdy na produktovou stránku.
+const alzaUrl = (u) => {
+  try {
+    const url = new URL(u);
+    return url.hostname === 'alza.cz' || url.hostname.endsWith('.alza.cz');
+  } catch {
+    return false;
+  }
+};
+const alzaZaznamy = [];
+for (const z of zarizeniList) {
+  if (z.cena?.zdroj) alzaZaznamy.push([`data/zarizeni.yaml / ${z.id} (cena)`, z.cena.zdroj]);
+  if (z.cena_czk?.zdroj) alzaZaznamy.push([`data/zarizeni.yaml / ${z.id} (cena_czk)`, z.cena_czk.zdroj]);
+  for (const u of z.zdroje ?? []) alzaZaznamy.push([`data/zarizeni.yaml / ${z.id} (zdroje)`, u]);
+}
+for (const [name, items] of [
+  ['data/dgx-spark-oem.yaml', dgxSparkOemList],
+  ['data/rtx-spark-notebook-oem.yaml', rtxNotebookOemList],
+  ['data/rtx-spark-mini-oem.yaml', rtxMiniOemList],
+  ['data/strix-halo-oem.yaml', strixHaloOemList],
+]) {
+  for (const o of items) {
+    if (o.url) alzaZaznamy.push([`${name} / ${o.id} (url)`, o.url]);
+    if (o.zdroj) alzaZaznamy.push([`${name} / ${o.id} (zdroj)`, o.zdroj]);
+  }
+}
+for (const z of zdrojeList) alzaZaznamy.push([`data/zdroje.yaml / ${z.id}`, z.url]);
+for (const [kde, u] of alzaZaznamy) {
+  if (!alzaUrl(u)) continue;
+  const jeProdukt = /-d\d+\.htm/.test(u) || /\/search\.htm/.test(u);
+  const maIdp = /[?&]idp=/.test(u);
+  if (jeProdukt && maIdp) fail(`${kde}: affiliate parametr u produktu — affiliate patří jen na kategorii`);
+  else if (!jeProdukt && !maIdp) fail(`${kde}: odkaz na kategorii Alzy bez affiliate parametru`);
+}
+
 // Rozsah od/do musí odpovídat pojmenovaným konfiguracím, jinak se rozejde s textem.
 for (const z of zarizeniList) {
   const k = z.konfigurace;
