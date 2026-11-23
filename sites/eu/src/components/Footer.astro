@@ -1,8 +1,5 @@
 ---
 import Default from '@astrojs/starlight/components/Footer.astro';
-import { jazykOdkaz } from '../lib/jazyk';
-
-const { cs } = jazykOdkaz(Astro.url.pathname);
 ---
 
 <Default {...Astro.props}><slot /></Default>
@@ -18,8 +15,6 @@ const { cs } = jazykOdkaz(Astro.url.pathname);
     <a href="/devices/">Devices</a>
     <span class="li-oddelovac">·</span>
     <a href="/models/qwen3-8-flash-next/">Model</a>
-    <span class="li-oddelovac">·</span>
-    <a href={cs} hreflang="cs" lang="cs">Česká verze</a>
   </p>
   <p class="li-provozovatel">
     Operated by ESHOpino s.r.o., Company ID 03223485, Prague, Czech Republic.

@@ -1,8 +1,6 @@
 ---
-// Nadpis stránky + datum poslední kontroly (frontmatter `last_verified`)
-// a odkaz na druhou jazykovou verzi.
+// Nadpis stránky + datum poslední kontroly (frontmatter `last_verified`).
 import Default from '@astrojs/starlight/components/PageTitle.astro';
-import Jazyk from './Jazyk.astro';
 
 const data = Astro.locals.starlightRoute.entry.data as {
   last_verified?: Date;
@@ -24,7 +22,6 @@ const datumFormat = new Intl.DateTimeFormat('cs-CZ', {
       </span>
     ) : null
   }
-  <Jazyk />
 </div>
 
 <style>

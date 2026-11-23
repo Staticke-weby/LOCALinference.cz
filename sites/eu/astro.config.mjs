@@ -40,15 +40,6 @@ export default defineConfig({
         { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
         { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://www.localinference.eu/og-en.png' } },
         {
-          tag: 'link',
-          attrs: {
-            rel: 'alternate',
-            type: 'application/rss+xml',
-            title: 'LOCALinference — changelog',
-            href: 'https://www.localinference.cz/zdroje/novinky/rss.xml',
-          },
-        },
-        {
           tag: 'script',
           attrs: {
             defer: true,

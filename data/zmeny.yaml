@@ -62,20 +62,6 @@
 
 - datum: 2026-11-11
   typ: obsah
-  titulek: "EN mutace: plná parita, 186 z 186 stránek"
-  co_se_zmenilo: "Anglická mutace dostala abliteraci (6 stránek a varianta modelu), agenty (pilíř, 6 kapitol, 9 nástrojů), češtinu a dokumenty, RAG, provoz a bezpečnost, praxi pro profese a 25 nových hesel slovníku. Parita rout je 187/187."
-  dotcene_stranky: [temata/abliterace, modely/qwen3-8-flash-next-abliterated, temata/agenti, temata/cestina, temata/rag, temata/provoz, temata/praxe, slovnik]
-  zdroj: https://www.localinference.eu/topics/
-
-- datum: 2026-11-11
-  typ: obsah
-  titulek: "EN mutace: osm nových témat a oprava 180B parametrů"
-  co_se_zmenilo: "Anglická mutace dostala plné články Context engineering, Quantization in practice, Electricity, noise and heat, Agent memory, Tool design, Model routing, Observability a Backups and recovery. Zároveň se opravil údaj o parametrech: 180B celkem (125B main + 51B N-gram + 4B MTP), ne 125B."
-  dotcene_stranky: [temata/kontext-engineering, temata/kvantizace-v-praxi, temata/elektrina-hluk-teplo, temata/agenti/pamet-agenta, temata/agenti/navrh-nastroju, temata/provoz/model-routing, temata/provoz/observability, temata/provoz/zalohy-a-obnova, modely/qwen3-8-flash-next]
-  zdroj: https://www.localinference.eu/topics/
-
-- datum: 2026-11-11
-  typ: obsah
   titulek: "Hloubka osmi nových témat: příklady, výpočty a časté chyby"
   co_se_zmenilo: "Paměť agenta, Návrh nástrojů, Model routing, Observability, Zálohy a obnova, Context engineering, Kvantizace v praxi a Elektřina, hluk a teplo dostaly konkrétní příklady, ilustrativní výpočty a tabulky častých chyb. Délka 620–700 slov na stránku."
   dotcene_stranky: [temata/agenti/pamet-agenta, temata/agenti/navrh-nastroju, temata/provoz/model-routing, temata/provoz/observability, temata/provoz/zalohy-a-obnova, temata/kontext-engineering, temata/kvantizace-v-praxi, temata/elektrina-hluk-teplo]
@@ -399,12 +385,6 @@
 
 - datum: 2026-11-05
   typ: obsah
-  titulek: "Anglická mutace webu"
-  co_se_zmenilo: "Celý web je nově i v angličtině na www.localinference.eu — stejné stránky, stejná data, ceny v USD a žádné odkazy na prodejce. Pod nadpisem každé stránky je odkaz na protějšek v druhém jazyce."
-  dotcene_stranky: [index]
-  zdroj: https://www.localinference.eu
-- datum: 2026-11-05
-  typ: obsah
   titulek: "Časté dotazy k lokální AI"
   co_se_zmenilo: "Vznikla stránka /zaciname/faq/ s deseti dotazy, které se u lokální AI opakují: kolik to stojí, jak rychle to běží, co se děje s daty, jaký model zvolit a kdy je lepší zůstat v cloudu."
   dotcene_stranky: [zaciname/faq]
@@ -697,4 +677,3 @@
   co_se_zmenilo: "Surface Laptop Ultra: levnější varianta je bez adaptéru (168 990 Kč), dražší s adaptérem (170 990 Kč); obě mají odkaz na produkt. ProArt P16 měl dva záznamy se stejnou konfigurací — levnější za 130 990 Kč nesl zastaralou cenu, zůstává jeden za 153 990 Kč. Ceny v textech srovnány."
   dotcene_stranky: [zarizeni/rtx-spark-notebook, temata/rtx-spark, vyber/rozpocet, temata/cena-lokalni-ai]
   zdroj: https://www.alza.cz/microsoft-surface-laptop-ultra-rtx-spark-n1x-6144jadrova-gpu-20jadrovy-cpu-128gb-unified-memory-d13579325.htm
-

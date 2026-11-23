@@ -1,8 +1,6 @@
 ---
-// Page title + last verified date (frontmatter `last_verified`) and a link
-// to the other language version.
+// Page title + last verified date (frontmatter `last_verified`).
 import Default from '@astrojs/starlight/components/PageTitle.astro';
-import Jazyk from './Jazyk.astro';
 
 const data = Astro.locals.starlightRoute.entry.data as {
   last_verified?: Date;
@@ -24,7 +22,6 @@ const dateFormat = new Intl.DateTimeFormat('en-US', {
       </span>
     ) : null
   }
-  <Jazyk />
 </div>
 
 <style>

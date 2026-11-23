@@ -471,6 +471,11 @@ Když se zdroje rozcházejí, uveď oba a napiš, čím to je.
   Jeden zdroj pravdy znamená, že si CZ a EN nemohou začít odporovat.
 - **Domény:** `www.localinference.cz` a `www.localinference.eu`, obě
   v Pages nastavení repa, které je publikuje.
+- **CZ a EN běží samostatně.** Mutace se navzájem neprolinkují: žádné
+  `hreflang`, žádný přepínač jazyka v hlavičce ani patičce a žádné
+  odkazy z textu jedné mutace na druhou. Každá má vlastní kanonickou
+  URL, vlastní sitemapu a vlastní návštěvnost. Důvod je SEO: propojený
+  pár se chová jako duplicitní obsah a Google z něj část zahodí.
 - CZ je výchozí a vzniká první. EN se přidá po stabilizaci obsahu.
 
 ---
