@@ -1,5 +1,5 @@
 # České maloobchodní ceny strojů s NVIDIA GB10 (DGX Spark platforma).
-# Ceny jsou z nabídky Alza.cz; klíčové položky ověřeny 9. 11. 2026, původní snapshot 4. 11. 2026, včetně a bez DPH.
+# Ceny jsou z nabídky Alza.cz; klíčové položky ověřeny 23. 11. 2026 v prohlížeči, původní snapshot 4. 11. 2026, včetně a bez DPH.
 # Nejsou to ceny z amerického trhu; ty jsou v data/zarizeni.yaml.
 # Ceny kolísají a některé položky jsou akční. Před nákupem ověřte aktuální stav.
 
@@ -8,20 +8,20 @@
   vyrobce: ASUS
   pamet_gb: 128
   uloziste_gb: 1024
-  cena_czk_s_dph: 168990
-  cena_czk_bez_dph: 139661
+  cena_czk_s_dph: 179990
+  cena_czk_bez_dph: 148752
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: NRn15002
   url: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-18
+  overeno: 2026-11-23
   titulek: "ASUS Ascent GX10 1TB: cena, výkon a co na něm poběží"
-  description: "ASUS Ascent GX10 s GB10, 128 GB a 1 TB. Cena 168 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next v CUDA/vLLM."
-  popis: "Nejlevnější GB10 stroj v nabídce. Stejný čip, paměť a software jako DGX Spark, ale nižší cena a 1 TB úložiště. Pro vývojáře, kteří chtějí CUDA a DGX OS bez placení referenčního DGX Spark."
+  description: "ASUS Ascent GX10 s GB10, 128 GB a 1 TB. Cena 179 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next v CUDA/vLLM."
+  popis: "Jeden z nejlevnějších GB10 strojů v nabídce. Stejný čip, paměť a software jako DGX Spark, ale nižší cena a 1 TB úložiště. Pro vývojáře, kteří chtějí CUDA a DGX OS bez placení referenčního DGX Spark."
   pro_koho: "Pro vývojáře a malý tým, který chce CUDA, vLLM a DGX OS a chce ušetřit proti NVIDIA DGX Spark."
   silne:
-    - "Nejnižší cena GB10 v nabídce"
+    - "Cena na úrovni nejlevnějších GB10"
     - "CUDA + DGX OS"
     - "Stejný výkon jako ostatní GB10"
   slabe:
@@ -29,7 +29,7 @@
     - "Bez Windows"
     - "Stejný výkon jako dražší GB10 varianty"
   kdy_ne: "Pokud potřebujete Windows a notebook, nebo chcete 4TB úložiště a lepší dostupnost."
-  poznamka: "Nejlevnější 128GB GB10 stroj v této nabídce."
+  poznamka: "Cena na úrovni nejlevnějších 128GB GB10 v této nabídce."
 
 - id: lenovo-thinkstation-pgx-1tb
   nazev: Lenovo ThinkStation PGX 1TB
@@ -42,9 +42,9 @@
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: TI100c5d0z05
-  url: https://www.alza.cz/lenovo-thinkstation-pgx-d13234087.htm
+  url: https://www.alza.cz/lenovo-thinkstation-pgx-1tb-d13520954.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-23
   poznamka: "On-site servis."
 
 - id: hp-zgx-nano-g1n-4tb
@@ -57,9 +57,9 @@
   dostupnost: "Na objednávku – termín upřesníme"
   prodejce: Alza.cz
   objednaci_kod: HPBD5024d2
-  url: https://www.alza.cz/hp-zgx-nano-g1n-ai-d13357199.htm
+  url: https://www.alza.cz/hp-zgx-nano-g1n-ai-d13375942.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-23
 
 - id: gigabyte-ai-top-atom-4tb
   nazev: GIGABYTE AI TOP ATOM DGX Spark 4TB
@@ -73,7 +73,7 @@
   objednaci_kod: SG100x2
   url: https://www.alza.cz/gigabyte-ai-top-atom-dgx-spark-4tb-d13239334.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-09
+  overeno: 2026-11-23
 
 - id: hp-zgx-nano-g1n-2tb
   nazev: HP ZGX Nano G1n AI 2TB
@@ -87,7 +87,7 @@
   objednaci_kod: HPBD5024d3
   url: https://www.alza.cz/hp-zgx-nano-g1n-ai-d13375940.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-23
 
 - id: dell-pro-max-gb10-2tb
   nazev: Dell Pro Max s GB10 FCM1253 2TB
@@ -101,7 +101,7 @@
   objednaci_kod: TD140s01c7
   url: https://www.alza.cz/dell-pro-max-s-gb10-fcm1253-d13342132.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-23
 
 - id: lenovo-thinkstation-pgx-2tb
   nazev: Lenovo ThinkStation PGX 2TB
@@ -116,7 +116,7 @@
   objednaci_kod: TI100c5d0z07
   url: https://www.alza.cz/lenovo-thinkstation-pgx-2tb-d13573301.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-18
+  overeno: 2026-11-23
   poznamka: "On-site servis."
 
 - id: hp-zgx-nano-g1n-1tb
@@ -131,21 +131,21 @@
   objednaci_kod: HPBD5024d4
   url: https://www.alza.cz/hp-zgx-nano-g1n-ai-d13375941.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-23
 
 - id: nvidia-dgx-spark-4tb
   nazev: NVIDIA DGX Spark 4TB
   vyrobce: NVIDIA
   pamet_gb: 128
   uloziste_gb: 4096
-  cena_czk_s_dph: 218990
-  cena_czk_bez_dph: 180983
+  cena_czk_s_dph: 219990
+  cena_czk_bez_dph: 181810
   dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: NRn2000
   url: https://www.alza.cz/nvidia-dgx-spark-d13165934.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-09
+  overeno: 2026-11-23
   poznamka: "Referenční DGX Spark; v této nabídce dražší než některé OEM 4TB varianty."
 
 - id: asus-ascent-gx10-2tb
@@ -153,16 +153,16 @@
   vyrobce: ASUS
   pamet_gb: 128
   uloziste_gb: 2048
-  cena_czk_s_dph: 219990
-  cena_czk_bez_dph: 181810
-  sleva_procent: 6
-  dostupnost: "Na cestě 5 ks, očekáváme 12. 11. 2026"
+  cena_czk_s_dph: 209990
+  cena_czk_bez_dph: 173545
+  sleva_procent: 10
+  dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: NRn15003
   url: https://www.alza.cz/asus-ascent-gx10-gg0026bn-d13224331.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
-  poznamka: "Akční cena -6 %."
+  overeno: 2026-11-23
+  poznamka: "Akční cena -10 %."
 
 - id: acer-veriton-gn100-4tb
   nazev: Acer Veriton GN100 AI Mini Workstation 4TB
@@ -177,7 +177,7 @@
   objednaci_kod: TC32k2h9p2
   url: https://www.alza.cz/acer-veriton-gn100-ai-mini-workstation-d13352405.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-18
+  overeno: 2026-11-23
   poznamka: "Akční cena -1 %."
 
 - id: dell-pro-max-gb10-4tb
@@ -185,31 +185,31 @@
   vyrobce: Dell
   pamet_gb: 128
   uloziste_gb: 4096
-  cena_czk_s_dph: 229990
-  cena_czk_bez_dph: 190074
+  cena_czk_s_dph: 249990
+  cena_czk_bez_dph: 206603
   dostupnost: "Skladem 2 ks u dodavatele"
   prodejce: Alza.cz
   objednaci_kod: TD140s01c8
   url: https://www.alza.cz/dell-pro-max-s-gb10-fcm1253-d13342131.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-23
 
 - id: asus-ascent-gx10-4tb
   nazev: ASUS Ascent GX10-GG0027BN 4TB
   vyrobce: ASUS
   pamet_gb: 128
   uloziste_gb: 4096
-  cena_czk_s_dph: 227990
-  cena_czk_bez_dph: 188421
-  sleva_procent: 5
-  dostupnost: "Skladem 4 ks"
+  cena_czk_s_dph: 224990
+  cena_czk_bez_dph: 185942
+  sleva_procent: 6
+  dostupnost: "Skladem > 5 ks"
   prodejce: Alza.cz
   objednaci_kod: NRn15004
   url: https://www.alza.cz/asus-ascent-gx10-gg0027bn-d13224332.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-10
+  overeno: 2026-11-23
   titulek: "ASUS Ascent GX10 4TB: cena, výkon a co na něm poběží"
-  description: "ASUS Ascent GX10 s GB10, 128 GB a 4 TB. Cena 227 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next v CUDA/vLLM."
+  description: "ASUS Ascent GX10 s GB10, 128 GB a 4 TB. Cena 224 990 Kč vč. DPH, dostupnost a co na něm poběží z Qwen3.8 Flash Next v CUDA/vLLM."
   popis: "GB10 stroj s větším úložištěm pro modely a datasety. Stejný výkon jako 1TB varianta, ale 4 TB SSD. Pro ty, kdo chtějí CUDA a potřebují místo na víc modelů a záloh."
   pro_koho: "Pro vývojáře a malý tým, který chce CUDA stroj a potřebuje místo na víc modelů, datasetů a záloh."
   silne:
@@ -221,7 +221,7 @@
     - "Stejný výkon jako 1TB"
     - "Dostupnost se může měnit"
   kdy_ne: "Pokud stačí 1 TB a chcete ušetřit, nebo pokud potřebujete Windows a notebook."
-  poznamka: "Akční cena -5 % (239 990 Kč před slevou)."
+  poznamka: "Akční cena -6 % (239 990 Kč před slevou)."
 
 - id: lenovo-thinkstation-pgx-4tb
   nazev: Lenovo ThinkStation PGX 4TB
@@ -230,8 +230,9 @@
   uloziste_gb: 4096
   cena_czk_s_dph: 249990
   cena_czk_bez_dph: 206603
-  dostupnost: "Doručení na prodejnu zdarma"
+  dostupnost: "Skladem 4 ks"
   prodejce: Alza.cz
+  objednaci_kod: TI100c5d0z08
   url: https://www.alza.cz/lenovo-thinkstation-pgx-4tb-d13581413.htm
   zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-  overeno: 2026-11-04
+  overeno: 2026-11-23

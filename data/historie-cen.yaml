@@ -3,6 +3,9 @@
 
 - id: asus-ascent-gx10-1tb
   zaznamy:
+    - datum: 2026-11-23
+      cena_czk_s_dph: 179990
+      dostupnost: "Skladem > 5 ks"
     - datum: 2026-11-18
       cena_czk_s_dph: 168990
       dostupnost: "Skladem > 5 ks"
@@ -57,12 +60,18 @@
 
 - id: nvidia-dgx-spark-4tb
   zaznamy:
+    - datum: 2026-11-23
+      cena_czk_s_dph: 219990
+      dostupnost: "Skladem > 5 ks"
     - datum: 2026-11-05
       cena_czk_s_dph: 218990
       dostupnost: "Skladem > 5 ks"
 
 - id: asus-ascent-gx10-2tb
   zaznamy:
+    - datum: 2026-11-23
+      cena_czk_s_dph: 209990
+      dostupnost: "Skladem > 5 ks"
     - datum: 2026-11-05
       cena_czk_s_dph: 219990
       dostupnost: "Na cestě 5 ks, očekáváme 12. 11. 2026"
@@ -78,26 +87,38 @@
 
 - id: dell-pro-max-gb10-4tb
   zaznamy:
+    - datum: 2026-11-23
+      cena_czk_s_dph: 249990
+      dostupnost: "Skladem 2 ks u dodavatele"
     - datum: 2026-11-05
       cena_czk_s_dph: 229990
       dostupnost: "Skladem 2 ks u dodavatele"
 
 - id: asus-ascent-gx10-4tb
   zaznamy:
-    - datum: 2026-11-05
-      cena_czk_s_dph: 229990
-      dostupnost: "Skladem 4 ks"
+    - datum: 2026-11-23
+      cena_czk_s_dph: 224990
+      dostupnost: "Skladem > 5 ks"
     - datum: 2026-11-10
       cena_czk_s_dph: 227990
       dostupnost: "Skladem 4 ks"
+    - datum: 2026-11-05
+      cena_czk_s_dph: 229990
+      dostupnost: "Skladem 4 ks"
 - id: lenovo-thinkstation-pgx-4tb
   zaznamy:
+    - datum: 2026-11-23
+      cena_czk_s_dph: 249990
+      dostupnost: "Skladem 4 ks"
     - datum: 2026-11-05
       cena_czk_s_dph: 249990
       dostupnost: "Doručení na prodejnu zdarma"
 
 - id: acemagic-a10a-128-2tb
   zaznamy:
+    - datum: 2026-11-23
+      cena_czk_s_dph: 119990
+      dostupnost: "Momentálně nedostupné"
     - datum: 2026-11-05
       cena_czk_s_dph: 119990
       dostupnost: "Skladem > 5 ks"
@@ -117,12 +138,18 @@
 
 - id: lenovo-yoga-pro-9-128-2tb
   zaznamy:
+    - datum: 2026-11-23
+      cena_czk_s_dph: 139989
+      dostupnost: "Očekáváme 27. ledna 2027"
     - datum: 2026-11-05
       cena_czk_s_dph: 129989
       dostupnost: "Skladem 4 ks"
 
 - id: msi-prestige-n16-flip-128-2tb
   zaznamy:
+    - datum: 2026-11-23
+      cena_czk_s_dph: 149990
+      dostupnost: "Skladem 3 ks"
     - datum: 2026-11-05
       cena_czk_s_dph: 149874
       dostupnost: "Skladem 1 ks"

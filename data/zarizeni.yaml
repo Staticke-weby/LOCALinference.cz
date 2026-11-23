@@ -17,12 +17,12 @@
     zdroj: https://www.nvidia.com/en-us/products/workstations/dgx-spark/
     poznamka: "128GB 6 950 USD; bez DPH a dopravy."
   cena_czk:
-    od: 162990
+    od: 179990
     do: 249990
     s_dph: true
-    overeno: 2026-11-09
+    overeno: 2026-11-23
     zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-    poznamka: "Nejlevnější GB10 OEM 162 990 Kč (ASUS GX10 1TB); NVIDIA DGX Spark 218 990 Kč; Lenovo 249 990 Kč; vč. DPH."
+    poznamka: "Nejlevnější GB10 OEM 179 990 Kč (ASUS GX10 1TB, GIGABYTE ATOM 4TB, HP 4TB, Lenovo 1TB); NVIDIA DGX Spark 219 990 Kč; Lenovo 249 990 Kč; vč. DPH."
   cpu: GB10 Grace Blackwell
   gpu: Blackwell
   os: [DGX OS, Ubuntu]
@@ -90,11 +90,11 @@
     poznamka: "128GB 5 899,99–6 999 USD; bez DPH a dopravy. Nižší ceny jsou 24GB modely."
   cena_czk:
     od: 125990
-    do: 167767
+    do: 170990
     s_dph: true
-    overeno: 2026-11-09
+    overeno: 2026-11-23
     zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
-    poznamka: "ASUS ProArt P14 128GB/1TB 125 990 Kč; Lenovo Yoga Pro 9 129 989 Kč; Surface Laptop Ultra až 167 767 Kč; vč. DPH."
+    poznamka: "ASUS ProArt P14 128GB/1TB 125 990 Kč; Lenovo Yoga Pro 9 139 989 Kč (dodání 27. 1. 2027); Surface Laptop Ultra 168 990–170 990 Kč; vč. DPH."
   cpu: NVIDIA Grace 20 jader
   gpu: Blackwell RTX
   os: [Windows 11]
@@ -133,9 +133,9 @@
     od: 119990
     do: 119990
     s_dph: true
-    overeno: 2026-11-09
+    overeno: 2026-11-23
     zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
-    poznamka: "Acemagic A10A a Acer Veriton RA110, 128GB/2TB, vč. DPH."
+    poznamka: "Acemagic A10A a Acer Veriton RA110, 128GB/2TB, vč. DPH. Acemagic je k 23. 11. 2026 nedostupný, Acer s dodáním 29. 1. 2027."
   cpu: Ryzen AI Max+ 395
   gpu: Radeon 8060S
   os: [Windows 11, Linux]
@@ -174,7 +174,7 @@
     od: 147990
     do: 171990
     s_dph: true
-    overeno: 2026-11-09
+    overeno: 2026-11-23
     zdroj: https://www.alza.cz/mac-studio/18894763.htm?idp=12510&banner_id=41939
     poznamka: "128GB/512GB 147 990 Kč; 128GB/2TB 171 990 Kč; vč. DPH."
   zdroje:
