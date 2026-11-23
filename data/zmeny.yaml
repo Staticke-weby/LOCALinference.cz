@@ -6,6 +6,13 @@
 
 - datum: 2026-11-23
   typ: cena
+  titulek: "MacBook Pro 128 GB: od 197 490 Kč, jen verze M5 Max"
+  co_se_zmenilo: "Kontrola Alzy v prohlížeči s filtrem 128 GB paměti: 128GB konfigurace jsou jen s M5 Max (M5 Pro končí na 48 GB). Nejlevnější je 14\" M5 Max 128GB/2TB za 197 490 Kč (na objednávku), nejdražší 16\" M5 Max 128GB/8TB za 282 610 Kč v akci, běžně 297 490 Kč (skladem). Starý údaj 177 739–300 490 Kč už neplatí; stránka MacBook Pro má novou cenu i přepočítaný rozdíl proti Mac Studiu (25 500 Kč)."
+  dotcene_stranky: [zarizeni/macbook-pro, vyber/stolni-vs-notebook, temata/cena-lokalni-ai]
+  zdroj: https://www.alza.cz/macbook-pro/18900520.htm
+
+- datum: 2026-11-23
+  typ: cena
   titulek: "GB10 v Česku od 179 990 Kč: kontrola Alzy v prohlížeči"
   co_se_zmenilo: "Kontrola Alza.cz v OpenChamber browseru 23. 11. 2026. Nejlevnější GB10 zdražil ze 168 990 na 179 990 Kč (ASUS Ascent GX10 1TB); na stejné ceně jsou teď i GIGABYTE AI TOP ATOM 4TB, HP ZGX Nano 4TB a Lenovo ThinkStation PGX 1TB. ASUS GX10 2TB je v akci za 209 990 Kč místo 219 990 a 4TB za 224 990 místo 227 990 Kč. NVIDIA DGX Spark 4TB zdražil z 218 990 na 219 990 Kč a Dell Pro Max s GB10 4TB z 229 990 na 249 990 Kč. U notebooků Lenovo Yoga Pro 9 128GB/2TB zdražil z 129 989 na 139 989 Kč a dodání se posunulo na 27. 1. 2027; MSI Prestige N16 Flip stojí 149 990 Kč. Acemagic A10A je momentálně nedostupný, Acer Veriton RA110 má dodání 29. 1. 2027. Opraveny dva odkazy, které na Alze končily u ukončeného prodeje (Lenovo PGX 1TB, HP ZGX Nano 4TB), a doplněny objednací kódy u tří variant."
   dotcene_stranky: [zarizeni/dgx-spark, zarizeni/rtx-spark-notebook, zarizeni/strix-halo, zarizeni/rtx-spark-mini, temata/dgx-spark, temata/cena-lokalni-ai, temata/128gb-unified-memory, temata/lokalni-ai-pro-firmy, vyber/rozpocet, vyber/bezpecna-volba]

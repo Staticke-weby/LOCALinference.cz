@@ -231,7 +231,11 @@ vlastní evidenci:
   Workflow `hlidac.yml` zůstává jen na ruční spuštění
   (`workflow_dispatch`) jako záloha a pro ověření po změnách skriptu.
 - **Aktualizační checklist:** ověřit cenu → ověřit model → ověřit měření →
-  upravit data → aktualizovat `overeno` → zapsat do `zmeny.yaml` → build.
+  upravit data → aktualizovat `overeno` → **stejné datum i v textech**
+  („k 4. 11. 2026“, „Naposledy ověřeno“, popisky u tabulek a odkazů
+  na zdroje) na všech stránkách, které údaj citují → zapsat do
+  `zmeny.yaml` → build. Datum, které zůstane na staré hodnotě, je vada:
+  čtenář nepozná, že cena je ověřená dnes.
 
 Pravidlo: **každý údaj má svého vlastníka a datum kontroly.** Když se zdroj
 nedá ověřit, údaj se označí `[DOPLNIT]` nebo se z webu odstraní.

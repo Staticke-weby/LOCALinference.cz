@@ -201,16 +201,16 @@
   silne: [128 GB v notebooku, MLX, tichy chod, vydrz]
   slabe: [throttling, zadna CUDA, macOS only, cena]
   cena_czk:
-    od: 177739
-    do: 434490
+    od: 197490
+    do: 282610
     s_dph: true
-    overeno: 2026-11-09
-    zdroj: https://www.alza.cz/search.htm?exps=MacBook%20Pro%20128GB&idp=12510&banner_id=41939
-    poznamka: "14\" 128GB/2TB 177 739 Kč; 16\" 128GB/8TB 300 490 Kč; vč. DPH. Část variant nedostupná, ceny se rychle mění."
+    overeno: 2026-11-23
+    zdroj: https://www.alza.cz/macbook-pro/18900520.htm?idp=12510&banner_id=41939
+    poznamka: "14\" 128GB/2TB 197 490 Kč (na objednávku); 16\" 128GB/8TB 282 610 Kč v akci, běžně 297 490 Kč (skladem); vč. DPH. 128 GB je jen u M5 Max, M5 Pro končí na 48 GB. Ceny se rychle mění."
   zdroje:
     - https://www.apple.com/macbook-pro/specs/
     - https://ml-explore.github.io/mlx/
-  overeno: 2026-11-09
+  overeno: 2026-11-23
 
 - id: gorgon-halo
   nazev: Gorgon Halo 192 GB

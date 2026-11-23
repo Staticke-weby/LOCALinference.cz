@@ -430,7 +430,7 @@ polozky:
     stav: hotovo
     davka: 4
     hledat: "Alza podle objednacího kódu"
-    poznamka: "Alza zkontrolovana v prohlizeci 18. 11. 2026. Tri ceny nesedely a jsou prepsane: GX10 1TB 168 990, PGX 2TB 199 990, Veriton GN100 4TB 229 990; texty s cenou na 14 mistech sladi. Jedenact SKU dostalo odkaz na produkt misto odkazu na kategorii. 23. 11. 2026: kontrola zopakovana pres OpenChamber browser (14 GB10, 6 notebooku, 3 Strix Halo, 3 RTX mini, Mac Studio); zmeny zapsany v data/zmeny.yaml, dva odkazy vedly na ukonceny prodej a jsou opravene."
+    poznamka: "Alza zkontrolovana v prohlizeci 18. 11. 2026. Tri ceny nesedely a jsou prepsane: GX10 1TB 168 990, PGX 2TB 199 990, Veriton GN100 4TB 229 990; texty s cenou na 14 mistech sladi. Jedenact SKU dostalo odkaz na produkt misto odkazu na kategorii. 23. 11. 2026: kontrola zopakovana pres OpenChamber browser (14 GB10, 6 notebooku, 3 Strix Halo, 3 RTX mini, Mac Studio a MacBook Pro s filtrem 128 GB); zmeny zapsany v data/zmeny.yaml, dva odkazy vedly na ukonceny prodej a jsou opravene. U MacBook Pro 128 GB se nabidka smrskla na M5 Max a cena je 197 490-282 610 Kc."
     zdroj: null
     overeno: 2026-11-09
 
