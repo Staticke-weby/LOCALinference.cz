@@ -4803,7 +4803,9 @@
   nazor_auto: true
   titulky: false
   nazev_cs: 'Nimo Axis 395: notebook s Ryzen AI Max+ 395 a 128 GB'
-  popis_cs: 'Tříhodinový stream s notebookem Nimo Axis 395 (Ryzen AI Max+ 395, 128 GB): recenze pro profesionály — každodenní práce, upgrade a chování v zátěži, ne hry. Popis začíná sponzorským blokem, zbytek je věcný.'
+  popis_cs: >-
+    Tříhodinový stream s notebookem Nimo Axis 395 (Ryzen AI Max+ 395, 128 GB): recenze pro profesionály — každodenní práce, upgrade a chování v zátěži, ne hry. Popis začíná sponzorským blokem, zbytek
+    je věcný.
   nazor_cs: ''
   sponzorovane: false
 - id: DsrCRNEuVhI
@@ -5726,6 +5728,709 @@
     Is the Apple M5 Ultra Mac Studio worth it for local AI—or could a cheaper GPU be the smarter buy? This video breaks down five expensive buying mistakes, from choosing the wrong unified memory
     configuration to expecting RTX 5090 performance on models that already fit in GPU memory
   nazor: Is the Apple M5 Ultra Mac Studio worth it for local AI—or could a cheaper GPU be the smarter buy?
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: rL8p0kyI5U8
+  url: https://www.youtube.com/watch?v=rL8p0kyI5U8
+  nazev: Does RTX Spark Desktop Change the PC Forever?
+  kanal: Jim's Garage
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-18'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 21 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 1236
+  shlednuti: 15008
+  cisla: []
+  popis: >-
+    My thoughts and review of the RTX Spark Desktop (Asus ProArt GR1X), and what this means for the future of PC use. It's a great device, it's expensive, but I think this might be the watershed
+    moment for how we use our PCs.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: zQmCXuAYBbw
+  url: https://www.youtube.com/watch?v=zQmCXuAYBbw
+  nazev: The Future of Mini PCs Is Here! MSI EdgeMesa N AI+ (RTX Spark N1X)
+  kanal: ''
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-18'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 5
+  proc: Automaticky z popisu a titulků. Délka 18 min. Zmiňuje 128gb, 140w. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 1099
+  shlednuti: 337372
+  cisla:
+    - 128gb
+    - 140w
+  popis: This might be the most powerful small form factor workstation we've ever tested. We are taking a look at the all-new MSI EdgeMesa N AI+ powered by the NVIDIA RTX Spark N1X platform.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: '-hC8jskU_5k'
+  url: https://www.youtube.com/watch?v=-hC8jskU_5k
+  nazev: RTX Spark Laptops… But they’re not all equal
+  kanal: ''
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-20'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 16 min. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 972
+  shlednuti: 144606
+  cisla: []
+  popis: >-
+    Micro Center is THE Ai Destination: https://micro.center/f2712a Check out Micro Center's Newest Austin Store: https://micro.center/ce8028 Shop Micro Center's Top Deals: https://micro.center/1edd34
+    Visit Micro Center News: https://micro.center/465d0b 🎥 Related Videos 🎥 🧳🧰 Mini
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: mXFr0378X-A
+  url: https://www.youtube.com/watch?v=mXFr0378X-A
+  nazev: 'NVIDIA RTX Spark Mini PCs: UK Prices & Who They Are For'
+  kanal: Tech Unpacked
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-19'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 2 min. Zmiňuje 64gb, 128gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 101
+  shlednuti: 14
+  cisla:
+    - 64gb
+    - 128gb
+  popis: NVIDIA RTX Spark mini PCs have arrived. We explain the MSI EdgeMesa N AI+ UK prices, shared memory and who these compact Windows on Arm desktops might suit.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: QlqetB23VPM
+  url: https://www.youtube.com/watch?v=QlqetB23VPM
+  nazev: Nvidia RTX Spark Mini PCs, Clearly Explained
+  kanal: Simply AI
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-19'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 5
+  proc: Automaticky z popisu a titulků. Délka 8 min. Zmiňuje 128gb, 64gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 504
+  shlednuti: 514
+  cisla:
+    - 128gb
+    - 64gb
+  popis: Nvidia RTX Spark mini PCs from ASUS, Dell and MSI run a 120B AI at home with up to 128GB of memory. Here's what fits, how fast it runs, and why a cheaper Mac Studio is faster at chat.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: 8Tw2LdgTcY0
+  url: https://www.youtube.com/watch?v=8Tw2LdgTcY0
+  nazev: Is the RTX Spark Desktop Worth It for Local AI? | Micro Center Reviews the ASUS ProArt GR1X
+  kanal: Micro Center
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-18'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 5
+  proc: Automaticky z popisu a titulků. Délka 42 min. Zmiňuje 64gb, 240w, 140w. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 2490
+  shlednuti: 22114
+  cisla:
+    - 64gb
+    - 240w
+    - 140w
+    - 128gb
+    - 48gb
+  popis: >-
+    Check out the ASUS ProArt GR1X RTX Spark Desktop HERE - https://micro.center/6dcff3 Read more at Micro Center News - https://micro.center/d674ee Can a compact desktop beat every RTX Spark laptop
+    we've tested? We put the ASUS ProArt GR1X, an NVIDIA RTX Spark desktop with 64GB of u
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: m1IPcLeW7Qc
+  url: https://www.youtube.com/watch?v=m1IPcLeW7Qc
+  nazev: THIS is the MOST Desired PC 2026, but WHY? - MSI EdgeMesa N AI+ Mini PC review
+  kanal: ''
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-20'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 30 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 1785
+  shlednuti: 8838
+  cisla: []
+  popis: Here's my thoughts on the MSI RTX Spark Mini PC, Who is it for? Creators?
+  nazor: 27:10 Downsides 28:17 PRICE - Is it worth it?
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: sooiYbnctEw
+  url: https://www.youtube.com/watch?v=sooiYbnctEw
+  nazev: 'Your Spark, Your Story: Yannik Marek | NVIDIA RTX Spark'
+  kanal: NVIDIA
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-02'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 1 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 84
+  shlednuti: 15130
+  cisla: []
+  popis: What got ComfyUI's creator into PCs? For Yannik Marek, it was video games on an old CRT monitor.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: iH1G3xbbPi4
+  url: https://www.youtube.com/watch?v=iH1G3xbbPi4
+  nazev: 'NVIDIA RTX Spark Desktops: Real Power or Pricey Hype?'
+  kanal: KLICKEDLAB
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-22'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 11 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 664
+  shlednuti: 23
+  cisla: []
+  popis: >-
+    NVIDIA says its RTX Spark desktops are out now, with a 1 petaflop claim and a starting price around $4,499. We check the claims against the one independent review we could find, sort the
+    conflicting prices, and ask who these boxes are actually for.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: kfJWNW9i-mI
+  url: https://www.youtube.com/watch?v=kfJWNW9i-mI
+  nazev: NVIDIA's New AI Mini PC Lineup Is INSANE — This Could Shake the Entire PC Industry
+  kanal: ''
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-15'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 51 min. Zmiňuje 273 gb/s, 64gb, 128gb. Zařízení je v textu jmenované. Titulek je bulvární. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 3062
+  shlednuti: 70114
+  cisla:
+    - 273 gb/s
+    - 64gb
+    - 128gb
+  popis: >-
+    Subscribe to the channel: Resources & Links: Microsoft Surface RT (NVIDIA Tegra 3, 2012) 🔍 eBay (Best Deals):
+    https://www.ebay.com/sch/i.html?_nkw=microsoft+surface+rt&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339196185&toolid=10001&customid=circuit-rift NVIDIA's 
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: svRKsyyHbHo
+  url: https://www.youtube.com/watch?v=svRKsyyHbHo
+  nazev: RTX Spark Laptop Barely Slows Down on Battery
+  kanal: Measured Locally
+  zarizeni: rtx-spark-mini
+  poprve: '2026-11-23'
+  vydano: '2026-11-22'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 5
+  proc: Automaticky z popisu a titulků. Délka 16 min. Zmiňuje 140 w, 128 gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 982
+  shlednuti: 154
+  cisla:
+    - 140 w
+    - 128 gb
+  popis: >-
+    Battery testing time for the RTX Spark laptop! On battery in Windows' Best performance, my RTX Spark laptop writes as fast as it does plugged in and reads 3.5 to 7% slower, while Windows' Balanced
+    mode costs about a fifth of its reading speed.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: 4q5X7YddEZg
+  url: https://www.youtube.com/watch?v=4q5X7YddEZg
+  nazev: 'Nvidia RTX Spark: Everything You Need to Know Before You Buy'
+  kanal: Seaman Gadgets
+  zarizeni: rtx-spark-notebook
+  poprve: '2026-11-23'
+  vydano: '2026-10-28'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 11 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 645
+  shlednuti: 918
+  cisla: []
+  popis: Thinking about buying an Nvidia RTX Spark laptop? Before you spend your money, watch this complete breakdown!
+  nazor: '​Final Verdict: Is it worth buying, or should you wait?'
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: NSs7e8OoC4c
+  url: https://www.youtube.com/watch?v=NSs7e8OoC4c
+  nazev: Best Gaming Laptops 2026 – We Tested Them All
+  kanal: ''
+  zarizeni: strix-halo
+  poprve: '2026-11-23'
+  vydano: '2026-11-17'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 2
+  proc: Automaticky z popisu a titulků. Délka 19 min. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 1118
+  shlednuti: 208302
+  cisla: []
+  popis: >-
+    💰 Save BIG on Your Next Laptop: https://www.bestlaptop.deals/live-deals 🔎 Find Your Perfect Laptop in 10 Seconds: https://www.bestlaptop.deals/laptop-picker 💻 Find the Best Gaming Laptops right
+    now: https://www.bestlaptop.deals/recommendations/Best-Laptops-for-Gaming Best Affo
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: qDm7Xs3eEgw
+  url: https://www.youtube.com/watch?v=qDm7Xs3eEgw
+  nazev: Lenovo Legion 7a Review (8060s) | Slap Tech
+  kanal: Slap Tech
+  zarizeni: strix-halo
+  poprve: '2026-11-23'
+  vydano: '2026-11-02'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 1
+  proc: Automaticky z popisu a titulků. Délka 15 min. Zmiňuje 32gb. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 919
+  shlednuti: 8981
+  cisla:
+    - 32gb
+  popis: Joel Michael takes the new Lenovo Legion 7a with AMD's Ryzen Max CPU for a spin. Is it good enough to be a daily driver?
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: wLlksmbfudk
+  url: https://www.youtube.com/watch?v=wLlksmbfudk
+  nazev: 'Lenovo Legion 7a: What Laptop Manufacturers Aren’t Telling You'
+  kanal: ''
+  zarizeni: strix-halo
+  poprve: '2026-11-23'
+  vydano: '2026-10-27'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 6 min. Zmiňuje 64 gb, 32 gb, 12gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 353
+  shlednuti: 168321
+  cisla:
+    - 64 gb
+    - 32 gb
+    - 12gb
+  popis: >-
+    👉 Save BIG on Your Next Laptop: https://www.bestlaptop.deals ✋ Legion 7a 15 (Buy If On Sale) - Ryzen AI MAX+ 392, 64 GB of Unified Memory: https://go.bestlaptop.deals/HFPMC - Ryzen AI MAX+ 388,
+    32 GB of Unified Memory: https://go.bestlaptop.deals/c/eI2JLLwlT7 Best Alternatives!!
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: AcuCl1oAg8w
+  url: https://www.youtube.com/watch?v=AcuCl1oAg8w
+  nazev: I Ranked the BEST 128GB VRAM Builds!
+  kanal: Networkingz
+  zarizeni: strix-halo
+  poprve: '2026-11-23'
+  vydano: '2026-10-30'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 26 min. Zmiňuje 128gb, 96gb, 32gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 1532
+  shlednuti: 1962
+  cisla:
+    - 128gb
+    - 96gb
+    - 32gb
+  popis: Four old server cards reach 128GB for under $3,000, and one 96GB card answers over three times faster than a DGX Spark. Neither is the one I'd pick.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: BEWEOW_S0fE
+  url: https://www.youtube.com/watch?v=BEWEOW_S0fE
+  nazev: NVIDIA’s Tiny 128GB AI PC Has One Massive Catch
+  kanal: Cian Mag
+  zarizeni: strix-halo
+  poprve: '2026-11-23'
+  vydano: '2026-11-20'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 16 min. Zmiňuje 128gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 980
+  shlednuti: 447
+  cisla:
+    - 128gb
+  popis: >-
+    NVIDIA’s DGX Spark launched at $3,999, jumped to a $4,699 MSRP, and is now showing up at retail for $6,949.99. In this video, we break down what actually changed during its first year, how its
+    128GB of unified memory compares against the RTX 5090 and AMD’s Ryzen AI Max+ 395 (Stri
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: Wj1YQJ9vQD8
+  url: https://www.youtube.com/watch?v=Wj1YQJ9vQD8
+  nazev: 'Your Mac Studio vs AMD''s 192GB AI PC: Watch This Before You Buy'
+  kanal: Mind The Prompt
+  zarizeni: gorgon-halo
+  poprve: '2026-11-23'
+  vydano: '2026-11-12'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 8 min. Zmiňuje 128gb, 192gb, 273 gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 477
+  shlednuti: 7584
+  cisla:
+    - 128gb
+    - 192gb
+    - 273 gb
+    - 64gb
+    - 158 gb
+    - 90 gb
+    - 120 gb
+    - 96 gb
+    - 273gb/s
+    - 614gb/s
+    - 192 gb
+  popis: >-
+    PRODUCTS • Mac Studio, M5 Max 40-core GPU, 128GB, 2TB ($5,899): https://www.apple.com/shop/buy-mac/mac-studio/m5-max-chip-18-core-cpu-40-core-gpu-128gb-memory-2tb-storage • GMKtec EVO-X5 Pro,
+    Ryzen AI Max+ PRO 495, 192GB, 2TB ($6,799): https://www.gmktec.com/products/gmktec-evo-x
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: vrDm2o3a-rw
+  url: https://www.youtube.com/watch?v=vrDm2o3a-rw
+  nazev: 【ローカルLLMレーダー】2026-10-26（月） DGX Spark 8台／Ollama 0.40.11
+  kanal: シンオン株式会社 (Synon,Inc) 公式
+  zarizeni: gorgon-halo
+  poprve: '2026-11-23'
+  vydano: '2026-10-25'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 7 min. Zmiňuje 192gb, 512gb, 64gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 414
+  shlednuti: 46
+  cisla:
+    - 192gb
+    - 512gb
+    - 64gb
+  popis: >-
+    ローカルLLM（オンプレ／閉域で動かすLLM）まわりの製品・サービスの動きを、毎朝まとめてお届けします。2026-10-26（月）の回です。 ■ 今日の3行まとめ ・DGX Spark 8台（1TB）：NVIDIAが8台クラスタの手順と実測を公開。753BのGLM 5.3で同時1件 毎秒31トークン ・Ollama
+    0.40.11（b11845）：10/24のプレリリース。Qwen3-Coderのツール呼び出しを修正、llama.cppを更新 ・今週は予定が続く（10/28〜）：Appleのイベント、10/31のMistral Large 4、11/4ま
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: SMv9VOocae8
+  url: https://www.youtube.com/watch?v=SMv9VOocae8
+  nazev: 'Mac Studio M5 Max vs Ultra for AI: Don''t Waste $5,700'
+  kanal: Sanchit Gogna
+  zarizeni: gorgon-halo
+  poprve: '2026-11-23'
+  vydano: '2026-10-23'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 12 min. Zmiňuje 128 gb, 32 gb, 64 gb. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 730
+  shlednuti: 11673
+  cisla:
+    - 128 gb
+    - 32 gb
+    - 64 gb
+    - 96 gb
+    - 256 gb
+    - 512 gb
+    - 512gb
+    - 128gb
+  popis: >-
+    The cheapest M5 Ultra Mac Studio costs $400 more than the 128 GB M5 Max and has 32 GB less memory. And on the big models most people run, the $10,799 Ultra writes only about 5 tokens a second
+    faster than the $5,099 Max.
+  nazor: It never changes what I recommend.
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: peOpDhbymuw
+  url: https://www.youtube.com/watch?v=peOpDhbymuw
+  nazev: 輝達做筆電：快 3.5 倍，卻輸在記憶體｜完整版
+  kanal: AI未來式
+  zarizeni: gorgon-halo
+  poprve: '2026-11-23'
+  vydano: '2026-11-21'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 14 min. Zmiňuje 128gb, 64gb, 256 gb/s. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 843
+  shlednuti: 158
+  cisla:
+    - 128gb
+    - 64gb
+    - 256 gb/s
+    - 192gb
+  popis: >-
+    輝達第一次自己做筆電的大腦：RTX Spark 把聯發科一起設計的 CPU、輝達的 Blackwell 顯示晶片和最多 128GB 的共用記憶體放進同一顆晶片，10 月 16 日開賣。實測裡它跑本機 AI 比 AMD 快一截，可是 64GB 版塞不下 1200 億參數的模型，AMD
+    就從記憶體打回來。這集把晶片怎麼組成、為什麼「讀」快很多「寫」只快一點、兩家各賭什麼、台灣在哪一段，一次講清楚。 📌 這集的 5 個重點 1. RTX Spark 最高配：20 核 CPU、6,144 核 GPU、最多 128GB 共用記憶體，台積電 3 奈米 2.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: XoQ8gBT_dUY
+  url: https://www.youtube.com/watch?v=XoQ8gBT_dUY
+  nazev: 'Don''t Buy 128GB MacBook For Local AI: Here''s Why'
+  kanal: Samuel Gregory
+  zarizeni: macbook-pro
+  poprve: '2026-11-23'
+  vydano: '2026-11-22'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 5
+  proc: Automaticky z popisu a titulků. Délka 19 min. Zmiňuje 128gb, 32gb, 1,100gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 1126
+  shlednuti: 9648
+  cisla:
+    - 128gb
+    - 32gb
+    - 1,100gb
+    - 173gb
+    - 112gb
+    - 172gb
+    - 233gb
+    - 91gb
+    - 272.8 tok/s
+    - 18.8 tok/s
+    - 16.1 tok/s
+    - 16gb
+    - 9gb
+    - 14gb
+    - 48gb
+    - 35gb
+  popis: >-
+    █▀█ █▀▀ ▄▀█ █▀▄ █▀▄▀█ █▀█ █▀█ █▀▀ █▀▄ ██▄ █▀█ █▄▀ █ ▀ █ █▄█ █▀▄ ██▄ Inkling 2 Small and Mistral Large 4 are both open-weight models, and neither fits on a 128GB MacBook Pro. I explain why with one
+    sum you can do yourself, then find out what does fit and test it.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: XAdmUF5h-LY
+  url: https://www.youtube.com/watch?v=XAdmUF5h-LY
+  nazev: Before You Spend Thousands on Local AI, Watch This
+  kanal: Alex Grankin
+  zarizeni: macbook-pro
+  poprve: '2026-11-23'
+  vydano: '2026-11-18'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 27 min. Zmiňuje 32 gb, 128 gb, 16 gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 1646
+  shlednuti: 30633
+  cisla:
+    - 32 gb
+    - 128 gb
+    - 16 gb
+  popis: >-
+    What to check before you buy a computer for local AI: how much memory your jobs need, a Mac mini, a Mac Studio, a MacBook Pro or an RTX 5090, how many tokens a second is fast enough, and whether
+    to buy now or wait. 📋 Free cheat sheet from this video, with the five checks and eve
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: FohbC8DlGZI
+  url: https://www.youtube.com/watch?v=FohbC8DlGZI
+  nazev: A Second Mac Just Killed The 512GB Mac Studio For Local AI
+  kanal: Local Explained
+  zarizeni: macbook-pro
+  poprve: '2026-11-23'
+  vydano: '2026-11-20'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 3
+  proc: Automaticky z popisu a titulků. Délka 43 min. Zmiňuje 512gb, 256gb, 475gb. Zařízení v textu přímo nejmenuje. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 2555
+  shlednuti: 14706
+  cisla:
+    - 512gb
+    - 256gb
+    - 475gb
+    - 384gb
+  popis: >-
+    Apple's 512GB Mac Studio M5 Ultra costs $11,500 more than the 256GB one, which is $701 more than a whole second 256GB Mac Studio. This video works out what that extra memory actually buys you for
+    running local AI models like GLM 5.3 and DeepSeek V4.1 Flash, and what it does not.
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: c0TmwFMcIMQ
+  url: https://www.youtube.com/watch?v=c0TmwFMcIMQ
+  nazev: 'Apple’s New OLED MacBook Pro: $2,899 to $14,549. Here’s What It Means for AI'
+  kanal: Alex Grankin
+  zarizeni: macbook-pro
+  poprve: '2026-11-23'
+  vydano: '2026-10-28'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 5
+  proc: Automaticky z popisu a titulků. Délka 13 min. Zmiňuje 128gb, 128 gb, 64gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 788
+  shlednuti: 13750
+  cisla:
+    - 128gb
+    - 128 gb
+    - 64gb
+    - 35 gb
+    - 32 gb
+    - 64 gb
+  popis: >-
+    Apple's new OLED MacBook Pro for local AI: what the M5 Pro and M5 Max do for running AI on your own laptop, which models fit at each memory size, how it compares to NVIDIA's RTX Spark laptops, and
+    what the AI-ready configurations cost. 📘 Local AI on Your Mac, my guide (which Mac
+  nazor: ''
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: Ek9REeR8V04
+  url: https://www.youtube.com/watch?v=Ek9REeR8V04
+  nazev: 16GB vs 64GB vs 512GB Macs For Harbor (Local AI)
+  kanal: Locally
+  zarizeni: macbook-pro
+  poprve: '2026-11-23'
+  vydano: '2026-11-22'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 5
+  proc: Automaticky z popisu a titulků. Délka 12 min. Zmiňuje 16gb, 25 tok/s, 32gb. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 744
+  shlednuti: 6024
+  cisla:
+    - 16gb
+    - 25 tok/s
+    - 32gb
+    - 63.8 tok/s
+    - 9.5 tok/s
+    - 64gb
+    - 9.9 tok/s
+    - 128gb
+    - 87.9 tok/s
+    - 256gb
+    - 61.7 tok/s
+    - 307gb/s
+    - 614gb/s
+    - 15.74 tok/s
+    - 24.99 tok/s
+    - 36.73 tok/s
+    - 512gb
+  popis: >-
+    Apple's Harbor should run on almost any Apple silicon Mac, but pooling Macs needs Thunderbolt 5, and the cheapest Mac with it is $1,699. Apple Mac Studio M5 Max:
+    https://www.amazon.com/s?k=mac+studio+m5+max&tag=scoritz-20 Apple Mac Studio M5 Ultra: https://www.amazon.com/s?k=mac+
+  nazor: >-
+    Our verdict, buyer by buyer: if you own any M-series Mac, wait and try Harbor on it; for a cheap Harbor box, the Mac mini M6 32GB; for a Mac that can join a pool later, the Mac mini M5 Pro 64GB;
+    for big models in one box, the Mac Studio M5 Max 128GB; and for models over 128GB, the Mac Studio M5 Ultra 256GB.
+  popis_auto: true
+  nazor_auto: true
+  titulky: false
+- id: 6-eYbxxnkrE
+  url: https://www.youtube.com/watch?v=6-eYbxxnkrE
+  nazev: My MacBook Pro Was 6 Months Old... Then Apple Changed It
+  kanal: ''
+  zarizeni: macbook-pro
+  poprve: '2026-11-23'
+  vydano: '2026-11-18'
+  vydano_odhad: false
+  stav: prohlednuto
+  kvalita: 4
+  proc: Automaticky z popisu a titulků. Délka 17 min. Zařízení je v textu jmenované. Titulky nedostupné nebo krátké.
+  sponzorovane: false
+  auto: true
+  delka_s: 1009
+  shlednuti: 141363
+  cisla: []
+  popis: >-
+    I gave two M5 Max MacBook Pros the same workday, and the result sent me back to test the new ProLED screen on its own. 🔹 Try out ChatLLM - http://chatllm.abacus.ai/ltf and Abacus AI DeepAgent -
+    http://deepagent.abacus.ai/ltf 🎥 Related Videos 🎥 🧳🧰 Mini PC portable setup - htt
+  nazor: ''
   popis_auto: true
   nazor_auto: true
   titulky: false
