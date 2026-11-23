@@ -218,6 +218,11 @@ export default defineConfig({
     '/zarizeni/dgx-spark-oem/': '/zarizeni/dgx-spark/',
     '/zarizeni/strix-halo-oem/': '/zarizeni/strix-halo/',
     '/zarizeni/rtx-spark-notebook-oem/': '/zarizeni/rtx-spark-notebook/',
+    // Modely a stránky vyřazené z katalogu: Google je ještě zná a hlásí 404.
+    '/modely/gemma-4-26b-a4b/': '/modely/qwen3-8-flash-next/',
+    '/modely/qwen3-6-35b-a3b/': '/modely/qwen3-8-flash-next/',
+    '/modely/srovnani/': '/zarizeni/srovnani/',
+    '/zaciname/slovnik/': '/slovnik/',
   },
   markdown: {
     processor: unified({
