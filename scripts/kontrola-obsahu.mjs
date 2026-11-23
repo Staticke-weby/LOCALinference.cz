@@ -91,16 +91,11 @@ for (const file of files) {
     }
   }
 
-  // Alza: odkaz na kategorii má nést affiliate parametr, produktový odkaz
-  // (v seznamu zdrojů) naopak affiliate být nemá.
+  // Alza: každý odkaz nese affiliate parametry (idp) a tím i rel="sponsored".
   for (const m of body.matchAll(/\]\((https:\/\/[^)\s]*alza\.cz[^)\s]*)\)/g)) {
     const url = m[1];
-    const jeProdukt = /-d\d+\.htm/.test(url) || /\/search\.htm/.test(url);
-    const maIdp = /[?&]idp=/.test(url);
-    if (jeProdukt && maIdp) {
-      fail(`${rel}: affiliate parametr u produktové stránky Alzy — affiliate patří jen na kategorii`);
-    } else if (!jeProdukt && !maIdp) {
-      fail(`${rel}: odkaz na kategorii Alzy bez affiliate parametru (idp=12510&banner_id=41939)`);
+    if (!/[?&]idp=/.test(url)) {
+      fail(`${rel}: odkaz na Alzu bez affiliate parametru (idp=12510&banner_id=41939)`);
     }
   }
 

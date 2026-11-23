@@ -145,12 +145,12 @@ Toto je nejdůležitější pravidlo projektu.
   - pořadí je vždy **místní měna → původní měna v závorce**, nikdy naopak.
   - s poznámkou „bez dopravy, přepočet je orientační“.
   - Kurzy drž v `data/kurzy.yaml`; nepřepočítávej ručně v textu.
-- **Affiliate odkazy:** jen na **kategorii** prodejce, nikdy na konkrétní
-  produkt — ten se mění a vyprodává. V URL jsou affiliate parametry a
-  odkaz má `rel="sponsored"`. Affiliate se pozná podle parametru `idp`:
-  odkaz na kategorii Alzy ho mít musí, produktová stránka v seznamu
-  zdrojů naopak ne (a `rel="sponsored"` se k ní nepřidává). Hlídá to
-  `npm run check:obsah` a `npm run check:data`.
+- **Affiliate odkazy:** **každý** odkaz na Alza.cz nese affiliate
+  parametry (`idp=12510&banner_id=41939`) a má `rel="sponsored"` — platí
+  to pro kategorii i pro detail produktu. Produktové odkazy ale stárnou:
+  když SKU zmizí z nabídky, odkaz se z dat i z textu odstraní (viz
+  pravidlo o mizejícím zdroji). Hlídá to `npm run check:obsah` a
+  `npm run check:data`.
   Vysvětlení je na `/o-webu/pravni/`, štítek u každého odkazu není
   potřeba. Provize nesmí ovlivnit hodnocení ani pořadí zařízení.
   **EN mutace affiliate odkazy nepoužívá a na prodejce neodkazuje.**

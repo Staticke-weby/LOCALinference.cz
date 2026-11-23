@@ -196,10 +196,7 @@ for (const [name, items] of [
 for (const z of zdrojeList) alzaZaznamy.push([`data/zdroje.yaml / ${z.id}`, z.url]);
 for (const [kde, u] of alzaZaznamy) {
   if (!alzaUrl(u)) continue;
-  const jeProdukt = /-d\d+\.htm/.test(u) || /\/search\.htm/.test(u);
-  const maIdp = /[?&]idp=/.test(u);
-  if (jeProdukt && maIdp) fail(`${kde}: affiliate parametr u produktu — affiliate patří jen na kategorii`);
-  else if (!jeProdukt && !maIdp) fail(`${kde}: odkaz na kategorii Alzy bez affiliate parametru`);
+  if (!/[?&]idp=/.test(u)) fail(`${kde}: odkaz na Alzu bez affiliate parametru`);
 }
 
 // Rozsah od/do musí odpovídat pojmenovaným konfiguracím, jinak se rozejde s textem.

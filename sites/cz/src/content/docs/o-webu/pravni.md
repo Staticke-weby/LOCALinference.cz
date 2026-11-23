@@ -45,9 +45,10 @@ Hugging Face, GitHub a další). Za jejich obsah neodpovídáme.
 
 Některé odkazy na **Alza.cz** jsou affiliates: pokud přes ně nakoupíte,
 dostaneme provizi. Cena pro vás je stejná, platíte stejně jako při
-přímém nákupu. Odkazy vedou na kategorii, ne na konkrétní produkt,
-protože nabídka se mění a produkty se vyprodávají. Affiliate odkazy
-jsou označené `rel="sponsored"`, aby je poznal prohlížeč i vyhledávač.
+přímém nákupu. Odkazy vedou na kategorii nebo na konkrétní produkt;
+u produktů platí, že nabídka se mění a vyprodané položky z webu
+odstraňujeme. Affiliate odkazy jsou označené `rel="sponsored"`, aby je
+poznal prohlížeč i vyhledávač.
 
 Ostatní odkazy affiláty nejsou. Kdyby se to změnilo, bude to u odkazu
 výslovně uvedeno.
