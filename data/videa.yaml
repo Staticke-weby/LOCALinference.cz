@@ -263,9 +263,7 @@
   delka_s: 1002
   shlednuti: 128833
   cisla: []
-  popis: >-
-    Shop DGX Spark: https://micro.center/f721fc Check out All Things AI At Micro Center: https://micro.center/e2bb53 Shop AI Workstations and More: https://micro.center/fb59ae Sign Up For a FREE
-    128gig Flash Drive: https://micro.center/c099a4
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -285,9 +283,7 @@
   delka_s: 1438
   shlednuti: 1383016
   cisla: []
-  popis: >-
-    Access your devices securely from anywhere with TwinGate: https://ntck.co/dgxspark NVIDIA just sent me their smallest AI supercomputer that fits in the palm of my hand. This is the NVIDIA DGX
-    Spark, an AI powerhouse with a Grace Blackwell Superchip that can run up to 200 billion
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -327,9 +323,7 @@
   delka_s: 1237
   shlednuti: 1208383
   cisla: []
-  popis: >-
-    It turns out the M5 Ultra needs something from you before it really pulls ahead. 🔹 Try MerlinAI here: https://www.getmerlin.in/pricing?coupon=merlin and use code is ALX5 for a big discount ⌨️🏢
-    Cluster rack: 🎥 Related Videos 🎥 🧳🧰 Mini PC portable setup - https://youtu.be/4RY
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -352,8 +346,8 @@
   cisla:
     - 128 gb
   popis: >-
-    I tested my RTX Spark laptop (Lenovo Yoga Pro 9n, 128 GB) against a DGX Spark (ASUS Ascent GX10) with its GPU clock limit taken off, at local AI: first the same recipe on both, then each machine
-    at its best, then Strata and the power at the wall. The laptop finished first in most
+    I tested my RTX Spark laptop (Lenovo Yoga Pro 9n, 128 GB) against a DGX Spark (ASUS Ascent GX10) with its GPU clock limit taken off, at local AI: first the
+    same recipe on both, then each machine at its best, then Strata and the power at the wall. The laptop finished first in most
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -373,9 +367,7 @@
   delka_s: 904
   shlednuti: 398499
   cisla: []
-  popis: >-
-    I ran the “obvious” benchmark on DGX Spark and thought I had the story… then one change completely rewrote the results. Try out ChatLLM - http://chatllm.abacus.ai/ltf and Abacus AI DeepAgent -
-    http://deepagent.abacus.ai/ltf 🎥 Related Videos 🎥 🧳🧰 Mini PC portable setup - https
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -440,8 +432,8 @@
     - 64gb
     - 128gb
   popis: >-
-    Don't buy the $6,950 NVIDIA DGX Spark until you see the $/GB math. AMD's 192GB Gorgon Halo box (GMKtec EVO-X5 Pro, $6,799) matches its 273 GB/s bandwidth with 50% more memory — but there's a
-    software catch the thumbnails leave out.
+    Don't buy the $6,950 NVIDIA DGX Spark until you see the $/GB math. AMD's 192GB Gorgon Halo box (GMKtec EVO-X5 Pro, $6,799) matches its 273 GB/s bandwidth
+    with 50% more memory — but there's a software catch the thumbnails leave out.
   nazor: Don't buy the $6,950 NVIDIA DGX Spark until you see the $/GB math.
   popis_auto: false
   nazor_auto: true
@@ -464,7 +456,9 @@
   delka_s: 723
   shlednuti: 111477
   cisla: []
-  popis: NVIDIA DGX Spark is a mini AI super computer that fits in your palm. In this video, we will unbox it, go through initial setup and then run local inference using Gemma models through ollama.
+  popis: >-
+    NVIDIA DGX Spark is a mini AI super computer that fits in your palm. In this video, we will unbox it, go through initial setup and then run local inference
+    using Gemma models through ollama.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -484,9 +478,7 @@
   delka_s: 1014
   shlednuti: 606541
   cisla: []
-  popis: >-
-    I put the MSI's RTX Spark, up against my DGX Spark, then pulled the plug. 🔹 MSI Prestige N16 Flip AI+ models:
-    https://us.msi.com/Business-Productivity/Prestige-N16-Flip-AI-Plus-C1XMX/shopnow?utm_source=kol_alexziskind_yt_bnp&utm_medium=video&utm_campaign=2026_q4_branding_launch&
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -507,8 +499,8 @@
   shlednuti: 36802
   cisla: []
   popis: >-
-    Thinking about picking up an NVIDIA DGX Spark for local AI? In this video, I break down my first month of owning the "Gigabyte AI Top Atom" and "ASUS GX10" variants powered by the Grace Blackwell
-    GB10 superchip.
+    Thinking about picking up an NVIDIA DGX Spark for local AI? In this video, I break down my first month of owning the "Gigabyte AI Top Atom" and "ASUS GX10"
+    variants powered by the Grace Blackwell GB10 superchip.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -533,9 +525,7 @@
     - 250w
     - 48gb
     - 32gb
-  popis: >-
-    🎁 Get My Free Local AI Config: https://zenvanriel.com/ai-coding?ref=yt-HyR03cpg6s4 ⚡ Work directly with me to become a high-earning AI Engineer: https://aiengineer.community/join On this little
-    machine I run the latest Qwen models, including one with over a hundred billion param
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -578,7 +568,7 @@
   vydano_odhad: false
   stav: zamitnuto
   kvalita: 4
-  proc: "Ruční korekce: testuje DGX Spark se 64 GB, tedy verzi mimo katalog (128 GB+)."
+  proc: 'Ruční korekce: testuje DGX Spark se 64 GB, tedy verzi mimo katalog (128 GB+).'
   auto: true
   delka_s: 291
   shlednuti: 65823
@@ -587,8 +577,8 @@
     - 128gb
     - 192gb
   popis: >-
-    The Popular Local Ai all-in-one DGX Spark is getting a new variant with a 64GB RAM reduction at a $4999 MSRP and the 128GB MSRP just went way up! Is NVIDIA Insane or is this a warning of what's
-    coming to ALL ram prices!
+    The Popular Local Ai all-in-one DGX Spark is getting a new variant with a 64GB RAM reduction at a $4999 MSRP and the 128GB MSRP just went way up! Is NVIDIA
+    Insane or is this a warning of what's coming to ALL ram prices!
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -609,8 +599,8 @@
   shlednuti: 33912
   cisla: []
   popis: >-
-    🖥️ Discover the potential within the DGX Spark, a remarkable innovation in AI processing, enabling developers to handle large memory models on a desktop. Despite its compact form, it offers
-    substantial capabilities, yet proves limited for tasks requiring high-speed inference.
+    🖥️ Discover the potential within the DGX Spark, a remarkable innovation in AI processing, enabling developers to handle large memory models on a desktop.
+    Despite its compact form, it offers substantial capabilities, yet proves limited for tasks requiring high-speed inference.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -630,7 +620,7 @@
   delka_s: 876
   shlednuti: 1478002
   cisla: []
-  popis: Check out ThreatLocker's Future of AI Control Webinar using our link! https://lmg.gg/hyC63 October 20, 2026 - p.m.
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -650,9 +640,7 @@
   delka_s: 688
   shlednuti: 88465
   cisla: []
-  popis: >-
-    This video compares the NVIDIA DGX Spark and NVIDIA RTX 4090 across several benchmarks and attributes such as price and footprint. Benchmark code - https://github.com/mrdbourke/gpu-benchmarking
-    Exolabs blog post - https://blog.exolabs.net/nvidia-dgx-spark/ DGX Spark - https://nvd
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -715,9 +703,7 @@
   delka_s: 819
   shlednuti: 1766033
   cisla: []
-  popis: >-
-    Keep your emails and files private with Proton Mail and Proton Drive. Protect your data with end-to-end encryption and get started for free: https://proton.me/drive/linustechtips NVIDIA RTX Spark
-    is in our hands and we put it through every test we could think of.
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -737,9 +723,7 @@
   delka_s: 1003
   shlednuti: 439360
   cisla: []
-  popis: >-
-    Per request of the viewers, here's a demo of the Spark Mini. ------------------------------------------------------------------------ My Pages ► Website - http://www.olaenglundshop.com ► Spotify -
-    http://www.olaenglund.com/starzingerspotify ► TikTok - https://vm.tiktok.com/ZMdcTB
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -759,9 +743,7 @@
   delka_s: 964
   shlednuti: 392055
   cisla: []
-  popis: >-
-    RTX Spark looks like a Windows mistake, but NVIDIA may be playing a much bigger game. Try out ChatLLM - http://chatllm.abacus.ai/ltf and Abacus AI DeepAgent - http://deepagent.abacus.ai/ltf 👀 2
-    400Gbps switch: https://bhpho.to/4r9vJi1 👀👀 4 400Gbps switch: https://bhpho.to/4qQq
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -785,8 +767,8 @@
   shlednuti: 28452
   cisla: []
   popis: >-
-    The RTX Spark laptop platform is a big deal for AI developers and power users working with giant models on Windows, but its impact on the PC market will be longer-term. PCMag's John Burek
-    explains.
+    The RTX Spark laptop platform is a big deal for AI developers and power users working with giant models on Windows, but its impact on the PC market will be
+    longer-term. PCMag's John Burek explains.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -807,8 +789,8 @@
   shlednuti: 29170
   cisla: []
   popis: >-
-    Nvidia just announced the RTX Spark, a brand-new ARM-based Windows chip that could finally be the "Apple Silicon moment" PC users have been waiting for. In this video, we break down everything you
-    need to know about this powerhouse processor.
+    Nvidia just announced the RTX Spark, a brand-new ARM-based Windows chip that could finally be the "Apple Silicon moment" PC users have been waiting for. In
+    this video, we break down everything you need to know about this powerhouse processor.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -828,7 +810,9 @@
   delka_s: 927
   shlednuti: 134513
   cisla: []
-  popis: 🎸► Small Amp, Massive Features - Positive Grid Spark Mini Review Welcome to this Positive Grid Spark Mini Review! This is Positive Grid's latest addition to their line of guitar amps.
+  popis: >-
+    🎸► Small Amp, Massive Features - Positive Grid Spark Mini Review Welcome to this Positive Grid Spark Mini Review! This is Positive Grid's latest addition
+    to their line of guitar amps.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -868,9 +852,7 @@
   delka_s: 785
   shlednuti: 193318
   cisla: []
-  popis: >-
-    I put the MSI's RTX Spark, up against my DGX Spark, then pulled the plug. 🔹🔥 Enjoy 1 month of Wispr Flow Pro using my link: https://ref.wisprflow.ai/alex-ziskind-yt 🎥 Related Videos 🎥 🧳🧰
-    Mini PC portable setup - https://youtu.be/4RYmsrarOSw 🍎💻 Dev setup on Mac - https://y
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -911,9 +893,7 @@
   shlednuti: 1487865
   cisla:
     - 128gb
-  popis: >-
-    NVIDIA just unveiled RTX Spark, a groundbreaking ARM-based superchip bringing 128GB of unified memory, 6000+ CUDA cores, and local 120B parameter AI model capabilities directly to next-gen Windows
-    on ARM laptops. Discuss on the forum: https://linustechtips.com/topic/1638537-nvidi
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -944,8 +924,8 @@
     - 500 gb/s
     - 550 gb/s
   popis: >-
-    Last week, Nvidia and Microsoft unveiled the future of personal AI computing: the Nvidia RTX Spark, powered by the brand-new N1X superchip with up to 128GB of unified memory. On paper, the local
-    AI community celebrated: finally, a native CUDA Windows workstation capable of loadin
+    Last week, Nvidia and Microsoft unveiled the future of personal AI computing: the Nvidia RTX Spark, powered by the brand-new N1X superchip with up to 128GB
+    of unified memory. On paper, the local AI community celebrated: finally, a native CUDA Windows workstation capable of loadin
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -968,9 +948,7 @@
   delka_s: 2104
   shlednuti: 107528
   cisla: []
-  popis: >-
-    👉 Save BIG on Your Next Laptop: https://www.bestlaptop.deals ► Gaming Recommendations - Lenovo LOQ (2025): https://go.bestlaptop.deals/HBRPU - Lenovo Legion 5i (2025):
-    https://go.bestlaptop.deals/C3CJ6 - Lenovo Legion 7i: https://go.bestlaptop.deals/2VGCY - Acer Predator Helios
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -993,7 +971,9 @@
   delka_s: 350
   shlednuti: 1395795
   cisla: []
-  popis: First impressions of the Nvidia RTX Spark Laptops with the N1X chip If you'd like to support the channel, consider a Dave2D membership by clicking the “Join” button above!
+  popis: >-
+    First impressions of the Nvidia RTX Spark Laptops with the N1X chip If you'd like to support the channel, consider a Dave2D membership by clicking the
+    “Join” button above!
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1014,8 +994,8 @@
   shlednuti: 1493
   cisla: []
   popis: >-
-    Asus RTX Spark Mini PC and Laptops hardware lineup at Computex 2026, centering on a high-performance AI mini PC designed for local generative AI workloads. This hardware serves as an AI endpoint
-    for developers, content creators, and gamers, providing a clean desktop setup while o
+    Asus RTX Spark Mini PC and Laptops hardware lineup at Computex 2026, centering on a high-performance AI mini PC designed for local generative AI workloads.
+    This hardware serves as an AI endpoint for developers, content creators, and gamers, providing a clean desktop setup while o
   nazor: This localized execution allows developers and creators to avoid subscription fees and token charges associated with cloud-based AI services.
   popis_auto: true
   nazor_auto: true
@@ -1057,8 +1037,8 @@
   cisla:
     - 273 gb/s
   popis: >-
-    NVIDIA RTX Spark performance tests reveal a major shift in local AI hardware, making the expensive DGX Spark model harder to justify. We compare these two machines to see if the RTX Spark can
-    handle the same workloads as its pricier counterpart.
+    NVIDIA RTX Spark performance tests reveal a major shift in local AI hardware, making the expensive DGX Spark model harder to justify. We compare these two
+    machines to see if the RTX Spark can handle the same workloads as its pricier counterpart.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1079,8 +1059,8 @@
   shlednuti: 36019
   cisla: []
   popis: >-
-    NVIDIA's New RTX Spark 'Super Chip' has landed, but what is RTX Spark, who is it for and should you actually consider it for your next laptop upgrade? Well, we've spent the last few days working
-    over time to test this in as much detail as we possible can, so buckle in and let's t
+    NVIDIA's New RTX Spark 'Super Chip' has landed, but what is RTX Spark, who is it for and should you actually consider it for your next laptop upgrade? Well,
+    we've spent the last few days working over time to test this in as much detail as we possible can, so buckle in and let's t
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1123,7 +1103,7 @@
   delka_s: 997
   shlednuti: 454273
   cisla: []
-  popis: Subscribe for more! https://www.youtube.com/austinevans Check out our @thisis channel!
+  popis: ''
   nazor: Zapier Local AI Demos Performance Hardware and Software Verdict
   popis_auto: false
   nazor_auto: true
@@ -1172,9 +1152,7 @@
   shlednuti: 37880
   cisla:
     - 128gb
-  popis: >-
-    Surface Laptop Ultra: https://bestbuycreators.7tiv.net/YVxg9e Dell XPS 16 Creator Edition: https://bestbuycreators.7tiv.net/yZ5RqN ProArt P14: https://bestbuycreators.7tiv.net/m4BgO7 ProArt P16:
-    https://bestbuycreators.7tiv.net/PzZ0zj HP Omnibook 16: https://bestbuycreators.7tiv.
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -1213,8 +1191,8 @@
     - 300.8 gb/s
     - 110w
   popis: >-
-    Microsoft’s own benchmark shows the Surface Laptop Ultra, the flagship NVIDIA RTX Spark laptop, waiting 170 seconds before the first word on a 128K prompt. Before you spend $5,899 on a 128GB AI
-    laptop for local AI, here’s where that number comes from and who it actually affects.
+    Microsoft’s own benchmark shows the Surface Laptop Ultra, the flagship NVIDIA RTX Spark laptop, waiting 170 seconds before the first word on a 128K prompt.
+    Before you spend $5,899 on a 128GB AI laptop for local AI, here’s where that number comes from and who it actually affects.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -1271,8 +1249,8 @@
     - 60gb
     - 128 gb
   popis: >-
-    Nvidia RTX Spark laptops for local AI: I did the math on the Surface Laptop Ultra and the new RTX Spark lineup announced at Microsoft's October 7 event — memory, real speed, price, and who should
-    actually buy one. RTX Spark (N1X) pairs a 20-core Grace CPU with a Blackwell GPU and
+    Nvidia RTX Spark laptops for local AI: I did the math on the Surface Laptop Ultra and the new RTX Spark lineup announced at Microsoft's October 7 event —
+    memory, real speed, price, and who should actually buy one. RTX Spark (N1X) pairs a 20-core Grace CPU with a Blackwell GPU and
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -1297,9 +1275,7 @@
   cisla:
     - 12 gb
     - 12gb
-  popis: >-
-    👉 Save BIG on Your Next Laptop: https://www.bestlaptop.deals ⬇️⬇️ Best RTX Spark Laptops ⬇️⬇️ - Asus ProArt P14: https://go.bestlaptop.deals/c/m1kqEglXvE - Asus ProArt P16:
-    https://go.bestlaptop.deals/c/XmDH0bBDaJ 👇👇RTX Spark Alternatives 👇👇 - Asus ROG Zephyrus G16 (Premium)
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -1330,8 +1306,8 @@
     - 90w
     - 100w
   popis: >-
-    The wait is finally over, and I can finally share the complete benchmarks, architectural analysis, and real-world performance numbers for NVIDIA's first-ever laptop Superchip: RTX Spark (N1X). Is
-    NVIDIA's ARM-based unified memory SOC a true M5 Pro and Strix Halo killer, or does e
+    The wait is finally over, and I can finally share the complete benchmarks, architectural analysis, and real-world performance numbers for NVIDIA's
+    first-ever laptop Superchip: RTX Spark (N1X). Is NVIDIA's ARM-based unified memory SOC a true M5 Pro and Strix Halo killer, or does e
   nazor: 'Emulation (Marvel Rivals, Gears of War: E-Day, Fortnite) - Final Verdict: Is RTX Spark Worth the Premium Price Tag?'
   popis_auto: false
   nazor_auto: true
@@ -1355,9 +1331,7 @@
   shlednuti: 70822
   cisla:
     - 4w
-  popis: >-
-    ► The Alienware Laptop Used in the video - https://howl.link/h3chx4ixchj4w ► Twitter - http://www.twitter.com/UFDTech ► Facebook - http://www.facebook.com/ufdtech ► Instagram -
-    http://www.instagram.com/ufd_tech ► Reddit - https://www.reddit.com/r/UFDTech/ Presenter: Brett Stickle
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1377,9 +1351,7 @@
   delka_s: 1094
   shlednuti: 101928
   cisla: []
-  popis: >-
-    Timestamps: AI Integration & Consulting: https://bijanbowen.com Join the Discord: https://discord.gg/hfaR2exy7S In this video, we review the newly released AMD Strix Halo, also known as the Ryzen
-    AI Max 395 — a device that’s generated a lot of buzz in the local AI space. Marketed
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1400,9 +1372,7 @@
   shlednuti: 131657
   cisla:
     - 7w
-  popis: >-
-    We found an AMD Ryzen AI Max+ 395 "Strix Halo" system that is similar in size to the Framework Desktop, but might be the most well-rounded system out there of the dozen we have tested. STH Main
-    Site Article: https://www.servethehome.com/asrock-industrial-ai-box-a395-review-taking
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1429,9 +1399,7 @@
     - 85w
     - 54w
     - 30w
-  popis: >-
-    Digital Foundry is now fully independent! Join the DF Supporter Program and support the team: https://bit.ly/3jEGjvx Strix Halo - in the form of the top-end Ryzen AI Max+ 395 is the most powerful
-    PC APU AMD has ever made, capable of providing remarkable performance in the smalles
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -1454,9 +1422,7 @@
   delka_s: 719
   shlednuti: 57883
   cisla: []
-  popis: >-
-    👉 Save BIG on Your Next Laptop: https://www.bestlaptop.deals TUF A14 (RTX 5060): https://go.bestlaptop.deals/LZMLY TUF A14 (Strix Halo): https://go.bestlaptop.deals/CWCZU Alternative
-    Recommendations: Legion 5i (Panther Lake): Coming Soon LOQ (AMD): https://go.bestlaptop.deals/CP
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1477,8 +1443,8 @@
   shlednuti: 218587
   cisla: []
   popis: >-
-    Upcoming ASUS gaming laptops from the ROG and TUF lineups change a bunch of things. First of all the TUF A14 gets the awesome Strix Halo CPUs with two new models: the Ryzen AI Max+ 392 and and
-    Max+ 388.
+    Upcoming ASUS gaming laptops from the ROG and TUF lineups change a bunch of things. First of all the TUF A14 gets the awesome Strix Halo CPUs with two new
+    models: the Ryzen AI Max+ 392 and and Max+ 388.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1498,7 +1464,9 @@
   delka_s: 1915
   shlednuti: 231383
   cisla: []
-  popis: Wendell was sent the Ryzen AI Halo -- The AMD Strix Halo based dev platform, to test if it really is a good developer workstation. And what's changed since Strix Halo Launched?
+  popis: >-
+    Wendell was sent the Ryzen AI Halo -- The AMD Strix Halo based dev platform, to test if it really is a good developer workstation. And what's changed since
+    Strix Halo Launched?
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1539,9 +1507,7 @@
   shlednuti: 34590
   cisla:
     - 192gb
-  popis: >-
-    DeepSeek V4.1 Flash 1017 on Strix Halo and Gorgon Halo: updated weights, setup and early Terminal Bench Mini results—44% fewer generated tokens and 42% less agent time across eight matched tasks.
-    Timestamps Links GGUF weights: https://huggingface.co/kyuz0/deepseek-v4.1-flash-gguf
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1561,9 +1527,7 @@
   delka_s: 957
   shlednuti: 137444
   cisla: []
-  popis: >-
-    💻 HP Zbook Ultra (G1a): https://go.bestlaptop.deals/TB9FD 🛍️ Flow Z13: https://go.bestlaptop.deals/3AYTR ❤️ G14 (5070 Ti): https://go.bestlaptop.deals/JQJHD 👌 G14 (5080):
-    https://go.bestlaptop.deals/5CBAY 👉 Get the best laptops at https://www.bestlaptop.deals ► Follow Us YouT
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1583,9 +1547,7 @@
   delka_s: 2468
   shlednuti: 111292
   cisla: []
-  popis: >-
-    Timestamps: AI Integration & Consulting: https://bijanbowen.com Join the Discord: https://discord.gg/hfaR2exy7S In this video, we take a hands-on look at the NVIDIA DGX Spark, also branded as the
-    AI Workbench, and compare it directly to AMD’s Strix Halo / Ryzen AI Max+ 395 platfo
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1608,9 +1570,7 @@
   cisla:
     - 128gb
     - 7w
-  popis: >-
-    The Minisforum MS-S1 Max is the best AMD Ryzen AI Max+ 395 system we have tested. In this video, we go into what sets this AMD Strix Halo 128GB AI mini PC apart from the competition STH Main Site
-    Article: https://www.servethehome.com/minisforum-ms-s1-max-review-the-best-ryzen-ai
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -1633,7 +1593,9 @@
   delka_s: 978
   shlednuti: 355884
   cisla: []
-  popis: This has the most powerful iGPU we have ever tested! In this video, we get a first look at the all-new ASUS ROG FLOW Z13, powered by the powerful AMD Ryzen Ai Max + 395 Strix Point APU.
+  popis: >-
+    This has the most powerful iGPU we have ever tested! In this video, we get a first look at the all-new ASUS ROG FLOW Z13, powered by the powerful AMD Ryzen
+    Ai Max + 395 Strix Point APU.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1673,7 +1635,7 @@
   delka_s: 1355
   shlednuti: 58275
   cisla: []
-  popis: You can find us... Twitter - https://twitter.com/level1techs Twitch - https://twitch.tv/teampgp For all our social links, websites, and more, check out our link tree!
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1694,8 +1656,8 @@
   shlednuti: 46519
   cisla: []
   popis: >-
-    HP's all-new 14" workstation is so far the only laptop we have been able to test, betting on AMD's Strix Halo silicon, offering an integrated GPU performing on the level of dedicated solutions.
-    Please enjoy our video, and for more information and results, please check out our wri
+    HP's all-new 14" workstation is so far the only laptop we have been able to test, betting on AMD's Strix Halo silicon, offering an integrated GPU performing
+    on the level of dedicated solutions. Please enjoy our video, and for more information and results, please check out our wri
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1716,8 +1678,8 @@
   shlednuti: 1754208
   cisla: []
   popis: >-
-    Review of the AMD Strix Halo. The most powerful integrated GPU in a laptop This is the best gaming laptop for integrated graphics performance Asus Flow Z13 If you'd like to support the channel,
-    consider a Dave2D membership by clicking the “Join” button above!
+    Review of the AMD Strix Halo. The most powerful integrated GPU in a laptop This is the best gaming laptop for integrated graphics performance Asus Flow Z13
+    If you'd like to support the channel, consider a Dave2D membership by clicking the “Join” button above!
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1737,9 +1699,7 @@
   delka_s: 2049
   shlednuti: 86255
   cisla: []
-  popis: >-
-    Or grab yourself a Pint Glass at https://craftcomputing.store Follow me on Bluesky @CraftComputing.bsky.social Earlier this week, AMD pulled the curtain off of their "all new" Ryzen AI Halo
-    Developer Platform. The hardware, we've seen before...
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1760,9 +1720,7 @@
   shlednuti: 72723
   cisla:
     - 128gb
-  popis: >-
-    Grab yourself a Pint Glass or Minimalist Wallet at https://craftcomputing.store AMD's Strix Halo architecture officially launched back in January of 2025, but products featuring the chip have been
-    very slow to trickle out. I finally got my hands on their latest chip in the AMD Ry
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1782,9 +1740,7 @@
   delka_s: 4215
   shlednuti: 68578
   cisla: []
-  popis: >-
-    Asus ROG Flow Z13 Link - https://rog.asus.com/us/laptops/rog-flow/rog-flow-z13-2025/ ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰ 🐦‍⬛ Twitter Link - https://twitter.com/carygolomb 📸 InstaGram Lk -
-    https://www.instagram.com/thephawx 🎵 TikTok Link - https://www.tiktok.com/@thephawx ▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰
+  popis: ''
   nazor: AMD Max 390 - Returnal - Can I Recommend The Asus ROG Flow Z13?
   popis_auto: true
   nazor_auto: true
@@ -1829,9 +1785,7 @@
     - 150gb
     - 273 gb/s
     - 256 gb/s
-  popis: >-
-    Shop the AMD Ryzen AI Max+ 495 Linux OS HERE - https://micro.center/86dd30 Shop the AMD Ryzen AI Max+ 395 Linux OS HERE - https://micro.center/bc1dc7 Shop the AMD Ryzen AI Max+ 395 Windows OS HERE
-    - https://micro.center/2a2134 192GB of unified memory in a machine this small? AMD'
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -1855,9 +1809,7 @@
   shlednuti: 33696
   cisla:
     - 192 gb
-  popis: >-
-    🎓Go deeper into AI with full courses → https://aimaster.me/yt/gorgonhalo 🤝 Exclusive brand partnership - https://aimaster.me/collab AMD Ryzen AI Halo with Gorgon Halo (Ryzen AI Max+ PRO 495)
-    packs 192 GB of unified memory into a small desktop box and costs $7,299. Is it a real
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -1904,8 +1856,8 @@
     - 64gb
     - 128gb
   popis: >-
-    The 192GB Framework Desktop uses AMD’s Ryzen AI Max+ PRO 495, codenamed Gorgon Halo. This episode looks at what its extra 64GB of unified memory enables beyond a 128GB Strix Halo system: keeping
-    larger models resident without SSD streaming or a cluster, and running two local mode
+    The 192GB Framework Desktop uses AMD’s Ryzen AI Max+ PRO 495, codenamed Gorgon Halo. This episode looks at what its extra 64GB of unified memory enables
+    beyond a 128GB Strix Halo system: keeping larger models resident without SSD streaming or a cluster, and running two local mode
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -1949,9 +1901,7 @@
   delka_s: 1061
   shlednuti: 860680
   cisla: []
-  popis: >-
-    AMD finally answered NVIDIA’s tiny AI box with their own Ryzen AI Halo, but the real question Micro Center is THE AI Destination: https://micro.center/ef6aec Sign up for a FREE 128 gig Flash Drive
-    at Micro Center's Austin Store: https://micro.center/5081af Sign up for a FREE 128
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -1975,9 +1925,7 @@
     - 32gb
     - 38.5 t/s
     - 1,723 t/s
-  popis: >-
-    🧠 Stop paying per subscription. Every top AI model, one platform → https://aimaster.me/yt/freeai A $1,500 AMD mini PC runs a 120B parameter AI model offline — the same one Nvidia's $4,700 DGX
-    Spark runs, only 13% slower.
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -2000,9 +1948,7 @@
   delka_s: 825
   shlednuti: 67720
   cisla: []
-  popis: >-
-    👉 Save BIG on Your Next Laptop: https://www.bestlaptop.deals - Legion 7a: https://go.bestlaptop.deals/5J6FV - Legion 5a: https://go.bestlaptop.deals/5DGSA - Legion 7i:
-    https://lenovo.vzew.net/MAVjqK - Zephyrus G16 (5070 Ti, Panther Lake): https://go.bestlaptop.deals/72XF3 - Zeph
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2023,8 +1969,8 @@
   shlednuti: 53429
   cisla: []
   popis: >-
-    AMD is shifting the paradigm from computers that just execute commands to Agentic AI that understands your goals. From the jaw-dropping Strix Halo and Gorgon Halo chips to running 125-billion
-    parameter models locally on Windows, local compute is getting a massive upgrade.
+    AMD is shifting the paradigm from computers that just execute commands to Agentic AI that understands your goals. From the jaw-dropping Strix Halo and
+    Gorgon Halo chips to running 125-billion parameter models locally on Windows, local compute is getting a massive upgrade.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2053,8 +1999,8 @@
     - 64gb
     - 128gb
   popis: >-
-    AMD's Gorgon Halo (Ryzen AI Max+ PRO 495) is the same chip family as Strix Halo with 192 GB of memory instead of 128. I went through every measured result I could find, from Level1Techs, Micro
-    Center and Donato Capitella, to see what the extra 64 GB actually buy you.
+    AMD's Gorgon Halo (Ryzen AI Max+ PRO 495) is the same chip family as Strix Halo with 192 GB of memory instead of 128. I went through every measured result I
+    could find, from Level1Techs, Micro Center and Donato Capitella, to see what the extra 64 GB actually buy you.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -2079,9 +2025,7 @@
   cisla:
     - 128gb
     - 124gb
-  popis: >-
-    AMD AI Developer Program ---------------------------------------------- Join the AMD AI Developer Program for free cloud credits, expert access, and premium AI training - everything you need to
-    build, optimize, and scale on AMD. Start building today: https://www.amd.com/en/develo
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2101,9 +2045,7 @@
   delka_s: 1528
   shlednuti: 80778
   cisla: []
-  popis: >-
-    In this video I look at using the latest Ryzen AI Halo from AMD for local AI tasks. Find out more about the AMD RYZEN AI HALO:
-    https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html Also checkout the AMD AI Developer Program: https://developer.amd.com/ai-dev
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2124,8 +2066,8 @@
   shlednuti: 2585
   cisla: []
   popis: >-
-    Young Swedish lefty, Dennis Augustsson, a rising star on Tour, loved his 2025 Halo Champion Gorgon, but decided to switch it up and try out a Halo STAR Gorgon for his 2026 Tour Series pick, and
-    this thing is a WINNER. Check out this review as we test out the brand new run.
+    Young Swedish lefty, Dennis Augustsson, a rising star on Tour, loved his 2025 Halo Champion Gorgon, but decided to switch it up and try out a Halo STAR
+    Gorgon for his 2026 Tour Series pick, and this thing is a WINNER. Check out this review as we test out the brand new run.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2168,8 +2110,8 @@
     - 512gb
     - 24gb
   popis: >-
-    Apple just killed NVIDIA's DGX Spark with its announcement of the Mac Studio M5 Ultra 512GB. I talk about the economics of Local Ai that no other creator is talking about that you have to consider
-    before spending 10's of thousands of dollars on any sytem.
+    Apple just killed NVIDIA's DGX Spark with its announcement of the Mac Studio M5 Ultra 512GB. I talk about the economics of Local Ai that no other creator is
+    talking about that you have to consider before spending 10's of thousands of dollars on any sytem.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -2196,7 +2138,9 @@
     - 5.6 gb
     - 256 gb
     - 128 gb
-  popis: I ran Qwen 3.8 27B (Splash) locally in LM Studio on my M5 Pro MacBook Pro for a real coding task and compared it with Claude. It was slow, loud and nowhere near a $20/month subscription.
+  popis: >-
+    I ran Qwen 3.8 27B (Splash) locally in LM Studio on my M5 Pro MacBook Pro for a real coding task and compared it with Claude. It was slow, loud and nowhere
+    near a $20/month subscription.
   nazor: Here's why I think local AI inference on expensive Apple silicon is a waste of money, plus the two local AI jobs that are actually worth it.
   popis_auto: true
   nazor_auto: true
@@ -2238,7 +2182,9 @@
   delka_s: 1657
   shlednuti: 58081
   cisla: []
-  popis: Local AI is incredibly powerful, but often you need pretty hefty hardware to run good enough models. The latest Mac Studio M5 Ultra retails at $12,000 fully loaded.
+  popis: >-
+    Local AI is incredibly powerful, but often you need pretty hefty hardware to run good enough models. The latest Mac Studio M5 Ultra retails at $12,000 fully
+    loaded.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2259,9 +2205,7 @@
   shlednuti: 1082663
   cisla:
     - 512gb
-  popis: >-
-    I used my $60,000 512GB Mac Studio cluster running Kimi K3 to see if local AI can beat a $10/month cloud coding agent, and the result was way not what I expected. 🔹 Try out Supercomputer -
-    https://supercomputer.abacus.ai/ltf 🎥 Related Videos 🎥 🧱🖥️ Mac Studio Cluster - https
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2284,8 +2228,8 @@
     - 512gb
     - 256gb
   popis: >-
-    The 512GB Mac Studio with the M5 Ultra costs $22,299, and the smartest open model that fits inside it scores about where Claude was in May. Should you buy it for local AI, buy two 256GB Macs, or
-    keep paying for Claude?
+    The 512GB Mac Studio with the M5 Ultra costs $22,299, and the smartest open model that fits inside it scores about where Claude was in May. Should you buy
+    it for local AI, buy two 256GB Macs, or keep paying for Claude?
   nazor: Then the speed engines (LM Studio, oMLX, TensorFold and Splash), one 512GB Mac against two 256GB Macs, the money, and a verdict on who should buy it.
   popis_auto: false
   nazor_auto: true
@@ -2313,9 +2257,7 @@
     - 512gb
     - 128gb
     - 64gb
-  popis: >-
-    🆓 Get my FREE 2Wild Blueprint (60-second quiz, builds your personal plan): https://tonyd2wild.com/blueprint?src=t2w Or comment BLUEPRINT below and I'll send you the link. Local AI hardware is
-    getting MORE expensive, not cheaper.
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2337,7 +2279,9 @@
   cisla:
     - 256gb
     - 512gb
-  popis: A Mac Studio M5 Ultra is the cheapest 256GB of fast memory money can buy, and it still loses to a hosted open model. Here is the local LLM math almost nobody runs.
+  popis: >-
+    A Mac Studio M5 Ultra is the cheapest 256GB of fast memory money can buy, and it still loses to a hosted open model. Here is the local LLM math almost
+    nobody runs.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -2370,9 +2314,11 @@
     - 96gb
     - 256gb
   popis: >-
-    A Mac Studio for local AI with 64GB costs about $3,500, and even the top M5 Ultra made one long prompt wait 104 seconds before the first word. Here is what the reviews measured, what owners wrote
-    after buying, and how it compares with the $20 monthly plan you already pay.
-  nazor: '• Is local AI worth it against a plan: the 64GB machine equals 175 months of a $20 plan, and pays back in 17.5 months only against a $200 plan it fully replaces.'
+    A Mac Studio for local AI with 64GB costs about $3,500, and even the top M5 Ultra made one long prompt wait 104 seconds before the first word. Here is what
+    the reviews measured, what owners wrote after buying, and how it compares with the $20 monthly plan you already pay.
+  nazor: >-
+    • Is local AI worth it against a plan: the 64GB machine equals 175 months of a $20 plan, and pays back in 17.5 months only against a $200 plan it fully
+    replaces.
   popis_auto: false
   nazor_auto: true
   titulky: false
@@ -2454,8 +2400,8 @@
   cisla:
     - 256 gb
   popis: >-
-    I got a Mac Studio M5 Ultra with 256 GB of memory and spent a day reviewing it for local AI: how fast the models write, how fast they read, how long a 32,000-token prompt makes you wait, and how
-    well they rebuild a web page from a screenshot. Then the coding jobs: the same tasks
+    I got a Mac Studio M5 Ultra with 256 GB of memory and spent a day reviewing it for local AI: how fast the models write, how fast they read, how long a
+    32,000-token prompt makes you wait, and how well they rebuild a web page from a screenshot. Then the coding jobs: the same tasks
   nazor: 'Then the coding jobs: the same tasks through LM Studio, oMLX and Claude Sonnet 5.5, and a verdict on whether this replaces a subscription.'
   popis_auto: true
   nazor_auto: true
@@ -2503,8 +2449,8 @@
   shlednuti: 41810
   cisla: []
   popis: >-
-    Is the Mac Studio M5 Ultra actually worth it for local AI inference? We test real-world results against top-tier GPUs.Testing local AI models often reveals a significant gap between marketing
-    specs and actual throughput.
+    Is the Mac Studio M5 Ultra actually worth it for local AI inference? We test real-world results against top-tier GPUs.Testing local AI models often reveals
+    a significant gap between marketing specs and actual throughput.
   nazor: Is the Mac Studio M5 Ultra actually worth it for local AI inference?
   popis_auto: true
   nazor_auto: true
@@ -2524,7 +2470,9 @@
   delka_s: 838
   shlednuti: 536659
   cisla: []
-  popis: Apple made some huge claims with M5 Max, but one result in this test completely changed how I look at this machine. Security teams don’t stop breaches with theory.
+  popis: >-
+    Apple made some huge claims with M5 Max, but one result in this test completely changed how I look at this machine. Security teams don’t stop breaches with
+    theory.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2547,8 +2495,8 @@
     - 96gb
     - 9w
   popis: >-
-    I linked 3 M5 Max MacBook Pro machines to see how far next gen local AI can go. Narwal Flow 2 Launch Special Offer (Apr 13 - Apr 28): 💰 Special Launch Price: $1,099 USD / $1,499 CAD (Original
-    Price: $1,499 USD / $1,799 CAD) ✅ 3-Year Warranty ✅ FREE Premium Accessory Gift Bag (Va
+    I linked 3 M5 Max MacBook Pro machines to see how far next gen local AI can go. Narwal Flow 2 Launch Special Offer (Apr 13 - Apr 28): 💰 Special Launch
+    Price: $1,099 USD / $1,499 CAD (Original Price: $1,499 USD / $1,799 CAD) ✅ 3-Year Warranty ✅ FREE Premium Accessory Gift Bag (Va
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -2572,8 +2520,8 @@
   shlednuti: 56846
   cisla: []
   popis: >-
-    In this video, I share my real-world experience using the M5 Max as my primary local AI, coding, and content-creation workstation. I’ll cover: * 🧠 Running Local LLMs including Qwen3.8, GLM-5.3
-    Flash, Gemma, Muse/Glimmer and other large models * 💻 Local AI coding and coding agen
+    In this video, I share my real-world experience using the M5 Max as my primary local AI, coding, and content-creation workstation. I’ll cover: * 🧠 Running
+    Local LLMs including Qwen3.8, GLM-5.3 Flash, Gemma, Muse/Glimmer and other large models * 💻 Local AI coding and coding agen
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2600,8 +2548,8 @@
     - 19.1 tok/s
     - 40 gb
   popis: >-
-    A local AI gauntlet, rerun shot for shot: the Apple M5 Max 16" MacBook Pro against a Lenovo Legion Pro 7i with an RTX 5090 Laptop GPU. Video generation, image generation and language models, with
-    the same prompts, the same seeds and the same model files wherever they exist.
+    A local AI gauntlet, rerun shot for shot: the Apple M5 Max 16" MacBook Pro against a Lenovo Legion Pro 7i with an RTX 5090 Laptop GPU. Video generation,
+    image generation and language models, with the same prompts, the same seeds and the same model files wherever they exist.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -2626,9 +2574,7 @@
   cisla:
     - 128gb
     - 35 w
-  popis: >-
-    The specs used in this video are: MB Pro 16", M5 Max 18cCPU 40cGPU, 128GB Ram, 4TB SSD. 🎨 FREE Video Color Preset:
-    https://createbeyond.de/en/free-lut?utm_source=yt_desc&utm_campaign=al_ai_updates 🚀 Your Ticket To Everything: https://createbeyond.io 🎨 Get My LUTs: https://crea
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2651,9 +2597,7 @@
     - 16 gb
     - 512 gb
     - 128 gb
-  popis: >-
-    📘 My step-by-step guide to running AI on your own Mac: https://www.theaibridges.com/learn/local-ai-mac?utm_source=youtube&utm_medium=description&utm_campaign=local-ai-mac&utm_content=iZJzViepJGg
-    How to run AI models locally on your Mac: what local AI is, which models your Mac ca
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2675,9 +2619,7 @@
   cisla:
     - 32 gb
     - 512 gb
-  popis: >-
-    📘 My step-by-step guide to running AI on your own Mac: https://www.theaibridges.com/learn/local-ai-mac?utm_source=youtube&utm_medium=description&utm_campaign=local-ai-mac&utm_content=C9Q1ArLSisw
-    Which Mac should you buy for local AI in 2026, and is the Mac you already own enough
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -2701,8 +2643,8 @@
   shlednuti: 12314
   cisla: []
   popis: >-
-    Meet Mirai Uzu, a high-performance local AI inference engine designed to accelerate large language models (LLMs) on Apple Silicon using speculative decoding, GPU Neural Accelerators, custom
-    quantization, and optimized Metal GPU kernels. But how fast is it in real-world testing?
+    Meet Mirai Uzu, a high-performance local AI inference engine designed to accelerate large language models (LLMs) on Apple Silicon using speculative
+    decoding, GPU Neural Accelerators, custom quantization, and optimized Metal GPU kernels. But how fast is it in real-world testing?
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2742,9 +2684,7 @@
   delka_s: 1128
   shlednuti: 398873
   cisla: []
-  popis: >-
-    UGREEN Maxidok Thunderbolt™ 5 Docking Station(up to 22% OFF): https://s.attribuly.com/IWdyQoUS #Ugreen #UgreenMaxidok Apple's M5 Max is allegedly the fastest CPU ever to exist in a laptop.. but
-    that certainly isn't the case with mine.
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2809,9 +2749,7 @@
   delka_s: 1314
   shlednuti: 55082
   cisla: []
-  popis: >-
-    Get one of those Ivanky Fusion Dock ULTRAs: https://bit.ly/4AxWW3K The jump M4 Max to M5 Max MacBook Pro, in most cases, is just a 20% spec bump. In a few specific things, though, SSD Speed and
-    anything that can harness those new neural accellerators on the GPUs the jump is MUCH
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -2875,9 +2813,7 @@
   delka_s: 366
   shlednuti: 3195
   cisla: []
-  popis: >-
-    Full article with every table, chart and source: https://hwbusters.com/systems/four-dgx-spark-systems-versus-two-local-ai-cluster/ I expanded my local AI cluster from two NVIDIA DGX Spark-class
-    machines (the GB10 chip) to four, then measured what the second pair actually buys: si
+  popis: ''
   nazor: 'Verdict: for one person chatting or coding, start with two.'
   popis_auto: true
   nazor_auto: true
@@ -2899,9 +2835,11 @@
   cisla:
     - 64gb
   popis: >-
-    Should you SELL your NVIDIA DGX Spark before it's too late?! With DGX Spark prices climbing from around $4,000 to $7,000, new AI hardware on the horizon, and competition heating up from Apple,
-    AMD, Intel, and Chinese AI manufacturers, things are getting CRAZY in the local AI spac
-  nazor: But with NVIDIA's latest pricing decisions, the new 64GB DGX Spark, and increasingly expensive GPUs, I'm starting to question whether expanding my Spark cluster is still worth it.
+    Should you SELL your NVIDIA DGX Spark before it's too late?! With DGX Spark prices climbing from around $4,000 to $7,000, new AI hardware on the horizon,
+    and competition heating up from Apple, AMD, Intel, and Chinese AI manufacturers, things are getting CRAZY in the local AI spac
+  nazor: >-
+    But with NVIDIA's latest pricing decisions, the new 64GB DGX Spark, and increasingly expensive GPUs, I'm starting to question whether expanding my Spark
+    cluster is still worth it.
   popis_auto: true
   nazor_auto: true
   titulky: false
@@ -2920,9 +2858,7 @@
   delka_s: 1000
   shlednuti: 35491
   cisla: []
-  popis: >-
-    What do you guys think? ------------------------------------------------------------------------------------------- 🛒 Amazon Shop - https://www.amazon.com/shop/raidowl 👕 Merch -
-    https://www.raidowlstore.com 🔥 Check out today's best deals from Newegg: https://howl.me/clshD8fv8x
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2944,8 +2880,8 @@
   cisla:
     - 128 gb
   popis: >-
-    One DGX Spark costs about $4,000 and provides 128 GB of unified memory. Eight cost $31,992 before networking, provide 1 TB in aggregate, and have been used by NVIDIA to run the full
-    753-billion-parameter GLM 5.3 checkpoint.
+    One DGX Spark costs about $4,000 and provides 128 GB of unified memory. Eight cost $31,992 before networking, provide 1 TB in aggregate, and have been used
+    by NVIDIA to run the full 753-billion-parameter GLM 5.3 checkpoint.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -2978,8 +2914,8 @@
     - 98°c
     - 24gb
   popis: >-
-    RTX Spark laptop reviews are in, so I checked my pre-launch math against real benchmarks: Qwen3.8 27B at 13.4 tokens per second, GPT-OSS 120B at 65 tok/s, Surface Laptop Ultra 128GB at $5,899.99
-    vs MacBook Pro M5 Max. Four predictions right, four wrong.
+    RTX Spark laptop reviews are in, so I checked my pre-launch math against real benchmarks: Qwen3.8 27B at 13.4 tokens per second, GPT-OSS 120B at 65 tok/s,
+    Surface Laptop Ultra 128GB at $5,899.99 vs MacBook Pro M5 Max. Four predictions right, four wrong.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3012,8 +2948,8 @@
     - 307 gb/s
     - 256 gb/s
   popis: >-
-    The DGX Spark 64GB goes on sale October 23 for $4,999, about $1,000 more than the original 128GB DGX Spark cost at launch, while the 128GB model now costs $6,950. I went through NVIDIA's
-    announcement, the speed tests owners have posted and the price of everything you could buy in
+    The DGX Spark 64GB goes on sale October 23 for $4,999, about $1,000 more than the original 128GB DGX Spark cost at launch, while the 128GB model now costs
+    $6,950. I went through NVIDIA's announcement, the speed tests owners have posted and the price of everything you could buy in
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3039,8 +2975,8 @@
     - 128 gb
     - 8 gb
   popis: >-
-    Two AI boxes, the same 128 GB of memory and about the same $6,000: a Mac Studio with Apple's M5 Max, and NVIDIA's brand new RTX Spark with "1 petaflop" on the box. NVIDIA's spec page lists the
-    cores, the power and the video encoder, but not the one number that decides how fast yo
+    Two AI boxes, the same 128 GB of memory and about the same $6,000: a Mac Studio with Apple's M5 Max, and NVIDIA's brand new RTX Spark with "1 petaflop" on
+    the box. NVIDIA's spec page lists the cores, the power and the video encoder, but not the one number that decides how fast yo
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3055,7 +2991,7 @@
   vydano_odhad: false
   stav: zamitnuto
   kvalita: 5
-  proc: "Ruční korekce: cluster 1–4 DGX Sparků (pool), ne jedno zařízení."
+  proc: 'Ruční korekce: cluster 1–4 DGX Sparků (pool), ne jedno zařízení.'
   auto: true
   delka_s: 1178
   shlednuti: 5865
@@ -3070,8 +3006,8 @@
     - 119 gb
     - 9w
   popis: >-
-    DGX Spark cluster, box by box: we loaded the biggest open models into one, two and four NVIDIA DGX Sparks, counting the conversation's memory, and found where the next box buys a bigger model and
-    where it stops buying speed. The biggest local AI per box count, for anyone pricing
+    DGX Spark cluster, box by box: we loaded the biggest open models into one, two and four NVIDIA DGX Sparks, counting the conversation's memory, and found
+    where the next box buys a bigger model and where it stops buying speed. The biggest local AI per box count, for anyone pricing
   nazor: 'Watch next: Don''t buy 128GB for local AI if you own 24GB VRAM..'
   popis_auto: false
   nazor_auto: true
@@ -3131,8 +3067,8 @@
     - 64gb
     - 128gb
   popis: >-
-    On the same model, the Mac Studio M5 Ultra writes almost 4x faster than Nvidia's DGX Spark. But hand two Sparks a 32,000-token codebase and they start answering in 17 seconds, while the Mac needs
-    about 50.
+    On the same model, the Mac Studio M5 Ultra writes almost 4x faster than Nvidia's DGX Spark. But hand two Sparks a 32,000-token codebase and they start
+    answering in 17 seconds, while the Mac needs about 50.
   nazor: It never changes what I recommend.
   popis_auto: false
   nazor_auto: true
@@ -3184,8 +3120,8 @@
     - 110w
     - 9w
   popis: >-
-    RTX Spark laptop vs MacBook Pro for local AI: the M5 Max MacBook Pro's memory is twice as fast, so it writes about twice as fast, NVIDIA's chip reads a short prompt about 10% faster on Microsoft's
-    own test, and below 128GB the Mac is the cheaper laptop. We raced the Surface Lapto
+    RTX Spark laptop vs MacBook Pro for local AI: the M5 Max MacBook Pro's memory is twice as fast, so it writes about twice as fast, NVIDIA's chip reads a
+    short prompt about 10% faster on Microsoft's own test, and below 128GB the Mac is the cheaper laptop. We raced the Surface Lapto
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3209,8 +3145,8 @@
   shlednuti: 6602
   cisla: []
   popis: >-
-    After a month of daily testing with the Microsoft Surface Laptop Ultra and the Asus ProArt P14, the truth about the RTX Spark generation is clear. The local AI and unified memory performance are
-    incredible, but there is a massive battery life catch.
+    After a month of daily testing with the Microsoft Surface Laptop Ultra and the Asus ProArt P14, the truth about the RTX Spark generation is clear. The local
+    AI and unified memory performance are incredible, but there is a massive battery life catch.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3239,8 +3175,8 @@
     - 30 gb
     - 64 gb
   popis: >-
-    The first real tests of NVIDIA's RTX Spark laptops are in, and the bigger model is the fast one: a 120-billion-parameter model writes at 63 tokens a second, a 27-billion one at 16. I score my own
-    predictions (two held, one didn't), explain why size isn't speed, compare the MacBoo
+    The first real tests of NVIDIA's RTX Spark laptops are in, and the bigger model is the fast one: a 120-billion-parameter model writes at 63 tokens a second,
+    a 27-billion one at 16. I score my own predictions (two held, one didn't), explain why size isn't speed, compare the MacBoo
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3266,8 +3202,8 @@
     - 128gb
     - 85°c
   popis: >-
-    Nvidia is moving beyond the graphics card and taking on a much bigger piece of your next PC. The ASUS ProArt P16 gives us a first taste of that ambition, combining Nvidia’s RTX Spark N1X platform
-    with a spectacular OLED display and enough memory to make most gaming desktops look
+    Nvidia is moving beyond the graphics card and taking on a much bigger piece of your next PC. The ASUS ProArt P16 gives us a first taste of that ambition,
+    combining Nvidia’s RTX Spark N1X platform with a spectacular OLED display and enough memory to make most gaming desktops look
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3309,9 +3245,7 @@
   shlednuti: 45077
   cisla:
     - 128 gb
-  popis: >-
-    🎓Go deeper into AI with full courses → https://aimaster.me/yt/rtxspark 🤝 Exclusive brand partnership - https://aimaster.me/collab NVIDIA RTX Spark puts CUDA and up to 128 GB of shared memory
-    into a Windows laptop, but NVIDIA still hasn't published the one number that decides ho
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3333,8 +3267,8 @@
   cisla:
     - 128gb
   popis: >-
-    GEEKBENCH 7 Scores Single-Core: 2680 Multi-Core: 24102 GEEKBENCH AI Scores Single-Precision Score: 1805 Half Precision Score: 3381 Quantinized Score: 6460 ASUS ProArt P14 NVIDIA RTX Spark Review
-    The ASUS ProArt P14 NVIDIA RTX Spark is a different kind of creator laptop, combining
+    GEEKBENCH 7 Scores Single-Core: 2680 Multi-Core: 24102 GEEKBENCH AI Scores Single-Precision Score: 1805 Half Precision Score: 3381 Quantinized Score: 6460
+    ASUS ProArt P14 NVIDIA RTX Spark Review The ASUS ProArt P14 NVIDIA RTX Spark is a different kind of creator laptop, combining
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3383,8 +3317,8 @@
   shlednuti: 15787
   cisla: []
   popis: >-
-    Our Dave is just back from San Francisco with flowers in his hair and a laptop under his arm. Jacob discusses the new Nvidia RTX Spark laptop release with his very ill, very jet-lagged co-host to
-    try and get to the bottom of what the new Arm-based SoC offers and whether PC gamers
+    Our Dave is just back from San Francisco with flowers in his hair and a laptop under his arm. Jacob discusses the new Nvidia RTX Spark laptop release with
+    his very ill, very jet-lagged co-host to try and get to the bottom of what the new Arm-based SoC offers and whether PC gamers
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3406,9 +3340,7 @@
   cisla:
     - 128gb
     - 96gb
-  popis: >-
-    Nvidia Spark N1X Is Here! Vip-URCDKey 25% Black Friday Sale code for software: ETA Windows 11 Pro Key($27):https://biitt.ly/RUZiX Office 2024 Pro Key($22): https://biitt.ly/o8WvY Windows 11 Home
-    Key($25):https://biitt.ly/SQKqi Windows 10 Pro OEM Key($21):https://biitt.ly/KpEmf Of
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3450,8 +3382,8 @@
   shlednuti: 1733
   cisla: []
   popis: >-
-    Part One of my RTX Spark review featuring Asus ProArt P16 focusing on game performance and compatibility testing! The ProArt P16 chassis is impressive, great display, great keyboard, trackpad, and
-    good enough performance to play many games!
+    Part One of my RTX Spark review featuring Asus ProArt P16 focusing on game performance and compatibility testing! The ProArt P16 chassis is impressive,
+    great display, great keyboard, trackpad, and good enough performance to play many games!
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3495,8 +3427,8 @@
     - 64 gb
     - 307 gb/s
   popis: >-
-    I tested my RTX Spark laptop (Lenovo Yoga Pro 9n, 128 GB) against my Strix Halo laptop (HP ZBook Ultra G1a, 64 GB - Ryzen AI Max+ 395) at local AI, the same models the same way, and went back
-    through 51 RTX Spark reviews on YouTube. Most timed the small difference (writing) and m
+    I tested my RTX Spark laptop (Lenovo Yoga Pro 9n, 128 GB) against my Strix Halo laptop (HP ZBook Ultra G1a, 64 GB - Ryzen AI Max+ 395) at local AI, the same
+    models the same way, and went back through 51 RTX Spark reviews on YouTube. Most timed the small difference (writing) and m
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3519,9 +3451,7 @@
   delka_s: 1026
   shlednuti: 19118
   cisla: []
-  popis: >-
-    Thank you to ⁨@MSI for providing the featured device: I'm reviewing the new MSI Pro Max Edge AI Plus (Strix Halo) device to see how it compares to the competition. Strix Halo Toolboxes:
-    https://strix-halo-toolboxes.com/ Halogen Server: https://github.com/peonist-ai/halogen-flash
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3542,9 +3472,7 @@
   shlednuti: 100755
   cisla:
     - 12gb
-  popis: >-
-    👉 Save BIG on Your Next Laptop: https://www.bestlaptop.deals ✋ Legion 7a 15 (Buy If On Sale): https://go.bestlaptop.deals/HFPMC Best Alternatives!!! 👇👇👇👇👇 - Legion 7a 16 (5070 12GB) (Buy If
-    Priced Appropriately): https://go.bestlaptop.deals/SWTAY - Asus ROG Zephyrus G16 (Be
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3567,8 +3495,8 @@
     - 128gb
     - 192gb
   popis: >-
-    SK hynix says DRAM is effectively sold out through 2029, and 128GB of unified memory on one APU is suddenly the smartest box in the homelab. Serve the Home just called the ASRock Industrial AI
-    Box-A395 the fastest Ryzen AI Max+ 395 system they have tested, across nearly a dozen S
+    SK hynix says DRAM is effectively sold out through 2029, and 128GB of unified memory on one APU is suddenly the smartest box in the homelab. Serve the Home
+    just called the ASRock Industrial AI Box-A395 the fastest Ryzen AI Max+ 395 system they have tested, across nearly a dozen S
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3595,9 +3523,7 @@
     - 120w
     - 48gb
     - 16gb
-  popis: >-
-    A Powerful Mini PC! Vip-URCDKey 25% Black Friday Sale code for software: ETA Windows 11 Pro Key($27):https://biitt.ly/RUZiX Office 2024 Pro Key($22): https://biitt.ly/o8WvY Windows 11 Home
-    Key($25):https://biitt.ly/SQKqi Windows 10 Pro OEM Key($21):https://biitt.ly/KpEmf Office 2
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3626,8 +3552,8 @@
     - 81 w
     - 66 w
   popis: >-
-    I tested my RTX Spark laptop (Lenovo Yoga Pro 9n, 128 GB) against my Strix Halo laptop (HP ZBook Ultra G1a, 64 GB) in seven games, 3DMark and work/productivity tests and went through 70 gaming
-    reviews on YouTube. In 3DMark the RTX Spark led by 29 to 78% across several benchmarks
+    I tested my RTX Spark laptop (Lenovo Yoga Pro 9n, 128 GB) against my Strix Halo laptop (HP ZBook Ultra G1a, 64 GB) in seven games, 3DMark and
+    work/productivity tests and went through 70 gaming reviews on YouTube. In 3DMark the RTX Spark led by 29 to 78% across several benchmarks
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3650,9 +3576,7 @@
     - 192gb
     - 160gb
     - 120w
-  popis: >-
-    Vip-URCDKey 25% Black Friday Sale code for software: ETA Windows 11 Pro Key($27):https://biitt.ly/RUZiX Office 2024 Pro Key($22): https://biitt.ly/o8WvY Windows 11 Home
-    Key($25):https://biitt.ly/SQKqi Windows 10 Pro OEM Key($21):https://biitt.ly/KpEmf Office 2019 pro key($64):htt
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3676,8 +3600,8 @@
     - 32 gb
     - 128 gb
   popis: >-
-    Ryzen AI Max+ 395 vs RTX 5090 2026: see which handles 235B models better and why Compares Ryzen AI Max+ 395 and RTX 5090 on model loading and speed. Shows memory limits and bandwidth differences
-    for 235B parameter models.
+    Ryzen AI Max+ 395 vs RTX 5090 2026: see which handles 235B models better and why Compares Ryzen AI Max+ 395 and RTX 5090 on model loading and speed. Shows
+    memory limits and bandwidth differences for 235B parameter models.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3701,8 +3625,8 @@
   shlednuti: 5667
   cisla: []
   popis: >-
-    Intel's Arc G3 Extreme versus AMD's Strix Halo. I put XeSS and FSR 4 head to head to see who comes out on top and what the right APUs might be for you when it comes to choosing one of these more
-    expensive handhelds in an attempt to help you narrow down the device you might want t
+    Intel's Arc G3 Extreme versus AMD's Strix Halo. I put XeSS and FSR 4 head to head to see who comes out on top and what the right APUs might be for you when
+    it comes to choosing one of these more expensive handhelds in an attempt to help you narrow down the device you might want t
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3722,9 +3646,7 @@
   delka_s: null
   shlednuti: null
   cisla: []
-  popis: >-
-    A Powerful Mini PC! Vip-URCDKey 25% Black Friday Sale code for software: ETA Windows 11 Pro Key($27):https://biitt.ly/RUZiX Office 2024 Pro Key($22): https://biitt.ly/o8WvY Windows 11 Home
-    Key($25):https://biitt.ly/SQKqi Windows 10 Pro OEM Key($21):https://biitt.ly/KpEmf Office 2
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3772,9 +3694,7 @@
     - 99 tok/s
     - 63gb
     - 94gb
-  popis: >-
-    The 192GB Ryzen AI Halo runs Qwen3 235B at Q4, which no 128GB box or RTX card here can open, at $38 a GB and 273GB/s. Ryzen AI Max+ 395 mini PC (128GB), 128GB unified memory, best value:
-    https://www.amazon.com/s?k=ryzen+ai+max%2B+395+128gb+mini+pc&tag=scoritz-20 Apple Mac Studio
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3804,8 +3724,8 @@
     - 192gb
     - 512gb
   popis: >-
-    AMD's new Ryzen AI Halo, with the Ryzen AI Max+ PRO 495 and 192 GB of memory, costs $7,299. The same box with last year's chip costs $3,999, and the only speed test so far found the new one about
-    3% faster.
+    AMD's new Ryzen AI Halo, with the Ryzen AI Max+ PRO 495 and 192 GB of memory, costs $7,299. The same box with last year's chip costs $3,999, and the only
+    speed test so far found the new one about 3% faster.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -3832,8 +3752,8 @@
     - 160gb
     - 128gb
   popis: >-
-    AMD just built an AI workstation with 192GB of unified memory—and it could run local AI models that Nvidia’s DGX Spark simply doesn’t have enough memory to fit. The new **AMD Ryzen AI Halo**,
-    priced at $7,299, is designed for developers, AI researchers, and creators who want to r
+    AMD just built an AI workstation with 192GB of unified memory—and it could run local AI models that Nvidia’s DGX Spark simply doesn’t have enough memory to
+    fit. The new **AMD Ryzen AI Halo**, priced at $7,299, is designed for developers, AI researchers, and creators who want to r
   nazor: But does more memory automatically make it better than Nvidia’s DGX Spark?
   popis_auto: false
   nazor_auto: true
@@ -3859,8 +3779,8 @@
     - 192gb
     - 160gb
   popis: >-
-    AMD Just Built an AI Machine That Nvidia Can't Match on Memory! AMD just unveiled the Ryzen AI Halo workstation powered by the Ryzen AI Max+ PRO 495, packing 192GB unified memory (with up to 160GB
-    allocated for VRAM) at $7,299.
+    AMD Just Built an AI Machine That Nvidia Can't Match on Memory! AMD just unveiled the Ryzen AI Halo workstation powered by the Ryzen AI Max+ PRO 495,
+    packing 192GB unified memory (with up to 160GB allocated for VRAM) at $7,299.
   nazor: Can this compact 16-core Zen 5 system run massive 120B–300B local LLMs better than the Nvidia DGX Spark?
   popis_auto: true
   nazor_auto: true
@@ -3883,7 +3803,9 @@
     - 32gb
     - 263w
     - 114w
-  popis: AMD just put a $7,299 AI computer on sale, and its NPU is only 5 TOPS ahead of a laptop that lists for about $1,800. So what are you actually paying for when you buy an AI PC?
+  popis: >-
+    AMD just put a $7,299 AI computer on sale, and its NPU is only 5 TOPS ahead of a laptop that lists for about $1,800. So what are you actually paying for
+    when you buy an AI PC?
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3907,8 +3829,8 @@
     - 160 gb
     - 192gb
   popis: >-
-    The BOSGAME M5 MAX is a mini PC with AMD's Ryzen AI Max+ PRO 495 and 192 GB of shared memory, and up to 160 GB of it can go to the graphics. That is enough room for AI models with 100 billion
-    parameters and more, running privately at home.
+    The BOSGAME M5 MAX is a mini PC with AMD's Ryzen AI Max+ PRO 495 and 192 GB of shared memory, and up to 160 GB of it can go to the graphics. That is enough
+    room for AI models with 100 billion parameters and more, running privately at home.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3929,8 +3851,8 @@
   shlednuti: 1121
   cisla: []
   popis: >-
-    The first reviews of Nvidia's RTX Spark Superchip are in, and it's faster than Apple Silicon at local AI: Tom's Hardware found the RTX Spark-powered Microsoft Surface Laptop Ultra finished agentic
-    AI benchmarks with Qwen models about 25% faster than Apple's M5 Max MacBook Pro, an
+    The first reviews of Nvidia's RTX Spark Superchip are in, and it's faster than Apple Silicon at local AI: Tom's Hardware found the RTX Spark-powered
+    Microsoft Surface Laptop Ultra finished agentic AI benchmarks with Qwen models about 25% faster than Apple's M5 Max MacBook Pro, an
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3951,9 +3873,7 @@
   shlednuti: 170428
   cisla:
     - 12gb
-  popis: >-
-    👉 Save BIG on Your Next Laptop: https://www.bestlaptop.deals ⬇️⬇️ Best RTX Spark Laptops ⬇️⬇️ - Asus ProArt P14: https://go.bestlaptop.deals/c/m1kqEglXvE - Asus ProArt P16:
-    https://go.bestlaptop.deals/c/XmDH0bBDaJ 👇👇RTX Spark Alternatives 👇👇 - Asus ROG Zephyrus G16 (Premium)
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -3982,8 +3902,8 @@
     - 192 gb
     - 192gb
   popis: >-
-    The cheapest M5 Ultra Mac Studio is $5,499 with 96 GB, and for running AI at home it holds less than a Mac Studio that costs $100 less. Here's how fast each one really writes, what Apple's "4x
-    faster" measured, which of this month's most downloaded open models fit in which Mac, w
+    The cheapest M5 Ultra Mac Studio is $5,499 with 96 GB, and for running AI at home it holds less than a Mac Studio that costs $100 less. Here's how fast each
+    one really writes, what Apple's "4x faster" measured, which of this month's most downloaded open models fit in which Mac, w
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -4018,8 +3938,8 @@
     - 24gb
     - 512gb
   popis: >-
-    The 64 GB and 128 GB Mac Studio M5 Max have the same chip and the same 614 GB/s memory speed, so the $1,600 upgrade buys room, not speed. This month's new free models, Recursive Flint and Nvidia's
-    "24 GB" Nemotron 3.5 Bolt, both fit the 64 GB.
+    The 64 GB and 128 GB Mac Studio M5 Max have the same chip and the same 614 GB/s memory speed, so the $1,600 upgrade buys room, not speed. This month's new
+    free models, Recursive Flint and Nvidia's "24 GB" Nemotron 3.5 Bolt, both fit the 64 GB.
   nazor: It never changes what I recommend.
   popis_auto: false
   nazor_auto: true
@@ -4074,8 +3994,8 @@
     - 53 tok/s
     - 400 w
   popis: >-
-    Apple's Mac Studio with the M5 Ultra and 512GB of memory costs $22,299. We pointed one Claude Code request at it and followed it through the machine: the receipt, loading a model, reading the
-    prompt, writing the answer, helper agents, the coding test, two Macs instead of one, and
+    Apple's Mac Studio with the M5 Ultra and 512GB of memory costs $22,299. We pointed one Claude Code request at it and followed it through the machine: the
+    receipt, loading a model, reading the prompt, writing the answer, helper agents, the coding test, two Macs instead of one, and
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4101,11 +4021,11 @@
     - 432 gb
     - 256 gb
   popis: >-
-    Can two Macs replace my $200-a-month Claude subscription? I gave the same agent, Claude Code, the same two apps to build, an invoicing app and a three.js kart racer, on four local models running
-    on a Mac Studio M5 Ultra 256GB and a MacBook Pro M5 Max 128GB.
+    Can two Macs replace my $200-a-month Claude subscription? I gave the same agent, Claude Code, the same two apps to build, an invoicing app and a three.js
+    kart racer, on four local models running on a Mac Studio M5 Ultra 256GB and a MacBook Pro M5 Max 128GB.
   nazor: >-
-    The rules Two apps: an invoice and a kart race The local lineup Four routes that never made it Cost, quality, schedule Ledger: the invoices Kart: playing every game How fast, and what it drew One
-    more hour How long this took Viewer question: is 256 GB worth it?
+    The rules Two apps: an invoice and a kart race The local lineup Four routes that never made it Cost, quality, schedule Ledger: the invoices Kart: playing
+    every game How fast, and what it drew One more hour How long this took Viewer question: is 256 GB worth it?
   popis_auto: true
   nazor_auto: true
   titulky: false
@@ -4126,8 +4046,8 @@
   cisla:
     - 256 gb
   popis: >-
-    Eight routes, one brief: build an arcade with two playable games and a rotatable 3D cabinet, then add a feature. Six routes ran locally on my M5 Ultra Mac Studio with 256 GB, one of them a short
-    preview; two ran in the cloud.
+    Eight routes, one brief: build an arcade with two playable games and a rotatable 3D cabinet, then add a feature. Six routes ran locally on my M5 Ultra Mac
+    Studio with 256 GB, one of them a short preview; two ran in the cloud.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4171,9 +4091,7 @@
   cisla:
     - 16gb
     - 48gb
-  popis: >-
-    Check out the Anker Smart Display Hub featured in my desk setup: Buy on Amazon: https://ankerfast.club/210CCampaign_Nick_Kendall_539126 Buy on Anker.com:
-    https://shop.anker.com/210CCampaign_Nick_Kendall_091281 Learn more about Anker Smart Display Hub: https://shop.anker.com/210CC
+  popis: ''
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -4227,8 +4145,8 @@
     - 256gb
     - 1,561gb
   popis: >-
-    Can a $22K Mac Studio replace Claude? I ran the numbers on the 512GB M5 Ultra Mac Studio for local AI: which local LLMs actually fit, how they score against Claude Opus 5.5, and what it really
-    costs once you try to run a model that matches Claude.
+    Can a $22K Mac Studio replace Claude? I ran the numbers on the 512GB M5 Ultra Mac Studio for local AI: which local LLMs actually fit, how they score against
+    Claude Opus 5.5, and what it really costs once you try to run a model that matches Claude.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4253,11 +4171,11 @@
     - 48gb
     - 64gb
   popis: >-
-    Stop overpaying for RAM when building a machine for local AI. We analyze why 32GB might not be enough for your coding models.Many users assume that buying a Mac with 32GB of memory is sufficient
-    for high-end tasks, but our testing shows that parameter count is not the only factor
+    Stop overpaying for RAM when building a machine for local AI. We analyze why 32GB might not be enough for your coding models.Many users assume that buying a
+    Mac with 32GB of memory is sufficient for high-end tasks, but our testing shows that parameter count is not the only factor
   nazor: >-
-    TIMESTAMPS - The Biggest Mistake When Buying a Mac for Local AI - What “Free” AI Models Really Mean - Best Local Coding Models: Qwen vs GLM vs Flash Next - The Memory Bandwidth Secret Behind AI
-    Speed - 3 Local AI Performance Traps You Must Avoid - Which Mac Should You Buy?
+    TIMESTAMPS - The Biggest Mistake When Buying a Mac for Local AI - What “Free” AI Models Really Mean - Best Local Coding Models: Qwen vs GLM vs Flash Next -
+    The Memory Bandwidth Secret Behind AI Speed - 3 Local AI Performance Traps You Must Avoid - Which Mac Should You Buy?
   popis_auto: true
   nazor_auto: true
   titulky: false
@@ -4277,7 +4195,7 @@
   shlednuti: 175086
   cisla:
     - 256gb
-  popis: A Mac Studio with 256GB costs $9,499. An eBay server with eight V100s and 256GB of real GPU memory costs $5,899.
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4300,8 +4218,8 @@
     - 128 gb
     - 89 gb
   popis: >-
-    I compare four local AI setups on a 128 GB M5 Max MacBook Pro: short chat and code speed, long-input waiting time, caching, completed coding tasks, bugs and repairs. The fastest token counter is
-    not always the fastest route to a finished project.
+    I compare four local AI setups on a 128 GB M5 Max MacBook Pro: short chat and code speed, long-input waiting time, caching, completed coding tasks, bugs and
+    repairs. The fastest token counter is not always the fastest route to a finished project.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4330,8 +4248,8 @@
     - 96gb
     - 256gb
   popis: >-
-    How much memory (RAM) do you need to run AI locally? Every memory size from a 16GB MacBook Air to a terabyte of Mac Studios: which AI models fit, how close they get to ChatGPT and Claude, how fast
-    they run, and what each size costs.
+    How much memory (RAM) do you need to run AI locally? Every memory size from a 16GB MacBook Air to a terabyte of Mac Studios: which AI models fit, how close
+    they get to ChatGPT and Claude, how fast they run, and what each size costs.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -4372,7 +4290,9 @@
     - 128 gb
     - 256 gb
     - 512 gb
-  popis: 'The best local AI model for every RAM size: 16GB, 24GB, 48GB, 64GB, 128GB, 256GB and 512GB of unified memory. One surprise: a 64GB Mac runs the same best model as a 24GB Mac mini.'
+  popis: >-
+    The best local AI model for every RAM size: 16GB, 24GB, 48GB, 64GB, 128GB, 256GB and 512GB of unified memory. One surprise: a 64GB Mac runs the same best
+    model as a 24GB Mac mini.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4417,8 +4337,8 @@
   cisla:
     - 128gb
   popis: >-
-    I unboxed a MacBook Pro M5 Max with 128GB of RAM, set it up with one script, and raced it against ChatGPT on three real jobs: turning a voice memo into notes, reviewing a private contract, and
-    building a Python tool. Wi-Fi off on the Mac.
+    I unboxed a MacBook Pro M5 Max with 128GB of RAM, set it up with one script, and raced it against ChatGPT on three real jobs: turning a voice memo into
+    notes, reviewing a private contract, and building a Python tool. Wi-Fi off on the Mac.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4444,8 +4364,8 @@
     - 32gb
     - 19w
   popis: >-
-    You don't need $20,000 for a reliable AI computer at home. I priced four machines under $3,500, part by part, on real store pages: a Mac mini M5 Pro, a Mac Studio M5 Max, an AMD Ryzen AI Max+ 395
-    mini PC with 128GB, and a used RTX 3090 PC.
+    You don't need $20,000 for a reliable AI computer at home. I priced four machines under $3,500, part by part, on real store pages: a Mac mini M5 Pro, a Mac
+    Studio M5 Max, an AMD Ryzen AI Max+ 395 mini PC with 128GB, and a used RTX 3090 PC.
   nazor: My pick is at the end, and everything I recommend is linked below.
   popis_auto: true
   nazor_auto: true
@@ -4466,9 +4386,7 @@
   shlednuti: 22974
   cisla:
     - 128 gb
-  popis: >-
-    RTX Spark vs MacBook Pro M5 Max for local AI: which one writes answers faster, which one reads your documents faster, and which one to buy at every memory size. 🧮 LLM Sizer, my free tool (what
-    fits on your machine and how fast it runs): https://theaibridges.com/tools/llm-sizer?u
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4495,8 +4413,8 @@
     - 32gb
     - 64gb
   popis: >-
-    Several reviews put Apple's M5 MacBook Pro ahead of NVIDIA's new RTX Spark laptops for AI work, and I think they're wrong. On the one test that replays real AI agent work, the RTX Spark laptop
-    surpasses the M5 Max MacBook Pro.
+    Several reviews put Apple's M5 MacBook Pro ahead of NVIDIA's new RTX Spark laptops for AI work, and I think they're wrong. On the one test that replays real
+    AI agent work, the RTX Spark laptop surpasses the M5 Max MacBook Pro.
   nazor: ''
   popis_auto: false
   nazor_auto: true
@@ -4541,8 +4459,8 @@
   cisla:
     - 96gb
   popis: >-
-    Is Nvidia’s new RTX Spark chip the true MacBook Pro killer? We breakdown real-world performance benchmarks comparing the ASUS ProArt P16 and Microsoft Surface Laptop Ultra (powered by Nvidia's RTX
-    Spark N1X) against Apple’s M5 Pro and M5 Max MacBook Pros.
+    Is Nvidia’s new RTX Spark chip the true MacBook Pro killer? We breakdown real-world performance benchmarks comparing the ASUS ProArt P16 and Microsoft
+    Surface Laptop Ultra (powered by Nvidia's RTX Spark N1X) against Apple’s M5 Pro and M5 Max MacBook Pros.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4562,7 +4480,9 @@
   delka_s: 784
   shlednuti: 35417
   cisla: []
-  popis: How much performance does the Apple Mac Studio with M5 Max really deliver? I tested Apple’s desktop Mac with real-world workloads, including AI benchmarks and a direct M5 Pro vs.
+  popis: >-
+    How much performance does the Apple Mac Studio with M5 Max really deliver? I tested Apple’s desktop Mac with real-world workloads, including AI benchmarks
+    and a direct M5 Pro vs.
   nazor: And is the M5 Max worth it, or would the M5 Pro be the smarter choice?
   popis_auto: true
   nazor_auto: true
@@ -4582,9 +4502,7 @@
   delka_s: 1014
   shlednuti: 129556
   cisla: []
-  popis: >-
-    Micro Center is THE AI Destination: https://micro.center/f5f5e1 Sign up for a FREE 128 gig flash drive at Micro Center Austin: https://micro.center/b2995e Check Out Micro Center's Ubiquiti
-    Products: https://micro.center/5b8d63 Visit Micro Center News: https://micro.center/37adeb 
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4605,8 +4523,8 @@
   shlednuti: 581
   cisla: []
   popis: >-
-    Compare memory, CPU and graphics, ROCm vs CUDA, storage, networking, and pricing to see which compact AI system fits your workflow. #RyzenAIHalo495 #NVIDIADGXSpark #AIMiniPC #LocalAI #ROCm #CUDA
-    #AIWorkstation #AMDvsNVIDIA #LocalLLM
+    Compare memory, CPU and graphics, ROCm vs CUDA, storage, networking, and pricing to see which compact AI system fits your workflow. #RyzenAIHalo495
+    #NVIDIADGXSpark #AIMiniPC #LocalAI #ROCm #CUDA #AIWorkstation #AMDvsNVIDIA #LocalLLM
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4638,9 +4556,7 @@
     - 64gb
     - 96gb
     - 256gb
-  popis: >-
-    The $5,099 Mac Studio writes gpt-oss-120b at 87.9 tok/s; the $6,950 DGX Spark writes at 55.7, but it wins with many agents at once. NVIDIA DGX Spark:
-    https://www.amazon.com/dp/B0FWJ16CCH?tag=scoritz-20 Apple Mac Studio: https://www.amazon.com/dp/B0HGKSQMX6?tag=scoritz-20 Apple Ma
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4681,9 +4597,7 @@
     - 2,000 tok/s
     - 5,000 tok/s
     - 16gb
-  popis: >-
-    Four DGX Sparks on a switch for $23,835 is the cluster I'd buy. NVIDIA DGX Spark, 128GB boxes that cluster: https://www.amazon.com/s?k=nvidia+dgx+spark&tag=scoritz-20 Apple Mac Studio, 256GB in
-    one quiet box: https://www.amazon.com/s?k=apple+mac+studio&tag=scoritz-20 NVIDIA RTX 5
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4704,9 +4618,7 @@
   shlednuti: 397643
   cisla:
     - 128gb
-  popis: >-
-    - THE AI Destination: https://micro.center/7d6fa6 - Sign up for a FREE 128GB flash drive at Micro Center’s Austin location: https://micro.center/7d396d - Shop Micro Center’s Newest RTX Sparks:
-    https://micro.center/6aab37 - Visit Micro Center News: https://micro.center/68a0c9 ⸻⸻⸻⸻
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4749,8 +4661,8 @@
     - 748 gb
     - 748gb
   popis: >-
-    In this video, I look at the ZGX Fury which is the big brother of the ZGX Nano (DGX Spark). While many people know the GB10s, most people haven't seen the power of what a machine like HP's ZGX
-    Fury can do.
+    In this video, I look at the ZGX Fury which is the big brother of the ZGX Nano (DGX Spark). While many people know the GB10s, most people haven't seen the
+    power of what a machine like HP's ZGX Fury can do.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4770,9 +4682,7 @@
   delka_s: 775
   shlednuti: 191569
   cisla: []
-  popis: >-
-    💰 Save BIG on Your Next Laptop: https://www.bestlaptop.deals/live-deals 🔎 Find Your Perfect Laptop in 10 Seconds: https://www.bestlaptop.deals/laptop-picker Cierra's Picks: - Lenovo Yoga Pro 9i
-    2026: https://go.bestlaptop.deals/SGDV8 - Framework Laptop 13 Pro: https://go.bestla
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4804,8 +4714,8 @@
   titulky: false
   nazev_cs: 'Nimo Axis 395: notebook s Ryzen AI Max+ 395 a 128 GB'
   popis_cs: >-
-    Tříhodinový stream s notebookem Nimo Axis 395 (Ryzen AI Max+ 395, 128 GB): recenze pro profesionály — každodenní práce, upgrade a chování v zátěži, ne hry. Popis začíná sponzorským blokem, zbytek
-    je věcný.
+    Tříhodinový stream s notebookem Nimo Axis 395 (Ryzen AI Max+ 395, 128 GB): recenze pro profesionály — každodenní práce, upgrade a chování v zátěži, ne hry.
+    Popis začíná sponzorským blokem, zbytek je věcný.
   nazor_cs: ''
   sponzorovane: false
 - id: DsrCRNEuVhI
@@ -4826,9 +4736,11 @@
     - 192 gb
     - 128 gb
   popis: >-
-    Does a mini PC with 192 GB of memory beat Nvidia's DGX Spark, and do you really need that much memory? This is a round-by-round scorecard of the GMKtec Evo X5 (AMD "Gorgon Halo") against the DGX
-    Spark, with the speeds, file sizes and the 128 GB vs 192 GB verdict from Level1Techs'
-  nazor: This is a round-by-round scorecard of the GMKtec Evo X5 (AMD "Gorgon Halo") against the DGX Spark, with the speeds, file sizes and the 128 GB vs 192 GB verdict from Level1Techs' review.
+    Does a mini PC with 192 GB of memory beat Nvidia's DGX Spark, and do you really need that much memory? This is a round-by-round scorecard of the GMKtec Evo
+    X5 (AMD "Gorgon Halo") against the DGX Spark, with the speeds, file sizes and the 128 GB vs 192 GB verdict from Level1Techs'
+  nazor: >-
+    This is a round-by-round scorecard of the GMKtec Evo X5 (AMD "Gorgon Halo") against the DGX Spark, with the speeds, file sizes and the 128 GB vs 192 GB
+    verdict from Level1Techs' review.
   popis_auto: true
   nazor_auto: true
   titulky: false
@@ -4851,9 +4763,7 @@
   shlednuti: 44
   cisla:
     - 192gb
-  popis: >-
-    AMD Ryzen AI Halo Ryzen AI Max+ PRO 495 3.1GHz - Linux OS | 192GB LPDDR5x-8533 RAM; 2TB M.2 SSD (SED); Radeon 8065S; Wi-Fi 7; 10GbE LAN #AMDRyzen #AMDRyzenAI #AMDRyzenAIHalo #Ryzen Check Price:
-    https://www.amazon.com/dp/B0HMXR939Z/?tag=electron0c0a2-20 Key Features: High-Performa
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4879,8 +4789,8 @@
     - 16gb
     - 12.7gb
   popis: >-
-    I just got the Mac Studio with the M5 Ultra chip: 96GB of unified memory, bought for one reason, to run AI models on my own desk. This is the unboxing: the 40-day wait (ordered 5 Oct on Apple
-    India, delivered 14 Nov by Blue Dart), the shipping carton, the Apple box, the reveal, e
+    I just got the Mac Studio with the M5 Ultra chip: 96GB of unified memory, bought for one reason, to run AI models on my own desk. This is the unboxing: the
+    40-day wait (ordered 5 Oct on Apple India, delivered 14 Nov by Blue Dart), the shipping carton, the Apple box, the reveal, e
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4912,8 +4822,8 @@
     - 0.6 tok/s
     - 432 gb
   popis: >-
-    Which local AI model is best for coding on a Mac? I gave DeepSeek V4.1 Flash 1017 (763B parameters) and GLM 5.3 Flash the same job on my two Macs: one prompt, two hours, no help, build a
-    multi-file arcade site with a 3D cabinet and two games.
+    Which local AI model is best for coding on a Mac? I gave DeepSeek V4.1 Flash 1017 (763B parameters) and GLM 5.3 Flash the same job on my two Macs: one
+    prompt, two hours, no help, build a multi-file arcade site with a 3D cabinet and two games.
   nazor: 12:04 What Q2 costs 12:43 Against the earlier arcade 13:06 Your questions 14:40 The verdict
   popis_auto: true
   nazor_auto: true
@@ -4937,8 +4847,8 @@
     - 63 gb
     - 124 gb
   popis: >-
-    Which app should you run AI in on a Mac, and which model fits yours? I raced LM Studio (GGUF and MLX), Ollama and a fresh llama.cpp build on my M5 Ultra Mac Studio, with two models, three document
-    sizes and three runs each.
+    Which app should you run AI in on a Mac, and which model fits yours? I raced LM Studio (GGUF and MLX), Ollama and a fresh llama.cpp build on my M5 Ultra Mac
+    Studio, with two models, three document sizes and three runs each.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4960,8 +4870,8 @@
   cisla:
     - 512gb
   popis: >-
-    Apple may have just found a way to challenge Nvidia's dominance in the AI industry. While the world's biggest tech companies are spending hundreds of billions of dollars building massive AI data
-    centers, Apple is betting on something very different: powerful AI computers that fit
+    Apple may have just found a way to challenge Nvidia's dominance in the AI industry. While the world's biggest tech companies are spending hundreds of
+    billions of dollars building massive AI data centers, Apple is betting on something very different: powerful AI computers that fit
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -4989,9 +4899,7 @@
     - 128gb
     - 96gb
     - 256gb
-  popis: >-
-    Try Fulcra Here - https://www.fulcradynamics.com/product/start-for-free?utm_source=youtube&utm_medium=paid_social&utm_campaign=kaiexplainsyt Thinking about buying a Mac for AI? Before you order a
-    Mac Studio M5 Ultra, an M5 Max or a Mac mini M6 to run local LLMs, check the one thi
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5013,7 +4921,9 @@
   cisla:
     - 24gb
     - 512gb
-  popis: I tested the M5 Pro Mac mini against the PROLED MacBook Pro, same chip and 24GB, through my full test suite. Most tests tied, but the mini was faster in Lightroom exports and costs $1,200 less.
+  popis: >-
+    I tested the M5 Pro Mac mini against the PROLED MacBook Pro, same chip and 24GB, through my full test suite. Most tests tied, but the mini was faster in
+    Lightroom exports and costs $1,200 less.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5034,8 +4944,8 @@
   shlednuti: 37174
   cisla: []
   popis: >-
-    *IS APPLE'S NEW OLED MACBOOK PRO REALLY THAT MUCH BETTER?!* I've been comparing the incredible NEW *PROLED XDR OLED MACBOOK PRO* against the existing *MINI-LED MACBOOK PRO* , and there's something
-    about these two machines that could completely change which one YOU should buy! Bec
+    *IS APPLE'S NEW OLED MACBOOK PRO REALLY THAT MUCH BETTER?!* I've been comparing the incredible NEW *PROLED XDR OLED MACBOOK PRO* against the existing
+    *MINI-LED MACBOOK PRO* , and there's something about these two machines that could completely change which one YOU should buy! Bec
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5059,8 +4969,8 @@
     - 128 gb
     - 64gb
   popis: >-
-    Every way to get 128GB of memory for local AI, with today's prices, how fast each one runs Qwen 3.8 Flash-Next, and what to buy at each budget: gaming PC + RAM, Strix Halo, used Mac Studio, Mac
-    Studio M5 Max, MacBook Pro, DGX Spark, M5 Ultra and RTX PRO 6000. 📋 Free cheat sheet 
+    Every way to get 128GB of memory for local AI, with today's prices, how fast each one runs Qwen 3.8 Flash-Next, and what to buy at each budget: gaming PC +
+    RAM, Strix Halo, used Mac Studio, Mac Studio M5 Max, MacBook Pro, DGX Spark, M5 Ultra and RTX PRO 6000. 📋 Free cheat sheet
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5084,9 +4994,9 @@
     - 36gb
     - 64gb
   popis: >-
-    The cheapest M5 Max MacBook Pro costs $4,099 and has less memory than an M5 Pro that costs $1,000 less. If you're buying a MacBook Pro to run AI models locally, memory size and memory speed decide
-    what you can run and how fast, not the chip name.
-  nazor: '3:35 Verdict  Build Alone: practical AI for people building on their own.'
+    The cheapest M5 Max MacBook Pro costs $4,099 and has less memory than an M5 Pro that costs $1,000 less. If you're buying a MacBook Pro to run AI models
+    locally, memory size and memory speed decide what you can run and how fast, not the chip name.
+  nazor: '3:35 Verdict Build Alone: practical AI for people building on their own.'
   popis_auto: true
   nazor_auto: true
   titulky: false
@@ -5116,7 +5026,9 @@
     - 21gb
     - 153gb/s
     - 614gb/s
-  popis: Which MacBook can actually run local AI, and how much memory should you buy? On a $1,699 MacBook Air with 32GB, one free model writes about 44 tokens a second and another crawls along at 8.
+  popis: >-
+    Which MacBook can actually run local AI, and how much memory should you buy? On a $1,699 MacBook Air with 32GB, one free model writes about 44 tokens a
+    second and another crawls along at 8.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5141,7 +5053,7 @@
     - 128gb
     - 160gb
     - 120w
-  popis: 𝐀𝐌𝐃 𝐑𝐲𝐳𝐞𝐧 𝐀𝐈 𝐇𝐚𝐥𝐨 👇 As an Amazon Associate, I earn from qualifying purchases. Stop paying thousands in monthly cloud AI API fees.
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5170,7 +5082,9 @@
     - 512gb
     - 614 gb/s
     - 273 gb/s
-  popis: Two small boxes, 128GB of AI memory each. The Mac Studio M5 Max is cheaper and writes answers faster; the DGX Spark reads long prompts about 2x faster and runs Nvidia's full CUDA stack.
+  popis: >-
+    Two small boxes, 128GB of AI memory each. The Mac Studio M5 Max is cheaper and writes answers faster; the DGX Spark reads long prompts about 2x faster and
+    runs Nvidia's full CUDA stack.
   nazor: Eight rounds (price, memory, speed, long prompts, software, training, power, buying two) and a clear verdict on who should buy which.
   popis_auto: true
   nazor_auto: true
@@ -5191,8 +5105,8 @@
   shlednuti: 2126
   cisla: []
   popis: >-
-    Did NVIDIA mess up with RTX Spark—or are expectations simply too high? In this Tech & Chill reviewer roundup, I look at what tech reviewers are saying about NVIDIA’s RTX Spark: the praise, the
-    criticism, and whether its promises justify the price.
+    Did NVIDIA mess up with RTX Spark—or are expectations simply too high? In this Tech & Chill reviewer roundup, I look at what tech reviewers are saying about
+    NVIDIA’s RTX Spark: the praise, the criticism, and whether its promises justify the price.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5219,8 +5133,8 @@
     - 48 gb
     - 24gb
   popis: >-
-    Microsoft's Surface Laptop Ultra with NVIDIA RTX Spark: no Intel, no AMD, 64 GB of unified memory. I ran a 42 GB AI model (Llama 3.3 70B) entirely on its GPU, benchmarked it in Balanced and Best
-    Performance, rendered in Blender, and hit a Premiere Pro problem you should know abou
+    Microsoft's Surface Laptop Ultra with NVIDIA RTX Spark: no Intel, no AMD, 64 GB of unified memory. I ran a 42 GB AI model (Llama 3.3 70B) entirely on its
+    GPU, benchmarked it in Balanced and Best Performance, rendered in Blender, and hit a Premiere Pro problem you should know abou
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5265,9 +5179,7 @@
   shlednuti: 5159
   cisla: []
   popis: Dropping $3,000–$7,000 on an RTX Spark AI laptop sounds cool until you hear what actually happens. Heat, battery failures, and a laundry list of headaches.
-  nazor: >-
-    You can find more about TWiT and subscribe to our full shows at https://podcasts.twit.tv Subscribe: https://twit.tv/subscribe  Products we recommend: https://www.amazon.com/shop/twitnetcastnetwork
-    TWiT may earn commissions on certain products.
+  nazor: ''
   popis_auto: true
   nazor_auto: true
   titulky: false
@@ -5290,7 +5202,9 @@
     - 16gb
     - 24gb
     - 128gb
-  popis: 'RTX Spark Laptop 1-Month Review: Is the 64GB Mid-Tier Worth the Hype? After using the RTX Spark laptop for a full month, I''m giving you my honest, in-depth review!'
+  popis: >-
+    RTX Spark Laptop 1-Month Review: Is the 64GB Mid-Tier Worth the Hype? After using the RTX Spark laptop for a full month, I'm giving you my honest, in-depth
+    review!
   nazor: 'Final Verdict: For its price point and its ability to get serious local AI learning done, the 64GB variant works for me!'
   popis_auto: true
   nazor_auto: true
@@ -5312,8 +5226,8 @@
   cisla:
     - 128gb
   popis: >-
-    We are testing real-world PC gaming and synthetic benchmarks on Nvidia's all-new RTX Spark N1X platform inside the new ASUS ProArt P16! Marketed as a powerhouse AI machine, the N1X packs a 20-core
-    ARM CPU co-engineered with MediaTek, a massive 6,144-core Blackwell RTX GPU, and 12
+    We are testing real-world PC gaming and synthetic benchmarks on Nvidia's all-new RTX Spark N1X platform inside the new ASUS ProArt P16! Marketed as a
+    powerhouse AI machine, the N1X packs a 20-core ARM CPU co-engineered with MediaTek, a massive 6,144-core Blackwell RTX GPU, and 12
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5334,8 +5248,8 @@
   shlednuti: 24499
   cisla: []
   popis: >-
-    Introducing the new ProArt RTX Spark PCs, featuring the ProArt P16 and P14 laptops, and the ProArt GR1X Mini PC — built to deliver revolutionary AI for agents and creativity. Powered by
-    next-generation AI performance, these versatile PCs accelerate creative workflows and enable n
+    Introducing the new ProArt RTX Spark PCs, featuring the ProArt P16 and P14 laptops, and the ProArt GR1X Mini PC — built to deliver revolutionary AI for
+    agents and creativity. Powered by next-generation AI performance, these versatile PCs accelerate creative workflows and enable n
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5357,9 +5271,9 @@
   cisla:
     - 128 gb
   popis: >-
-    NVIDIA isn't just making the graphics card anymore. RTX Spark — unveiled with Microsoft at Computex 2026 — is the whole brain of a Windows laptop: a 20-core Arm "Grace" CPU built with MediaTek
-    plus a Blackwell RTX GPU, sharing up to 128 GB of unified memory, rated by NVIDIA at up
-  nazor: 2:52 Verdict  Not a buying guide.
+    NVIDIA isn't just making the graphics card anymore. RTX Spark — unveiled with Microsoft at Computex 2026 — is the whole brain of a Windows laptop: a 20-core
+    Arm "Grace" CPU built with MediaTek plus a Blackwell RTX GPU, sharing up to 128 GB of unified memory, rated by NVIDIA at up
+  nazor: 2:52 Verdict Not a buying guide.
   popis_auto: true
   nazor_auto: true
   titulky: false
@@ -5380,8 +5294,8 @@
   cisla:
     - 128 gb
   popis: >-
-    The Asus ProArt P16 (H7607) is one of the first laptops with Nvidia's Arm-based RTX Spark chip: an Arm CPU and Blackwell GPU sharing up to 128 GB of memory, built to run big AI models locally. US
-    prices from $2,799.99 to $6,999.99, India from ₹4,99,990.
+    The Asus ProArt P16 (H7607) is one of the first laptops with Nvidia's Arm-based RTX Spark chip: an Arm CPU and Blackwell GPU sharing up to 128 GB of memory,
+    built to run big AI models locally. US prices from $2,799.99 to $6,999.99, India from ₹4,99,990.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5443,8 +5357,8 @@
   shlednuti: 1121
   cisla: []
   popis: >-
-    Discover 8 new RTX Spark laptops that could change the way we think about portable computing! NVIDIA's latest Blackwell architecture and Grace CPU technology are bringing powerful AI capabilities,
-    creative workflows, and accelerated computing into a new generation of laptops.
+    Discover 8 new RTX Spark laptops that could change the way we think about portable computing! NVIDIA's latest Blackwell architecture and Grace CPU
+    technology are bringing powerful AI capabilities, creative workflows, and accelerated computing into a new generation of laptops.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5470,8 +5384,8 @@
     - 64gb
     - 128gb
   popis: >-
-    HP is entering NVIDIA's new ARM laptop ecosystem with its most premium creator flagship yet: the HP OmniBook Ultra 16 (2026), powered by the RTX Spark (N1X) platform. While its chassis and
-    soft-touch keyboard deck easily rank among my favorite hardware designs of the year, HP mad
+    HP is entering NVIDIA's new ARM laptop ecosystem with its most premium creator flagship yet: the HP OmniBook Ultra 16 (2026), powered by the RTX Spark (N1X)
+    platform. While its chassis and soft-touch keyboard deck easily rank among my favorite hardware designs of the year, HP mad
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5491,7 +5405,9 @@
   delka_s: 1249
   shlednuti: 316
   cisla: []
-  popis: Honestly, I'm very impressed by how it performs in terms of compatibility and the FPS it can give us. The RTX Spark is no joke, especially since Windows on Arm has improved so much.
+  popis: >-
+    Honestly, I'm very impressed by how it performs in terms of compatibility and the FPS it can give us. The RTX Spark is no joke, especially since Windows on
+    Arm has improved so much.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5513,9 +5429,7 @@
   cisla:
     - 32gb
     - 64gb
-  popis: >-
-    Shop HP Omnibook RTX Laptops HERE - https://micro.center/174925 NVIDIA RTX Spark in a compact 14-inch laptop? The HP OmniBook X14 brings NVIDIA's new ARM-based platform to one of the smallest RTX
-    Spark laptops we've tested at Micro Center.
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5561,8 +5475,8 @@
     - 128 gb
     - 32 gb
   popis: >-
-    RTX Spark laptop reviews are in: this video collects what five independent sources actually measured on Nvidia's new Windows-on-Arm laptops, as of 13 November 2026. Local AI speed, MacBook
-    comparison, battery life, heat and noise, games, what doesn't run, prices, and who should b
+    RTX Spark laptop reviews are in: this video collects what five independent sources actually measured on Nvidia's new Windows-on-Arm laptops, as of 13
+    November 2026. Local AI speed, MacBook comparison, battery life, heat and noise, games, what doesn't run, prices, and who should b
   nazor: Not a recommendation to buy anything; check current reviews, prices and game support before you decide.
   popis_auto: true
   nazor_auto: true
@@ -5588,8 +5502,8 @@
     - 110 tok/s
     - 128gb
   popis: >-
-    The first independent tests of NVIDIA's RTX Spark laptop are out. On Artificial Analysis's agent test, Microsoft's Surface Laptop Ultra took 18.9 minutes against 24.74 for an M5 Max MacBook Pro,
-    roughly level with a desktop DGX Spark.
+    The first independent tests of NVIDIA's RTX Spark laptop are out. On Artificial Analysis's agent test, Microsoft's Surface Laptop Ultra took 18.9 minutes
+    against 24.74 for an M5 Max MacBook Pro, roughly level with a desktop DGX Spark.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5635,8 +5549,8 @@
     - 512gb
     - 24 gb
   popis: >-
-    Edit: made an error - M5 Pro MacBook Pro has 1TB not 512GB I put the Microsoft Surface Laptop Ultra (Nvidia N1X, 18-core CPU, 5,120-core Blackwell GPU, 24 GB) head to head with the 16" MacBook Pro
-    M5 Pro (18-core CPU, 20-core GPU, 24 GB). They're almost the same price, so which o
+    Edit: made an error - M5 Pro MacBook Pro has 1TB not 512GB I put the Microsoft Surface Laptop Ultra (Nvidia N1X, 18-core CPU, 5,120-core Blackwell GPU, 24
+    GB) head to head with the 16" MacBook Pro M5 Pro (18-core CPU, 20-core GPU, 24 GB). They're almost the same price, so which o
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5680,8 +5594,8 @@
   cisla:
     - 128 gb
   popis: >-
-    This year Apple couldn't build Mac minis and Mac Studios fast enough, because people are buying them for local AI. The Mac Studio with the M5 Max chip now offers the fastest language model output
-    in its class.
+    This year Apple couldn't build Mac minis and Mac Studios fast enough, because people are buying them for local AI. The Mac Studio with the M5 Max chip now
+    offers the fastest language model output in its class.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5703,8 +5617,8 @@
   cisla: []
   popis: Choosing a Mac Mini for local AI tasks often leads to overspending. We compare the M6 and M5 Pro to see if the cheaper box wins.
   nazor: >-
-    Understanding these specific hardware requirements helps you avoid paying for power you will not use, ensuring your setup remains cost effective while maintaining high inference speeds for local
-    tasks.
+    Understanding these specific hardware requirements helps you avoid paying for power you will not use, ensuring your setup remains cost effective while
+    maintaining high inference speeds for local tasks.
   popis_auto: true
   nazor_auto: true
   titulky: false
@@ -5725,8 +5639,8 @@
   cisla:
     - 512gb
   popis: >-
-    Is the Apple M5 Ultra Mac Studio worth it for local AI—or could a cheaper GPU be the smarter buy? This video breaks down five expensive buying mistakes, from choosing the wrong unified memory
-    configuration to expecting RTX 5090 performance on models that already fit in GPU memory
+    Is the Apple M5 Ultra Mac Studio worth it for local AI—or could a cheaper GPU be the smarter buy? This video breaks down five expensive buying mistakes,
+    from choosing the wrong unified memory configuration to expecting RTX 5090 performance on models that already fit in GPU memory
   nazor: Is the Apple M5 Ultra Mac Studio worth it for local AI—or could a cheaper GPU be the smarter buy?
   popis_auto: true
   nazor_auto: true
@@ -5748,8 +5662,8 @@
   shlednuti: 15008
   cisla: []
   popis: >-
-    My thoughts and review of the RTX Spark Desktop (Asus ProArt GR1X), and what this means for the future of PC use. It's a great device, it's expensive, but I think this might be the watershed
-    moment for how we use our PCs.
+    My thoughts and review of the RTX Spark Desktop (Asus ProArt GR1X), and what this means for the future of PC use. It's a great device, it's expensive, but I
+    think this might be the watershed moment for how we use our PCs.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5773,7 +5687,9 @@
   cisla:
     - 128gb
     - 140w
-  popis: This might be the most powerful small form factor workstation we've ever tested. We are taking a look at the all-new MSI EdgeMesa N AI+ powered by the NVIDIA RTX Spark N1X platform.
+  popis: >-
+    This might be the most powerful small form factor workstation we've ever tested. We are taking a look at the all-new MSI EdgeMesa N AI+ powered by the
+    NVIDIA RTX Spark N1X platform.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5794,9 +5710,7 @@
   delka_s: 972
   shlednuti: 144606
   cisla: []
-  popis: >-
-    Micro Center is THE Ai Destination: https://micro.center/f2712a Check out Micro Center's Newest Austin Store: https://micro.center/ce8028 Shop Micro Center's Top Deals: https://micro.center/1edd34
-    Visit Micro Center News: https://micro.center/465d0b 🎥 Related Videos 🎥 🧳🧰 Mini
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5842,12 +5756,16 @@
   cisla:
     - 128gb
     - 64gb
-  popis: Nvidia RTX Spark mini PCs from ASUS, Dell and MSI run a 120B AI at home with up to 128GB of memory. Here's what fits, how fast it runs, and why a cheaper Mac Studio is faster at chat.
+  popis: >-
+    Nvidia RTX Spark mini PCs from ASUS, Dell and MSI run a 120B AI at home with up to 128GB of memory. Here's what fits, how fast it runs, and why a cheaper
+    Mac Studio is faster at chat.
   nazor: ''
   popis_auto: true
   nazor_auto: true
   titulky: false
-  popis_cs: 'Vysvětlení stolních mini PC s RTX Spark od ASUS, Dellu a MSI: co se vejde do 128 GB, jak rychle to běží a proč je levnější Mac Studio v chatu rychlejší. Osm minut, bez vlastního měření.'
+  popis_cs: >-
+    Vysvětlení stolních mini PC s RTX Spark od ASUS, Dellu a MSI: co se vejde do 128 GB, jak rychle to běží a proč je levnější Mac Studio v chatu rychlejší. Osm
+    minut, bez vlastního měření.
 - id: 8Tw2LdgTcY0
   url: https://www.youtube.com/watch?v=8Tw2LdgTcY0
   nazev: Is the RTX Spark Desktop Worth It for Local AI? | Micro Center Reviews the ASUS ProArt GR1X
@@ -5869,9 +5787,7 @@
     - 140w
     - 128gb
     - 48gb
-  popis: >-
-    Check out the ASUS ProArt GR1X RTX Spark Desktop HERE - https://micro.center/6dcff3 Read more at Micro Center News - https://micro.center/d674ee Can a compact desktop beat every RTX Spark laptop
-    we've tested? We put the ASUS ProArt GR1X, an NVIDIA RTX Spark desktop with 64GB of u
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5936,8 +5852,8 @@
   shlednuti: 23
   cisla: []
   popis: >-
-    NVIDIA says its RTX Spark desktops are out now, with a 1 petaflop claim and a starting price around $4,499. We check the claims against the one independent review we could find, sort the
-    conflicting prices, and ask who these boxes are actually for.
+    NVIDIA says its RTX Spark desktops are out now, with a 1 petaflop claim and a starting price around $4,499. We check the claims against the one independent
+    review we could find, sort the conflicting prices, and ask who these boxes are actually for.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5952,7 +5868,9 @@
   vydano_odhad: false
   stav: prohlednuto
   kvalita: 3
-  proc: Automaticky z popisu a titulků. Délka 51 min. Zmiňuje 273 gb/s, 64gb, 128gb. Zařízení je v textu jmenované. Titulek je bulvární. Titulky nedostupné nebo krátké.
+  proc: >-
+    Automaticky z popisu a titulků. Délka 51 min. Zmiňuje 273 gb/s, 64gb, 128gb. Zařízení je v textu jmenované. Titulek je bulvární. Titulky nedostupné nebo
+    krátké.
   sponzorovane: false
   auto: true
   delka_s: 3062
@@ -5961,9 +5879,7 @@
     - 273 gb/s
     - 64gb
     - 128gb
-  popis: >-
-    Subscribe to the channel: Resources & Links: Microsoft Surface RT (NVIDIA Tegra 3, 2012) 🔍 eBay (Best Deals):
-    https://www.ebay.com/sch/i.html?_nkw=microsoft+surface+rt&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=5339196185&toolid=10001&customid=circuit-rift NVIDIA's 
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -5987,13 +5903,15 @@
     - 140 w
     - 128 gb
   popis: >-
-    Battery testing time for the RTX Spark laptop! On battery in Windows' Best performance, my RTX Spark laptop writes as fast as it does plugged in and reads 3.5 to 7% slower, while Windows' Balanced
-    mode costs about a fifth of its reading speed.
+    Battery testing time for the RTX Spark laptop! On battery in Windows' Best performance, my RTX Spark laptop writes as fast as it does plugged in and reads
+    3.5 to 7% slower, while Windows' Balanced mode costs about a fifth of its reading speed.
   nazor: ''
   popis_auto: true
   nazor_auto: true
   titulky: false
-  popis_cs: 'Měření RTX Spark notebooku na baterii: zápis je stejně rychlý jako ze sítě, čtení o 3,5–7 % pomalejší a vyvážený režim Windows sráží rychlost čtení zhruba o pětinu. Délka 16 minut.'
+  popis_cs: >-
+    Měření RTX Spark notebooku na baterii: zápis je stejně rychlý jako ze sítě, čtení o 3,5–7 % pomalejší a vyvážený režim Windows sráží rychlost čtení zhruba o
+    pětinu. Délka 16 minut.
 - id: 4q5X7YddEZg
   url: https://www.youtube.com/watch?v=4q5X7YddEZg
   nazev: 'Nvidia RTX Spark: Everything You Need to Know Before You Buy'
@@ -6031,9 +5949,7 @@
   delka_s: 1118
   shlednuti: 208302
   cisla: []
-  popis: >-
-    💰 Save BIG on Your Next Laptop: https://www.bestlaptop.deals/live-deals 🔎 Find Your Perfect Laptop in 10 Seconds: https://www.bestlaptop.deals/laptop-picker 💻 Find the Best Gaming Laptops right
-    now: https://www.bestlaptop.deals/recommendations/Best-Laptops-for-Gaming Best Affo
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6079,9 +5995,7 @@
     - 64 gb
     - 32 gb
     - 12gb
-  popis: >-
-    👉 Save BIG on Your Next Laptop: https://www.bestlaptop.deals ✋ Legion 7a 15 (Buy If On Sale) - Ryzen AI MAX+ 392, 64 GB of Unified Memory: https://go.bestlaptop.deals/HFPMC - Ryzen AI MAX+ 388,
-    32 GB of Unified Memory: https://go.bestlaptop.deals/c/eI2JLLwlT7 Best Alternatives!!
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6128,8 +6042,8 @@
   cisla:
     - 128gb
   popis: >-
-    NVIDIA’s DGX Spark launched at $3,999, jumped to a $4,699 MSRP, and is now showing up at retail for $6,949.99. In this video, we break down what actually changed during its first year, how its
-    128GB of unified memory compares against the RTX 5090 and AMD’s Ryzen AI Max+ 395 (Stri
+    NVIDIA’s DGX Spark launched at $3,999, jumped to a $4,699 MSRP, and is now showing up at retail for $6,949.99. In this video, we break down what actually
+    changed during its first year, how its 128GB of unified memory compares against the RTX 5090 and AMD’s Ryzen AI Max+ 395 (Stri
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6161,9 +6075,7 @@
     - 273gb/s
     - 614gb/s
     - 192 gb
-  popis: >-
-    PRODUCTS • Mac Studio, M5 Max 40-core GPU, 128GB, 2TB ($5,899): https://www.apple.com/shop/buy-mac/mac-studio/m5-max-chip-18-core-cpu-40-core-gpu-128gb-memory-2tb-storage • GMKtec EVO-X5 Pro,
-    Ryzen AI Max+ PRO 495, 192GB, 2TB ($6,799): https://www.gmktec.com/products/gmktec-evo-x
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6188,8 +6100,8 @@
     - 512gb
     - 64gb
   popis: >-
-    ローカルLLM（オンプレ／閉域で動かすLLM）まわりの製品・サービスの動きを、毎朝まとめてお届けします。2026-10-26（月）の回です。 ■ 今日の3行まとめ ・DGX Spark 8台（1TB）：NVIDIAが8台クラスタの手順と実測を公開。753BのGLM 5.3で同時1件 毎秒31トークン ・Ollama
-    0.40.11（b11845）：10/24のプレリリース。Qwen3-Coderのツール呼び出しを修正、llama.cppを更新 ・今週は予定が続く（10/28〜）：Appleのイベント、10/31のMistral Large 4、11/4ま
+    ローカルLLM（オンプレ／閉域で動かすLLM）まわりの製品・サービスの動きを、毎朝まとめてお届けします。2026-10-26（月）の回です。 ■ 今日の3行まとめ ・DGX Spark 8台（1TB）：NVIDIAが8台クラスタの手順と実測を公開。753BのGLM 5.3で同時1件 毎秒31トークン
+    ・Ollama 0.40.11（b11845）：10/24のプレリリース。Qwen3-Coderのツール呼び出しを修正、llama.cppを更新 ・今週は予定が続く（10/28〜）：Appleのイベント、10/31のMistral Large 4、11/4ま
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6219,8 +6131,8 @@
     - 512gb
     - 128gb
   popis: >-
-    The cheapest M5 Ultra Mac Studio costs $400 more than the 128 GB M5 Max and has 32 GB less memory. And on the big models most people run, the $10,799 Ultra writes only about 5 tokens a second
-    faster than the $5,099 Max.
+    The cheapest M5 Ultra Mac Studio costs $400 more than the 128 GB M5 Max and has 32 GB less memory. And on the big models most people run, the $10,799 Ultra
+    writes only about 5 tokens a second faster than the $5,099 Max.
   nazor: It never changes what I recommend.
   popis_auto: true
   nazor_auto: true
@@ -6285,8 +6197,8 @@
     - 48gb
     - 35gb
   popis: >-
-    █▀█ █▀▀ ▄▀█ █▀▄ █▀▄▀█ █▀█ █▀█ █▀▀ █▀▄ ██▄ █▀█ █▄▀ █ ▀ █ █▄█ █▀▄ ██▄ Inkling 2 Small and Mistral Large 4 are both open-weight models, and neither fits on a 128GB MacBook Pro. I explain why with one
-    sum you can do yourself, then find out what does fit and test it.
+    █▀█ █▀▀ ▄▀█ █▀▄ █▀▄▀█ █▀█ █▀█ █▀▀ █▀▄ ██▄ █▀█ █▄▀ █ ▀ █ █▄█ █▀▄ ██▄ Inkling 2 Small and Mistral Large 4 are both open-weight models, and neither fits on a
+    128GB MacBook Pro. I explain why with one sum you can do yourself, then find out what does fit and test it.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6312,8 +6224,8 @@
     - 128 gb
     - 16 gb
   popis: >-
-    What to check before you buy a computer for local AI: how much memory your jobs need, a Mac mini, a Mac Studio, a MacBook Pro or an RTX 5090, how many tokens a second is fast enough, and whether
-    to buy now or wait. 📋 Free cheat sheet from this video, with the five checks and eve
+    What to check before you buy a computer for local AI: how much memory your jobs need, a Mac mini, a Mac Studio, a MacBook Pro or an RTX 5090, how many
+    tokens a second is fast enough, and whether to buy now or wait. 📋 Free cheat sheet from this video, with the five checks and eve
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6339,8 +6251,8 @@
     - 475gb
     - 384gb
   popis: >-
-    Apple's 512GB Mac Studio M5 Ultra costs $11,500 more than the 256GB one, which is $701 more than a whole second 256GB Mac Studio. This video works out what that extra memory actually buys you for
-    running local AI models like GLM 5.3 and DeepSeek V4.1 Flash, and what it does not.
+    Apple's 512GB Mac Studio M5 Ultra costs $11,500 more than the 256GB one, which is $701 more than a whole second 256GB Mac Studio. This video works out what
+    that extra memory actually buys you for running local AI models like GLM 5.3 and DeepSeek V4.1 Flash, and what it does not.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6368,8 +6280,8 @@
     - 32 gb
     - 64 gb
   popis: >-
-    Apple's new OLED MacBook Pro for local AI: what the M5 Pro and M5 Max do for running AI on your own laptop, which models fit at each memory size, how it compares to NVIDIA's RTX Spark laptops, and
-    what the AI-ready configurations cost. 📘 Local AI on Your Mac, my guide (which Mac
+    Apple's new OLED MacBook Pro for local AI: what the M5 Pro and M5 Max do for running AI on your own laptop, which models fit at each memory size, how it
+    compares to NVIDIA's RTX Spark laptops, and what the AI-ready configurations cost. 📘 Local AI on Your Mac, my guide (which Mac
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6407,12 +6319,10 @@
     - 24.99 tok/s
     - 36.73 tok/s
     - 512gb
-  popis: >-
-    Apple's Harbor should run on almost any Apple silicon Mac, but pooling Macs needs Thunderbolt 5, and the cheapest Mac with it is $1,699. Apple Mac Studio M5 Max:
-    https://www.amazon.com/s?k=mac+studio+m5+max&tag=scoritz-20 Apple Mac Studio M5 Ultra: https://www.amazon.com/s?k=mac+
+  popis: ''
   nazor: >-
-    Our verdict, buyer by buyer: if you own any M-series Mac, wait and try Harbor on it; for a cheap Harbor box, the Mac mini M6 32GB; for a Mac that can join a pool later, the Mac mini M5 Pro 64GB;
-    for big models in one box, the Mac Studio M5 Max 128GB; and for models over 128GB, the Mac Studio M5 Ultra 256GB.
+    Our verdict, buyer by buyer: if you own any M-series Mac, wait and try Harbor on it; for a cheap Harbor box, the Mac mini M6 32GB; for a Mac that can join a
+    pool later, the Mac mini M5 Pro 64GB; for big models in one box, the Mac Studio M5 Max 128GB; and for models over 128GB, the Mac Studio M5 Ultra 256GB.
   popis_auto: true
   nazor_auto: true
   titulky: false
@@ -6432,9 +6342,7 @@
   delka_s: 1009
   shlednuti: 141363
   cisla: []
-  popis: >-
-    I gave two M5 Max MacBook Pros the same workday, and the result sent me back to test the new ProLED screen on its own. 🔹 Try out ChatLLM - http://chatllm.abacus.ai/ltf and Abacus AI DeepAgent -
-    http://deepagent.abacus.ai/ltf 🎥 Related Videos 🎥 🧳🧰 Mini PC portable setup - htt
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6497,7 +6405,7 @@
   delka_s: 479
   shlednuti: 53526
   cisla: []
-  popis: You can find us... Twitter - https://twitter.com/level1techs Twitch - https://twitch.tv/teampgp For all our social links, websites, and more, check out our link tree!
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6520,8 +6428,8 @@
   cisla:
     - 128 gb
   popis: >-
-    🚀 Nvidia DGX Spark teszt: hetekig dolgoztattam a gépet helyi AI-modellekkel, és megmutatom, kinek éri meg, és kinek nem. Az Nvidia DGX Spark egy kis asztali gép 128 GB megosztott memóriával,
-    kifejezetten helyi AI-modellek futtatására.
+    🚀 Nvidia DGX Spark teszt: hetekig dolgoztattam a gépet helyi AI-modellekkel, és megmutatom, kinek éri meg, és kinek nem. Az Nvidia DGX Spark egy kis
+    asztali gép 128 GB megosztott memóriával, kifejezetten helyi AI-modellek futtatására.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6543,9 +6451,7 @@
   delka_s: 1158
   shlednuti: 38538
   cisla: []
-  popis: >-
-    Sign up to try these Superhuman connectors using my link https://superhuman.com/alex Follow my Instagram! http://instagram.com/alexfinnai MASSIVE database of AI agent use cases:
-    https://agentusecases.ai/ Sign up for my free newsletter: https://www.shipitweekly.com/ FULL ChatGPT 6
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6568,8 +6474,8 @@
   cisla:
     - 128gb
   popis: >-
-    In this NVIDIA RTX Spark overview, we explore its AI performance, unified memory architecture, support for language models with up to 120 billion parameters, and compatibility with creative
-    applications such as Photoshop, Premiere Pro, and Blender. With systems arriving from ASUS
+    In this NVIDIA RTX Spark overview, we explore its AI performance, unified memory architecture, support for language models with up to 120 billion
+    parameters, and compatibility with creative applications such as Photoshop, Premiere Pro, and Blender. With systems arriving from ASUS
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6591,8 +6497,8 @@
   shlednuti: 9
   cisla: []
   popis: >-
-    With recently having received a review sample of the GMKtec EVO-X2 mini PC powered by the AMD Ryzen AI Max+ 395 "Strix Halo" SoC and pre-loaded with Microsoft Windows 11 Pro, I took the
-    opportunity to see how the AMD Ryzen AI Max+ performance is comparing between Windows 11 and U
+    With recently having received a review sample of the GMKtec EVO-X2 mini PC powered by the AMD Ryzen AI Max+ 395 "Strix Halo" SoC and pre-loaded with
+    Microsoft Windows 11 Pro, I took the opportunity to see how the AMD Ryzen AI Max+ performance is comparing between Windows 11 and U
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6615,8 +6521,8 @@
   cisla:
     - 64gb
   popis: >-
-    Buy this amazing product at an unbeatable price Is this the ultimate compact powerhouse? We are taking an in-depth look at the new GMKtec EVO-X2, an AI-focused mini PC featuring the flagship AMD
-    Ryzen AI Max+ 395 processor.
+    Buy this amazing product at an unbeatable price Is this the ultimate compact powerhouse? We are taking an in-depth look at the new GMKtec EVO-X2, an
+    AI-focused mini PC featuring the flagship AMD Ryzen AI Max+ 395 processor.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6640,9 +6546,7 @@
     - 96 gb
     - 24 gb
     - 256 gb
-  popis: >-
-    🖥️ Get the Olares One $600 off with our link (Black Friday Deal) -https://tinyurl.com/olares600 Save $300 after black Friday 💙⚡Become a member – https://tinyurl.com/blmember We open it up to
-    show the RTX 5090 laptop chip, the 24-core Intel Core Ultra 9, the two memory sticks an
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6665,7 +6569,9 @@
   cisla:
     - 111 gb
     - 512 gb
-  popis: 'This is the ultra review of the Mac Studio M5 Ultra for local AI: 30 days running 24/7 on my desk. What''s good, what''s bad, and which chip and memory make sense.'
+  popis: >-
+    This is the ultra review of the Mac Studio M5 Ultra for local AI: 30 days running 24/7 on my desk. What's good, what's bad, and which chip and memory make
+    sense.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6691,9 +6597,7 @@
     - 256gb
     - 128gb
     - 66.39 tok/s
-  popis: >-
-    On June 12th a single letter switched off Anthropic's best model for 19 days, and it was only the first of three switches that went in this year. Try ChatLLM here - https://chatllm.abacus.ai/kai
-    Running AI locally used to be a hobby you weighed against a $20 subscription.
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6717,7 +6621,9 @@
     - 64gb
     - 36gb
     - 512gb
-  popis: I bought TWO M5 Max Mac Studios — one for $3,700 and another for just $1,900. But after putting both machines through real-world testing, I decided to return one of them.
+  popis: >-
+    I bought TWO M5 Max Mac Studios — one for $3,700 and another for just $1,900. But after putting both machines through real-world testing, I decided to
+    return one of them.
   nazor: $1,900 — is the upgrade worth it?
   popis_auto: true
   nazor_auto: true
@@ -6744,7 +6650,9 @@
     - 307 gb/s
     - 37 gb
     - 64 gb
-  popis: 'Buying the new MacBook Pro for AI? On Apple''s own order page the cheapest M5 Max costs $1,000 more than an M5 Pro that has more memory: 36 GB for $4,499 against 48 GB for $3,499.'
+  popis: >-
+    Buying the new MacBook Pro for AI? On Apple's own order page the cheapest M5 Max costs $1,000 more than an M5 Pro that has more memory: 36 GB for $4,499
+    against 48 GB for $3,499.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6767,7 +6675,9 @@
   cisla:
     - 36 gb
     - 96 gb
-  popis: ¿Cuánto rinde realmente un MacBook Pro M5 Max con inteligencia artificial local? Probamos Qwen3.8-27B con Ollama y MLX en Apple Silicon, utilizando 36 GB de memoria unificada.
+  popis: >-
+    ¿Cuánto rinde realmente un MacBook Pro M5 Max con inteligencia artificial local? Probamos Qwen3.8-27B con Ollama y MLX en Apple Silicon, utilizando 36 GB de
+    memoria unificada.
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6794,8 +6704,8 @@
     - 64gb
     - 9w
   popis: >-
-    Mac mini local AI in November 2026, for anyone running a Mac mini LLM at home: we re-checked the five things the extra $1,000 for an M5 Pro 48GB buys over the $1,299 M6 32GB, with this month's
-    free engines. The M6 Mac mini now writes Qwen 3.8 27B at about 28 tokens a second on a 
+    Mac mini local AI in November 2026, for anyone running a Mac mini LLM at home: we re-checked the five things the extra $1,000 for an M5 Pro 48GB buys over
+    the $1,299 M6 32GB, with this month's free engines. The M6 Mac mini now writes Qwen 3.8 27B at about 28 tokens a second on a
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6810,7 +6720,7 @@
   vydano_odhad: false
   stav: zamitnuto
   kvalita: 5
-  proc: "Ruční korekce: sestavy z více GPU (512 GB VRAM), whitebox mimo katalog."
+  proc: 'Ruční korekce: sestavy z více GPU (512 GB VRAM), whitebox mimo katalog.'
   sponzorovane: false
   auto: true
   delka_s: 1203
@@ -6824,9 +6734,7 @@
     - 32gb
     - 128gb
     - 96gb
-  popis: >-
-    Apple just priced the 512GB Mac Studio at $22,299, and it ships in January. So I priced every other way to get 512GB of memory for local AI, using what things actually sold for on US eBay this
-    week, not what sellers are asking.
+  popis: ''
   nazor: ''
   popis_auto: true
   nazor_auto: true
@@ -6889,8 +6797,8 @@
     - 2.53 tok/s
     - 120w
   popis: >-
-    Can a £200 2013 "Trash Can" Apple Mac Pro (MacPro6,1) running Linux actually beat modern hardware for local AI, vision alt-text, and daily coding in 2026? Out of the box, modern local AI tools hit
-    three brick walls on this machine: AMD dropped ROCm support for GCN 1.0 (FirePro D5
+    Can a £200 2013 "Trash Can" Apple Mac Pro (MacPro6,1) running Linux actually beat modern hardware for local AI, vision alt-text, and daily coding in 2026?
+    Out of the box, modern local AI tools hit three brick walls on this machine: AMD dropped ROCm support for GCN 1.0 (FirePro D5
   nazor: ''
   popis_auto: true
   nazor_auto: true

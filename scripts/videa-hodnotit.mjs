@@ -46,6 +46,7 @@ function vecnyPopis(desc) {
     .map((s) => s.trim())
     .filter((s) => s && !/^https?:/i.test(s) && !/^[0-9]+:[0-9]{2}/.test(s) && !SPONZOR.test(s))
     .join(' ')
+    .replace(/https?:\/\/\S+/gi, '')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -105,6 +106,8 @@ async function titulky(html) {
 }
 
 function popisVidea(desc) {
+  const SHOP =
+    /(amazon|amzn|alza|ebay|aliexpress|temu|shein|newegg|bestbuy|bhphotovideo|geni\.us|lddy|kit\.co|shopnow|micro\.center|store|eshop|e-shop)/i;
   const lines = String(desc)
     .split('\n')
     .map((s) => s.trim())
@@ -113,15 +116,24 @@ function popisVidea(desc) {
         s &&
         !/^https?:/i.test(s) &&
         !/^[0-9]+:[0-9]{2}/.test(s) &&
+        !/https?:\/\//i.test(s) &&
+        !SHOP.test(s) &&
         !/(amzn|geni\.us|link\.amazon|patreon|sponsor|affiliate|gear|checklist)/i.test(s),
     );
-  const text = lines.join(' ').replace(/\s+/g, ' ').trim();
+  const text = lines
+    .join(' ')
+    .replace(/https?:\/\/\S+/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
   const sentences = text.split(/(?<=[.!?])\s+/);
   return sentences.slice(0, 2).join(' ').slice(0, 280);
 }
 
 function nazorVidea(desc) {
-  const sentences = String(desc).replace(/\n/g, ' ').split(/(?<=[.!?])\s+/);
+  const sentences = String(desc)
+    .replace(/https?:\/\/\S+/gi, '')
+    .replace(/\n/g, ' ')
+    .split(/(?<=[.!?])\s+/);
   const klic =
     /(recommend|worth it|don'?t buy|do not buy|avoid|i returned|better than|worse than|verdict|doporučuji|nedoporučuji|nekupte|vyplatí|nevyplatí)/i;
   return sentences.find((s) => klic.test(s) && s.length < 320) ?? '';

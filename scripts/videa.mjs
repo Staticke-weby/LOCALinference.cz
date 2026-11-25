@@ -33,6 +33,14 @@ for (const [i, v] of (Array.isArray(videa) ? videa : []).entries()) {
     chyby.push(`${kde}: kvalita musí být 1–5 nebo null`);
   }
   if (v.stav === 'zamitnuto' && !String(v.proc ?? '').trim()) chyby.push(`${kde}: zamitnuto musí mít proc`);
+  // Popis na webu je česky a bez odkazů na obchody.
+  const SHOP = /(amazon|amzn|alza\.cz|ebay|aliexpress|temu|newegg|bestbuy|bhphotovideo|geni\.us|shopnow|micro\.center)/i;
+  if (v.popis_cs && (/https?:\/\//i.test(v.popis_cs) || SHOP.test(v.popis_cs))) {
+    chyby.push(`${kde}: popis_cs obsahuje odkaz nebo e-shop — do popisu na webu nepatří`);
+  }
+  if ((/https?:\/\//i.test(String(v.popis ?? '')) || SHOP.test(String(v.popis ?? ''))) && !String(v.proc ?? '').includes('reklama')) {
+    varovani.push(`${kde}: popis obsahuje odkaz nebo e-shop`);
+  }
   if (ids.has(v.id)) chyby.push(`${kde}: duplicitní id`);
   ids.add(v.id);
 }

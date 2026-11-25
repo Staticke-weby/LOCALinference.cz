@@ -312,15 +312,10 @@ export type VideoZaznam = {
   nazor_en?: string;
 };
 
-/** Vybraná videa pro CZ: kvalita 4–5, max. 8. Český popis, jinak popis z videa. */
+/** Vybraná videa pro CZ: jen s českým popisem, kvalita 4–5, max. 8. */
 export function getVideaVybrana(id: string): VideoZaznam[] {
   return (load<VideoZaznam[]>('videa.yaml') ?? [])
-    .filter(
-      (v) =>
-        v.zarizeni === id &&
-        (v.popis_cs || v.popis) &&
-        (v.stav === 'pouzito' || (v.kvalita ?? 0) >= 4),
-    )
+    .filter((v) => v.zarizeni === id && v.popis_cs && (v.stav === 'pouzito' || (v.kvalita ?? 0) >= 4))
     .sort(
       (a, b) =>
         (b.kvalita ?? 0) - (a.kvalita ?? 0) ||
