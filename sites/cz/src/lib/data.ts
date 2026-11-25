@@ -548,6 +548,16 @@ export function merenoKymLabel(k: Mereni['mereno_kym']): string {
  * Affiliate je jen odkaz s affiliate parametrem (`idp`) — odkaz na produktovou
  * stránku v seznamu zdrojů affiliate není a označovat se nemá.
  */
+/** Odkaz na Alzu: mimo rozcestník /kde-koupit/ se nevykresluje jako odkaz. */
+export function jeAlza(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return host === 'alza.cz' || host.endsWith('.alza.cz');
+  } catch {
+    return false;
+  }
+}
+
 export function relOdkazu(url: string): string {
   try {
     const u = new URL(url);

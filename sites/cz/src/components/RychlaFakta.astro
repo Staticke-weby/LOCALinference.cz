@@ -1,6 +1,6 @@
 ---
 import Cena from './Cena.astro';
-import { formatCislo, getZarizeniById, relOdkazu } from '../lib/data';
+import { formatCislo, getZarizeniById, jeAlza, relOdkazu } from '../lib/data';
 
 interface Props {
   id: string;
@@ -9,6 +9,8 @@ interface Props {
 const { id } = Astro.props;
 const z = getZarizeniById(id);
 if (!z) throw new Error(`Neznámé zařízení: ${id}`);
+// Alza je zdroj ceny, ne podklad pro parametry; v seznamu zdrojů se neuvádí.
+const zdroje = z.zdroje.filter((u) => !jeAlza(u));
 ---
 
 <table class="li-tabulka">
@@ -25,12 +27,16 @@ if (!z) throw new Error(`Neznámé zařízení: ${id}`);
     <tr>
       <th>Zdroje</th>
       <td>
-        {z.zdroje.map((u, i) => (
-          <span>
-            <a href={u} target="_blank" rel={relOdkazu(u)}>zdroj {i + 1}</a>
-            {i < z.zdroje.length - 1 ? ' · ' : ''}
-          </span>
-        ))}
+        {
+          zdroje.length
+            ? zdroje.map((u, i) => (
+                <span>
+                  <a href={u} target="_blank" rel={relOdkazu(u)}>zdroj {i + 1}</a>
+                  {i < zdroje.length - 1 ? ' · ' : ''}
+                </span>
+              ))
+            : '—'
+        }
       </td>
     </tr>
   </tbody>

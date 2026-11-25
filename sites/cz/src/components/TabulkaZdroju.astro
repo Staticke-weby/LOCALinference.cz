@@ -1,5 +1,5 @@
 ---
-import { formatDatum, getZdroje, relOdkazu } from '../lib/data';
+import { formatDatum, getZdroje, jeAlza, relOdkazu } from '../lib/data';
 
 interface Props {
   limit?: number;
@@ -25,7 +25,9 @@ const zdroje = typeof limit === 'number' ? vse.slice(0, limit) : vse;
     <tbody>
       {zdroje.map((z) => (
         <tr>
-          <td><a href={z.url} target="_blank" rel={relOdkazu(z.url)}>{z.nazev}</a></td>
+          <td>
+          {jeAlza(z.url) ? <span>{z.nazev}</span> : <a href={z.url} target="_blank" rel={relOdkazu(z.url)}>{z.nazev}</a>}
+        </td>
           <td>{z.co_sledujeme.join(', ')}</td>
           <td>{z.frekvence}</td>
           <td>{formatDatum(z.posledni_kontrola)}</td>

@@ -1,5 +1,5 @@
 ---
-import { cenaText, relOdkazu, type Zarizeni } from '../lib/data';
+import { cenaText, jeAlza, relOdkazu, type Zarizeni } from '../lib/data';
 
 interface Props {
   zarizeni: Zarizeni;
@@ -16,7 +16,14 @@ const c = cenaText(zarizeni);
   {c.jeOdhad && <span class="li-cena__odhad">odhad</span>}
   {c.usd && <span class="li-cena__usd">({c.usd})</span>}
   {showDate && c.datum && <span class="li-cena__datum">k {c.datum}</span>}
-  {c.zdroj && <a href={c.zdroj} target="_blank" rel={relOdkazu(c.zdroj)}>zdroj</a>}
+  {
+    c.zdroj &&
+      (jeAlza(c.zdroj) ? (
+        <span class="li-cena__zdroj">zdroj: Alza.cz</span>
+      ) : (
+        <a href={c.zdroj} target="_blank" rel={relOdkazu(c.zdroj)}>zdroj</a>
+      ))
+  }
 </span>
 
 <style>
@@ -40,7 +47,8 @@ const c = cenaText(zarizeni);
     border: 1px solid var(--sl-color-gray-5);
     border-radius: 999px;
   }
-  .li-cena__datum {
+  .li-cena__datum,
+  .li-cena__zdroj {
     color: var(--sl-color-gray-3);
     font-size: var(--sl-text-xs);
   }
