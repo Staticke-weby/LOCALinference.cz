@@ -21,7 +21,7 @@
     do: 249990
     s_dph: true
     overeno: 2026-11-23
-    zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/ai-pc/18907789.htm
     poznamka: "Nejlevnější GB10 OEM 179 990 Kč (ASUS GX10 1TB, GIGABYTE ATOM 4TB, HP 4TB, Lenovo 1TB); NVIDIA DGX Spark 219 990 Kč; Lenovo 249 990 Kč; vč. DPH."
   cpu: GB10 Grace Blackwell
   gpu: Blackwell
@@ -55,7 +55,7 @@
     od: 194990
     s_dph: true
     overeno: 2026-11-21
-    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
     poznamka: "ASUS ProArt GR1X 128GB/2TB 194 990 Kč vč. DPH (na objednávku). 64GB varianta 129 990 Kč; MSI EdgeMesa N AI+ 128 GB je v nabídce bez ceny a nedostupná."
   cpu: NVIDIA Arm SoC
   gpu: Blackwell
@@ -69,7 +69,7 @@
   slabe: [Windows on Arm, v ČR dražší než DGX Spark, málo veřejných měření]
   zdroje:
     - https://www.nvidia.com/en-us/products/rtx-spark/
-    - https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm?idp=12510&banner_id=41939
+    - https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
     - https://www.storagereview.com/review/asus-proart-gr1x-review
     - https://www.tomshardware.com/laptops/nvidia-rtx-spark-devices-are-now-officially-on-sale-secure-the-surface-laptop-ultra-or-other-rtx-spark-laptops-here-starting-at-usd2-599-where-to-buy-pricing-and-availability-revealed-on-several-models
   overeno: 2026-11-21
@@ -93,7 +93,7 @@
     do: 170990
     s_dph: true
     overeno: 2026-11-23
-    zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm
     poznamka: "ASUS ProArt P14 128GB/1TB 125 990 Kč; Lenovo Yoga Pro 9 139 989 Kč (dodání 27. 1. 2027); Surface Laptop Ultra 168 990–170 990 Kč; vč. DPH."
   cpu: NVIDIA Grace 20 jader
   gpu: Blackwell RTX
@@ -134,7 +134,7 @@
     do: 119990
     s_dph: true
     overeno: 2026-11-23
-    zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/ai-pc/18907789.htm
     poznamka: "Acemagic A10A a Acer Veriton RA110, 128GB/2TB, vč. DPH. Acemagic je k 23. 11. 2026 nedostupný, Acer s dodáním 29. 1. 2027."
   cpu: Ryzen AI Max+ 395
   gpu: Radeon 8060S
@@ -175,7 +175,7 @@
     do: 171990
     s_dph: true
     overeno: 2026-11-23
-    zdroj: https://www.alza.cz/mac-studio/18894763.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/mac-studio/18894763.htm
     poznamka: "128GB/512GB 147 990 Kč; 128GB/2TB 171 990 Kč; vč. DPH."
   konfigurace:
     - nazev: "128 GB / 512 GB"
@@ -221,7 +221,7 @@
     do: 282610
     s_dph: true
     overeno: 2026-11-23
-    zdroj: https://www.alza.cz/macbook-pro/18900520.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/macbook-pro/18900520.htm
     poznamka: "14\" 128GB/2TB 197 490 Kč (na objednávku); 16\" 128GB/8TB 282 610 Kč v akci, běžně 297 490 Kč (skladem); vč. DPH. 128 GB je jen u M5 Max, M5 Pro končí na 48 GB. Ceny se rychle mění."
   konfigurace:
     - nazev: "14\" 128 GB / 2 TB"

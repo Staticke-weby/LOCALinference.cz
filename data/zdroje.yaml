@@ -506,7 +506,7 @@
 
 - id: alza-ai-pc
   nazev: Alza.cz - AI počítače (kategorie)
-  url: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
+  url: https://www.alza.cz/ai-pc/18907789.htm
   typ: html
   co_sledujeme: [cena, dostupnost, konfigurace, dgx-spark, strix-halo]
   frekvence: tydne
@@ -518,7 +518,7 @@
 
 - id: alza-rtx-spark
   nazev: Alza.cz - RTX Spark (kategorie)
-  url: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
+  url: https://www.alza.cz/notebooky-rtx-spark/18924563.htm
   typ: html
   co_sledujeme: [cena, dostupnost, konfigurace]
   frekvence: tydne
@@ -530,7 +530,7 @@
 
 - id: alza-rtx-spark-pocitace
   nazev: Alza.cz - Počítače s NVIDIA RTX Spark (kategorie)
-  url: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm?idp=12510&banner_id=41939
+  url: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
   typ: html
   co_sledujeme: [cena, dostupnost, konfigurace, nove-stolni-rtx-spark]
   frekvence: tydne

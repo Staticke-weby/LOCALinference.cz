@@ -415,7 +415,7 @@ polozky:
     davka: 4
     hledat: "Alza, CZC, TS Bohemia, Mironet, OEM"
     poznamka: "GB10: 14 SKU (PNY DGX Spark odebran - prodej skoncil), vsech 14 ma odkaz na produkt. Ceny overeny 18. 11. 2026 u 12 z nich; u Dell 2TB a ZGX 1TB zbyva overit cenu na produktove strance."
-    zdroj: https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/ai-pc/18907789.htm
     overeno: 2026-11-10
 
   - id: C02
@@ -446,7 +446,7 @@ polozky:
     davka: 4
     hledat: "Microsoft, ASUS, HP, Lenovo, MSI, Dell, Alza"
     poznamka: "6 SKU (ProArt P16 mel dva zaznamy se stejnou konfiguraci, slouceny). Vsech 6 ma odkaz na produkt. Ceny overeny 18. 11. 2026 u P16 a obou Surface variant (lisi se adapterem v baleni); P14, Yoga Pro 9 a Prestige N16 zustavaji z 9. 11. 2026."
-    zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm
     overeno: 2026-11-10
 
   - id: C04
@@ -462,7 +462,7 @@ polozky:
     davka: 4
     hledat: "české e-shopy, OEM zastoupení"
     poznamka: "Alza.cz otevřela kategorii Počítače s NVIDIA RTX Spark (18925089). Data jsou v data/rtx-spark-mini-oem.yaml, texty s cenou srovnané na čtyřech stránkách. MSI EdgeMesa N AI+ zůstává bez ceny (C05)."
-    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
     overeno: 2026-11-21
 
   - id: C05
@@ -476,7 +476,7 @@ polozky:
     davka: 4
     hledat: "Alza.cz produkt MSI EdgeMesa N AI+, MSI CZ, další čeští prodejci"
     poznamka: "Obě 128GB varianty (2TB a 4TB) jsou v datech s null cenou. Americká MSRP 128GB/4TB je 7 499 USD."
-    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm
     overeno: 2026-11-21
 
   - id: C06
@@ -506,7 +506,7 @@ polozky:
     davka: 4
     hledat: "Apple CZ, Alza"
     poznamka: "10. 11. 2026 ověřeno v prohlížeči: Mac Studio 128GB/512GB (147 990 Kč) i 128GB/2TB (171 990 Kč) skladem > 5 ks. MacBook Pro 128GB je částečně nedostupný, cenu je potřeba ověřit před nákupem."
-    zdroj: https://www.alza.cz/mac-studio/18894763.htm?idp=12510&banner_id=41939
+    zdroj: https://www.alza.cz/mac-studio/18894763.htm
     overeno: 2026-11-10
 
   # --- Dávka 5: obsah ----------------------------------------------------

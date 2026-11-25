@@ -172,7 +172,7 @@ const historie = getHistorieCen(sku.id);
     {sklad ? 'Varianta byla v době kontroly skladem.' : 'Dostupnost se může změnit; ověřte ji před objednáním.'}
   </p>
 
-  <AlzaCena kategorie={rodina.kategorie} text="Otevřít kategorii na Alza.cz" />
+  <AlzaCena kategorie={rodina.kategorie} />
 
   <h2>Vývoj ceny</h2>
 
@@ -225,7 +225,7 @@ const historie = getHistorieCen(sku.id);
   <h2>Zdroje</h2>
 
   <ul>
-    <li><a href={sku.zdroj} target="_blank" rel="sponsored noopener noreferrer">Nabídka prodejce</a></li>
+    <li><a href="/kde-koupit/">Ceny a dostupnost u prodejců</a></li>
     <li><a href={rodina.stranka}>Stránka rodiny {rodina.nazev}</a></li>
   </ul>
 

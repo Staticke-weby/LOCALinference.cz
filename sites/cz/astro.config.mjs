@@ -223,6 +223,8 @@ export default defineConfig({
     '/modely/qwen3-6-35b-a3b/': '/modely/qwen3-8-flash-next/',
     '/modely/srovnani/': '/zarizeni/srovnani/',
     '/zaciname/slovnik/': '/slovnik/',
+    // Index konfigurací nemá vlastní stránku; Google ho zná jako 404.
+    '/zarizeni/konfigurace/': '/zarizeni/srovnani/',
   },
   markdown: {
     processor: unified({
@@ -330,6 +332,10 @@ export default defineConfig({
         {
           label: 'Výběr',
           items: [{ autogenerate: { directory: 'vyber' } }],
+        },
+        {
+          label: 'Kde koupit',
+          items: [{ label: 'Kde koupit zařízení pro lokální AI', link: '/kde-koupit/' }],
         },
         {
           label: 'Model',

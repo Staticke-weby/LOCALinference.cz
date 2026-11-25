@@ -91,11 +91,17 @@ for (const file of files) {
     }
   }
 
-  // Alza: každý odkaz nese affiliate parametry (idp) a tím i rel="sponsored".
+  // Alza: affiliate odkazy patří jen na rozcestník /kde-koupit/.
+  // Jinde jsou odkazy na Alzu jen citace zdroje, bez affiliate parametrů.
+  const jeRozcestnik = /\/kde-koupit\/index\.mdx$/.test(rel);
   for (const m of body.matchAll(/\]\((https:\/\/[^)\s]*alza\.cz[^)\s]*)\)/g)) {
     const url = m[1];
-    if (!/[?&]idp=/.test(url)) {
-      fail(`${rel}: odkaz na Alzu bez affiliate parametru (idp=12510&banner_id=41939)`);
+    const maIdp = /[?&]idp=/.test(url);
+    if (jeRozcestnik && !maIdp) {
+      fail(`${rel}: affiliate odkaz na rozcestníku nemá idp=12510&banner_id=41939`);
+    }
+    if (!jeRozcestnik && maIdp) {
+      fail(`${rel}: affiliate odkaz mimo /kde-koupit/ — affiliate patří jen na rozcestník`);
     }
   }
 

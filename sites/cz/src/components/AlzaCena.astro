@@ -1,32 +1,30 @@
 ---
-// Odkaz na aktuální ceny v kategorii Alza.cz. Vždy affiliate,
-// vždy na kategorii — konkrétní produkt se mění a vyprodává.
-// Vykresluje se jako tlačítko, protože je to akce, ne poznámka.
-import { relOdkazu } from '../lib/data';
-
+// Odkaz na rozcestník "Kde koupit". Affiliate odkazy na prodejce jsou
+// jen tam; odsud vede interní odkaz, aby se prodejní odkaz neopakoval
+// na každé stránce webu.
 interface Props {
   kategorie?: 'boxy' | 'notebooky' | 'rtx-spark-pocitace' | 'mac' | 'macbooky';
   text?: string;
 }
 
-const { kategorie = 'boxy', text = 'Aktuální ceny na Alza.cz' } = Astro.props;
+const { kategorie = 'boxy', text = 'Ceny a dostupnost u prodejců' } = Astro.props;
 
-const URLS = {
-  boxy: 'https://www.alza.cz/ai-pc/18907789.htm?idp=12510&banner_id=41939',
-  notebooky: 'https://www.alza.cz/notebooky-rtx-spark/18924563.htm?idp=12510&banner_id=41939',
-  'rtx-spark-pocitace': 'https://www.alza.cz/pocitace-s-nvidia-rtx-spark/18925089.htm?idp=12510&banner_id=41939',
-  mac: 'https://www.alza.cz/mac-studio/18894763.htm?idp=12510&banner_id=41939',
-  macbooky: 'https://www.alza.cz/search.htm?exps=MacBook%20Pro%20128GB&idp=12510&banner_id=41939',
+const KOTVY = {
+  boxy: 'ai-boxy',
+  notebooky: 'rtx-spark-notebooky',
+  'rtx-spark-pocitace': 'rtx-spark-stolni',
+  mac: 'apple',
+  macbooky: 'apple',
 } as const;
 
-const href = URLS[kategorie];
+const href = `/kde-koupit/#${KOTVY[kategorie]}`;
 ---
 
 <p class="li-alza">
-  <a href={href} target="_blank" rel={relOdkazu(href)}>
+  <a href={href}>
     {text}
     <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M7 17 17 7M9 7h8v8"></path>
+      <path d="M5 12h14M13 6l6 6-6 6"></path>
     </svg>
   </a>
 </p>

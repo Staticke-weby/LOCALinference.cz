@@ -196,7 +196,9 @@ for (const [name, items] of [
 for (const z of zdrojeList) alzaZaznamy.push([`data/zdroje.yaml / ${z.id}`, z.url]);
 for (const [kde, u] of alzaZaznamy) {
   if (!alzaUrl(u)) continue;
-  if (!/[?&]idp=/.test(u)) fail(`${kde}: odkaz na Alzu bez affiliate parametru`);
+  if (/[?&]idp=/.test(u)) {
+    fail(`${kde}: affiliate parametr v datech — affiliate odkazy patří jen na /kde-koupit/`);
+  }
 }
 
 // Rozsah od/do musí odpovídat pojmenovaným konfiguracím, jinak se rozejde s textem.
