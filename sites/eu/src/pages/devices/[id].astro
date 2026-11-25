@@ -10,6 +10,7 @@ import {
   getZarizeni,
   getZarizeniById,
   getZarizeniEn,
+  jeAlza,
 } from '../../lib/data';
 
 export function getStaticPaths() {
@@ -171,11 +172,11 @@ const datum = new Intl.DateTimeFormat('en-US', {
     <a href="/models/qwen3-8-flash-next/">model page</a>.
   </p>
 
-  {z.zdroje?.length > 0 && (
+  {z.zdroje?.filter((s) => !jeAlza(s)).length > 0 && (
     <>
       <h2>Sources</h2>
       <ul>
-        {z.zdroje.map((s) => (
+        {z.zdroje.filter((s) => !jeAlza(s)).map((s) => (
           <li><a href={s} target="_blank" rel="noopener noreferrer">{s}</a></li>
         ))}
       </ul>

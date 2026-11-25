@@ -523,14 +523,25 @@ export function merenoKymLabel(k: Mereni['mereno_kym']): string {
 }
 
 /** Affiliate odkazy musí být označené rel="sponsored"; ostatní jen bezpečnostní rel. */
-export function relOdkazu(url: string): string {
+/** English edition links to no retailer; an Alza URL is shown as text only. */
+export function jeAlza(url: string): boolean {
   try {
     const host = new URL(url).hostname.toLowerCase();
-    if (host === 'alza.cz' || host.endsWith('.alza.cz')) {
+    return host === 'alza.cz' || host.endsWith('.alza.cz');
+  } catch {
+    return false;
+  }
+}
+
+export function relOdkazu(url: string): string {
+  try {
+    const u = new URL(url);
+    const host = u.hostname.toLowerCase();
+    if ((host === 'alza.cz' || host.endsWith('.alza.cz')) && u.searchParams.has('idp')) {
       return 'sponsored noopener noreferrer';
     }
   } catch {
-    // relativní nebo neplatná URL — žádné affiliate
+    // relativní nebo neplatná URL - žádné affiliate
   }
   return 'noopener noreferrer';
 }
