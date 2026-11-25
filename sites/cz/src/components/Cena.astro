@@ -17,12 +17,9 @@ const c = cenaText(zarizeni);
   {c.usd && <span class="li-cena__usd">({c.usd})</span>}
   {showDate && c.datum && <span class="li-cena__datum">k {c.datum}</span>}
   {
-    c.zdroj &&
-      (jeAlza(c.zdroj) ? (
-        <span class="li-cena__zdroj">zdroj: Alza.cz</span>
-      ) : (
-        <a href={c.zdroj} target="_blank" rel={relOdkazu(c.zdroj)}>zdroj</a>
-      ))
+    c.zdroj && !jeAlza(c.zdroj) && (
+      <a href={c.zdroj} target="_blank" rel={relOdkazu(c.zdroj)}>zdroj</a>
+    )
   }
 </span>
 
@@ -47,8 +44,7 @@ const c = cenaText(zarizeni);
     border: 1px solid var(--sl-color-gray-5);
     border-radius: 999px;
   }
-  .li-cena__datum,
-  .li-cena__zdroj {
+  .li-cena__datum {
     color: var(--sl-color-gray-3);
     font-size: var(--sl-text-xs);
   }

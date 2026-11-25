@@ -137,9 +137,7 @@ function popisStranky(stranka: string): string {
           </span>
         )}
         {
-          jeAlza(z.zdroj) ? (
-            <span class="li-zmena__zdroj">zdroj: Alza.cz</span>
-          ) : (
+          !jeAlza(z.zdroj) && (
             <a href={z.zdroj} target="_blank" rel={relOdkazu(z.zdroj)}>zdroj</a>
           )
         }
