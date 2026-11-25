@@ -671,16 +671,16 @@
   titulek: "Alza: tři ceny opraveny, jedenáct SKU má odkaz na produkt"
   co_se_zmenilo: "Kontrola v prohlížeči 18. 11. 2026: ASUS Ascent GX10 1TB 162 990 -> 168 990 Kč, Lenovo ThinkStation PGX 2TB 196 050 -> 199 990 Kč, Acer Veriton GN100 4TB 225 847 -> 229 990 Kč. Ceny v textech na 14 místech srovnány. Jedenáct SKU dostalo odkaz na produkt místo odkazu na kategorii."
   dotcene_stranky: [zarizeni/dgx-spark, temata/dgx-spark, temata/cena-lokalni-ai, vyber/rozpocet]
-  zdroj: https://www.alza.cz/asus-ascent-gx10-gg0003bn-d13163570.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
 - datum: 2026-11-18
   typ: cena
   titulek: "PNY DGX Spark odebrán: prodej skončil"
   co_se_zmenilo: "Produktová stránka PNY NVIDIA DGX Spark 4TB hlásí „Prodej skončil“ a neuvádí cenu. SKU odebrán z data/dgx-spark-oem.yaml i z historie cen, texty změněny z 15 na 14 OEM strojů. Zbylých 14 GB10 SKU má odkaz na produkt místo kategorie."
   dotcene_stranky: [zarizeni/dgx-spark, temata/dgx-spark]
-  zdroj: https://www.alza.cz/pny-nvidia-dgx-spark-4tb-d13580874.htm
+  zdroj: https://www.alza.cz/ai-pc/18907789.htm
 - datum: 2026-11-18
   typ: cena
   titulek: "Surface: varianty rozlišené adaptérem, ProArt P16 sloučen"
   co_se_zmenilo: "Surface Laptop Ultra: levnější varianta je bez adaptéru (168 990 Kč), dražší s adaptérem (170 990 Kč); obě mají odkaz na produkt. ProArt P16 měl dva záznamy se stejnou konfigurací — levnější za 130 990 Kč nesl zastaralou cenu, zůstává jeden za 153 990 Kč. Ceny v textech srovnány."
   dotcene_stranky: [zarizeni/rtx-spark-notebook, temata/rtx-spark, vyber/rozpocet, temata/cena-lokalni-ai]
-  zdroj: https://www.alza.cz/microsoft-surface-laptop-ultra-rtx-spark-n1x-6144jadrova-gpu-20jadrovy-cpu-128gb-unified-memory-d13579325.htm
+  zdroj: https://www.alza.cz/notebooky-rtx-spark/18924563.htm

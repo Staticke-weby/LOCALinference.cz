@@ -156,6 +156,13 @@ Toto je nejdůležitější pravidlo projektu.
   Vysvětlení je na `/o-webu/pravni/`, štítek u každého odkazu není
   potřeba. Provize nesmí ovlivnit hodnocení ani pořadí zařízení.
   **EN mutace affiliate odkazy nepoužívá a na prodejce neodkazuje.**
+- **E-shop není zdroj.** Alza (ani jiný obchod) se cituje **jen jako
+  zdroj ceny**, a to odkazem na kategorii, nikdy na produkt. Produktová
+  URL smí zůstat jen v datovém poli `url` pro ověření ceny; do textů,
+  do `zdroj` ani do `Zdroje` nepatří. Když je obchod jediný podklad pro
+  specifikaci, měření nebo tvrzení, zdroj se **neuvede vůbec** — místo
+  toho se najde výrobce, nezávislý test nebo se tvrzení vypustí.
+  Hlídá to `npm run check:obsah` a `npm run check:data`.
 - **Ceny v tabulkách:** jen **koncová cena včetně DPH**. Sloupce „bez DPH“
   a „dostupnost“ neuváděj — čtenáře zajímá, co zaplatí.
 - **Jen aktuální ceny.** Žádné „původně“, přeškrtnuté ceny, slevy ani

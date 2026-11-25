@@ -199,6 +199,11 @@ for (const [kde, u] of alzaZaznamy) {
   if (/[?&]idp=/.test(u)) {
     fail(`${kde}: affiliate parametr v datech — affiliate odkazy patří jen na /kde-koupit/`);
   }
+  // Produktová URL smí být jen v poli url (odkaz na produkt pro ověření ceny).
+  // Jako zdroj (zdroj, zdroje, cena.zdroj) se uvádí kategorie, ne produkt.
+  if (/-d\d+\.htm/.test(u) && !kde.endsWith('(url)')) {
+    fail(`${kde}: produktová URL jako zdroj — e-shop citujeme jen jako zdroj ceny, a to kategorií`);
+  }
 }
 
 // Rozsah od/do musí odpovídat pojmenovaným konfiguracím, jinak se rozejde s textem.
